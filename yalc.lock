@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@dailybruin/lux": {
+      "signature": "2e969b108e19412e43142f454557b889",
+      "file": true
+    }
+  }
+}
