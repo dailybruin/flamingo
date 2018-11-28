@@ -8,7 +8,7 @@ These setup instructions are designed to allow you to develop locally. This guid
 
 0. Be sure that that you have [Yarn](https://yarnpkg.com/en/docs/install) installed on your machine
 1. Find the folder with your Lux installation.
-2. Create an enclosing folder with a command like `mkdir main-site` and move the entire `lux` folder within that folder. Your structure should now look something like this
+2. Create an enclosing folder with a command like `mkdir main-site` and move the entire `lux` folder within that folder. Then clone `flamingo` into that folder. Your structure should now look something like this
   ```
   ├── main-site
     ├── flamingo
