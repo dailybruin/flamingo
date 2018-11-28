@@ -1,10 +1,9 @@
-import Footer from '@dailybruin/lux/src/components/Footer'
 import * as React from 'react'
-
+import MainSiteFooter from '@dailybruin/lux/src/components/MainSiteFooter'
 
 const layoutStyle = {
-    maxWidth: 1200,
-    margin: 'auto'
+  maxWidth: 1200,
+  margin: 'auto'
 };
 
 class Layout extends React.Component {
@@ -12,10 +11,7 @@ class Layout extends React.Component {
     return (
       <div style={layoutStyle}>
         {this.props.children}
-        <Footer 
-          footerType={1} 
-          copyrightYear={2018}
-          developers={[]}/>
+        <MainSiteFooter/>
       </div>
     );
   }
