@@ -8,10 +8,24 @@ const layoutStyle = {
 };
 
 class Layout extends React.Component {
+  static async getInitialProps(context) {
+    console.log("hello")
+    const categoriesRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/categories`
+    );
+    const categories = await categoriesRes.json();
+
+    const mappedCategories = categories.map(index => {
+      return ({category: index.slug, categoryURL: index.link})
+    })
+    console.log(mappedCategories);
+    return mappedCategories;
+  }
+
   render() {
     return (
       <div style={layoutStyle}>
-        <MainSiteHeader />
+        <MainSiteHeader links={this.props.mappedCategories} />
         {this.props.children}
         <MainSiteFooter/>
       </div>
