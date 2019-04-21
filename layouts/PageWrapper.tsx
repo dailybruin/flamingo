@@ -13,21 +13,20 @@ const PageWrapper = Comp =>
   class extends Component {
     static async getInitialProps(ctx) {
 
-      const categoriesRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/categories`
-      );
-      const categories = await categoriesRes.json();
+      // Load the categories for the header
+      // TODO: can we load this once each browser session?
+      // only call getInitialProps if the child has that function
+      const [childProps, categoriesRes] = await Promise.all([
+        Comp.getInitialProps ? Comp.getInitialProps(ctx) : null,
+        fetch(
+          `${Config.apiUrl}/wp-json/wp/v2/categories`
+        ),
+      ]);
 
+      const categories = await categoriesRes.json();
       const mappedCategories = categories.map(index => {
         return ({category: index.name, categoryURL: '/category/' + index.slug})
       })
-
-      const [childProps] = await Promise.all([
-        Comp.getInitialProps(ctx),
-        mappedCategories
-      ]);
-
-      console.log(mappedCategories)
 
       return {
         ...(Comp.getInitialProps ? childProps : null),
