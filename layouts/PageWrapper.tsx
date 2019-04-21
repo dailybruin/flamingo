@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import MainSiteFooter from '@dailybruin/lux/src/components/MainSiteFooter'
 import MainSiteHeader from '@dailybruin/lux/src/components/MainSiteHeader'
-import { Page } from 'csstype';
-import { Config } from '../config.js';
+import { Page } from 'csstype'
+import { Config } from '../config.js'
+import fetch from 'isomorphic-unfetch'
 
 const layoutStyle = {
   maxWidth: 1200,
