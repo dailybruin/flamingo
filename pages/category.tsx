@@ -1,4 +1,5 @@
 import PageLayout from '../layouts/PageLayout'
+import PageWrapper from '../layouts/PageWrapper'
 import React, { Component } from "react";
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
@@ -7,6 +8,7 @@ import { Config } from '../config.js';
 
 class Category extends Component {
   static async getInitialProps(context) {
+    console.log("initial props for category");
     const { slug } = context.query;
     const categoriesRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`
@@ -50,4 +52,4 @@ render() {
   }
 }
 
-export default Category;
+export default PageWrapper(Category);
