@@ -4,7 +4,7 @@ import MainSiteHeader from '@dailybruin/lux/src/components/MainSiteHeader'
 
 const layoutStyle = {
   maxWidth: 1200,
-  margin: '8px auto'
+  margin: 'auto'
 };
 
 class Layout extends React.Component {
@@ -25,7 +25,9 @@ class Layout extends React.Component {
   render() {
     return (
       <div style={layoutStyle}>
+        <MainSiteHeader links={this.props.mappedCategories} />
         {this.props.children}
+        <MainSiteFooter/>
       </div>
     );
   }
