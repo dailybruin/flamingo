@@ -7,6 +7,8 @@ import Error from 'next/error'
 import { Config } from '../config.js';
 
 import SectionHeader from '@dailybruin/lux/src/components/SectionHeader'
+import CategoryUpper from '../layouts/Category/CategoryUpper'
+
 
 class Category extends Component {
 	static async getInitialProps(context) {
@@ -67,6 +69,7 @@ class Category extends Component {
 			return (
 			<PageLayout>
 				<SectionHeader name={this.props.category[0].name} sectionList={sectionLinks}/>
+				<CategoryUpper></CategoryUpper>
 				<h1>{this.props.category[0].name} Posts</h1>
 				{posts}
 			</PageLayout>

@@ -28,6 +28,12 @@ app
       app.render(req, res, actualPage, queryParams);
     });
 
+    server.get("/author/:slug", (req, res) => {
+      const actualPage = "/author";
+      const queryParams = { slug: req.params.slug };
+      app.render(req, res, actualPage, queryParams);
+    });
+
     server.get("/_preview/:id/:wpnonce", (req, res) => {
       const actualPage = "/preview";
       const queryParams = { id: req.params.id, wpnonce: req.params.wpnonce };
