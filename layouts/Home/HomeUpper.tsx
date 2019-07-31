@@ -34,7 +34,7 @@ class HomeUpper extends React.Component {
         <ArticleCard
           headline={this.props.posts.aStory[0].title.rendered}
           excerpt={this.props.posts.aStory[0].excerpt.rendered}
-          url={this.props.posts.aStory[0].link}
+          url={`/post/${this.props.posts.aStory[0].slug}`}
           // TODO: format date
           date={Date.parse(this.props.posts.aStory[0].date)}
           authors={[
@@ -57,7 +57,7 @@ class HomeUpper extends React.Component {
         <ArticleCard
           headline={this.props.posts.bStory[0].title.rendered}
           excerpt={this.props.posts.bStory[0].excerpt.rendered}
-          url={this.props.posts.bStory[0].link}
+          url={`/post/${this.props.posts.bStory[0].slug}`}
           // TODO: format date
           date={Date.parse(this.props.posts.bStory[0].date)}
           authors={[
@@ -80,7 +80,7 @@ class HomeUpper extends React.Component {
         <ArticleCard
           headline={this.props.posts.c1Story[0].title.rendered}
           excerpt={this.props.posts.c1Story[0].excerpt.rendered}
-          url={this.props.posts.c1Story[0].link}
+          url={`/post/${this.props.posts.c1Story[0].slug}`}
           // TODO: format date
           date={Date.parse(this.props.posts.c1Story[0].date)}
           authors={[
@@ -105,7 +105,7 @@ class HomeUpper extends React.Component {
         <ArticleCard
           headline={this.props.posts.c2Story[0].title.rendered}
           excerpt={this.props.posts.c2Story[0].excerpt.rendered}
-          url={this.props.posts.c2Story[0].link}
+          url={`/post/${this.props.posts.c2Story[0].slug}`}
           // TODO: format date
           date={Date.parse(this.props.posts.c2Story[0].date)}
           authors={[
@@ -130,7 +130,7 @@ class HomeUpper extends React.Component {
         <ArticleCard
           headline={this.props.posts.dStory[0].title.rendered}
           excerpt={this.props.posts.dStory[0].excerpt.rendered}
-          url={this.props.posts.dStory[0].link}
+          url={`/post/${this.props.posts.dStory[0].slug}`}
           // TODO: format date
           date={Date.parse(this.props.posts.dStory[0].date)}
           authors={[
@@ -153,7 +153,7 @@ class HomeUpper extends React.Component {
         <ArticleCard
           headline={this.props.posts.eStory[0].title.rendered}
           excerpt={this.props.posts.eStory[0].excerpt.rendered}
-          url={this.props.posts.eStory[0].link}
+          url={`/post/${this.props.posts.eStory[0].slug}`}
           // TODO: format date
           date={Date.parse(this.props.posts.eStory[0].date)}
           authors={[

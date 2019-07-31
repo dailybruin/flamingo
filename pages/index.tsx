@@ -6,6 +6,8 @@ import Error from 'next/error'
 import { Config } from '../config.js'
 
 import HomeUpper from '../layouts/Home/HomeUpper'
+import HomeMultimedia from '../layouts/Home/HomeMultimedia'
+import HomeLower from '../layouts/Home/HomeLower'
 
 import MultimediaScroller from '@dailybruin/lux/src/components/MultimediaScroller'
 import Poll from '@dailybruin/lux/src/components/Poll'

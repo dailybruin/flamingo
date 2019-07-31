@@ -6,6 +6,7 @@ import Error from 'next/error'
 import { Config } from '../config.js'
 
 import ArticleCard from '@dailybruin/lux/src/components/ArticleCard'
+import StoryList from '@dailybruin/lux/src/components/StoryList'
 
 import { SizeMe } from 'react-sizeme'
 
@@ -97,7 +98,29 @@ const HORZCARD = (
   />
 )
 
-class CategoryUpper extends React.Component {
+const LONGCARD = (
+  <ArticleCard
+    displayType="long"
+    headline="This Article Works for Anything and Everything"
+    excerpt="jksjdsf fhg gdlm;ks  fgjldhljfgljdksdjfg djgljkdfhgldfgkj"
+    url="./#"
+    // TODO: format date
+    date="Jun 12 2010"
+    authors={[
+      {
+        name: 'nedstark',
+        link: './#',
+      },
+    ]}
+    category={{
+      name: 'NEWS',
+      link: './#',
+    }}
+    imageurl="https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
+  />
+)
+
+class CategoryLower extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -111,37 +134,21 @@ class CategoryUpper extends React.Component {
               <div
                 id="ArticleGrid"
                 style={{
+                  display: 'flex',
                   justifyContent: 'center',
                   width: '100%',
-                  margin: '12px 0 0',
                 }}
               >
                 <div
-                  id="c1"
-                  className="article-card"
+                  id="feat"
+                  className="article-column"
                   style={{
-                    marginBottom: '12px',
+                    width: '100%',
                   }}
                 >
-                  {FULLCARD}
-                </div>
-                <div
-                  id="c1"
-                  className="article-card"
-                  style={{
-                    marginBottom: '12px',
-                  }}
-                >
-                  {HORZCARD}
-                </div>
-                <div
-                  id="c2"
-                  className="article-card"
-                  style={{
-                    marginBottom: '12px',
-                  }}
-                >
-                  {HORZCARD}
+                  <div style={{ marginBottom: '12px' }}> {HORZCARD} </div>
+                  <div style={{ marginBottom: '12px' }}> {HORZCARD} </div>
+                  <div style={{ marginBottom: '12px' }}> {HORZCARD} </div>
                 </div>
               </div>
             )
@@ -153,45 +160,18 @@ class CategoryUpper extends React.Component {
                   display: 'flex',
                   justifyContent: 'center',
                   width: '100%',
-                  margin: '12px 0 0',
                 }}
               >
                 <div
                   id="feat"
                   className="article-column"
                   style={{
-                    width: '66%',
-                    marginRight: '6px',
+                    width: '100%',
                   }}
                 >
-                  {FULLCARD}
-                </div>
-                <div
-                  id="subfeat"
-                  className="article-column"
-                  style={{
-                    width: '34%',
-                    marginLeft: '6px',
-                  }}
-                >
-                  <div
-                    id="c1"
-                    className="article-card"
-                    style={{
-                      marginBottom: '12px',
-                    }}
-                  >
-                    {VERTCARD}
-                  </div>
-                  <div
-                    id="c2"
-                    className="article-card"
-                    style={{
-                      marginBottom: '12px',
-                    }}
-                  >
-                    {VERTCARD}
-                  </div>
+                  <div style={{ marginBottom: '12px' }}> {LONGCARD} </div>
+                  <div style={{ marginBottom: '12px' }}> {LONGCARD} </div>
+                  <div style={{ marginBottom: '12px' }}> {LONGCARD} </div>
                 </div>
               </div>
             )
@@ -210,18 +190,19 @@ class CategoryUpper extends React.Component {
                   id="feat"
                   className="article-column"
                   style={{
-                    width: '50%',
-                    marginRight: '6px',
+                    width: '75%',
+                    marginRight: '12px',
                   }}
                 >
-                  {FULLCARD}
+                  <div style={{ marginBottom: '12px' }}> {LONGCARD} </div>
+                  <div style={{ marginBottom: '12px' }}> {LONGCARD} </div>
+                  <div style={{ marginBottom: '12px' }}> {LONGCARD} </div>
                 </div>
                 <div
                   id="subfeat"
                   className="article-column"
                   style={{
-                    width: '50%',
-                    marginLeft: '6px',
+                    width: '25%',
                   }}
                 >
                   <div
@@ -231,16 +212,32 @@ class CategoryUpper extends React.Component {
                       marginBottom: '12px',
                     }}
                   >
-                    {HORZCARD}
-                  </div>
-                  <div
-                    id="c2"
-                    className="article-card"
-                    style={{
-                      marginBottom: '12px',
-                    }}
-                  >
-                    {HORZCARD}
+                    <div style={{ marginBottom: '12px' }}>
+                      <StoryList
+                        story={[
+                          {
+                            title: 'Most popular story',
+                            text:
+                              'This movie was bonker but #nospoilers because of character limit alright pals',
+                            link: '#',
+                          },
+                          {
+                            title: 'Second most popular',
+                            text:
+                              'This movie was bonker but #nospoilers because of character limit alright pals',
+                            link: '#',
+                          },
+                          {
+                            title: 'Third most popular',
+                            text:
+                              'This movie was bonker but #nospoilers because of character limit alright pals',
+                            link: '#',
+                          },
+                        ]}
+                        type="popular"
+                      />
+                    </div>
+                    <div style={ArticleAdStyle}>ADVERTISEMENT</div>
                   </div>
                 </div>
               </div>
@@ -252,4 +249,4 @@ class CategoryUpper extends React.Component {
   }
 }
 
-export default CategoryUpper
+export default CategoryLower
