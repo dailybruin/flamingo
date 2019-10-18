@@ -1,0 +1,39 @@
+---
+name: Poll
+route: /poll
+---
+
+import { Playground, Props } from 'docz'
+import Poll from '.'
+
+# Poll
+
+A poll with a graph of the results.
+
+<Props of={Poll} />
+
+<Playground>
+    <Poll
+      poll={[
+        {
+          choice: 'De Neve',
+          votes: 10,
+        },
+        {
+          choice: 'Covel',
+          votes: 90,
+        },
+        {
+          choice: 'Feast',
+          votes: 30,
+        },
+        {
+          choice: 'Bruin Plate',
+          votes: 40,
+        }
+      ]}
+      question={"There's a lot going on at UCLA. Tuition hikes, protests, and more fun things. That's why we're asking you this question. What's your favorite dining hall?"}
+      hasVoted={false}
+      legend={"Number of Students"}
+    />
+</Playground>

@@ -1,0 +1,31 @@
+---
+name: Section Header
+route: /section-header
+---
+
+import { Playground, Props } from 'docz'
+import SectionHeader from '.'
+
+# Section Header
+
+A header to describe the current section the viewer is in
+
+Note that `SectionHeader` expects an array of `Link` objects which include `name` and `url` values.
+
+<Props of={SectionHeader} />
+
+<Playground>
+  <SectionHeader
+    name={'NEWS'}
+    sectionList={[
+      { name: 'NEWS', url: '' },
+      { name: 'SPORTS', url: '' },
+      { name: 'ARTS', url: '' },
+      { name: 'OPINION', url: '' },
+      { name: 'PHOTO', url: '' },
+      { name: 'VIDEO', url: '' },
+      { name: 'ILLUSTRATIONS', url: '' },
+      { name: 'GRAPHICS', url: '' },
+    ]}
+  />
+</Playground>

@@ -1,3 +1,33 @@
 import PageLayout from '../layouts/PageLayout'
+import PageWrapper from '../layouts/PageWrapper'
+import React, { Component } from 'react'
+import Link from 'next/link'
+import fetch from 'isomorphic-unfetch'
+import Error from 'next/error'
+import { Config } from '../config.js'
 
-export default () => <PageLayout>This is a author page</PageLayout>
+import AuthorUpper from '../layouts/Author/AuthorUpper'
+
+class Author extends Component {
+  static async getInitialProps(context) {
+    console.log('initial props for category')
+    const { slug } = context.query
+    console.log(slug)
+    const authorRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/users?slug=${slug}`
+    )
+    const author = await authorRes.json()
+    const postsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?author=${author.id}`
+    )
+    const posts = await postsRes.json()
+    return { author, posts }
+  }
+  render() {
+    return (
+      <AuthorUpper author={this.props.author[0]} posts={this.props.posts}/>
+    )
+  }
+}
+
+export default PageWrapper(Author)

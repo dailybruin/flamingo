@@ -6,7 +6,7 @@ import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
 import { Config } from '../config.js'
 
-import SectionHeader from '@dailybruin/lux/src/components/SectionHeader'
+import SectionHeader from '../components/SectionHeader'
 import CategoryUpper from '../layouts/Category/CategoryUpper'
 import CategoryLower from '../layouts/Category/CategoryLower'
 

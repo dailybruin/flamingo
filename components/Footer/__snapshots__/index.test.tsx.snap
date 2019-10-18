@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Matches its snapshot 1`] = `
+.emotion-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: 0 0.4rem;
+  text-align: center;
+}
+
+@media (max-width:600px) {
+  .emotion-2 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+.emotion-1:hover {
+  color: red;
+  cursor: default;
+}
+
+<footer
+  class="emotion-2"
+>
+  <div>
+    <span>
+      Content copyright © 
+      2018
+       Daily Bruin.
+    </span>
+     
+    <span
+      class="emotion-0"
+    >
+      Site code available on
+       
+      <a
+        href="https://github.com/dailybruin/lux"
+      >
+        GitHub
+      </a>
+      .
+    </span>
+  </div>
+  <div>
+    Built with Suzy’s 
+    <span
+      class="emotion-1"
+    >
+      ♥
+    </span>
+     in Kerckhoff 118 by
+     
+    Nathan Smith
+    .
+  </div>
+</footer>
+`;

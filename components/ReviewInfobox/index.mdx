@@ -1,0 +1,23 @@
+---
+name: Review Infobox
+route: /review-infobox
+---
+
+import { Playground, Props } from 'docz'
+import ReviewInfobox from '.'
+
+# Review Infobox
+
+A page add-on that shows an overview of an A&E-style review
+
+<Props of={ReviewInfobox} />
+
+<Playground>
+  <ReviewInfobox
+    title={'"Dancing in the Dark"'}
+    subtext1={'Bruce Springsteen'}
+    subtext2={'Columbia Records'}
+    subtext3={'Released May 3, 1984'}
+    rating={3.5}
+  />
+</Playground>

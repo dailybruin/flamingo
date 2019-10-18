@@ -19,7 +19,7 @@ const ArticleColumnStyle = {
 const ArticleAdStyle = {
   width: '100%',
   backgroundColor: '#aaa',
-  height: '200px',
+  height: '250px',
   lineHeight: '200px',
   textAlign: 'center',
   fontWeight: 'bold',
@@ -30,10 +30,10 @@ const FULLCARD = (
   <ArticleCard
     displayType="full"
     headline="This Article Works for Anything and Everything"
-    excerpt="jksjdsf fhg gdlm;ks  fgjldhljfgljdksdjfg djgljkdfhgldfgkj"
+    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
     url="./#"
     // TODO: format date
-    date="Jun 12 2010"
+    date={new Date()}
     authors={[
       {
         name: 'nedstark',
@@ -54,10 +54,10 @@ const VERTCARD = (
   <ArticleCard
     displayType="vert"
     headline="This Article Works for Anything and Everything"
-    excerpt="jksjdsf fhg gdlm;ks  fgjldhljfgljdksdjfg djgljkdfhgldfgkj"
+    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
     url="./#"
     // TODO: format date
-    date="Jun 12 2010"
+    date={new Date()}
     authors={[
       {
         name: 'nedstark',
@@ -78,10 +78,10 @@ const HORZCARD = (
   <ArticleCard
     displayType="horz"
     headline="This Article Works for Anything and Everything"
-    excerpt="jksjdsf fhg gdlm;ks  fgjldhljfgljdksdjfg djgljkdfhgldfgkj"
+    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
     url="./#"
     // TODO: format date
-    date="Jun 12 2010"
+    date={new Date()}
     authors={[
       {
         name: 'nedstark',
@@ -102,10 +102,10 @@ const LONGCARD = (
   <ArticleCard
     displayType="long"
     headline="This Article Works for Anything and Everything"
-    excerpt="jksjdsf fhg gdlm;ks  fgjldhljfgljdksdjfg djgljkdfhgldfgkj"
+    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
     url="./#"
     // TODO: format date
-    date="Jun 12 2010"
+    date={new Date()}
     authors={[
       {
         name: 'nedstark',

@@ -8,9 +8,7 @@ import { Config } from '../config.js'
 import HomeUpper from '../layouts/Home/HomeUpper'
 import HomeMultimedia from '../layouts/Home/HomeMultimedia'
 import HomeLower from '../layouts/Home/HomeLower'
-
-import MultimediaScroller from '@dailybruin/lux/src/components/MultimediaScroller'
-import Poll from '@dailybruin/lux/src/components/Poll'
+import HomeBottom from '../layouts/Home/HomeBottom'
 
 const aTAG = 12
 const bTAG = 13
@@ -18,6 +16,8 @@ const c1TAG = 14
 const c2TAG = 15
 const dTAG = 16
 const eTAG = 17
+
+const quadID = 32
 
 const ArticleAdStyle = {
   width: '100%',
@@ -27,6 +27,7 @@ const ArticleAdStyle = {
   textAlign: 'center',
   fontWeight: 'bold',
   fontFamily: 'sans-serif',
+  textTransform: 'uppercase',
 }
 
 class Index extends Component {
@@ -57,19 +58,25 @@ class Index extends Component {
     const eStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${eTAG}`
     )
+    const qdStoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${quadID}`
+    )
     upperPosts.aStory = await aStoryRes.json()
     upperPosts.bStory = await bStoryRes.json()
     upperPosts.c1Story = await c1StoryRes.json()
     upperPosts.c2Story = await c2StoryRes.json()
     upperPosts.dStory = await dStoryRes.json()
     upperPosts.eStory = await eStoryRes.json()
+    upperPosts.quadList = await qdStoryRes.json()
     return { upperPosts }
   }
 
   render() {
     return (
       <div>
-        <HomeUpper posts={this.props.upperPosts}/>
+        <HomeUpper posts={this.props.upperPosts} />
+        <HomeMultimedia></HomeMultimedia>
+        <HomeLower posts={this.props.upperPosts} />
       </div>
     )
   }
