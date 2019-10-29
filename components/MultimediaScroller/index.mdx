@@ -1,0 +1,40 @@
+---
+name: Multimedia Scroller
+route: /multimedia-scroller
+---
+
+import { Playground, Props } from 'docz'
+import MultimediaScroller from '.'
+
+# Multimedia Scroller
+
+A showcase for visual and interactive content.
+
+Note that `MultimediaScroller` expects an array of `Media` objects which includes `title`, `preview`, and `link` values.
+
+<Props of={MultimediaScroller} />
+
+<Playground>
+  <MultimediaScroller
+    media={[
+      {
+        title:
+          'First comprehensive study on otters reveals low genetic diversity',
+        preview: 'https://dailybruin.com/images/2019/06/image2-640x479.jpeg',
+        link: './#',
+      },
+      {
+        title:
+          'First comprehensive study on otters reveals low genetic diversity',
+        preview: 'https://dailybruin.com/images/2019/06/image2-640x479.jpeg',
+        link: './#',
+      },
+      {
+        title:
+          'First comprehensive study on otters reveals low genetic diversity',
+        preview: 'https://dailybruin.com/images/2019/06/image2-640x479.jpeg',
+        link: './#',
+      },
+    ]}
+  />
+</Playground>

@@ -1,0 +1,42 @@
+---
+name: Sports Tournament Scoreboard
+route: /sports-tournament-scoreboard
+---
+
+import { Playground, Props } from 'docz'
+import SportsTournamentScoreboard from '.'
+
+# Sports Tournament Scoreboard
+
+A listing of scoreboards for multiple sports games or a tournament.
+
+Note that `SportsTournamentScoreboard` expects an array of `Game` objects which includes `team1`, `team1score`, `team2`, and `team2score` values.
+
+<Props of={SportsTournamentScoreboard} />
+
+<Playground>
+  <SportsTournamentScoreboard
+    sport={"Women's Volleyball"}
+    gametype={'game'}
+    games={[
+      {
+        team1: 'No. 2 UCLA',
+        team1score: 32,
+        team2: 'No. 16 Oregon',
+        team2score: 8,
+      },
+      {
+        team1: 'No. 2 UCLA',
+        team1score: 12,
+        team2: 'No. 4 Arizona State',
+        team2score: 5,
+      },
+      {
+        team1: 'No. 1 UC San Diego ',
+        team1score: 87,
+        team2: 'No. 2 UCLA',
+        team2score: 49,
+      },
+    ]}
+  />
+</Playground>
