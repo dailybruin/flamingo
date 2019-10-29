@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
-import dbLogo from './db_logo.svg'
+const dbLogo=require('./db_logo.svg')
 import * as MainSiteStyles from '../globals'
-import { faBars, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons'
+// import { faBars, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons'
 
 interface MainSiteHeaderLink {
   /** Category name */
@@ -106,7 +107,7 @@ class HeaderBar extends React.Component<
         <a
           key={propLink.categoryURL}
           href={propLink.categoryURL}
-          className={css`
+          css={css`
             text-decoration: none;
             color: #000;
           `}
@@ -118,7 +119,7 @@ class HeaderBar extends React.Component<
 
     return (
       <header
-        className={css`
+        css={css`
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -131,7 +132,7 @@ class HeaderBar extends React.Component<
         `}
       >
         <div
-          className={css`
+          css={css`
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -141,7 +142,7 @@ class HeaderBar extends React.Component<
         >
           {!this.props.hamburger && (
             <div
-              className={css`
+              css={css`
                 flex: 1;
 
                 ${MainSiteStyles.mediaMobileBreakpoint} {
@@ -153,26 +154,18 @@ class HeaderBar extends React.Component<
             </div>
           )}
           {this.props.hamburger && (
-            <FontAwesomeIcon
-              className={css`
-                margin-top: auto;
-                margin-bottom: auto;
-              `}
-              icon={this.state.isHamburgerOpen ? faTimes : faBars}
-              onClick={this.hamburgerClicked}
-              fixedWidth={true}
-            />
+            true
           )}
           <a
-            href="https://www.dailybruin.com"
-            className={css`
+            href="/"
+            css={css`
               margin-top: auto;
               margin-bottom: auto;
             `}
           >
             <img
               src={dbLogo}
-              className={css`
+              css={css`
                 width: ${this.props.hamburger ? '200px' : '420px'};
                 ${MainSiteStyles.mediaMobileBreakpoint} {
                   width: 200px;
@@ -182,7 +175,7 @@ class HeaderBar extends React.Component<
             />
           </a>
           <div
-            className={css`
+            css={css`
               flex: ${this.props.hamburger ? 0 : 1};
               text-align: right;
               margin-top: auto;
@@ -193,23 +186,11 @@ class HeaderBar extends React.Component<
             `}
           >
             {!this.props.hamburger && <a>Advertise</a>}
-            <FontAwesomeIcon
-              icon={faSearch}
-              className={css`
-                margin-top: auto;
-                margin-bottom: auto;
-                ${MainSiteStyles.mediaMobileBreakpoint} {
-                  margin-left: 0px;
-                }
-                margin-left: 10px;
-              `}
-              fixedWidth={true}
-            />
           </div>
         </div>
         {!this.props.hamburger && (
           <div
-            className={css`
+            css={css`
             margin: 10px 0px 10px 0px;
             height: 1px; width: 100%;
             opacity: 0.5;
@@ -222,7 +203,7 @@ class HeaderBar extends React.Component<
         )}
         {(this.state.isHamburgerOpen || !this.props.hamburger) && (
           <nav
-            className={css`
+            css={css`
               display: flex;
               flex-direction: row;
               align-self: stretch;

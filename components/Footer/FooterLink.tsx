@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import * as MainSiteStyles from '../globals'
 
 interface FooterLinkProps {
@@ -10,7 +11,7 @@ interface FooterLinkProps {
 export default function FooterLink (props: FooterLinkProps) {
   return(
     <a
-      className={css`
+      css={css`
         margin-right: 15px;
         text-decoration: none;
         color: inherit;

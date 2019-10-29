@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 import * as MainSiteStyles from '../globals'
 import HeaderBar from './HeaderBar'
@@ -27,21 +28,23 @@ class MainSiteHeader extends React.Component<MainSiteHeaderProps> {
     return (
       <div>
         <div
-          className={css`
+          css={css`
             ${MainSiteStyles.mediaMobileBreakpoint} {
               display: block;
             }
             display: none;
+            background-color: #fff;
           `}
         >
           <HeaderBar {...this.props} hamburger={true} />
         </div>
         <div
-          className={css`
+          css={css`
             ${MainSiteStyles.mediaMobileBreakpoint} {
               display: none;
             }
             display: block;
+            background-color: #fff;
           `}
         >
           <HeaderBar {...this.props} hamburger={this.props.hamburger} />

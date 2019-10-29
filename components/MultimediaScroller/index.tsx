@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 import Media from './Media'
 
@@ -29,7 +30,7 @@ export default class MultimediaScroller extends React.Component<
     }
     return (
       <div
-        className={css`
+        css={css`
           width: 100%;
           padding: 0 20px;
           border-top: 10px solid black;
@@ -40,7 +41,7 @@ export default class MultimediaScroller extends React.Component<
         `}
       >
         <h3
-          className={css`
+          css={css`
             margin: 10px 0 0;
             font-size: 14px;
             font-family: 'Arimo', sans-serif;
@@ -50,7 +51,7 @@ export default class MultimediaScroller extends React.Component<
           MULTIMEDIA
         </h3>
         <div
-          className={css`
+          css={css`
             padding-bottom: 15px;
             width: auto;
             white-space: nowrap;

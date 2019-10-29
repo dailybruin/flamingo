@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 /**
  * Heart.
@@ -7,7 +8,7 @@ import { css } from 'emotion'
 export default function Heart(props: {}) {
   return (
     <span
-      className={css`
+      css={css`
         &:hover {
           color: red;
           cursor: default;

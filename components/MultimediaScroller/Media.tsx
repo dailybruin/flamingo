@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 export default function Media(props) {
   return (
     <a
       href={props.link}
-      className={css`
+      css={css`
         text-decoration: none;
         color: white;
         display: inline-block;
@@ -18,12 +19,12 @@ export default function Media(props) {
       `}
     >
       <div
-        className={css`
+        css={css`
           margin: 10px;
         `}
       >
         <div
-          className={css`
+          css={css`
             height: 144px;
             background: url(${props.preview});
             background-position: center;
@@ -32,7 +33,7 @@ export default function Media(props) {
           `}
         />
         <h1
-          className={css`
+          css={css`
             margin: 10px 0;
             padding: 0;
             font-size: 24px;

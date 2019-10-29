@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import * as MainSiteStyles from '../globals'
 import FooterLink from '../Footer/FooterLink'
 
@@ -20,7 +21,7 @@ export default function MainSiteFooter(props: {}) {
 
   return (
     <footer
-      className={css`
+      css={css`
         display: flex;
         font-size: 0.85rem;
         flex-direction: row;
@@ -36,7 +37,7 @@ export default function MainSiteFooter(props: {}) {
       `}
     >
       <div
-        className={css`
+        css={css`
           display: flex;
           flex-direction: row;
 
@@ -49,7 +50,7 @@ export default function MainSiteFooter(props: {}) {
         {renderedLinks}
       </div>
       <div
-        className={css`
+        css={css`
           text-align: right;
           margin-left: auto;
           flex-grow: 1;
