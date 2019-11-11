@@ -1,25 +1,16 @@
-import * as React from 'react'
-import { css } from 'react-emotion'
+import * as React from "react";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-interface SportsScoreboardProps {
-  sport: string
-  team1: string
-  team1score: number
-  team2: string
-  team2score: number
-}
-
-export default class SportsScoreboard extends React.Component<
-  SportsScoreboardProps
-> {
+export default class SportsScoreboard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
-  public render() {
+  render() {
     return (
       <div
-        className={css`
+        css={css`
           padding: 0;
           background: #ffffff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
@@ -27,7 +18,7 @@ export default class SportsScoreboard extends React.Component<
         `}
       >
         <div
-          className={css`
+          css={css`
             left: 0;
             right: 0;
 
@@ -50,7 +41,7 @@ export default class SportsScoreboard extends React.Component<
         </div>
         <div>
           <table
-            className={css`
+            css={css`
               font-size: 24px;
               width: 100%;
               text-align: left;
@@ -62,13 +53,13 @@ export default class SportsScoreboard extends React.Component<
             `}
           >
             <tr
-              className={css`
+              css={css`
                 background-color: #efefef;
                 font-weight: bold;
               `}
             >
               <td
-                className={css`
+                css={css`
                   padding: 0 8px;
                   border-right: 4px solid #ffffff;
                 `}
@@ -76,7 +67,7 @@ export default class SportsScoreboard extends React.Component<
                 {this.props.team1}
               </td>
               <td
-                className={css`
+                css={css`
                   width: 30px;
                   text-align: center;
                   padding: 0 5px;
@@ -87,14 +78,14 @@ export default class SportsScoreboard extends React.Component<
             </tr>
             <tr>
               <td
-                className={css`
+                css={css`
                   padding: 0 8px;
                 `}
               >
                 {this.props.team2}
               </td>
               <td
-                className={css`
+                css={css`
                   width: 30px;
                   text-align: center;
                   padding: 0 5px;
@@ -106,6 +97,6 @@ export default class SportsScoreboard extends React.Component<
           </table>
         </div>
       </div>
-    )
+    );
   }
 }

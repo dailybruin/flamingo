@@ -1,32 +1,32 @@
-import React, { Component } from 'react'
-import PageWrapper from '../PageWrapper'
-import fetch from 'isomorphic-unfetch'
-import Error from 'next/error'
+import React, { Component } from "react";
+import PageWrapper from "../PageWrapper";
+import fetch from "isomorphic-unfetch";
+import Error from "next/error";
 
-import css from './style.css'
+import css from "./style.css";
 
-import ArticleCard from '../../components/ArticleCard'
-import StoryList from '../../components/StoryList'
-import Poll from '../../components/Poll'
-import ClassifiedsCard from '../../components/ClassifiedsCard'
+import ArticleCard from "../../components/ArticleCard";
+import StoryList from "../../components/StoryList";
+import Poll from "../../components/Poll";
+import ClassifiedsCard from "../../components/ClassifiedsCard";
 
-import { SizeMe } from 'react-sizeme'
+import { SizeMe } from "react-sizeme";
 
 const ArticleColumnStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  margin: '12px',
-}
+  display: "flex",
+  flexDirection: "column",
+  margin: "12px"
+};
 
 const ArticleAdStyle = {
-  width: '100%',
-  backgroundColor: '#aaa',
-  height: '250px',
-  lineHeight: '200px',
-  textAlign: 'center',
-  fontWeight: 'bold',
-  fontFamily: 'sans-serif',
-}
+  width: "100%",
+  backgroundColor: "#aaa",
+  height: "250px",
+  lineHeight: "200px",
+  textAlign: "center",
+  fontWeight: "bold",
+  fontFamily: "sans-serif"
+};
 
 const HORZCARD = (
   <ArticleCard
@@ -38,23 +38,23 @@ const HORZCARD = (
     date={new Date()}
     authors={[
       {
-        name: 'nedstark',
-        link: './#',
-      },
+        name: "nedstark",
+        link: "./#"
+      }
     ]}
     category={{
-      name: 'NEWS',
-      link: './#',
+      name: "NEWS",
+      link: "./#"
     }}
     imageurl={
-      'https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg'
+      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
     }
   />
-)
+);
 
 class HomeLower extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -63,185 +63,234 @@ class HomeLower extends React.Component {
         {({ size }) => {
           if (size.width < 600) {
             return (
-              <div
-                id="under-brush"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '100%',
-                  margin: '12px 0 0',
-                }}
-              >
-                <div
-                  className="article-column"
-                  style={{
-                    width: '100%',
-                  }}
-                >
-                  <div
-                    id="f1"
-                    className="article-card"
-                    style={{
-                      marginBottom: '12px',
-                    }}
-                  >
-                    <ArticleCard
-                      headline={this.props.posts.aStory[0].title.rendered}
-                      excerpt={this.props.posts.aStory[0].excerpt.rendered}
-                      url={this.props.posts.aStory[0].link}
-                      // TODO: format date
-                      date={new Date(this.props.posts.eStory[0].date)}
-                      authors={[
+              <div id="ArticleGrid" style={{}}>
+                <div id="cf" className={css.column} style={{}}>
+                  <div id="poll" className={css.card}>
+                    <Poll
+                      poll={[
                         {
-                          name: this.props.posts.aStory[0]._embedded.author[0]
-                            .name,
-                          link: this.props.posts.aStory[0]._embedded.author[0]
-                            .link,
+                          choice: "De Neve",
+                          votes: 10
                         },
-                      ]}
-                      category={{
-                        name: this.props.posts.aStory[0]['_embedded'][
-                          'wp:term'
-                        ][0][0].name,
-                        link: this.props.posts.aStory[0]['_embedded'][
-                          'wp:term'
-                        ][0][0].link,
-                      }}
-                      imageurl={
-                        this.props.posts.aStory[0]._embedded[
-                          'wp:featuredmedia'
-                        ][0].source_url
-                      }
-                    />
-                  </div>
-                  <div
-                    id="f2"
-                    className="article-card"
-                    style={{
-                      marginBottom: '12px',
-                    }}
-                  >
-                    <ArticleCard
-                      headline={this.props.posts.aStory[0].title.rendered}
-                      excerpt={this.props.posts.aStory[0].excerpt.rendered}
-                      url={this.props.posts.aStory[0].link}
-                      // TODO: format date
-                      date={new Date(this.props.posts.eStory[0].date)}
-                      authors={[
                         {
-                          name: this.props.posts.aStory[0]._embedded.author[0]
-                            .name,
-                          link: this.props.posts.aStory[0]._embedded.author[0]
-                            .link,
+                          choice: "Covel",
+                          votes: 90
                         },
-                      ]}
-                      category={{
-                        name: this.props.posts.aStory[0]['_embedded'][
-                          'wp:term'
-                        ][0][0].name,
-                        link: this.props.posts.aStory[0]['_embedded'][
-                          'wp:term'
-                        ][0][0].link,
-                      }}
-                      imageurl={
-                        this.props.posts.aStory[0]._embedded[
-                          'wp:featuredmedia'
-                        ][0].source_url
-                      }
-                    />
-                  </div>
-                  <div
-                    className="article-column"
-                    style={{
-                      width: '100%',
-                      margin: '0',
-                      display: 'flex',
-                    }}
-                  >
-                    <div
-                      id="poll"
-                      className="article-card"
-                      style={{
-                        margin: '0 12px 12px 0',
-                      }}
-                    >
-                      <Poll
-                        poll={[
-                          {
-                            choice: 'De Neve',
-                            votes: 10,
-                          },
-                          {
-                            choice: 'Covel',
-                            votes: 90,
-                          },
-                          {
-                            choice: 'Feast',
-                            votes: 30,
-                          },
-                          {
-                            choice: 'Bruin Plate',
-                            votes: 40,
-                          },
-                        ]}
-                        question={
-                          "There's a lot going on at UCLA. Tuition hikes, protests, and more fun things. That's why we're asking you this question. What's your favorite dining hall?"
+                        {
+                          choice: "Feast",
+                          votes: 30
+                        },
+                        {
+                          choice: "Bruin Plate",
+                          votes: 40
                         }
-                        hasVoted={false}
-                        legend={'Number of Students'}
-                      />
-                    </div>
-                    <div
-                      id="under-ad"
-                      className="article-card"
-                      style={{
-                        marginBottom: '12px',
-                        flexGrow: '2',
-                        width: '300px',
-                      }}
-                    >
-                      <div style={ArticleAdStyle}>ADVERTISEMENT</div>
-                    </div>
-                  </div>
-                  <div
-                    id="f3"
-                    className="article-card"
-                    style={{
-                      marginBottom: '12px',
-                    }}
-                  >
-                    <ArticleCard
-                      headline={this.props.posts.aStory[0].title.rendered}
-                      excerpt={this.props.posts.aStory[0].excerpt.rendered}
-                      url={this.props.posts.aStory[0].link}
-                      // TODO: format date
-                      date={new Date(this.props.posts.eStory[0].date)}
-                      authors={[
-                        {
-                          name: this.props.posts.aStory[0]._embedded.author[0]
-                            .name,
-                          link: this.props.posts.aStory[0]._embedded.author[0]
-                            .link,
-                        },
                       ]}
-                      category={{
-                        name: this.props.posts.aStory[0]['_embedded'][
-                          'wp:term'
-                        ][0][0].name,
-                        link: this.props.posts.aStory[0]['_embedded'][
-                          'wp:term'
-                        ][0][0].link,
-                      }}
-                      imageurl={
-                        this.props.posts.aStory[0]._embedded[
-                          'wp:featuredmedia'
-                        ][0].source_url
+                      question={
+                        "There's a lot going on at UCLA. Tuition hikes, protests, and more fun things. That's why we're asking you this question. What's your favorite dining hall?"
                       }
+                      hasVoted={false}
+                      legend={"Number of Students"}
+                    />
+                  </div>
+                  <div id="f1" className={css.card}>
+                    {HORZCARD}
+                  </div>
+                  <div id="f2" className={css.card}>
+                    {HORZCARD}
+                  </div>
+                  <div id="f3" className={css.card}>
+                    {HORZCARD}
+                  </div>
+                  <div id="classifieds" className={css.card}>
+                    <ClassifiedsCard
+                      header="Featured Classifieds"
+                      classifieds={[
+                        {
+                          category: { name: "Room for Rent", url: "./#" },
+                          content: {
+                            name:
+                              "Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908",
+                            url: "./#"
+                          }
+                        },
+                        {
+                          category: { name: "Apartments for Rent", url: "./#" },
+                          content: {
+                            name:
+                              "Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!",
+                            url: "./#"
+                          }
+                        },
+                        {
+                          category: { name: "Apartments for Rent", url: "./#" },
+                          content: {
+                            name:
+                              "2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626",
+                            url: "./#"
+                          }
+                        },
+                        {
+                          category: { name: "Computer/Internet", url: "./#" },
+                          content: {
+                            name:
+                              "GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com",
+                            url: "./#"
+                          }
+                        }
+                      ]}
+                    />
+                  </div>
+                  <div className={css.card}>
+                    <div style={ArticleAdStyle}>ADVERTISEMENT</div>
+                  </div>
+                  <div id="pop" className={css.card}>
+                    <StoryList
+                      type="POPULAR"
+                      story={[
+                        {
+                          title: "Avengers: Infinity War",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
+                        },
+                        {
+                          title: "Bruins in the Draft",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "#"
+                        },
+                        {
+                          title: "#USACVote18Elections",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://usac.ucla.edu/"
+                        }
+                      ]}
+                    />
+                  </div>
+                  <div className={css.card}>
+                    <StoryList
+                      type="NEWS"
+                      story={[
+                        {
+                          title: "Avengers: Infinity War",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
+                        },
+                        {
+                          title: "Bruins in the Draft",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "#"
+                        },
+                        {
+                          title: "#USACVote18Elections",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://usac.ucla.edu/"
+                        }
+                      ]}
+                      image={{
+                        src:
+                          "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                        alt: "N/A"
+                      }}
+                    />
+                  </div>
+                  <div className={css.card}>
+                    <StoryList
+                      type="A&E"
+                      story={[
+                        {
+                          title: "Avengers: Infinity War",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
+                        },
+                        {
+                          title: "Bruins in the Draft",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "#"
+                        },
+                        {
+                          title: "#USACVote18Elections",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://usac.ucla.edu/"
+                        }
+                      ]}
+                      image={{
+                        src:
+                          "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                        alt: "N/A"
+                      }}
+                    />
+                  </div>
+                  <div className={css.card}>
+                    <StoryList
+                      type="OPINION"
+                      story={[
+                        {
+                          title: "Avengers: Infinity War",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
+                        },
+                        {
+                          title: "Bruins in the Draft",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "#"
+                        },
+                        {
+                          title: "#USACVote18Elections",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://usac.ucla.edu/"
+                        }
+                      ]}
+                      image={{
+                        src:
+                          "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                        alt: "N/A"
+                      }}
+                    />
+                  </div>
+                  <div className={css.card}>
+                    <StoryList
+                      type="SPORTS"
+                      story={[
+                        {
+                          title: "Avengers: Infinity War",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
+                        },
+                        {
+                          title: "Bruins in the Draft",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "#"
+                        },
+                        {
+                          title: "#USACVote18Elections",
+                          text:
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://usac.ucla.edu/"
+                        }
+                      ]}
+                      image={{
+                        src:
+                          "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                        alt: "N/A"
+                      }}
                     />
                   </div>
                 </div>
               </div>
-            )
+            );
           } else if (size.width < 900) {
             return (
               <div id="ArticleGrid" style={{}}>
@@ -249,7 +298,7 @@ class HomeLower extends React.Component {
                   id="cf"
                   className={css.column}
                   style={{
-                    width: '33.333%',
+                    width: "33.333%"
                   }}
                 >
                   <div id="classifieds" className={css.card}>
@@ -257,37 +306,37 @@ class HomeLower extends React.Component {
                       header="Featured Classifieds"
                       classifieds={[
                         {
-                          category: { name: 'Room for Rent', url: './#' },
+                          category: { name: "Room for Rent", url: "./#" },
                           content: {
                             name:
-                              'Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908',
-                            url: './#',
-                          },
+                              "Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              'Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!',
-                            url: './#',
-                          },
+                              "Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              '2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626',
-                            url: './#',
-                          },
+                              "2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Computer/Internet', url: './#' },
+                          category: { name: "Computer/Internet", url: "./#" },
                           content: {
                             name:
-                              'GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com',
-                            url: './#',
-                          },
-                        },
+                              "GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com",
+                            url: "./#"
+                          }
+                        }
                       ]}
                     />
                   </div>
@@ -298,27 +347,27 @@ class HomeLower extends React.Component {
                     <Poll
                       poll={[
                         {
-                          choice: 'De Neve',
-                          votes: 10,
+                          choice: "De Neve",
+                          votes: 10
                         },
                         {
-                          choice: 'Covel',
-                          votes: 90,
+                          choice: "Covel",
+                          votes: 90
                         },
                         {
-                          choice: 'Feast',
-                          votes: 30,
+                          choice: "Feast",
+                          votes: 30
                         },
                         {
-                          choice: 'Bruin Plate',
-                          votes: 40,
-                        },
+                          choice: "Bruin Plate",
+                          votes: 40
+                        }
                       ]}
                       question={
                         "There's a lot going on at UCLA. Tuition hikes, protests, and more fun things. That's why we're asking you this question. What's your favorite dining hall?"
                       }
                       hasVoted={false}
-                      legend={'Number of Students'}
+                      legend={"Number of Students"}
                     />
                   </div>
                   <div id="pop" className={css.card}>
@@ -326,23 +375,23 @@ class HomeLower extends React.Component {
                       type="POPULAR"
                       story={[
                         {
-                          title: 'Avengers: Infinity War',
+                          title: "Avengers: Infinity War",
                           text:
-                            'This movie was bonker but #nospoilers because of character limit alright pals',
-                          link: 'https://www.youtube.com/watch?v=bleoywz0oeg',
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
                         },
                         {
-                          title: 'Bruins in the Draft',
+                          title: "Bruins in the Draft",
                           text:
-                            'This movie was bonker but #nospoilers because of character limit alright pals',
-                          link: '#',
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "#"
                         },
                         {
-                          title: '#USACVote18Elections',
+                          title: "#USACVote18Elections",
                           text:
-                            'This movie was bonker but #nospoilers because of character limit alright pals',
-                          link: 'https://usac.ucla.edu/',
-                        },
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://usac.ucla.edu/"
+                        }
                       ]}
                     />
                   </div>
@@ -351,7 +400,7 @@ class HomeLower extends React.Component {
                   id="f1-f2-f3"
                   className={css.column}
                   style={{
-                    width: '66.666%',
+                    width: "66.666%"
                   }}
                 >
                   <div id="f1" className={css.card}>
@@ -363,36 +412,36 @@ class HomeLower extends React.Component {
                   <div id="f3" className={css.card}>
                     {HORZCARD}
                   </div>
-                  <div className={css.column} style={{ width: '100%' }}>
-                    <div className={css.column} style={{ width: '50%' }}>
+                  <div className={css.column} style={{ width: "100%" }}>
+                    <div className={css.column} style={{ width: "50%" }}>
                       <div className={css.card}>
                         <StoryList
                           type="NEWS"
                           story={[
                             {
-                              title: 'Avengers: Infinity War',
+                              title: "Avengers: Infinity War",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
                               link:
-                                'https://www.youtube.com/watch?v=bleoywz0oeg',
+                                "https://www.youtube.com/watch?v=bleoywz0oeg"
                             },
                             {
-                              title: 'Bruins in the Draft',
+                              title: "Bruins in the Draft",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: '#',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "#"
                             },
                             {
-                              title: '#USACVote18Elections',
+                              title: "#USACVote18Elections",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: 'https://usac.ucla.edu/',
-                            },
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "https://usac.ucla.edu/"
+                            }
                           ]}
                           image={{
                             src:
-                              'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                            alt: 'N/A',
+                              "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                            alt: "N/A"
                           }}
                         />
                       </div>
@@ -401,62 +450,62 @@ class HomeLower extends React.Component {
                           type="A&E"
                           story={[
                             {
-                              title: 'Avengers: Infinity War',
+                              title: "Avengers: Infinity War",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
                               link:
-                                'https://www.youtube.com/watch?v=bleoywz0oeg',
+                                "https://www.youtube.com/watch?v=bleoywz0oeg"
                             },
                             {
-                              title: 'Bruins in the Draft',
+                              title: "Bruins in the Draft",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: '#',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "#"
                             },
                             {
-                              title: '#USACVote18Elections',
+                              title: "#USACVote18Elections",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: 'https://usac.ucla.edu/',
-                            },
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "https://usac.ucla.edu/"
+                            }
                           ]}
                           image={{
                             src:
-                              'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                            alt: 'N/A',
+                              "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                            alt: "N/A"
                           }}
                         />
                       </div>
                     </div>
-                    <div className={css.column} style={{ width: '50%' }}>
+                    <div className={css.column} style={{ width: "50%" }}>
                       <div className={css.card}>
                         <StoryList
                           type="OPINION"
                           story={[
                             {
-                              title: 'Avengers: Infinity War',
+                              title: "Avengers: Infinity War",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
                               link:
-                                'https://www.youtube.com/watch?v=bleoywz0oeg',
+                                "https://www.youtube.com/watch?v=bleoywz0oeg"
                             },
                             {
-                              title: 'Bruins in the Draft',
+                              title: "Bruins in the Draft",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: '#',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "#"
                             },
                             {
-                              title: '#USACVote18Elections',
+                              title: "#USACVote18Elections",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: 'https://usac.ucla.edu/',
-                            },
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "https://usac.ucla.edu/"
+                            }
                           ]}
                           image={{
                             src:
-                              'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                            alt: 'N/A',
+                              "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                            alt: "N/A"
                           }}
                         />
                       </div>
@@ -465,29 +514,29 @@ class HomeLower extends React.Component {
                           type="SPORTS"
                           story={[
                             {
-                              title: 'Avengers: Infinity War',
+                              title: "Avengers: Infinity War",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
                               link:
-                                'https://www.youtube.com/watch?v=bleoywz0oeg',
+                                "https://www.youtube.com/watch?v=bleoywz0oeg"
                             },
                             {
-                              title: 'Bruins in the Draft',
+                              title: "Bruins in the Draft",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: '#',
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "#"
                             },
                             {
-                              title: '#USACVote18Elections',
+                              title: "#USACVote18Elections",
                               text:
-                                'This movie was bonker but #nospoilers because of character limit alright pals',
-                              link: 'https://usac.ucla.edu/',
-                            },
+                                "This movie was bonker but #nospoilers because of character limit alright pals",
+                              link: "https://usac.ucla.edu/"
+                            }
                           ]}
                           image={{
                             src:
-                              'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                            alt: 'N/A',
+                              "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                            alt: "N/A"
                           }}
                         />
                       </div>
@@ -495,7 +544,7 @@ class HomeLower extends React.Component {
                   </div>
                 </div>
               </div>
-            )
+            );
           } else {
             return (
               <div id="ArticleGrid" style={{}}>
@@ -503,7 +552,7 @@ class HomeLower extends React.Component {
                   id="cf"
                   className={css.column}
                   style={{
-                    width: '25%',
+                    width: "25%"
                   }}
                 >
                   <div id="classifieds" className={css.card}>
@@ -511,37 +560,37 @@ class HomeLower extends React.Component {
                       header="Featured Classifieds"
                       classifieds={[
                         {
-                          category: { name: 'Room for Rent', url: './#' },
+                          category: { name: "Room for Rent", url: "./#" },
                           content: {
                             name:
-                              'Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908',
-                            url: './#',
-                          },
+                              "Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              'Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!',
-                            url: './#',
-                          },
+                              "Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              '2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626',
-                            url: './#',
-                          },
+                              "2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Computer/Internet', url: './#' },
+                          category: { name: "Computer/Internet", url: "./#" },
                           content: {
                             name:
-                              'GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com',
-                            url: './#',
-                          },
-                        },
+                              "GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com",
+                            url: "./#"
+                          }
+                        }
                       ]}
                     />
                   </div>
@@ -553,7 +602,7 @@ class HomeLower extends React.Component {
                   id="f1-f2-f3"
                   className={css.column}
                   style={{
-                    width: '50%',
+                    width: "50%"
                   }}
                 >
                   <div id="f1" className={css.card}>
@@ -566,32 +615,32 @@ class HomeLower extends React.Component {
                     {HORZCARD}
                   </div>
                 </div>
-                <div className={css.column} style={{ width: '25%' }}>
+                <div className={css.column} style={{ width: "25%" }}>
                   <div id="poll" className={css.card}>
                     <Poll
                       poll={[
                         {
-                          choice: 'De Neve',
-                          votes: 10,
+                          choice: "De Neve",
+                          votes: 10
                         },
                         {
-                          choice: 'Covel',
-                          votes: 90,
+                          choice: "Covel",
+                          votes: 90
                         },
                         {
-                          choice: 'Feast',
-                          votes: 30,
+                          choice: "Feast",
+                          votes: 30
                         },
                         {
-                          choice: 'Bruin Plate',
-                          votes: 40,
-                        },
+                          choice: "Bruin Plate",
+                          votes: 40
+                        }
                       ]}
                       question={
                         "There's a lot going on at UCLA. Tuition hikes, protests, and more fun things. That's why we're asking you this question. What's your favorite dining hall?"
                       }
                       hasVoted={false}
-                      legend={'Number of Students'}
+                      legend={"Number of Students"}
                     />
                   </div>
                   <div id="pop" className={css.card}>
@@ -599,23 +648,23 @@ class HomeLower extends React.Component {
                       type="POPULAR"
                       story={[
                         {
-                          title: 'Avengers: Infinity War',
+                          title: "Avengers: Infinity War",
                           text:
-                            'This movie was bonker but #nospoilers because of character limit alright pals',
-                          link: 'https://www.youtube.com/watch?v=bleoywz0oeg',
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
                         },
                         {
-                          title: 'Bruins in the Draft',
+                          title: "Bruins in the Draft",
                           text:
-                            'This movie was bonker but #nospoilers because of character limit alright pals',
-                          link: '#',
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "#"
                         },
                         {
-                          title: '#USACVote18Elections',
+                          title: "#USACVote18Elections",
                           text:
-                            'This movie was bonker but #nospoilers because of character limit alright pals',
-                          link: 'https://usac.ucla.edu/',
-                        },
+                            "This movie was bonker but #nospoilers because of character limit alright pals",
+                          link: "https://usac.ucla.edu/"
+                        }
                       ]}
                     />
                   </div>
@@ -624,7 +673,7 @@ class HomeLower extends React.Component {
                   <div
                     className={css.column}
                     style={{
-                      width: '25%',
+                      width: "25%"
                     }}
                   >
                     <div id="ns" className={css.card}>
@@ -632,28 +681,28 @@ class HomeLower extends React.Component {
                         type="NEWS"
                         story={[
                           {
-                            title: 'Avengers: Infinity War',
+                            title: "Avengers: Infinity War",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://www.youtube.com/watch?v=bleoywz0oeg',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
                           },
                           {
-                            title: 'Bruins in the Draft',
+                            title: "Bruins in the Draft",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: '#',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "#"
                           },
                           {
-                            title: '#USACVote18Elections',
+                            title: "#USACVote18Elections",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://usac.ucla.edu/',
-                          },
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://usac.ucla.edu/"
+                          }
                         ]}
                         image={{
                           src:
-                            'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                          alt: 'N/A',
+                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                          alt: "N/A"
                         }}
                       />
                     </div>
@@ -661,7 +710,7 @@ class HomeLower extends React.Component {
                   <div
                     className={css.column}
                     style={{
-                      width: '25%',
+                      width: "25%"
                     }}
                   >
                     <div id="op" className={css.card}>
@@ -669,28 +718,28 @@ class HomeLower extends React.Component {
                         type="OPINION"
                         story={[
                           {
-                            title: 'Avengers: Infinity War',
+                            title: "Avengers: Infinity War",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://www.youtube.com/watch?v=bleoywz0oeg',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
                           },
                           {
-                            title: 'Bruins in the Draft',
+                            title: "Bruins in the Draft",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: '#',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "#"
                           },
                           {
-                            title: '#USACVote18Elections',
+                            title: "#USACVote18Elections",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://usac.ucla.edu/',
-                          },
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://usac.ucla.edu/"
+                          }
                         ]}
                         image={{
                           src:
-                            'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                          alt: 'N/A',
+                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                          alt: "N/A"
                         }}
                       />
                     </div>
@@ -698,7 +747,7 @@ class HomeLower extends React.Component {
                   <div
                     className={css.column}
                     style={{
-                      width: '25%',
+                      width: "25%"
                     }}
                   >
                     <div id="ae" className={css.card}>
@@ -706,28 +755,28 @@ class HomeLower extends React.Component {
                         type="A&E"
                         story={[
                           {
-                            title: 'Avengers: Infinity War',
+                            title: "Avengers: Infinity War",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://www.youtube.com/watch?v=bleoywz0oeg',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
                           },
                           {
-                            title: 'Bruins in the Draft',
+                            title: "Bruins in the Draft",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: '#',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "#"
                           },
                           {
-                            title: '#USACVote18Elections',
+                            title: "#USACVote18Elections",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://usac.ucla.edu/',
-                          },
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://usac.ucla.edu/"
+                          }
                         ]}
                         image={{
                           src:
-                            'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                          alt: 'N/A',
+                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                          alt: "N/A"
                         }}
                       />
                     </div>
@@ -735,7 +784,7 @@ class HomeLower extends React.Component {
                   <div
                     className={css.column}
                     style={{
-                      width: '25%',
+                      width: "25%"
                     }}
                   >
                     <div id="sp" className={css.card}>
@@ -743,40 +792,40 @@ class HomeLower extends React.Component {
                         type="SPORTS"
                         story={[
                           {
-                            title: 'Avengers: Infinity War',
+                            title: "Avengers: Infinity War",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://www.youtube.com/watch?v=bleoywz0oeg',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
                           },
                           {
-                            title: 'Bruins in the Draft',
+                            title: "Bruins in the Draft",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: '#',
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "#"
                           },
                           {
-                            title: '#USACVote18Elections',
+                            title: "#USACVote18Elections",
                             text:
-                              'This movie was bonker but #nospoilers because of character limit alright pals',
-                            link: 'https://usac.ucla.edu/',
-                          },
+                              "This movie was bonker but #nospoilers because of character limit alright pals",
+                            link: "https://usac.ucla.edu/"
+                          }
                         ]}
                         image={{
                           src:
-                            'https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg',
-                          alt: 'N/A',
+                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+                          alt: "N/A"
                         }}
                       />
                     </div>
                   </div>
                 </div>
               </div>
-            )
+            );
           }
         }}
       </SizeMe>
-    )
+    );
   }
 }
 
-export default HomeLower
+export default HomeLower;

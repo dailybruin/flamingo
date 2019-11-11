@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { css } from 'react-emotion'
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-export default class Scoreboard extends React.Component<ScoreboardProps> {
+export default class Scoreboard extends React.Component {
   constructor(props) {
     super(props)
   }
-  public render() {
+  render() {
     return (
       <table
         className={css`
