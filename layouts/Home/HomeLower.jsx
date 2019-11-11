@@ -3,26 +3,29 @@ import PageWrapper from "../PageWrapper";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 
-import css from "./style.css";
-
 import ArticleCard from "../../components/ArticleCard";
 import StoryList from "../../components/StoryList";
-import Poll from "../../components/Poll";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
+import Poll from "../../components/Poll";
 
+import css from "./style.css";
+import { buildStoryList, buildArticleCard } from "./utilities";
 import { SizeMe } from "react-sizeme";
 
-const ArticleColumnStyle = {
-  display: "flex",
-  flexDirection: "column",
-  margin: "12px"
+const ColumnStyle = {
+  display: "inline-block"
+};
+
+const CardStyle = {
+  display: "block",
+  padding: "6px"
 };
 
 const ArticleAdStyle = {
   width: "100%",
   backgroundColor: "#aaa",
   height: "250px",
-  lineHeight: "200px",
+  lineHeight: "250px",
   textAlign: "center",
   fontWeight: "bold",
   fontFamily: "sans-serif"
@@ -55,6 +58,15 @@ const HORZCARD = (
 class HomeLower extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      f1ArticleCard: buildArticleCard(this.props.posts.f1Story[0]),
+      f2ArticleCard: buildArticleCard(this.props.posts.f2Story[0]),
+      f3ArticleCard: buildArticleCard(this.props.posts.f3Story[0]),
+      nsStoryList: buildStoryList("NEWS", this.props.posts.newsList),
+      opStoryList: buildStoryList("OPINION", this.props.posts.opinionList),
+      aeStoryList: buildStoryList("A&E", this.props.posts.artsList),
+      spStoryList: buildStoryList("SPORTS", this.props.posts.sportsList)
+    };
   }
 
   render() {
@@ -606,13 +618,19 @@ class HomeLower extends React.Component {
                   }}
                 >
                   <div id="f1" className={css.card}>
-                    {HORZCARD}
+                    {React.cloneElement(this.state.f1ArticleCard, {
+                      displayType: "horz"
+                    })}
                   </div>
                   <div id="f2" className={css.card}>
-                    {HORZCARD}
+                    {React.cloneElement(this.state.f2ArticleCard, {
+                      displayType: "horz"
+                    })}
                   </div>
                   <div id="f3" className={css.card}>
-                    {HORZCARD}
+                    {React.cloneElement(this.state.f3ArticleCard, {
+                      displayType: "horz"
+                    })}
                   </div>
                 </div>
                 <div className={css.column} style={{ width: "25%" }}>
@@ -677,34 +695,7 @@ class HomeLower extends React.Component {
                     }}
                   >
                     <div id="ns" className={css.card}>
-                      <StoryList
-                        type="NEWS"
-                        story={[
-                          {
-                            title: "Avengers: Infinity War",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
-                          },
-                          {
-                            title: "Bruins in the Draft",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "#"
-                          },
-                          {
-                            title: "#USACVote18Elections",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://usac.ucla.edu/"
-                          }
-                        ]}
-                        image={{
-                          src:
-                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
-                          alt: "N/A"
-                        }}
-                      />
+                      {this.state.nsStoryList}
                     </div>
                   </div>
                   <div
@@ -714,34 +705,7 @@ class HomeLower extends React.Component {
                     }}
                   >
                     <div id="op" className={css.card}>
-                      <StoryList
-                        type="OPINION"
-                        story={[
-                          {
-                            title: "Avengers: Infinity War",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
-                          },
-                          {
-                            title: "Bruins in the Draft",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "#"
-                          },
-                          {
-                            title: "#USACVote18Elections",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://usac.ucla.edu/"
-                          }
-                        ]}
-                        image={{
-                          src:
-                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
-                          alt: "N/A"
-                        }}
-                      />
+                      {this.state.opStoryList}
                     </div>
                   </div>
                   <div
@@ -751,34 +715,7 @@ class HomeLower extends React.Component {
                     }}
                   >
                     <div id="ae" className={css.card}>
-                      <StoryList
-                        type="A&E"
-                        story={[
-                          {
-                            title: "Avengers: Infinity War",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
-                          },
-                          {
-                            title: "Bruins in the Draft",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "#"
-                          },
-                          {
-                            title: "#USACVote18Elections",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://usac.ucla.edu/"
-                          }
-                        ]}
-                        image={{
-                          src:
-                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
-                          alt: "N/A"
-                        }}
-                      />
+                      {this.state.aeStoryList}
                     </div>
                   </div>
                   <div
@@ -788,34 +725,7 @@ class HomeLower extends React.Component {
                     }}
                   >
                     <div id="sp" className={css.card}>
-                      <StoryList
-                        type="SPORTS"
-                        story={[
-                          {
-                            title: "Avengers: Infinity War",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://www.youtube.com/watch?v=bleoywz0oeg"
-                          },
-                          {
-                            title: "Bruins in the Draft",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "#"
-                          },
-                          {
-                            title: "#USACVote18Elections",
-                            text:
-                              "This movie was bonker but #nospoilers because of character limit alright pals",
-                            link: "https://usac.ucla.edu/"
-                          }
-                        ]}
-                        image={{
-                          src:
-                            "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
-                          alt: "N/A"
-                        }}
-                      />
+                      {this.state.spStoryList}
                     </div>
                   </div>
                 </div>

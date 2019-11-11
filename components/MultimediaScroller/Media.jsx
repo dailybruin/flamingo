@@ -7,7 +7,7 @@ export default function Media(props) {
   return (
     <Link href="/post/[slug]" as={props.link}>
       <a
-        as={props.link}
+        href={props.link}
         css={css`
           text-decoration: none;
           color: white;

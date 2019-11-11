@@ -16,8 +16,15 @@ const c2TAGID = 4851;
 const dTAGID = 4862;
 const eTAGID = 4863;
 const m1TAGID = 4854;
+const f1TAGID = 22156;
+const f2TAGID = 22157;
+const f3TAGID = 22158;
 
 const quadCATID = 12848;
+const newsCATID = 1424;
+const opinionCATID = 1460;
+const artsCATID = 1454;
+const sportsCATID = 1431;
 
 const ArticleAdStyle = {
   width: "100%",
@@ -32,14 +39,9 @@ const ArticleAdStyle = {
 
 class Index extends Component {
   static async getInitialProps(context) {
-    const upperPosts = {
-      aStory: null,
-      bStory: null,
-      c1Story: null,
-      c2Story: null,
-      dStory: null,
-      eStory: null
-    };
+    const upperPosts = {};
+    const lowerPosts = {};
+
     const aStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${aTAGID}`
     );
@@ -64,6 +66,27 @@ class Index extends Component {
     const mmStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}`
     );
+    const f1StoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f1TAGID}`
+    );
+    const f2StoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f2TAGID}`
+    );
+    const f3StoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f3TAGID}`
+    );
+    const nsStoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}`
+    );
+    const opStoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${opinionCATID}`
+    );
+    const aeStoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${artsCATID}`
+    );
+    const spStoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${sportsCATID}`
+    );
     upperPosts.aStory = await aStoryRes.json();
     upperPosts.bStory = await bStoryRes.json();
     upperPosts.c1Story = await c1StoryRes.json();
@@ -72,7 +95,14 @@ class Index extends Component {
     upperPosts.eStory = await eStoryRes.json();
     upperPosts.quadList = await qdStoryRes.json();
     const multimediaPosts = await mmStoryRes.json();
-    return { upperPosts, multimediaPosts };
+    lowerPosts.f1Story = await f1StoryRes.json();
+    lowerPosts.f2Story = await f2StoryRes.json();
+    lowerPosts.f3Story = await f3StoryRes.json();
+    lowerPosts.newsList = await nsStoryRes.json();
+    lowerPosts.opinionList = await opStoryRes.json();
+    lowerPosts.artsList = await aeStoryRes.json();
+    lowerPosts.sportsList = await spStoryRes.json();
+    return { upperPosts, multimediaPosts, lowerPosts };
   }
 
   render() {
