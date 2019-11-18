@@ -4,10 +4,7 @@ import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../config.js";
 
-import HomeUpper from "../layouts/Home/HomeUpper";
-import HomeMultimedia from "../layouts/Home/HomeMultimedia";
-import HomeLower from "../layouts/Home/HomeLower";
-// import HomeBottom from '../layouts/Home/HomeBottom'
+import HomeLayout from "../layouts/Home";
 
 const aTAGID = 4847;
 const bTAGID = 4850;
@@ -39,9 +36,7 @@ const ArticleAdStyle = {
 
 class Index extends Component {
   static async getInitialProps(context) {
-    const upperPosts = {};
-    const lowerPosts = {};
-
+    const posts = {};
     const aStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${aTAGID}`
     );
@@ -87,30 +82,28 @@ class Index extends Component {
     const spStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${sportsCATID}`
     );
-    upperPosts.aStory = await aStoryRes.json();
-    upperPosts.bStory = await bStoryRes.json();
-    upperPosts.c1Story = await c1StoryRes.json();
-    upperPosts.c2Story = await c2StoryRes.json();
-    upperPosts.dStory = await dStoryRes.json();
-    upperPosts.eStory = await eStoryRes.json();
-    upperPosts.quadList = await qdStoryRes.json();
+    posts.aStory = await aStoryRes.json();
+    posts.bStory = await bStoryRes.json();
+    posts.c1Story = await c1StoryRes.json();
+    posts.c2Story = await c2StoryRes.json();
+    posts.dStory = await dStoryRes.json();
+    posts.eStory = await eStoryRes.json();
+    posts.quadList = await qdStoryRes.json();
     const multimediaPosts = await mmStoryRes.json();
-    lowerPosts.f1Story = await f1StoryRes.json();
-    lowerPosts.f2Story = await f2StoryRes.json();
-    lowerPosts.f3Story = await f3StoryRes.json();
-    lowerPosts.newsList = await nsStoryRes.json();
-    lowerPosts.opinionList = await opStoryRes.json();
-    lowerPosts.artsList = await aeStoryRes.json();
-    lowerPosts.sportsList = await spStoryRes.json();
-    return { upperPosts, multimediaPosts, lowerPosts };
+    posts.f1Story = await f1StoryRes.json();
+    posts.f2Story = await f2StoryRes.json();
+    posts.f3Story = await f3StoryRes.json();
+    posts.newsList = await nsStoryRes.json();
+    posts.opinionList = await opStoryRes.json();
+    posts.artsList = await aeStoryRes.json();
+    posts.sportsList = await spStoryRes.json();
+    return { posts, multimediaPosts };
   }
 
   render() {
     return (
       <div>
-        <HomeUpper posts={this.props.upperPosts} />
-        <HomeMultimedia media={this.props.multimediaPosts}></HomeMultimedia>
-        <HomeLower posts={this.props.lowerPosts} />
+        <HomeLayout posts={this.props.posts} media={this.props.multimediaPosts} />
       </div>
     );
   }

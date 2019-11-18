@@ -1,5 +1,6 @@
-import ArticleCard from '../../components/ArticleCard'
-import StoryList from '../../components/StoryList'
+import ArticleCard from "../../components/ArticleCard";
+import StoryList from "../../components/StoryList";
+import MultimediaScroller from "../../components/MultimediaScroller";
 
 export function buildArticleCard(story) {
   return (
@@ -14,18 +15,18 @@ export function buildArticleCard(story) {
         {
           name: story._embedded.author[0].name,
           href: `/author/[slug]`,
-          as: `/author/${story._embedded.author[0].slug}`,
-        },
+          as: `/author/${story._embedded.author[0].slug}`
+        }
       ]}
       category={{
-        name: story._embedded['wp:term'][0][0].name,
+        name: story._embedded["wp:term"][0][0].name,
         href: `/category/[slug]`,
-        as: `/category/${story._embedded['wp:term'][0][0].slug}`,
+        as: `/category/${story._embedded["wp:term"][0][0].slug}`
       }}
-      imageurl={story._embedded['wp:featuredmedia'][0].source_url}
-      caption={story._embedded['wp:featuredmedia'][0].caption.rendered}
+      imageurl={story._embedded["wp:featuredmedia"][0].source_url}
+      caption={story._embedded["wp:featuredmedia"][0].caption.rendered}
     />
-  )
+  );
 }
 
 export function buildStoryList(type, list) {
@@ -33,9 +34,9 @@ export function buildStoryList(type, list) {
     return {
       title: index.title.rendered,
       text: index.excerpt.rendered,
-      link: `/post/${index.slug}`,
-    }
-  })
+      link: `/post/${index.slug}`
+    };
+  });
   mappedList[1].text = "";
   mappedList[2].text = "";
   return (
@@ -43,9 +44,22 @@ export function buildStoryList(type, list) {
       type={type}
       story={mappedList}
       image={{
-        src: list[0]._embedded['wp:featuredmedia'][0].source_url,
-        alt: 'N/A',
+        src: list[0]._embedded["wp:featuredmedia"][0].source_url,
+        alt: "N/A"
       }}
     />
-  )
+  );
+}
+
+export function buildMultimediaScroller(media) {
+  const mappedMedia = media.map(index => {
+    return {
+      title: index.title.rendered,
+      link: `/post/${index.slug}`,
+      preview: index._embedded["wp:featuredmedia"][0].source_url
+    };
+  });
+  return (
+      <MultimediaScroller media={mappedMedia} />
+  );
 }
