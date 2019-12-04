@@ -30,7 +30,8 @@ class PostUpper extends React.Component {
             {
               name: this.props.article["_embedded"].author[0].name,
               url: "/author/[slug]",
-              as: this.props.article["_embedded"].author[0].link
+              as: this.props.article["_embedded"].author[0].link,
+              bio: this.props.article["_embedded"].author[0].description,
             }
           ]}
           category={{
