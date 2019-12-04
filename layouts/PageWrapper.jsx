@@ -136,10 +136,10 @@ const PageWrapper = Comp =>
       return (
         <div style={layoutStyle}>
           <div style={bannerAdStyle}>ADVERTISEMENT</div>
+          <Masthead categories={cats}></Masthead>
           <div style={{ padding: "6px" }}>
             <BreakingCard story={this.props.mappedBreaking} />
           </div>
-          <Masthead categories={cats}></Masthead>
           <Comp {...this.props} />
           <div style={{ padding: "6px" }}>
             <MainSiteFooter />
