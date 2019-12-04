@@ -1,9 +1,8 @@
-import PageLayout from '../layouts/PageLayout'
 import React, { Component } from 'react'
-import PageWrapper from '../layouts/PageWrapper'
+import PageWrapper from '../../layouts/PageWrapper'
 import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
-import { Config } from '../config.js'
+import { Config } from '../../config.js'
 
 import css from './style.css'
 

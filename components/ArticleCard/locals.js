@@ -4,7 +4,7 @@ export const headline = `
   font-family: ${globals.headlineFont};
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.15;
   color: #000000;
   &:hover {
@@ -15,7 +15,7 @@ export const excerpt = `
   font-family: ${globals.bodyFont};
   font-style: normal;
   font-weight: normal;
-  font-size: 11px;
+  font-size: 0.75rem;
   color: #000000;
 
   p {
