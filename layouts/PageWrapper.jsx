@@ -4,7 +4,7 @@ import fetch from "isomorphic-unfetch";
 
 import MainSiteFooter from "../components/MainSiteFooter";
 import MainSiteHeader from "../components/MainSiteHeader";
-
+import BreakingCard from "../components/BreakingCard";
 import Masthead from "../components/Masthead";
 
 import "./style.css";
@@ -110,9 +110,25 @@ const PageWrapper = Comp =>
         return { category: index.name, categoryURL: "/category/" + index.slug };
       });
 
+      // BreakingCard
+      const breakingRes = await fetch(
+        `${Config.apiUrl}/wp-json/menus/v1/menus/breaking`
+      );
+      const breaking = await breakingRes.json();
+
+      let mappedBreaking = {};
+
+      if (breaking.length !== 0) {
+        mappedBreaking = {
+          name: breaking.items[0].title,
+          href: breaking.items[0].url
+        };
+      }
+
       return {
         ...(Comp.getInitialProps ? childProps : null),
-        mappedCategories
+        mappedCategories,
+        mappedBreaking
       };
     }
 
@@ -121,6 +137,9 @@ const PageWrapper = Comp =>
         <div style={layoutStyle}>
           <div style={bannerAdStyle}>ADVERTISEMENT</div>
           <Masthead categories={cats}></Masthead>
+          <div style={{ padding: "6px" }}>
+            <BreakingCard story={this.props.mappedBreaking} />
+          </div>
           <Comp {...this.props} />
           <div style={{ padding: "6px" }}>
             <MainSiteFooter />

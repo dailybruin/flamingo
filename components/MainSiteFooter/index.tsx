@@ -1,23 +1,23 @@
-import * as React from 'react'
+import * as React from "react";
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import * as MainSiteStyles from '../globals'
-import FooterLink from '../Footer/FooterLink'
+import { css, jsx } from "@emotion/core";
+import * as MainSiteStyles from "../globals";
+import FooterLink from "../Footer/FooterLink";
 
 export default function MainSiteFooter(props: {}) {
   const mainSiteFooterLinks = [
-    { text: 'About', url: 'https://dailybruin.com/about' },
-    { text: 'Contact', url: 'https://dailybruin.com/contact' },
-    { text: 'Advertise', url: 'https://dailybruin.com/advertise' },
-    { text: 'Work With Us', url: 'https://apply.uclastudentmedia.com' },
-    { text: 'Privacy', url: 'https://dailybruin.com/privacy' },
-  ]
+    { text: "About", url: "https://dailybruin.com/about" },
+    { text: "Contact", url: "https://dailybruin.com/contact" },
+    { text: "Advertise", url: "https://dailybruin.com/advertise" },
+    { text: "Work With Us", url: "https://apply.uclastudentmedia.com" },
+    { text: "Privacy", url: "https://dailybruin.com/privacy" }
+  ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (
     <FooterLink key={link.text} url={link.url} text={link.text} />
-  ))
+  ));
 
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer
@@ -26,6 +26,7 @@ export default function MainSiteFooter(props: {}) {
         font-size: 0.85rem;
         flex-direction: row;
         padding: 0.4rem;
+        background-color: white;
         font-family: ${MainSiteStyles.headlineFont};
         font-weight: ${MainSiteStyles.boldFont};
         box-shadow: ${MainSiteStyles.cardShadow};
@@ -64,5 +65,5 @@ export default function MainSiteFooter(props: {}) {
         Copyright © {currentYear} Daily Bruin
       </div>
     </footer>
-  )
+  );
 }
