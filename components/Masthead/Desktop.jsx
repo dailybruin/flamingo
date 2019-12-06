@@ -157,7 +157,7 @@ export default class Desktop extends React.Component {
             ></img>
           </button>
           <Link href="/">
-            <a
+            <a href="/"
               css={css`
                 display: inline-block;
                 vertical-align: middle;

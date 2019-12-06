@@ -113,7 +113,7 @@ export default class Mobile extends React.Component {
             ></img>
           </button>
           <Link href="/">
-            <a
+            <a href="/"
               css={css`
                 display: table-cell;
                 vertical-align: middle;
