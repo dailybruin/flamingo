@@ -103,7 +103,6 @@ export default function Full(props) {
               font-weight: normal;
               font-size: 10px;
               text-align: justify;
-              text-align-last: right;
 
               color: #000000;
             `}

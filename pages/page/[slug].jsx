@@ -5,22 +5,22 @@ import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
 import { Config } from '../../config.js'
 
-import PostLayout from '../../layouts/Post'
+import PageLayout from '../../layouts/Page'
 
-class Post extends Component {
+class Page extends Component {
   static async getInitialProps(context) {
     const { slug } = context.query
-    const postRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`
+    const pageRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/pages?slug=${slug}&_embed`
     )
-    const post = await postRes.json()
-    return { post }
+    const page = await pageRes.json()
+    return { page }
   }
   render() {
     return (
-      <PostLayout article={this.props.post[0]}/>
+      <PageLayout page={this.props.page[0]}/>
     )
   }
 }
 
-export default PageWrapper(Post)
+export default PageWrapper(Page)

@@ -14,8 +14,7 @@ import StoryList from "../../components/StoryList";
 const ArticleAdStyle = {
   width: "100%",
   backgroundColor: "#aaa",
-  height: "250px",
-  lineHeight: "250px",
+  paddingTop: "83.333%",
   textAlign: "center",
   fontWeight: "bold",
   fontFamily: "sans-serif"
@@ -52,7 +51,7 @@ export default class HomeLayout extends React.Component {
           if (size.width < 600) {
             return (
               <div id="ArticleGrid" style={{ width: "100%" }}>
-                <div id="a-b" className={css.column} style={{}}>
+                <div id="a-b" className={css.column}>
                   <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.c1ArticleCard, {
                       displayType: "full"
@@ -213,7 +212,7 @@ export default class HomeLayout extends React.Component {
                     style={{ width: "25%" }}
                   >
                     <div id="above-ad" className={css.card}>
-                      <div style={ArticleAdStyle}>ADVERTISEMENT</div>
+                      <div style={ArticleAdStyle}></div>
                     </div>
                     <div id="qd" className={css.card}>
                       {this.state.qdStoryList}
@@ -287,7 +286,7 @@ export default class HomeLayout extends React.Component {
                       />
                     </div>
                     <div className={css.card}>
-                      <div style={ArticleAdStyle}>ADVERTISEMENT</div>
+                      <div style={ArticleAdStyle}></div>
                     </div>
                   </div>
                   <div

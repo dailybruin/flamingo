@@ -5,7 +5,7 @@ import { css, jsx } from '@emotion/core'
 /**
  * Heart.
  */
-export default function Heart(props: {}) {
+export default function Heart(props) {
   return (
     <span
       css={css`

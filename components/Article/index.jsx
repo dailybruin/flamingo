@@ -9,7 +9,7 @@ import {
   bodyFont
 } from "../globals";
 import { date2string } from "./utilities.js";
-import AuthorInfo from "./AuthorInfo"; 
+import AuthorInfo from "./AuthorInfo";
 
 export default class Article extends React.Component {
   constructor(props) {
@@ -47,11 +47,11 @@ export default class Article extends React.Component {
     }
     // if (renderAuthorInfo.length === 0) {
     //   renderAuthorInfo[0] = <span>Daily Bruin Staff</span>;
-    // } 
+    // }
     // else {
       for (const author of this.props.authors) {
         renderAuthorInfo.push(
-        <AuthorInfo name={author.name} position={"Sports Staff"} bio={author.bio} 
+        <AuthorInfo name={author.name} position={"Sports Staff"} bio={author.bio}
         twitter={"@jbruin"} email={"jbruin@ucla.edu"}></AuthorInfo>
         );
       }
@@ -143,7 +143,7 @@ export default class Article extends React.Component {
                   color: #000000;
                 `}
               >
-                By {authors}
+                By{authors}
               </h3>
               <h4
                 css={css`
@@ -174,7 +174,7 @@ export default class Article extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
           {renderAuthorInfo}
-          {/* <AuthorInfo name={this.props.authors[0].name} position={"Sports Staff"} bio={this.props.authorbio} 
+          {/* <AuthorInfo name={this.props.authors[0].name} position={"Sports Staff"} bio={this.props.authorbio}
         twitter={"@jbruin"} email={"jbruin@ucla.edu"}></AuthorInfo> */}
         </div>
       </div>

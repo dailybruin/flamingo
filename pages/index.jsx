@@ -62,13 +62,13 @@ class Index extends Component {
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}`
     );
     const f1StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f1TAGID}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f1TAGID}`
     );
     const f2StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f2TAGID}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}`
     );
     const f3StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f3TAGID}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f3TAGID}`
     );
     const nsStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}`

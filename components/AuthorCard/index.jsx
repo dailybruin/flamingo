@@ -1,9 +1,9 @@
-import * as React from 'react'
+import * as React from "react";
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import * as MainSiteStyles from '../globals'
-import emailImage from './email.png'
-import twitterImage from './twitter.png'
+import { css, jsx } from "@emotion/core";
+import * as MainSiteStyles from "../globals";
+import emailImage from "./email.png";
+import twitterImage from "./twitter.png";
 
 function SocialCircle(props) {
   return (
@@ -32,7 +32,7 @@ function SocialCircle(props) {
         />
       </div>
     </a>
-  )
+  );
 }
 
 /** An author card. */
@@ -51,27 +51,34 @@ export default class AuthorCard extends React.Component {
             display: block;
           `}
         >
+          <div css={css`
+              padding: 20px;`}>
           <div
             css={css`
-              width: 80%;
-              display: block;
-              margin: auto;
+              padding-top: 100%;
+              width: 100%;
+              overflow: hidden;
+              position: relative;
+              border-radius: 50%;
             `}
           >
             <img
               css={css`
-                border-radius: 50%;
-                margin: auto;
-                padding-top: 20px;
                 width: 100%;
-                height: auto;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
               `}
               src={this.props.image}
             />
           </div>
+          </div>
           <h1
             css={css`
-              font-style: 'bold';
+              font-style: "bold";
               font-size: 24px;
               line-height: 1.6rem;
               text-align: center;
@@ -92,13 +99,13 @@ export default class AuthorCard extends React.Component {
           >
             {this.props.twitter && (
               <SocialCircle
-                url={'https://twitter.com/' + this.props.twitter}
+                url={"https://twitter.com/" + this.props.twitter}
                 image={twitterImage}
               />
             )}
             {this.props.email && (
               <SocialCircle
-                url={'mailto:' + this.props.email}
+                url={"mailto:" + this.props.email}
                 image={emailImage}
               />
             )}
@@ -119,6 +126,6 @@ export default class AuthorCard extends React.Component {
           {this.props.position}
         </h3>
       </div>
-    )
+    );
   }
 }

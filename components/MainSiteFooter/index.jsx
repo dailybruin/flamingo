@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as MainSiteStyles from "../globals";
 import FooterLink from "../Footer/FooterLink";
 
-export default function MainSiteFooter(props: {}) {
+export default function MainSiteFooter(props) {
   const mainSiteFooterLinks = [
     { text: "About", url: "https://dailybruin.com/about" },
     { text: "Contact", url: "https://dailybruin.com/contact" },

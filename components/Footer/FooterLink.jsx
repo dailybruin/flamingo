@@ -3,12 +3,7 @@ import * as React from 'react';
 import { css, jsx } from '@emotion/core'
 import * as MainSiteStyles from '../globals'
 
-interface FooterLinkProps {
-  url: string,
-  text: string
-}
-
-export default function FooterLink (props: FooterLinkProps) {
+export default function FooterLink(props) {
   return(
     <a
       css={css`

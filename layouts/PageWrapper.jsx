@@ -3,7 +3,6 @@ import { Config } from "../config.js";
 import fetch from "isomorphic-unfetch";
 
 import MainSiteFooter from "../components/MainSiteFooter";
-import MainSiteHeader from "../components/MainSiteHeader";
 import BreakingCard from "../components/BreakingCard";
 import Masthead from "../components/Masthead";
 
@@ -115,10 +114,9 @@ const PageWrapper = Comp =>
         `${Config.apiUrl}/wp-json/menus/v1/menus/breaking`
       );
       const breaking = await breakingRes.json();
-
-      let mappedBreaking = {};
-
-      if (breaking.length !== 0) {
+      let mappedBreaking = null;
+      console.log(breaking.items.length);
+      if (breaking.items.length != 0) {
         mappedBreaking = {
           name: breaking.items[0].title,
           href: breaking.items[0].url
@@ -133,13 +131,20 @@ const PageWrapper = Comp =>
     }
 
     render() {
+      let renderedBreakingCard;
+      console.log(this.props.mappedBreaking);
+      if (this.props.mappedBreaking != null) {
+        renderedBreakingCard = (
+          <div style={{ padding: "6px" }}>
+            <BreakingCard story={this.props.mappedBreaking} />
+          </div>
+        );
+      }
       return (
         <div style={layoutStyle}>
           <div style={bannerAdStyle}>ADVERTISEMENT</div>
           <Masthead categories={cats}></Masthead>
-          <div style={{ padding: "6px" }}>
-            <BreakingCard story={this.props.mappedBreaking} />
-          </div>
+          {renderedBreakingCard}
           <Comp {...this.props} />
           <div style={{ padding: "6px" }}>
             <MainSiteFooter />
