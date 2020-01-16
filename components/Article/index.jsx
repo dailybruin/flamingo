@@ -9,6 +9,7 @@ import {
   bodyFont
 } from "../globals";
 import { date2string } from "./utilities.js";
+import AuthorInfo from "./AuthorInfo";
 
 export default class Article extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class Article extends React.Component {
   render() {
     //  collect authors
     const authors = [];
+    const renderAuthorInfo = [];
     if (this.props.authors.length === 0) {
       authors[0] = <span>Daily Bruin Staff</span>;
     } else {
@@ -30,6 +32,7 @@ export default class Article extends React.Component {
                 text-decoration: none;
                 color: #0080c6;
                 background-color: #ffffff;
+                padding: 5px;
 
                 &:hover {
                   text-decoration: underline;
@@ -42,6 +45,17 @@ export default class Article extends React.Component {
         );
       }
     }
+    // if (renderAuthorInfo.length === 0) {
+    //   renderAuthorInfo[0] = <span>Daily Bruin Staff</span>;
+    // }
+    // else {
+      for (const author of this.props.authors) {
+        renderAuthorInfo.push(
+        <AuthorInfo name={author.name} position={"Sports Staff"} bio={author.bio}
+        twitter={"@jbruin"} email={"jbruin@ucla.edu"}></AuthorInfo>
+        );
+      }
+    // }
     return (
       <div
         css={css`
@@ -129,7 +143,7 @@ export default class Article extends React.Component {
                   color: #000000;
                 `}
               >
-                By {authors}
+                By{authors}
               </h3>
               <h4
                 css={css`
@@ -159,6 +173,9 @@ export default class Article extends React.Component {
             `}
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
+          {renderAuthorInfo}
+          {/* <AuthorInfo name={this.props.authors[0].name} position={"Sports Staff"} bio={this.props.authorbio}
+        twitter={"@jbruin"} email={"jbruin@ucla.edu"}></AuthorInfo> */}
         </div>
       </div>
     );

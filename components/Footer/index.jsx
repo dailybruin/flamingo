@@ -4,12 +4,6 @@ import { css, jsx } from '@emotion/core'
 import Heart from './Heart'
 import toSentence from '../../utils/toSentence'
 
-enum License {
-  MIT = 'MIT License',
-  AGPL = 'GNU AGPL',
-  Copyright = 'Copyright',
-}
-
 /** A footer to go at the bottom of every page. */
 class Footer extends React.Component {
   defaultProps = {

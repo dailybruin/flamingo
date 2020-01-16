@@ -1,13 +1,8 @@
-import * as React from 'react'
+import * as React from "react";
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from "@emotion/core";
 
-import {
-  headlineFont,
-  cardShadow,
-  regularFont,
-  bodyFont,
-} from '../globals'
+import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
 
 function Classified(props) {
   return (
@@ -46,21 +41,21 @@ function Classified(props) {
         {props.content.name}
       </a>
     </div>
-  )
+  );
 }
 
 export default class ClassifiedsCard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
-    const renderedClassifieds = []
+    const renderedClassifieds = [];
     if (this.props.classifieds != null) {
       for (const i of this.props.classifieds) {
         renderedClassifieds.push(
           <Classified category={i.category} content={i.content} />
-        )
+        );
       }
     }
 
@@ -96,7 +91,7 @@ export default class ClassifiedsCard extends React.Component {
         >
           {renderedClassifieds}
         </div>
-        <div style={{ textAlign: 'right', padding: '12px 12px 6px' }}>
+        <div style={{ textAlign: "right", padding: "12px 12px 6px" }}>
           <a
             href={"./#"}
             css={css`
@@ -117,6 +112,6 @@ export default class ClassifiedsCard extends React.Component {
           </a>
         </div>
       </div>
-    )
+    );
   }
 }

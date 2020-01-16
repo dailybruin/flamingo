@@ -101,9 +101,8 @@ export default function Full(props) {
               font-family: Arimo;
               font-style: normal;
               font-weight: normal;
-              font-size: 8px;
+              font-size: 10px;
               text-align: justify;
-              text-align-last: right;
 
               color: #000000;
             `}

@@ -26,6 +26,7 @@ export default function Mini(props) {
             <div
               css={css`
                 height: 100%;
+                width: 100%;
                 min-height: 100px;
                 overflow: hidden;
                 position: relative;
@@ -34,10 +35,12 @@ export default function Mini(props) {
               <img
                 css={css`
                   height: 100%;
+                  width: 100%;
                   position: absolute;
                   top: 50%;
                   left: 50%;
                   transform: translate(-50%, -50%);
+                  object-fit: cover;
                 `}
                 src={props.imageurl}
               />

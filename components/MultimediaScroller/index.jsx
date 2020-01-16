@@ -1,32 +1,20 @@
-import * as React from 'react'
+import * as React from "react";
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from "@emotion/core";
 
-import Media from './Media'
+import Media from "./Media";
 
-interface Media {
-  title: string
-  preview: string
-  link: string
-}
-
-interface MultimediaScrollerProps {
-  media: Media[]
-}
-
-export default class MultimediaScroller extends React.Component<
-  MultimediaScrollerProps
-> {
+export default class MultimediaScroller extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
-  public render() {
-    const medialinks = []
+  render() {
+    const medialinks = [];
     for (const media of this.props.media) {
       medialinks.push(
         <Media title={media.title} preview={media.preview} link={media.link} />
-      )
+      );
     }
     return (
       <div
@@ -44,7 +32,7 @@ export default class MultimediaScroller extends React.Component<
           css={css`
             margin: 10px 0 0;
             font-size: 14px;
-            font-family: 'Arimo', sans-serif;
+            font-family: "Arimo", sans-serif;
             font-weight: 700;
           `}
         >
@@ -56,11 +44,12 @@ export default class MultimediaScroller extends React.Component<
             width: auto;
             white-space: nowrap;
             overflow: scroll;
+            vertical-align: top;
           `}
         >
           {medialinks}
         </div>
       </div>
-    )
+    );
   }
 }

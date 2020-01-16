@@ -1,34 +1,15 @@
 import * as React from 'react'
-import { css } from 'react-emotion'
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 import Scoreboard from './Scoreboard'
 
-interface Game {
-  team1: string
-  team1score: number
-  team2: string
-  team2score: number
-}
-
-interface ScoreboardProps {
-  game: Game
-}
-
-interface SportsTournamentScoreboardProps {
-  sport: string
-  gametype: string
-  games: Game[]
-}
-
-export default class SportsTournamentScoreboard extends React.Component<
-  SportsTournamentScoreboardProps
-> {
-  public static defaultProps = { gametype: 'GAME' }
+export default class SportsTournamentScoreboard extends React.Component {
   constructor(props) {
     super(props)
   }
 
-  public render() {
+  render() {
     const scoreboards = []
     let i = 0
     for (const game of this.props.games) {
@@ -37,7 +18,7 @@ export default class SportsTournamentScoreboard extends React.Component<
     }
     return (
       <div
-        className={css`
+        css={css`
           padding: 0;
           background: #ffffff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
@@ -45,7 +26,7 @@ export default class SportsTournamentScoreboard extends React.Component<
         `}
       >
         <div
-          className={css`
+          css={css`
             left: 0;
             right: 0;
 

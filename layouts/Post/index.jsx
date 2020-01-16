@@ -18,7 +18,7 @@ const ArticleAdStyle = {
   fontFamily: "sans-serif"
 };
 
-class PostUpper extends React.Component {
+class PostLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,8 @@ class PostUpper extends React.Component {
             {
               name: this.props.article["_embedded"].author[0].name,
               url: "/author/[slug]",
-              as: this.props.article["_embedded"].author[0].link
+              as: this.props.article["_embedded"].author[0].link,
+              bio: this.props.article["_embedded"].author[0].description,
             }
           ]}
           category={{
@@ -65,10 +66,10 @@ class PostUpper extends React.Component {
                   id="article"
                   className={css.column}
                   style={{
-                    width: "75%"
+                    width: "75%",
                   }}
                 >
-                  <div id="a" className={css.card}>
+                  <div className={css.card}>
                     {this.state.article}
                   </div>
                 </div>
@@ -79,7 +80,7 @@ class PostUpper extends React.Component {
                     width: "25%"
                   }}
                 >
-                  <div id="above-ad" className={css.card}>
+                  <div className={css.card}>
                     <div style={ArticleAdStyle}>ADVERTISEMENT</div>
                   </div>
                 </div>
@@ -92,4 +93,4 @@ class PostUpper extends React.Component {
   }
 }
 
-export default PostUpper;
+export default PostLayout;
