@@ -5,9 +5,10 @@ import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 
-import SectionHeader from "../../components/SectionHeader";
-import CategoryUpper from "../../layouts/Category/CategoryUpper";
-import CategoryLower from "../../layouts/Category/CategoryLower";
+
+import SectionHeader from '../../components/SectionHeader'
+import CategoryLayout from '../../layouts/Category'
+
 
 class Category extends Component {
   static async getInitialProps(context) {
@@ -65,8 +66,7 @@ class Category extends Component {
           category={this.props.category[0].name}
           subcategories={sectionLinks}
         />
-        <CategoryUpper />
-        <CategoryLower />
+      <CategoryLayout posts={this.props.posts}/>
         <h1>{this.props.category[0].name} Posts</h1>
         {posts}
       </div>
