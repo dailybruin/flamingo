@@ -6,8 +6,7 @@ import Error from 'next/error'
 import { Config } from '../../config.js'
 
 import SectionHeader from '../../components/SectionHeader'
-import CategoryUpper from '../../layouts/Category/CategoryUpper'
-import CategoryLower from '../../layouts/Category/CategoryLower'
+import CategoryLayout from '../../layouts/Category'
 
 class Category extends Component {
   static async getInitialProps(context) {
@@ -58,8 +57,7 @@ class Category extends Component {
           name={this.props.category[0].name}
           sectionList={sectionLinks}
         />
-        <CategoryUpper />
-        <CategoryLower />
+      <CategoryLayout posts={this.props.posts}/>
         <h1>{this.props.category[0].name} Posts</h1>
         {posts}
       </div>
