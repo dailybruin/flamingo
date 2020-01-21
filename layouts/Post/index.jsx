@@ -26,14 +26,7 @@ class PostLayout extends React.Component {
         <Article
           headline={this.props.article.title.rendered}
           date={new Date(this.props.article.date)}
-          authors={[
-            {
-              name: this.props.article["_embedded"].author[0].name,
-              url: "/author/[slug]",
-              as: this.props.article["_embedded"].author[0].link,
-              bio: this.props.article["_embedded"].author[0].description,
-            }
-          ]}
+          authors={this.props.article["_embedded"].author}
           category={{
             name: this.props.article["_embedded"]["wp:term"][0][0].name,
             url: `/category/[slug]`,

@@ -42,7 +42,10 @@ export default class AuthorInfo extends React.Component{
             font-family: ${globals.bodyFont};
             // padding: ${globals.cardPadding};
             font-size: 18px;
-            `}>{this.props.bio}
+            `}
+            dangerouslySetInnerHTML={{ __html: this.props.bio }}
+        >
+            
         </h2>
         <li css={css`
             display: inline-block;
@@ -52,20 +55,24 @@ export default class AuthorInfo extends React.Component{
             `}>
         CONTACT 
         </li> 
-        <a href="https://www.twittier.com" css={css`
-        text-decoration: none;
-        margin: 5px 10px;
-        color: ${globals.DBblue};
-        font-family: ${globals.menuFont};
-        `}>{this.props.twitter}</a>
 
 
-        <a href="https://www.twittier.com" css={css`
+        <a href={`mailto:${this.props.email}`}
+        css={css`
         text-decoration: none;
         margin: 5px 10px;
         color: ${globals.DBblue};
         font-family: ${globals.menuFont};
         `}>{this.props.email}</a>
+
+
+        <a href={`https://www.twitter.com/${this.props.twitter}`}
+        css={css`
+        text-decoration: none;
+        margin: 5px 10px;
+        color: ${globals.DBblue};
+        font-family: ${globals.menuFont};
+        `}>@{this.props.twitter}</a>
 
     </div>
     )
