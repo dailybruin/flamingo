@@ -1,5 +1,6 @@
 import ArticleCard from '../../components/ArticleCard'
 import StoryList from '../../components/StoryList'
+import css from './style.css'
 
 export function buildArticleCard(story) {
   return (
@@ -35,4 +36,19 @@ export function buildArticleList(stories) {
       postArray.push(buildArticleCard(stories[i]))
     }
     return (postArray)
+}
+
+export function renderPostArray(otherArticleCards, type) {
+  var i
+  let renderedPostArray = []
+  for (i = 0; i < otherArticleCards.length; i++) {
+    renderedPostArray.push(
+      <div id="a" className={css.card}>
+        {React.cloneElement( otherArticleCards[i], {
+          displayType: type
+        })}
+      </div>
+    )
+  }
+  return (renderedPostArray)
 }

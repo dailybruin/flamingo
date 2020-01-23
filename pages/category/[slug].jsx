@@ -66,9 +66,7 @@ class Category extends Component {
           category={this.props.category[0].name}
           subcategories={sectionLinks}
         />
-      <CategoryLayout posts={this.props.posts}/>
-        <h1>{this.props.category[0].name} Posts</h1>
-        {posts}
+      <CategoryLayout posts={this.props.posts} categoryID={this.props.category[0].id}/>
       </div>
     );
   }
