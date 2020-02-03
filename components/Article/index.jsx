@@ -2,12 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import {
-  headlineFont,
-  cardShadow,
-  regularFont,
-  bodyFont
-} from "../globals";
+import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
 import { date2string } from "./utilities.js";
 import AuthorInfo from "./AuthorInfo";
 
@@ -49,12 +44,17 @@ export default class Article extends React.Component {
     //   renderAuthorInfo[0] = <span>Daily Bruin Staff</span>;
     // }
     // else {
-      for (const author of this.props.authors) {
-        renderAuthorInfo.push(
-        <AuthorInfo name={author.name} position={"Sports Staff"} bio={author.bio}
-        twitter={"@jbruin"} email={"jbruin@ucla.edu"}></AuthorInfo>
-        );
-      }
+    for (const author of this.props.authors) {
+      renderAuthorInfo.push(
+        <AuthorInfo
+          name={author.name}
+          position={"Sports Staff"}
+          bio={author.bio}
+          twitter={"@jbruin"}
+          email={"jbruin@ucla.edu"}
+        ></AuthorInfo>
+      );
+    }
     // }
     return (
       <div

@@ -31,7 +31,7 @@ class PostLayout extends React.Component {
               name: this.props.article["_embedded"].author[0].name,
               url: "/author/[slug]",
               as: this.props.article["_embedded"].author[0].link,
-              bio: this.props.article["_embedded"].author[0].description,
+              bio: this.props.article["_embedded"].author[0].description
             }
           ]}
           category={{
@@ -46,6 +46,7 @@ class PostLayout extends React.Component {
             this.props.article["_embedded"].author[0]["avatar_urls"][96]
           }
           content={this.props.article.content.rendered}
+          acf={this.props.article.acf}
         />
       )
     };
@@ -66,12 +67,10 @@ class PostLayout extends React.Component {
                   id="article"
                   className={css.column}
                   style={{
-                    width: "75%",
+                    width: "75%"
                   }}
                 >
-                  <div className={css.card}>
-                    {this.state.article}
-                  </div>
+                  <div className={css.card}>{this.state.article}</div>
                 </div>
                 <div
                   id="extras"

@@ -1,15 +1,15 @@
-import * as React from 'react'
+import * as React from "react";
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import * as globals from '../globals'
-import * as locals from './locals'
+import { css, jsx } from "@emotion/core";
+import * as globals from "../globals";
+import * as locals from "./locals";
 import * as utilities from "./utilities";
 
 export default function Long(props) {
   //  collect authors
-  const authors = []
+  const authors = [];
   if (props.authors.length === 0) {
-    authors[0] = <span>Daily Bruin Staff</span>
+    authors[0] = <span>Daily Bruin Staff</span>;
   } else {
     for (const author of props.authors) {
       authors.push(
@@ -26,7 +26,7 @@ export default function Long(props) {
         >
           {author.name}
         </a>
-      )
+      );
     }
   }
   return (
@@ -93,7 +93,7 @@ export default function Long(props) {
             {utilities.date2string(props.date)}
           </span>
         </span>
-        <a href={props.url} style={{ textDecoration: 'none' }}>
+        <a href={props.url} style={{ textDecoration: "none" }}>
           <h1
             css={css`
               margin: 2px 0;
@@ -123,7 +123,7 @@ export default function Long(props) {
           flex: 4;
         `}
       >
-        <a href={props.url} style={{ textDecoration: 'none' }}>
+        <a href={props.url} style={{ textDecoration: "none" }}>
           <p
             css={css`
               ${locals.excerpt}
@@ -135,10 +135,35 @@ export default function Long(props) {
       <div
         css={css`
           flex: 4;
+          order: -1;
+          padding: 10px;
         `}
       >
-        <a href={props.url} style={{ textDecoration: 'none' }}>
+        <a href={props.url} style={{ textDecoration: "none" }}>
           <div
+            css={css`
+              height: 100%;
+              width: 100%;
+              padding-top: 66.66%;
+              overflow: hidden;
+              position: relative;
+              min-height: 200px;
+            `}
+          >
+            <img
+              css={css`
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                object-fit: cover;
+              `}
+              src={props.imageurl}
+            />
+          </div>
+          {/* <div
             css={css`
               height: 100%;
               min-width: 200px;
@@ -147,9 +172,9 @@ export default function Long(props) {
               background-repeat: no-repeat;
               background-size: cover;
             `}
-          />
+          /> */}
         </a>
       </div>
     </div>
-  )
+  );
 }

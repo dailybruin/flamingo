@@ -1,11 +1,11 @@
-import PageWrapper from "../../layouts/PageWrapper";
+import PageWrapper from "../../../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
-import { Config } from "../../config.js";
+import { Config } from "../../../../config.js";
 
-import PostLayout from "../../layouts/Post";
+import PostLayout from "../../../../layouts/Post";
 
 class Post extends Component {
   static async getInitialProps(context) {

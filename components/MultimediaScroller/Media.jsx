@@ -44,8 +44,8 @@ export default function Media(props) {
               font-family: "Arimo", sans-serif;
               font-weight: 700;
             `}
+            dangerouslySetInnerHTML={{__html: props.title}}
           >
-            {props.title}
           </h1>
         </div>
       </a>
