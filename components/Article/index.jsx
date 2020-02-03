@@ -2,12 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import {
-  headlineFont,
-  cardShadow,
-  regularFont,
-  bodyFont
-} from "../globals";
+import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
 import { date2string } from "./utilities.js";
 import AuthorInfo from "./AuthorInfo";
 
@@ -54,8 +49,7 @@ export default class Article extends React.Component {
         <AuthorInfo name={author.name} position={author.acf.position} bio={author.description}
         email={author.media_email} twitter={author.acf.twitter}></AuthorInfo>
         );
-      }
-    // }
+          // }
     return (
       <div
         css={css`

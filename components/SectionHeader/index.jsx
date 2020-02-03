@@ -11,7 +11,6 @@ export default class SectionHeader extends React.Component {
   render() {
     let renderedSubcategories = [];
     for (let i = 0; i < this.props.subcategories.length; i++) {
-      console.log(this.props.subcategories[i]);
       let renderedSubsubcategories = [];
       for (
         let j = 0;
@@ -56,20 +55,21 @@ export default class SectionHeader extends React.Component {
                 &:hover + div {
                   display: ${displayVal};
                 }
-                font-family: Helvetica;
+                font-family: ${globals.menuFont};
+                text-transform: uppercase;
+                font-weight: bold;
                 font-size: 14px;
-                //padding-top:15px;
-                padding-left: 45px;
-                padding-right: 45px;
+                padding: 10px 10px 0;
                 color: black;
                 text-decoration: none;
                 &:hover {
                   color: grey;
                 }
               `}
-            >
-              {this.props.subcategories[i].name}
-            </div>
+              dangerouslySetInnerHTML={{
+                __html: this.props.subcategories[i].name
+              }}
+            ></div>
             <div
               css={css`
                 & a {
@@ -117,7 +117,7 @@ export default class SectionHeader extends React.Component {
           box-shadow: ${globals.cardShadow};
           background-color: white;
           display: block;
-          padding: ${globals.cardPadding};
+          padding: 0 10px 10px;
         `}
       >
         <li
@@ -126,14 +126,21 @@ export default class SectionHeader extends React.Component {
             //display: inline-block;
             list-style: none;
             color: black;
-            padding: 6px;
-            font-family: ${globals.headlineFont}
+            font-family: ${globals.menuFont};
             font-weight: bold;
             font-size: 50px;
-            `}
-        >
-          {this.props.category}
-        </li>
+            text-transform: uppercase;
+            line-height: 60px;
+          `}
+          dangerouslySetInnerHTML={{ __html: this.props.category }}
+        ></li>
+        <div
+          css={css`
+            width: 100%;
+            background-color: black;
+            height: 4px;
+          `}
+        ></div>
         <li
           css={css`
             list-style: none;
