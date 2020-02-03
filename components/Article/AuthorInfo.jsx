@@ -64,22 +64,27 @@ export default class AuthorInfo extends React.Component {
             // padding: ${globals.cardPadding};
             font-family: ${globals.menuFont};
             font-weight: bold;
-            `}
-        >
-          CONTACT
-        </li>
-        <a
-          href="https://www.twittier.com"
-          css={css`
-            text-decoration: none;
-            margin: 5px 10px;
-            color: ${globals.DBblue};
-            font-family: ${globals.menuFont};
-          `}
-        >
-          {this.props.twitter}
-        </a>
+            `}>
+        CONTACT 
+        </li> 
 
+
+        <a href={`mailto:${this.props.email}`}
+        css={css`
+        text-decoration: none;
+        margin: 5px 10px;
+        color: ${globals.DBblue};
+        font-family: ${globals.menuFont};
+        `}>{this.props.email}</a>
+
+
+        <a href={`https://www.twitter.com/${this.props.twitter}`}
+        css={css`
+        text-decoration: none;
+        margin: 5px 10px;
+        color: ${globals.DBblue};
+        font-family: ${globals.menuFont};
+        `}>@{this.props.twitter}</a>
         <a
           href="https://www.twittier.com"
           css={css`

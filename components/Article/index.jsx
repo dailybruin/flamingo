@@ -44,18 +44,12 @@ export default class Article extends React.Component {
     //   renderAuthorInfo[0] = <span>Daily Bruin Staff</span>;
     // }
     // else {
-    for (const author of this.props.authors) {
-      renderAuthorInfo.push(
-        <AuthorInfo
-          name={author.name}
-          position={"Sports Staff"}
-          bio={author.bio}
-          twitter={"@jbruin"}
-          email={"jbruin@ucla.edu"}
-        ></AuthorInfo>
-      );
-    }
-    // }
+      for (const author of this.props.authors) {
+        renderAuthorInfo.push(
+        <AuthorInfo name={author.name} position={author.acf.position} bio={author.description}
+        email={author.media_email} twitter={author.acf.twitter}></AuthorInfo>
+        );
+          // }
     return (
       <div
         css={css`
@@ -106,7 +100,7 @@ export default class Article extends React.Component {
 
             color: #000000;
           `}
-          dangerouslySetInnerHTML={{ __html: this.props.headline }}
+          dangerouslySetInnerHTML={{ __html: this.props.headline}}
         />
         <img
           src={this.props.featureimg}
@@ -142,6 +136,7 @@ export default class Article extends React.Component {
 
                   color: #000000;
                 `}
+                
               >
                 By{authors}
               </h3>
@@ -174,8 +169,7 @@ export default class Article extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
           {renderAuthorInfo}
-          {/* <AuthorInfo name={this.props.authors[0].name} position={"Sports Staff"} bio={this.props.authorbio}
-        twitter={"@jbruin"} email={"jbruin@ucla.edu"}></AuthorInfo> */}
+
         </div>
       </div>
     );
