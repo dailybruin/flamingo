@@ -147,6 +147,7 @@ const PageWrapper = Comp =>
           {renderedBreakingCard}
           <Comp {...this.props} />
           <div style={{ padding: "6px" }}>
+
             <MainSiteFooter />
           </div>
         </div>

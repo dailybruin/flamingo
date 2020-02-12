@@ -10,6 +10,7 @@ import {
 } from "../globals";
 import { date2string } from "./utilities.js";
 import AuthorInfo from "./AuthorInfo";
+import ShareCard from "../ShareCard"
 
 export default class Article extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ export default class Article extends React.Component {
       }
     // }
     return (
+      
       <div
         css={css`
           display: block;
@@ -115,7 +117,7 @@ export default class Article extends React.Component {
             margin: 10px -10px;
           `}
         />
-        <div style={{ padding: "40px" }}>
+        <div css={ css`padding: 20px; `}>
           <div>
             <img
               src={this.props.authorimg}
@@ -165,7 +167,7 @@ export default class Article extends React.Component {
               font-family: PT Serif;
               font-style: normal;
               font-weight: normal;
-              font-size: 18px;
+              font-size: 16px;
 
               color: #000000;
               max-width: 640px;
@@ -174,9 +176,10 @@ export default class Article extends React.Component {
             `}
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
-          {renderAuthorInfo}
 
+          {renderAuthorInfo}
         </div>
+        <ShareCard></ShareCard>
       </div>
     );
   }
