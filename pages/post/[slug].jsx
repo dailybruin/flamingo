@@ -4,6 +4,7 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
+import Head from "next/head";
 
 import PostLayout from "../../layouts/Post";
 
@@ -25,7 +26,23 @@ class Post extends Component {
     }
   }
   render() {
-    return <PostLayout article={this.props.post[0]} />;
+    return (
+      <div>
+        <Head>
+          <title
+            dangerouslySetInnerHTML={{
+              __html: this.props.post[0].title.rendered + " - Daily Bruin"
+            }}
+          />
+          <script
+            async=""
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </Head>
+        <PostLayout article={this.props.post[0]} />
+      </div>
+    );
   }
 }
 

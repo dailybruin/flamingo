@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Config } from "../config.js";
+import Head from "next/head"
 import fetch from "isomorphic-unfetch";
 
 import MainSiteFooter from "../components/MainSiteFooter";
@@ -169,6 +170,9 @@ const PageWrapper = Comp =>
       }
       return (
         <div style={layoutStyle}>
+          <Head>
+            <title>Daily Bruin - Since 1919</title>
+          </Head>
           <div style={bannerAdStyle}>ADVERTISEMENT</div>
           <Masthead categories={this.props.mappedCategories}></Masthead>
           {renderedBreakingCard}
