@@ -36,11 +36,20 @@ export default class HomeLayout extends React.Component {
 
       m1MultimediaScroller: utilities.buildMultimediaScroller(this.props.media),
 
-      qdStoryList: utilities.buildStoryList("THE QUAD", this.props.posts.quadList),
+      qdStoryList: utilities.buildStoryList(
+        "THE QUAD",
+        this.props.posts.quadList
+      ),
       nsStoryList: utilities.buildStoryList("NEWS", this.props.posts.newsList),
-      opStoryList: utilities.buildStoryList("OPINION", this.props.posts.opinionList),
+      opStoryList: utilities.buildStoryList(
+        "OPINION",
+        this.props.posts.opinionList
+      ),
       aeStoryList: utilities.buildStoryList("A&E", this.props.posts.artsList),
-      spStoryList: utilities.buildStoryList("SPORTS", this.props.posts.sportsList)
+      spStoryList: utilities.buildStoryList(
+        "SPORTS",
+        this.props.posts.sportsList
+      )
     };
   }
 

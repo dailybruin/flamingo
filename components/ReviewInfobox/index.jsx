@@ -5,6 +5,7 @@ import { css, jsx } from "@emotion/core";
 import fullStar from "./paw-filled.svg";
 import halfStar from "./paw-half-filled.svg";
 import emptyStar from "./paw-outline.svg";
+import * as globals from "../globals";
 
 export default class ReviewInfobox extends React.Component {
   constructor(props) {
@@ -29,10 +30,11 @@ export default class ReviewInfobox extends React.Component {
     return (
       <div
         css={css`
-          padding: 0;
+          padding: 10px;
           background: #ffffff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           display: inline-block;
+          min-width: 250px;
         `}
       >
         <div
@@ -41,62 +43,55 @@ export default class ReviewInfobox extends React.Component {
             right: 0;
 
             margin: 0;
-            padding: 4px 8px;
+            color: #000000;
+            font-family: ${globals.menuFont} !important;
 
-            min-height: 36px;
-            background-color: #000000;
+            & p,
+            & strong {
+              margin: 4px 0;
+              font-size: 1rem;
+            }
 
-            color: #ffffff;
+            & p:first-of-type,
+            & h4 {
+              padding: 0 10px;
+              margin: -10px -10px 0;
+              line-height: 36px;
+              min-height: 36px;
+              background-color: #000000;
+              color: #ffffff;
 
-            font-family: Source Sans Pro;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 36px; /* identical to box height */
-            align-items: center;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 20px;
+              align-items: center;
+            }
+
+            & h4 {
+              font-family: ${globals.menuFont};
+              text-transform: uppercase;
+              margin-bottom: 8px;
+            }
+
+            & hr:first-of-type {
+              display: none;
+            }
+
+            & p:nth-of-type(2) {
+              font-weight: bold;
+            }
           `}
-        >
-          {this.props.title}
-        </div>
+          dangerouslySetInnerHTML={{ __html: this.props.title }}
+        ></div>
         <div
           css={css`
-            padding: 4px 8px;
+            text-align: center;
+            padding-top: 2px;
+            padding: 2px 10px 0;
+            margin-bottom: -10px;
           `}
         >
-          <div css={css``}>
-            <p
-              css={css`
-                margin: 0;
-                padding: 0;
-              `}
-            >
-              <b>{this.props.subtext1}</b>
-            </p>
-            <p
-              css={css`
-                margin: 0;
-                padding: 0;
-              `}
-            >
-              {this.props.subtext2}
-            </p>
-            <p
-              css={css`
-                margin: 0;
-                padding: 0;
-              `}
-            >
-              {this.props.subtext3}
-            </p>
-          </div>
-          <div
-            css={css`
-              text-align: center;
-              padding-top: 2px;
-            `}
-          >
-            {stars}
-          </div>
+          {stars}
         </div>
       </div>
     );

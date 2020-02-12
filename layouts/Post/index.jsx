@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
+import Head from "next/head";
 
 import css from "./style.css";
 

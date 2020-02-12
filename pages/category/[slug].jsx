@@ -4,6 +4,7 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
+import Head from "next/head";
 
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
@@ -64,6 +65,13 @@ class Category extends Component {
     });
     return (
       <div>
+        <Head>
+          <title
+            dangerouslySetInnerHTML={{
+              __html: this.props.category[0].name + " - Daily Bruin"
+            }}
+          />
+        </Head>
         <div style={{ padding: "6px" }}>
           <SectionHeader
             category={this.props.category[0].name}
