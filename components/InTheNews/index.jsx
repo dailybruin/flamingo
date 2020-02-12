@@ -12,18 +12,25 @@ export default class InTheNews extends React.Component {
     let renderedStories = [];
     for (let i = 0; i < this.props.stories.length; i++) {
       renderedStories.push(
-      <Link href={this.props.stories[i].href} as={this.props.stories[i].as}>
-      <a href={this.props.stories[i].as}>
-      <li 
-        css={css`
-            display:inline-block;
-            padding: 10px;
-            font-family: ${globals.menuFont};
+        <a
+          href={this.props.stories[i].href}
+          css={css`
+            display: inline-block;
+            vertical-align: middle;
+            padding: 5px;
+            font-family: ${globals.headlineFont};
             font-weight: bold;
-              &:hover{
-                color: ${globals.DBblue};
-              }
-            `}>{this.props.stories[i].name}</li></a></Link>);
+            color: #000;
+            text-decoration: none;
+            &:hover {
+              color: ${globals.DBblue};
+              text-decoration: none;
+            }
+          `}
+        >
+          {this.props.stories[i].name}
+        </a>
+      );
     }
 
     return (
@@ -35,15 +42,21 @@ export default class InTheNews extends React.Component {
           box-shadow: ${globals.cardShadow};
         `}
       >
-        <li css={css`
+        <li
+          css={css`
             background-color: ${globals.DBblue};
             display: inline-block;
+            vertical-align: middle;
             color: white;
-            padding: 6px;
-            font-family: ${globals.headlineFont}
+            padding: 4px 8px;
+            font-family: ${globals.menuFont};
             font-weight: bold;
-            `}>          
-            IN THE NEWS:</li> {renderedStories}
+            margin: 0;
+          `}
+        >
+          IN THE NEWS:
+        </li>
+        {renderedStories}
       </div>
     );
   }

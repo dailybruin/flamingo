@@ -1,12 +1,12 @@
-import PageWrapper from "../../layouts/PageWrapper";
+import PageWrapper from "../../../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
-import { Config } from "../../config.js";
+import { Config } from "../../../../config.js";
 import Head from "next/head";
 
-import PostLayout from "../../layouts/Post";
+import PostLayout from "../../../../layouts/Post";
 
 class Post extends Component {
   static async getInitialProps(context) {
@@ -34,11 +34,6 @@ class Post extends Component {
               __html: this.props.post[0].title.rendered + " - Daily Bruin"
             }}
           />
-          <script
-            async=""
-            src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
-          ></script>
         </Head>
         <PostLayout article={this.props.post[0]} />
       </div>

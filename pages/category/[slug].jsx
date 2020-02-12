@@ -4,11 +4,10 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
+import Head from "next/head";
 
-
-import SectionHeader from '../../components/SectionHeader'
-import CategoryLayout from '../../layouts/Category'
-
+import SectionHeader from "../../components/SectionHeader";
+import CategoryLayout from "../../layouts/Category";
 
 class Category extends Component {
   static async getInitialProps(context) {
@@ -57,16 +56,29 @@ class Category extends Component {
       const subsubcategoriesSimple = index.subsubcategories.map(index => {
         return { name: index.name, link: `/category/${index.slug}` };
       });
-      console.log(subsubcategoriesSimple)
-      return { name: index.name, link: `/category/${index.slug}`, subsubcategories: subsubcategoriesSimple };
+      console.log(subsubcategoriesSimple);
+      return {
+        name: index.name,
+        link: `/category/${index.slug}`,
+        subsubcategories: subsubcategoriesSimple
+      };
     });
     return (
       <div>
-        <SectionHeader
-          category={this.props.category[0].name}
-          subcategories={sectionLinks}
-        />
-      <CategoryLayout posts={this.props.posts}/>
+        <Head>
+          <title
+            dangerouslySetInnerHTML={{
+              __html: this.props.category[0].name + " - Daily Bruin"
+            }}
+          />
+        </Head>
+        <div style={{ padding: "6px" }}>
+          <SectionHeader
+            category={this.props.category[0].name}
+            subcategories={sectionLinks}
+          />
+        </div>
+        <CategoryLayout posts={this.props.posts} />
         <h1>{this.props.category[0].name} Posts</h1>
         {posts}
       </div>

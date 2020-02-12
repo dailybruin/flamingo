@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
+import Head from "next/head";
 import css from "./style.css";
 import ShareCard from "../../components/ShareCard";
 import { SizeMe } from "react-sizeme";
@@ -38,6 +39,7 @@ class PostLayout extends React.Component {
             this.props.article["_embedded"].author[0]["avatar_urls"][96]
           }
           content={this.props.article.content.rendered}
+          acf={this.props.article.acf}
         />
       )
     };
@@ -108,12 +110,10 @@ class PostLayout extends React.Component {
                   id="article"
                   className={css.column}
                   style={{
-                    width: "75%",
+                    width: "75%"
                   }}
                 >
-                  <div className={css.card}>
-                    {this.state.article}
-                  </div>
+                  <div className={css.card}>{this.state.article}</div>
                 </div>
                 <div
                   id="extras"

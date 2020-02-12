@@ -1,19 +1,17 @@
-import * as React from 'react'
+import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import Link from 'next/link'
-import * as globals from '../globals'
+import Link from "next/link";
+import * as globals from "../globals";
 
-
-export default class AuthorInfo extends React.Component{
-  constructor(props){
+export default class AuthorInfo extends React.Component {
+  constructor(props) {
     super(props);
-}
-  render(){
-
-    
+  }
+  render() {
     return (
-    <div css={css`
+      <div
+        css={css`
             background-color: white;
             display: block;
             //  box-shadow: ${globals.cardShadow};
@@ -27,29 +25,41 @@ export default class AuthorInfo extends React.Component{
             height: 5px;
             background-color: #000000;
             border: none;
-            `}>
-        </hr> 
-        <h1 css={css`
+          `}
+        ></hr>
+        <h1
+          css={css`
             color: #000000;
             font-family: ${globals.headlineFont};
             // padding: ${globals.cardPadding};
             font-weight: bold;
             font-size: 18px;
 
-            `}>{this.props.name} | <span css={css`color: #515151;`}> {this.props.position} </span>
+            `}
+        >
+          {this.props.name} |{" "}
+          <span
+            css={css`
+              color: #515151;
+            `}
+          >
+            {" "}
+            {this.props.position}{" "}
+          </span>
         </h1>
-        <h2 css={css`
+        <h2
+          css={css`
             font-family: ${globals.bodyFont};
             // padding: ${globals.cardPadding};
             font-size: 16px;
             font-weight: normal;
             `}
-            dangerouslySetInnerHTML={{ __html: this.props.bio }}
+          dangerouslySetInnerHTML={{__html: this.props.bio}}
         >
-            
         </h2>
-        <li css={css`
-            
+
+        <li
+          css={css`
             display: inline-block;
             // padding: ${globals.cardPadding};
             font-family: ${globals.menuFont};
@@ -78,9 +88,9 @@ export default class AuthorInfo extends React.Component{
         color: ${globals.DBblue};
         font-family: ${globals.menuFont};
         `}>@{this.props.twitter}</a>
-        
     </div>
     )
 
     }
   }
+

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Config } from "../config.js";
+import Head from "next/head"
 import fetch from "isomorphic-unfetch";
 
 import MainSiteFooter from "../components/MainSiteFooter";
 import BreakingCard from "../components/BreakingCard";
+import InTheNews from "../components/InTheNews";
 import Masthead from "../components/Masthead";
 
 import "./style.css";
@@ -104,10 +106,17 @@ const PageWrapper = Comp =>
         fetch(`${Config.apiUrl}/wp-json/wp/v2/categories`)
       ]);
 
-      const categories = await categoriesRes.json();
-      const mappedCategories = categories.map(index => {
-        return { category: index.name, categoryURL: "/category/" + index.slug };
-      });
+      // Masthead Headers
+      const mastheadCategoriesRes = await fetch(
+        `${Config.apiUrl}/wp-json/menus/v1/menus/masthead`
+      );
+      const categories = await mastheadCategoriesRes.json();
+      let mappedCategories = null;
+      if (categories.items.length != 0) {
+        mappedCategories = categories.items.map(index => {
+          return { name: index.title, href: index.url, as: index.url };
+        });
+      }
 
       // BreakingCard
       const breakingRes = await fetch(
@@ -115,7 +124,6 @@ const PageWrapper = Comp =>
       );
       const breaking = await breakingRes.json();
       let mappedBreaking = null;
-      console.log(breaking.items.length);
       if (breaking.items.length != 0) {
         mappedBreaking = {
           name: breaking.items[0].title,
@@ -123,16 +131,28 @@ const PageWrapper = Comp =>
         };
       }
 
+      // InTheNews
+      const itnRes = await fetch(
+        `${Config.apiUrl}/wp-json/menus/v1/menus/in-the-news`
+      );
+      const itn = await itnRes.json();
+      let mappedITN = null;
+      if (itn.items.length != 0) {
+        mappedITN = itn.items.map(index => {
+          return { name: index.title, href: index.url, as: index.url };
+        });
+      }
+      console.log(mappedITN);
       return {
         ...(Comp.getInitialProps ? childProps : null),
         mappedCategories,
-        mappedBreaking
+        mappedBreaking,
+        mappedITN
       };
     }
 
     render() {
       let renderedBreakingCard;
-      console.log(this.props.mappedBreaking);
       if (this.props.mappedBreaking != null) {
         renderedBreakingCard = (
           <div style={{ padding: "6px" }}>
@@ -140,11 +160,23 @@ const PageWrapper = Comp =>
           </div>
         );
       }
+      let renderedInTheNews;
+      if (this.props.mappedITN != null) {
+        renderedInTheNews = (
+          <div style={{ padding: "6px" }}>
+            <InTheNews stories={this.props.mappedITN} />
+          </div>
+        );
+      }
       return (
         <div style={layoutStyle}>
+          <Head>
+            <title>Daily Bruin - Since 1919</title>
+          </Head>
           <div style={bannerAdStyle}>ADVERTISEMENT</div>
-          <Masthead categories={cats}></Masthead>
+          <Masthead categories={this.props.mappedCategories}></Masthead>
           {renderedBreakingCard}
+          {renderedInTheNews}
           <Comp {...this.props} />
           <div style={{ padding: "6px" }}>
 
