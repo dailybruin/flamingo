@@ -19,6 +19,7 @@
     "next-plugin-transpile-modules": "^2.0.0",
     "react": "16.11.0",
     "react-dom": "16.11.0",
+    "react-share": "^4.0.1",
     "react-sizeme": "^2.6.10",
     "webfontloader": "^1.6.28"
   },

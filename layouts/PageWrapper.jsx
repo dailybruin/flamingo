@@ -179,6 +179,7 @@ const PageWrapper = Comp =>
           {renderedInTheNews}
           <Comp {...this.props} />
           <div style={{ padding: "6px" }}>
+
             <MainSiteFooter />
           </div>
         </div>

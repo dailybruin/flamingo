@@ -3,9 +3,8 @@ import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import Head from "next/head";
-
 import css from "./style.css";
-
+import ShareCard from "../../components/ShareCard";
 import { SizeMe } from "react-sizeme";
 import Article from "../../components/Article";
 
@@ -51,9 +50,59 @@ class PostLayout extends React.Component {
       <SizeMe monitorHeight={false}>
         {({ size }) => {
           if (size.width < 600) {
-            return <p></p>;
+            return (
+              <div id="ArticleGrid" style={{ width: "100%" }}>
+                <div
+                  id="article"
+                  className={css.column}
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <div className={css.card}>
+                    {this.state.article}
+                  </div>
+                </div>
+                {/* <div
+                  id="extras"
+                  className={css.column}
+                  style={{
+                    width: "25%"
+                  }}
+                > */}
+                  <div className={css.card}>
+                    <div style={ArticleAdStyle}>ADVERTISEMENT</div>
+                  </div>
+                </div>
+              // </div>
+            );
           } else if (size.width < 900) {
-            return <p></p>;
+            return (
+              <div id="ArticleGrid" style={{ width: "100%" }}>
+                <div
+                  id="article"
+                  className={css.column}
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <div className={css.card}>
+                    {this.state.article}
+                  </div>
+                </div>
+                {/* <div
+                  id="extras"
+                  className={css.column}
+                  style={{
+                    width: "25%"
+                  }}
+                > */}
+                  <div className={css.card}>
+                    <div style={ArticleAdStyle}>ADVERTISEMENT</div>
+                  </div>
+                </div>
+              // </div>
+            );
           } else {
             return (
               <div id="ArticleGrid" style={{ width: "100%" }}>
