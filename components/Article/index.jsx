@@ -6,7 +6,7 @@ import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
 
 import { date2string } from "./utilities.js";
 import AuthorInfo from "./AuthorInfo";
-import ShareCard from "../ShareCard"
+import ShareCard from "../ShareCard";
 import ReviewInfobox from "../ReviewInfobox";
 
 export default class Article extends React.Component {
@@ -120,21 +120,20 @@ export default class Article extends React.Component {
               font-weight: bold;
               font-size: 24px;
               line-height: 1.15;
-            color: #000000;
-          `}
-          dangerouslySetInnerHTML={{ __html: this.props.headline}}
-        />
-        <img
-          src={this.props.featureimg}
-          css={css`
-            width: calc(100% + 20px);
-            margin: 10px -10px;
-          `}
-        />
-        <div css={ css`padding: 20px; `}>
-          <div>
-            <img
-              src={this.props.authorimg}
+
+              color: #000000;
+            `}
+            dangerouslySetInnerHTML={{ __html: this.props.headline }}
+          />
+          <img
+            src={this.props.featureimg}
+            css={css`
+              width: calc(100% + 20px);
+              margin: 10px -10px;
+            `}
+          />
+          <div style={{ padding: "40px" }}>
+            <div
               css={css`
                 float: right;
                 margin-left: 20px;

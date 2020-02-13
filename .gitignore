@@ -16,6 +16,7 @@
 /build
 
 # misc
+.DS_Store
 *.DS_Store
 .env*
 
@@ -25,3 +26,4 @@ yarn-debug.log*
 yarn-error.log*
 pages/playground.jsx
 *.lock
+yarn.lock
