@@ -5,6 +5,8 @@ import Error from "next/error";
 import { Config } from "../config.js";
 
 import HomeLayout from "../layouts/Home";
+import Cookies from "js-cookie";
+import EmailPopUp from "../components/EmailSignUp";
 
 const aTAGID = 4847;
 const bTAGID = 4850;
@@ -35,6 +37,13 @@ const ArticleAdStyle = {
 };
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showPopUp: false
+    };
+  }
   static async getInitialProps(context) {
     const posts = {};
     const aStoryRes = await fetch(
@@ -100,10 +109,51 @@ class Index extends Component {
     return { posts, multimediaPosts };
   }
 
+  componentDidMount() {
+    if (Cookies.get("subscribed2newsletter") === undefined) {
+      let visits = Cookies.get("newsletterVisits");
+      if (visits === undefined) {
+        Cookies.set("newsletterVisits", "0", { expires: 365 });
+      } else {
+        visits = parseInt(visits) + 1;
+        if (visits >= 5) {
+          this.displayNewsletterPopup();
+          Cookies.set("newsletterVisits", "0", { expires: 365 });
+        } else {
+          Cookies.set("newsletterVisits", visits.toString(), { expires: 365 });
+        }
+      }
+    }
+    console.log(Cookies.get());
+  }
+
+  subscribeToNewsletter = () => {
+    Cookies.set("subscribed2newsletter", "true", { expires: 365 });
+  };
+
+  displayNewsletterPopup = () => {
+    this.setState({ showPopUp: true });
+  };
+
+  closeNewsletterPopup = () => {
+    this.setState({ showPopUp: false });
+  };
+
+  removeCookies = () => {
+    Cookies.remove("subscribed2newsletter");
+    Cookies.remove("newsletterVisits");
+  };
+
   render() {
     return (
       <div>
         <HomeLayout posts={this.props.posts} media={this.props.multimediaPosts} />
+        {this.state.showPopUp ? (
+          <EmailPopUp
+            sub2Newsletter={this.subscribeToNewsletter}
+            close={this.closeNewsletterPopup}
+          />
+        ) : null}
       </div>
     );
   }
