@@ -147,7 +147,10 @@ class Index extends Component {
   render() {
     return (
       <div>
-        <HomeLayout posts={this.props.posts} media={this.props.multimediaPosts} />
+        <HomeLayout
+          posts={this.props.posts}
+          media={this.props.multimediaPosts}
+        />
         {this.state.showPopUp ? (
           <EmailPopUp
             sub2Newsletter={this.subscribeToNewsletter}
