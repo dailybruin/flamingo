@@ -9,13 +9,11 @@ if (typeof window !== "undefined") {
       families: [
         "Arimo:400",
         "Arimo:700",
-        "Archivo Black",
-        "Lora:400",
-        "Lora:700",
         "PT Serif:400",
         "Source Sans Pro:400",
         "Source Sans Pro:700",
-        "Source Sans Pro:900"
+        "Source Sans Pro:900",
+        "Playfair Display:700"
       ]
     }
   });
