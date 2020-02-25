@@ -2,15 +2,10 @@ import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as MainSiteStyles from "../globals";
-import {FacebookShareButton} from "react-share";
-import Head from "next/Head";
+import { FacebookShareButton } from "react-share";
+import Head from "next/head";
 
-
-export default function ShareCard(props) 
-{
-
-
-
+export default function ShareCard(props) {
   return (
     <card
       css={css`
@@ -28,15 +23,15 @@ export default function ShareCard(props)
         }
       `}
     >
+      <div class="sharethis-inline-share-buttons"></div>
 
-
-<div class="sharethis-inline-share-buttons">
-</div>
-
-
-<Head><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5e43439e543af5001235be35&product=inline-share-buttons" async="async"></script></Head>
-
-
+      <Head>
+        <script
+          type="text/javascript"
+          src="https://platform-api.sharethis.com/js/sharethis.js#property=5e43439e543af5001235be35&product=inline-share-buttons"
+          async="async"
+        ></script>
+      </Head>
     </card>
   );
 }
