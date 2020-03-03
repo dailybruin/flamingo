@@ -3,8 +3,8 @@ import PageWrapper from "../PageWrapper";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 
-import css from "./style.css";
-import * as utilities from "./utilities";
+import css from "../style.css";
+import * as utilities from "../utilities";
 import { SizeMe } from "react-sizeme";
 
 import ClassifiedsCard from "../../components/ClassifiedsCard";
@@ -32,7 +32,6 @@ export default class HomeLayout extends React.Component {
       eArticleCard: utilities.buildArticleCard(this.props.posts.eStory[0]),
       f1ArticleCard: utilities.buildArticleCard(this.props.posts.f1Story[0]),
       f2ArticleCard: utilities.buildArticleCard(this.props.posts.f2Story[0]),
-      f3ArticleCard: utilities.buildArticleCard(this.props.posts.f3Story[0]),
 
       m1MultimediaScroller: utilities.buildMultimediaScroller(this.props.media),
 
@@ -180,7 +179,7 @@ export default class HomeLayout extends React.Component {
               <div id="ArticleGrid" style={{ width: "100%" }}>
                 <div>
                   <div
-                    id="a-b"
+                    id="left"
                     className={css.column}
                     style={{
                       width: "25%"
@@ -196,59 +195,6 @@ export default class HomeLayout extends React.Component {
                         displayType: "vert"
                       })}
                     </div>
-                  </div>
-                  <div
-                    id="c1-c2"
-                    className={css.column}
-                    style={{
-                      width: "50%"
-                    }}
-                  >
-                    <div id="c1" className={css.card}>
-                      {React.cloneElement(this.state.c1ArticleCard, {
-                        displayType: "full"
-                      })}
-                    </div>
-                    <div id="c2" className={css.card}>
-                      {React.cloneElement(this.state.c2ArticleCard, {
-                        displayType: "horz"
-                      })}
-                    </div>
-                  </div>
-                  <div
-                    id="qd-d-e"
-                    className={css.column}
-                    style={{ width: "25%" }}
-                  >
-                    <div id="above-ad" className={css.card}>
-                      <div style={ArticleAdStyle}></div>
-                    </div>
-                    <div id="qd" className={css.card}>
-                      {this.state.qdStoryList}
-                    </div>
-                    <div id="d" className={css.card}>
-                      {React.cloneElement(this.state.dArticleCard, {
-                        displayType: "mini"
-                      })}
-                    </div>
-                    <div id="e" className={css.card}>
-                      {React.cloneElement(this.state.eArticleCard, {
-                        displayType: "mini"
-                      })}
-                    </div>
-                  </div>
-                </div>
-                <div id="MultimediaScroller" className={css.card}>
-                  {this.state.m1MultimediaScroller}
-                </div>
-                <div id="ArticleGrid" style={{}}>
-                  <div
-                    id="cf"
-                    className={css.column}
-                    style={{
-                      width: "25%"
-                    }}
-                  >
                     <div id="classifieds" className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
@@ -297,14 +243,30 @@ export default class HomeLayout extends React.Component {
                     <div className={css.card}>
                       <div style={ArticleAdStyle}></div>
                     </div>
+                    <div id="ns" className={css.card}>
+                      {this.state.nsStoryList}
+                    </div>
                   </div>
                   <div
-                    id="f1-f2-f3"
+                    id="center"
                     className={css.column}
                     style={{
                       width: "50%"
                     }}
                   >
+                    <div id="c1" className={css.card}>
+                      {React.cloneElement(this.state.c1ArticleCard, {
+                        displayType: "full"
+                      })}
+                    </div>
+                    <div id="c2" className={css.card}>
+                      {React.cloneElement(this.state.c2ArticleCard, {
+                        displayType: "horz"
+                      })}
+                    </div>
+                    <div id="MultimediaScroller" className={css.card}>
+                      {this.state.m1MultimediaScroller}
+                    </div>
                     <div id="f1" className={css.card}>
                       {React.cloneElement(this.state.f1ArticleCard, {
                         displayType: "horz"
@@ -315,13 +277,38 @@ export default class HomeLayout extends React.Component {
                         displayType: "horz"
                       })}
                     </div>
-                    <div id="f3" className={css.card}>
-                      {React.cloneElement(this.state.f3ArticleCard, {
-                        displayType: "horz"
-                      })}
+                    <div className={css.column} style={{ width: "50%" }}>
+                      <div id="op" className={css.card}>
+                        {this.state.opStoryList}
+                      </div>
+                    </div>
+                    <div className={css.column} style={{ width: "50%" }}>
+                      <div id="ae" className={css.card}>
+                        {this.state.aeStoryList}
+                      </div>
                     </div>
                   </div>
-                  <div className={css.column} style={{ width: "25%" }}>
+                  <div
+                    id="right"
+                    className={css.column}
+                    style={{ width: "25%" }}
+                  >
+                    <div id="above-ad" className={css.card}>
+                      <div style={ArticleAdStyle}></div>
+                    </div>
+                    <div id="qd" className={css.card}>
+                      {this.state.qdStoryList}
+                    </div>
+                    <div id="d" className={css.card}>
+                      {React.cloneElement(this.state.dArticleCard, {
+                        displayType: "mini"
+                      })}
+                    </div>
+                    <div id="e" className={css.card}>
+                      {React.cloneElement(this.state.eArticleCard, {
+                        displayType: "mini"
+                      })}
+                    </div>
                     <div id="poll" className={css.card}>
                       <Poll
                         poll={[
@@ -374,47 +361,8 @@ export default class HomeLayout extends React.Component {
                         ]}
                       />
                     </div>
-                  </div>
-                  <div>
-                    <div
-                      className={css.column}
-                      style={{
-                        width: "25%"
-                      }}
-                    >
-                      <div id="ns" className={css.card}>
-                        {this.state.nsStoryList}
-                      </div>
-                    </div>
-                    <div
-                      className={css.column}
-                      style={{
-                        width: "25%"
-                      }}
-                    >
-                      <div id="op" className={css.card}>
-                        {this.state.opStoryList}
-                      </div>
-                    </div>
-                    <div
-                      className={css.column}
-                      style={{
-                        width: "25%"
-                      }}
-                    >
-                      <div id="ae" className={css.card}>
-                        {this.state.aeStoryList}
-                      </div>
-                    </div>
-                    <div
-                      className={css.column}
-                      style={{
-                        width: "25%"
-                      }}
-                    >
-                      <div id="sp" className={css.card}>
-                        {this.state.spStoryList}
-                      </div>
+                    <div id="sp" className={css.card}>
+                      {this.state.spStoryList}
                     </div>
                   </div>
                 </div>

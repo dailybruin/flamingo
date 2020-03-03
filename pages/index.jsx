@@ -15,9 +15,8 @@ const c2TAGID = 4851;
 const dTAGID = 4862;
 const eTAGID = 4863;
 const m1TAGID = 4854;
-const f1TAGID = 22156;
-const f2TAGID = 22157;
-const f3TAGID = 22158;
+const f1TAGID = 22896;
+const f2TAGID = 22897;
 
 const quadCATID = 12848;
 const newsCATID = 1424;
@@ -76,9 +75,6 @@ class Index extends Component {
     const f2StoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}`
     );
-    const f3StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f3TAGID}`
-    );
     const nsStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}`
     );
@@ -101,7 +97,6 @@ class Index extends Component {
     const multimediaPosts = await mmStoryRes.json();
     posts.f1Story = await f1StoryRes.json();
     posts.f2Story = await f2StoryRes.json();
-    posts.f3Story = await f3StoryRes.json();
     posts.newsList = await nsStoryRes.json();
     posts.opinionList = await opStoryRes.json();
     posts.artsList = await aeStoryRes.json();

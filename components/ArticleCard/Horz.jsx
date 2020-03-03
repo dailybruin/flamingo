@@ -30,7 +30,7 @@ export default function Horz(props) {
               css={css`
                 height: 100%;
                 width: 100%;
-                padding-top: 66.66%
+                padding-top: 66.66%;
                 overflow: hidden;
                 position: relative;
               `}

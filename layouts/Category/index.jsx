@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
-import css from "./style.css";
+import css from "../style.css";
 import * as utilities from "./utilities";
 
 import ArticleCard from "../../components/ArticleCard";
-import { buildStoryList, buildArticleCard } from "../Home/utilities";
+import { buildStoryList, buildArticleCard } from "../utilities";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 
 import { SizeMe } from "react-sizeme";

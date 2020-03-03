@@ -10,6 +10,7 @@ if (typeof window !== "undefined") {
         "Arimo:400",
         "Arimo:700",
         "PT Serif:400",
+        "PT Serif:700",
         "Source Sans Pro:400",
         "Source Sans Pro:700",
         "Source Sans Pro:900",
@@ -29,10 +30,10 @@ export const darkGray = "rgb(100, 100, 100)";
 export const DBblue = "#0080C6";
 
 /** Font families */
-export const headlineFont = "Arimo, sans-serif";
-export const bodyFont = "PT Serif, serif";
-export const blurbFont = "PT Serif, serif";
-export const menuFont = "Source Sans Pro, sans-serif";
+export const headlineFont = "'Arimo', sans-serif";
+export const bodyFont = "'PT Serif', serif";
+export const blurbFont = "'PT Serif', serif";
+export const menuFont = "'Source Sans Pro', sans-serif";
 
 /** Card attributes */
 export const cardPadding = "10px";

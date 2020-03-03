@@ -41,4 +41,4 @@ class Post extends Component {
   }
 }
 
-export default PageWrapper(Post);
+export default Post;

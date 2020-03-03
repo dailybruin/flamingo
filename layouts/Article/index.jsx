@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import PageWrapper from "../PageWrapper";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import Head from "next/head";
-import css from "./style.css";
-import ShareCard from "../../components/ShareCard";
+import css from "../style.css";
 import { SizeMe } from "react-sizeme";
 import Article from "../../components/Article";
 
@@ -18,7 +18,7 @@ const ArticleAdStyle = {
   fontFamily: "sans-serif"
 };
 
-class PostLayout extends React.Component {
+class ArticleLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,12 +56,10 @@ class PostLayout extends React.Component {
                   id="article"
                   className={css.column}
                   style={{
-                    width: "100%",
+                    width: "100%"
                   }}
                 >
-                  <div className={css.card}>
-                    {this.state.article}
-                  </div>
+                  <div className={css.card}>{this.state.article}</div>
                 </div>
                 {/* <div
                   id="extras"
@@ -70,10 +68,10 @@ class PostLayout extends React.Component {
                     width: "25%"
                   }}
                 > */}
-                  <div className={css.card}>
-                    <div style={ArticleAdStyle}>ADVERTISEMENT</div>
-                  </div>
+                <div className={css.card}>
+                  <div style={ArticleAdStyle}>ADVERTISEMENT</div>
                 </div>
+              </div>
               // </div>
             );
           } else if (size.width < 900) {
@@ -83,12 +81,10 @@ class PostLayout extends React.Component {
                   id="article"
                   className={css.column}
                   style={{
-                    width: "100%",
+                    width: "100%"
                   }}
                 >
-                  <div className={css.card}>
-                    {this.state.article}
-                  </div>
+                  <div className={css.card}>{this.state.article}</div>
                 </div>
                 {/* <div
                   id="extras"
@@ -97,10 +93,10 @@ class PostLayout extends React.Component {
                     width: "25%"
                   }}
                 > */}
-                  <div className={css.card}>
-                    <div style={ArticleAdStyle}>ADVERTISEMENT</div>
-                  </div>
+                <div className={css.card}>
+                  <div style={ArticleAdStyle}>ADVERTISEMENT</div>
                 </div>
+              </div>
               // </div>
             );
           } else {
@@ -135,4 +131,4 @@ class PostLayout extends React.Component {
   }
 }
 
-export default PostLayout;
+export default ArticleLayout;

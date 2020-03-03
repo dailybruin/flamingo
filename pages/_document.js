@@ -105,10 +105,6 @@ class MyDocument extends Document {
             sizes="114x114"
             href="/apple-touch-icon-114x114-precomposed.png"
           />
-          <script
-            src="//cdn.rawgit.com/namuol/cheet.js/master/cheet.min.js"
-            type="text/javascript"
-          ></script>
         </Head>
         <body>
           <Main />

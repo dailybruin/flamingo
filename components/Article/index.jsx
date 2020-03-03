@@ -66,7 +66,7 @@ export default class Article extends React.Component {
           <ReviewInfobox
             title={this.props.acf["db_infobox"]}
             rating={
-              this.props.acf["db_number_of_paws"] == "0"
+              this.props.acf["db_number_of_paws"] == ""
                 ? null
                 : this.props.acf["db_number_of_paws"]
             }
@@ -138,6 +138,7 @@ export default class Article extends React.Component {
                 float: right;
                 margin-left: 20px;
                 margin-bottom: 5px;
+                max-width: 400px;
               `}
             >
               {renderedInfobox}
@@ -218,6 +219,7 @@ export default class Article extends React.Component {
                   }
                   figure {
                     width: 100% !important;
+                    margin: auto;
                   }
                 }
                 aside p {
@@ -241,6 +243,11 @@ export default class Article extends React.Component {
                   float: right;
                   margin-right: 0;
                 }
+                figure.aligncenter {
+                  max-width: 100% !important;
+                  margin: auto;
+                  padding: 20px;
+                }
 
                 figure figcaption {
                   color: gray;
@@ -251,8 +258,9 @@ export default class Article extends React.Component {
                   width: 100%;
                 }
 
-                figure img {
+                figure a img {
                   width: 100%;
+                  height: inherit;
                 }
               `}
               dangerouslySetInnerHTML={{ __html: this.props.content }}

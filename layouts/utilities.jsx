@@ -1,6 +1,6 @@
-import ArticleCard from "../../components/ArticleCard";
-import StoryList from "../../components/StoryList";
-import MultimediaScroller from "../../components/MultimediaScroller";
+import ArticleCard from "../components/ArticleCard";
+import StoryList from "../components/StoryList";
+import MultimediaScroller from "../components/MultimediaScroller";
 
 export function buildArticleCard(story) {
   if (story != null) {
@@ -29,7 +29,7 @@ export function buildArticleCard(story) {
       />
     );
   } else {
-    return (<React.Fragment/>);
+    return <React.Fragment />;
   }
 }
 

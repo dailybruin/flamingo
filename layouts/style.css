@@ -23,6 +23,21 @@ a:hover {
   text-decoration: underline;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Arimo', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Arimo", sans-serif;
+}
+
+.card {
+  display: block;
+  padding: 6px;
+}
+
+.column {
+  display: inline-block;
+  vertical-align: top;
 }
