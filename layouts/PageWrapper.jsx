@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Config } from "../config.js";
-import Head from "next/head"
+import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 
 import MainSiteFooter from "../components/MainSiteFooter";
@@ -142,7 +142,6 @@ const PageWrapper = Comp =>
           return { name: index.title, href: index.url, as: index.url };
         });
       }
-      console.log(mappedITN);
       return {
         ...(Comp.getInitialProps ? childProps : null),
         mappedCategories,
@@ -179,7 +178,6 @@ const PageWrapper = Comp =>
           {renderedInTheNews}
           <Comp {...this.props} />
           <div style={{ padding: "6px" }}>
-
             <MainSiteFooter />
           </div>
         </div>
