@@ -105,6 +105,11 @@ class MyDocument extends Document {
             sizes="114x114"
             href="/apple-touch-icon-114x114-precomposed.png"
           />
+          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-29"
+          ></script>
         </Head>
         <body>
           <Main />
