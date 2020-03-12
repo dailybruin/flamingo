@@ -4,6 +4,9 @@ import Error from 'next/error'
 import { Config } from '../../config.js'
 import css from './style.css'
 import * as utilities from "./utilities"
+import { Dot } from 'react-animated-dots';
+
+import InfiniteScroll from 'react-infinite-scroller';
 
 import ArticleCard from '../../components/ArticleCard'
 import { buildStoryList, buildArticleCard } from '../Home/utilities'
@@ -35,47 +38,103 @@ export default class CategoryLayout extends React.Component {
       bArticleCard: utilities.buildArticleCard(this.props.posts[1]),
       cArticleCard: utilities.buildArticleCard(this.props.posts[2]),
 
-      otherArticleCards : utilities.buildArticleList(this.props.posts.slice(3)),
+      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(3)),
 
-      // page: 2,
+       // items: 10
+      page: 2
       // loading: false
     };
     // this.getPosts = this.getPosts.bind(this)
-    // this.loadMore = this.loadMore.bind(this)
+    this.getPosts = this.getPosts.bind(this)
+    }
+
+    // renderPostArray(otherArticleCards, type) {
+    //   var i
+    //   let renderedPostArray = []
+    //   for (i = 0; i < otherArticleCards.length; i++) {
+    //     renderedPostArray.push(
+    //       <div id="a" className={css.card}>
+    //         {React.cloneElement( otherArticleCards[i], {
+    //           displayType: type
+    //         })}
+    //       </div>
+    //     )
+    //   }
+    //   return (renderedPostArray)
+    // }
+
+
+    // loadFunc() {
+    //  setTimeout(() => {
+    //      this.setState({
+    //        page: (this.state.page+1),
+    //        loading: false,
+    //        otherArticleCards:
+    //          this.state.otherArticleCards.concat(utilities.buildArticleList(this.getPosts()))
+    //      });
+    //  }, 2000);
+
+
+
+  // loadDoc() {
+  //    var xhttp = new XMLHttpRequest();
+  //    xhttp.onreadystatechange = function() {
+  //      if (this.readyState == 4 && this.status == 200) {
+  //        const posts = xhttp.responseText;
+  //        this.setState({
+  //           page: this.state.page + 1,
+  //           otherArticleCards:
+  //             otherArticleCards.concat(utilities.buildArticleList(posts))
+  //        });
+  //        console.log(posts)       }
+  //    };
+  //    xhttp.open("GET", `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.state.page}`, true);
+  //    xhttp.send();
+  //  }
+
+
+
+
+  getPosts = () => {
+    fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.state.page}`
+      )
+      .then(response => response.json())
+      .then(json => this.setState(
+        {
+          page: (this.state.page+1),
+          loading: false,
+          otherArticleCards:
+            this.state.otherArticleCards.concat(utilities.buildArticleList(json))
+        }
+      ))
     }
 
 
- // getPosts() {
- //    const postsRes =  fetch(
- //      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.props.page}`
- //    );
- //    const posts =  postsRes.json();
- //    return { posts }
- //  }
- //
- //  loadMore() {
- //    this.setState({ loading: true });
- //    setTimeout(() => {
- //        this.setState({
- //          page: this.state.page + 1,
- //          loading: false,
- //          otherArticleCards:
- //            otherArticleCards.push(utilities.buildArticleList(this.getPosts()))
- //        });
- //    }, 2000);
- //  }
- //
- //  componentDidMount() {
- //      // Detect when scrolled to bottom.
- //      this.refs.myscroll.addEventListener("scroll", () => {
- //        if (
- //          this.refs.myscroll.scrollTop + this.refs.myscroll.clientHeight >=
- //          this.refs.myscroll.scrollHeight
- //        ) {
- //          this.loadMore();
- //        }
- //      });
- //  }
+
+  // loadMore() {
+  //   this.setState({ loading: true });
+  //   setTimeout(() => {
+  //       this.setState({
+  //         page: this.state.page + 1,
+  //         loading: false,
+  //         otherArticleCards:
+  //           otherArticleCards.concat(utilities.buildArticleList(this.getPosts()))
+  //       });
+  //   }, 2000);
+  // }
+
+  // componentDidMount() {
+  //     // Detect when scrolled to bottom.
+  //     this.refs.myscroll.addEventListener("scroll", () => {
+  //       if (
+  //         this.refs.myscroll.scrollTop + this.refs.myscroll.clientHeight >=
+  //         this.refs.myscroll.scrollHeight
+  //       ) {
+  //         this.loadMore();
+  //       }
+  //     });
+  // }
 
   render() {
     return (
@@ -117,7 +176,15 @@ export default class CategoryLayout extends React.Component {
                     })}
                   </div>
                   <div id="c2" className={css.card}>
-                    {renderedPostArray}
+                      <InfiniteScroll
+                          pageStart={0}
+                          loadMore={this.getPosts}
+                          hasMore={true || false}
+                          loader={<div className="loader" key={0}><h1 style><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot></h1></div>}
+                          useWindow={false}
+                      >
+                          {renderedPostArray}
+                      </InfiniteScroll>
                   </div>
 
                 </div>
@@ -140,7 +207,15 @@ export default class CategoryLayout extends React.Component {
                     })}
                   </div>
                   <div>
-                    {renderedPostArray}
+                    <InfiniteScroll
+                        pageStart={0}
+                        loadMore={this.getPosts}
+                        hasMore={true || false}
+                        loader={<div className="loader" key={0}><h1><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot></h1></div>}
+                        useWindow={false}
+                    >
+                        {renderedPostArray}
+                    </InfiniteScroll>
                   </div>
                 </div>
                 <div
@@ -241,8 +316,18 @@ export default class CategoryLayout extends React.Component {
                   </div>{/*c1-c2*/}
 
                   <div>
-                    {renderedPostArray}
+                    <InfiniteScroll
+                        pageStart={0}
+                        loadMore={this.getPosts}
+                        hasMore={true || false}
+                        loader={<div className="loader" key={0}><h1><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot></h1></div>}
+                        useWindow={false}
+                    >
+                        {renderedPostArray}
+                    </InfiniteScroll>
                   </div>
+
+
 
                 </div>{/*75*/}
 
