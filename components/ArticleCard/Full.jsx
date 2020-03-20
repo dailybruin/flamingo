@@ -33,7 +33,7 @@ export default function Full(props) {
               font-size: 14px;
               text-transform: uppercase;
               display: inline;
-              pointer: cursor;
+              cursor: pointer;
 
               &:hover {
                 text-decoration: underline;
@@ -73,27 +73,13 @@ export default function Full(props) {
             `}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />
-          <div
+          <img
             css={css`
-              padding-top: 66.66%;
               width: 100%;
-              overflow: hidden;
-              position: relative;
+              margin: auto;
             `}
-          >
-            <img
-              css={css`
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-              `}
-              src={props.imageurl}
-            />
-          </div>
+            src={props.imageurl}
+          />
           <h4
             css={css`
               margin: 2px 0;

@@ -2,6 +2,7 @@ import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import Link from "next/link";
+import * as moment from "moment";
 
 import * as globals from "../globals";
 
@@ -14,7 +15,7 @@ export default class Desktop extends React.Component {
     super(props);
     this.state = {
       menuExpanded: true,
-      searchExpanded: false,
+      searchExpanded: false
     };
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
@@ -74,6 +75,7 @@ export default class Desktop extends React.Component {
   }
 
   render() {
+    let today = moment().format("dddd, MMMM Do YYYY");
     let renderedCategories = [];
     if (this.props.categories != null) {
       for (let i = 0; i < this.props.categories.length; i++) {
@@ -157,7 +159,8 @@ export default class Desktop extends React.Component {
             ></img>
           </button>
           <Link href="/">
-            <a href="/"
+            <a
+              href="/"
               css={css`
                 display: inline-block;
                 vertical-align: middle;
@@ -194,7 +197,7 @@ export default class Desktop extends React.Component {
               }
             `}
           >
-            Tuesday, May 29, 2018
+            {today.toString()}
           </h2>
           <div
             css={css`
@@ -219,6 +222,7 @@ export default class Desktop extends React.Component {
                   text-transform: uppercase;
                   line-height: 34px;
                   font-size: 14px;
+                  color: #000;
                 }
 
                 & a:hover {
@@ -230,14 +234,14 @@ export default class Desktop extends React.Component {
                 }
               `}
             >
-              <Link>
-                <a>About</a>
+              <Link href="/about">
+                <a href="/about">About</a>
               </Link>
-              <Link>
-                <a>Contact</a>
+              <Link href="/contact">
+                <a href="/contact">Contact</a>
               </Link>
-              <Link>
-                <a>Advertise</a>
+              <Link href="/advertise">
+                <a href="/advertise">Advertise</a>
               </Link>
             </div>
             <div

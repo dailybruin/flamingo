@@ -113,7 +113,8 @@ export default class Mobile extends React.Component {
             ></img>
           </button>
           <Link href="/">
-            <a href="/"
+            <a
+              href="/"
               css={css`
                 display: table-cell;
                 vertical-align: middle;
@@ -274,8 +275,9 @@ export default class Mobile extends React.Component {
               }
             `}
           >
-            <Link>
+            <Link href="/about">
               <a
+                href="/about"
                 css={css`
                   display: block;
                   padding: 8px 4px;
@@ -284,8 +286,9 @@ export default class Mobile extends React.Component {
                 About
               </a>
             </Link>
-            <Link>
+            <Link href="/contact">
               <a
+                href="/contact"
                 css={css`
                   display: block;
                   padding: 8px 4px;
@@ -294,8 +297,9 @@ export default class Mobile extends React.Component {
                 Contact
               </a>
             </Link>
-            <Link>
+            <Link href="/advertise">
               <a
+                href="/advertise"
                 css={css`
                   display: block;
                   padding: 8px 4px;

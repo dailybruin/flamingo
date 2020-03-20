@@ -9,13 +9,12 @@ if (typeof window !== "undefined") {
       families: [
         "Arimo:400",
         "Arimo:700",
-        "Archivo Black",
-        "Lora:400",
-        "Lora:700",
         "PT Serif:400",
+        "PT Serif:700",
         "Source Sans Pro:400",
         "Source Sans Pro:700",
-        "Source Sans Pro:900"
+        "Source Sans Pro:900",
+        "Playfair Display:700"
       ]
     }
   });
@@ -29,12 +28,13 @@ export const black = "#000";
 export const white = "#fff";
 export const darkGray = "rgb(100, 100, 100)";
 export const DBblue = "#0080C6";
+export const breakingRed = "#CB0000";
 
 /** Font families */
-export const headlineFont = "Arimo, sans-serif";
-export const bodyFont = "PT Serif, serif";
-export const blurbFont = "PT Serif, serif";
-export const menuFont = "Source Sans Pro, sans-serif";
+export const headlineFont = "'Arimo', sans-serif";
+export const bodyFont = "'PT Serif', serif";
+export const blurbFont = "'PT Serif', serif";
+export const menuFont = "'Source Sans Pro', sans-serif";
 
 /** Card attributes */
 export const cardPadding = "10px";
@@ -52,8 +52,8 @@ export const bodyTextSize = "1.1em";
 export const bodyLineHeight = "1.45em";
 
 /** CSS breakpoints */
-export const mediaMobileBreakpoint = "@media (max-width: 600px)";
-export const secheadMobileBreakpoint = "@sechead (max-width: 600px)";
+export const phone = "@media (max-width: 600px)";
+export const table = "@media (max-width: 900px)";
 
 /** Combined themes */
 export const bodyTextCSS = css`

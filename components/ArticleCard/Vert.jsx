@@ -20,27 +20,13 @@ export default function Vert(props) {
     >
       <Link href={props.href} as={props.as}>
         <a href={props.as} style={{ textDecoration: "none" }}>
-          <div
+          <img
             css={css`
-              padding-top: 66.66%;
               width: 100%;
-              overflow: hidden;
-              position: relative;
+              margin: auto;
             `}
-          >
-            <img
-              css={css`
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-              `}
-              src={props.imageurl}
-            />
-          </div>
+            src={props.imageurl}
+          />
         </a>
       </Link>
       <h4

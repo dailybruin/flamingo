@@ -1,6 +1,6 @@
-import ArticleCard from "../../components/ArticleCard";
-import StoryList from "../../components/StoryList";
-import MultimediaScroller from "../../components/MultimediaScroller";
+import ArticleCard from "../components/ArticleCard";
+import StoryList from "../components/StoryList";
+import MultimediaScroller from "../components/MultimediaScroller";
 
 export function buildArticleCard(story) {
   if (story != null) {
@@ -24,12 +24,12 @@ export function buildArticleCard(story) {
           href: `/category/[slug]`,
           as: `/category/${story._embedded["wp:term"][0][0].slug}`
         }}
-        imageurl={story._embedded["wp:featuredmedia"][0].source_url}
-        caption={story._embedded["wp:featuredmedia"][0].caption.rendered}
+        imageurl={story._embedded["wp:featuredmedia"][0].source_url || ""}
+        caption={story._embedded["wp:featuredmedia"][0].caption.rendered || ""}
       />
     );
   } else {
-    return (<React.Fragment/>);
+    return <React.Fragment />;
   }
 }
 

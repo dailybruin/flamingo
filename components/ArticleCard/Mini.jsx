@@ -47,22 +47,6 @@ export default function Mini(props) {
             </div>
           </a>
         </Link>
-        <h4
-          css={css`
-            display: block;
-            margin: 2px 0 0;
-
-            font-family: Arimo;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 8px;
-            text-align: right;
-
-            color: #000000;
-          `}
-        >
-          {props.photographer}
-        </h4>
       </div>
       <div
         css={css`
@@ -126,7 +110,7 @@ export default function Mini(props) {
               css={css`
                 margin: 2px 0 4px;
                 ${locals.headline}
-                font-size: 1em;
+                font-size: 0.85rem;
               `}
               dangerouslySetInnerHTML={{ __html: props.headline }}
             />

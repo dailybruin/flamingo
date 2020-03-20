@@ -2,37 +2,37 @@ import React, { Component } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
 import { Config } from '../../config.js'
-import css from './style.css'
+import css from '../style.css'
 import * as utilities from "./utilities"
 import { Dot } from 'react-animated-dots';
 
 import InfiniteScroll from 'react-infinite-scroller';
 
-import ArticleCard from '../../components/ArticleCard'
-import { buildStoryList, buildArticleCard } from '../Home/utilities'
-import ClassifiedsCard from '../../components/ClassifiedsCard'
+import ArticleCard from "../../components/ArticleCard";
+import { buildStoryList, buildArticleCard } from "../utilities";
+import ClassifiedsCard from "../../components/ClassifiedsCard";
 
-import { SizeMe } from 'react-sizeme'
+import { SizeMe } from "react-sizeme";
 
 const ArticleColumnStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  margin: '12px',
-}
+  display: "flex",
+  flexDirection: "column",
+  margin: "12px"
+};
 
 const ArticleAdStyle = {
-  width: '100%',
-  backgroundColor: '#aaa',
-  height: '250px',
-  lineHeight: '200px',
-  textAlign: 'center',
-  fontWeight: 'bold',
-  fontFamily: 'sans-serif',
-}
+  width: "100%",
+  backgroundColor: "#aaa",
+  height: "250px",
+  lineHeight: "200px",
+  textAlign: "center",
+  fontWeight: "bold",
+  fontFamily: "sans-serif"
+};
 
 export default class CategoryLayout extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       aArticleCard: utilities.buildArticleCard(this.props.posts[0]),
       bArticleCard: utilities.buildArticleCard(this.props.posts[1]),
@@ -146,18 +146,18 @@ export default class CategoryLayout extends React.Component {
               <div
                 id="ArticleGrid"
                 style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '100%',
-                  margin: '12px 0 0',
-                  flexWrap: 'wrap',
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                  margin: "12px 0 0",
+                  flexWrap: "wrap"
                 }}
               >
                 <div
                   id="c"
                   className={css.column}
                   style={{
-                    width: '100%',
+                    width: "100%"
                   }}
                 >
                   <div id="c1" className={css.card}>
@@ -189,11 +189,11 @@ export default class CategoryLayout extends React.Component {
 
                 </div>
               </div>
-            )
+            );
           } else if (size.width < 900) {
             let renderedPostArray = utilities.renderPostArray(this.state.otherArticleCards, 'horz')
             return (
-              <div id="ArticleGrid" style={{ width: '100%' }}>
+              <div id="ArticleGrid" style={{ width: "100%" }}>
                 <div
                   id="a-ad-b"
                   className={css.column}
@@ -276,41 +276,45 @@ export default class CategoryLayout extends React.Component {
                   </div>
                 </div>
               </div>
-            )
+            );
           } else {
             let renderedPostArray = utilities.renderPostArray(this.state.otherArticleCards, 'long')
             return (
-              <div id="ArticleGrid" style={{ width: '100%' }}>
-                <div id="Articles" className={css.column} style={{width: '75%'}}>
-
+              <div id="ArticleGrid" style={{ width: "100%" }}>
+                <div
+                  id="Articles"
+                  className={css.column}
+                  style={{ width: "75%" }}
+                >
                   <div
                     id="a"
                     className={css.column}
                     style={{
-                      width: '66%',
+                      width: "66%"
                     }}
                   >
                     <div id="a" className={css.card}>
                       {React.cloneElement(this.state.aArticleCard, {
-                        displayType: 'full',
+                        displayType: "full"
                       })}
                     </div>
-                  </div> {/*a-b*/}
+                  </div>{" "}
+                  {/*a-b*/}
                   <div
                     id="c1-c2"
                     className={css.column}
                     style={{
-                      width: '33%',
+                      width: "33%"
                     }}
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.state.bArticleCard, {
-                        displayType: 'vert',
+                        displayType: "vert"
                       })}
                     </div>
                     <div id="c2" className={css.card}>
                       {React.cloneElement(this.state.cArticleCard, {
-                        displayType: 'mini',
+                        displayType: "mini"
                       })}
                     </div>
                   </div>{/*c1-c2*/}
@@ -334,7 +338,7 @@ export default class CategoryLayout extends React.Component {
                 <div
                   id="qd-d-e"
                   className={css.column}
-                  style={{ width: '25%' }}
+                  style={{ width: "25%" }}
                 >
                   <div id="above-ad" className={css.card}>
                     <div style={ArticleAdStyle}>ADVERTISEMENT</div>
@@ -344,47 +348,48 @@ export default class CategoryLayout extends React.Component {
                       header="Featured Classifieds"
                       classifieds={[
                         {
-                          category: { name: 'Room for Rent', url: './#' },
+                          category: { name: "Room for Rent", url: "./#" },
                           content: {
                             name:
-                              'Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908',
-                            url: './#',
-                          },
+                              "Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              'Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!',
-                            url: './#',
-                          },
+                              "Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              '2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626',
-                            url: './#',
-                          },
+                              "2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Computer/Internet', url: './#' },
+                          category: { name: "Computer/Internet", url: "./#" },
                           content: {
                             name:
-                              'GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com',
-                            url: './#',
-                          },
-                        },
+                              "GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com",
+                            url: "./#"
+                          }
+                        }
                       ]}
                     />
                   </div>
-                </div>{/*33*/}
+                </div>
+                {/*33*/}
               </div>
-            )
+            );
           }
         }}
       </SizeMe>
-    )
+    );
   }
 }
 
@@ -398,19 +403,19 @@ const FULLCARD = (
     date={new Date()}
     authors={[
       {
-        name: 'nedstark',
-        link: './#',
-      },
+        name: "nedstark",
+        link: "./#"
+      }
     ]}
     category={{
-      name: 'NEWS',
-      link: './#',
+      name: "NEWS",
+      link: "./#"
     }}
     imageurl={
-      'https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg'
+      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
     }
   />
-)
+);
 
 const VERTCARD = (
   <ArticleCard
@@ -422,19 +427,19 @@ const VERTCARD = (
     date={new Date()}
     authors={[
       {
-        name: 'nedstark',
-        link: './#',
-      },
+        name: "nedstark",
+        link: "./#"
+      }
     ]}
     category={{
-      name: 'NEWS',
-      link: './#',
+      name: "NEWS",
+      link: "./#"
     }}
     imageurl={
-      'https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg'
+      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
     }
   />
-)
+);
 
 const HORZCARD = (
   <ArticleCard
@@ -446,19 +451,19 @@ const HORZCARD = (
     date={new Date()}
     authors={[
       {
-        name: 'nedstark',
-        link: './#',
-      },
+        name: "nedstark",
+        link: "./#"
+      }
     ]}
     category={{
-      name: 'NEWS',
-      link: './#',
+      name: "NEWS",
+      link: "./#"
     }}
     imageurl={
-      'https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg'
+      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
     }
   />
-)
+);
 
 const MINICARD = (
   <ArticleCard
@@ -470,19 +475,19 @@ const MINICARD = (
     date={new Date()}
     authors={[
       {
-        name: 'nedstark',
-        link: './#',
-      },
+        name: "nedstark",
+        link: "./#"
+      }
     ]}
     category={{
-      name: 'NEWS',
-      link: './#',
+      name: "NEWS",
+      link: "./#"
     }}
     imageurl={
-      'https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg'
+      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
     }
   />
-)
+);
 
 const LONGCARD = (
   <ArticleCard
@@ -494,16 +499,16 @@ const LONGCARD = (
     date={new Date()}
     authors={[
       {
-        name: 'nedstark',
-        link: './#',
-      },
+        name: "nedstark",
+        link: "./#"
+      }
     ]}
     category={{
-      name: 'NEWS',
-      link: './#',
+      name: "NEWS",
+      link: "./#"
     }}
     imageurl={
-      'https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg'
+      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
     }
   />
-)
+);

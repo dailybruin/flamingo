@@ -1,4 +1,4 @@
-import * as globals from '../globals'
+import * as globals from "../globals";
 
 export const headline = `
   font-family: ${globals.headlineFont};
@@ -9,7 +9,7 @@ export const headline = `
   color: #000000;
   &:hover {
     color: ${globals.DBblue};
-  }`
+  }`;
 
 export const excerpt = `
   font-family: ${globals.bodyFont};
@@ -20,4 +20,9 @@ export const excerpt = `
 
   p {
     margin: 0;
-  }`
+  }
+  
+  br {
+    display: none;
+  }
+  `;
