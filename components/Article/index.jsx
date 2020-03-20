@@ -5,6 +5,7 @@ import { css, jsx } from "@emotion/core";
 import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
 
 import { date2string } from "./utilities.js";
+import * as globals from "../globals";
 import AuthorInfo from "./AuthorInfo";
 import ShareCard from "../ShareCard";
 import ReviewInfobox from "../ReviewInfobox";
@@ -132,7 +133,30 @@ export default class Article extends React.Component {
               margin: 10px -10px;
             `}
           />
-          <div style={{ padding: "40px" }}>
+          <div
+            dangerouslySetInnerHTML={{ __html: this.props.caption }}
+            css={css`
+              p {
+                margin: 0 20px;
+                font-family: ${globals.headlineFont};
+                font-size: 10px;
+                color: ${globals.darkGray};
+              }
+              @media (max-width: 40em) {
+                p {
+                  margin: 0 0 10px;
+                }
+              }
+            `}
+          ></div>
+          <div
+            css={css`
+              padding: 40px;
+              @media (max-width: 40em) {
+                padding: 10px;
+              }
+            `}
+          >
             <div
               css={css`
                 float: right;
@@ -226,11 +250,6 @@ export default class Article extends React.Component {
                   font-size: 0.95rem;
                   text-align: right;
                   margin-top: 0.5rem;
-                }
-                @media (max-width: 40em) {
-                  aside {
-                    width: 100%;
-                  }
                 }
                 aside:first-letter {
                   float: left;

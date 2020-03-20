@@ -33,7 +33,7 @@ export default function Full(props) {
               font-size: 14px;
               text-transform: uppercase;
               display: inline;
-              pointer: cursor;
+              cursor: pointer;
 
               &:hover {
                 text-decoration: underline;

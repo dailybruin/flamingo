@@ -33,7 +33,12 @@ class ArticleLayout extends React.Component {
             as: `/category/${this.props.article["_embedded"]["wp:term"][0][0].slug}`
           }}
           featureimg={
-            this.props.article["_embedded"]["wp:featuredmedia"][0].source_url
+            this.props.article["_embedded"]["wp:featuredmedia"][0].source_url ||
+            ""
+          }
+          caption={
+            this.props.article["_embedded"]["wp:featuredmedia"][0].caption ||
+            "".rendered
           }
           authorimg={
             this.props.article["_embedded"].author[0]["avatar_urls"][96]

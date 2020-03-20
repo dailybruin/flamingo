@@ -18,7 +18,7 @@ export default function ShareCard(props) {
         font-weight: ${MainSiteStyles.boldFont};
         vertical-align: middle;
         margin: 0px 0px 0px 70px;
-        ${MainSiteStyles.mediaMobileBreakpoint} {
+        ${MainSiteStyles.phone} {
           flex-direction: column;
         }
       `}

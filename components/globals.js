@@ -28,6 +28,7 @@ export const black = "#000";
 export const white = "#fff";
 export const darkGray = "rgb(100, 100, 100)";
 export const DBblue = "#0080C6";
+export const breakingRed = "#CB0000";
 
 /** Font families */
 export const headlineFont = "'Arimo', sans-serif";
@@ -51,8 +52,8 @@ export const bodyTextSize = "1.1em";
 export const bodyLineHeight = "1.45em";
 
 /** CSS breakpoints */
-export const mediaMobileBreakpoint = "@media (max-width: 600px)";
-export const secheadMobileBreakpoint = "@sechead (max-width: 600px)";
+export const phone = "@media (max-width: 600px)";
+export const table = "@media (max-width: 900px)";
 
 /** Combined themes */
 export const bodyTextCSS = css`

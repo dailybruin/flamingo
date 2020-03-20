@@ -4,8 +4,8 @@ import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 
 import MainSiteFooter from "../components/MainSiteFooter";
-import BreakingCard from "../components/BreakingCard";
-import InTheNews from "../components/InTheNews";
+import BreakingCard from "../components/BreakingBanner";
+import InTheNews from "../components/InTheNewsBanner";
 import Masthead from "../components/Masthead";
 
 import "./style.css";

@@ -32,7 +32,7 @@ export default function MainSiteFooter(props) {
         box-shadow: ${MainSiteStyles.cardShadow};
         border-top: 5px solid black;
 
-        ${MainSiteStyles.mediaMobileBreakpoint} {
+        ${MainSiteStyles.phone} {
           flex-direction: column;
         }
       `}
@@ -42,7 +42,7 @@ export default function MainSiteFooter(props) {
           display: flex;
           flex-direction: row;
 
-          ${MainSiteStyles.mediaMobileBreakpoint} {
+          ${MainSiteStyles.phone} {
             flex-direction: column;
             text-align: center;
           }
@@ -56,7 +56,7 @@ export default function MainSiteFooter(props) {
           margin-left: auto;
           flex-grow: 1;
 
-          ${MainSiteStyles.mediaMobileBreakpoint} {
+          ${MainSiteStyles.phone} {
             text-align: center;
             margin: auto;
           }

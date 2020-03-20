@@ -72,12 +72,12 @@ export default class HomeLayout extends React.Component {
                   </div>
                   <div id="a" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "horz"
+                      displayType: "full"
                     })}
                   </div>
                   <div id="b" className={css.card}>
                     {React.cloneElement(this.state.bArticleCard, {
-                      displayType: "horz"
+                      displayType: "full"
                     })}
                   </div>
                   <div id="above-ad" className={css.card}>
@@ -94,6 +94,16 @@ export default class HomeLayout extends React.Component {
                   <div id="e" className={css.card}>
                     {React.cloneElement(this.state.eArticleCard, {
                       displayType: "mini"
+                    })}
+                  </div>
+                  <div id="f1" className={css.card}>
+                    {React.cloneElement(this.state.f1ArticleCard, {
+                      displayType: "full"
+                    })}
+                  </div>
+                  <div id="f2" className={css.card}>
+                    {React.cloneElement(this.state.f2ArticleCard, {
+                      displayType: "full"
                     })}
                   </div>
                 </div>

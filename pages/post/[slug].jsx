@@ -34,7 +34,7 @@ class Post extends Component {
   render() {
     if (this.props.photos != undefined) {
       return (
-        <div>
+        <>
           <Head>
             <title
               dangerouslySetInnerHTML={{
@@ -51,11 +51,11 @@ class Post extends Component {
             post={this.props.post[0]}
             photos={this.props.photos}
           />
-        </div>
+        </>
       );
     } else {
       return (
-        <div>
+        <>
           <Head>
             <title
               dangerouslySetInnerHTML={{
@@ -69,7 +69,7 @@ class Post extends Component {
             ></script>
           </Head>
           <ArticleLayout article={this.props.post[0]} />
-        </div>
+        </>
       );
     }
   }

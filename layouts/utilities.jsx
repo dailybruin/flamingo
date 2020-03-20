@@ -24,8 +24,8 @@ export function buildArticleCard(story) {
           href: `/category/[slug]`,
           as: `/category/${story._embedded["wp:term"][0][0].slug}`
         }}
-        imageurl={story._embedded["wp:featuredmedia"][0].source_url}
-        caption={story._embedded["wp:featuredmedia"][0].caption.rendered}
+        imageurl={story._embedded["wp:featuredmedia"][0].source_url || ""}
+        caption={story._embedded["wp:featuredmedia"][0].caption.rendered || ""}
       />
     );
   } else {
