@@ -4,7 +4,7 @@ import Link from "next/link";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 
-export default class PhotoCard extends React.Component {
+export default class Photo extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -32,7 +32,7 @@ export default class PhotoCard extends React.Component {
                   box-shadow: ${globals.cardShadow};
                   &:hover #overlay {
                     transform: translateY(0);
-                    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+                    box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.25);
                   }
                 `}
               >
@@ -50,10 +50,10 @@ export default class PhotoCard extends React.Component {
                     background: #fff;
                     position: absolute;
                     overflow: hidden;
-                    top: 0;
+                    bottom: 0;
                     left: 0;
                     right: 0;
-                    transform: translateY(-100%);
+                    transform: translateY(100%);
                     width: 100%;
                     transition: 0.5s ease;
                   `}
@@ -76,8 +76,10 @@ export default class PhotoCard extends React.Component {
                     <h3
                       dangerouslySetInnerHTML={{ __html: this.props.headline }}
                       css={css`
-                        font-size: 24px;
                         margin: 0;
+                        padding-bottom: 17px;
+                        font-size: 30px;
+                        line-height: 34px;
                         font-family: ${globals.headlineFont};
                       `}
                     ></h3>
@@ -167,7 +169,6 @@ export default class PhotoCard extends React.Component {
                       margin: 0;
                       padding-bottom: 17px;
                       font-size: 20px;
-                      line-height: 34px;
                       font-family: ${globals.headlineFont};
                     `}
                   ></h3>

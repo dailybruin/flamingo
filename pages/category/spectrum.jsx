@@ -9,11 +9,11 @@ import Head from "next/head";
 import SectionHeader from "../../components/SectionHeader";
 import MultimediaLayout from "../../layouts/Multimedia";
 
-class Illo extends Component {
+class Spectrum extends Component {
   static async getInitialProps(context) {
     const { slug } = context.query;
     const categoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/categories?slug=illo`
+      `${Config.apiUrl}/wp-json/wp/v2/categories?slug=spectrum`
     );
     const category = await categoryRes.json();
     if (category.length > 0) {
@@ -64,7 +64,7 @@ class Illo extends Component {
       };
     });
     return (
-      <div>
+      <>
         <Head>
           <title
             dangerouslySetInnerHTML={{
@@ -82,11 +82,9 @@ class Illo extends Component {
           posts={this.props.posts}
           categoryID={this.props.category[0].id}
         />
-        <h1>{this.props.category[0].name} Posts</h1>
-        {posts}
-      </div>
+      </>
     );
   }
 }
 
-export default PageWrapper(Illo);
+export default PageWrapper(Spectrum);
