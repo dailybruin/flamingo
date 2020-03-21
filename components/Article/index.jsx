@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import moment from "moment";
 import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
 
 import { date2string } from "./utilities.js";
@@ -74,19 +75,15 @@ export default class Article extends React.Component {
           ></ReviewInfobox>
         );
       }
-      return (
-        <div
-          css={css`
-            display: block;
-            padding: 10px;
-            box-shadow: ${cardShadow};
-            background-color: #ffffff;
-          `}
-        >
-          <span>
-            <Link href={this.props.category.href} as={this.props.category.as}>
+
+      // Categories
+      const renderedCategories = [];
+      if (this.props.categories.length > 1) {
+        for (const category of this.props.categories) {
+          renderedCategories.push(
+            <Link href={category.link} as={category.link}>
               <a
-                href={this.props.category.url}
+                href={category.link}
                 css={css`
                   text-decoration: none;
                   color: #0080c6;
@@ -106,12 +103,53 @@ export default class Article extends React.Component {
                     text-transform: uppercase;
                     display: inline;
                   `}
-                >
-                  {this.props.category.name}
-                </h2>
+                  dangerouslySetInnerHTML={{ __html: category.name }}
+                ></h2>
               </a>
             </Link>
-          </span>
+          );
+        }
+      } else {
+        renderedCategories = [
+          <Link href={category.link} as={category.link}>
+            <a
+              href={category.link}
+              css={css`
+                text-decoration: none;
+                color: #0080c6;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              `}
+            >
+              <h2
+                css={css`
+                  margin: 0;
+                  font-family: Source Sans Pro;
+                  font-style: normal;
+                  font-weight: bold;
+                  font-size: 14px;
+                  text-transform: uppercase;
+                  display: inline;
+                `}
+                dangerouslySetInnerHTML={{ __html: category.name }}
+              ></h2>
+            </a>
+          </Link>
+        ];
+      }
+
+      return (
+        <div
+          css={css`
+            display: block;
+            padding: 10px;
+            box-shadow: ${cardShadow};
+            background-color: #ffffff;
+          `}
+        >
+          {renderedCategories}
           <h1
             css={css`
               margin: 2px 0;
@@ -206,7 +244,7 @@ export default class Article extends React.Component {
                     line-height: 15px;
                   `}
                 >
-                  {date2string(this.props.date)}
+                  {moment(this.props.date).format("MMMM Do, YYYY, h:mma")}
                 </h4>
               </div>
             </div>
@@ -277,7 +315,10 @@ export default class Article extends React.Component {
                   width: 100%;
                 }
 
-                figure a img {
+                figure a img,
+                p img,
+                b img,
+                h2 img {
                   width: 100%;
                   height: inherit;
                 }

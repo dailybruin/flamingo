@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import fetch from 'isomorphic-unfetch'
-import Error from 'next/error'
-import { Config } from '../../config.js'
-import css from '../style.css'
-import * as utilities from "./utilities"
-import { Dot } from 'react-animated-dots';
+import React, { Component } from "react";
+import fetch from "isomorphic-unfetch";
+import Error from "next/error";
+import { Config } from "../../config.js";
+import css from "../style.css";
+import * as utilities from "../utilities";
+import { Dot } from "react-animated-dots";
 
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from "react-infinite-scroller";
 
 import ArticleCard from "../../components/ArticleCard";
 import { buildStoryList, buildArticleCard } from "../utilities";
@@ -40,117 +40,45 @@ export default class CategoryLayout extends React.Component {
 
       otherArticleCards: utilities.buildArticleList(this.props.posts.slice(3)),
 
-       // items: 10
+      // items: 10
       page: 2
       // loading: false
     };
     // this.getPosts = this.getPosts.bind(this)
-    this.getPosts = this.getPosts.bind(this)
-    }
+    this.getPosts = this.getPosts.bind(this);
+  }
 
-    // renderPostArray(otherArticleCards, type) {
-    //   var i
-    //   let renderedPostArray = []
-    //   for (i = 0; i < otherArticleCards.length; i++) {
-    //     renderedPostArray.push(
-    //       <div id="a" className={css.card}>
-    //         {React.cloneElement( otherArticleCards[i], {
-    //           displayType: type
-    //         })}
-    //       </div>
-    //     )
-    //   }
-    //   return (renderedPostArray)
-    // }
-
-
-    // loadFunc() {
-    //  setTimeout(() => {
-    //      this.setState({
-    //        page: (this.state.page+1),
-    //        loading: false,
-    //        otherArticleCards:
-    //          this.state.otherArticleCards.concat(utilities.buildArticleList(this.getPosts()))
-    //      });
-    //  }, 2000);
-
-
-
-  // loadDoc() {
-  //    var xhttp = new XMLHttpRequest();
-  //    xhttp.onreadystatechange = function() {
-  //      if (this.readyState == 4 && this.status == 200) {
-  //        const posts = xhttp.responseText;
-  //        this.setState({
-  //           page: this.state.page + 1,
-  //           otherArticleCards:
-  //             otherArticleCards.concat(utilities.buildArticleList(posts))
-  //        });
-  //        console.log(posts)       }
-  //    };
-  //    xhttp.open("GET", `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.state.page}`, true);
-  //    xhttp.send();
-  //  }
-
-
-
-
-  getPosts = () => {
+  getPosts() {
     fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.state.page}`
-      )
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.state.page}`
+    )
       .then(response => response.json())
-      .then(json => this.setState(
-        {
-          page: (this.state.page+1),
+      .then(json =>
+        this.setState({
+          page: this.state.page + 1,
           loading: false,
-          otherArticleCards:
-            this.state.otherArticleCards.concat(utilities.buildArticleList(json))
-        }
-      ))
-    }
-
-
-
-  // loadMore() {
-  //   this.setState({ loading: true });
-  //   setTimeout(() => {
-  //       this.setState({
-  //         page: this.state.page + 1,
-  //         loading: false,
-  //         otherArticleCards:
-  //           otherArticleCards.concat(utilities.buildArticleList(this.getPosts()))
-  //       });
-  //   }, 2000);
-  // }
-
-  // componentDidMount() {
-  //     // Detect when scrolled to bottom.
-  //     this.refs.myscroll.addEventListener("scroll", () => {
-  //       if (
-  //         this.refs.myscroll.scrollTop + this.refs.myscroll.clientHeight >=
-  //         this.refs.myscroll.scrollHeight
-  //       ) {
-  //         this.loadMore();
-  //       }
-  //     });
-  // }
+          otherArticleCards: this.state.otherArticleCards.concat(
+            utilities.buildArticleList(json)
+          )
+        })
+      );
+  }
 
   render() {
     return (
       <SizeMe monitorHeight={false}>
         {({ size }) => {
           if (size.width < 600) {
-            let renderedPostArray = utilities.renderPostArray(this.state.otherArticleCards, 'full')
+            let renderedPostArray = utilities.renderPostArray(
+              this.state.otherArticleCards,
+              "full"
+            );
             return (
               <div
                 id="ArticleGrid"
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
                   width: "100%",
-                  margin: "12px 0 0",
-                  flexWrap: "wrap"
+                  margin: "12px 0 0"
                 }}
               >
                 <div
@@ -162,59 +90,73 @@ export default class CategoryLayout extends React.Component {
                 >
                   <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: 'full',
+                      displayType: "full"
                     })}
                   </div>
                   <div id="c2" className={css.card}>
                     {React.cloneElement(this.state.bArticleCard, {
-                      displayType: 'full',
+                      displayType: "full"
                     })}
                   </div>
                   <div id="c2" className={css.card}>
                     {React.cloneElement(this.state.cArticleCard, {
-                      displayType: 'full',
+                      displayType: "full"
                     })}
                   </div>
-                  <div id="c2" className={css.card}>
-                      <InfiniteScroll
-                          pageStart={0}
-                          loadMore={this.getPosts}
-                          hasMore={true || false}
-                          loader={<div className="loader" key={0}><h1 style><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot></h1></div>}
-                          useWindow={false}
-                      >
-                          {renderedPostArray}
-                      </InfiniteScroll>
-                  </div>
-
+                  <InfiniteScroll
+                    pageStart={0}
+                    loadMore={this.getPosts}
+                    hasMore={true || false}
+                    loader={
+                      <div className="loader" key={0}>
+                        <h1>
+                          <Dot>.</Dot>
+                          <Dot>.</Dot>
+                          <Dot>.</Dot>
+                        </h1>
+                      </div>
+                    }
+                  >
+                    {renderedPostArray}
+                  </InfiniteScroll>
                 </div>
               </div>
             );
           } else if (size.width < 900) {
-            let renderedPostArray = utilities.renderPostArray(this.state.otherArticleCards, 'horz')
+            let renderedPostArray = utilities.renderPostArray(
+              this.state.otherArticleCards,
+              "horz"
+            );
             return (
               <div id="ArticleGrid" style={{ width: "100%" }}>
                 <div
                   id="a-ad-b"
                   className={css.column}
                   style={{
-                    width: '66.666%',
+                    width: "66.666%"
                   }}
                 >
                   <div id="a" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: 'full',
+                      displayType: "full"
                     })}
                   </div>
                   <div>
                     <InfiniteScroll
-                        pageStart={0}
-                        loadMore={this.getPosts}
-                        hasMore={true || false}
-                        loader={<div className="loader" key={0}><h1><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot></h1></div>}
-                        useWindow={false}
+                      pageStart={0}
+                      loadMore={this.getPosts}
+                      hasMore={true || false}
+                      loader={
+                        <div className="loader" key={0}>
+                          <h1>
+                            <Dot>.</Dot>
+                            <Dot>.</Dot>
+                            <Dot>.</Dot>
+                          </h1>
+                        </div>
+                      }
                     >
-                        {renderedPostArray}
+                      {renderedPostArray}
                     </InfiniteScroll>
                   </div>
                 </div>
@@ -222,17 +164,17 @@ export default class CategoryLayout extends React.Component {
                   id="c1-c2"
                   className={css.column}
                   style={{
-                    width: '33.333%',
+                    width: "33.333%"
                   }}
                 >
                   <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.bArticleCard, {
-                      displayType: 'vert',
+                      displayType: "vert"
                     })}
                   </div>
                   <div id="c2" className={css.card}>
                     {React.cloneElement(this.state.cArticleCard, {
-                      displayType: 'mini',
+                      displayType: "mini"
                     })}
                   </div>
                   <div id="classifieds" className={css.card}>
@@ -240,37 +182,37 @@ export default class CategoryLayout extends React.Component {
                       header="Featured Classifieds"
                       classifieds={[
                         {
-                          category: { name: 'Room for Rent', url: './#' },
+                          category: { name: "Room for Rent", url: "./#" },
                           content: {
                             name:
-                              'Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908',
-                            url: './#',
-                          },
+                              "Female preferred to rent private furnished room with shared bath. $925 includes utilities and internet , full kitchen and laundry privileges. 1 dog and 2 cats in house. Non smoking. Julia 310-874-5908",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              'Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!',
-                            url: './#',
-                          },
+                              "Westwood 3bed + 3bath 1,712sqft Condo for lease. Laundry in-unit + 2 car gated parking space. Private rooftop terrace. $4900/M. Call Mike at 310-666-5458 for showing. Available now!",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Apartments for Rent', url: './#' },
+                          category: { name: "Apartments for Rent", url: "./#" },
                           content: {
                             name:
-                              '2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626',
-                            url: './#',
-                          },
+                              "2 bedroom 2 1/2 bath Condo. Aproximately 2000 sq ft. $3999/month or fully furnished for $4485/month. Comfortable for 4-5 students 310-430-1626",
+                            url: "./#"
+                          }
                         },
                         {
-                          category: { name: 'Computer/Internet', url: './#' },
+                          category: { name: "Computer/Internet", url: "./#" },
                           content: {
                             name:
-                              'GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com',
-                            url: './#',
-                          },
-                        },
+                              "GRAD STUDENT WANTED: I’m putting together a Kickstarter crowdfunding campaign and looking for a sharp grad student to promote it, primarily social media. Please send experience, pay rate and contact info to – ebrown@sky44.com",
+                            url: "./#"
+                          }
+                        }
                       ]}
                     />
                   </div>
@@ -278,7 +220,10 @@ export default class CategoryLayout extends React.Component {
               </div>
             );
           } else {
-            let renderedPostArray = utilities.renderPostArray(this.state.otherArticleCards, 'long')
+            let renderedPostArray = utilities.renderPostArray(
+              this.state.otherArticleCards,
+              "long"
+            );
             return (
               <div id="ArticleGrid" style={{ width: "100%" }}>
                 <div
@@ -317,23 +262,28 @@ export default class CategoryLayout extends React.Component {
                         displayType: "mini"
                       })}
                     </div>
-                  </div>{/*c1-c2*/}
-
+                  </div>
+                  {/*c1-c2*/}
                   <div>
                     <InfiniteScroll
-                        pageStart={0}
-                        loadMore={this.getPosts}
-                        hasMore={true || false}
-                        loader={<div className="loader" key={0}><h1><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot></h1></div>}
-                        useWindow={false}
+                      pageStart={0}
+                      loadMore={this.getPosts}
+                      hasMore={true || false}
+                      loader={
+                        <div className="loader" key={0}>
+                          <h1>
+                            <Dot>.</Dot>
+                            <Dot>.</Dot>
+                            <Dot>.</Dot>
+                          </h1>
+                        </div>
+                      }
                     >
-                        {renderedPostArray}
+                      {renderedPostArray}
                     </InfiniteScroll>
                   </div>
-
-
-
-                </div>{/*75*/}
+                </div>
+                {/*75*/}
 
                 <div
                   id="qd-d-e"

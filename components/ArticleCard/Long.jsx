@@ -4,6 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
+import * as moment from "moment";
 
 export default function Long(props) {
   //  collect authors
@@ -90,7 +91,7 @@ export default function Long(props) {
               vertical-align: middle;
             `}
           >
-            {utilities.date2string(props.date)}
+            {moment(props.date).format("MMMM Do, h:mma")}
           </span>
         </span>
         <a href={props.url} style={{ textDecoration: "none" }}>

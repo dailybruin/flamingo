@@ -27,18 +27,19 @@ class ArticleLayout extends React.Component {
           headline={this.props.article.title.rendered}
           date={new Date(this.props.article.date)}
           authors={this.props.article["_embedded"].author}
-          category={{
-            name: this.props.article["_embedded"]["wp:term"][0][0].name,
-            url: `/category/[slug]`,
-            as: `/category/${this.props.article["_embedded"]["wp:term"][0][0].slug}`
-          }}
+          categories={this.props.article["_embedded"]["wp:term"][0]}
           featureimg={
-            this.props.article["_embedded"]["wp:featuredmedia"][0].source_url ||
-            ""
+            this.props.article._embedded["wp:featuredmedia"] != undefined &&
+            !this.props.article._embedded["wp:featuredmedia"].empty
+              ? this.props.article._embedded["wp:featuredmedia"][0].source_url
+              : ""
           }
           caption={
-            this.props.article["_embedded"]["wp:featuredmedia"][0].caption ||
-            "".rendered
+            this.props.article._embedded["wp:featuredmedia"] != undefined &&
+            !this.props.article._embedded["wp:featuredmedia"].empty
+              ? this.props.article._embedded["wp:featuredmedia"][0].caption
+                  .rendered
+              : ""
           }
           authorimg={
             this.props.article["_embedded"].author[0]["avatar_urls"][96]

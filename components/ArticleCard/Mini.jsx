@@ -5,6 +5,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
+import * as moment from "moment";
 
 export default function Mini(props) {
   return (
@@ -83,26 +84,6 @@ export default function Mini(props) {
               </h2>
             </a>
           </Link>
-          <span
-            css={css`
-              margin: 0;
-              vertical-align: middle;
-            `}
-          >
-            &nbsp;|&nbsp;
-          </span>
-          <span
-            css={css`
-              margin: 0;
-              font-family: Source Sans Pro, sans-serif;
-              font-style: normal;
-              font-weight: 400;
-              font-size: 11px;
-              vertical-align: middle;
-            `}
-          >
-            {utilities.date2string(props.date)}
-          </span>
         </span>
         <Link href={props.href} as={props.as}>
           <a href={props.as} style={{ textDecoration: "none" }}>

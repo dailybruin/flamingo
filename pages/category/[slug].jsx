@@ -64,12 +64,7 @@ class Category extends Component {
       };
     });
     return (
-      <div>
-        <SectionHeader
-          category={this.props.category[0].name}
-          subcategories={sectionLinks}
-        />
-      <CategoryLayout posts={this.props.posts} categoryID={this.props.category[0].id}/>
+      <>
         <Head>
           <title
             dangerouslySetInnerHTML={{
@@ -83,8 +78,11 @@ class Category extends Component {
             subcategories={sectionLinks}
           />
         </div>
-        <CategoryLayout posts={this.props.posts} categoryID={this.props.category[0].id} />
-      </div>
+        <CategoryLayout
+          posts={this.props.posts}
+          categoryID={this.props.category[0].id}
+        />
+      </>
     );
   }
 }

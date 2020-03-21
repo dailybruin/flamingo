@@ -5,6 +5,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
+import * as moment from "moment";
 
 export default function Vert(props) {
   //  collect authors
@@ -91,7 +92,7 @@ export default function Vert(props) {
             line-height: 14px;
           `}
         >
-          {utilities.date2string(props.date)}
+          {moment(props.date).format("MMMM Do, h:mma")}
         </span>
       </span>
       <Link href={props.href} as={props.as}>

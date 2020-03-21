@@ -1,9 +1,10 @@
 import ArticleCard from "../components/ArticleCard";
 import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
+import css from "./style.css";
 
 export function buildArticleCard(story) {
-  if (story != null) {
+  if (story != null && story != undefined) {
     return (
       <ArticleCard
         headline={story.title.rendered}
@@ -24,8 +25,18 @@ export function buildArticleCard(story) {
           href: `/category/[slug]`,
           as: `/category/${story._embedded["wp:term"][0][0].slug}`
         }}
-        imageurl={story._embedded["wp:featuredmedia"][0].source_url || ""}
-        caption={story._embedded["wp:featuredmedia"][0].caption.rendered || ""}
+        imageurl={
+          story._embedded["wp:featuredmedia"] != undefined &&
+          !story._embedded["wp:featuredmedia"].empty
+            ? story._embedded["wp:featuredmedia"][0].source_url
+            : ""
+        }
+        caption={
+          story._embedded["wp:featuredmedia"] != undefined &&
+          !story._embedded["wp:featuredmedia"].empty
+            ? story._embedded["wp:featuredmedia"][0].caption.rendered
+            : ""
+        }
       />
     );
   } else {
@@ -64,4 +75,28 @@ export function buildMultimediaScroller(media) {
     };
   });
   return <MultimediaScroller media={mappedMedia} />;
+}
+
+export function buildArticleList(stories) {
+  var i;
+  let postArray = [];
+  for (i = 0; i < stories.length; i++) {
+    postArray.push(buildArticleCard(stories[i]));
+  }
+  return postArray;
+}
+
+export function renderPostArray(otherArticleCards, type) {
+  var i;
+  let renderedPostArray = [];
+  for (i = 0; i < otherArticleCards.length; i++) {
+    renderedPostArray.push(
+      <div className={css.card}>
+        {React.cloneElement(otherArticleCards[i], {
+          displayType: type
+        })}
+      </div>
+    );
+  }
+  return renderedPostArray;
 }
