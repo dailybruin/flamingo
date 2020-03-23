@@ -56,7 +56,6 @@ class Category extends Component {
       const subsubcategoriesSimple = index.subsubcategories.map(index => {
         return { name: index.name, link: `/category/${index.slug}` };
       });
-      console.log(subsubcategoriesSimple);
       return {
         name: index.name,
         link: `/category/${index.slug}`,
@@ -80,8 +79,6 @@ class Category extends Component {
           />
         </div>
         <VideoLayout posts={this.props.posts} />
-        <h1>{this.props.category[0].name} Posts</h1>
-        {posts}
       </div>
     );
   }

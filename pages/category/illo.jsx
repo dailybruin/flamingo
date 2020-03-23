@@ -56,7 +56,6 @@ class Illo extends Component {
       const subsubcategoriesSimple = index.subsubcategories.map(index => {
         return { name: index.name, link: `/category/${index.slug}` };
       });
-      console.log(subsubcategoriesSimple);
       return {
         name: index.name,
         link: `/category/${index.slug}`,
@@ -82,8 +81,6 @@ class Illo extends Component {
           posts={this.props.posts}
           categoryID={this.props.category[0].id}
         />
-        <h1>{this.props.category[0].name} Posts</h1>
-        {posts}
       </div>
     );
   }

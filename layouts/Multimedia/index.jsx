@@ -16,7 +16,7 @@ export default class MultimediaLayout extends React.Component {
     super(props);
     this.state = {
       cards: [],
-      page: 1
+      more: true
     };
     this.masonryProps = {
       itemSelector: ".grid-item"
@@ -24,74 +24,69 @@ export default class MultimediaLayout extends React.Component {
     this.getPosts = this.getPosts.bind(this);
   }
 
-  getPosts() {
+  getPosts(page) {
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.state.page}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
     )
       .then(response => response.json())
-      .then(
-        json =>
+      .then(json => {
+        if (json.data == undefined) {
           this.setState({
-            page: this.state.page + 1,
-            loading: false,
             cards: this.state.cards.concat(json)
-          })
-        // console.log(this.state.cards.concat(json))
-      );
-    // console.log(this.state.cards);
+          });
+        } else {
+          this.setState({ more: false });
+        }
+      });
   }
 
   render() {
     let rendered = utilities.buildPhotoList(this.state.cards);
     return (
-      <div>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={this.getPosts}
-          hasMore={true}
-          loader={
-            <div className="loader" key={0}>
-              <h1>...</h1>
-            </div>
-          }
-        >
-          <Masonry
-            ref={function(c) {
-              this.masonry = this.masonry || c.masonry;
-            }.bind(this)}
-            className={"grid"} // default ''
-            options={this.masonryProps} // default {}
-            disableImagesLoaded={false} // default false
-            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-            css={css`
-              .grid-item {
-                padding: 6px;
-              }
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={this.getPosts}
+        hasMore={this.state.more}
+        loader={
+          <div className="loader" key={0}>
+            <h1>...</h1>
+          </div>
+        }
+      >
+        <Masonry
+          ref={function(c) {
+            this.masonry = this.masonry || c.masonry;
+          }.bind(this)}
+          className={"grid"} // default ''
+          options={this.masonryProps} // default {}
+          disableImagesLoaded={false} // default false
+          updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+          css={css`
+            .grid-item {
+              padding: 6px;
+            }
+            .grid-sizer,
+            .grid-item {
+              width: 33.3%;
+            }
+            @media (max-width: 768px) {
               .grid-sizer,
               .grid-item {
-                width: 33.3%;
+                width: 50%;
               }
-              @media (max-width: 768px) {
-                .grid-sizer,
-                .grid-item {
-                  width: 50%;
-                }
+            }
+            @media (max-width: 600px) {
+              .grid-sizer,
+              .grid-item {
+                width: 100%;
               }
-              @media (max-width: 600px) {
-                .grid-sizer,
-                .grid-item {
-                  width: 100%;
-                }
-              }
-            `}
-          >
-            <div className="grid-sizer"></div>
-            {rendered}
-          </Masonry>
-        </InfiniteScroll>
-        <button onClick={this.getPosts}>Load More</button>
-        <div></div>
-      </div>
+            }
+          `}
+        >
+          <div className="grid-sizer"></div>
+          {rendered}
+        </Masonry>
+      </InfiniteScroll>
     );
   }
 }

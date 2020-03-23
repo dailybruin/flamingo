@@ -37,31 +37,30 @@ export default class CategoryLayout extends React.Component {
       aArticleCard: utilities.buildArticleCard(this.props.posts[0]),
       bArticleCard: utilities.buildArticleCard(this.props.posts[1]),
       cArticleCard: utilities.buildArticleCard(this.props.posts[2]),
-
       otherArticleCards: utilities.buildArticleList(this.props.posts.slice(3)),
 
-      // items: 10
-      page: 2
-      // loading: false
+      more: true
     };
     // this.getPosts = this.getPosts.bind(this)
     this.getPosts = this.getPosts.bind(this);
   }
 
-  getPosts() {
+  getPosts(page) {
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${this.state.page}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
     )
       .then(response => response.json())
-      .then(json =>
-        this.setState({
-          page: this.state.page + 1,
-          loading: false,
-          otherArticleCards: this.state.otherArticleCards.concat(
-            utilities.buildArticleList(json)
-          )
-        })
-      );
+      .then(json => {
+        if (json.data == undefined) {
+          this.setState({
+            otherArticleCards: this.state.otherArticleCards.concat(
+              utilities.buildArticleList(json)
+            )
+          });
+        } else {
+          this.setState({ more: false });
+        }
+      });
   }
 
   render() {
@@ -104,9 +103,9 @@ export default class CategoryLayout extends React.Component {
                     })}
                   </div>
                   <InfiniteScroll
-                    pageStart={0}
+                    pageStart={1}
                     loadMore={this.getPosts}
-                    hasMore={true || false}
+                    hasMore={this.state.more}
                     loader={
                       <div className="loader" key={0}>
                         <h1>
@@ -143,9 +142,9 @@ export default class CategoryLayout extends React.Component {
                   </div>
                   <div>
                     <InfiniteScroll
-                      pageStart={0}
+                      pageStart={1}
                       loadMore={this.getPosts}
-                      hasMore={true || false}
+                      hasMore={this.state.more}
                       loader={
                         <div className="loader" key={0}>
                           <h1>
@@ -266,9 +265,9 @@ export default class CategoryLayout extends React.Component {
                   {/*c1-c2*/}
                   <div>
                     <InfiniteScroll
-                      pageStart={0}
+                      pageStart={1}
                       loadMore={this.getPosts}
-                      hasMore={true || false}
+                      hasMore={this.state.more}
                       loader={
                         <div className="loader" key={0}>
                           <h1>
