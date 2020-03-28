@@ -13,7 +13,6 @@ if (typeof window !== "undefined") {
         "PT Serif:700",
         "Source Sans Pro:400",
         "Source Sans Pro:700",
-        "Source Sans Pro:900",
         "Playfair Display:700"
       ]
     }

@@ -119,7 +119,6 @@ class Index extends Component {
         }
       }
     }
-    console.log(Cookies.get());
   }
 
   subscribeToNewsletter = () => {

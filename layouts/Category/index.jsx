@@ -106,6 +106,7 @@ export default class CategoryLayout extends React.Component {
                     pageStart={1}
                     loadMore={this.getPosts}
                     hasMore={this.state.more}
+                    threshold={3000}
                     loader={
                       <div className="loader" key={0}>
                         <h1>
@@ -145,6 +146,7 @@ export default class CategoryLayout extends React.Component {
                       pageStart={1}
                       loadMore={this.getPosts}
                       hasMore={this.state.more}
+                      threshold={3000}
                       loader={
                         <div className="loader" key={0}>
                           <h1>
@@ -242,7 +244,7 @@ export default class CategoryLayout extends React.Component {
                         displayType: "full"
                       })}
                     </div>
-                  </div>{" "}
+                  </div>
                   {/*a-b*/}
                   <div
                     id="c1-c2"
@@ -268,6 +270,7 @@ export default class CategoryLayout extends React.Component {
                       pageStart={1}
                       loadMore={this.getPosts}
                       hasMore={this.state.more}
+                      threshold={3000}
                       loader={
                         <div className="loader" key={0}>
                           <h1>
@@ -282,7 +285,6 @@ export default class CategoryLayout extends React.Component {
                     </InfiniteScroll>
                   </div>
                 </div>
-                {/*75*/}
 
                 <div
                   id="qd-d-e"
@@ -332,7 +334,6 @@ export default class CategoryLayout extends React.Component {
                     />
                   </div>
                 </div>
-                {/*33*/}
               </div>
             );
           }
@@ -341,123 +342,3 @@ export default class CategoryLayout extends React.Component {
     );
   }
 }
-
-const FULLCARD = (
-  <ArticleCard
-    displayType="full"
-    headline="This Article Works for Anything and Everything"
-    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
-    url="./#"
-    // TODO: format date
-    date={new Date()}
-    authors={[
-      {
-        name: "nedstark",
-        link: "./#"
-      }
-    ]}
-    category={{
-      name: "NEWS",
-      link: "./#"
-    }}
-    imageurl={
-      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
-    }
-  />
-);
-
-const VERTCARD = (
-  <ArticleCard
-    displayType="vert"
-    headline="This Article Works for Anything and Everything"
-    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
-    url="./#"
-    // TODO: format date
-    date={new Date()}
-    authors={[
-      {
-        name: "nedstark",
-        link: "./#"
-      }
-    ]}
-    category={{
-      name: "NEWS",
-      link: "./#"
-    }}
-    imageurl={
-      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
-    }
-  />
-);
-
-const HORZCARD = (
-  <ArticleCard
-    displayType="horz"
-    headline="This Article Works for Anything and Everything"
-    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
-    url="./#"
-    // TODO: format date
-    date={new Date()}
-    authors={[
-      {
-        name: "nedstark",
-        link: "./#"
-      }
-    ]}
-    category={{
-      name: "NEWS",
-      link: "./#"
-    }}
-    imageurl={
-      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
-    }
-  />
-);
-
-const MINICARD = (
-  <ArticleCard
-    displayType="mini"
-    headline="This Article Works for Anything and Everything"
-    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
-    url="./#"
-    // TODO: format date
-    date={new Date()}
-    authors={[
-      {
-        name: "nedstark",
-        link: "./#"
-      }
-    ]}
-    category={{
-      name: "NEWS",
-      link: "./#"
-    }}
-    imageurl={
-      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
-    }
-  />
-);
-
-const LONGCARD = (
-  <ArticleCard
-    displayType="long"
-    headline="This Article Works for Anything and Everything"
-    excerpt="Animal-assisted therapy group supports students, UCLA Health patients Erin Rice once watched her therapy dog make a 6-year-old boy open his eyes, look at his mother and begin communicating after a surgery that removed one hemisphere of his brain. “’This warm, fuzzy thing in his bed, this is what’s going to help him create those connections in his remaining hemisphere,’” Rice said a […]"
-    url="./#"
-    // TODO: format date
-    date={new Date()}
-    authors={[
-      {
-        name: "nedstark",
-        link: "./#"
-      }
-    ]}
-    category={{
-      name: "NEWS",
-      link: "./#"
-    }}
-    imageurl={
-      "https://dailybruin.com/images/2019/06/web.ae_.lorenzo.picA_.AK_-640x427.jpg"
-    }
-  />
-);

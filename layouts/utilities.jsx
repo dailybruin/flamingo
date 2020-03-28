@@ -13,13 +13,7 @@ export function buildArticleCard(story) {
         as={`/post/${story.slug}`}
         // TODO: format date
         date={new Date(story.date)}
-        authors={[
-          {
-            name: story._embedded.author[0].name,
-            href: `/author/[slug]`,
-            as: `/author/${story._embedded.author[0].slug}`
-          }
-        ]}
+        authors={story.coauthors}
         category={{
           name: story._embedded["wp:term"][0][0].name,
           href: `/category/[slug]`,

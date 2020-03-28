@@ -23,7 +23,7 @@ class Post extends Component {
     }
     return { post };
   }
-  componentWillMount() {
+  componentDidMount() {
     if (
       this.props.post[0].acf["db_link"] != null &&
       this.props.post[0].acf["db_link"] != ""

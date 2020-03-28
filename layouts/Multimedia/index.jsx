@@ -47,9 +47,14 @@ export default class MultimediaLayout extends React.Component {
         pageStart={0}
         loadMore={this.getPosts}
         hasMore={this.state.more}
+        threshold={3000}
         loader={
-          <div className="loader" key={0}>
-            <h1>...</h1>
+          <div
+            className="loader"
+            key={0}
+            style={{ width: "100%", textAlign: "center" }}
+          >
+            <h1>loading...</h1>
           </div>
         }
       >
@@ -60,7 +65,7 @@ export default class MultimediaLayout extends React.Component {
           className={"grid"} // default ''
           options={this.masonryProps} // default {}
           disableImagesLoaded={false} // default false
-          updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+          updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
           css={css`
             .grid-item {
               padding: 6px;

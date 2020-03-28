@@ -10,10 +10,11 @@ export default class InTheNewsBanner extends React.Component {
   }
   render() {
     let renderedStories = [];
-    for (let i = 0; i < this.props.stories.length; i++) {
+    for (let i in this.props.stories) {
       renderedStories.push(
         <a
           href={this.props.stories[i].href}
+          key={i}
           css={css`
             display: inline-block;
             vertical-align: middle;

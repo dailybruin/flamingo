@@ -8,8 +8,6 @@ import * as utilities from "./utilities";
 import * as moment from "moment";
 
 export default function Horz(props) {
-  //  collect authors
-  const authors = utilities.collectAuthors(props.authors);
   return (
     <div
       css={css`
@@ -25,32 +23,30 @@ export default function Horz(props) {
           width: 50%;
         `}
       >
-        <Link href={props.href} as={props.as}>
-          <a href={props.as} style={{ textDecoration: "none" }}>
-            <div
+        <a href={props.as} style={{ textDecoration: "none" }}>
+          <div
+            css={css`
+              height: 100%;
+              width: 100%;
+              padding-top: 66.66%;
+              overflow: hidden;
+              position: relative;
+            `}
+          >
+            <img
               css={css`
                 height: 100%;
                 width: 100%;
-                padding-top: 66.66%;
-                overflow: hidden;
-                position: relative;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                object-fit: cover;
               `}
-            >
-              <img
-                css={css`
-                  height: 100%;
-                  width: 100%;
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                  object-fit: cover;
-                `}
-                src={props.imageurl}
-              />
-            </div>
-          </a>
-        </Link>
+              src={props.imageurl}
+            />
+          </div>
+        </a>
         <h4
           css={css`
             display: block;
@@ -76,34 +72,32 @@ export default function Horz(props) {
         `}
       >
         <span>
-          <Link href={props.category.href} as={props.category.as}>
-            <a
-              href={props.category.as}
-              css={css`
-                text-decoration: none;
-                color: ${globals.DBblue};
-                vertical-align: middle;
+          <a
+            href={props.category.as}
+            css={css`
+              text-decoration: none;
+              color: ${globals.DBblue};
+              vertical-align: middle;
 
-                &:hover {
-                  text-decoration: underline;
-                }
+              &:hover {
+                text-decoration: underline;
+              }
+            `}
+          >
+            <h2
+              css={css`
+                margin: 0;
+                font-family: Source Sans Pro;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px;
+                text-transform: uppercase;
+                display: inline;
               `}
             >
-              <h2
-                css={css`
-                  margin: 0;
-                  font-family: Source Sans Pro;
-                  font-style: normal;
-                  font-weight: bold;
-                  font-size: 14px;
-                  text-transform: uppercase;
-                  display: inline;
-                `}
-              >
-                {props.category.name}
-              </h2>
-            </a>
-          </Link>
+              {props.category.name}
+            </h2>
+          </a>
           <span
             css={css`
               margin: 0;
@@ -125,24 +119,22 @@ export default function Horz(props) {
             {moment(props.date).format("MMMM Do, h:mma")}
           </span>
         </span>
-        <Link href={props.href} as={props.as}>
-          <a href={props.as} style={{ textDecoration: "none" }}>
-            <h1
-              css={css`
-                margin: 2px 0 4px;
-                ${locals.headline}
-              `}
-              dangerouslySetInnerHTML={{ __html: props.headline }}
-            />
-            <p
-              css={css`
-                margin: 0 0 5px;
-                ${locals.excerpt}
-              `}
-              dangerouslySetInnerHTML={{ __html: props.excerpt }}
-            />
-          </a>
-        </Link>
+        <a href={props.as} style={{ textDecoration: "none" }}>
+          <h1
+            css={css`
+              margin: 2px 0 4px;
+              ${locals.headline}
+            `}
+            dangerouslySetInnerHTML={{ __html: props.headline }}
+          />
+          <p
+            css={css`
+              margin: 0 0 5px;
+              ${locals.excerpt}
+            `}
+            dangerouslySetInnerHTML={{ __html: props.excerpt }}
+          />
+        </a>
         <h3
           css={css`
             margin: 0;
@@ -155,7 +147,7 @@ export default function Horz(props) {
             color: #000000;
           `}
         >
-          By {authors}
+          By {utilities.renderAuthors(props.authors)}
         </h3>
       </div>
     </div>

@@ -41,30 +41,25 @@ export default class Mobile extends React.Component {
     if (this.props.categories != null) {
       for (let i = 0; i < this.props.categories.length; i++) {
         renderedCategories.push(
-          <Link
-            href={this.props.categories[i].href}
-            as={this.props.categories[i].as}
+          <a
+            href={this.props.categories[i].as}
+            css={css`
+              display: block;
+              text-align: left;
+              padding: 8px 4px;
+              font-family: ${globals.menuFont};
+              font-size: 18px;
+              font-weight: bold;
+              text-decoration: none;
+              text-transform: uppercase;
+              color: #ffffff;
+              &:hover {
+                text-decoration: underline;
+              }
+            `}
           >
-            <a
-              href={this.props.categories[i].as}
-              css={css`
-                display: block;
-                text-align: left;
-                padding: 8px 4px;
-                font-family: ${globals.menuFont};
-                font-size: 18px;
-                font-weight: bold;
-                text-decoration: none;
-                text-transform: uppercase;
-                color: #ffffff;
-                &:hover {
-                  text-decoration: underline;
-                }
-              `}
-            >
-              {this.props.categories[i].name}
-            </a>
-          </Link>
+            {this.props.categories[i].name}
+          </a>
         );
       }
     }
@@ -112,22 +107,20 @@ export default class Mobile extends React.Component {
               `}
             ></img>
           </button>
-          <Link href="/">
-            <a
-              href="/"
+          <a
+            href="/"
+            css={css`
+              display: table-cell;
+              vertical-align: middle;
+            `}
+          >
+            <img
               css={css`
-                display: table-cell;
-                vertical-align: middle;
+                height: 36px;
               `}
-            >
-              <img
-                css={css`
-                  height: 36px;
-                `}
-                src={logo}
-              ></img>
-            </a>
-          </Link>
+              src={logo}
+            ></img>
+          </a>
           <div
             css={css`
               display: table-cell;
@@ -275,39 +268,33 @@ export default class Mobile extends React.Component {
               }
             `}
           >
-            <Link href="/about">
-              <a
-                href="/about"
-                css={css`
-                  display: block;
-                  padding: 8px 4px;
-                `}
-              >
-                About
-              </a>
-            </Link>
-            <Link href="/contact">
-              <a
-                href="/contact"
-                css={css`
-                  display: block;
-                  padding: 8px 4px;
-                `}
-              >
-                Contact
-              </a>
-            </Link>
-            <Link href="/advertise">
-              <a
-                href="/advertise"
-                css={css`
-                  display: block;
-                  padding: 8px 4px;
-                `}
-              >
-                Advertise
-              </a>
-            </Link>
+            <a
+              href="/about"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              About
+            </a>
+            <a
+              href="/contact"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Contact
+            </a>
+            <a
+              href="/advertise"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Advertise
+            </a>
           </div>
         </div>
       </div>

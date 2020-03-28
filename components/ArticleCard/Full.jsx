@@ -8,8 +8,6 @@ import * as utilities from "./utilities";
 import * as moment from "moment";
 
 export default function Full(props) {
-  //  collect authors
-  const authors = utilities.collectAuthors(props.authors);
   return (
     <div
       css={css`
@@ -20,30 +18,28 @@ export default function Full(props) {
       `}
     >
       <span>
-        <Link href={props.category.href} as={props.category.as}>
-          <a
-            href={props.category.as}
-            css={css`
-              text-decoration: none;
-              color: ${globals.DBblue};
-              vertical-align: middle;
-              margin: 0;
-              font-family: Source Sans Pro;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 14px;
-              text-transform: uppercase;
-              display: inline;
-              cursor: pointer;
+        <a
+          href={props.category.as}
+          css={css`
+            text-decoration: none;
+            color: ${globals.DBblue};
+            vertical-align: middle;
+            margin: 0;
+            font-family: Source Sans Pro;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            display: inline;
+            cursor: pointer;
 
-              &:hover {
-                text-decoration: underline;
-              }
-            `}
-          >
-            {props.category.name}
-          </a>
-        </Link>
+            &:hover {
+              text-decoration: underline;
+            }
+          `}
+        >
+          {props.category.name}
+        </a>
         <span
           css={css`
             margin: 0;
@@ -65,45 +61,43 @@ export default function Full(props) {
           {moment(props.date).format("MMMM Do, h:mma")}
         </span>
       </span>
-      <Link href={props.href} as={props.as}>
-        <a href={props.as} style={{ textDecoration: "none" }}>
-          <h1
-            css={css`
-              margin: 2px 0 4px;
-              ${locals.headline}
-            `}
-            dangerouslySetInnerHTML={{ __html: props.headline }}
-          />
-          <img
-            css={css`
-              width: 100%;
-              margin: auto;
-            `}
-            src={props.imageurl}
-          />
-          <h4
-            css={css`
-              margin: 2px 0;
+      <a href={props.as} style={{ textDecoration: "none" }}>
+        <h1
+          css={css`
+            margin: 2px 0 4px;
+            ${locals.headline}
+          `}
+          dangerouslySetInnerHTML={{ __html: props.headline }}
+        />
+        <img
+          css={css`
+            width: 100%;
+            margin: auto;
+          `}
+          src={props.imageurl}
+        />
+        <h4
+          css={css`
+            margin: 2px 0;
 
-              font-family: Arimo;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 10px;
-              text-align: justify;
+            font-family: Arimo;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 10px;
+            text-align: justify;
 
-              color: #000000;
-            `}
-            dangerouslySetInnerHTML={{ __html: props.caption }}
-          />
-          <p
-            css={css`
-              margin: 0 0 5px;
-              ${locals.excerpt}
-            `}
-            dangerouslySetInnerHTML={{ __html: props.excerpt }}
-          />
-        </a>
-      </Link>
+            color: #000000;
+          `}
+          dangerouslySetInnerHTML={{ __html: props.caption }}
+        />
+        <p
+          css={css`
+            margin: 0 0 5px;
+            ${locals.excerpt}
+          `}
+          dangerouslySetInnerHTML={{ __html: props.excerpt }}
+        />
+      </a>
       <h3
         css={css`
           margin: 0;
@@ -116,7 +110,7 @@ export default function Full(props) {
           color: #000000;
         `}
       >
-        By {authors}
+        By {utilities.renderAuthors(props.authors)}
       </h3>
     </div>
   );

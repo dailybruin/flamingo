@@ -7,29 +7,6 @@ import * as utilities from "./utilities";
 import * as moment from "moment";
 
 export default function Long(props) {
-  //  collect authors
-  const authors = [];
-  if (props.authors.length === 0) {
-    authors[0] = <span>Daily Bruin Staff</span>;
-  } else {
-    for (const author of props.authors) {
-      authors.push(
-        <a
-          href={author.url}
-          css={css`
-            text-decoration: none;
-            color: ${globals.DBblue};
-
-            &:hover {
-              text-decoration: underline;
-            }
-          `}
-        >
-          {author.name}
-        </a>
-      );
-    }
-  }
   return (
     <div
       css={css`
@@ -48,7 +25,7 @@ export default function Long(props) {
       >
         <span>
           <a
-            href={props.category.url}
+            href={props.category.as}
             css={css`
               text-decoration: none;
               color: ${globals.DBblue};
@@ -94,7 +71,7 @@ export default function Long(props) {
             {moment(props.date).format("MMMM Do, h:mma")}
           </span>
         </span>
-        <a href={props.url} style={{ textDecoration: "none" }}>
+        <a href={props.as} style={{ textDecoration: "none" }}>
           <h1
             css={css`
               margin: 2px 0;
@@ -115,7 +92,7 @@ export default function Long(props) {
             color: #000000;
           `}
         >
-          By {authors}
+          By {utilities.renderAuthors(props.authors)}
         </h3>
       </div>
       <div
@@ -124,7 +101,7 @@ export default function Long(props) {
           flex: 4;
         `}
       >
-        <a href={props.url} style={{ textDecoration: "none" }}>
+        <a href={props.as} style={{ textDecoration: "none" }}>
           <p
             css={css`
               ${locals.excerpt}
@@ -140,7 +117,7 @@ export default function Long(props) {
           padding: 10px;
         `}
       >
-        <a href={props.url} style={{ textDecoration: "none" }}>
+        <a href={props.as} style={{ textDecoration: "none" }}>
           <div
             css={css`
               height: 100%;

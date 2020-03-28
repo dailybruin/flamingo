@@ -78,37 +78,33 @@ export default class Desktop extends React.Component {
     let today = moment().format("dddd, MMMM Do YYYY");
     let renderedCategories = [];
     if (this.props.categories != null) {
-      for (let i = 0; i < this.props.categories.length; i++) {
+      for (let i in this.props.categories) {
         renderedCategories.push(
-          <Link
-            href={this.props.categories[i].href}
-            as={this.props.categories[i].as}
-          >
-            <a
-              href={this.props.categories[i].as}
-              css={css`
-                display: table-cell;
-                text-align: center;
-                padding: 8px 4px;
-                font-family: ${globals.menuFont};
-                font-size: 18px;
-                font-weight: bold;
-                text-decoration: none;
-                text-transform: uppercase;
-                color: #ffffff;
-                white-space: nowrap;
-                &:hover {
-                  text-decoration: underline;
-                }
+          <a
+            key={i}
+            href={this.props.categories[i].as}
+            css={css`
+              display: table-cell;
+              text-align: center;
+              padding: 8px 4px;
+              font-family: ${globals.menuFont};
+              font-size: 18px;
+              font-weight: bold;
+              text-decoration: none;
+              text-transform: uppercase;
+              color: #ffffff;
+              white-space: nowrap;
+              &:hover {
+                text-decoration: underline;
+              }
 
-                &.isSticky {
-                  background-color: red;
-                }
-              `}
-            >
-              {this.props.categories[i].name}
-            </a>
-          </Link>
+              &.isSticky {
+                background-color: red;
+              }
+            `}
+          >
+            {this.props.categories[i].name}
+          </a>
         );
       }
     }
@@ -158,28 +154,26 @@ export default class Desktop extends React.Component {
               `}
             ></img>
           </button>
-          <Link href="/">
-            <a
-              href="/"
+          <a
+            href="/"
+            css={css`
+              display: inline-block;
+              vertical-align: middle;
+            `}
+          >
+            <img
+              src={logo}
               css={css`
                 display: inline-block;
                 vertical-align: middle;
-              `}
-            >
-              <img
-                src={logo}
-                css={css`
-                  display: inline-block;
-                  vertical-align: middle;
-                  height: 60px;
+                height: 60px;
 
-                  @media (max-width: 600px) {
-                    height: 24px;
-                  }
-                `}
-              ></img>
-            </a>
-          </Link>
+                @media (max-width: 600px) {
+                  height: 24px;
+                }
+              `}
+            ></img>
+          </a>
           <h2
             css={css`
               display: inline-block;
@@ -234,15 +228,9 @@ export default class Desktop extends React.Component {
                 }
               `}
             >
-              <Link href="/about">
-                <a href="/about">About</a>
-              </Link>
-              <Link href="/contact">
-                <a href="/contact">Contact</a>
-              </Link>
-              <Link href="/advertise">
-                <a href="/advertise">Advertise</a>
-              </Link>
+              <a href="/about">About</a>
+              <a href="/contact">Contact</a>
+              <a href="/advertise">Advertise</a>
             </div>
             <div
               css={css`

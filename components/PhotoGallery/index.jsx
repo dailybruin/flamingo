@@ -20,6 +20,7 @@ export default class PhotoGallery extends React.Component {
           caption={this.props.photos[i].caption}
           credit={this.props.photos[i].credit}
           order={i % 2}
+          key={i}
         ></Photo>
       );
     }

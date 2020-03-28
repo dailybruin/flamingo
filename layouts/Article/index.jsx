@@ -26,7 +26,7 @@ class ArticleLayout extends React.Component {
         <Article
           headline={this.props.article.title.rendered}
           date={new Date(this.props.article.date)}
-          authors={this.props.article["_embedded"].author}
+          authors={this.props.article.coauthors}
           categories={this.props.article["_embedded"]["wp:term"][0]}
           featureimg={
             this.props.article._embedded["wp:featuredmedia"] != undefined &&
