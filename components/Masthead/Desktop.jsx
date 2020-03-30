@@ -298,7 +298,7 @@ export default class Desktop extends React.Component {
                     color: #fff;
                     outline: none;
                     display: none;
-                    background-color: transparent;
+                    background-color: #000;
                     background-image: url(${minisearchIcon});
                     background-repeat: no-repeat;
                     background-size: 24px;

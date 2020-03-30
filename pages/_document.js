@@ -105,12 +105,51 @@ class MyDocument extends Document {
             sizes="114x114"
             href="/apple-touch-icon-114x114-precomposed.png"
           />
+
+          {/* Default OpenGraph/Twitter Meta */}
+          <title>Daily Bruin - Since 1919</title>
+          <meta
+            name="description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <link rel="canonical" href="https://new.dailybruin.com/" />
+          <meta
+            property="og:image"
+            content="https://dailybruin.com/images/2017/03/db-logo.png"
+          />
+          <meta
+            property="twitter:image"
+            content="https://dailybruin.com/images/2017/03/db-logo.png"
+          />
+          <meta property="og:url" content="https://new.dailybruin.com" />
+          <meta property="og:title" content="The Daily Bruin" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Daily Bruin" />
+          <meta
+            property="og:description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <meta property="og:locale" content="en_US" />
+          <meta property="fb:pages" content="47311244274" />
+
+          <meta name="twitter:title" content="Daily Bruin - Since 2020" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@dailybruin" />
+          <meta name="twitter:creator" content="@dailybruin" />
+          <meta
+            name="twitter:description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <meta
+            name="robots"
+            content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+          />
+
           {/* Google Fonts */}
           <link
             href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;700&display=swap"
             rel="stylesheet"
           />
-
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
           <script
             async

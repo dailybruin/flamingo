@@ -7,6 +7,7 @@ import MainSiteFooter from "../components/MainSiteFooter";
 import BreakingCard from "../components/BreakingBanner";
 import InTheNews from "../components/InTheNewsBanner";
 import Masthead from "../components/Masthead";
+import CommentFAB from "../components/CommentFAB";
 
 import css from "./style.css";
 
@@ -101,9 +102,7 @@ const PageWrapper = Comp =>
       }
       return (
         <div style={layoutStyle}>
-          <Head>
-            <title>Daily Bruin - Since 1919</title>
-          </Head>
+          <CommentFAB></CommentFAB>
           <div className={css["banner-ad"]}>
             <broadstreet-zone zone-id="69404"></broadstreet-zone>
           </div>
