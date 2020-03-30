@@ -4,21 +4,19 @@ import Error from "next/error";
 import { Config } from "../../config.js";
 import css from "../style.css";
 import * as utilities from "../utilities";
-import { Dot } from "react-animated-dots";
 import InfiniteScroll from "react-infinite-scroller";
 
 import ClassifiedsCard from "../../components/ClassifiedsCard";
+import AuthorCard from "../../components/AuthorCard";
 
 import Media from "react-media";
 
-export default class CategoryLayout extends React.Component {
+export default class Author extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       aArticleCard: utilities.buildArticleCard(this.props.posts[0]),
-      bArticleCard: utilities.buildArticleCard(this.props.posts[1]),
-      cArticleCard: utilities.buildArticleCard(this.props.posts[2]),
-      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(3)),
+      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(1)),
 
       more: true
     };
@@ -28,7 +26,7 @@ export default class CategoryLayout extends React.Component {
 
   getPosts(page) {
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&author=${this.props.author.id}&page=${page}`
     )
       .then(response => response.json())
       .then(json => {
@@ -70,18 +68,17 @@ export default class CategoryLayout extends React.Component {
                     width: "100%"
                   }}
                 >
+                  <div className={css.card}>
+                    <AuthorCard
+                      image={this.props.author["avatar_urls"][96]}
+                      name={this.props.author.name}
+                      position={this.props.author.acf.position}
+                      twitter={this.props.author.acf.twitter}
+                      email={this.props.author.media_email}
+                    />
+                  </div>
                   <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "full"
-                    })}
-                  </div>
-                  <div id="c2" className={css.card}>
-                    {React.cloneElement(this.state.bArticleCard, {
-                      displayType: "full"
-                    })}
-                  </div>
-                  <div id="c2" className={css.card}>
-                    {React.cloneElement(this.state.cArticleCard, {
                       displayType: "full"
                     })}
                   </div>
@@ -110,14 +107,41 @@ export default class CategoryLayout extends React.Component {
                   id="a-ad-b"
                   className={css.column}
                   style={{
-                    width: "66.666%"
+                    width: "100%"
                   }}
                 >
-                  <div id="a" className={css.card}>
-                    {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "full"
-                    })}
+                  <div
+                    id="c1-c2"
+                    className={css.column}
+                    style={{
+                      width: "33.33%"
+                    }}
+                  >
+                    <div className={css.card}>
+                      <AuthorCard
+                        image={this.props.author["avatar_urls"][96]}
+                        name={this.props.author.name}
+                        position={this.props.author.acf.position}
+                        twitter={this.props.author.acf.twitter}
+                        email={this.props.author.media_email}
+                      />
+                    </div>
                   </div>
+                  <div
+                    id="a"
+                    className={css.column}
+                    style={{
+                      width: "66.66%"
+                    }}
+                  >
+                    <div id="a" className={css.card}>
+                      {React.cloneElement(this.state.aArticleCard, {
+                        displayType: "full"
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className={css.column} style={{ width: "66.66%" }}>
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -144,15 +168,8 @@ export default class CategoryLayout extends React.Component {
                     width: "33.333%"
                   }}
                 >
-                  <div id="c1" className={css.card}>
-                    {React.cloneElement(this.state.bArticleCard, {
-                      displayType: "vert"
-                    })}
-                  </div>
-                  <div id="c2" className={css.card}>
-                    {React.cloneElement(this.state.cArticleCard, {
-                      displayType: "mini"
-                    })}
+                  <div id="above-ad" className={css.card}>
+                    <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
                   <div id="classifieds" className={css.card}>
                     <ClassifiedsCard
@@ -171,6 +188,23 @@ export default class CategoryLayout extends React.Component {
                   style={{ width: "75%" }}
                 >
                   <div
+                    id="c1-c2"
+                    className={css.column}
+                    style={{
+                      width: "33.33%"
+                    }}
+                  >
+                    <div className={css.card}>
+                      <AuthorCard
+                        image={this.props.author["avatar_urls"][96]}
+                        name={this.props.author.name}
+                        position={this.props.author.acf.position}
+                        twitter={this.props.author.acf.twitter}
+                        email={this.props.author.media_email}
+                      />
+                    </div>
+                  </div>
+                  <div
                     id="a"
                     className={css.column}
                     style={{
@@ -183,26 +217,6 @@ export default class CategoryLayout extends React.Component {
                       })}
                     </div>
                   </div>
-                  {/*a-b*/}
-                  <div
-                    id="c1-c2"
-                    className={css.column}
-                    style={{
-                      width: "33.33%"
-                    }}
-                  >
-                    <div id="c1" className={css.card}>
-                      {React.cloneElement(this.state.bArticleCard, {
-                        displayType: "vert"
-                      })}
-                    </div>
-                    <div id="c2" className={css.card}>
-                      {React.cloneElement(this.state.cArticleCard, {
-                        displayType: "mini"
-                      })}
-                    </div>
-                  </div>
-                  {/*c1-c2*/}
                   <div>
                     <InfiniteScroll
                       pageStart={1}

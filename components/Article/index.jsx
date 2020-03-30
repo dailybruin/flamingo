@@ -17,18 +17,25 @@ export default class Article extends React.Component {
   }
 
   render() {
-    // const renderedAuthorInfo = [];
-    // for (const author of this.props.authors) {
-    //   renderedAuthorInfo.push(
-    //     <AuthorInfo
-    //       name={author.name}
-    //       position={author.acf.position || ""}
-    //       bio={author.description}
-    //       email={author.media_email}
-    //       twitter={author.acf.twitter}
-    //     ></AuthorInfo>
-    //   );
-    // }
+    // grab author pics
+    let authorPictures = [];
+    for (let author of this.props.authors) {
+      authorPictures.push(
+        <a href={`/author/${author.slug}`}>
+          <img
+            src={author.avatar_urls[96]}
+            css={css`
+              height: 48px;
+              width: 48px;
+              border-radius: 50%;
+              display: inline-block;
+              margin-right: 10px;
+              vertical-align: middle;
+            `}
+          />
+        </a>
+      );
+    }
 
     // Check for Infobox
     let renderedInfobox = null;
@@ -133,17 +140,7 @@ export default class Article extends React.Component {
             {renderedInfobox}
           </div>
           <div>
-            <img
-              src={this.props.authorimg}
-              css={css`
-                height: 48px;
-                width: 48px;
-                border-radius: 50%;
-                display: inline-block;
-                margin-right: 10px;
-                vertical-align: middle;
-              `}
-            />
+            {authorPictures}
             <div style={{ display: "inline-block", verticalAlign: "middle" }}>
               <h3
                 css={css`
@@ -155,6 +152,7 @@ export default class Article extends React.Component {
                   font-weight: bold;
                   font-size: 18px;
                   line-height: 21px;
+                  padding: 5px 0 0;
 
                   color: #000000;
 
@@ -162,7 +160,6 @@ export default class Article extends React.Component {
                     text-decoration: none;
                     color: #0080c6;
                     background-color: #ffffff;
-                    padding: 5px 0;
                   }
                   a:hover {
                     text-decoration: underline;
@@ -174,7 +171,7 @@ export default class Article extends React.Component {
               <h4
                 css={css`
                   margin: 0;
-                  font-family: Source Sans Pro, sans-serif;
+                  font-family: ${globals.menuFont};
                   font-style: normal;
                   font-weight: 400;
                   font-size: 12px;
@@ -185,7 +182,7 @@ export default class Article extends React.Component {
               </h4>
             </div>
           </div>
-          <p
+          <div
             css={css`
               font-family: PT Serif;
               font-style: normal;
@@ -263,7 +260,7 @@ export default class Article extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
           {/* {renderedAuthorInfo} */}
-          <ShareCard></ShareCard>
+          {/* <ShareCard></ShareCard> */}
         </div>
       </div>
     );

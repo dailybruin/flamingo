@@ -90,14 +90,14 @@ export default function Vert(props) {
         </span>
       </span>
       <a href={props.as} style={{ textDecoration: "none" }}>
-        <h1
+        <div
           css={css`
             margin: 2px 0 4px;
             ${locals.headline}
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
-        <p
+        <div
           css={css`
             margin: 0 0 5px;
             ${locals.excerpt}

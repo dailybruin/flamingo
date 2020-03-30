@@ -32,6 +32,10 @@ h6 {
   font-family: "Arimo", sans-serif;
 }
 
+broadstreet-zone {
+  text-align: center;
+}
+
 .card {
   display: block;
   padding: 6px;
@@ -40,4 +44,29 @@ h6 {
 .column {
   display: inline-block;
   vertical-align: top;
+}
+
+.banner-ad {
+  max-width: 740px;
+  max-height: 102px;
+  margin: auto;
+  padding: 6px;
+  overflow-x: scroll;
+}
+
+.banner-ad img {
+  max-width: 100%;
+}
+
+.loader {
+  font-family: "Source Sans Pro", sans-serif;
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .banner-ad {
+    margin: -6px -6px;
+    padding: 6px 0;
+  }
 }

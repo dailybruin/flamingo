@@ -102,7 +102,7 @@ export default function Long(props) {
         `}
       >
         <a href={props.as} style={{ textDecoration: "none" }}>
-          <p
+          <div
             css={css`
               ${locals.excerpt}
             `}

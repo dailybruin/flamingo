@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import PageWrapper from "../PageWrapper";
-import fetch from "isomorphic-unfetch";
-import Error from "next/error";
-import { Config } from "../../config.js";
-import Head from "next/head";
 import css from "../style.css";
-import { SizeMe } from "react-sizeme";
+import Media from "react-media";
+
 import Article from "../../components/Article";
+import ClassifiedsCard from "../../components/ClassifiedsCard";
 
 const ArticleAdStyle = {
   width: "100%",
@@ -21,118 +19,137 @@ const ArticleAdStyle = {
 class ArticleLayout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      article: (
-        <Article
-          headline={this.props.article.title.rendered}
-          date={new Date(this.props.article.date)}
-          authors={this.props.article.coauthors}
-          categories={this.props.article["_embedded"]["wp:term"][0]}
-          featureimg={
-            this.props.article._embedded["wp:featuredmedia"] != undefined &&
-            !this.props.article._embedded["wp:featuredmedia"].empty
-              ? this.props.article._embedded["wp:featuredmedia"][0].source_url
-              : ""
-          }
-          caption={
-            this.props.article._embedded["wp:featuredmedia"] != undefined &&
-            !this.props.article._embedded["wp:featuredmedia"].empty
-              ? this.props.article._embedded["wp:featuredmedia"][0].caption
-                  .rendered
-              : ""
-          }
-          authorimg={
-            this.props.article["_embedded"].author[0]["avatar_urls"][96]
-          }
-          content={this.props.article.content.rendered}
-          acf={this.props.article.acf}
-        />
-      )
-    };
+    this.article = (
+      <Article
+        headline={this.props.article.title.rendered}
+        date={new Date(this.props.article.date)}
+        authors={this.props.authors}
+        categories={this.props.article["_embedded"]["wp:term"][0]}
+        featureimg={
+          this.props.article._embedded["wp:featuredmedia"] != undefined &&
+          !this.props.article._embedded["wp:featuredmedia"].empty
+            ? this.props.article._embedded["wp:featuredmedia"][0].source_url
+            : ""
+        }
+        caption={
+          this.props.article._embedded["wp:featuredmedia"] != undefined &&
+          !this.props.article._embedded["wp:featuredmedia"].empty
+            ? this.props.article._embedded["wp:featuredmedia"][0].caption
+                .rendered
+            : ""
+        }
+        authorimg={this.props.article["_embedded"].author[0]["avatar_urls"][96]}
+        content={this.props.article.content.rendered}
+        acf={this.props.article.acf}
+      />
+    );
   }
 
   render() {
     return (
-      <SizeMe monitorHeight={false}>
-        {({ size }) => {
-          if (size.width < 600) {
-            return (
-              <div id="ArticleGrid" style={{ width: "100%" }}>
-                <div
-                  id="article"
-                  className={css.column}
-                  style={{
-                    width: "100%"
-                  }}
-                >
-                  <div className={css.card}>{this.state.article}</div>
-                </div>
-                {/* <div
-                  id="extras"
-                  className={css.column}
-                  style={{
-                    width: "25%"
-                  }}
-                > */}
-                <div className={css.card}>
-                  <div style={ArticleAdStyle}>ADVERTISEMENT</div>
-                </div>
-              </div>
-              // </div>
-            );
-          } else if (size.width < 900) {
-            return (
-              <div id="ArticleGrid" style={{ width: "100%" }}>
-                <div
-                  id="article"
-                  className={css.column}
-                  style={{
-                    width: "100%"
-                  }}
-                >
-                  <div className={css.card}>{this.state.article}</div>
-                </div>
-                {/* <div
-                  id="extras"
-                  className={css.column}
-                  style={{
-                    width: "25%"
-                  }}
-                > */}
-                <div className={css.card}>
-                  <div style={ArticleAdStyle}>ADVERTISEMENT</div>
-                </div>
-              </div>
-              // </div>
-            );
-          } else {
-            return (
-              <div id="ArticleGrid" style={{ width: "100%" }}>
-                <div
-                  id="article"
-                  className={css.column}
-                  style={{
-                    width: "75%"
-                  }}
-                >
-                  <div className={css.card}>{this.state.article}</div>
-                </div>
-                <div
-                  id="extras"
-                  className={css.column}
-                  style={{
-                    width: "25%"
-                  }}
-                >
-                  <div className={css.card}>
-                    <div style={ArticleAdStyle}>ADVERTISEMENT</div>
+      <div>
+        <Media
+          queries={{
+            phone: "(max-width: 600px)",
+            tablet: "(min-width: 601px) and (max-width: 900px)",
+            desktop: "(min-width: 901px)"
+          }}
+          defaultMatches={{ desktop: true }}
+        >
+          {matches => (
+            <div>
+              {matches.phone && (
+                <div id="ArticleGrid" style={{ width: "100%" }}>
+                  <div
+                    id="article"
+                    className={css.column}
+                    style={{
+                      width: "100%"
+                    }}
+                  >
+                    <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>
+                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                    </div>
+                    <div className={css.card}>
+                      <ClassifiedsCard
+                        header="Featured Classifieds"
+                        classifieds={this.props.classifieds}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          }
-        }}
-      </SizeMe>
+              )}
+              {matches.tablet && (
+                <div id="ArticleGrid" style={{ width: "100%" }}>
+                  <div
+                    id="article"
+                    className={css.column}
+                    style={{
+                      width: "100%"
+                    }}
+                  >
+                    <div className={css.card}>{this.article}</div>
+                  </div>
+                  <div
+                    className={css.column}
+                    style={{
+                      width: "33.33%"
+                    }}
+                  >
+                    <div className={css.card}>
+                      <ClassifiedsCard
+                        header="Featured Classifieds"
+                        classifieds={this.props.classifieds}
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className={css.column}
+                    style={{
+                      width: "33.33%"
+                    }}
+                  >
+                    <div className={css.card}>
+                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {matches.desktop && (
+                <div id="ArticleGrid" style={{ width: "100%" }}>
+                  <div
+                    id="article"
+                    className={css.column}
+                    style={{
+                      width: "75%"
+                    }}
+                  >
+                    <div className={css.card}>{this.article}</div>
+                  </div>
+                  <div
+                    id="extras"
+                    className={css.column}
+                    style={{
+                      width: "25%"
+                    }}
+                  >
+                    <div className={css.card}>
+                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                    </div>
+                    <div className={css.card}>
+                      <ClassifiedsCard
+                        header="Featured Classifieds"
+                        classifieds={this.props.classifieds}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </Media>
+      </div>
     );
   }
 }

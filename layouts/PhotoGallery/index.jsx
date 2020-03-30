@@ -16,6 +16,8 @@ export default class PhotoGalleryLayout extends React.Component {
         <PhotoGallery
           headline={this.props.post.title.rendered}
           photos={this.props.photos}
+          photographers={this.props.photographers}
+          date={this.props.post.date}
         />
       </div>
     );

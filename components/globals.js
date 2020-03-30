@@ -1,24 +1,5 @@
 import { css } from "@emotion/core";
 
-/** Web fonts loaded here - only in a browser */
-if (typeof window !== "undefined") {
-  // tslint:disable-next-line:no-var-requires
-  const WebFontLoader = require("webfontloader");
-  WebFontLoader.load({
-    google: {
-      families: [
-        "Arimo:400",
-        "Arimo:700",
-        "PT Serif:400",
-        "PT Serif:700",
-        "Source Sans Pro:400",
-        "Source Sans Pro:700",
-        "Playfair Display:700"
-      ]
-    }
-  });
-}
-
 /** Reusable common CSS attributes */
 /** Colors */
 export const gray = "rgb(197, 197, 197)";

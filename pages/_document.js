@@ -105,11 +105,19 @@ class MyDocument extends Document {
             sizes="114x114"
             href="/apple-touch-icon-114x114-precomposed.png"
           />
+          {/* Google Fonts */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;700&display=swap"
+            rel="stylesheet"
+          />
+
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-29"
           ></script>
+          {/* Broadstreet Ads */}
+          <script src="https://cdn.broadstreetads.com/init-2.min.js"></script>
         </Head>
         <body>
           <Main />

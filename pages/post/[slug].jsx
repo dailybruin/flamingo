@@ -14,14 +14,27 @@ class Post extends Component {
       `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`
     );
     const post = await postRes.json();
+    let authors = [];
+    if (post[0].coauthors != undefined) {
+      for (let author of post[0].coauthors) {
+        const authorsRes = await fetch(
+          `${Config.apiUrl}/wp-json/wp/v2/users/${author.id}`
+        );
+        authors.push(await authorsRes.json());
+      }
+    }
     if (post[0].acf.gallery != undefined) {
       const photosRes = await fetch(
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
       );
       const photos = await photosRes.json();
-      return { post, photos };
+      return { post, photos, authors };
     }
-    return { post };
+    const classifiedsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
+    );
+    const classifieds = await classifiedsRes.json();
+    return { post, classifieds, authors };
   }
   componentDidMount() {
     if (
@@ -50,6 +63,7 @@ class Post extends Component {
           <PhotoGalleryLayout
             post={this.props.post[0]}
             photos={this.props.photos}
+            photographers={this.props.authors}
           />
         </>
       );
@@ -68,7 +82,19 @@ class Post extends Component {
               charset="utf-8"
             ></script>
           </Head>
-          <ArticleLayout article={this.props.post[0]} />
+          <ArticleLayout
+            article={this.props.post[0]}
+            authors={this.props.authors}
+            classifieds={this.props.classifieds.map(c => {
+              return {
+                category: {
+                  name: c._embedded["wp:term"][1][0].name,
+                  url: c._embedded["wp:term"][1][0].link
+                },
+                content: { name: c.content.rendered, url: c.link }
+              };
+            })}
+          />
         </>
       );
     }

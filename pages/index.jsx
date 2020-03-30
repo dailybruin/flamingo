@@ -87,6 +87,9 @@ class Index extends Component {
     const spStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${sportsCATID}`
     );
+    const classifiedsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
+    );
     posts.aStory = await aStoryRes.json();
     posts.bStory = await bStoryRes.json();
     posts.c1Story = await c1StoryRes.json();
@@ -101,7 +104,8 @@ class Index extends Component {
     posts.opinionList = await opStoryRes.json();
     posts.artsList = await aeStoryRes.json();
     posts.sportsList = await spStoryRes.json();
-    return { posts, multimediaPosts };
+    const classifieds = await classifiedsRes.json();
+    return { posts, multimediaPosts, classifieds };
   }
 
   componentDidMount() {
@@ -144,6 +148,15 @@ class Index extends Component {
         <HomeLayout
           posts={this.props.posts}
           media={this.props.multimediaPosts}
+          classifieds={this.props.classifieds.map(c => {
+            return {
+              category: {
+                name: c._embedded["wp:term"][1][0].name,
+                url: c._embedded["wp:term"][1][0].link
+              },
+              content: { name: c.content.rendered, url: c.link }
+            };
+          })}
         />
         {this.state.showPopUp ? (
           <EmailPopUp

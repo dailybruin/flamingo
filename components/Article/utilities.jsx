@@ -25,13 +25,14 @@ export function renderAuthors(authors) {
         if (i > 0) {
           renderedAuthors.push(<span>, </span>);
         }
-        if (i === authors.length - 1) {
+        if (i === authors.length - 2) {
           renderedAuthors.push(<span>and </span>);
         }
         renderedAuthors.push(
-          <a href={`/author/${authors[i]["user_nicename"]}`}>
-            {authors[i]["display_name"]}
-          </a>
+          <a
+            href={`/author/${authors[i].slug}`}
+            dangerouslySetInnerHTML={{ __html: authors[i].name }}
+          ></a>
         );
       }
     }

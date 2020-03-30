@@ -23,7 +23,7 @@ export function buildArticleCard(story) {
           story._embedded["wp:featuredmedia"] != undefined &&
           !story._embedded["wp:featuredmedia"].empty
             ? story._embedded["wp:featuredmedia"][0].source_url
-            : ""
+            : "http://dailybruin.com/images/2017/03/db-logo.png"
         }
         caption={
           story._embedded["wp:featuredmedia"] != undefined &&

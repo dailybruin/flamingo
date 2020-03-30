@@ -25,6 +25,7 @@
     "react-infinite-scroller": "^1.2.4",
     "react-masonry-component": "^6.2.1",
     "react-masonry-infinite": "^1.2.2",
+    "react-media": "^1.10.0",
     "react-share": "^4.0.1",
     "react-sizeme": "^2.6.10",
     "webfontloader": "^1.6.28"

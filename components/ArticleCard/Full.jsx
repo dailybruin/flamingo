@@ -62,7 +62,7 @@ export default function Full(props) {
         </span>
       </span>
       <a href={props.as} style={{ textDecoration: "none" }}>
-        <h1
+        <div
           css={css`
             margin: 2px 0 4px;
             ${locals.headline}
@@ -76,7 +76,7 @@ export default function Full(props) {
           `}
           src={props.imageurl}
         />
-        <h4
+        <div
           css={css`
             margin: 2px 0;
 
@@ -90,7 +90,7 @@ export default function Full(props) {
           `}
           dangerouslySetInnerHTML={{ __html: props.caption }}
         />
-        <p
+        <div
           css={css`
             margin: 0 0 5px;
             ${locals.excerpt}

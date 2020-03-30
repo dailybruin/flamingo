@@ -20,6 +20,7 @@ export default function Mini(props) {
       <div
         css={css`
           width: 100px;
+          min-width: 100px;
         `}
       >
         <a href={props.as} style={{ textDecoration: "none" }}>
@@ -27,7 +28,7 @@ export default function Mini(props) {
             css={css`
               height: 100%;
               width: 100%;
-              min-height: 100px;
+              min-height: 50px;
               overflow: hidden;
               position: relative;
             `}
@@ -50,7 +51,6 @@ export default function Mini(props) {
       <div
         css={css`
           padding: 10px;
-          width: 50%;
         `}
       >
         <span>

@@ -113,21 +113,21 @@ export default function Horz(props) {
               font-style: normal;
               font-weight: 400;
               font-size: 11px;
-              vertical-align: middle;
+              line-height: 14px;
             `}
           >
             {moment(props.date).format("MMMM Do, h:mma")}
           </span>
         </span>
         <a href={props.as} style={{ textDecoration: "none" }}>
-          <h1
+          <div
             css={css`
               margin: 2px 0 4px;
               ${locals.headline}
             `}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />
-          <p
+          <div
             css={css`
               margin: 0 0 5px;
               ${locals.excerpt}

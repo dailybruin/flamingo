@@ -35,7 +35,11 @@ export default class PhotoGallery extends React.Component {
             padding: 6px;
           `}
         >
-          <Header headline={this.props.headline} />
+          <Header
+            headline={this.props.headline}
+            photographers={this.props.photographers}
+            date={this.props.date}
+          />
         </div>
         <div
           css={css`

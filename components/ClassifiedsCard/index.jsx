@@ -27,19 +27,26 @@ function Classified(props) {
             text-decoration: underline;
           }
         `}
-      >
-        {props.category.name}
-      </a>
+        dangerouslySetInnerHTML={{ __html: props.category.name }}
+      ></a>
       <br />
       <a
         href={props.content.url}
         css={css`
           color: #000000;
           text-decoration: none;
+
+          &:hover {
+            color: #444;
+            text-decoration: none;
+          }
+
+          p {
+            margin: 0;
+          }
         `}
-      >
-        {props.content.name}
-      </a>
+        dangerouslySetInnerHTML={{ __html: props.content.name }}
+      ></a>
     </div>
   );
 }
@@ -69,8 +76,8 @@ export default class ClassifiedsCard extends React.Component {
         <div
           css={css`
             background-color: #000000;
-            height: 24px;
-            padding: 0 6px;
+            height: 27px;
+            padding: 2px 10px 0;
 
             font-family: Source Sans Pro;
             font-style: normal;
@@ -93,7 +100,7 @@ export default class ClassifiedsCard extends React.Component {
         </div>
         <div style={{ textAlign: "right", padding: "12px 12px 6px" }}>
           <a
-            href={"./#"}
+            href="https://dailybruin.com/classifieds"
             css={css`
               font-family: Source Sans Pro;
               font-size: 12px;
@@ -108,7 +115,7 @@ export default class ClassifiedsCard extends React.Component {
               }
             `}
           >
-            {"./#"}
+            More classifieds »
           </a>
         </div>
       </div>

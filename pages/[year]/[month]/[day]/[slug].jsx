@@ -23,9 +23,13 @@ class Post extends Component {
       const photos = await photosRes.json();
       return { post, photos };
     }
-    return { post };
+    const classifiedsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
+    );
+    const classifieds = await classifiedsRes.json();
+    return { post, classifieds };
   }
-  componentWillMount() {
+  componentDidMount() {
     if (
       this.props.post[0].acf["db_link"] != null &&
       this.props.post[0].acf["db_link"] != ""
@@ -36,7 +40,7 @@ class Post extends Component {
   render() {
     if (this.props.photos != undefined) {
       return (
-        <div>
+        <>
           <Head>
             <title
               dangerouslySetInnerHTML={{
@@ -53,11 +57,11 @@ class Post extends Component {
             post={this.props.post[0]}
             photos={this.props.photos}
           />
-        </div>
+        </>
       );
     } else {
       return (
-        <div>
+        <>
           <Head>
             <title
               dangerouslySetInnerHTML={{
@@ -70,8 +74,19 @@ class Post extends Component {
               charset="utf-8"
             ></script>
           </Head>
-          <ArticleLayout article={this.props.post[0]} />
-        </div>
+          <ArticleLayout
+            article={this.props.post[0]}
+            classifieds={this.props.classifieds.map(c => {
+              return {
+                category: {
+                  name: c._embedded["wp:term"][1][0].name,
+                  url: c._embedded["wp:term"][1][0].link
+                },
+                content: { name: c.content.rendered, url: c.link }
+              };
+            })}
+          />
+        </>
       );
     }
   }

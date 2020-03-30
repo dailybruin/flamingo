@@ -1,31 +1,27 @@
 import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import * as MainSiteStyles from "../globals";
-import emailImage from "./email.png";
-import twitterImage from "./twitter.png";
+import * as globals from "../globals";
+import emailImage from "./mail.svg";
+import twitterImage from "./twitter.svg";
 
 function SocialCircle(props) {
   return (
     <a href={props.url}>
       <div
         css={css`
-          background-color: ${MainSiteStyles.lightGray};
-          border-style: solid;
-          border-width: 0.5px;
           border-radius: 50%;
-          border-color: ${MainSiteStyles.gray};
-          height: 35px;
-          width: 35px;
+          height: 36px;
+          width: 36px;
           margin: 5px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          display: inline-block;
+          background-color: ${props.color};
         `}
       >
         <img
           css={css`
-            width: 70%;
+            width: 36px;
+            padding: 8px;
             height: auto;
           `}
           src={props.image}
@@ -42,39 +38,45 @@ export default class AuthorCard extends React.Component {
       <div
         css={css`
           background-color: white;
-          box-shadow: ${MainSiteStyles.cardShadow};
+          box-shadow: ${globals.cardShadow};
         `}
       >
         <div
           css={css`
-            height: 100%;
             display: block;
+            text-align: center;
           `}
         >
-          <div css={css`
-              padding: 20px;`}>
           <div
             css={css`
-              padding-top: 100%;
-              width: 100%;
-              overflow: hidden;
-              position: relative;
-              border-radius: 50%;
+              padding: 20px;
+              max-width: 300px;
+              margin: auto;
             `}
           >
-            <img
+            <div
               css={css`
-                width: 100%;
                 height: 100%;
-                object-fit: cover;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                width: 100%;
+                padding-top: 100%;
+                overflow: hidden;
+                position: relative;
               `}
-              src={this.props.image}
-            />
-          </div>
+            >
+              <img
+                css={css`
+                  height: 100%;
+                  width: 100%;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  object-fit: cover;
+                  border-radius: 50%;
+                `}
+                src={this.props.image}
+              />
+            </div>
           </div>
           <h1
             css={css`
@@ -82,7 +84,7 @@ export default class AuthorCard extends React.Component {
               font-size: 24px;
               line-height: 1.6rem;
               text-align: center;
-              font-family: ${MainSiteStyles.headlineFont};
+              font-family: ${globals.headlineFont};
               color: black;
               padding: 0px 20px 5px 20px;
               margin: 0px;
@@ -92,21 +94,22 @@ export default class AuthorCard extends React.Component {
           </h1>
           <div
             css={css`
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              text-align: center;
+              margin-bottom: 5px;
             `}
           >
             {this.props.twitter && (
               <SocialCircle
                 url={"https://twitter.com/" + this.props.twitter}
                 image={twitterImage}
+                color="#00acee"
               />
             )}
             {this.props.email && (
               <SocialCircle
                 url={"mailto:" + this.props.email}
                 image={emailImage}
+                color="#B23121"
               />
             )}
           </div>
@@ -120,7 +123,7 @@ export default class AuthorCard extends React.Component {
             padding: 4px 0px;
             line-height: 1.6rem;
             margin: 0px;
-            font-family: ${MainSiteStyles.menuFont};
+            font-family: ${globals.menuFont};
           `}
         >
           {this.props.position}
