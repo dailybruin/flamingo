@@ -43,6 +43,7 @@ class MyApp extends App {
     gtag("config", "UA-28181852-29");
 
     // Broadstreet Ads
+    window.broadstreet = window.broadstreet || { watch: function() {} };
     broadstreet.watch({ networkId: 5876 });
     
     
