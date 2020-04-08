@@ -5,6 +5,7 @@ import Media from "react-media";
 
 import Article from "../../components/Article";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
+import CommentsCard from "../../components/CommentsCard";
 
 const ArticleAdStyle = {
   width: "100%",
@@ -69,6 +70,12 @@ class ArticleLayout extends React.Component {
                   >
                     <div className={css.card}>{this.article}</div>
                     <div className={css.card}>
+                      <CommentsCard
+                        id={this.props.article.id}
+                        link={this.props.article.link}
+                      ></CommentsCard>
+                    </div>
+                    <div className={css.card}>
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div className={css.card}>
@@ -90,6 +97,12 @@ class ArticleLayout extends React.Component {
                     }}
                   >
                     <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>
+                      <CommentsCard
+                        id={this.props.article.id}
+                        link={this.props.article.link}
+                      ></CommentsCard>
+                    </div>
                   </div>
                   <div
                     className={css.column}
@@ -126,6 +139,12 @@ class ArticleLayout extends React.Component {
                     }}
                   >
                     <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>
+                      <CommentsCard
+                        id={this.props.article.id}
+                        link={this.props.article.link}
+                      ></CommentsCard>
+                    </div>
                   </div>
                   <div
                     id="extras"

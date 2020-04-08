@@ -70,7 +70,7 @@ export default class Author extends React.Component {
                 >
                   <div className={css.card}>
                     <AuthorCard
-                      image={this.props.author["avatar_urls"][96]}
+                      image={this.props.author["avatar_urls"][512]}
                       name={this.props.author.name}
                       position={this.props.author.acf.position}
                       twitter={this.props.author.acf.twitter}
@@ -119,7 +119,7 @@ export default class Author extends React.Component {
                   >
                     <div className={css.card}>
                       <AuthorCard
-                        image={this.props.author["avatar_urls"][96]}
+                        image={this.props.author["avatar_urls"][512]}
                         name={this.props.author.name}
                         position={this.props.author.acf.position}
                         twitter={this.props.author.acf.twitter}
@@ -196,7 +196,7 @@ export default class Author extends React.Component {
                   >
                     <div className={css.card}>
                       <AuthorCard
-                        image={this.props.author["avatar_urls"][96]}
+                        image={this.props.author["avatar_urls"][512]}
                         name={this.props.author.name}
                         position={this.props.author.acf.position}
                         twitter={this.props.author.acf.twitter}

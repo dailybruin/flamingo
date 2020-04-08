@@ -50,15 +50,15 @@ export default class Desktop extends React.Component {
   toggleMenu() {
     const block = this.MastheadCard.current;
     this.state.menuExpanded
-      ? (block.style.height = "72px")
-      : (block.style.height = "110px");
+      ? (block.style.height = "69px")
+      : (block.style.height = "107px");
     this.state.menuExpanded = !this.state.menuExpanded;
   }
 
   expandMenu() {
     const block = this.MastheadCard.current;
     if (!this.state.menuExpanded) {
-      block.style.height = "110px";
+      block.style.height = "107px";
       this.state.menuExpanded = true;
     }
   }
@@ -66,7 +66,7 @@ export default class Desktop extends React.Component {
   collapseMenu() {
     const block = this.MastheadCard.current;
     if (this.state.menuExpanded) {
-      block.style.height = "72px";
+      block.style.height = "69px";
       this.state.menuExpanded = false;
     }
   }
@@ -87,9 +87,9 @@ export default class Desktop extends React.Component {
             css={css`
               display: table-cell;
               text-align: center;
-              padding: 8px 4px;
+              padding: 7px 4px;
               font-family: ${globals.menuFont};
-              font-size: 18px;
+              font-size: 17px;
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
@@ -116,7 +116,7 @@ export default class Desktop extends React.Component {
           background: #ffffff;
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
-          height: 110px;
+          height: 107px;
           transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
           position: sticky;
           top: 0;

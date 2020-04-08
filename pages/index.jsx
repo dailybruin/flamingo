@@ -40,7 +40,8 @@ class Index extends Component {
     super(props);
 
     this.state = {
-      showPopUp: false
+      showPopUp: false,
+      showWelcome: true
     };
   }
   static async getInitialProps(context) {
@@ -121,6 +122,14 @@ class Index extends Component {
         } else {
           Cookies.set("newsletterVisits", visits.toString(), { expires: 365 });
         }
+      }
+    }
+    if (Cookies.get("visited") === undefined) {
+      let visited = Cookies.get("visited");
+      if (visited === undefined) {
+        Cookies.set("visited", "true", { expires: 365 });
+      } else {
+        this.setState({ showWelcome: true });
       }
     }
   }

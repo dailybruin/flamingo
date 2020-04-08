@@ -45,7 +45,7 @@ export default function Story(props) {
           `}
           dangerouslySetInnerHTML={{ __html: props.title }}
         ></h3>
-        <p
+        <div
           css={css`
             color: ${globals.black};
             font-family: "PT Serif", serif;
@@ -62,7 +62,7 @@ export default function Story(props) {
             }
           `}
           dangerouslySetInnerHTML={{ __html: props.text }}
-        ></p>
+        ></div>
       </a>
     </div>
   );

@@ -64,6 +64,11 @@ broadstreet-zone {
   width: 100%;
 }
 
+.comments-card {
+  background-color: #fff;
+  padding: 10px;
+}
+
 @media (max-width: 600px) {
   .banner-ad {
     margin: -6px -6px;

@@ -238,6 +238,7 @@ export default class Article extends React.Component {
                 max-width: 100% !important;
                 margin: auto;
                 padding: 20px;
+                width: 100% !important;
               }
 
               figure figcaption {
