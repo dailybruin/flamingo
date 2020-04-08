@@ -7,6 +7,7 @@ import { Config } from "../config.js";
 import HomeLayout from "../layouts/Home";
 import Cookies from "js-cookie";
 import EmailPopUp from "../components/EmailSignUp";
+import WelcomePopUp from "../components/WelcomePopUp";
 
 const aTAGID = 4847;
 const bTAGID = 4850;
@@ -41,7 +42,7 @@ class Index extends Component {
 
     this.state = {
       showPopUp: false,
-      showWelcome: true
+      showWelcome: false
     };
   }
   static async getInitialProps(context) {
@@ -125,12 +126,8 @@ class Index extends Component {
       }
     }
     if (Cookies.get("visited") === undefined) {
-      let visited = Cookies.get("visited");
-      if (visited === undefined) {
-        Cookies.set("visited", "true", { expires: 365 });
-      } else {
-        this.setState({ showWelcome: true });
-      }
+      this.setState({ showWelcome: true });
+      Cookies.set("visited", "true", { expires: 365 });
     }
   }
 
@@ -146,9 +143,14 @@ class Index extends Component {
     this.setState({ showPopUp: false });
   };
 
+  closeWelcomePopup = () => {
+    this.setState({ showWelcome: false });
+  };
+
   removeCookies = () => {
     Cookies.remove("subscribed2newsletter");
     Cookies.remove("newsletterVisits");
+    Cookies.remove("visited");
   };
 
   render() {
@@ -167,11 +169,14 @@ class Index extends Component {
             };
           })}
         />
-        {this.state.showPopUp ? (
+        {this.state.showPopUp && !this.state.showWelcome ? (
           <EmailPopUp
             sub2Newsletter={this.subscribeToNewsletter}
             close={this.closeNewsletterPopup}
           />
+        ) : null}
+        {this.state.showWelcome ? (
+          <WelcomePopUp bodytext="placeholder" close={this.closeWelcomePopup} />
         ) : null}
       </div>
     );
