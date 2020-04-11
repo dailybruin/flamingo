@@ -144,11 +144,7 @@ class MyDocument extends Document {
           />
           {/* Google Fonts */}
           <link
-            href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;700&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,550;0,700;1,550;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,550;0,700;1,550;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Source+Sans+Pro:wght@400;700&display=swap"
             rel="stylesheet"
           />
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
