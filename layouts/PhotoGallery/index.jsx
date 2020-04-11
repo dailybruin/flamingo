@@ -12,7 +12,7 @@ export default class PhotoGalleryLayout extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={css.card}>
         <PhotoGallery
           headline={this.props.post.title.rendered}
           photos={this.props.photos}

@@ -28,8 +28,8 @@ export default class Mobile extends React.Component {
     menu.scrollIntoView();
     this.state.menuExpanded
       ? (menu.style.height = "0")
-      : (menu.style.height = "calc(100vh - 50px)");
-    this.state.menuExpanded = !this.state.menuExpanded;
+      : (menu.style.height = "calc(100vh - 48px)");
+    this.setState({ menuExpanded: !this.state.menuExpanded });
   }
 
   expandSearch() {
@@ -88,44 +88,57 @@ export default class Mobile extends React.Component {
               display: table-cell;
               vertical-align: middle;
               border: none;
-              padding: 0;
+              padding: 4px;
               cursor: pointer;
               background-color: transparent;
               outline: none;
-
-              &:active {
-                transform: rotate(90);
-              }
+              height: 36px;
+              width: 36px;
+              transition: transform 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+              transform: ${this.state.menuExpanded
+                ? "rotate(90deg)"
+                : "rotate(0deg)"};
             `}
             onClick={this.toggleMenu}
           >
             <img
               src={menuIcon}
               css={css`
-                height: 36px;
+                height: 100%;
                 background-color: white;
               `}
             ></img>
           </button>
-          <a
-            href="/"
+          <div
             css={css`
               display: table-cell;
-              vertical-align: middle;
+              text-align: center;
+              width: 100%;
+              white-space: nowrap;
             `}
           >
-            <img
+            <a
+              href="/"
               css={css`
+                display: inline-block;
+                vertical-align: middle;
                 height: 36px;
+                padding: 4px 0;
               `}
-              src={logo}
-            ></img>
-          </a>
+            >
+              <img
+                src={logo}
+                css={css`
+                  display: inline-block;
+                  height: 100%;
+                `}
+              ></img>
+            </a>
+          </div>
           <div
             css={css`
               display: table-cell;
               vertical-align: middle;
-              height: 36px;
             `}
           >
             <div
@@ -166,7 +179,7 @@ export default class Mobile extends React.Component {
                     font-family: ${globals.menuFont};
                     font-weight: bold;
                     &:focus {
-                      width: 250px;
+                      width: calc(100vw - 64px);
                       padding: 0 36px 0 6px;
                       color: #fff;
                     }
@@ -220,7 +233,9 @@ export default class Mobile extends React.Component {
                     right: 0;
                     top: 0;
                     border: none;
-                    padding: 0;
+                    padding: 4px;
+                    height: 36px;
+                    width: 36px;
                     cursor: pointer;
                     background-color: transparent;
                     outline: none;
@@ -237,8 +252,7 @@ export default class Mobile extends React.Component {
                       vertical-align: middle;
                       transition: all 200ms;
                       transition-delay: 100ms;
-                      width: 36px;
-                      height: 36px;
+                      height: 100%;
                     `}
                     src={searchIcon}
                   ></img>
@@ -284,7 +298,7 @@ export default class Mobile extends React.Component {
               text-decoration: none;
               text-transform: uppercase;
               color: #ffffff;
-              &:hover {
+              a:hover {
                 text-decoration: underline;
               }
             `}

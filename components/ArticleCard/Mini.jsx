@@ -87,6 +87,7 @@ export default function Mini(props) {
               margin: 2px 0 4px;
               ${locals.headline}
               font-size: 0.85rem;
+              font-weight: 550;
             `}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />

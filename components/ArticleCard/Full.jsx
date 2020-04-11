@@ -24,38 +24,36 @@ export default function Full(props) {
             text-decoration: none;
             color: ${globals.DBblue};
             vertical-align: middle;
-            margin: 0;
-            font-family: Source Sans Pro;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
-            display: inline;
-            cursor: pointer;
 
             &:hover {
               text-decoration: underline;
             }
           `}
         >
-          {props.category.name}
+          <h2
+            css={css`
+              margin: 0 4px 0 0;
+              font-family: Source Sans Pro;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 14px;
+              text-transform: uppercase;
+              display: inline;
+            `}
+          >
+            {props.category.name}
+          </h2>
         </a>
         <span
           css={css`
+            border-left: 1px solid #000;
             margin: 0;
-            vertical-align: middle;
-          `}
-        >
-          &nbsp;|&nbsp;
-        </span>
-        <span
-          css={css`
-            margin: 0;
-            font-family: Source Sans Pro, sans-serif;
+            padding-left: 4px;
+            font-family: ${globals.bodyFont};
             font-style: normal;
-            font-weight: 400;
+            font-weight: 300;
             font-size: 11px;
-            vertical-align: middle;
+            line-height: 14px;
           `}
         >
           {moment(props.date).format("MMMM Do, h:mma")}
@@ -64,7 +62,7 @@ export default function Full(props) {
       <a href={props.as} style={{ textDecoration: "none" }}>
         <div
           css={css`
-            margin: 2px 0 4px;
+            margin: 2px 0 6px;
             ${locals.headline}
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
@@ -102,7 +100,7 @@ export default function Full(props) {
         css={css`
           margin: 0;
 
-          font-family: Arimo;
+          font-family: ${globals.bodyFont};
           font-style: normal;
           font-weight: bold;
           font-size: 11px;

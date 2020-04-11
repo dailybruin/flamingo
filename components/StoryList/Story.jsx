@@ -24,7 +24,7 @@ export default function Story(props) {
   return (
     <div
       css={css`
-        border-bottom: solid #ababab 0.1rem;
+        border-bottom: 0.5px solid #000;
       `}
     >
       <a href={props.link} style={{ textDecoration: "none" }}>
@@ -32,7 +32,7 @@ export default function Story(props) {
           css={css`
             font-family: ${globals.headlineFont};
             font-size: 0.875rem;
-            font-weight: 700;
+            font-weight: 550;
             line-height: 1.125rem;
             margin: 3px 0px;
             overflow-wrap: break-word;
@@ -48,7 +48,8 @@ export default function Story(props) {
         <div
           css={css`
             color: ${globals.black};
-            font-family: "PT Serif", serif;
+            font-family: ${globals.bodyFont};
+            font-weight: 300;
             font-size: 0.78rem;
             line-height: 1.1rem;
             margin: 0px;

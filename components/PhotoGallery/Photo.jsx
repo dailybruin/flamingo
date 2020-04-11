@@ -17,10 +17,8 @@ export default class Photo extends React.Component {
           justify-content: center;
           box-sizing: border-box;
           align-items: center;
-          @media (max-width: 600px) {
+          @media (max-width: 800px) {
             display: block;
-            background-color: red;
-            box-shadow: ${globals.cardShadow};
             margin-bottom: 12px;
           }
         `}
@@ -34,12 +32,9 @@ export default class Photo extends React.Component {
             css={css`
               margin: 6px;
               padding: 15px;
-              box-shadow: ${globals.cardShadow};
               height: 100%;
-              background-color: #fff;
-              @media (max-width: 600px) {
+              @media (max-width: 800px) {
                 margin: 0;
-                box-shadow: none;
               }
             `}
           >
@@ -50,7 +45,7 @@ export default class Photo extends React.Component {
                 display: block;
                 max-height: 80vh;
                 min-height: 200px;
-                @media (max-width: 600px) {
+                @media (max-width: 800px) {
                   max-height: initial;
                   min-height: initial;
                 }
@@ -61,7 +56,7 @@ export default class Photo extends React.Component {
         <div
           css={css`
             flex-shrink: 10000;
-            @media (max-width: 600px) {
+            @media (max-width: 800px) {
               width: 100%;
               margin: 0;
               display: block;
@@ -73,21 +68,21 @@ export default class Photo extends React.Component {
               min-width: 300px;
               max-width: 400px;
               padding: 20px;
-              box-shadow: ${globals.cardShadow};
               margin: 6px;
               background-color: #fff;
-              @media (max-width: 600px) {
+              @media (max-width: 800px) {
                 max-width: initial;
                 min-width: initial;
                 margin: 0;
                 box-shadow: none;
+                padding: 10px;
               }
             `}
           >
             <p
               css={css`
                 font-family: ${globals.bodyFont};
-                font-weight: bold;
+                font-weight: 400;
                 margin-top: 0;
                 font-size: 16px;
                 line-height: 1.5;
@@ -96,7 +91,7 @@ export default class Photo extends React.Component {
             />
             <h4
               css={css`
-                font-family: ${globals.headlineFont};
+                font-family: ${globals.bodyFont};
                 text-align: right;
                 padding: 0;
                 margin: 0;

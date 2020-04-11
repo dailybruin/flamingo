@@ -105,7 +105,6 @@ class MyDocument extends Document {
             sizes="114x114"
             href="/apple-touch-icon-114x114-precomposed.png"
           />
-
           {/* Default OpenGraph/Twitter Meta */}
           <title>Daily Bruin - Since 1919</title>
           <meta
@@ -131,7 +130,6 @@ class MyDocument extends Document {
           />
           <meta property="og:locale" content="en_US" />
           <meta property="fb:pages" content="47311244274" />
-
           <meta name="twitter:title" content="Daily Bruin - Since 2020" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@dailybruin" />
@@ -144,10 +142,13 @@ class MyDocument extends Document {
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
           />
-
           {/* Google Fonts */}
           <link
             href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,550;0,700;1,550;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
             rel="stylesheet"
           />
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}

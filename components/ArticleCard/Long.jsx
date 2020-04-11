@@ -38,7 +38,7 @@ export default function Long(props) {
           >
             <h2
               css={css`
-                margin: 0;
+                margin: 0 4px 0 0;
                 font-family: Source Sans Pro;
                 font-style: normal;
                 font-weight: bold;
@@ -52,20 +52,14 @@ export default function Long(props) {
           </a>
           <span
             css={css`
+              border-left: 1px solid #000;
               margin: 0;
-              vertical-align: middle;
-            `}
-          >
-            &nbsp;|&nbsp;
-          </span>
-          <span
-            css={css`
-              margin: 0;
-              font-family: Source Sans Pro, sans-serif;
+              padding-left: 4px;
+              font-family: ${globals.bodyFont};
               font-style: normal;
-              font-weight: 400;
+              font-weight: 300;
               font-size: 11px;
-              vertical-align: middle;
+              line-height: 14px;
             `}
           >
             {moment(props.date).format("MMMM Do, h:mma")}
@@ -80,11 +74,19 @@ export default function Long(props) {
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />
         </a>
+        <a href={props.as} style={{ textDecoration: "none" }}>
+          <div
+            css={css`
+              ${locals.excerpt}
+            `}
+            dangerouslySetInnerHTML={{ __html: props.excerpt }}
+          />
+        </a>
         <h3
           css={css`
-            margin: 0;
+            margin: 4px 0 0;
 
-            font-family: Arimo;
+            font-family: ${globals.bodyFont};
             font-style: normal;
             font-weight: bold;
             font-size: 11px;
@@ -97,22 +99,7 @@ export default function Long(props) {
       </div>
       <div
         css={css`
-          padding: 20px 30px 20px 10px;
-          flex: 4;
-        `}
-      >
-        <a href={props.as} style={{ textDecoration: "none" }}>
-          <div
-            css={css`
-              ${locals.excerpt}
-            `}
-            dangerouslySetInnerHTML={{ __html: props.excerpt }}
-          />
-        </a>
-      </div>
-      <div
-        css={css`
-          flex: 4;
+          flex-basis: 350px;
           order: -1;
           padding: 10px;
         `}

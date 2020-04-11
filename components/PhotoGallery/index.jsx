@@ -28,23 +28,20 @@ export default class PhotoGallery extends React.Component {
       <div
         css={css`
           width: 100%;
+          box-shadow: ${globals.cardShadow};
+          background-color: #fff;
         `}
       >
-        <div
-          css={css`
-            padding: 6px;
-          `}
-        >
-          <Header
-            headline={this.props.headline}
-            photographers={this.props.photographers}
-            date={this.props.date}
-          />
-        </div>
+        <Header
+          headline={this.props.headline}
+          photographers={this.props.photographers}
+          date={this.props.date}
+        />
         <div
           css={css`
             width: 100%;
-            @media (max-width: 600px) {
+            padding: 0 40px;
+            @media (max-width: 800px) {
               padding: 6px;
             }
           `}

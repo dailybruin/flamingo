@@ -12,7 +12,6 @@ export default class SectionHeader extends React.Component {
     let renderedSubcategories = [];
     if (this.props.subcategories != undefined) {
       for (let i = 0; i < this.props.subcategories.length; i++) {
-        let renderedSubsubcategories = [];
         renderedSubcategories.push(
           <a
             href={this.props.subcategories[i].link}
@@ -20,12 +19,11 @@ export default class SectionHeader extends React.Component {
               __html: this.props.subcategories[i].name
             }}
             css={css`
-              display: inline-block;
               font-family: ${globals.menuFont};
               text-transform: uppercase;
               font-weight: bold;
               font-size: 12px;
-              padding: 5px;
+              padding: 1px 5px;
               color: black;
               text-decoration: none;
               &:hover {
@@ -62,13 +60,28 @@ export default class SectionHeader extends React.Component {
           css={css`
             width: 100%;
             background-color: black;
-            height: 4px;
+            height: 1px;
             margin-bottom: 5px;
           `}
         ></div>
         <div
           css={css`
-            text-align: center;
+            ${renderedSubcategories.length > 8
+              ? `
+              margin: auto;
+              text-align: left;
+              column-count: 6;
+              column-width: 150px;
+              a {
+                display: block;
+                margin-left: 40px;
+              }`
+              : `
+              text-align: center;
+              a {
+                display: inline-block;
+              }
+              `}
             @media (max-width: 600px) {
               display: none;
             }

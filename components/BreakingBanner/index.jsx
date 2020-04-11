@@ -60,8 +60,8 @@ export default class BreakingBanner extends React.Component {
             href={this.props.story.href}
             css={css`
               font-size: 16px;
-              font-family: ${globals.headlineFont};
-              font-weight: bold;
+              font-family: ${globals.bodyFont};
+              font-weight: 700;
               color: #000;
               text-decoration: none;
               &:hover {
