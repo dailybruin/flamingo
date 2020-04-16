@@ -185,10 +185,10 @@ export default class Article extends React.Component {
             css={css`
               font-family: ${globals.bodyFont};
               font-style: normal;
-              font-weight: normal;
+              font-weight: 400;
               font-size: 1rem;
               text-align: left;
-              line-height: 1.5;
+              line-height: 1.75;
 
               color: #000000;
               display: block;

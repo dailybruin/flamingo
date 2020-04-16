@@ -11,7 +11,7 @@ export const DBblue = "#0080C6";
 export const breakingRed = "#CB0000";
 
 /** Font families */
-export const headlineFont = "'Playfair Display', serif";
+export const headlineFont = "'DM Serif Text', serif";
 export const bodyFont = "'Roboto', serif";
 export const blurbFont = "'PT Serif', serif";
 export const menuFont = "'Source Sans Pro', sans-serif";
