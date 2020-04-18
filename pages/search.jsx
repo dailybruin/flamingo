@@ -29,6 +29,9 @@ class Search extends React.Component {
           padding: 6px;
         `}
       >
+        <Head>
+          <title>{`Search: ${decodeURI(this.props.q)} - Daily Bruin`}</title>
+        </Head>
         <SearchResults query={decodeURI(this.props.q)}></SearchResults>
       </div>
     );

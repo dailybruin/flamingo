@@ -106,7 +106,6 @@ class MyDocument extends Document {
             href="/apple-touch-icon-114x114-precomposed.png"
           />
           {/* Default OpenGraph/Twitter Meta */}
-          <title>Daily Bruin - Since 1919</title>
           <meta
             name="description"
             content="the all new redesigned dailybruin.com"

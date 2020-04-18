@@ -11,6 +11,13 @@ import CommentFAB from "../components/CommentFAB";
 
 import css from "./style.css";
 
+const wrapperStyle = {
+  padding: "6px",
+  backgroundColor: "#f1f1f1",
+  width: "100%",
+  height: "100%"
+};
+
 const layoutStyle = {
   maxWidth: 1248,
   margin: "auto"
@@ -84,6 +91,9 @@ const PageWrapper = Comp =>
     }
 
     render() {
+      if (this.props.feature == true) {
+        return <Comp {...this.props} />;
+      }
       let renderedBreakingCard;
       if (this.props.mappedBreaking != null) {
         renderedBreakingCard = (
@@ -101,17 +111,19 @@ const PageWrapper = Comp =>
         );
       }
       return (
-        <div style={layoutStyle}>
-          <CommentFAB></CommentFAB>
-          <div className={css["banner-ad"]}>
-            <broadstreet-zone zone-id="69404"></broadstreet-zone>
-          </div>
-          <Masthead categories={this.props.mappedCategories}></Masthead>
-          {renderedBreakingCard}
-          {renderedInTheNews}
-          <Comp {...this.props} />
-          <div style={{ padding: "6px" }}>
-            <MainSiteFooter />
+        <div style={wrapperStyle}>
+          <div style={layoutStyle}>
+            <CommentFAB></CommentFAB>
+            <div className={css["banner-ad"]}>
+              <broadstreet-zone zone-id="69404"></broadstreet-zone>
+            </div>
+            <Masthead categories={this.props.mappedCategories}></Masthead>
+            {renderedBreakingCard}
+            {renderedInTheNews}
+            <Comp {...this.props} />
+            <div style={{ padding: "6px" }}>
+              <MainSiteFooter />
+            </div>
           </div>
         </div>
       );
