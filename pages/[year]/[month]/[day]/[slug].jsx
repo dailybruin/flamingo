@@ -75,7 +75,7 @@ class Post extends Component {
             authors={this.props.authors}
           />
         )}
-        {(this.props.photos == undefined && this.props.feature) != true && (
+        {this.props.photos == undefined && this.props.feature != true && (
           <ArticleLayout
             article={this.props.post[0]}
             authors={this.props.authors}
