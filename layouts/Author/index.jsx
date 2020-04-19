@@ -15,7 +15,7 @@ export default class Author extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      aArticleCard: utilities.buildArticleCard(this.props.posts[0]),
+      // aArticleCard: utilities.buildArticleCard(this.props.posts[0]),
       otherArticleCards: utilities.buildArticleList(this.props.posts.slice(1)),
 
       more: true
@@ -55,12 +55,12 @@ export default class Author extends React.Component {
         {matches => (
           <>
             {matches.phone && (
-              <div
-                id="ArticleGrid"
-                style={{
-                  width: "100%"
-                }}
-              >
+              // <div
+              //   id="ArticleGrid"
+              //   style={{
+              //     width: "100%"
+              //   }}
+              // >
                 <div
                   id="c"
                   className={css.column}
@@ -77,11 +77,11 @@ export default class Author extends React.Component {
                       email={this.props.author.media_email}
                     />
                   </div>
-                  <div id="c1" className={css.card}>
+                  {/* <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
                       displayType: "full"
                     })}
-                  </div>
+                  </div> */}
                   <InfiniteScroll
                     pageStart={1}
                     loadMore={this.getPosts}
@@ -99,7 +99,7 @@ export default class Author extends React.Component {
                     )}
                   </InfiniteScroll>
                 </div>
-              </div>
+              // </div>
             )}
             {matches.tablet && (
               <div id="ArticleGrid" style={{ width: "100%" }}>
@@ -127,7 +127,7 @@ export default class Author extends React.Component {
                       />
                     </div>
                   </div>
-                  <div
+                  {/* <div
                     id="a"
                     className={css.column}
                     style={{
@@ -139,7 +139,7 @@ export default class Author extends React.Component {
                         displayType: "full"
                       })}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className={css.column} style={{ width: "66.66%" }}>
                   <div>
@@ -194,21 +194,12 @@ export default class Author extends React.Component {
                       width: "33.33%"
                     }}
                   >
-                    <div className={css.card}>
-                      <AuthorCard
-                        image={this.props.author["avatar_urls"][512]}
-                        name={this.props.author.name}
-                        position={this.props.author.acf.position}
-                        twitter={this.props.author.acf.twitter}
-                        email={this.props.author.media_email}
-                      />
-                    </div>
                   </div>
-                  <div
+                  {/* <div
                     id="a"
                     className={css.column}
                     style={{
-                      width: "66.66%"
+                      width: "100%"
                     }}
                   >
                     <div id="a" className={css.card}>
@@ -216,7 +207,17 @@ export default class Author extends React.Component {
                         displayType: "full"
                       })}
                     </div>
-                  </div>
+                  </div> */}
+                  <div className={css.card}>
+                      <AuthorCard
+                        image={this.props.author["avatar_urls"][512]}
+                        name={this.props.author.name}
+                        description={this.props.author.description}
+                        position={this.props.author.acf.position}
+                        twitter={this.props.author.acf.twitter}
+                        email={this.props.author.media_email}
+                      />
+                    </div>
                   <div>
                     <InfiniteScroll
                       pageStart={1}

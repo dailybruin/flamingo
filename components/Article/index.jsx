@@ -9,6 +9,7 @@ import * as globals from "../globals";
 import AuthorInfo from "./AuthorInfo";
 import ShareCard from "../ShareCard";
 import ReviewInfobox from "../ReviewInfobox";
+import AuthorCard from "../AuthorCard";
 
 export default class Article extends React.Component {
   constructor(props) {
@@ -32,8 +33,7 @@ export default class Article extends React.Component {
               vertical-align: middle;
             `}
           />
-        </a>
-      );
+        </a>)
     }
 
     // Check for Infobox
@@ -50,6 +50,18 @@ export default class Article extends React.Component {
         ></ReviewInfobox>
       );
     }
+
+    let renderedAuthorCard = [];
+    for (let author of this.props.authors) {
+      renderedAuthorCard.push(<AuthorCard
+        image={author.avatar_urls[512]}
+        name={author.name}
+        description={author.description}
+        position={author.acf.position}
+        twitter={author.acf.twitter}
+        email={author.media_email}
+      />);
+  }
 
     return (
       <div
@@ -259,8 +271,7 @@ export default class Article extends React.Component {
             `}
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
-          {/* {renderedAuthorInfo} */}
-          {/* <ShareCard></ShareCard> */}
+          {renderedAuthorCard}
         </div>
       </div>
     );
