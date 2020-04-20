@@ -8,6 +8,7 @@ import Head from "next/head";
 
 import ArticleLayout from "../../../../layouts/Article";
 import PhotoGalleryLayout from "../../../../layouts/PhotoGallery";
+import FeatureLayout from "../../../../layouts/Feature";
 
 class Post extends Component {
   static async getInitialProps(context) {
@@ -24,6 +25,10 @@ class Post extends Component {
         );
         authors.push(await authorsRes.json());
       }
+    }
+    if (post[0].acf["db_feature"] == true) {
+      let feature = true;
+      return { feature, post, authors };
     }
     if (post[0].acf.gallery != undefined) {
       const photosRes = await fetch(
@@ -47,43 +52,30 @@ class Post extends Component {
     }
   }
   render() {
-    if (this.props.photos != undefined) {
-      return (
-        <>
-          <Head>
-            <title
-              dangerouslySetInnerHTML={{
-                __html: this.props.post[0].title.rendered + " - Daily Bruin"
-              }}
-            />
-            <script
-              async=""
-              src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
-            ></script>
-          </Head>
+    return (
+      <>
+        <Head>
+          <title>{this.props.post[0].title.rendered + " - Daily Bruin"}</title>
+          <script
+            async=""
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </Head>
+        {this.props.photos != undefined && (
           <PhotoGalleryLayout
             post={this.props.post[0]}
             photos={this.props.photos}
             photographers={this.props.authors}
           />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <Head>
-            <title
-              dangerouslySetInnerHTML={{
-                __html: this.props.post[0].title.rendered + " - Daily Bruin"
-              }}
-            />
-            <script
-              async=""
-              src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
-            ></script>
-          </Head>
+        )}
+        {this.props.feature == true && (
+          <FeatureLayout
+            article={this.props.post[0]}
+            authors={this.props.authors}
+          />
+        )}
+        {this.props.photos == undefined && this.props.feature != true && (
           <ArticleLayout
             article={this.props.post[0]}
             authors={this.props.authors}
@@ -97,9 +89,9 @@ class Post extends Component {
               };
             })}
           />
-        </>
-      );
-    }
+        )}
+      </>
+    );
   }
 }
 

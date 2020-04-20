@@ -31,7 +31,6 @@ export default function Header(props) {
       css={css`
         width: 100%;
         background-color: #fff;
-        box-shadow: ${globals.cardShadow};
         padding: ${globals.cardPadding};
         display: table;
 
@@ -43,7 +42,7 @@ export default function Header(props) {
       <div
         css={css`
           padding-bottom: 4px;
-          border-bottom: solid black 3px;
+          border-bottom: solid black 1px;
         `}
       >
         <a
@@ -95,7 +94,7 @@ export default function Header(props) {
               margin: 0;
               display: inline-block;
 
-              font-family: Arimo;
+              font-family: ${globals.bodyFont};
               font-style: normal;
               font-weight: bold;
               font-size: 18px;
@@ -119,9 +118,9 @@ export default function Header(props) {
           <h4
             css={css`
               margin: 0;
-              font-family: ${globals.menuFont};
+              font-family: ${globals.bodyFont};
               font-style: normal;
-              font-weight: 400;
+              font-weight: 300;
               font-size: 12px;
               line-height: 15px;
             `}

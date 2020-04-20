@@ -15,37 +15,6 @@ export default class Masthead extends React.Component {
   }
 
   render() {
-    let renderedCategories = [];
-    if (this.props.categories != null) {
-      for (let i in this.props.categories) {
-        renderedCategories.push(
-          <a
-            href={this.props.categories[i].as}
-            css={css`
-              display: table-cell;
-              text-align: center;
-              padding: 8px 4px;
-              font-family: ${globals.menuFont};
-              font-size: 18px;
-              font-weight: bold;
-              text-decoration: none;
-              text-transform: uppercase;
-              color: #ffffff;
-              white-space: nowrap;
-              &:hover {
-                text-decoration: underline;
-              }
-
-              &.isSticky {
-                background-color: red;
-              }
-            `}
-          >
-            {this.props.categories[i].name}
-          </a>
-        );
-      }
-    }
     return (
       <Media
         queries={{

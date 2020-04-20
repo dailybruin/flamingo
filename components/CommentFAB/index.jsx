@@ -10,23 +10,23 @@ export default class CommentFAB extends React.Component {
     isScrolling: false
   };
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.onScroll);
-  }
+  // componentDidMount() {
+  //   window.addEventListener("scroll", this.onScroll);
+  // }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.onScroll);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.onScroll);
+  // }
 
-  onScroll = () => {
-    this.setState({ isScrolling: true });
+  // onScroll = () => {
+  //   this.setState({ isScrolling: true });
 
-    clearTimeout(this.timeout);
+  //   clearTimeout(this.timeout);
 
-    this.timeout = setTimeout(() => {
-      this.setState({ isScrolling: false });
-    }, 200);
-  };
+  //   this.timeout = setTimeout(() => {
+  //     this.setState({ isScrolling: false });
+  //   }, 200);
+  // };
 
   render() {
     return (
@@ -45,7 +45,9 @@ export default class CommentFAB extends React.Component {
           margin: 0;
           transition: all 300ms;
           z-index: 100;
-          transform: translateY(${this.state.isScrolling ? "100px" : "0"});
+          /* transform: translateY(${
+            this.state.isScrolling ? "100px" : "0"
+          }); */
         `}
       >
         <img

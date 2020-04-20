@@ -3,7 +3,6 @@ import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import moment from "moment";
-import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
 
 import { renderCategories, renderAuthors } from "./utilities";
 import * as globals from "../globals";
@@ -57,7 +56,7 @@ export default class Article extends React.Component {
         css={css`
           display: block;
           padding: 10px;
-          box-shadow: ${cardShadow};
+          box-shadow: ${globals.cardShadow};
           background-color: #ffffff;
         `}
       >
@@ -88,11 +87,11 @@ export default class Article extends React.Component {
           css={css`
             margin: 2px 0;
 
-            font-family: Arimo;
+            font-family: ${globals.headlineFont};
             font-style: normal;
             font-weight: bold;
-            font-size: 24px;
-            line-height: 1.15;
+            font-size: 30px;
+            line-height: 1.25;
 
             color: #000000;
           `}
@@ -147,9 +146,9 @@ export default class Article extends React.Component {
                   margin: 0;
                   display: inline-block;
 
-                  font-family: Arimo;
+                  font-family: ${globals.bodyFont};
                   font-style: normal;
-                  font-weight: bold;
+                  font-weight: 700;
                   font-size: 18px;
                   line-height: 21px;
                   padding: 5px 0 0;
@@ -171,9 +170,9 @@ export default class Article extends React.Component {
               <h4
                 css={css`
                   margin: 0;
-                  font-family: ${globals.menuFont};
+                  font-family: ${globals.bodyFont};
                   font-style: normal;
-                  font-weight: 400;
+                  font-weight: 300;
                   font-size: 12px;
                   line-height: 15px;
                 `}
@@ -184,12 +183,12 @@ export default class Article extends React.Component {
           </div>
           <div
             css={css`
-              font-family: PT Serif;
+              font-family: ${globals.bodyFont};
               font-style: normal;
-              font-weight: normal;
+              font-weight: 400;
               font-size: 1rem;
               text-align: left;
-              line-height: 1.5;
+              line-height: 1.75;
 
               color: #000000;
               display: block;

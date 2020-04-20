@@ -53,7 +53,10 @@ export function buildStoryList(type, list) {
       type={type}
       story={mappedList}
       image={{
-        src: list[0]._embedded["wp:featuredmedia"][0].source_url,
+        src:
+          list[0]._embedded["wp:featuredmedia"] != undefined
+            ? list[0]._embedded["wp:featuredmedia"][0].source_url
+            : null,
         alt: "N/A"
       }}
     />

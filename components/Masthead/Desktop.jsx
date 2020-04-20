@@ -11,6 +11,9 @@ import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
 import minisearchIcon from "./minisearch.svg";
 
+let expandedHeight = "110px";
+let collapsedHeight = "60px";
+
 export default class Desktop extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +23,7 @@ export default class Desktop extends React.Component {
     };
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
+    this.Logo = React.createRef();
 
     this.isScrolled = this.isScrolled.bind(this);
     this.expandMenu = this.expandMenu.bind(this);
@@ -47,26 +51,23 @@ export default class Desktop extends React.Component {
     }
   }
 
-  toggleMenu() {
-    const block = this.MastheadCard.current;
-    this.state.menuExpanded
-      ? (block.style.height = "69px")
-      : (block.style.height = "107px");
-    this.state.menuExpanded = !this.state.menuExpanded;
-  }
-
   expandMenu() {
     const block = this.MastheadCard.current;
+    const logo = this.Logo.current;
     if (!this.state.menuExpanded) {
-      block.style.height = "107px";
+      block.style.height = expandedHeight;
+      logo.style.height = "60px";
       this.state.menuExpanded = true;
     }
   }
 
   collapseMenu() {
     const block = this.MastheadCard.current;
+    const logo = this.Logo.current;
     if (this.state.menuExpanded) {
-      block.style.height = "69px";
+      block.style.height = collapsedHeight;
+      logo.style.height = "48px";
+
       this.state.menuExpanded = false;
     }
   }
@@ -87,13 +88,13 @@ export default class Desktop extends React.Component {
             css={css`
               display: table-cell;
               text-align: center;
-              padding: 7px 4px;
+              padding: 8px 4px;
               font-family: ${globals.menuFont};
-              font-size: 17px;
+              font-size: 15px;
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: #ffffff;
+              color: #000;
               white-space: nowrap;
               &:hover {
                 text-decoration: underline;
@@ -116,7 +117,7 @@ export default class Desktop extends React.Component {
           background: #ffffff;
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
-          height: 107px;
+          height: ${expandedHeight};
           transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
           position: sticky;
           top: 0;
@@ -127,233 +128,247 @@ export default class Desktop extends React.Component {
         <div
           css={css`
             padding: 6px 18px;
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            vertical-align: middle;
           `}
         >
-          <button
+          <div
             css={css`
-              display: none;
-              border: none;
-              margin-right: 8px;
-              padding: 0;
-              cursor: pointer;
-              background-color: transparent;
-              outline: none;
-
-              &:active {
-                transform: rotate(90);
-              }
-            `}
-            onClick={this.toggleMenu}
-          >
-            <img
-              src={menuIcon}
-              css={css`
-                display: inline-block;
-                vertical-align: middle;
-                height: 36px;
-                background-color: white;
-              `}
-            ></img>
-          </button>
-          <a
-            href="/"
-            css={css`
-              display: inline-block;
+              display: table-cell;
+              text-align: left;
+              white-space: nowrap;
               vertical-align: middle;
             `}
           >
-            <img
-              src={logo}
+            <h2
               css={css`
+                white-space: nowrap;
                 display: inline-block;
-                vertical-align: middle;
-                height: 60px;
-
-                @media (max-width: 600px) {
-                  height: 24px;
-                }
-              `}
-            ></img>
-          </a>
-          <h2
-            css={css`
-              display: inline-block;
-              vertical-align: bottom;
-              padding-bottom: 6px;
-              margin: 0;
-              font-family: ${globals.headlineFont};
-              font-style: normal;
-              font-weight: normal;
-              font-size: 16px;
-              line-height: 21px;
-
-              @media (max-width: 900px) {
-                display: none;
-              }
-            `}
-          >
-            {today.toString()}
-          </h2>
-          <div
-            css={css`
-              display: inline-block;
-
-              margin: 12px 0 6px 0;
-              float: right;
-              height: 36px;
-            `}
-          >
-            <div
-              css={css`
-                display: inline-block;
-                vertical-align: middle;
-                margin-top: 2px;
-                margin-right: 10px;
-
-                & a {
-                  padding: 0 4px;
-                  font-family: ${globals.menuFont};
-                  font-weight: bold;
-                  text-transform: uppercase;
-                  line-height: 34px;
-                  font-size: 14px;
-                  color: #000;
-                }
-
-                & a:hover {
-                  text-decoration: underline;
-                }
-
-                @media (max-width: 650px) {
+                margin: 0;
+                font-family: ${globals.headlineFont};
+                font-style: normal;
+                font-weight: 550;
+                font-size: 16px;
+                @media (max-width: 900px) {
                   display: none;
                 }
               `}
             >
-              <a href="/about">About</a>
-              <a href="/contact">Contact</a>
-              <a href="/advertise">Advertise</a>
-            </div>
-            <div
+              {today}
+            </h2>
+          </div>
+          <div
+            css={css`
+              display: table-cell;
+              text-align: center;
+              width: 100%;
+              white-space: nowrap;
+            `}
+          >
+            <a
+              ref={this.Logo}
+              href="/"
               css={css`
                 display: inline-block;
-                position: relative;
-                transition: all 500ms;
-                height: 36px;
-                width: 36px;
                 vertical-align: middle;
+                height: 60px;
+                padding: 8px 0;
+                transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+                @media (max-width: 600px) {
+                  height: 24px;
+                }
               `}
             >
-              <form method="get" action="/search">
-                <input
-                  ref={this.SearchBar}
-                  id="SearchBar"
-                  type="text"
-                  name="q"
-                  placeholder="search"
-                  pattern="\S+.*"
-                  css={css`
-                    position: absolute;
-                    right: 0;
-                    z-index: 10;
-                    height: 36px;
-                    background-color: #000;
-                    color: #000;
-                    resize: none;
-                    transition: width 500ms cubic-bezier(0.25, 0.8, 0.25, 1),
-                      color 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
-                    width: 0;
-                    padding: 0;
-                    border: none;
-                    outline: none;
-                    line-height: 36px;
-                    font-size: 18px;
+              <img
+                src={logo}
+                css={css`
+                  display: inline-block;
+                  height: 100%;
+                `}
+              ></img>
+            </a>
+          </div>
+          <div
+            css={css`
+              display: table-cell;
+              text-align: right;
+              vertical-align: middle;
+              white-space: nowrap;
+            `}
+          >
+            <div
+              css={css`
+                float: right;
+                height: 36px;
+              `}
+            >
+              <div
+                css={css`
+                  display: inline-block;
+                  vertical-align: middle;
+                  margin-top: 2px;
+                  margin-right: 10px;
+
+                  & a {
+                    padding: 0 4px;
                     font-family: ${globals.menuFont};
                     font-weight: bold;
-                    &:focus {
-                      width: 250px;
-                      padding: 0 36px 0 6px;
-                      color: #fff;
-                    }
-                    &:focus + input {
-                      display: block;
-                    }
-                    &:focus + input + #Masthead__SearchIconBox {
-                      background-color: #000;
-                    }
-                  `}
-                ></input>
-                <input
-                  type="submit"
-                  value=""
-                  css={css`
-                    position: absolute;
-                    z-index: 12;
-                    width: 36px;
-                    height: 36px;
-                    right: 0;
-                    top: 0;
-                    border: none;
-                    padding: 6px;
-                    cursor: pointer;
-                    color: #fff;
-                    outline: none;
+                    text-transform: uppercase;
+                    line-height: 34px;
+                    font-size: 14px;
+                    color: #000;
+                  }
+
+                  & a:hover {
+                    text-decoration: underline;
+                  }
+
+                  @media (max-width: 650px) {
                     display: none;
-                    background-color: #000;
-                    background-image: url(${minisearchIcon});
-                    background-repeat: no-repeat;
-                    background-size: 24px;
-                    background-position: 6px;
-                    &:hover {
-                      display: block;
-                    }
-                    &:hover ~ input {
-                      width: 250px;
-                      padding: 0 36px 0 6px;
-                      color: #fff;
-                    }
-                    &:focus {
-                      outline: none;
-                      display: block;
-                    }
-                  `}
-                />
-                <div
-                  css={css`
-                    position: absolute;
-                    z-index: 11;
-                    right: 0;
-                    top: 0;
-                    border: none;
-                    padding: 0;
-                    cursor: pointer;
-                    background-color: transparent;
-                    outline: none;
-                    &:focus {
-                      outline: none;
-                    }
-                  `}
-                  onClick={this.expandSearch}
-                >
-                  <img
-                    id="Masthead__SearchIconBox"
+                  }
+                `}
+              >
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/advertise">Advertise</a>
+              </div>
+              <div
+                css={css`
+                  display: inline-block;
+                  position: relative;
+                  transition: all 500ms;
+                  height: 36px;
+                  width: 36px;
+                  vertical-align: middle;
+                `}
+              >
+                <form method="get" action="/search">
+                  <input
+                    ref={this.SearchBar}
+                    id="SearchBar"
+                    type="text"
+                    name="q"
+                    placeholder="search"
+                    pattern="\S+.*"
                     css={css`
-                      display: inline-block;
-                      vertical-align: middle;
-                      transition: all 200ms;
-                      transition-delay: 100ms;
+                      position: absolute;
+                      right: 0;
+                      z-index: 10;
+                      height: 36px;
+                      background-color: #000;
+                      color: #000;
+                      resize: none;
+                      transition: width 500ms cubic-bezier(0.25, 0.8, 0.25, 1),
+                        color 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+                      width: 0;
+                      padding: 0;
+                      border: none;
+                      outline: none;
+                      line-height: 36px;
+                      font-size: 18px;
+                      font-family: ${globals.menuFont};
+                      font-weight: bold;
+                      &:focus {
+                        width: 250px;
+                        padding: 0 36px 0 6px;
+                        color: #fff;
+                      }
+                      &:focus + input {
+                        display: block;
+                      }
+                      &:focus + input + #Masthead__SearchIconBox {
+                        background-color: #000;
+                      }
+                    `}
+                  ></input>
+                  <input
+                    type="submit"
+                    value=""
+                    css={css`
+                      position: absolute;
+                      z-index: 12;
                       width: 36px;
                       height: 36px;
+                      right: 0;
+                      top: 0;
+                      border: none;
+                      padding: 6px;
+                      cursor: pointer;
+                      color: #fff;
+                      outline: none;
+                      display: none;
+                      background-color: #000;
+                      background-image: url(${minisearchIcon});
+                      background-repeat: no-repeat;
+                      background-size: 24px;
+                      background-position: 6px;
+                      &:hover {
+                        display: block;
+                      }
+                      &:hover ~ input {
+                        width: 250px;
+                        padding: 0 36px 0 6px;
+                        color: #fff;
+                      }
+                      &:focus {
+                        outline: none;
+                        display: block;
+                      }
                     `}
-                    src={searchIcon}
-                  ></img>
-                </div>
-              </form>
+                  />
+                  <div
+                    css={css`
+                      position: absolute;
+                      z-index: 11;
+                      right: 0;
+                      top: 0;
+                      border: none;
+                      padding: 0;
+                      cursor: pointer;
+                      background-color: transparent;
+                      outline: none;
+                      &:focus {
+                        outline: none;
+                      }
+                    `}
+                    onClick={this.expandSearch}
+                  >
+                    <img
+                      id="Masthead__SearchIconBox"
+                      css={css`
+                        display: inline-block;
+                        vertical-align: middle;
+                        transition: all 200ms;
+                        transition-delay: 100ms;
+                        width: 36px;
+                        height: 36px;
+                      `}
+                      src={searchIcon}
+                    ></img>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
         <div
           css={css`
-            background-color: #000;
+            padding: 0 12px;
+          `}
+        >
+          <div
+            css={css`
+              width: 100%;
+              height: 1px;
+              background-color: #000;
+            `}
+          ></div>
+        </div>
+        <div
+          css={css`
+            background-color: #fff;
             overflow-x: scroll;
           `}
         >

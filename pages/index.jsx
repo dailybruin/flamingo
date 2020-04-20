@@ -3,6 +3,7 @@ import PageWrapper from "../layouts/PageWrapper";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../config.js";
+import Head from "next/head";
 
 import HomeLayout from "../layouts/Home";
 import Cookies from "js-cookie";
@@ -155,7 +156,10 @@ class Index extends Component {
 
   render() {
     return (
-      <div>
+      <>
+        <Head>
+          <title>{`Daily Bruin - Since 1919`}</title>
+        </Head>
         <HomeLayout
           posts={this.props.posts}
           media={this.props.multimediaPosts}
@@ -178,7 +182,7 @@ class Index extends Component {
         {this.state.showWelcome ? (
           <WelcomePopUp bodytext="placeholder" close={this.closeWelcomePopup} />
         ) : null}
-      </div>
+      </>
     );
   }
 }
