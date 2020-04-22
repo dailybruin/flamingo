@@ -26,8 +26,7 @@ export default function PhotoCard(props) {
               overflow: hidden;
               box-shadow: ${globals.cardShadow};
               &:hover #overlay {
-                transform: translateY(0);
-                box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+                opacity: 1;
               }
             `}
           >
@@ -42,58 +41,69 @@ export default function PhotoCard(props) {
             <div
               id="overlay"
               css={css`
-                background: #fff;
+                background: rgba(0, 0, 0, 0.5);
                 position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 overflow: hidden;
                 top: 0;
                 left: 0;
                 right: 0;
-                transform: translateY(-100%);
+                opacity: 0;
+                height: 100%;
                 width: 100%;
+                border: 15px solid #ffffff;
                 transition: 0.5s ease;
               `}
             >
               <div
                 id="text"
                 css={css`
-                  background: #fff;
-                  color: #000;
-                  padding: 10px;
-                  // position: absolute;
-                  left: 50%;
-                  top: 50%;
+                  margin-left: auto;
+                  margin-right: auto;
                   width: 90%;
-                  // -webkit-transform: translate(-50%, -50%);
-                  // -ms-transform: translate(-50%, -50%);
-                  // transform: translate(-50%, -50%);
+                  text-align: center;
                 `}
               >
                 <h3
                   dangerouslySetInnerHTML={{ __html: props.headline }}
                   css={css`
-                    font-size: 24px;
-                    margin: 0;
+                    color: #ffffff;
+                    font-size: 1.5vw;
+                    line-height: 1.4;
+                    margin-bottom: 0.625rem;
                     font-family: ${globals.headlineFont};
+                    @media (max-width: 768px) {
+                      font-size: 2.5vw;
+                    }
                   `}
                 ></h3>
                 <p
                   id="caption"
                   dangerouslySetInnerHTML={{ __html: props.excerpt }}
                   css={css`
-                    margin: 0;
-                    padding-bottom: 4px;
-                    font-family: ${globals.bodyFont};
-                    font-size: 11px;
+                    color: rgb(187, 187, 187);
+                    font-size: 0.8vw;
                     line-height: 15px;
+                    font-family: ${globals.bodyFont};
+                    @media (max-width: 768px) {
+                      font-size: 1.4vw;
+                    }
                   `}
                 ></p>
                 <div
                   id="credit-block"
                   css={css`
-                    font-family: ${globals.headlineFont};
-                    font-weight: bold;
-                    font-size: 11px;
+                    color: rgb(187, 187, 187);
+                    font-size: 0.7vw;
+                    font-family: ${globals.bodyFont};
                     line-height: 13px;
+                    font-style: italic;
+                    @media (max-width: 768px) {
+                      font-size: 1.4vw;
+                    }
                   `}
                 >
                   Credit: {utilities.renderAuthors(props.authors)}
@@ -150,8 +160,8 @@ export default function PhotoCard(props) {
                 dangerouslySetInnerHTML={{ __html: props.headline }}
                 css={css`
                   margin: 0;
-                  padding-bottom: 17px;
-                  font-size: 20px;
+                  padding-bottom: 6px;
+                  font-size: 30px;
                   line-height: 34px;
                   font-family: ${globals.headlineFont};
                 `}
@@ -161,7 +171,6 @@ export default function PhotoCard(props) {
                 dangerouslySetInnerHTML={{ __html: props.excerpt }}
                 css={css`
                   margin: 0;
-                  padding-bottom: 4px;
                   font-family: ${globals.bodyFont};
                   font-size: 11px;
                   line-height: 15px;
@@ -170,7 +179,7 @@ export default function PhotoCard(props) {
               <div
                 id="credit-block"
                 css={css`
-                  font-family: ${globals.headlineFont};
+                  font-family: ${globals.bodyFont};
                   font-weight: bold;
                   font-size: 11px;
                   line-height: 13px;
