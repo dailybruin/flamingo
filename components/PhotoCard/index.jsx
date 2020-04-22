@@ -80,7 +80,7 @@ export default function PhotoCard(props) {
                     }
                   `}
                 ></h3>
-                <p
+                <div
                   id="caption"
                   dangerouslySetInnerHTML={{ __html: props.excerpt }}
                   css={css`
@@ -92,15 +92,16 @@ export default function PhotoCard(props) {
                       font-size: 1.4vw;
                     }
                   `}
-                ></p>
+                ></div>
                 <div
                   id="credit-block"
                   css={css`
                     color: rgb(187, 187, 187);
                     font-size: 0.7vw;
                     font-family: ${globals.bodyFont};
+                    font-weight: bold;
+                    color: #fff;
                     line-height: 13px;
-                    font-style: italic;
                     @media (max-width: 768px) {
                       font-size: 1.4vw;
                     }

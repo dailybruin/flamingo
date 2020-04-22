@@ -3,6 +3,7 @@ import * as React from "react";
 import { css, jsx } from "@emotion/core";
 import logo from "./dailybruin.svg";
 import * as globals from "../globals";
+import { renderAuthors } from "./utilities";
 
 export default function Landing(props) {
   return (
@@ -22,12 +23,6 @@ export default function Landing(props) {
         css={css`
           padding: 20px;
 
-          font-family: ${globals.headlineFont};
-          font-style: normal;
-          font-weight: bold;
-          font-size: 40px;
-          line-height: 1.25;
-
           color: #fff;
           background: rgb(0, 0, 0);
           background: linear-gradient(
@@ -35,14 +30,39 @@ export default function Landing(props) {
             rgba(0, 0, 0, 0.8) 0%,
             rgba(0, 0, 0, 0) 100%
           );
-
-          @media (max-width: 600px) {
-            font-size: 30px;
-          }
         `}
-        dangerouslySetInnerHTML={{ __html: props.headline }}
-      ></div>
-      <div>{props.authors}</div>
+      >
+        <div
+          css={css`
+            font-family: ${globals.headlineFont};
+            font-style: normal;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 1.25;
+            @media (max-width: 600px) {
+              font-size: 30px;
+            }
+          `}
+          dangerouslySetInnerHTML={{ __html: props.headline }}
+        />
+        {/* <div
+          css={css`
+            font-family: ${globals.bodyFont};
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            @media (max-width: 600px) {
+              font-size: 16px;
+            }
+
+            a {
+              color: white !important;
+            }
+          `}
+        >
+          By {renderAuthors(props.authors)}
+        </div> */}
+      </div>
     </div>
   );
 }

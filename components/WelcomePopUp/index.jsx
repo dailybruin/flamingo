@@ -2,16 +2,11 @@ import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
-import Link from "next/link";
 
 export default class WelcomePopUp extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  onSubmit = () => {
-    this.props.sub2Newsletter();
-  };
 
   render() {
     return (
@@ -40,10 +35,11 @@ export default class WelcomePopUp extends React.Component {
             position: fixed;
             width: 490px;
             margin: auto;
+            padding: 20px;
             @media (max-width: 450px) {
               width: 260px;
             }
-            height: 295px;
+            min-height: 295px;
             top: 29%;
             left: 0;
             right: 0;
@@ -79,9 +75,8 @@ export default class WelcomePopUp extends React.Component {
               @media (max-width: 450px) {
                 width: 220px;
               }
-              height: 256px;
-              top: 20px;
-              left: 20px;
+              padding: 20px 4px 4px;
+              min-height: 256px;
               border: 5px solid #c4c4c4;
               z-index: 3001;
             `}
@@ -94,15 +89,11 @@ export default class WelcomePopUp extends React.Component {
                 }
                 position: relative;
                 width: 100%;
-                height: 30%;
-                top: 15%;
-                left: 0%;
-                font-family: Playfair Display;
+                font-family: ${globals.headlineFont};
                 font-style: normal;
                 font-weight: bold;
                 color: #0080c6;
                 font-size: 50px;
-                text-align: center;
                 z-index: 3001;
               `}
             >
@@ -111,19 +102,16 @@ export default class WelcomePopUp extends React.Component {
             <div
               css={css`
                 @media (max-width: 450px) {
-                  font-size: 18px;
+                  font-size: 12px;
                   top: 10%;
                 }
                 position: relative;
                 width: 90%;
-                height: 40%;
-                top: 15%;
-                left: 5%;
-                font-family: "PT Serif";
-                font-weight: bold;
-                font-size: 30px;
+                margin: auto;
+                font-family: ${globals.bodyFont};
+                font-weight: 400;
+                font-size: 16px;
                 color: #474747;
-                text-align: center;
                 z-index: 3001;
               `}
             >

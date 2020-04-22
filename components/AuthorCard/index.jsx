@@ -16,6 +16,11 @@ function SocialCircle(props) {
           margin: 5px;
           display: inline-block;
           background-color: ${props.color};
+          @media (max-width: 600px) {
+            width: 24px;
+            height: 24px;
+            margin: 3px;
+          }
         `}
       >
         <img
@@ -23,6 +28,11 @@ function SocialCircle(props) {
             width: 36px;
             padding: 8px;
             height: auto;
+            @media (max-width: 600px) {
+              width: 24px;
+              height: 24px;
+              padding: 6px;
+            }
           `}
           src={props.image}
         />
@@ -40,62 +50,117 @@ export default class AuthorCard extends React.Component {
           background-color: white;
           box-shadow: ${globals.cardShadow};
           height: auto;
-          display: flex;
+          border-top: 7px solid #000;
+          padding: ${globals.cardPadding};
         `}
       >
-          <div css={css`
-            float: left;
-            padding: 5px;
-            margin: 15px;
-          `}>
-          <img css={css`
-            border-radius: 50%;
-            max-width: 120px;   
-              `}src={this.props.image} />
-            <div css={css`
-              text-align: center;`}>
-            {this.props.twitter && (
-              <SocialCircle
-                url={"https://twitter.com/" + this.props.twitter}
-                image={twitterImage}
-                color="#00acee"
-              />
-            )}
-            {this.props.email && (
-              <SocialCircle
-                url={"mailto:" + this.props.email}
-                image={emailImage}
-                color="#B23121"
-              />
-            )}
-            </div>
-          </div>
-        <div>
-          <h1
+        <div
+          css={css`
+            display: flex;
+            align-items: center;
+          `}
+        >
+          <div
             css={css`
-              font-weight: "bold";
-              font-size: 24px;
-              line-height: 1.6rem;
-              text-align: left; 
-              font-family: ${globals.headlineFont};
-              color: black;
-              padding: 15px 10px 0px 0px;
-              margin: 0px;
+              margin: 5px 15px;
             `}
           >
-          {this.props.name} {" "}
-          |{" "}{" "}{this.props.position}{" "}
-          </h1>
-          <h2 
-            css={css`
-              font-weight: normal;
-              font-family: ${globals.headlineFont};
-              text-align: left;
-              font-size: 18px;
-              padding: 0px 15px 15px 0px;
-              overflow: hidden;
-            `}dangerouslySetInnerHTML={{ __html: this.props.description }}/>
+            <img
+              css={css`
+                border-radius: 50%;
+                max-width: 120px;
+                @media (max-width: 600px) {
+                  max-width: 60px;
+                }
+              `}
+              src={this.props.image}
+            />
+            <div
+              css={css`
+                text-align: center;
+              `}
+            >
+              {this.props.twitter && (
+                <SocialCircle
+                  url={"https://twitter.com/" + this.props.twitter}
+                  image={twitterImage}
+                  color="#00acee"
+                />
+              )}
+              {this.props.email && (
+                <SocialCircle
+                  url={"mailto:" + this.props.email}
+                  image={emailImage}
+                  color="#B23121"
+                />
+              )}
+            </div>
+          </div>
+          <div>
+            <div
+              css={css`
+                font-weight: "bold";
+                font-size: 24px;
+                text-align: left;
+                font-family: ${globals.headlineFont};
+                color: black;
+                margin: 0px;
+              `}
+            >
+              {this.props.name}
+              <span
+                css={css`
+                  @media (max-width: 600px) {
+                    display: none;
+                  }
+                `}
+              >
+                {this.props.position == undefined || this.props.position == ""
+                  ? ""
+                  : " | "}
+              </span>
+              <span
+                css={css`
+                  font-family: ${globals.bodyFont};
+                  font-size: 16px;
+
+                  @media (max-width: 600px) {
+                    display: block;
+                  }
+                `}
+              >
+                {this.props.position}
+              </span>
+            </div>
+            <div
+              css={css`
+                font-family: ${globals.bodyFont};
+                font-weight: 300;
+                text-align: left;
+                padding: 15px 15px 5px 0px;
+                font-size: 12px;
+                @media (max-width: 600px) {
+                  display: none;
+                }
+              `}
+              dangerouslySetInnerHTML={{ __html: this.props.description }}
+            />
+          </div>
         </div>
+        <div
+          css={css`
+            font-family: ${globals.bodyFont};
+            font-weight: 300;
+            text-align: left;
+            padding: 0px 15px 5px 0px;
+            font-size: 12px;
+            display: none;
+            @media (max-width: 600px) {
+              display: block;
+            }
+          `}
+          dangerouslySetInnerHTML={{ __html: this.props.description }}
+        />
       </div>
     );
   }

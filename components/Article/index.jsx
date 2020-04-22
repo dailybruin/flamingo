@@ -33,7 +33,8 @@ export default class Article extends React.Component {
               vertical-align: middle;
             `}
           />
-        </a>)
+        </a>
+      );
     }
 
     // Check for Infobox
@@ -51,17 +52,25 @@ export default class Article extends React.Component {
       );
     }
 
-    let renderedAuthorCard = [];
+    let renderedAuthorCards = [];
     for (let author of this.props.authors) {
-      renderedAuthorCard.push(<AuthorCard
-        image={author.avatar_urls[512]}
-        name={author.name}
-        description={author.description}
-        position={author.acf.position}
-        twitter={author.acf.twitter}
-        email={author.media_email}
-      />);
-  }
+      renderedAuthorCards.push(
+        <div
+          css={css`
+            margin: 20px 0;
+          `}
+        >
+          <AuthorCard
+            image={author.avatar_urls[512]}
+            name={author.name}
+            description={author.description}
+            position={author.acf.position}
+            twitter={author.acf.twitter}
+            email={author.media_email}
+          />
+        </div>
+      );
+    }
 
     return (
       <div
@@ -271,7 +280,14 @@ export default class Article extends React.Component {
             `}
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
-          {renderedAuthorCard}
+          <div
+            css={css`
+              max-width: 600px;
+              margin: auto;
+            `}
+          >
+            {renderedAuthorCards}
+          </div>
         </div>
       </div>
     );

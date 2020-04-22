@@ -50,15 +50,22 @@ class Post extends Component {
     }
   }
   render() {
+    // generate meta tags here
+    // this.props.post[0]["yoast_meta"]
     return (
       <>
         <Head>
-          <title>{this.props.post[0].title.rendered + " - Daily Bruin"}</title>
+          <title
+            dangerouslySetInnerHTML={{
+              __html: this.props.post[0].title.rendered + " - Daily Bruin"
+            }}
+          />
           <script
             async=""
             src="https://platform.twitter.com/widgets.js"
             charset="utf-8"
           ></script>
+          {/* insert meta tags here */}
         </Head>
         {this.props.photos != undefined && (
           <PhotoGalleryLayout

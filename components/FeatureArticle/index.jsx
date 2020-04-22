@@ -6,7 +6,7 @@ import moment from "moment";
 
 import { renderCategories, renderAuthors } from "./utilities";
 import * as globals from "../globals";
-import AuthorInfo from "./AuthorInfo";
+import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
 
@@ -16,6 +16,26 @@ export default class FeatureArticle extends React.Component {
   }
 
   render() {
+    let renderedAuthorCards = [];
+    for (let author of this.props.authors) {
+      renderedAuthorCards.push(
+        <div
+          css={css`
+            margin: 20px 0;
+          `}
+        >
+          <AuthorCard
+            image={author.avatar_urls[512]}
+            name={author.name}
+            description={author.description}
+            position={author.acf.position}
+            twitter={author.acf.twitter}
+            email={author.media_email}
+          />
+        </div>
+      );
+    }
+
     // grab author pics
     let authorPictures = [];
     for (let author of this.props.authors) {
@@ -62,6 +82,7 @@ export default class FeatureArticle extends React.Component {
         <Landing
           headline={this.props.headline}
           img={this.props.featureimg}
+          authors={this.props.authors}
         ></Landing>
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
@@ -202,6 +223,11 @@ export default class FeatureArticle extends React.Component {
                     margin: auto;
                   }
                 }
+                @media (min-width: 40.5em) {
+                  aside {
+                    margin-right: -60px;
+                  }
+                }
                 aside p {
                   font-size: 0.95rem;
                   text-align: right;
@@ -244,7 +270,7 @@ export default class FeatureArticle extends React.Component {
               `}
               dangerouslySetInnerHTML={{ __html: this.props.content }}
             />
-            {/* {renderedAuthorInfo} */}
+            {renderedAuthorCards}
             {/* <ShareCard></ShareCard> */}
           </div>
         </div>

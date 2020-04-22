@@ -5,6 +5,7 @@ import * as globals from "../globals";
 
 import Photo from "./Photo";
 import Header from "./Header";
+import AuthorCard from "../AuthorCard";
 
 export default class PhotoGallery extends React.Component {
   constructor(props) {
@@ -24,6 +25,27 @@ export default class PhotoGallery extends React.Component {
         ></Photo>
       );
     }
+
+    let renderedAuthorCards = [];
+    for (let author of this.props.photographers) {
+      renderedAuthorCards.push(
+        <div
+          css={css`
+            padding: 20px 0;
+          `}
+        >
+          <AuthorCard
+            image={author.avatar_urls[512]}
+            name={author.name}
+            description={author.description}
+            position={author.acf.position}
+            twitter={author.acf.twitter}
+            email={author.media_email}
+          />
+        </div>
+      );
+    }
+
     return (
       <div
         css={css`
@@ -47,6 +69,7 @@ export default class PhotoGallery extends React.Component {
           `}
         >
           {renderedGallery}
+          {renderedAuthorCards}
         </div>
       </div>
     );
