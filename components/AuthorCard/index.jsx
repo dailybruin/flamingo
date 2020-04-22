@@ -39,65 +39,21 @@ export default class AuthorCard extends React.Component {
         css={css`
           background-color: white;
           box-shadow: ${globals.cardShadow};
+          height: auto;
+          display: flex;
         `}
       >
-        <div
-          css={css`
-            display: block;
-            text-align: center;
-          `}
-        >
-          <div
-            css={css`
-              padding: 20px;
-              max-width: 300px;
-              margin: auto;
-            `}
-          >
-            <div
-              css={css`
-                height: 100%;
-                width: 100%;
-                padding-top: 100%;
-                overflow: hidden;
-                position: relative;
-              `}
-            >
-              <img
-                css={css`
-                  height: 100%;
-                  width: 100%;
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                  object-fit: cover;
-                  border-radius: 50%;
-                `}
-                src={this.props.image}
-              />
-            </div>
-          </div>
-          <h1
-            css={css`
-              font-style: "bold";
-              font-size: 24px;
-              line-height: 1.6rem;
-              text-align: center;
-              font-family: ${globals.headlineFont};
-              color: black;
-              padding: 0px 20px 5px 20px;
-              margin: 0px;
-            `}
-          >
-            {this.props.name}
-          </h1>
-          <div
-            css={css`
-              text-align: center;
-              margin-bottom: 5px;
-            `}
-          >
+          <div css={css`
+            float: left;
+            padding: 5px;
+            margin: 15px;
+          `}>
+          <img css={css`
+            border-radius: 50%;
+            max-width: 120px;   
+              `}src={this.props.image} />
+            <div css={css`
+              text-align: center;`}>
             {this.props.twitter && (
               <SocialCircle
                 url={"https://twitter.com/" + this.props.twitter}
@@ -112,22 +68,34 @@ export default class AuthorCard extends React.Component {
                 color="#B23121"
               />
             )}
+            </div>
           </div>
+        <div>
+          <h1
+            css={css`
+              font-weight: "bold";
+              font-size: 24px;
+              line-height: 1.6rem;
+              text-align: left; 
+              font-family: ${globals.headlineFont};
+              color: black;
+              padding: 15px 10px 0px 0px;
+              margin: 0px;
+            `}
+          >
+          {this.props.name} {" "}
+          |{" "}{" "}{this.props.position}{" "}
+          </h1>
+          <h2 
+            css={css`
+              font-weight: normal;
+              font-family: ${globals.headlineFont};
+              text-align: left;
+              font-size: 18px;
+              padding: 0px 15px 15px 0px;
+              overflow: hidden;
+            `}dangerouslySetInnerHTML={{ __html: this.props.description }}/>
         </div>
-        <h3
-          css={css`
-            text-transform: uppercase;
-            text-align: center;
-            color: white;
-            background-color: black;
-            padding: 4px 0px;
-            line-height: 1.6rem;
-            margin: 0px;
-            font-family: ${globals.menuFont};
-          `}
-        >
-          {this.props.position}
-        </h3>
       </div>
     );
   }
