@@ -13,7 +13,6 @@ class FeatureLayout extends React.Component {
   render() {
     return (
       <>
-        <div></div>
         <FeatureArticle
           headline={this.props.article.title.rendered}
           date={new Date(this.props.article.date)}
@@ -37,6 +36,9 @@ class FeatureLayout extends React.Component {
           }
           content={this.props.article.content.rendered}
           acf={this.props.article.acf}
+          tagged={this.props.tagged.filter(
+            article => article.slug != this.props.article.slug
+          )}
         />
       </>
     );

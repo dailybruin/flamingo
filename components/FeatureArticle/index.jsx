@@ -10,12 +10,52 @@ import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
 
+import MiniArticleCard from "../ArticleCard/Mini";
+
 export default class FeatureArticle extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    let renderedTaggedCards = [];
+    for (let story of this.props.tagged) {
+      renderedTaggedCards.push(
+        <div
+          css={css`
+            max-width: 312px;
+            vertical-align: middle;
+            display: inline-block;
+            padding: 6px 12px;
+            white-space: initial;
+
+            &:first-of-type {
+              margin-left: 20px;
+            }
+            &:last-of-type {
+              margin-right: 20px;
+            }
+          `}
+        >
+          <MiniArticleCard
+            headline={story.title.rendered}
+            category={{
+              name: story._embedded["wp:term"][0][0].name,
+              href: `/category/[slug]`,
+              as: `/category/${story._embedded["wp:term"][0][0].slug}`
+            }}
+            as={`/post/${story.slug}`}
+            imageurl={
+              story._embedded["wp:featuredmedia"] != undefined &&
+              !story._embedded["wp:featuredmedia"].empty
+                ? story._embedded["wp:featuredmedia"][0].source_url
+                : "http://dailybruin.com/images/2017/03/db-logo.png"
+            }
+          ></MiniArticleCard>
+        </div>
+      );
+    }
+
     let renderedAuthorCards = [];
     for (let author of this.props.authors) {
       renderedAuthorCards.push(
@@ -145,7 +185,7 @@ export default class FeatureArticle extends React.Component {
             `}
           >
             <div>
-              {authorPictures}
+              {/* {authorPictures} */}
               <div style={{ display: "inline-block", verticalAlign: "middle" }}>
                 <h3
                   css={css`
@@ -238,6 +278,7 @@ export default class FeatureArticle extends React.Component {
                   font-size: 4.1rem;
                   line-height: 80%;
                   color: #000;
+                  margin-right: 2px;
                 }
 
                 figure.alignright {
@@ -270,8 +311,37 @@ export default class FeatureArticle extends React.Component {
               `}
               dangerouslySetInnerHTML={{ __html: this.props.content }}
             />
-            {renderedAuthorCards}
+            {/* {renderedAuthorCards} */}
             {/* <ShareCard></ShareCard> */}
+          </div>
+        </div>
+        <div
+          css={css`
+            background-color: #666;
+            width: 100%;
+            margin: auto;
+            padding: 20px 0 0;
+          `}
+        >
+          <div
+            css={css`
+              color: white;
+              margin: -6px 12px 6px;
+              font-weight: 700;
+              text-transform: uppercase;
+              font-family: ${globals.menuFont};
+            `}
+          >
+            Read more stories in this series:
+          </div>
+          <div
+            css={css`
+              overflow-x: scroll;
+              white-space: nowrap;
+              padding-bottom: 20px;
+            `}
+          >
+            {renderedTaggedCards}
           </div>
         </div>
       </div>

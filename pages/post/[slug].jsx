@@ -26,7 +26,16 @@ class Post extends Component {
     }
     if (post[0].acf["db_feature"] == true) {
       let feature = true;
-      return { feature, post, authors };
+      let tagged = [];
+      if (post[0].acf["db_feature_tag"] != "") {
+        const taggedRes = await fetch(
+          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
+            post[0].acf["db_feature_tag"]
+          }`
+        );
+        tagged = await taggedRes.json();
+      }
+      return { feature, post, authors, tagged };
     }
     if (post[0].acf.gallery != undefined) {
       const photosRes = await fetch(
@@ -78,6 +87,7 @@ class Post extends Component {
           <FeatureLayout
             article={this.props.post[0]}
             authors={this.props.authors}
+            tagged={this.props.tagged}
           />
         )}
         {this.props.photos == undefined && this.props.feature != true && (

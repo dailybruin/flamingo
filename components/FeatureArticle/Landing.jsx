@@ -45,12 +45,13 @@ export default function Landing(props) {
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
-        {/* <div
+        <div
           css={css`
             font-family: ${globals.bodyFont};
             font-style: normal;
-            font-weight: 700;
+            font-weight: 300;
             font-size: 20px;
+            margin-left: 5px;
             @media (max-width: 600px) {
               font-size: 16px;
             }
@@ -61,7 +62,7 @@ export default function Landing(props) {
           `}
         >
           By {renderAuthors(props.authors)}
-        </div> */}
+        </div>
       </div>
     </div>
   );
