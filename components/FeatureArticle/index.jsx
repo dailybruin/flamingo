@@ -123,6 +123,7 @@ export default class FeatureArticle extends React.Component {
           headline={this.props.headline}
           img={this.props.featureimg}
           authors={this.props.authors}
+          photostyle={this.props.acf.db_feature_photoratio}
         ></Landing>
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
