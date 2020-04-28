@@ -68,7 +68,10 @@ export function buildMultimediaScroller(media) {
     return {
       title: index.title.rendered,
       link: `/post/${index.slug}`,
-      preview: index._embedded["wp:featuredmedia"][0].source_url
+      preview:
+        index._embedded["wp:featuredmedia"] != undefined
+          ? index._embedded["wp:featuredmedia"][0].source_url
+          : null
     };
   });
   return <MultimediaScroller media={mappedMedia} />;
