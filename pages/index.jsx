@@ -159,6 +159,41 @@ class Index extends Component {
       <>
         <Head>
           <title>{`Daily Bruin - Since 1919`}</title>
+          <meta
+            name="description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <link rel="canonical" href="https://new.dailybruin.com/" />
+          <meta
+            property="og:image"
+            content="https://dailybruin.com/images/2017/03/db-logo.png"
+          />
+          <meta
+            property="twitter:image"
+            content="https://dailybruin.com/images/2017/03/db-logo.png"
+          />
+          <meta property="og:url" content="https://new.dailybruin.com" />
+          <meta property="og:title" content="The Daily Bruin" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Daily Bruin" />
+          <meta
+            property="og:description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <meta property="og:locale" content="en_US" />
+          <meta property="fb:pages" content="47311244274" />
+          <meta name="twitter:title" content="Daily Bruin - Since 2020" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@dailybruin" />
+          <meta name="twitter:creator" content="@dailybruin" />
+          <meta
+            name="twitter:description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <meta
+            name="robots"
+            content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+          />
         </Head>
         <HomeLayout
           posts={this.props.posts}

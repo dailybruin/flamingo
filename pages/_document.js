@@ -105,40 +105,6 @@ class MyDocument extends Document {
             sizes="114x114"
             href="/apple-touch-icon-114x114-precomposed.png"
           />
-          {/* Default OpenGraph/Twitter Meta */}
-          <meta
-            name="description"
-            content="the all new redesigned dailybruin.com"
-          />
-          <meta
-            property="og:image"
-            content="https://dailybruin.com/images/2017/03/db-logo.png"
-          />
-          <meta
-            property="twitter:image"
-            content="https://dailybruin.com/images/2017/03/db-logo.png"
-          />
-          <meta property="og:title" content="The Daily Bruin" />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="Daily Bruin" />
-          <meta
-            property="og:description"
-            content="the all new redesigned dailybruin.com"
-          />
-          <meta property="og:locale" content="en_US" />
-          <meta property="fb:pages" content="47311244274" />
-          <meta name="twitter:title" content="Daily Bruin - Since 2020" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@dailybruin" />
-          <meta name="twitter:creator" content="@dailybruin" />
-          <meta
-            name="twitter:description"
-            content="the all new redesigned dailybruin.com"
-          />
-          <meta
-            name="robots"
-            content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-          />
           {/* Google Fonts */}
           <link
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,550;0,700;1,550;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Source+Sans+Pro:wght@400;700&display=swap&family=DM+Serif+Text:ital@0;1&display=swap"
