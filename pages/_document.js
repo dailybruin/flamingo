@@ -110,7 +110,6 @@ class MyDocument extends Document {
             name="description"
             content="the all new redesigned dailybruin.com"
           />
-          <link rel="canonical" href="https://new.dailybruin.com/" />
           <meta
             property="og:image"
             content="https://dailybruin.com/images/2017/03/db-logo.png"
@@ -119,7 +118,6 @@ class MyDocument extends Document {
             property="twitter:image"
             content="https://dailybruin.com/images/2017/03/db-logo.png"
           />
-          <meta property="og:url" content="https://new.dailybruin.com" />
           <meta property="og:title" content="The Daily Bruin" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="Daily Bruin" />
