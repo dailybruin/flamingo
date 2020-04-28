@@ -59,8 +59,10 @@ class Post extends Component {
     }
   }
   render() {
-    // generate meta tags here
-    // this.props.post[0]["yoast_meta"]
+    let renderedMeta = [];
+    for (let meta of this.props.post[0].yoast_meta) {
+      renderedMeta.push(React.createElement("meta", meta));
+    }
     return (
       <>
         <Head>
@@ -74,7 +76,7 @@ class Post extends Component {
             src="https://platform.twitter.com/widgets.js"
             charset="utf-8"
           ></script>
-          {/* insert meta tags here */}
+          {renderedMeta}
         </Head>
         {this.props.photos != undefined && (
           <PhotoGalleryLayout

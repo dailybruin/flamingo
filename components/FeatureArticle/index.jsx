@@ -302,12 +302,13 @@ export default class FeatureArticle extends React.Component {
                   width: 100%;
                 }
 
+                figure img,
                 figure a img,
                 p img,
                 b img,
                 h2 img {
                   width: 100%;
-                  height: inherit;
+                  height: auto;
                 }
               `}
               dangerouslySetInnerHTML={{ __html: this.props.content }}
