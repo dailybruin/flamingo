@@ -29,6 +29,7 @@
     "react-media": "^1.10.0",
     "react-share": "^4.0.1",
     "react-sizeme": "^2.6.10",
+    "react-swipeable-views": "^0.13.9",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
