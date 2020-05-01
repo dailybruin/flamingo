@@ -28,7 +28,6 @@ class ColumnsFromQuarantine extends React.Component {
   }
   render() {
     if (this.props.tag.length == 0) return <Error statusCode={404} />;
-    console.log(this.props);
     return (
       <>
         <Head>
