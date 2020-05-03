@@ -49,7 +49,7 @@ class USACOfficerEvaluations1920 extends React.Component {
           />
           <meta
             property="og:url"
-            content="https://dailybruin.com/tag/USAC-Officer-Evaluations-19-20/"
+            content="https://dailybruin.com/tag/usac-officer-evaluations-19-20/"
           />
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
