@@ -49,7 +49,7 @@ class USACOfficerEvaluations1920 extends React.Component {
           />
           <meta
             property="og:url"
-            content="https://dailybruin.com/tag/columns-from-quarantine/"
+            content="https://dailybruin.com/tag/USAC-Officer-Evaluations-19-20/"
           />
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
@@ -73,7 +73,6 @@ class USACOfficerEvaluations1920 extends React.Component {
             name="twitter:image"
             content="https://dailybruin.com/images/2020/05/usac-officer.png"
           />
-          {/* need to add meta tags! */}
         </Head>
         <div>
           <USACOfficerEvaluations1920Layout
