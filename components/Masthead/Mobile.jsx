@@ -266,7 +266,7 @@ export default class Mobile extends React.Component {
           css={css`
             position: absolute;
             margin: 0px;
-            background-color: #000;
+            background-color: #fff;
             padding: 0 6px;
             height: 0;
             overflow-y: scroll;
@@ -297,7 +297,7 @@ export default class Mobile extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: #ffffff;
+              color: #000;
               a:hover {
                 text-decoration: underline;
               }

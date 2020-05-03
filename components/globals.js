@@ -34,7 +34,7 @@ export const bodyLineHeight = "1.45em";
 
 /** CSS breakpoints */
 export const phone = "@media (max-width: 600px)";
-export const table = "@media (max-width: 900px)";
+export const tablet = "@media (max-width: 900px)";
 
 /** Combined themes */
 export const bodyTextCSS = css`
@@ -43,6 +43,12 @@ export const bodyTextCSS = css`
 `;
 
 /** Common Elements */
+export const cardStyles = `
+  width: 100%;
+  background-color: #fff;
+  box-shadow: ${cardShadow};
+  padding: ${cardPadding}`;
+
 export const thumbnailImgCSS = `
   width: 100%;
   padding-top: 66.66%;
