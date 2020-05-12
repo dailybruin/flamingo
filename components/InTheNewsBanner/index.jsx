@@ -19,8 +19,8 @@ export default class InTheNewsBanner extends React.Component {
             display: inline-block;
             vertical-align: middle;
             padding: 2px 5px;
-            font-family: ${globals.headlineFont};
-            font-weight: bold;
+            font-family: ${globals.bodyFont};
+            font-weight: 700;
             color: #000;
             text-decoration: none;
             &:hover {
