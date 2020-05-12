@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 80",
-    "export": "next export"
+    "export": "next export",
+    "deploy": "NODE_ENV=production next start -p 1919"
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",

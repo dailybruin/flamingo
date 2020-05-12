@@ -52,7 +52,7 @@ export default class Mobile extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: #ffffff;
+              color: #000;
               &:hover {
                 text-decoration: underline;
               }
