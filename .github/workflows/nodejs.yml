@@ -25,6 +25,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - run: yarn build
-      - run: pm2 start yarn --name "flamingo" -- deploy
+      - run: pm2 reload flamingo
         env:
           CI: true
