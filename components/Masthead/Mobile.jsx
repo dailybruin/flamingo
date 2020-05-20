@@ -276,22 +276,35 @@ export default class Mobile extends React.Component {
           >
             <Link>
               <a
+                href="https://www.facebook.com/dailybruin"
                 css={css`
                   display: block;
                   padding: 8px 4px;
                 `}
               >
-                About
+                Facebook
               </a>
             </Link>
             <Link>
               <a
+                href="https://www.instagram.com/dailybruin"
                 css={css`
                   display: block;
                   padding: 8px 4px;
                 `}
               >
-                Contact
+                Instagram
+              </a>
+            </Link>
+            <Link>
+              <a
+                href="https://twitter.com/dailybruin"
+                css={css`
+                  display: block;
+                  padding: 8px 4px;
+                `}
+              >
+                Twitter
               </a>
             </Link>
             <Link>
