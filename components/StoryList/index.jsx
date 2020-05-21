@@ -45,31 +45,15 @@ class StoryList extends React.Component {
               css={css`
                 display: block;
                 text-decoration: none;
-                margin-bottom: 10px;
               `}
               href={!!this.props.story[0].link ? this.props.story[0].link : "#"}
-            >
-            <div
-              css={css`
-                padding-top: 66.66%;
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-              `}
             >
               <img
                 css={css`
                   width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
                 `}
                 src={this.props.image.src}
               />
-            </div>
             </a>
           )}
           {renderedStories}

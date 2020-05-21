@@ -10,6 +10,68 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #0080c6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Arimo", sans-serif;
+}
+
+broadstreet-zone {
+  text-align: center;
+  width: 100%;
+}
+
+.card {
+  display: block;
   padding: 6px;
-  background-color: #f1f1f1;
+}
+
+.column {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.banner-ad {
+  max-width: 740px;
+  max-height: 102px;
+  margin: auto;
+  padding: 6px;
+  overflow-x: scroll;
+}
+
+.banner-ad img {
+  max-width: 100%;
+}
+
+.loader {
+  font-family: "Source Sans Pro", sans-serif;
+  text-align: center;
+  width: 100%;
+}
+
+.comments-card {
+  background-color: #fff;
+  padding: 10px;
+}
+
+@media (max-width: 600px) {
+  .banner-ad {
+    margin: -6px -6px;
+    padding: 6px 0;
+  }
 }

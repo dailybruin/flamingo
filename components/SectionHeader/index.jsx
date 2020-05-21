@@ -1,61 +1,95 @@
-import * as React from 'react'
+import * as React from "react";
+import Link from "next/link";
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-
-import SectionTabs from './SectionTabs'
-import ExpandingMenu from './ExpandingMenu'
+import { css, jsx } from "@emotion/core";
+import * as globals from "../globals";
 
 export default class SectionHeader extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
+  render() {
+    let renderedSubcategories = [];
+    if (this.props.subcategories != undefined) {
+      for (let i = 0; i < this.props.subcategories.length; i++) {
+        renderedSubcategories.push(
+          <a
+            href={this.props.subcategories[i].link}
+            dangerouslySetInnerHTML={{
+              __html: this.props.subcategories[i].name
+            }}
+            css={css`
+              font-family: ${globals.menuFont};
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 12px;
+              padding: 1px 5px;
+              color: black;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
+            `}
+          />
+        );
+      }
+    }
 
-   render() {
     return (
       <div
         css={css`
-          height: 100px;
-
-          padding: 0;
-
-          background: #ffffff;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-
-          text-align: center;
-          line-height: 37px;
-
-          overflow: hidden;
-          transition: height 500ms cubic-bezier(0.25, 0.8, 0.25, 1);
+          box-shadow: ${globals.cardShadow};
+          background-color: white;
+          display: block;
+          padding: 0 10px 10px;
         `}
-        id="SectionHeaderBlock"
       >
         <div
           css={css`
-            box-sizing: content-box;
-            left: 0;
-            right: 0;
-
-            margin: 0;
-            padding: 7px 0 0;
-
-            line-height: 62px;
-            height: 55px;
-
-            font-family: Archivo Black, sans-serif;
-            font-style: normal;
-            font-weight: 900;
-            line-height: normal;
-            font-size: 48px;
+            text-align: center;
+            list-style: none;
+            color: black;
+            font-family: ${globals.menuFont};
+            font-weight: bold;
+            font-size: 40px;
             text-transform: uppercase;
-
-            color: #000000;
+          `}
+          dangerouslySetInnerHTML={{ __html: this.props.category }}
+        ></div>
+        <div
+          css={css`
+            width: 100%;
+            background-color: black;
+            height: 1px;
+            margin-bottom: 5px;
+          `}
+        ></div>
+        <div
+          css={css`
+            ${renderedSubcategories.length > 8
+              ? `
+              margin: auto;
+              text-align: left;
+              column-count: 6;
+              column-width: 150px;
+              a {
+                display: block;
+                margin-left: 40px;
+              }`
+              : `
+              text-align: center;
+              a {
+                display: inline-block;
+              }
+              `}
+            @media (max-width: 600px) {
+              display: none;
+            }
           `}
         >
-          {this.props.name}
+          {renderedSubcategories}
         </div>
-        <SectionTabs sectionList={this.props.sectionList} />
-        <ExpandingMenu sectionList={this.props.sectionList} />
       </div>
-    )
+    );
   }
 }

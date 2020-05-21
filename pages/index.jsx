@@ -3,8 +3,12 @@ import PageWrapper from "../layouts/PageWrapper";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../config.js";
+import Head from "next/head";
 
 import HomeLayout from "../layouts/Home";
+import Cookies from "js-cookie";
+import EmailPopUp from "../components/EmailSignUp";
+import WelcomePopUp from "../components/WelcomePopUp";
 
 const aTAGID = 4847;
 const bTAGID = 4850;
@@ -13,9 +17,8 @@ const c2TAGID = 4851;
 const dTAGID = 4862;
 const eTAGID = 4863;
 const m1TAGID = 4854;
-const f1TAGID = 22156;
-const f2TAGID = 22157;
-const f3TAGID = 22158;
+const f1TAGID = 22896;
+const f2TAGID = 22897;
 
 const quadCATID = 12848;
 const newsCATID = 1424;
@@ -35,6 +38,14 @@ const ArticleAdStyle = {
 };
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showPopUp: false,
+      showWelcome: false
+    };
+  }
   static async getInitialProps(context) {
     const posts = {};
     const aStoryRes = await fetch(
@@ -62,13 +73,10 @@ class Index extends Component {
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}`
     );
     const f1StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f1TAGID}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f1TAGID}`
     );
     const f2StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f2TAGID}`
-    );
-    const f3StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${f3TAGID}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}`
     );
     const nsStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}`
@@ -82,6 +90,9 @@ class Index extends Component {
     const spStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${sportsCATID}`
     );
+    const classifiedsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
+    );
     posts.aStory = await aStoryRes.json();
     posts.bStory = await bStoryRes.json();
     posts.c1Story = await c1StoryRes.json();
@@ -92,19 +103,124 @@ class Index extends Component {
     const multimediaPosts = await mmStoryRes.json();
     posts.f1Story = await f1StoryRes.json();
     posts.f2Story = await f2StoryRes.json();
-    posts.f3Story = await f3StoryRes.json();
     posts.newsList = await nsStoryRes.json();
     posts.opinionList = await opStoryRes.json();
     posts.artsList = await aeStoryRes.json();
     posts.sportsList = await spStoryRes.json();
-    return { posts, multimediaPosts };
+    const classifieds = await classifiedsRes.json();
+    return { posts, multimediaPosts, classifieds };
   }
+
+  componentDidMount() {
+    if (Cookies.get("subscribed2newsletter") === undefined) {
+      let visits = Cookies.get("newsletterVisits");
+      if (visits === undefined) {
+        Cookies.set("newsletterVisits", "0", { expires: 365 });
+      } else {
+        visits = parseInt(visits) + 1;
+        if (visits >= 5) {
+          this.displayNewsletterPopup();
+          Cookies.set("newsletterVisits", "0", { expires: 365 });
+        } else {
+          Cookies.set("newsletterVisits", visits.toString(), { expires: 365 });
+        }
+      }
+    }
+    if (Cookies.get("visited") === undefined) {
+      this.setState({ showWelcome: true });
+      Cookies.set("visited", "true", { expires: 365 });
+    }
+  }
+
+  subscribeToNewsletter = () => {
+    Cookies.set("subscribed2newsletter", "true", { expires: 365 });
+  };
+
+  displayNewsletterPopup = () => {
+    this.setState({ showPopUp: true });
+  };
+
+  closeNewsletterPopup = () => {
+    this.setState({ showPopUp: false });
+  };
+
+  closeWelcomePopup = () => {
+    this.setState({ showWelcome: false });
+  };
+
+  removeCookies = () => {
+    Cookies.remove("subscribed2newsletter");
+    Cookies.remove("newsletterVisits");
+    Cookies.remove("visited");
+  };
 
   render() {
     return (
-      <div>
-        <HomeLayout posts={this.props.posts} media={this.props.multimediaPosts} />
-      </div>
+      <>
+        <Head>
+          <title>{`Daily Bruin - Since 1919`}</title>
+          <meta
+            name="description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <link rel="canonical" href="https://new.dailybruin.com/" />
+          <meta
+            property="og:image"
+            content="https://dailybruin.com/images/2017/03/db-logo.png"
+          />
+          <meta
+            property="twitter:image"
+            content="https://dailybruin.com/images/2017/03/db-logo.png"
+          />
+          <meta property="og:url" content="https://new.dailybruin.com" />
+          <meta property="og:title" content="The Daily Bruin" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Daily Bruin" />
+          <meta
+            property="og:description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <meta property="og:locale" content="en_US" />
+          <meta property="fb:pages" content="47311244274" />
+          <meta name="twitter:title" content="Daily Bruin - Since 2020" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@dailybruin" />
+          <meta name="twitter:creator" content="@dailybruin" />
+          <meta
+            name="twitter:description"
+            content="the all new redesigned dailybruin.com"
+          />
+          <meta
+            name="robots"
+            content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+          />
+        </Head>
+        <HomeLayout
+          posts={this.props.posts}
+          media={this.props.multimediaPosts}
+          classifieds={this.props.classifieds.map(c => {
+            return {
+              category: {
+                name: c._embedded["wp:term"][1][0].name,
+                url: c._embedded["wp:term"][1][0].link
+              },
+              content: { name: c.content.rendered, url: c.link }
+            };
+          })}
+        />
+        {this.state.showPopUp && !this.state.showWelcome ? (
+          <EmailPopUp
+            sub2Newsletter={this.subscribeToNewsletter}
+            close={this.closeNewsletterPopup}
+          />
+        ) : null}
+        {this.state.showWelcome ? (
+          <WelcomePopUp
+            bodytext="Here's a sneak peek of the redesigned digital home fo the Daily Bruin. This site is still under active development, so please provide feedback and comments by clicking the button on the bottom right of your screen."
+            close={this.closeWelcomePopup}
+          />
+        ) : null}
+      </>
     );
   }
 }

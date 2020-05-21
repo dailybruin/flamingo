@@ -3,6 +3,8 @@ import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 
+import * as globals from "../globals";
+
 export default function Media(props) {
   return (
     <Link href="/post/[slug]" as={props.link}>
@@ -41,12 +43,11 @@ export default function Media(props) {
               padding: 0;
               font-size: 1.3rem;
               line-height: 1.15;
-              font-family: "Arimo", sans-serif;
+              font-family: ${globals.bodyFont};
               font-weight: 700;
             `}
-          >
-            {props.title}
-          </h1>
+            dangerouslySetInnerHTML={{ __html: props.title }}
+          ></h1>
         </div>
       </a>
     </Link>

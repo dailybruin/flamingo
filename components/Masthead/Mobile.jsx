@@ -1,13 +1,13 @@
 import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import Link from "next/link";
 
 import * as globals from "../globals";
 
 import logo from "./dailybruin.svg";
 import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
+import minisearchIcon from "./minisearch.svg";
 
 export default class Mobile extends React.Component {
   constructor(props) {
@@ -28,8 +28,8 @@ export default class Mobile extends React.Component {
     menu.scrollIntoView();
     this.state.menuExpanded
       ? (menu.style.height = "0")
-      : (menu.style.height = "calc(100vh - 50px)");
-    this.state.menuExpanded = !this.state.menuExpanded;
+      : (menu.style.height = "calc(100vh - 48px)");
+    this.setState({ menuExpanded: !this.state.menuExpanded });
   }
 
   expandSearch() {
@@ -41,30 +41,25 @@ export default class Mobile extends React.Component {
     if (this.props.categories != null) {
       for (let i = 0; i < this.props.categories.length; i++) {
         renderedCategories.push(
-          <Link
-            href={this.props.categories[i].href}
-            as={this.props.categories[i].as}
+          <a
+            href={this.props.categories[i].as}
+            css={css`
+              display: block;
+              text-align: left;
+              padding: 8px 4px;
+              font-family: ${globals.menuFont};
+              font-size: 18px;
+              font-weight: bold;
+              text-decoration: none;
+              text-transform: uppercase;
+              color: #000;
+              &:hover {
+                text-decoration: underline;
+              }
+            `}
           >
-            <a
-              href={this.props.categories[i].as}
-              css={css`
-                display: block;
-                text-align: left;
-                padding: 8px 4px;
-                font-family: ${globals.menuFont};
-                font-size: 18px;
-                font-weight: bold;
-                text-decoration: none;
-                text-transform: uppercase;
-                color: #ffffff;
-                &:hover {
-                  text-decoration: underline;
-                }
-              `}
-            >
-              {this.props.categories[i].name}
-            </a>
-          </Link>
+            {this.props.categories[i].name}
+          </a>
         );
       }
     }
@@ -93,45 +88,57 @@ export default class Mobile extends React.Component {
               display: table-cell;
               vertical-align: middle;
               border: none;
-              padding: 0;
+              padding: 4px;
               cursor: pointer;
               background-color: transparent;
               outline: none;
-
-              &:active {
-                transform: rotate(90);
-              }
+              height: 36px;
+              width: 36px;
+              transition: transform 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+              transform: ${this.state.menuExpanded
+                ? "rotate(90deg)"
+                : "rotate(0deg)"};
             `}
             onClick={this.toggleMenu}
           >
             <img
               src={menuIcon}
               css={css`
-                height: 36px;
+                height: 100%;
                 background-color: white;
               `}
             ></img>
           </button>
-          <Link href="/">
+          <div
+            css={css`
+              display: table-cell;
+              text-align: center;
+              width: 100%;
+              white-space: nowrap;
+            `}
+          >
             <a
+              href="/"
               css={css`
-                display: table-cell;
+                display: inline-block;
                 vertical-align: middle;
+                height: 36px;
+                padding: 4px 0;
               `}
             >
               <img
-                css={css`
-                  height: 36px;
-                `}
                 src={logo}
+                css={css`
+                  display: inline-block;
+                  height: 100%;
+                `}
               ></img>
             </a>
-          </Link>
+          </div>
           <div
             css={css`
               display: table-cell;
               vertical-align: middle;
-              height: 36px;
             `}
           >
             <div
@@ -145,90 +152,112 @@ export default class Mobile extends React.Component {
                 vertical-align: middle;
               `}
             >
-              <input
-                ref={this.SearchBar}
-                type="text"
-                css={css`
-                  position: absolute;
-                  right: 0;
-                  z-index: 10;
-                  height: 36px;
-                  background-color: #000;
-                  color: #000;
-                  resize: none;
-                  transition: width 500ms cubic-bezier(0.25, 0.8, 0.25, 1),
-                    color 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
-                  width: 0;
-                  padding: 0;
-                  border: none;
-                  outline: none;
-                  line-height: 36px;
-                  font-size: 18px;
-                  font-family: ${globals.menuFont};
-                  font-weight: bold;
-                  &:focus {
-                    width: 250px;
-                    padding: 0 36px 0 6px;
-                    color: #fff;
-                  }
-                  &:focus + button {
-                    background-color: #000;
-                  }
-                  &:focus + button > #Masthead__SearchIconBox {
-                    width: 24px;
-                    height: 24px;
-                    margin: 6px;
-                  }
-                  &:focus
-                    + button
-                    #Masthead__SearchIconBox
-                    #Masthead__SearchIcon {
-                    fill: #fff;
-                  }
-                `}
-              ></input>
-              <button
-                css={css`
-                  position: absolute;
-                  z-index: 11;
-                  right: 0;
-                  top: 0;
-                  border: none;
-                  padding: 0;
-                  cursor: pointer;
-                  background-color: transparent;
-                  outline: none;
-                  transition: none;
-                  &:focus {
-                    outline: none;
-                  }
-                `}
-                onClick={this.expandSearch}
-              >
-                <svg
-                  id="Masthead__SearchIconBox"
+              <form method="get" action="/search">
+                <input
+                  ref={this.SearchBar}
+                  id="SearchBar"
+                  type="text"
+                  name="q"
+                  placeholder="search"
+                  pattern="\S+.*"
                   css={css`
-                    display: inline-block;
-                    vertical-align: middle;
-                    transition: all 200ms;
-                    transition-delay: 100ms;
+                    position: absolute;
+                    right: 0;
+                    z-index: 10;
+                    height: 36px;
+                    background-color: #000;
+                    color: #000;
+                    resize: none;
+                    transition: width 500ms cubic-bezier(0.25, 0.8, 0.25, 1),
+                      color 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+                    width: 0;
+                    padding: 0;
+                    border: none;
+                    outline: none;
+                    line-height: 36px;
+                    font-size: 18px;
+                    font-family: ${globals.menuFont};
+                    font-weight: bold;
+                    &:focus {
+                      width: calc(100vw - 64px);
+                      padding: 0 36px 0 6px;
+                      color: #fff;
+                    }
+                    &:focus + input {
+                      display: block;
+                    }
+                    &:focus + input + #Masthead__SearchIconBox {
+                      background-color: #000;
+                    }
+                  `}
+                ></input>
+                <input
+                  type="submit"
+                  value=""
+                  css={css`
+                    position: absolute;
+                    z-index: 12;
                     width: 36px;
                     height: 36px;
+                    right: 0;
+                    top: 0;
+                    border: none;
+                    padding: 6px;
+                    cursor: pointer;
+                    color: #fff;
+                    outline: none;
+                    display: none;
+                    background-color: #000;
+                    background-image: url(${minisearchIcon});
+                    background-repeat: no-repeat;
+                    background-size: 24px;
+                    background-position: 6px;
+                    &:hover {
+                      display: block;
+                    }
+                    &:hover ~ input {
+                      width: 250px;
+                      padding: 0 36px 0 6px;
+                      color: #fff;
+                    }
+                    &:focus {
+                      outline: none;
+                      display: block;
+                    }
                   `}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
+                />
+                <div
+                  css={css`
+                    position: absolute;
+                    z-index: 11;
+                    right: 0;
+                    top: 0;
+                    border: none;
+                    padding: 4px;
+                    height: 36px;
+                    width: 36px;
+                    cursor: pointer;
+                    background-color: transparent;
+                    outline: none;
+                    &:focus {
+                      outline: none;
+                    }
+                  `}
+                  onClick={this.expandSearch}
                 >
-                  <path
-                    id="Masthead__SearchIcon"
+                  <img
+                    id="Masthead__SearchIconBox"
                     css={css`
+                      display: inline-block;
+                      vertical-align: middle;
                       transition: all 200ms;
                       transition-delay: 100ms;
+                      height: 100%;
                     `}
-                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                  />
-                  <path d="M0 0h24v24H0z" fill="none" />
-                </svg>
-              </button>
+                    src={searchIcon}
+                  ></img>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -237,7 +266,7 @@ export default class Mobile extends React.Component {
           css={css`
             position: absolute;
             margin: 0px;
-            background-color: #000;
+            background-color: #fff;
             padding: 0 6px;
             height: 0;
             overflow-y: scroll;
@@ -268,8 +297,8 @@ export default class Mobile extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: #ffffff;
-              &:hover {
+              color: #000;
+              a:hover {
                 text-decoration: underline;
               }
             `}
