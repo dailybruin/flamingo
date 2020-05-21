@@ -1,21 +1,10 @@
-import React, { Component } from "react";
-import PageWrapper from "../PageWrapper";
+import React from "react";
 import css from "../style.css";
 import Media from "react-media";
 
 import Article from "../../components/Article";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 import CommentsCard from "../../components/CommentsCard";
-
-const ArticleAdStyle = {
-  width: "100%",
-  backgroundColor: "#aaa",
-  height: "250px",
-  lineHeight: "200px",
-  textAlign: "center",
-  fontWeight: "bold",
-  fontFamily: "sans-serif"
-};
 
 class ArticleLayout extends React.Component {
   constructor(props) {

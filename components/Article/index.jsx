@@ -229,15 +229,6 @@ export default class Article extends React.Component {
                 font-size: 1.1rem;
                 color: #000;
               }
-              @media (max-width: 40em) {
-                aside {
-                  width: 100%;
-                }
-                figure {
-                  width: 100% !important;
-                  margin: auto;
-                }
-              }
               aside p {
                 font-size: 0.95rem;
                 text-align: right;
@@ -257,7 +248,6 @@ export default class Article extends React.Component {
               figure.aligncenter {
                 max-width: 100% !important;
                 margin: auto;
-                padding: 20px;
                 width: 100% !important;
               }
 
@@ -269,13 +259,24 @@ export default class Article extends React.Component {
               iframe {
                 width: 100%;
               }
-
+              figure img,
               figure a img,
               p img,
               b img,
               h2 img {
                 width: 100%;
                 height: inherit;
+              }
+              @media (max-width: 40em) {
+                aside {
+                  width: 100%;
+                }
+                figure {
+                  width: 100% !important;
+                  padding: 20px 0;
+
+                  margin: auto;
+                }
               }
             `}
             dangerouslySetInnerHTML={{ __html: this.props.content }}

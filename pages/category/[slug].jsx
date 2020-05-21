@@ -11,6 +11,7 @@ import CategoryLayout from "../../layouts/Category";
 
 class Category extends Component {
   static async getInitialProps(context) {
+    // slug is from url
     const { slug } = context.query;
     const categoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`

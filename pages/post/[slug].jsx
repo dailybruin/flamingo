@@ -50,6 +50,7 @@ class Post extends Component {
     const classifieds = await classifiedsRes.json();
     return { post, classifieds, authors };
   }
+
   componentDidMount() {
     if (
       this.props.post[0].acf["db_link"] != null &&
@@ -58,6 +59,7 @@ class Post extends Component {
       location.replace(this.props.post[0].acf["db_link"]);
     }
   }
+
   render() {
     let renderedMeta = [];
     for (let meta of this.props.post[0].yoast_meta) {

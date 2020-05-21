@@ -4,7 +4,6 @@ import Error from "next/error";
 import { Config } from "../../config.js";
 import css from "../style.css";
 import * as utilities from "../utilities";
-import { Dot } from "react-animated-dots";
 import InfiniteScroll from "react-infinite-scroller";
 
 import ClassifiedsCard from "../../components/ClassifiedsCard";
