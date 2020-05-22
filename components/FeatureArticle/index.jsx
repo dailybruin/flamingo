@@ -315,37 +315,48 @@ export default class FeatureArticle extends React.Component {
             />
             {/* {renderedAuthorCards} */}
             {/* <ShareCard></ShareCard> */}
+            {this.props.tagged.length == 0 && (
+              <div
+                css={css`
+                  height: 2px;
+                  width: 100%;
+                  background-color: #000;
+                `}
+              ></div>
+            )}
           </div>
         </div>
-        <div
-          css={css`
-            background-color: #666;
-            width: 100%;
-            margin: auto;
-            padding: 20px 0 0;
-          `}
-        >
+        {this.props.tagged.length > 0 && (
           <div
             css={css`
-              color: white;
-              margin: -6px 12px 6px;
-              font-weight: 700;
-              text-transform: uppercase;
-              font-family: ${globals.menuFont};
+              background-color: #666;
+              width: 100%;
+              margin: auto;
+              padding: 20px 0 0;
             `}
           >
-            Read more stories in this series:
+            <div
+              css={css`
+                color: white;
+                margin: -6px 12px 6px;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-family: ${globals.menuFont};
+              `}
+            >
+              Read more stories in this series:
+            </div>
+            <div
+              css={css`
+                overflow-x: scroll;
+                white-space: nowrap;
+                padding-bottom: 20px;
+              `}
+            >
+              {renderedTaggedCards}
+            </div>
           </div>
-          <div
-            css={css`
-              overflow-x: scroll;
-              white-space: nowrap;
-              padding-bottom: 20px;
-            `}
-          >
-            {renderedTaggedCards}
-          </div>
-        </div>
+        )}
       </div>
     );
   }
