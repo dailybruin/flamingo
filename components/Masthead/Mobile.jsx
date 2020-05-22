@@ -303,49 +303,43 @@ export default class Mobile extends React.Component {
               }
             `}
           >
-            <Link>
-              <a
-                href="https://www.facebook.com/dailybruin"
-                css={css`
-                  display: block;
-                  padding: 8px 4px;
-                `}
-              >
-                Facebook
-              </a>
-            </Link>
-            <Link>
-              <a
-                href="https://www.instagram.com/dailybruin"
-                css={css`
-                  display: block;
-                  padding: 8px 4px;
-                `}
-              >
-                Instagram
-              </a>
-            </Link>
-            <Link>
-              <a
-                href="https://twitter.com/dailybruin"
-                css={css`
-                  display: block;
-                  padding: 8px 4px;
-                `}
-              >
-                Twitter
-              </a>
-            </Link>
-            <Link>
-              <a
-                css={css`
-                  display: block;
-                  padding: 8px 4px;
-                `}
-              >
-                Advertise
-              </a>
-            </Link>
+            <a
+              href="https://www.facebook.com/dailybruin"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Facebook
+            </a>
+
+            <a
+              href="https://www.instagram.com/dailybruin"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Instagram
+            </a>
+
+            <a
+              href="https://twitter.com/dailybruin"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Twitter
+            </a>
+            <a
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Advertise
+            </a>
           </div>
         </div>
       </div>
