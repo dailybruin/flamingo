@@ -11,6 +11,8 @@ import InfiniteScroll from "react-infinite-scroller";
 import PhotoCard from "../../components/PhotoCard";
 import PhotoGrid from "../../components/PhotoGrid";
 
+import LoadingBear from "../../components/LoadingBear";
+
 export default class MultimediaLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -48,15 +50,7 @@ export default class MultimediaLayout extends React.Component {
         loadMore={this.getPosts}
         hasMore={this.state.more}
         threshold={3000}
-        loader={
-          <div
-            className="loader"
-            key={0}
-            style={{ width: "100%", textAlign: "center" }}
-          >
-            <h1>loading...</h1>
-          </div>
-        }
+        loader={<LoadingBear text={"searching for more content..."} />}
       >
         <Masonry
           ref={function(c) {

@@ -2,6 +2,10 @@ import React from "react";
 import css from "../style.css";
 import Media from "react-media";
 
+import { buildArticleCard } from "../utilities";
+
+import * as globals from "../../components/globals";
+
 import Article from "../../components/Article";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 import CommentsCard from "../../components/CommentsCard";
@@ -28,7 +32,6 @@ class ArticleLayout extends React.Component {
                 .rendered
             : ""
         }
-        authorimg={this.props.article["_embedded"].author[0]["avatar_urls"][96]}
         content={this.props.article.content.rendered}
         acf={this.props.article.acf}
       />
@@ -36,6 +39,12 @@ class ArticleLayout extends React.Component {
   }
 
   render() {
+    let renderedRelatedPosts = [];
+    for (let relatedPost of this.props.relatedPosts) {
+      renderedRelatedPosts.push(
+        <div className={css.card}>{buildArticleCard(relatedPost, "mini")}</div>
+      );
+    }
     return (
       <div>
         <Media
@@ -58,6 +67,28 @@ class ArticleLayout extends React.Component {
                     }}
                   >
                     <div className={css.card}>{this.article}</div>
+                    <div>
+                      <div className={css.card}>
+                        <div
+                          style={{
+                            backgroundColor: "#000000",
+                            height: "27px",
+                            padding: "2px 10px 0",
+                            boxShadow: globals.cardShadow,
+                            fontFamily: globals.menuFont,
+                            fontStyle: "normal",
+                            fontWeight: "900",
+                            fontSize: "18px",
+                            lineHeight: "24px",
+                            textTransform: "uppercase",
+                            color: "#ffffff"
+                          }}
+                        >
+                          Related Posts
+                        </div>
+                      </div>
+                      {renderedRelatedPosts}
+                    </div>
                     <div className={css.card}>
                       <CommentsCard
                         id={this.props.article.id}
@@ -91,6 +122,35 @@ class ArticleLayout extends React.Component {
                         id={this.props.article.id}
                         link={this.props.article.link}
                       ></CommentsCard>
+                    </div>
+                  </div>
+                  <div
+                    className={css.column}
+                    style={{
+                      width: "33.33%"
+                    }}
+                  >
+                    <div>
+                      <div className={css.card}>
+                        <div
+                          style={{
+                            backgroundColor: "#000000",
+                            height: "27px",
+                            padding: "2px 10px 0",
+                            boxShadow: globals.cardShadow,
+                            fontFamily: globals.menuFont,
+                            fontStyle: "normal",
+                            fontWeight: "900",
+                            fontSize: "18px",
+                            lineHeight: "24px",
+                            textTransform: "uppercase",
+                            color: "#ffffff"
+                          }}
+                        >
+                          Related Posts
+                        </div>
+                      </div>
+                      {renderedRelatedPosts}
                     </div>
                   </div>
                   <div
@@ -150,6 +210,28 @@ class ArticleLayout extends React.Component {
                         header="Featured Classifieds"
                         classifieds={this.props.classifieds}
                       />
+                    </div>
+                    <div>
+                      <div className={css.card}>
+                        <div
+                          style={{
+                            backgroundColor: "#000000",
+                            height: "27px",
+                            padding: "2px 10px 0",
+                            boxShadow: globals.cardShadow,
+                            fontFamily: globals.menuFont,
+                            fontStyle: "normal",
+                            fontWeight: "900",
+                            fontSize: "18px",
+                            lineHeight: "24px",
+                            textTransform: "uppercase",
+                            color: "#ffffff"
+                          }}
+                        >
+                          Related Posts
+                        </div>
+                      </div>
+                      {renderedRelatedPosts}
                     </div>
                   </div>
                 </div>

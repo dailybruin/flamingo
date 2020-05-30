@@ -5,10 +5,10 @@ import { Config } from "../../config.js";
 import css from "../style.css";
 import * as utilities from "../utilities";
 import InfiniteScroll from "react-infinite-scroller";
-
-import ClassifiedsCard from "../../components/ClassifiedsCard";
-
 import Media from "react-media";
+
+import LoadingBear from "../../components/LoadingBear";
+import ClassifiedsCard from "../../components/ClassifiedsCard";
 
 export default class CategoryLayout extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class CategoryLayout extends React.Component {
 
   getPosts(page) {
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}&${Config.articleCardFields}`
     )
       .then(response => response.json())
       .then(json => {
@@ -90,9 +90,7 @@ export default class CategoryLayout extends React.Component {
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <div className="loader" key={0}>
-                        loading...
-                      </div>
+                      <LoadingBear text={"searching for more articles..."} />
                     }
                   >
                     {utilities.renderPostArray(
@@ -124,9 +122,7 @@ export default class CategoryLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <div className="loader" key={0}>
-                          <h1>loading...</h1>
-                        </div>
+                        <LoadingBear text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(
@@ -209,9 +205,7 @@ export default class CategoryLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <div className="loader" key={0}>
-                          loading...
-                        </div>
+                        <LoadingBear text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(

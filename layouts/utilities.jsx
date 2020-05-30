@@ -3,10 +3,11 @@ import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.css";
 
-export function buildArticleCard(story) {
+export function buildArticleCard(story, type = "") {
   if (story != null && story != undefined) {
     return (
       <ArticleCard
+        displayType={type}
         headline={story.title.rendered}
         excerpt={story.excerpt.rendered}
         href={`/post/[slug]`}
@@ -27,7 +28,8 @@ export function buildArticleCard(story) {
         }
         caption={
           story._embedded["wp:featuredmedia"] != undefined &&
-          !story._embedded["wp:featuredmedia"].empty
+          !story._embedded["wp:featuredmedia"].empty &&
+          story._embedded["wp:featuredmedia"][0].caption != undefined
             ? story._embedded["wp:featuredmedia"][0].caption.rendered
             : ""
         }

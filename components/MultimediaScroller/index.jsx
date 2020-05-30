@@ -43,7 +43,7 @@ export default class MultimediaScroller extends React.Component {
             padding-bottom: 15px;
             width: auto;
             white-space: nowrap;
-            overflow: scroll;
+            overflow-x: scroll;
             vertical-align: top;
           `}
         >
