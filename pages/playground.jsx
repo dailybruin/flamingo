@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import { Config } from "../config.js";
+import Error from "next/error";
+import Link from "next/link";
 
-import Article from "../components/Article";
+import Full from "../components/VideoCard";
 
 class Playground extends Component {
   static async getInitialProps() {
     const { slug } = "wordpress-test_package-2";
     const postRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}`
+      `https://dailybruin.com/wp-json/wp/v2/posts?slug=in-the-kitchen-with-yeomans&_embed`
     );
     const article1 = await postRes.json();
     const article = article1[0];
@@ -19,11 +21,11 @@ class Playground extends Component {
   render() {
     console.log(this.props);
     return (
-      <Article
+      <Full
         headline={this.props.article.title.rendered}
         date={new Date(this.props.article.date)}
         authors={[]}
-        categories={this.props.article["_embedded"]["wp:term"][0]}
+        category={{as: this.props.article["_embedded"]["wp:term"][0]}}
         featureimg={
           this.props.article._embedded["wp:featuredmedia"] != undefined &&
           !this.props.article._embedded["wp:featuredmedia"].empty

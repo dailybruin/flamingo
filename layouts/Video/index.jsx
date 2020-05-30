@@ -4,7 +4,7 @@ import Error from "next/error";
 import { Config } from "../../config.js";
 import css from "../style.css";
 
-import VideoCard from "../../components/ArticleCard";
+import VideoCard from "../../components/VideoCard/Full";
 
 import { SizeMe } from "react-sizeme";
 
@@ -27,7 +27,36 @@ export default class CategoryLayout extends React.Component {
           } else if (size.width < 900) {
             return <div>{/* tablet layout */}</div>;
           } else {
-            return <div>{this.state.aVideoCard}</div>;
+            return (
+              <div>
+                <VideoCard
+                  headline={this.state.aVideoCard.title.rendered}
+                  date={new Date(this.state.aVideoCard.date)}
+                  authors={[]}
+                  category={{
+                    as: this.state.aVideoCard["_embedded"]["wp:term"][0]
+                  }}
+                  featureimg={
+                    this.state.aVideoCard._embedded["wp:featuredmedia"] !=
+                      undefined &&
+                    !this.state.aVideoCard._embedded["wp:featuredmedia"].empty
+                      ? this.state.aVideoCard._embedded["wp:featuredmedia"][0]
+                          .source_url
+                      : ""
+                  }
+                  caption={
+                    this.state.aVideoCard._embedded["wp:featuredmedia"] !=
+                      undefined &&
+                    !this.state.aVideoCard._embedded["wp:featuredmedia"].empty
+                      ? this.state.aVideoCard._embedded["wp:featuredmedia"][0]
+                          .caption.rendered
+                      : ""
+                  }
+                  content={this.state.aVideoCard.content.rendered}
+                  acf={this.state.aVideoCard.acf}
+                />
+              </div>
+            );
           }
         }}
       </SizeMe>
