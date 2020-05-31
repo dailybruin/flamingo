@@ -64,9 +64,8 @@ export default function Vert(props) {
               text-transform: uppercase;
               display: inline;
             `}
-          >
-            {props.category.name}
-          </h2>
+            dangerouslySetInnerHTML={{ __html: props.category.name }}
+          />
         </a>
         <span
           css={css`

@@ -17,13 +17,19 @@ export default class Article extends React.Component {
   }
 
   render() {
-    // grab author pics
+    // grab author pics and cards
     let authorPictures = [];
+    let renderedAuthorCards = [];
+
     for (let author of this.props.authors) {
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
           <img
-            src={author.avatar_urls[96]}
+            src={
+              author.simple_local_avatar != null
+                ? author.simple_local_avatar.full
+                : author.avatar_urls[512]
+            }
             css={css`
               height: 48px;
               width: 48px;
@@ -34,6 +40,27 @@ export default class Article extends React.Component {
             `}
           />
         </a>
+      );
+      renderedAuthorCards.push(
+        <div
+          css={css`
+            margin: 20px 0;
+          `}
+        >
+          <AuthorCard
+            image={
+              author.simple_local_avatar != null
+                ? author.simple_local_avatar.full
+                : author.avatar_urls[512]
+            }
+            name={author.name}
+            description={author.description}
+            position={author.acf.position}
+            twitter={author.acf.twitter}
+            email={author.media_email}
+            link={author.link}
+          />
+        </div>
       );
     }
 
@@ -49,27 +76,6 @@ export default class Article extends React.Component {
               : this.props.acf["db_number_of_paws"]
           }
         ></ReviewInfobox>
-      );
-    }
-
-    let renderedAuthorCards = [];
-    for (let author of this.props.authors) {
-      renderedAuthorCards.push(
-        <div
-          css={css`
-            margin: 20px 0;
-          `}
-        >
-          <AuthorCard
-            image={author.avatar_urls[512]}
-            name={author.name}
-            description={author.description}
-            position={author.acf.position}
-            twitter={author.acf.twitter}
-            email={author.media_email}
-            link={author.link}
-          />
-        </div>
       );
     }
 

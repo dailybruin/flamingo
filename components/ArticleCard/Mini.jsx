@@ -76,9 +76,8 @@ export default function Mini(props) {
                 text-transform: uppercase;
                 display: inline;
               `}
-            >
-              {props.category.name}
-            </h2>
+              dangerouslySetInnerHTML={{ __html: props.category.name }}
+            />
           </a>
         </span>
         <a href={props.as} style={{ textDecoration: "none" }}>

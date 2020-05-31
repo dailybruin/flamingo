@@ -433,7 +433,7 @@ export default class Desktop extends React.Component {
           css={css`
             background-color: #fff;
             overflow-x: scroll;
-            ::-webkit-scrollbar {
+            &::-webkit-scrollbar {
               display: none;
             }
           `}

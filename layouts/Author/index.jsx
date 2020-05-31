@@ -82,7 +82,11 @@ export default class Author extends React.Component {
                 >
                   <div className={css.card}>
                     <AuthorCard
-                      image={this.props.author["avatar_urls"][512]}
+                      image={
+                        this.props.author.simple_local_avatar != null
+                          ? this.props.author.simple_local_avatar.full
+                          : this.props.author.avatar_urls[512]
+                      }
                       name={this.props.author.name}
                       position={this.props.author.acf.position}
                       description={this.props.author.description}
@@ -137,7 +141,11 @@ export default class Author extends React.Component {
                 >
                   <div className={css.card}>
                     <AuthorCard
-                      image={this.props.author["avatar_urls"][512]}
+                      image={
+                        this.props.author.simple_local_avatar != null
+                          ? this.props.author.simple_local_avatar.full
+                          : this.props.author.avatar_urls[512]
+                      }
                       name={this.props.author.name}
                       description={this.props.author.description}
                       position={this.props.author.acf.position}
@@ -232,7 +240,11 @@ export default class Author extends React.Component {
                   </div> */}
                   <div className={css.card}>
                     <AuthorCard
-                      image={this.props.author["avatar_urls"][512]}
+                      image={
+                        this.props.author.simple_local_avatar != null
+                          ? this.props.author.simple_local_avatar.full
+                          : this.props.author.avatar_urls[512]
+                      }
                       name={this.props.author.name}
                       description={this.props.author.description}
                       position={this.props.author.acf.position}
