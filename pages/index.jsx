@@ -34,7 +34,7 @@ const ArticleAdStyle = {
   textAlign: "center",
   fontWeight: "bold",
   fontFamily: "sans-serif",
-  textTransform: "uppercase"
+  textTransform: "uppercase",
 };
 
 class Index extends Component {
@@ -43,7 +43,7 @@ class Index extends Component {
 
     this.state = {
       showPopUp: false,
-      showWelcome: false
+      showWelcome: false,
     };
   }
   static async getInitialProps(context) {
@@ -93,7 +93,7 @@ class Index extends Component {
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
     );
-    const linksRes = await fetch(`${Config.apiUrl}/wp-json/db/v1/links`);
+    const sponsoredRes = await fetch(`${Config.apiUrl}/wp-json/db/v1/links`);
     posts.aStory = await aStoryRes.json();
     posts.bStory = await bStoryRes.json();
     posts.c1Story = await c1StoryRes.json();
@@ -109,8 +109,8 @@ class Index extends Component {
     posts.artsList = await aeStoryRes.json();
     posts.sportsList = await spStoryRes.json();
     const classifieds = await classifiedsRes.json();
-    const links = await linksRes.text();
-    return { posts, multimediaPosts, classifieds, links };
+    const sponsored = await postRes.text();
+    return { posts, multimediaPosts, classifieds, sponsored };
   }
 
   componentDidMount() {
@@ -201,15 +201,16 @@ class Index extends Component {
         <HomeLayout
           posts={this.props.posts}
           media={this.props.multimediaPosts}
-          classifieds={this.props.classifieds.map(c => {
+          classifieds={this.props.classifieds.map((c) => {
             return {
               category: {
                 name: c._embedded["wp:term"][1][0].name,
-                url: c._embedded["wp:term"][1][0].link
+                url: c._embedded["wp:term"][1][0].link,
               },
-              content: { name: c.content.rendered, url: c.link }
+              content: { name: c.content.rendered, url: c.link },
             };
           })}
+          sponsoredlinks={this.props.sponsored}
         />
         {this.state.showPopUp && !this.state.showWelcome ? (
           <EmailPopUp

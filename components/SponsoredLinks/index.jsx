@@ -1,0 +1,56 @@
+import * as React from "react";
+import Link from "next/link";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+import * as globals from "../globals";
+
+export default class SponsoredLinks extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div
+        css={css`
+          background: #fff;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+          padding: 12px;
+        `}
+      >
+        <h1
+          css={css`
+            font-family: ${globals.menuFont};
+            font-size: 14px;
+            margin: 0;
+          `}
+        >
+          SPONSORED LINKS:
+        </h1>
+        <div
+          css={css`
+            font-family: ${globals.menuFont};
+            font-size: 10px;
+            list-style: none;
+            column-count: 4;
+            a {
+              color: ${globals.DBblue};
+              text-decoration: none;
+            }
+            a:hover {
+              text-decoration: underline;
+            }
+            @media (max-width: 768px) {
+              column-count: 3;
+            }
+            @media (max-width: 600px) {
+              column-count: 2;
+            }
+          `}
+          dangerouslySetInnerHTML={{
+            __html: this.props.links,
+          }}
+        ></div>
+      </div>
+    );
+  }
+}
