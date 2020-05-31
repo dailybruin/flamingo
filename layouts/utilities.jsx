@@ -59,7 +59,7 @@ export function buildStoryList(type, list, link) {
         src:
           list[0]._embedded["wp:featuredmedia"] != undefined
             ? list[0]._embedded["wp:featuredmedia"][0].source_url
-            : null,
+            : "http://wp.dailybruin.com/images/2017/03/db-logo.png",
         alt: "N/A"
       }}
     />
@@ -81,18 +81,16 @@ export function buildMultimediaScroller(media) {
 }
 
 export function buildArticleList(stories) {
-  var i;
   let postArray = [];
-  for (i = 0; i < stories.length; i++) {
+  for (let i = 0; i < stories.length; i++) {
     postArray.push(buildArticleCard(stories[i]));
   }
   return postArray;
 }
 
 export function renderPostArray(otherArticleCards, type) {
-  var i;
   let renderedPostArray = [];
-  for (i = 0; i < otherArticleCards.length; i++) {
+  for (let i = 0; i < otherArticleCards.length; i++) {
     renderedPostArray.push(
       <div className={css.card}>
         {React.cloneElement(otherArticleCards[i], {
