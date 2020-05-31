@@ -10,6 +10,7 @@ import Media from "react-media";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 import Poll from "../../components/Poll";
 import StoryList from "../../components/StoryList";
+import SponsoredLinks from "../../components/SponsoredLinks";
 
 const ArticleAdStyle = {
   width: "100%",
@@ -179,6 +180,9 @@ export default class HomeLayout extends React.Component {
                         displayType: "vert"
                       })}
                     </div>
+                    <div id="qd" className={css.card}>
+                      {this.state.qdStoryList}
+                    </div>
                     <div id="classifieds" className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
@@ -235,19 +239,16 @@ export default class HomeLayout extends React.Component {
                             displayType: "mini"
                           })}
                         </div>
-                        <div id="e" className={css.card}>
-                          {React.cloneElement(this.state.eArticleCard, {
-                            displayType: "mini"
-                          })}
-                        </div>
                       </div>
                       <div
                         id="qd-d-e"
                         className={css.column}
                         style={{ width: "50%" }}
                       >
-                        <div id="qd" className={css.card}>
-                          {this.state.qdStoryList}
+                        <div id="e" className={css.card}>
+                          {React.cloneElement(this.state.eArticleCard, {
+                            displayType: "mini"
+                          })}
                         </div>
                       </div>
                       <div id="MultimediaScroller" className={css.card}>
@@ -267,6 +268,19 @@ export default class HomeLayout extends React.Component {
                         </div>
                         <div id="sp" className={css.card}>
                           {this.state.spStoryList}
+                        </div>
+                      </div>
+                      <div className={css.column} style={{ width: "100%" }}>
+                        <div className={css.card}>
+                          <a href="https://prime.dailybruin.com">
+                            <img
+                              src="https://dailybruin.com/images/2020/01/Image-from-iOS-3.jpg"
+                              style={{ width: "100%" }}
+                            />
+                          </a>
+                        </div>
+                        <div className={css.card}>
+                          <SponsoredLinks links={this.props.sponsoredLinks} />
                         </div>
                       </div>
                     </div>
@@ -374,6 +388,23 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div id="sp" className={css.card}>
                         {this.state.spStoryList}
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className={css.column} style={{ width: "50%" }}>
+                      <div className={css.card}>
+                        <a href="https://prime.dailybruin.com">
+                          <img
+                            src="https://dailybruin.com/images/2020/01/Image-from-iOS-3.jpg"
+                            style={{ width: "100%" }}
+                          />
+                        </a>
+                      </div>
+                    </div>
+                    <div className={css.column} style={{ width: "50%" }}>
+                      <div className={css.card}>
+                        <SponsoredLinks links={this.props.sponsoredLinks} />
                       </div>
                     </div>
                   </div>

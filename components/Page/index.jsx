@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { headlineFont, cardShadow, regularFont, bodyFont } from "../globals";
+import * as globals from "../globals";
 import { date2string } from "./utilities.js";
 
 export default class Page extends React.Component {
@@ -16,33 +16,43 @@ export default class Page extends React.Component {
         css={css`
           display: block;
           padding: 10px 30px;
-          box-shadow: ${cardShadow};
+          box-shadow: ${globals.cardShadow};
           background-color: #ffffff;
+          font-family: ${globals.bodyFont};
         `}
       >
         <div
           css={css`
-            font-family: PT Serif;
+            font-family: ${globals.bodyFont};
             font-style: normal;
             font-weight: normal;
+            font-size: 14px;
 
             color: #000000;
             margin: auto;
             display: block;
 
-            & h1,h2,h3,h4 {
-              font-family: 'Arimo', sans-serif
+            & h1 {
+              font-family: ${globals.headlineFont};
+            }
+
+            & h2,
+            h3,
+            h4 {
+              font-family: ${globals.bodyFont};
             }
 
             & p {
-              font-size: 1rem;
+              font-size: 14px;
             }
           `}
           dangerouslySetInnerHTML={{ __html: this.props.content }}
         />
-        <p css={css`
-            font-style: oblique;
-            `}>
+        <p
+          css={css`
+            font-style: italic;
+          `}
+        >
           This page last updated: {date2string(this.props.date)}
         </p>
       </div>

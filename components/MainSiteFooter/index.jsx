@@ -6,11 +6,13 @@ import FooterLink from "../Footer/FooterLink";
 
 export default function MainSiteFooter(props) {
   const mainSiteFooterLinks = [
-    { text: "About", url: "https://dailybruin.com/about" },
-    { text: "Contact", url: "https://dailybruin.com/contact" },
-    { text: "Advertise", url: "https://dailybruin.com/advertise" },
-    { text: "Work With Us", url: "https://apply.uclastudentmedia.com" },
-    { text: "Privacy", url: "https://dailybruin.com/privacy" }
+    { text: "About", url: "/about" },
+    { text: "Contact", url: "/contact" },
+    { text: "Advertise", url: "/advertise" },
+    { text: "Staff", url: "/staff" },
+    { text: "Stonewall", url: "/stonewall" },
+    { text: "Editorial Board", url: "/editorial-board" },
+    { text: "Privacy", url: "/privacy" }
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (

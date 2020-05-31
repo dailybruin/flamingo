@@ -34,7 +34,7 @@ const ArticleAdStyle = {
   textAlign: "center",
   fontWeight: "bold",
   fontFamily: "sans-serif",
-  textTransform: "uppercase",
+  textTransform: "uppercase"
 };
 
 class Index extends Component {
@@ -43,7 +43,7 @@ class Index extends Component {
 
     this.state = {
       showPopUp: false,
-      showWelcome: false,
+      showWelcome: false
     };
   }
   static async getInitialProps(context) {
@@ -109,7 +109,7 @@ class Index extends Component {
     posts.artsList = await aeStoryRes.json();
     posts.sportsList = await spStoryRes.json();
     const classifieds = await classifiedsRes.json();
-    const sponsored = await postRes.text();
+    const sponsored = await sponsoredRes.text();
     return { posts, multimediaPosts, classifieds, sponsored };
   }
 
@@ -201,16 +201,16 @@ class Index extends Component {
         <HomeLayout
           posts={this.props.posts}
           media={this.props.multimediaPosts}
-          classifieds={this.props.classifieds.map((c) => {
+          classifieds={this.props.classifieds.map(c => {
             return {
               category: {
                 name: c._embedded["wp:term"][1][0].name,
-                url: c._embedded["wp:term"][1][0].link,
+                url: c._embedded["wp:term"][1][0].link
               },
-              content: { name: c.content.rendered, url: c.link },
+              content: { name: c.content.rendered, url: c.link }
             };
           })}
-          sponsoredlinks={this.props.sponsored}
+          sponsoredLinks={this.props.sponsored.replace("null", "")}
         />
         {this.state.showPopUp && !this.state.showWelcome ? (
           <EmailPopUp

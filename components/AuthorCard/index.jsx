@@ -107,7 +107,14 @@ export default class AuthorCard extends React.Component {
                 margin: 0px;
               `}
             >
-              {this.props.name}
+              <a
+                css={css`
+                  color: #000;
+                `}
+                href={this.props.link}
+              >
+                {this.props.name}
+              </a>
               <span
                 css={css`
                   @media (max-width: 600px) {

@@ -13,15 +13,15 @@ export default class SponsoredLinks extends React.Component {
       <div
         css={css`
           background: #fff;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-          padding: 12px;
+          box-shadow: ${globals.cardShadow};
+          padding: 10px;
         `}
       >
         <h1
           css={css`
             font-family: ${globals.menuFont};
             font-size: 14px;
-            margin: 0;
+            margin: 0 0 4px;
           `}
         >
           SPONSORED LINKS:
@@ -31,7 +31,7 @@ export default class SponsoredLinks extends React.Component {
             font-family: ${globals.menuFont};
             font-size: 10px;
             list-style: none;
-            column-count: 4;
+            column-count: 3;
             a {
               color: ${globals.DBblue};
               text-decoration: none;
@@ -40,14 +40,14 @@ export default class SponsoredLinks extends React.Component {
               text-decoration: underline;
             }
             @media (max-width: 768px) {
-              column-count: 3;
+              column-count: 2;
             }
             @media (max-width: 600px) {
               column-count: 2;
             }
           `}
           dangerouslySetInnerHTML={{
-            __html: this.props.links,
+            __html: this.props.links
           }}
         ></div>
       </div>

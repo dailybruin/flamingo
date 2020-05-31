@@ -88,6 +88,7 @@ export default class Author extends React.Component {
                       description={this.props.author.description}
                       twitter={this.props.author.acf.twitter}
                       email={this.props.author.media_email}
+                      link={this.props.author.link}
                     />
                   </div>
                   {/* <div id="c1" className={css.card}>
@@ -142,6 +143,7 @@ export default class Author extends React.Component {
                       position={this.props.author.acf.position}
                       twitter={this.props.author.acf.twitter}
                       email={this.props.author.media_email}
+                      link={this.props.author.link}
                     />
                   </div>
                   {/* <div
@@ -236,6 +238,7 @@ export default class Author extends React.Component {
                       position={this.props.author.acf.position}
                       twitter={this.props.author.acf.twitter}
                       email={this.props.author.media_email}
+                      link={this.props.author.link}
                     />
                   </div>
                   <div>
