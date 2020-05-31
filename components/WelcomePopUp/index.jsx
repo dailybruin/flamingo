@@ -39,7 +39,6 @@ export default class WelcomePopUp extends React.Component {
             @media (max-width: 450px) {
               width: 260px;
             }
-            min-height: 295px;
             top: 29%;
             left: 0;
             right: 0;
@@ -62,6 +61,7 @@ export default class WelcomePopUp extends React.Component {
               font-size: 18px;
               z-index: 3002;
               cursor: pointer;
+              background-color: transparent;
             `}
             type="button"
             onClick={this.props.close}
@@ -76,7 +76,6 @@ export default class WelcomePopUp extends React.Component {
                 width: 220px;
               }
               padding: 20px 4px 4px;
-              min-height: 256px;
               border: 5px solid #c4c4c4;
               z-index: 3001;
             `}

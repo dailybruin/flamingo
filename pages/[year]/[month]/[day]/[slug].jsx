@@ -62,16 +62,10 @@ class Post extends Component {
     return { post, classifieds, authors, relatedPosts };
   }
 
-  componentDidMount() {
-    if (
-      this.props.post[0].acf["db_link"] != null &&
-      this.props.post[0].acf["db_link"] != ""
-    ) {
-      location.replace(this.props.post[0].acf["db_link"]);
-    }
-  }
-
   render() {
+    if (this.props.post == undefined || this.props.post.length == 0) {
+      return <Error statusCode={404} />;
+    }
     let renderedMeta = [];
     for (let meta of this.props.post[0].yoast_meta) {
       renderedMeta.push(React.createElement("meta", meta));

@@ -1,8 +1,5 @@
 import PageWrapper from "../layouts/PageWrapper";
 import React, { Component } from "react";
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
-import Error from "next/error";
 import { Config } from "../config.js";
 
 import PageLayout from "../layouts/Page";

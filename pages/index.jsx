@@ -166,16 +166,16 @@ class Index extends Component {
             name="description"
             content="the all new redesigned dailybruin.com"
           />
-          <link rel="canonical" href="https://new.dailybruin.com/" />
+          <link rel="canonical" href="https://dailybruin.com/" />
           <meta
             property="og:image"
-            content="https://dailybruin.com/images/2017/03/db-logo.png"
+            content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
           />
           <meta
             property="twitter:image"
-            content="https://dailybruin.com/images/2017/03/db-logo.png"
+            content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
           />
-          <meta property="og:url" content="https://new.dailybruin.com" />
+          <meta property="og:url" content="https://dailybruin.com" />
           <meta property="og:title" content="The Daily Bruin" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="Daily Bruin" />
@@ -220,7 +220,7 @@ class Index extends Component {
         ) : null}
         {this.state.showWelcome ? (
           <WelcomePopUp
-            bodytext="Here's a sneak peek of the redesigned digital home fo the Daily Bruin. This site is still under active development, so please provide feedback and comments by clicking the button on the bottom right of your screen."
+            bodytext="You're looking at the new dailybruin.com! Feel free to leave us some feedback by clicking the blue button at the bottom right. We appreciate it!"
             close={this.closeWelcomePopup}
           />
         ) : null}

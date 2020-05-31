@@ -40,13 +40,11 @@ class MyApp extends App {
     }
     gtag("js", new Date());
 
-    gtag("config", "UA-28181852-29");
+    gtag("config", "UA-28181852-28");
 
     // Broadstreet Ads
     window.broadstreet = window.broadstreet || { watch: function() {} };
     broadstreet.watch({ networkId: 5876 });
-    
-    
 
     /** Web fonts loaded here - only in a browser */
   }

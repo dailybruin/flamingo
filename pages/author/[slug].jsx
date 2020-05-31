@@ -26,6 +26,9 @@ class Author extends Component {
     return { author, posts, classifieds };
   }
   render() {
+    if (this.props.author == undefined || this.props.author.length == 0) {
+      return <Error statusCode={404} />;
+    }
     return (
       <>
         <Head>

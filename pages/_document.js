@@ -113,7 +113,7 @@ class MyDocument extends Document {
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-29"
+            src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-28"
           ></script>
           {/* Broadstreet Ads */}
           <script src="https://cdn.broadstreetads.com/init-2.min.js"></script>

@@ -43,7 +43,9 @@ class Category extends Component {
     return { category };
   }
   render() {
-    if (this.props.category.length == 0) return <Error statusCode={404} />;
+    if (this.props.category == undefined || this.props.category.length == 0) {
+      return <Error statusCode={404} />;
+    }
     const sectionLinks = this.props.subcategories.map(index => {
       const subsubcategoriesSimple = index.subsubcategories.map(index => {
         return { name: index.name, link: `/category/${index.slug}` };

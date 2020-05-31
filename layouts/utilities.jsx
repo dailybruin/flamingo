@@ -11,7 +11,7 @@ export function buildArticleCard(story, type = "") {
         headline={story.title.rendered}
         excerpt={story.excerpt.rendered}
         href={`/post/[slug]`}
-        as={`/post/${story.slug}`}
+        as={story.link}
         // TODO: format date
         date={new Date(story.date)}
         authors={story.coauthors}
@@ -24,7 +24,7 @@ export function buildArticleCard(story, type = "") {
           story._embedded["wp:featuredmedia"] != undefined &&
           !story._embedded["wp:featuredmedia"].empty
             ? story._embedded["wp:featuredmedia"][0].source_url
-            : "http://dailybruin.com/images/2017/03/db-logo.png"
+            : "http://wp.dailybruin.com/images/2017/03/db-logo.png"
         }
         caption={
           story._embedded["wp:featuredmedia"] != undefined &&
@@ -40,12 +40,12 @@ export function buildArticleCard(story, type = "") {
   }
 }
 
-export function buildStoryList(type, list) {
+export function buildStoryList(type, list, link) {
   const mappedList = list.map(index => {
     return {
       title: index.title.rendered,
       text: index.excerpt.rendered,
-      link: `/post/${index.slug}`
+      link: index.link
     };
   });
   mappedList[1].text = "";
@@ -53,6 +53,7 @@ export function buildStoryList(type, list) {
   return (
     <StoryList
       type={type}
+      link={link}
       story={mappedList}
       image={{
         src:
@@ -69,7 +70,7 @@ export function buildMultimediaScroller(media) {
   const mappedMedia = media.map(index => {
     return {
       title: index.title.rendered,
-      link: `/post/${index.slug}`,
+      link: index.link,
       preview:
         index._embedded["wp:featuredmedia"] != undefined
           ? index._embedded["wp:featuredmedia"][0].source_url

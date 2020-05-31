@@ -135,9 +135,10 @@ export default class Article extends React.Component {
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
           css={css`
+            font-family: ${globals.bodyFont};
+
             p {
               margin: 0 20px;
-              font-family: ${globals.headlineFont};
               font-size: 10px;
               color: ${globals.darkGray};
             }

@@ -60,12 +60,13 @@ export default class EmailPopUp extends React.Component {
               top: 30px;
               left: 25px;
               border: none;
-              font-family: Source Sans Pro;
-              font-weight: bold;
+              font-family: ${globals.menuFont};
+              font-weight: 700;
               color: #000;
               font-size: 18px;
               z-index: 3002;
               cursor: pointer;
+              background-color: transparent;
             `}
             type="button"
             onClick={this.props.close}
@@ -179,13 +180,15 @@ export default class EmailPopUp extends React.Component {
                   top: 40px;
                   left: 42px;
                   border: 3px solid ${globals.DBblue};
-                  background: ${globals.DBblue};
+                  background-color: ${globals.DBblue};
                   font-family: "PT Serif";
                   font-weight: bolder;
                   font-size: 16px;
                   color: #ffffff;
                   z-index: 3001;
                   cursor: pointer;
+                  border-radius: 0;
+                  -webkit-appearance: button;
                 `}
               ></input>
             </form>

@@ -58,7 +58,7 @@ class USACOfficerEvaluations1920 extends React.Component {
           />
           <meta
             property="og:image:secure_url"
-            content="https://dailybruin.com/images/2020/05/usac-officer.png"
+            content="https://wp.dailybruin.com/images/2020/05/usac-officer.png"
           />
           <meta property="og:image:width" content="3975" />
           <meta property="og:image:height" content="2088" />
@@ -71,7 +71,7 @@ class USACOfficerEvaluations1920 extends React.Component {
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
-            content="https://dailybruin.com/images/2020/05/usac-officer.png"
+            content="https://wp.dailybruin.com/images/2020/05/usac-officer.png"
           />
         </Head>
         <div>

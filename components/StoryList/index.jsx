@@ -34,6 +34,7 @@ class StoryList extends React.Component {
               : 'IN THE PRINT' */
             this.props.type
           }
+          link={this.props.link || ""}
         />
         <div
           css={css`
