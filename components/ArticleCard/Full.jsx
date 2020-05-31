@@ -76,13 +76,15 @@ export default function Full(props) {
         />
         <div
           css={css`
-            margin: 2px 0;
-
-            font-family: Arimo;
+            font-family: ${globals.bodyFont};
             font-style: normal;
             font-weight: normal;
-            font-size: 10px;
+            font-size: 9px;
             text-align: justify;
+
+            p {
+              margin: 4px 0;
+            }
 
             color: #000000;
           `}

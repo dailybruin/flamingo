@@ -30,7 +30,7 @@ class Category extends Component {
         subcategories[i].subsubcategories = [];
       }
       const postsRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
       );
       const posts = await postsRes.json();
 

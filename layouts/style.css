@@ -41,6 +41,18 @@ broadstreet-zone {
   padding: 6px;
 }
 
+.video-card {
+  display: inline-block;
+  padding: 6px;
+  width: 50%;
+}
+
+.podcast-card {
+  display: inline-block;
+  padding: 6px;
+  width: 33.33%;
+}
+
 .column {
   display: inline-block;
   vertical-align: top;
@@ -69,9 +81,23 @@ broadstreet-zone {
   padding: 10px;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 900px) {
+  .podcast-card {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .banner-ad {
     margin: -6px -6px;
     padding: 6px 0;
+  }
+
+  .video-card {
+    width: 100%;
+  }
+
+  .podcast-card {
+    width: 100%;
   }
 }

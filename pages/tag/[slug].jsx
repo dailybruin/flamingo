@@ -4,8 +4,8 @@ import Error from "next/error";
 import { Config } from "../../config.js";
 import Head from "next/head";
 
-import SectionHeader from "../../components/SectionHeader";
-import CategoryLayout from "../../layouts/Category";
+import TagHeader from "../../components/TagHeader";
+import TagLayout from "../../layouts/Tag";
 
 class Tag extends Component {
   static async getInitialProps(context) {
@@ -40,10 +40,13 @@ class Tag extends Component {
         </Head>
         <div>
           <div style={{ padding: "6px" }}>
-            <SectionHeader category={this.props.tag[0].name} />
+            <TagHeader
+              tag={this.props.tag[0].name}
+              explainer={this.props.tag[0].description}
+            />
           </div>
-          <CategoryLayout
-            categoryID={this.props.tag[0].id}
+          <TagLayout
+            tagID={this.props.tag[0].id}
             posts={this.props.posts}
             classifieds={this.props.classifieds.map(c => {
               return {

@@ -7,7 +7,7 @@ import * as locals from "./locals";
 import * as utilities from "./utilities";
 import * as moment from "moment";
 
-export default function Vert(props) {
+export default function Video(props) {
   return (
     <div
       css={css`
@@ -15,16 +15,30 @@ export default function Vert(props) {
         padding: 10px;
         box-shadow: ${globals.cardShadow};
         background-color: #ffffff;
+        height: 100%;
       `}
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
-        <img
+        <div
           css={css`
             width: 100%;
             margin: auto;
+            padding-top: 56.25%;
+            position: relative;
           `}
-          src={props.imageurl}
-        />
+        >
+          <img
+            src={props.imageurl}
+            css={css`
+              object-fit: cover;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            `}
+          />
+        </div>
       </a>
       <h4
         css={css`

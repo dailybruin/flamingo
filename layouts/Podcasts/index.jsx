@@ -10,12 +10,11 @@ import Media from "react-media";
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 
-export default class VideoLayout extends React.Component {
+export default class PodcastsLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      aArticleCard: utilities.buildArticleCard(this.props.posts[0], "video"),
-      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(1)),
+      otherArticleCards: utilities.buildArticleList(this.props.posts),
 
       more: true
     };
@@ -80,23 +79,18 @@ export default class VideoLayout extends React.Component {
                     width: "100%"
                   }}
                 >
-                  <div id="c1" className={css.card}>
-                    {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "video"
-                    })}
-                  </div>
                   <InfiniteScroll
                     pageStart={1}
                     loadMore={this.getPosts}
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <LoadingBear text={"searching for more videos..."} />
+                      <LoadingBear text={"searching for more podcasts..."} />
                     }
                   >
-                    {utilities.renderVideoArray(
+                    {utilities.renderPodcastArray(
                       this.state.otherArticleCards,
-                      "video"
+                      "podcast"
                     )}
                   </InfiniteScroll>
                   {!this.state.more ? (
@@ -124,11 +118,6 @@ export default class VideoLayout extends React.Component {
                     width: "66.666%"
                   }}
                 >
-                  <div id="a" className={css.card}>
-                    {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "full"
-                    })}
-                  </div>
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -136,7 +125,7 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear text={"searching for more podcasts..."} />
                       }
                     >
                       <div
@@ -146,9 +135,9 @@ export default class VideoLayout extends React.Component {
                           flexWrap: "wrap"
                         }}
                       >
-                        {utilities.renderVideoArray(
+                        {utilities.renderPodcastArray(
                           this.state.otherArticleCards,
-                          "video"
+                          "podcast"
                         )}
                       </div>
                     </InfiniteScroll>
@@ -190,19 +179,6 @@ export default class VideoLayout extends React.Component {
                   className={css.column}
                   style={{ width: "75%" }}
                 >
-                  <div
-                    id="a"
-                    className={css.column}
-                    style={{
-                      width: "100%"
-                    }}
-                  >
-                    <div id="a" className={css.card}>
-                      {React.cloneElement(this.state.aArticleCard, {
-                        displayType: "full"
-                      })}
-                    </div>
-                  </div>
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -210,7 +186,7 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear text={"searching for more podcasts..."} />
                       }
                     >
                       <div
@@ -220,9 +196,9 @@ export default class VideoLayout extends React.Component {
                           flexWrap: "wrap"
                         }}
                       >
-                        {utilities.renderVideoArray(
+                        {utilities.renderPodcastArray(
                           this.state.otherArticleCards,
-                          "video"
+                          "podcast"
                         )}
                       </div>
                     </InfiniteScroll>

@@ -17,7 +17,7 @@ export default class MultimediaLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [],
+      cards: this.props.posts,
       more: true
     };
     this.masonryProps = {
@@ -46,7 +46,7 @@ export default class MultimediaLayout extends React.Component {
     let rendered = utilities.buildPhotoList(this.state.cards);
     return (
       <InfiniteScroll
-        pageStart={0}
+        pageStart={1}
         loadMore={this.getPosts}
         hasMore={this.state.more}
         threshold={3000}

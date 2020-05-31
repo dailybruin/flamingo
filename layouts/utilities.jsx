@@ -102,3 +102,33 @@ export function renderPostArray(otherArticleCards, type) {
   }
   return renderedPostArray;
 }
+
+export function renderVideoArray(otherArticleCards, type) {
+  var i;
+  let renderedPostArray = [];
+  for (i = 0; i < otherArticleCards.length; i++) {
+    renderedPostArray.push(
+      <div className={css["video-card"]}>
+        {React.cloneElement(otherArticleCards[i], {
+          displayType: type
+        })}
+      </div>
+    );
+  }
+  return renderedPostArray;
+}
+
+export function renderPodcastArray(otherArticleCards, type) {
+  var i;
+  let renderedPostArray = [];
+  for (i = 0; i < otherArticleCards.length; i++) {
+    renderedPostArray.push(
+      <div className={css["podcast-card"]}>
+        {React.cloneElement(otherArticleCards[i], {
+          displayType: type
+        })}
+      </div>
+    );
+  }
+  return renderedPostArray;
+}
