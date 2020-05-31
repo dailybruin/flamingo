@@ -10,13 +10,11 @@ import Media from "react-media";
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 
-export default class VideoLayout extends React.Component {
+export default class TagLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      aArticleCard: utilities.buildArticleCard(this.props.posts[0], "video"),
-      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(1)),
-
+      otherArticleCards: utilities.buildArticleList(this.props.posts),
       more: true
     };
     this.getPosts = this.getPosts.bind(this);
@@ -24,7 +22,7 @@ export default class VideoLayout extends React.Component {
 
   getPosts(page) {
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${this.props.tagID}&page=${page}`
     )
       .then(response => response.json())
       .then(
@@ -80,23 +78,18 @@ export default class VideoLayout extends React.Component {
                     width: "100%"
                   }}
                 >
-                  <div id="c1" className={css.card}>
-                    {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "video"
-                    })}
-                  </div>
                   <InfiniteScroll
                     pageStart={1}
                     loadMore={this.getPosts}
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <LoadingBear text={"searching for more videos..."} />
+                      <LoadingBear text={"searching for more articles..."} />
                     }
                   >
-                    {utilities.renderVideoArray(
+                    {utilities.renderPostArray(
                       this.state.otherArticleCards,
-                      "video"
+                      "full"
                     )}
                   </InfiniteScroll>
                   {!this.state.more ? (
@@ -117,18 +110,7 @@ export default class VideoLayout extends React.Component {
             )}
             {matches.tablet && (
               <div id="ArticleGrid" style={{ width: "100%" }}>
-                <div
-                  id="a-ad-b"
-                  className={css.column}
-                  style={{
-                    width: "66.666%"
-                  }}
-                >
-                  <div id="a" className={css.card}>
-                    {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "full"
-                    })}
-                  </div>
+                <div className={css.column} style={{ width: "66.66%" }}>
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -136,21 +118,13 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear text={"searching for more articles..."} />
                       }
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignContent: "stretch",
-                          flexWrap: "wrap"
-                        }}
-                      >
-                        {utilities.renderVideoArray(
-                          this.state.otherArticleCards,
-                          "video"
-                        )}
-                      </div>
+                      {utilities.renderPostArray(
+                        this.state.otherArticleCards,
+                        "horz"
+                      )}
                     </InfiniteScroll>
                     {!this.state.more ? (
                       <p
@@ -174,6 +148,9 @@ export default class VideoLayout extends React.Component {
                     width: "33.333%"
                   }}
                 >
+                  <div id="above-ad" className={css.card}>
+                    <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                  </div>
                   <div id="classifieds" className={css.card}>
                     <ClassifiedsCard
                       header="Featured Classifieds"
@@ -190,19 +167,6 @@ export default class VideoLayout extends React.Component {
                   className={css.column}
                   style={{ width: "75%" }}
                 >
-                  <div
-                    id="a"
-                    className={css.column}
-                    style={{
-                      width: "100%"
-                    }}
-                  >
-                    <div id="a" className={css.card}>
-                      {React.cloneElement(this.state.aArticleCard, {
-                        displayType: "full"
-                      })}
-                    </div>
-                  </div>
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -210,21 +174,13 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear text={"searching for more articles..."} />
                       }
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignContent: "stretch",
-                          flexWrap: "wrap"
-                        }}
-                      >
-                        {utilities.renderVideoArray(
-                          this.state.otherArticleCards,
-                          "video"
-                        )}
-                      </div>
+                      {utilities.renderPostArray(
+                        this.state.otherArticleCards,
+                        "long"
+                      )}
                     </InfiniteScroll>
                     {!this.state.more ? (
                       <p

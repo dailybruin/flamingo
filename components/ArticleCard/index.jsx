@@ -6,6 +6,8 @@ import Horz from "./Horz";
 import Long from "./Long";
 import Full from "./Full";
 import Mini from "./Mini";
+import Video from "./Video";
+import Podcast from "./Podcast";
 
 export default class ArticleCard extends React.Component {
   constructor(props) {
@@ -29,6 +31,12 @@ export default class ArticleCard extends React.Component {
         break;
       case "mini":
         card = <Mini {...this.props} />;
+        break;
+      case "video":
+        card = <Video {...this.props} />;
+        break;
+      case "podcast":
+        card = <Podcast {...this.props} />;
         break;
       default:
         card = <Full {...this.props} />;

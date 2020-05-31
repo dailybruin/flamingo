@@ -7,7 +7,7 @@ import * as locals from "./locals";
 import * as utilities from "./utilities";
 import * as moment from "moment";
 
-export default function Vert(props) {
+export default function VideoCard(props) {
   return (
     <div
       css={css`
@@ -17,30 +17,6 @@ export default function Vert(props) {
         background-color: #ffffff;
       `}
     >
-      <a href={props.as} style={{ textDecoration: "none" }}>
-        <img
-          css={css`
-            width: 100%;
-            margin: auto;
-          `}
-          src={props.imageurl}
-        />
-      </a>
-      <h4
-        css={css`
-          margin: 2px 0;
-
-          font-family: Arimo;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 8px;
-          text-align: right;
-
-          color: #000000;
-        `}
-      >
-        {props.photographer}
-      </h4>
       <span>
         <a
           href={props.category.as}
@@ -86,18 +62,24 @@ export default function Vert(props) {
       <a href={props.as} style={{ textDecoration: "none" }}>
         <div
           css={css`
-            margin: 2px 0 4px;
+            margin: 2px 0 6px;
             ${locals.headline}
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
         <div
           css={css`
-            margin: 0 0 5px;
-            ${locals.excerpt}
+            div div iframe {
+              width: 100%;
+              //padding-top: 100%;
+              //height: 0;
+            }
+            p {
+              ${locals.excerpt}
+            }
           `}
-          dangerouslySetInnerHTML={{ __html: props.excerpt }}
-        />
+          dangerouslySetInnerHTML={{ __html: props.content }}
+        ></div>
       </a>
       <h3
         css={css`
@@ -105,7 +87,7 @@ export default function Vert(props) {
 
           font-family: ${globals.bodyFont};
           font-style: normal;
-          font-weight: 700;
+          font-weight: bold;
           font-size: 11px;
 
           color: #000000;

@@ -17,16 +17,17 @@ class Illo extends Component {
     );
     const category = await categoryRes.json();
     if (category.length > 0) {
-      const subcategoriesRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}`
-      );
-      const subcategories = await subcategoriesRes.json();
-      for (let i = 0; i < subcategories.length; i++) {
-        const subsubcategoriesRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
-        );
-        subcategories[i].subsubcategories = await subsubcategoriesRes.json();
-      }
+      const subcategories = [];
+      // const subcategoriesRes = await fetch(
+      //   `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}`
+      // );
+      // const subcategories = await subcategoriesRes.json();
+      // for (let i = 0; i < subcategories.length; i++) {
+      //   const subsubcategoriesRes = await fetch(
+      //     `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
+      //   );
+      //   subcategories[i].subsubcategories = await subsubcategoriesRes.json();
+      // }
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
       );

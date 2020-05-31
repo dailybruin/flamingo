@@ -8,6 +8,7 @@ import InfiniteScroll from "react-infinite-scroller";
 
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 import AuthorCard from "../../components/AuthorCard";
+import LoadingBear from "../../components/LoadingBear";
 
 import Media from "react-media";
 
@@ -18,7 +19,6 @@ export default class Author extends React.Component {
       otherArticleCards: utilities.buildArticleList(this.props.posts),
       more: true
     };
-    // this.getPosts = this.getPosts.bind(this)
     this.getPosts = this.getPosts.bind(this);
   }
 
@@ -27,17 +27,31 @@ export default class Author extends React.Component {
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&author=${this.props.author.id}&page=${page}`
     )
       .then(response => response.json())
-      .then(json => {
-        if (json.data == undefined) {
+      .then(
+        json => {
+          if (json.data == undefined) {
+            this.setState({
+              otherArticleCards: this.state.otherArticleCards.concat(
+                utilities.buildArticleList(json)
+              )
+            });
+          } else {
+            this.setState({
+              more: false
+            });
+          }
+        },
+        error => {
           this.setState({
-            otherArticleCards: this.state.otherArticleCards.concat(
-              utilities.buildArticleList(json)
-            )
+            more: false
           });
-        } else {
-          this.setState({ more: false });
         }
-      });
+      )
+      .catch(err =>
+        this.setState({
+          more: false
+        })
+      );
   }
 
   render() {
@@ -53,52 +67,63 @@ export default class Author extends React.Component {
         {matches => (
           <>
             {matches.phone && (
-              // <div
-              //   id="ArticleGrid"
-              //   style={{
-              //     width: "100%"
-              //   }}
-              // >
               <div
-                id="c"
-                className={css.column}
+                id="ArticleGrid"
                 style={{
                   width: "100%"
                 }}
               >
-                <div className={css.card}>
-                  <AuthorCard
-                    image={this.props.author["avatar_urls"][512]}
-                    name={this.props.author.name}
-                    position={this.props.author.acf.position}
-                    description={this.props.author.description}
-                    twitter={this.props.author.acf.twitter}
-                    email={this.props.author.media_email}
-                  />
-                </div>
-                {/* <div id="c1" className={css.card}>
+                <div
+                  id="c"
+                  className={css.column}
+                  style={{
+                    width: "100%"
+                  }}
+                >
+                  <div className={css.card}>
+                    <AuthorCard
+                      image={this.props.author["avatar_urls"][512]}
+                      name={this.props.author.name}
+                      position={this.props.author.acf.position}
+                      description={this.props.author.description}
+                      twitter={this.props.author.acf.twitter}
+                      email={this.props.author.media_email}
+                    />
+                  </div>
+                  {/* <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
                       displayType: "full"
                     })}
                   </div> */}
-                <InfiniteScroll
-                  pageStart={1}
-                  loadMore={this.getPosts}
-                  hasMore={this.state.more}
-                  threshold={3000}
-                  loader={
-                    <div className="loader" key={0}>
-                      loading...
-                    </div>
-                  }
-                >
-                  {utilities.renderPostArray(
-                    this.state.otherArticleCards,
-                    "full"
+                  <InfiniteScroll
+                    pageStart={1}
+                    loadMore={this.getPosts}
+                    hasMore={this.state.more}
+                    threshold={3000}
+                    loader={
+                      <LoadingBear text={"searching for more articles..."} />
+                    }
+                  >
+                    {utilities.renderPostArray(
+                      this.state.otherArticleCards,
+                      "full"
+                    )}
+                  </InfiniteScroll>
+                  {!this.state.more ? (
+                    <p
+                      style={{
+                        color: "#404040",
+                        fontFamily: "'Source Sans Pro', sans-serif",
+                        textAlign: "center"
+                      }}
+                    >
+                      no more articles!
+                    </p>
+                  ) : (
+                    <span></span>
                   )}
-                </InfiniteScroll>
+                </div>
               </div>
-              // </div>
             )}
             {matches.tablet && (
               <div id="ArticleGrid" style={{ width: "100%" }}>
@@ -109,23 +134,15 @@ export default class Author extends React.Component {
                     width: "100%"
                   }}
                 >
-                  <div
-                    id="c1-c2"
-                    className={css.column}
-                    style={{
-                      width: "33.33%"
-                    }}
-                  >
-                    <div className={css.card}>
-                      <AuthorCard
-                        image={this.props.author["avatar_urls"][512]}
-                        name={this.props.author.name}
-                        description={this.props.author.description}
-                        position={this.props.author.acf.position}
-                        twitter={this.props.author.acf.twitter}
-                        email={this.props.author.media_email}
-                      />
-                    </div>
+                  <div className={css.card}>
+                    <AuthorCard
+                      image={this.props.author["avatar_urls"][512]}
+                      name={this.props.author.name}
+                      description={this.props.author.description}
+                      position={this.props.author.acf.position}
+                      twitter={this.props.author.acf.twitter}
+                      email={this.props.author.media_email}
+                    />
                   </div>
                   {/* <div
                     id="a"
@@ -149,9 +166,7 @@ export default class Author extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <div className="loader" key={0}>
-                          <h1>loading...</h1>
-                        </div>
+                        <LoadingBear text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(
@@ -159,6 +174,19 @@ export default class Author extends React.Component {
                         "horz"
                       )}
                     </InfiniteScroll>
+                    {!this.state.more ? (
+                      <p
+                        style={{
+                          color: "#404040",
+                          fontFamily: "'Source Sans Pro', sans-serif",
+                          textAlign: "center"
+                        }}
+                      >
+                        no more articles!
+                      </p>
+                    ) : (
+                      <span></span>
+                    )}
                   </div>
                 </div>
                 <div
@@ -187,13 +215,6 @@ export default class Author extends React.Component {
                   className={css.column}
                   style={{ width: "75%" }}
                 >
-                  <div
-                    id="c1-c2"
-                    className={css.column}
-                    style={{
-                      width: "33.33%"
-                    }}
-                  ></div>
                   {/* <div
                     id="a"
                     className={css.column}
@@ -224,9 +245,7 @@ export default class Author extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <div className="loader" key={0}>
-                          loading...
-                        </div>
+                        <LoadingBear text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(
@@ -234,6 +253,19 @@ export default class Author extends React.Component {
                         "long"
                       )}
                     </InfiniteScroll>
+                    {!this.state.more ? (
+                      <p
+                        style={{
+                          color: "#404040",
+                          fontFamily: "'Source Sans Pro', sans-serif",
+                          textAlign: "center"
+                        }}
+                      >
+                        no more articles!
+                      </p>
+                    ) : (
+                      <span></span>
+                    )}
                   </div>
                 </div>
 

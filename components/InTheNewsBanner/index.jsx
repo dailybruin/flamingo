@@ -73,6 +73,8 @@ export default class InTheNewsBanner extends React.Component {
             width: 100%;
             vertical-align: middle;
             padding-left: 5px;
+            font-size: 14px;
+            margin-top: 5px;
             ${globals.phone} {
               display: block;
               padding: 0 2px 0 2px;

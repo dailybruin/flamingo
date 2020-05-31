@@ -26,6 +26,15 @@ class Post extends Component {
         authors.push(await authorsRes.json());
       }
     }
+    let relatedPosts = [];
+    if (post[0].related_posts != undefined) {
+      for (let related of post[0].related_posts) {
+        const relatedRes = await fetch(
+          `${Config.apiUrl}/wp-json/wp/v2/posts/${related.id}?_embed`
+        );
+        relatedPosts.push(await relatedRes.json());
+      }
+    }
     if (post[0].acf["db_feature"] == true) {
       let feature = true;
       let tagged = [];
@@ -37,21 +46,22 @@ class Post extends Component {
         );
         tagged = await taggedRes.json();
       }
-      return { feature, post, authors, tagged };
+      return { feature, post, authors, tagged, relatedPosts };
     }
     if (post[0].acf.gallery != undefined) {
       const photosRes = await fetch(
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
       );
       const photos = await photosRes.json();
-      return { post, photos, authors };
+      return { post, photos, authors, relatedPosts };
     }
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
     );
     const classifieds = await classifiedsRes.json();
-    return { post, classifieds, authors };
+    return { post, classifieds, authors, relatedPosts };
   }
+
   componentDidMount() {
     if (
       this.props.post[0].acf["db_link"] != null &&
@@ -60,6 +70,7 @@ class Post extends Component {
       location.replace(this.props.post[0].acf["db_link"]);
     }
   }
+
   render() {
     let renderedMeta = [];
     for (let meta of this.props.post[0].yoast_meta) {
@@ -98,6 +109,7 @@ class Post extends Component {
           <ArticleLayout
             article={this.props.post[0]}
             authors={this.props.authors}
+            relatedPosts={this.props.relatedPosts}
             classifieds={this.props.classifieds.map(c => {
               return {
                 category: {

@@ -3,10 +3,11 @@ import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.css";
 
-export function buildArticleCard(story) {
+export function buildArticleCard(story, type = "") {
   if (story != null && story != undefined) {
     return (
       <ArticleCard
+        displayType={type}
         headline={story.title.rendered}
         excerpt={story.excerpt.rendered}
         href={`/post/[slug]`}
@@ -27,7 +28,8 @@ export function buildArticleCard(story) {
         }
         caption={
           story._embedded["wp:featuredmedia"] != undefined &&
-          !story._embedded["wp:featuredmedia"].empty
+          !story._embedded["wp:featuredmedia"].empty &&
+          story._embedded["wp:featuredmedia"][0].caption != undefined
             ? story._embedded["wp:featuredmedia"][0].caption.rendered
             : ""
         }
@@ -92,6 +94,36 @@ export function renderPostArray(otherArticleCards, type) {
   for (i = 0; i < otherArticleCards.length; i++) {
     renderedPostArray.push(
       <div className={css.card}>
+        {React.cloneElement(otherArticleCards[i], {
+          displayType: type
+        })}
+      </div>
+    );
+  }
+  return renderedPostArray;
+}
+
+export function renderVideoArray(otherArticleCards, type) {
+  var i;
+  let renderedPostArray = [];
+  for (i = 0; i < otherArticleCards.length; i++) {
+    renderedPostArray.push(
+      <div className={css["video-card"]}>
+        {React.cloneElement(otherArticleCards[i], {
+          displayType: type
+        })}
+      </div>
+    );
+  }
+  return renderedPostArray;
+}
+
+export function renderPodcastArray(otherArticleCards, type) {
+  var i;
+  let renderedPostArray = [];
+  for (i = 0; i < otherArticleCards.length; i++) {
+    renderedPostArray.push(
+      <div className={css["podcast-card"]}>
         {React.cloneElement(otherArticleCards[i], {
           displayType: type
         })}

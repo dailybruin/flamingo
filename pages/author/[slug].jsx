@@ -16,7 +16,7 @@ class Author extends Component {
     );
     const author = await authorRes.json();
     const postsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&author=${author[0].id}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${slug}`
     );
     const posts = await postsRes.json();
     const classifiedsRes = await fetch(
