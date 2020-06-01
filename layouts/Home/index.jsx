@@ -11,6 +11,7 @@ import ClassifiedsCard from "../../components/ClassifiedsCard";
 import Poll from "../../components/Poll";
 import StoryList from "../../components/StoryList";
 import SponsoredLinks from "../../components/SponsoredLinks";
+import TwitterFeed from "../../components/TwitterFeed";
 
 const ArticleAdStyle = {
   width: "100%",
@@ -103,6 +104,9 @@ export default class HomeLayout extends React.Component {
                       {React.cloneElement(this.state.bArticleCard, {
                         displayType: "full"
                       })}
+                    </div>
+                    <div className={css.card}>
+                      <TwitterFeed />
                     </div>
                     <div
                       id="above-ad"
@@ -204,6 +208,9 @@ export default class HomeLayout extends React.Component {
                       {React.cloneElement(this.state.f1ArticleCard, {
                         displayType: "mini"
                       })}
+                    </div>
+                    <div className={css.card}>
+                      <TwitterFeed />
                     </div>
                     <div
                       id="above-ad"
@@ -377,6 +384,9 @@ export default class HomeLayout extends React.Component {
                       className={css.column}
                       style={{ width: "25%" }}
                     >
+                      <div className={css.card}>
+                        <TwitterFeed />
+                      </div>
                       <div
                         id="above-ad"
                         className={css.card}
