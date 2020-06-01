@@ -16,6 +16,7 @@ class ArticleLayout extends React.Component {
     this.article = (
       <Article
         headline={this.props.article.title.rendered}
+        link={this.props.article.link}
         date={new Date(this.props.article.date)}
         authors={this.props.authors}
         categories={this.props.article["_embedded"]["wp:term"][0]}

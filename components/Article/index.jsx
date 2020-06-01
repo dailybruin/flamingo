@@ -6,8 +6,7 @@ import moment from "moment";
 
 import { renderCategories, renderAuthors } from "./utilities";
 import * as globals from "../globals";
-import AuthorInfo from "./AuthorInfo";
-import ShareCard from "../ShareCard";
+import ShareButtons from "../ShareButtons";
 import ReviewInfobox from "../ReviewInfobox";
 import AuthorCard from "../AuthorCard";
 
@@ -289,6 +288,12 @@ export default class Article extends React.Component {
             `}
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
+          <div>
+            <ShareButtons
+              title={this.props.headline}
+              url={this.props.link}
+            ></ShareButtons>
+          </div>
           <div
             css={css`
               max-width: 600px;

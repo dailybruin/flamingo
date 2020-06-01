@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import Photo from "./Photo";
 import Header from "./Header";
 import AuthorCard from "../AuthorCard";
+import ShareButtons from "../ShareButtons";
 
 export default class PhotoGallery extends React.Component {
   constructor(props) {
@@ -69,6 +70,7 @@ export default class PhotoGallery extends React.Component {
           `}
         >
           {renderedGallery}
+          <ShareButtons url={this.props.link} title={this.props.headline} />
           {renderedAuthorCards}
         </div>
       </div>

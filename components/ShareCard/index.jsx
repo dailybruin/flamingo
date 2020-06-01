@@ -9,26 +9,37 @@ export default function ShareCard(props) {
   return (
     <card
       css={css`
-        display: flex;
-        font-size: 0.85rem;
-        flex-direction: row;
-        padding: 1rem;
-        background-color: white;
-        font-family: ${MainSiteStyles.headlineFont};
-        font-weight: ${MainSiteStyles.boldFont};
+        text-align: center;
         vertical-align: middle;
-        margin: 0px 0px 0px 70px;
-        ${MainSiteStyles.phone} {
-          flex-direction: column;
-        }
       `}
     >
-      <div class="sharethis-inline-share-buttons"></div>
+      <span
+        css={css`
+          display: inline-block;
+          font-size: 12px;
+          font-family: ${MainSiteStyles.menuFont};
+          margin: auto;
+        `}
+      >
+        Share this story:
+      </span>
+      <div
+        css={css`
+          display: inline-block;
+          margin: auto;
+          #st-1 .st-btn:hover {
+            opacity: 0.8;
+            top: inherit;
+          }
+        `}
+      >
+        <div class="sharethis-inline-share-buttons"></div>
+      </div>
 
       <Head>
         <script
           type="text/javascript"
-          src="https://platform-api.sharethis.com/js/sharethis.js#property=5e43439e543af5001235be35&product=inline-share-buttons"
+          src="https://platform-api.sharethis.com/js/sharethis.js#property=5ed4654750947c001806defb&product=inline-share-buttons"
           async="async"
         ></script>
       </Head>
