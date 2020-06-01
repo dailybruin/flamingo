@@ -312,17 +312,6 @@ export default class Mobile extends React.Component {
             >
               Facebook
             </a>
-
-            <a
-              href="https://www.instagram.com/dailybruin"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Instagram
-            </a>
-
             <a
               href="https://twitter.com/dailybruin"
               css={css`
@@ -331,6 +320,15 @@ export default class Mobile extends React.Component {
               `}
             >
               Twitter
+            </a>
+            <a
+              href="https://www.instagram.com/dailybruin"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Instagram
             </a>
             <a
               css={css`
