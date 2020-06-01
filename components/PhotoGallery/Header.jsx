@@ -125,7 +125,7 @@ export default function Header(props) {
               line-height: 15px;
             `}
           >
-            {moment(props.date).format("MMMM Do, YYYY, h:mma")}
+            {moment(props.date).format("MMMM D, YYYY, h:mm a")}
           </h4>
         </div>
       </div>

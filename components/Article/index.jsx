@@ -206,7 +206,7 @@ export default class Article extends React.Component {
                   line-height: 15px;
                 `}
               >
-                {moment(this.props.date).format("MMMM Do, YYYY, h:mma")}
+                {moment(this.props.date).format("MMMM D, YYYY, h:mm a")}
               </h4>
             </div>
           </div>

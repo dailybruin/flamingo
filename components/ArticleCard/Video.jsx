@@ -93,7 +93,7 @@ export default function Video(props) {
             line-height: 14px;
           `}
         >
-          {moment(props.date).format("MMMM Do, h:mma")}
+          {moment(props.date).format("MMM D, YYYY h:mm a")}
         </span>
       </span>
       <a href={props.as} style={{ textDecoration: "none" }}>

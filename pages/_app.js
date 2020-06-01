@@ -1,5 +1,6 @@
 import React from "react";
 import App from "next/app";
+import * as moment from "moment";
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -32,6 +33,31 @@ class MyApp extends App {
     //     }
     //   });
     // }
+
+    // Custom Date Formats
+    moment.updateLocale("en", {
+      monthsShort: [
+        "Jan.",
+        "Feb.",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "Aug.",
+        "Sept.",
+        "Oct.",
+        "Nov.",
+        "Dec."
+      ],
+      meridiem: function(hour, minute, isLowerCase) {
+        if (hour < 12) {
+          return "a.m.";
+        } else {
+          return "p.m.";
+        }
+      }
+    });
 
     // Google Analytics
     window.dataLayer = window.dataLayer || [];

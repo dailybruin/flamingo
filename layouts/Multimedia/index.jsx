@@ -109,7 +109,7 @@ export default class MultimediaLayout extends React.Component {
               textAlign: "center"
             }}
           >
-            no more articles!
+            no more content!
           </p>
         ) : (
           <span></span>
