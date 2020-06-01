@@ -77,7 +77,7 @@ export default class Desktop extends React.Component {
   }
 
   render() {
-    let today = moment().format("dddd, MMMM Do YYYY");
+    let today = moment().format("dddd, MMMM D YYYY");
     let renderedCategories = [];
     if (this.props.categories != null) {
       for (let i in this.props.categories) {
