@@ -19,7 +19,7 @@ class Stonewall extends Component {
           "https://spreadsheets.google.com/feeds/list/1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4/od6/public/values?alt=json",
 
           function(data) {
-            //jQuery('div#stonewall').append('<div class="stone"></div>');
+            jQuery("div#stonewall").append('<div class="stone"></div>');
             jQuery.each(data.feed.entry.reverse(), function(i, entry) {
               if (entry.gsx$date.$t && entry.gsx$copystatus.$t) {
                 var append =
@@ -69,6 +69,11 @@ class Stonewall extends Component {
             background-color: #ffffff;
             margin: 6px;
 
+            .accordion {
+              margin: 0;
+              padding: 0;
+            }
+
             .accordion .accordion-navigation > a {
               background: none;
               color: #222222 !important;
@@ -112,7 +117,6 @@ class Stonewall extends Component {
 
             #stonewall-wrap ul {
               list-style-type: none;
-              margin-right: 1.1rem;
               font-size: 1rem;
             }
 
@@ -164,6 +168,20 @@ class Stonewall extends Component {
 
             .db-next {
               display: none !important;
+            }
+
+            @media (max-width: 600px) {
+              #title h2 {
+                font-size: 15vw;
+              }
+              .stone-title,
+              .accordion .accordion-navigation > a {
+                font-size: 1rem;
+              }
+
+              .content.stone-desc {
+                font-size: 0.8rem;
+              }
             }
           `}
         >

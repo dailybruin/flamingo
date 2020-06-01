@@ -34,8 +34,10 @@ export default class Page extends React.Component {
 
             a img,
             img {
-              width: 100%;
+              max-width: 100%;
               height: auto;
+              margin: auto;
+              display: block;
             }
 
             & h1 {
