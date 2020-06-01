@@ -20,6 +20,7 @@ export default class PhotoGalleryLayout extends React.Component {
             photos={this.props.photos}
             photographers={this.props.photographers}
             date={this.props.post.date}
+            link={this.props.post.link}
           />
         </div>
         <div className={css.card}>

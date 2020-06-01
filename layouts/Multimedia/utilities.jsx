@@ -7,7 +7,8 @@ export function buildPhotoCard(story) {
         <PhotoCard
           headline={story.title != undefined ? story.title.rendered : ""}
           href={`/post/[slug]`}
-          as={`/post/${story.slug}`}
+          as={story.link}
+          link={story.link}
           authors={story.coauthors}
           image={
             story._embedded["wp:featuredmedia"] != undefined
