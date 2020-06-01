@@ -32,6 +32,10 @@ export default class Page extends React.Component {
             margin: auto;
             display: block;
 
+            img {
+              width: 100%;
+            }
+
             & h1 {
               font-family: ${globals.headlineFont};
             }

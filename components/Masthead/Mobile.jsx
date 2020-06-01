@@ -122,7 +122,7 @@ export default class Mobile extends React.Component {
               css={css`
                 display: inline-block;
                 vertical-align: middle;
-                height: 36px;
+                height: 32px;
                 padding: 4px 0;
               `}
             >

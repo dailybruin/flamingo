@@ -45,8 +45,16 @@ export default function MainSiteFooter(props) {
           flex-direction: row;
 
           ${MainSiteStyles.phone} {
-            flex-direction: column;
-            text-align: center;
+            display: block;
+            column-count: 2;
+            column-fill: auto;
+            padding-left: 20px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #000;
+            & a {
+              display: block;
+              padding: 0 4px;
+            }
           }
         `}
       >
@@ -61,6 +69,7 @@ export default function MainSiteFooter(props) {
           ${MainSiteStyles.phone} {
             text-align: center;
             margin: auto;
+            padding-top: 4px;
           }
         `}
       >
