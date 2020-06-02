@@ -9,15 +9,15 @@ import FeatureLayout from "../../../layouts/Feature";
 
 class Preview extends Component {
   static async getInitialProps(context) {
-    const { slug, nonce } = context.query;
+    const { id, nonce } = context.query;
     const postRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed&_wpnonce=${nonce}`,
+      `${Config.apiUrl}/wp-json/wp/v2/posts/${id}?_wpnonce=${nonce}&_embed`,
       { credentials: "include" }
     );
     const post = await postRes.json();
     let authors = [];
-    if (post[0].coauthors != undefined) {
-      for (let author of post[0].coauthors) {
+    if (post.coauthors != undefined) {
+      for (let author of post.coauthors) {
         const authorsRes = await fetch(
           `${Config.apiUrl}/wp-json/wp/v2/users/${author.id}`
         );
@@ -25,30 +25,30 @@ class Preview extends Component {
       }
     }
     let relatedPosts = [];
-    if (post[0].related_posts != undefined) {
-      for (let related of post[0].related_posts) {
+    if (post.related_posts != undefined) {
+      for (let related of post.related_posts) {
         const relatedRes = await fetch(
           `${Config.apiUrl}/wp-json/wp/v2/posts/${related.id}?_embed`
         );
         relatedPosts.push(await relatedRes.json());
       }
     }
-    if (post[0].acf["db_feature"] == true) {
+    if (post.acf["db_feature"] == true) {
       let feature = true;
       let tagged = [];
-      if (post[0].acf["db_feature_tag"] != "") {
+      if (post.acf["db_feature_tag"] != "") {
         const taggedRes = await fetch(
           `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
-            post[0].acf["db_feature_tag"]
+            post.acf["db_feature_tag"]
           }`
         );
         tagged = await taggedRes.json();
       }
       return { feature, post, authors, tagged, relatedPosts };
     }
-    if (post[0].acf.gallery != undefined) {
+    if (post.acf.gallery != undefined) {
       const photosRes = await fetch(
-        `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
+        `${Config.apiUrl}/wp-json/db/v1/gallery/${post.acf.gallery}`
       );
       const photos = await photosRes.json();
       return { post, photos, authors, relatedPosts };
@@ -65,7 +65,7 @@ class Preview extends Component {
       return <Error statusCode={404} />;
     }
     let renderedMeta = [];
-    for (let meta of this.props.post[0].yoast_meta) {
+    for (let meta of this.props.post.yoast_meta) {
       renderedMeta.push(React.createElement("meta", meta));
     }
     return (
@@ -73,7 +73,7 @@ class Preview extends Component {
         <Head>
           <title
             dangerouslySetInnerHTML={{
-              __html: this.props.post[0].title.rendered + " - Daily Bruin"
+              __html: this.props.post.title.rendered + " - Daily Bruin"
             }}
           />
           <script
@@ -85,21 +85,21 @@ class Preview extends Component {
         </Head>
         {this.props.photos != undefined && (
           <PhotoGalleryLayout
-            post={this.props.post[0]}
+            post={this.props.post}
             photos={this.props.photos}
             photographers={this.props.authors}
           />
         )}
         {this.props.feature == true && (
           <FeatureLayout
-            article={this.props.post[0]}
+            article={this.props.post}
             authors={this.props.authors}
             tagged={this.props.tagged}
           />
         )}
         {this.props.photos == undefined && this.props.feature != true && (
           <ArticleLayout
-            article={this.props.post[0]}
+            article={this.props.post}
             authors={this.props.authors}
             relatedPosts={this.props.relatedPosts}
             classifieds={this.props.classifieds.map(c => {

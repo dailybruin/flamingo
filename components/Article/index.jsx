@@ -274,6 +274,17 @@ export default class Article extends React.Component {
                 width: 100%;
                 height: inherit;
               }
+
+              .flex-video {
+                margin: auto;
+              }
+
+              .flex-video div iframe {
+                max-width: 100% !important;
+                min-width: unset !important;
+                margin: auto !important;
+              }
+
               @media (max-width: 40em) {
                 aside {
                   width: 100%;
