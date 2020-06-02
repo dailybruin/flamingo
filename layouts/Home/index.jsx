@@ -292,7 +292,7 @@ export default class HomeLayout extends React.Component {
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
                             <img
-                              src="https://dailybruin.com/images/2020/01/Image-from-iOS-3.jpg"
+                              src="https://dailybruin.com/images/2020/06/Image-from-iOS.jpg"
                               style={{ width: "100%" }}
                             />
                           </a>
@@ -417,7 +417,7 @@ export default class HomeLayout extends React.Component {
                       <div className={css.card}>
                         <a href="https://prime.dailybruin.com">
                           <img
-                            src="https://dailybruin.com/images/2020/01/Image-from-iOS-3.jpg"
+                            src="https://dailybruin.com/images/2020/06/Image-from-iOS.jpg"
                             style={{ width: "100%" }}
                           />
                         </a>
