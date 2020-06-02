@@ -4,16 +4,15 @@ import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.css";
 
 export function buildArticleCard(story, type = "") {
-  if (story != null && story != undefined) {
+  if (story != null && story != undefined && story.data == undefined) {
     return (
       <ArticleCard
         displayType={type}
-        headline={story.title.rendered}
-        excerpt={story.excerpt.rendered}
+        headline={story.title != undefined ? story.title.rendered : ""}
+        excerpt={story.excerpt != undefined ? story.excerpt.rendered : ""}
         href={`/post/[slug]`}
         as={story.link}
         link={story.link}
-        // TODO: format date
         date={new Date(story.date)}
         authors={story.coauthors}
         category={{
