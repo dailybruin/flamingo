@@ -84,7 +84,10 @@ export default function Mini(props) {
           <h1
             css={css`
               margin: 2px 0 4px;
-              ${locals.headline}
+              ${locals.headline};
+              font-style: ${props.acf.db_article_format == "column"
+                ? "italic"
+                : "normal"};
               font-size: 0.85rem;
               font-weight: 550;
             `}

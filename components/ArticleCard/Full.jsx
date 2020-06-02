@@ -62,7 +62,10 @@ export default function Full(props) {
         <div
           css={css`
             margin: 2px 0 6px;
-            ${locals.headline}
+            ${locals.headline};
+            font-style: ${props.acf.db_article_format == "column"
+              ? "italic"
+              : "normal"};
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />

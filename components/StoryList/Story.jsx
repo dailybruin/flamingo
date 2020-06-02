@@ -38,6 +38,7 @@ export default function Story(props) {
             overflow-wrap: break-word;
             text-align: left;
             color: #000000;
+            font-style: ${props.column ? "italic" : "normal"};
 
             &:hover {
               color: ${globals.DBblue};
@@ -55,10 +56,10 @@ export default function Story(props) {
             margin: 0px;
             overflow-wrap: break-word;
 
-            p {
+            & p {
               margin: -3px 0 3px 0;
             }
-            br {
+            & br {
               display: none;
             }
           `}

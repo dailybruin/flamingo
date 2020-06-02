@@ -119,8 +119,10 @@ export default class Article extends React.Component {
             font-weight: bold;
             font-size: 30px;
             line-height: 1.25;
-
             color: #000000;
+            font-style: ${this.props.acf.db_article_format == "column"
+              ? "italic"
+              : "normal"};
           `}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
@@ -209,6 +211,18 @@ export default class Article extends React.Component {
               </h4>
             </div>
           </div>
+          {this.props.acf.corrections == "" || (
+            <div
+              css={css`
+                font-size: 12px;
+                font-family: ${globals.bodyFont};
+                color: ${globals.darkGray};
+                max-width: 640px;
+                margin: 20px auto 0;
+              `}
+              dangerouslySetInnerHTML={{ __html: this.props.acf.corrections }}
+            ></div>
+          )}
           <div
             css={css`
               font-family: ${globals.bodyFont};
@@ -223,7 +237,7 @@ export default class Article extends React.Component {
               max-width: 640px;
               margin: auto;
 
-              aside {
+              & aside {
                 background-image: url(../../img/quotationmark4.svg);
                 background-repeat: no-repeat;
                 background-position: 5px 0;
@@ -236,60 +250,65 @@ export default class Article extends React.Component {
                 font-size: 1.1rem;
                 color: #000;
               }
-              aside p {
+
+              & img {
+                max-width: 100%;
+              }
+
+              & aside p {
                 font-size: 0.95rem;
                 text-align: right;
                 margin-top: 0.5rem;
               }
-              aside:first-letter {
+              & aside:first-letter {
                 float: left;
                 font-size: 4.1rem;
                 line-height: 80%;
                 color: #000;
               }
 
-              figure.alignright {
+              & figure.alignright {
                 float: right;
                 margin-right: 0;
               }
-              figure.aligncenter {
+              & figure.aligncenter {
                 max-width: 100% !important;
                 margin: auto;
                 width: 100% !important;
               }
 
-              figure figcaption {
+              & figure figcaption {
                 color: gray;
                 font-size: 0.85rem;
               }
 
-              iframe {
+              & iframe {
                 width: 100%;
               }
-              figure img,
-              figure a img,
-              p img,
-              b img,
-              h2 img {
+              & figure img,
+              & figure a img,
+              & p img,
+              & b img,
+              & h2 img {
                 width: 100%;
                 height: inherit;
               }
 
-              .flex-video {
+              & .flex-video {
                 margin: auto;
               }
 
-              .flex-video div iframe {
+              & .flex-video div iframe {
                 max-width: 100% !important;
                 min-width: unset !important;
                 margin: auto !important;
               }
 
               @media (max-width: 40em) {
-                aside {
+                & aside {
                   width: 100%;
                 }
-                figure {
+                & figure {
                   width: 100% !important;
                   padding: 20px 0;
 

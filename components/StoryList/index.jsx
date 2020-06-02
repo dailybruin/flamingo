@@ -13,6 +13,7 @@ class StoryList extends React.Component {
         text={story.text}
         link={story.link}
         key={index}
+        column={story.column}
       />
     ));
 

@@ -12,6 +12,7 @@ export function buildArticleCard(story, type = "") {
         excerpt={story.excerpt.rendered}
         href={`/post/[slug]`}
         as={story.link}
+        link={story.link}
         // TODO: format date
         date={new Date(story.date)}
         authors={story.coauthors}
@@ -33,6 +34,7 @@ export function buildArticleCard(story, type = "") {
             ? story._embedded["wp:featuredmedia"][0].caption.rendered
             : ""
         }
+        acf={story.acf}
       />
     );
   } else {
@@ -45,7 +47,8 @@ export function buildStoryList(type, list, link) {
     return {
       title: index.title.rendered,
       text: index.excerpt.rendered,
-      link: index.link
+      link: index.link,
+      column: index.acf.db_article_format == "column"
     };
   });
   mappedList[1].text = "";

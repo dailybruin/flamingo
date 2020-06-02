@@ -305,6 +305,8 @@ export default class Mobile extends React.Component {
           >
             <a
               href="https://www.facebook.com/dailybruin"
+              target="_blank"
+              rel="noopener"
               css={css`
                 display: block;
                 padding: 8px 4px;
@@ -314,6 +316,8 @@ export default class Mobile extends React.Component {
             </a>
             <a
               href="https://twitter.com/dailybruin"
+              target="_blank"
+              rel="noopener"
               css={css`
                 display: block;
                 padding: 8px 4px;
@@ -323,12 +327,25 @@ export default class Mobile extends React.Component {
             </a>
             <a
               href="https://www.instagram.com/dailybruin"
+              target="_blank"
+              rel="noopener"
               css={css`
                 display: block;
                 padding: 8px 4px;
               `}
             >
               Instagram
+            </a>
+            <a
+              href="http://eepurl.com/cFEiZX"
+              target="_blank"
+              rel="noopener"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Newsletter
             </a>
             <a
               css={css`
