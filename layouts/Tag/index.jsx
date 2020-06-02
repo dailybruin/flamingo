@@ -27,7 +27,7 @@ export default class TagLayout extends React.Component {
       .then(response => response.json())
       .then(
         json => {
-          if (json.data == undefined) {
+          if (json.data == undefined && json.length != 0) {
             this.setState({
               otherArticleCards: this.state.otherArticleCards.concat(
                 utilities.buildArticleList(json)

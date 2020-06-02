@@ -14,7 +14,7 @@ export function buildArticleCard(story, type = "") {
         as={story.link}
         link={story.link}
         date={new Date(story.date)}
-        authors={story.coauthors}
+        authors={story.coauthors != undefined ? story.coauthors : []}
         category={{
           name: story._embedded["wp:term"][0][0].name,
           href: `/category/[slug]`,

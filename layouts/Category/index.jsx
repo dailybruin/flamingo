@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import css from "../style.css";
@@ -31,7 +30,7 @@ export default class CategoryLayout extends React.Component {
       .then(response => response.json())
       .then(
         json => {
-          if (json.data == undefined) {
+          if (json.data == undefined && json.length != 0) {
             this.setState({
               otherArticleCards: this.state.otherArticleCards.concat(
                 utilities.buildArticleList(json)

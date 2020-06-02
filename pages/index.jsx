@@ -157,7 +157,6 @@ class Index extends Component {
   };
 
   render() {
-    console.log(this.props.links);
     return (
       <>
         <Head>

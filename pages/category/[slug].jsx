@@ -1,7 +1,5 @@
 import PageWrapper from "../../layouts/PageWrapper";
 import React, { Component } from "react";
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import Head from "next/head";
@@ -43,7 +41,11 @@ class Category extends Component {
     return { category };
   }
   render() {
-    if (this.props.category == undefined || this.props.category.length == 0) {
+    if (
+      this.props.category == undefined ||
+      this.props.category.data != undefined ||
+      this.props.category.length == 0
+    ) {
       return <Error statusCode={404} />;
     }
     const sectionLinks = this.props.subcategories.map(index => {

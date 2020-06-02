@@ -33,7 +33,7 @@ export default class MultimediaLayout extends React.Component {
       .then(response => response.json())
       .then(
         json => {
-          if (json.data == undefined) {
+          if (json.data == undefined && json.length != 0) {
             this.setState({
               cards: this.state.cards.concat(json)
             });

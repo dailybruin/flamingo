@@ -1,7 +1,5 @@
 import PageWrapper from "../../../../layouts/PageWrapper";
 import React, { Component } from "react";
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../../../config.js";
 import Head from "next/head";
@@ -63,7 +61,11 @@ class Post extends Component {
   }
 
   render() {
-    if (this.props.post == undefined || this.props.post.length == 0) {
+    if (
+      this.props.post == undefined ||
+      this.props.post.data != undefined ||
+      this.props.post.length == 0
+    ) {
       return <Error statusCode={404} />;
     }
     let renderedMeta = [];
