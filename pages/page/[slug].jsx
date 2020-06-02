@@ -1,8 +1,6 @@
 import PageWrapper from "../../layouts/PageWrapper";
 import React, { Component } from "react";
-import Link from "next/link";
 import Head from "next/head";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 
@@ -18,18 +16,23 @@ class Page extends Component {
     return { page };
   }
   render() {
-    return (
-      <div>
-        <Head>
-          <title
-            dangerouslySetInnerHTML={{
-              __html: this.props.page[0].title.rendered + " - Daily Bruin"
-            }}
-          />
-        </Head>
-        <PageLayout page={this.props.page[0]} />
-      </div>
-    );
+    if (
+      this.props.page == undefined ||
+      this.props.post.page != undefined ||
+      this.props.page.length == 0
+    )
+      return (
+        <div>
+          <Head>
+            <title
+              dangerouslySetInnerHTML={{
+                __html: this.props.page[0].title.rendered + " - Daily Bruin"
+              }}
+            />
+          </Head>
+          <PageLayout page={this.props.page[0]} />
+        </div>
+      );
   }
 }
 

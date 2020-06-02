@@ -61,7 +61,11 @@ class Preview extends Component {
   }
 
   render() {
-    if (this.props.post == undefined || this.props.post.length == 0) {
+    if (
+      this.props.post == undefined ||
+      this.props.post.data != undefined ||
+      this.props.post.length == 0
+    ) {
       return <Error statusCode={404} />;
     }
     let renderedMeta = [];

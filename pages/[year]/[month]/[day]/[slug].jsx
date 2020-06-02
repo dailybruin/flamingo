@@ -16,7 +16,6 @@ class Post extends Component {
     );
     const post = await postRes.json();
     if (post.data != undefined || post.length == 0) {
-      post = null;
       return { post };
     }
     let authors = [];

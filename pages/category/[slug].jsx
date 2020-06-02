@@ -38,14 +38,12 @@ class Category extends Component {
       const classifieds = await classifiedsRes.json();
       return { category, subcategories, posts, classifieds };
     } else {
-      category = null;
       return { category };
     }
   }
   render() {
     if (
       this.props.category == undefined ||
-      this.props.category == null ||
       this.props.category.data != undefined ||
       this.props.category.length == 0
     ) {
