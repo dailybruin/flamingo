@@ -11,7 +11,7 @@ import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
 import minisearchIcon from "./minisearch.svg";
 
-let expandedHeight = "110px";
+let expandedHeight = "106px";
 let collapsedHeight = "60px";
 
 export default class Desktop extends React.Component {
@@ -90,7 +90,7 @@ export default class Desktop extends React.Component {
               text-align: center;
               padding: 8px 4px;
               font-family: ${globals.menuFont};
-              font-size: 15px;
+              font-size: 13px;
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
