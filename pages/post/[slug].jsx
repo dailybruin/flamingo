@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PageWrapper from "../../layouts/PageWrapper";
-import fetch from "isomorphic-unfetch";
 import { Config } from "../../config.js";
 import Head from "next/head";
+import Error from "next/error";
 
 import ArticleLayout from "../../layouts/Article";
 import PhotoGalleryLayout from "../../layouts/PhotoGallery";
@@ -15,7 +15,8 @@ class Post extends Component {
       `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`
     );
     const post = await postRes.json();
-    if (post.data != undefined) {
+    if (post.data != undefined || post.length == 0) {
+      post = null;
       return { post };
     }
     let authors = [];
@@ -66,6 +67,7 @@ class Post extends Component {
   render() {
     if (
       this.props.post == undefined ||
+      this.props.post == null ||
       this.props.post.data != undefined ||
       this.props.post.length == 0
     ) {

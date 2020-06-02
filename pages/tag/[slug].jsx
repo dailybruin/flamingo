@@ -28,7 +28,8 @@ class Tag extends Component {
     return { tag };
   }
   render() {
-    if (this.props.tag.length == 0) return <Error statusCode={404} />;
+    if (this.props.tag.data != undefined || this.props.tag.length == 0)
+      return <Error statusCode={404} />;
     return (
       <>
         <Head>
