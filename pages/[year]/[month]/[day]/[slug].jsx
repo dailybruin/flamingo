@@ -15,6 +15,9 @@ class Post extends Component {
       `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`
     );
     const post = await postRes.json();
+    if (post.data != undefined) {
+      return { post };
+    }
     let authors = [];
     if (post[0].coauthors != undefined) {
       for (let author of post[0].coauthors) {

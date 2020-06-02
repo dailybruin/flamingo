@@ -15,6 +15,9 @@ class Post extends Component {
       `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`
     );
     const post = await postRes.json();
+    if (post.data != undefined) {
+      return { post };
+    }
     let authors = [];
     if (post[0].coauthors != undefined) {
       for (let author of post[0].coauthors) {
@@ -61,7 +64,11 @@ class Post extends Component {
   }
 
   render() {
-    if (this.props.post == undefined || this.props.post.length == 0) {
+    if (
+      this.props.post == undefined ||
+      this.props.post.data != undefined ||
+      this.props.post.length == 0
+    ) {
       return <Error statusCode={404} />;
     }
     let renderedMeta = [];
