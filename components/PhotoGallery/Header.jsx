@@ -12,7 +12,11 @@ export default function Header(props) {
     authorPictures.push(
       <a href={`/author/${author.slug}`}>
         <img
-          src={author.avatar_urls[96]}
+          src={
+            author.simple_local_avatar != null
+              ? author.simple_local_avatar.full
+              : author.avatar_urls[512]
+          }
           css={css`
             height: 48px;
             width: 48px;
@@ -125,7 +129,7 @@ export default function Header(props) {
               line-height: 15px;
             `}
           >
-            {moment(props.date).format("MMMM D, YYYY, h:mm a")}
+            {moment(props.date).format("MMMM D, YYYY h:mm a")}
           </h4>
         </div>
       </div>

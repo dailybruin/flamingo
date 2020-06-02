@@ -36,7 +36,11 @@ export default class PhotoGallery extends React.Component {
           `}
         >
           <AuthorCard
-            image={author.avatar_urls[512]}
+            image={
+              author.simple_local_avatar != null
+                ? author.simple_local_avatar.full
+                : author.avatar_urls[512]
+            }
             name={author.name}
             description={author.description}
             position={author.acf.position}
