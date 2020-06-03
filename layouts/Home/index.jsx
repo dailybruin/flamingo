@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PageWrapper from "../PageWrapper";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 
-import css from "../style.css";
+import css from "../style.module.css";
 import * as utilities from "../utilities";
 import Media from "react-media";
 

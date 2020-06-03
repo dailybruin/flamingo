@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 /** @jsx jsx */

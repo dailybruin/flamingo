@@ -1,5 +1,5 @@
 import React from "react";
-import css from "../style.css";
+import css from "../style.module.css";
 import Media from "react-media";
 
 import { buildArticleCard } from "../utilities";
@@ -43,7 +43,9 @@ class ArticleLayout extends React.Component {
     let renderedRelatedPosts = [];
     for (let relatedPost of this.props.relatedPosts) {
       renderedRelatedPosts.push(
-        <div className={css.card}>{buildArticleCard(relatedPost, "mini")}</div>
+        <div key={relatedPost.id} className={css.card}>
+          {buildArticleCard(relatedPost, "mini")}
+        </div>
       );
     }
     return (

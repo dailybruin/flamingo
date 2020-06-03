@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PageWrapper from "../PageWrapper";
-import css from "../style.css";
+import css from "../style.module.css";
 import Media from "react-media";
 
 import FeatureArticle from "../../components/FeatureArticle";

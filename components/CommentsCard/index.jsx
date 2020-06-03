@@ -41,7 +41,7 @@ export default function CommentsCard(props) {
           shortname="thedailybruin"
           config={{
             url: props.link,
-            identifier: props.id
+            identifier: props.id.toString()
           }}
         ></DiscussionEmbed>
       </div>

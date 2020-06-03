@@ -46,6 +46,7 @@ export default class PhotoGallery extends React.Component {
             position={author.acf.position}
             twitter={author.acf.twitter}
             email={author.media_email}
+            link={author.link}
           />
         </div>
       );

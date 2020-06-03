@@ -75,16 +75,7 @@ class Preview extends Component {
     return (
       <>
         <Head>
-          <title
-            dangerouslySetInnerHTML={{
-              __html: this.props.post.title.rendered + " - Daily Bruin"
-            }}
-          />
-          <script
-            async=""
-            src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
-          ></script>
+          <title>{this.props.post.title.rendered + " - Daily Bruin"}</title>
           {renderedMeta}
         </Head>
         {this.props.photos != undefined && (

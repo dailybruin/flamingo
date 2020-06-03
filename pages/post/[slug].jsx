@@ -1,12 +1,12 @@
+import PageWrapper from "layouts/PageWrapper";
 import React, { Component } from "react";
-import PageWrapper from "../../layouts/PageWrapper";
-import { Config } from "../../config.js";
-import Head from "next/head";
 import Error from "next/error";
+import { Config } from "config.js";
+import Head from "next/head";
 
-import ArticleLayout from "../../layouts/Article";
-import PhotoGalleryLayout from "../../layouts/PhotoGallery";
-import FeatureLayout from "../../layouts/Feature";
+import ArticleLayout from "layouts/Article";
+import PhotoGalleryLayout from "layouts/PhotoGallery";
+import FeatureLayout from "layouts/Feature";
 
 class Post extends Component {
   static async getInitialProps(context) {
@@ -74,21 +74,15 @@ class Post extends Component {
     }
     let renderedMeta = [];
     for (let meta of this.props.post[0].yoast_meta) {
+      meta.key = meta.property;
       renderedMeta.push(React.createElement("meta", meta));
     }
     return (
       <>
         <Head>
-          <title
-            dangerouslySetInnerHTML={{
-              __html: this.props.post[0].title.rendered + " - Daily Bruin"
-            }}
-          />
-          <script
-            async=""
-            src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
-          ></script>
+          <title>
+            {this.props.post[0].title.rendered + " - Daily Bruin" || ""}
+          </title>
           {renderedMeta}
         </Head>
         {this.props.photos != undefined && (

@@ -1,7 +1,6 @@
 import PageWrapper from "../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Link from "next/link";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import Head from "next/head";
@@ -66,11 +65,7 @@ class Graphics extends Component {
     return (
       <div>
         <Head>
-          <title
-            dangerouslySetInnerHTML={{
-              __html: this.props.category[0].name + " - Daily Bruin"
-            }}
-          />
+          <title>{this.props.category[0].name + " - Daily Bruin"}</title>
         </Head>
         <div style={{ padding: "6px" }}>
           <SectionHeader

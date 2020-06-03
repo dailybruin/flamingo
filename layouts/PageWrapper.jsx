@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { Config } from "../config.js";
 import Head from "next/head";
-import fetch from "isomorphic-unfetch";
 
-import MainSiteFooter from "../components/MainSiteFooter";
-import BreakingCard from "../components/BreakingBanner";
-import InTheNews from "../components/InTheNewsBanner";
-import Masthead from "../components/Masthead";
-import CommentFAB from "../components/CommentFAB";
+import MainSiteFooter from "components/MainSiteFooter";
+import BreakingCard from "components/BreakingBanner";
+import InTheNews from "components/InTheNewsBanner";
+import Masthead from "components/Masthead";
+import CommentFAB from "components/CommentFAB";
 
-import css from "./style.css";
+import css from "./style.module.css";
 
 const wrapperStyle = {
   padding: "6px",

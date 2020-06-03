@@ -62,11 +62,7 @@ class Category extends Component {
     return (
       <>
         <Head>
-          <title
-            dangerouslySetInnerHTML={{
-              __html: this.props.category[0].name + " - Daily Bruin"
-            }}
-          />
+          <title>{this.props.category[0].name + " - Daily Bruin"}</title>
         </Head>
         <div style={{ padding: "6px" }}>
           <SectionHeader

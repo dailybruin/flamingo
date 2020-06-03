@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
 import { Config } from "../config.js";
 
 import Article from "../components/Article";

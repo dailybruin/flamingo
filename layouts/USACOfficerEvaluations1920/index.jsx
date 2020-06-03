@@ -2,7 +2,7 @@ import React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
-import style from "../style.css";
+import style from "../style.module.css";
 
 export default class ColumnsFromQuarantineLayout extends React.Component {
   constructor(props) {

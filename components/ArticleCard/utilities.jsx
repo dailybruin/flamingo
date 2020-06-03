@@ -14,7 +14,7 @@ export function renderAuthors(authors) {
           );
         }
         renderedAuthors.push(
-          <a href={`/author/${authors[i]["user_nicename"]}`}>
+          <a key={i} href={`/author/${authors[i]["user_nicename"]}`}>
             {authors[i]["display_name"]}
           </a>
         );

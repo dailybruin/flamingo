@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PageWrapper from "../PageWrapper";
-import css from "../style.css";
-import { SizeMe } from "react-sizeme";
+import css from "../style.module.css";
 
 import PhotoGallery from "../../components/PhotoGallery";
 import CommentsCard from "../../components/CommentsCard";

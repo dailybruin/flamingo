@@ -1,7 +1,7 @@
 import ArticleCard from "../components/ArticleCard";
 import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
-import css from "./style.css";
+import css from "./style.module.css";
 
 export function buildArticleCard(story, type = "") {
   if (story != null && story != undefined && story.data == undefined) {
@@ -13,6 +13,7 @@ export function buildArticleCard(story, type = "") {
         href={`/post/[slug]`}
         as={story.link}
         link={story.link}
+        key={story.id.toString()}
         date={new Date(story.date)}
         authors={story.coauthors != undefined ? story.coauthors : []}
         category={{
@@ -94,7 +95,7 @@ export function renderPostArray(otherArticleCards, type) {
   let renderedPostArray = [];
   for (let i = 0; i < otherArticleCards.length; i++) {
     renderedPostArray.push(
-      <div className={css.card}>
+      <div className={css.card} key={i}>
         {React.cloneElement(otherArticleCards[i], {
           displayType: type
         })}

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
-import css from "../style.css";
+import css from "../style.module.css";
 import * as utilities from "../utilities";
 import InfiniteScroll from "react-infinite-scroller";
 import Media from "react-media";

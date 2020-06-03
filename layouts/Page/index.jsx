@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
 import Error from "next/error";
 import { Config } from "../../config.js";
 
-import css from "./style.css";
+import css from "../style.module.css";
 import Page from "../../components/Page";
 
 const ArticleAdStyle = {

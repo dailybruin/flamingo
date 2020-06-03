@@ -1,6 +1,5 @@
 import PageWrapper from "../../layouts/PageWrapper";
 import React, { Component } from "react";
-import Link from "next/link";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import Head from "next/head";
