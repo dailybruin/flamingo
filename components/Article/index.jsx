@@ -294,11 +294,13 @@ export default class Article extends React.Component {
                 height: inherit;
               }
 
-              & .flex-video {
-                margin: auto;
+              & .flex-video,
+              & twitter-widget {
+                margin: auto !important;
               }
 
-              & .flex-video div iframe {
+              & .flex-video div iframe,
+              & div div .twitter-tweet {
                 max-width: 100% !important;
                 min-width: unset !important;
                 margin: auto !important;

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Error from "next/error";
 import { Config } from "config.js";
 import Head from "next/head";
+import he from "he";
 
 import ArticleLayout from "layouts/Article";
 import PhotoGalleryLayout from "layouts/PhotoGallery";
@@ -74,14 +75,13 @@ class Post extends Component {
     }
     let renderedMeta = [];
     for (let meta of this.props.post[0].yoast_meta) {
-      meta.key = meta.property;
       renderedMeta.push(React.createElement("meta", meta));
     }
     return (
       <>
         <Head>
           <title>
-            {this.props.post[0].title.rendered + " - Daily Bruin" || ""}
+            {he.decode(this.props.post[0].title.rendered) + " - Daily Bruin"}
           </title>
           {renderedMeta}
         </Head>

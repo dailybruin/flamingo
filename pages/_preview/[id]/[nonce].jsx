@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import PageWrapper from "../../../layouts/PageWrapper";
-import { Config } from "../../../config.js";
+import PageWrapper from "layouts/PageWrapper";
+import { Config } from "config.js";
 import Head from "next/head";
+import he from "he";
 
-import ArticleLayout from "../../../layouts/Article";
-import PhotoGalleryLayout from "../../../layouts/PhotoGallery";
-import FeatureLayout from "../../../layouts/Feature";
+import ArticleLayout from "layouts/Article";
+import PhotoGalleryLayout from "layouts/PhotoGallery";
+import FeatureLayout from "layouts/Feature";
 
 class Preview extends Component {
   static async getInitialProps(context) {
@@ -75,7 +76,9 @@ class Preview extends Component {
     return (
       <>
         <Head>
-          <title>{this.props.post.title.rendered + " - Daily Bruin"}</title>
+          <title>
+            {he.decode(this.props.post.title.rendered) + " - Daily Bruin"}
+          </title>
           {renderedMeta}
         </Head>
         {this.props.photos != undefined && (
