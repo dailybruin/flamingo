@@ -4,11 +4,11 @@ import Media from "react-media";
 
 import { buildArticleCard } from "../utilities";
 
-import * as globals from "../../components/globals";
+import * as globals from "components/globals";
 
-import Article from "../../components/Article";
-import ClassifiedsCard from "../../components/ClassifiedsCard";
-import CommentsCard from "../../components/CommentsCard";
+import Article from "components/Article";
+import ClassifiedsCard from "components/ClassifiedsCard";
+import CommentsCard from "components/CommentsCard";
 
 class ArticleLayout extends React.Component {
   constructor(props) {
@@ -22,13 +22,15 @@ class ArticleLayout extends React.Component {
         categories={this.props.article["_embedded"]["wp:term"][0]}
         featureimg={
           this.props.article._embedded["wp:featuredmedia"] != undefined &&
-          !this.props.article._embedded["wp:featuredmedia"].empty
+          !this.props.article._embedded["wp:featuredmedia"].empty &&
+          this.props.article._embedded["wp:featuredmedia"][0].data == undefined
             ? this.props.article._embedded["wp:featuredmedia"][0].source_url
             : ""
         }
         caption={
           this.props.article._embedded["wp:featuredmedia"] != undefined &&
-          !this.props.article._embedded["wp:featuredmedia"].empty
+          !this.props.article._embedded["wp:featuredmedia"].empty &&
+          this.props.article._embedded["wp:featuredmedia"][0].data == undefined
             ? this.props.article._embedded["wp:featuredmedia"][0].caption
                 .rendered
             : ""

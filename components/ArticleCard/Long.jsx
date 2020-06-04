@@ -69,10 +69,11 @@ export default function Long(props) {
             css={css`
               margin: 2px 0;
               ${locals.headline};
-              font-style: ${props.acf.db_article_format == "column"
-                ? "italic"
-                : "normal"};
             `}
+            style={{
+              fontStyle:
+                props.acf.db_article_format == "column" ? "italic" : "normal"
+            }}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />
         </a>

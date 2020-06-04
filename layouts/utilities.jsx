@@ -23,13 +23,15 @@ export function buildArticleCard(story, type = "") {
         }}
         imageurl={
           story._embedded["wp:featuredmedia"] != undefined &&
-          !story._embedded["wp:featuredmedia"].empty
+          !story._embedded["wp:featuredmedia"].empty &&
+          story._embedded["wp:featuredmedia"][0].data == undefined
             ? story._embedded["wp:featuredmedia"][0].source_url
             : "http://wp.dailybruin.com/images/2017/03/db-logo.png"
         }
         caption={
           story._embedded["wp:featuredmedia"] != undefined &&
           !story._embedded["wp:featuredmedia"].empty &&
+          story._embedded["wp:featuredmedia"][0].data == undefined &&
           story._embedded["wp:featuredmedia"][0].caption != undefined
             ? story._embedded["wp:featuredmedia"][0].caption.rendered
             : ""

@@ -13,7 +13,12 @@ export default class MultimediaScroller extends React.Component {
     const medialinks = [];
     for (const media of this.props.media) {
       medialinks.push(
-        <Media title={media.title} preview={media.preview} link={media.link} />
+        <Media
+          key={media.link}
+          title={media.title}
+          preview={media.preview}
+          link={media.link}
+        />
       );
     }
     return (
