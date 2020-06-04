@@ -22,18 +22,6 @@ const layoutStyle = {
   margin: "auto"
 };
 
-const bannerAdStyle = {
-  maxWidth: "728px",
-  maxHeight: "90px",
-  height: "90px",
-  lineHeight: "90px",
-  backgroundColor: "#aaa",
-  textAlign: "center",
-  fontWeight: "bold",
-  fontFamily: "sans-serif",
-  margin: "6px auto"
-};
-
 const PageWrapper = Comp =>
   class extends Component {
     static async getInitialProps(ctx) {

@@ -18,24 +18,6 @@ class MyApp extends App {
   // }
 
   componentDidMount() {
-    // if (typeof window !== "undefined") {
-    //   // tslint:disable-next-line:no-var-requires
-    //   const WebFontLoader = require("webfontloader");
-    //   WebFontLoader.load({
-    //     google: {
-    //       families: [
-    //         "Arimo:400",
-    //         "Arimo:700",
-    //         "PT Serif:400",
-    //         "PT Serif:700",
-    //         "Source Sans Pro:400",
-    //         "Source Sans Pro:700",
-    //         "Playfair Display:700"
-    //       ]
-    //     }
-    //   });
-    // }
-
     // Custom Date Formats
     moment.updateLocale("en", {
       monthsShort: [

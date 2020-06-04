@@ -2,8 +2,6 @@ import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
-import Link from "next/link";
-import Cookies from "js-cookie";
 
 export default class EmailPopUp extends React.Component {
   constructor(props) {

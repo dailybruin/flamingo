@@ -62,7 +62,11 @@ export default class ClassifiedsCard extends React.Component {
     if (this.props.classifieds != null) {
       for (const i of this.props.classifieds) {
         renderedClassifieds.push(
-          <Classified category={i.category} content={i.content} />
+          <Classified
+            key={i.content.url}
+            category={i.category}
+            content={i.content}
+          />
         );
       }
     }

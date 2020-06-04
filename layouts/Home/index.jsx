@@ -24,7 +24,7 @@ const ArticleAdStyle = {
 export default class HomeLayout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.cards = {
       aArticleCard: utilities.buildArticleCard(this.props.posts.aStory[0]),
       bArticleCard: utilities.buildArticleCard(this.props.posts.bStory[0]),
       c1ArticleCard: utilities.buildArticleCard(this.props.posts.c1Story[0]),
@@ -85,22 +85,22 @@ export default class HomeLayout extends React.Component {
                     style={{ width: "100%" }}
                   >
                     <div id="c1" className={css.card}>
-                      {React.cloneElement(this.state.c1ArticleCard, {
+                      {React.cloneElement(this.cards.c1ArticleCard, {
                         displayType: "full"
                       })}
                     </div>
                     <div id="c2" className={css.card}>
-                      {React.cloneElement(this.state.c2ArticleCard, {
+                      {React.cloneElement(this.cards.c2ArticleCard, {
                         displayType: "full"
                       })}
                     </div>
                     <div id="a" className={css.card}>
-                      {React.cloneElement(this.state.aArticleCard, {
+                      {React.cloneElement(this.cards.aArticleCard, {
                         displayType: "full"
                       })}
                     </div>
                     <div id="b" className={css.card}>
-                      {React.cloneElement(this.state.bArticleCard, {
+                      {React.cloneElement(this.cards.bArticleCard, {
                         displayType: "full"
                       })}
                     </div>
@@ -115,20 +115,20 @@ export default class HomeLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="qd" className={css.card}>
-                      {this.state.qdStoryList}
+                      {this.cards.qdStoryList}
                     </div>
                     <div id="d" className={css.card}>
-                      {React.cloneElement(this.state.dArticleCard, {
+                      {React.cloneElement(this.cards.dArticleCard, {
                         displayType: "mini"
                       })}
                     </div>
                     <div id="e" className={css.card}>
-                      {React.cloneElement(this.state.eArticleCard, {
+                      {React.cloneElement(this.cards.eArticleCard, {
                         displayType: "mini"
                       })}
                     </div>
                     <div id="MultimediaScroller" className={css.card}>
-                      {this.state.m1MultimediaScroller}
+                      {this.cards.m1MultimediaScroller}
                     </div>
                     <div id="classifieds" className={css.card}>
                       <ClassifiedsCard
@@ -137,12 +137,12 @@ export default class HomeLayout extends React.Component {
                       />
                     </div>
                     <div id="f1" className={css.card}>
-                      {React.cloneElement(this.state.f1ArticleCard, {
+                      {React.cloneElement(this.cards.f1ArticleCard, {
                         displayType: "mini"
                       })}
                     </div>
                     <div id="f2" className={css.card}>
-                      {React.cloneElement(this.state.f2ArticleCard, {
+                      {React.cloneElement(this.cards.f2ArticleCard, {
                         displayType: "mini"
                       })}
                     </div>
@@ -154,16 +154,16 @@ export default class HomeLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="ns" className={css.card}>
-                      {this.state.nsStoryList}
+                      {this.cards.nsStoryList}
                     </div>
                     <div id="op" className={css.card}>
-                      {this.state.opStoryList}
+                      {this.cards.opStoryList}
                     </div>
                     <div id="ae" className={css.card}>
-                      {this.state.aeStoryList}
+                      {this.cards.aeStoryList}
                     </div>
                     <div id="sp" className={css.card}>
-                      {this.state.spStoryList}
+                      {this.cards.spStoryList}
                     </div>
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default class HomeLayout extends React.Component {
                     }}
                   >
                     <div id="a" className={css.card}>
-                      {React.cloneElement(this.state.aArticleCard, {
+                      {React.cloneElement(this.cards.aArticleCard, {
                         displayType: "vert"
                       })}
                     </div>
@@ -190,12 +190,12 @@ export default class HomeLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="b" className={css.card}>
-                      {React.cloneElement(this.state.bArticleCard, {
+                      {React.cloneElement(this.cards.bArticleCard, {
                         displayType: "vert"
                       })}
                     </div>
                     <div id="qd" className={css.card}>
-                      {this.state.qdStoryList}
+                      {this.cards.qdStoryList}
                     </div>
                     <div id="classifieds" className={css.card}>
                       <ClassifiedsCard
@@ -204,7 +204,7 @@ export default class HomeLayout extends React.Component {
                       />
                     </div>
                     <div id="f1" className={css.card}>
-                      {React.cloneElement(this.state.f1ArticleCard, {
+                      {React.cloneElement(this.cards.f1ArticleCard, {
                         displayType: "mini"
                       })}
                     </div>
@@ -219,7 +219,7 @@ export default class HomeLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="f2" className={css.card}>
-                      {React.cloneElement(this.state.f2ArticleCard, {
+                      {React.cloneElement(this.cards.f2ArticleCard, {
                         displayType: "mini"
                       })}
                     </div>
@@ -232,12 +232,12 @@ export default class HomeLayout extends React.Component {
                     }}
                   >
                     <div id="c1" className={css.card}>
-                      {React.cloneElement(this.state.c1ArticleCard, {
+                      {React.cloneElement(this.cards.c1ArticleCard, {
                         displayType: "full"
                       })}
                     </div>
                     <div id="c2" className={css.card}>
-                      {React.cloneElement(this.state.c2ArticleCard, {
+                      {React.cloneElement(this.cards.c2ArticleCard, {
                         displayType: "horz"
                       })}
                     </div>
@@ -252,7 +252,7 @@ export default class HomeLayout extends React.Component {
                         style={{ width: "50%" }}
                       >
                         <div id="d" className={css.card}>
-                          {React.cloneElement(this.state.dArticleCard, {
+                          {React.cloneElement(this.cards.dArticleCard, {
                             displayType: "mini"
                           })}
                         </div>
@@ -263,28 +263,28 @@ export default class HomeLayout extends React.Component {
                         style={{ width: "50%" }}
                       >
                         <div id="e" className={css.card}>
-                          {React.cloneElement(this.state.eArticleCard, {
+                          {React.cloneElement(this.cards.eArticleCard, {
                             displayType: "mini"
                           })}
                         </div>
                       </div>
                       <div id="MultimediaScroller" className={css.card}>
-                        {this.state.m1MultimediaScroller}
+                        {this.cards.m1MultimediaScroller}
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="ns" className={css.card}>
-                          {this.state.nsStoryList}
+                          {this.cards.nsStoryList}
                         </div>
                         <div id="ae" className={css.card}>
-                          {this.state.aeStoryList}
+                          {this.cards.aeStoryList}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="op" className={css.card}>
-                          {this.state.opStoryList}
+                          {this.cards.opStoryList}
                         </div>
                         <div id="sp" className={css.card}>
-                          {this.state.spStoryList}
+                          {this.cards.spStoryList}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "100%" }}>
@@ -315,12 +315,12 @@ export default class HomeLayout extends React.Component {
                       }}
                     >
                       <div id="a" className={css.card}>
-                        {React.cloneElement(this.state.aArticleCard, {
+                        {React.cloneElement(this.cards.aArticleCard, {
                           displayType: "vert"
                         })}
                       </div>
                       <div id="b" className={css.card}>
-                        {React.cloneElement(this.state.bArticleCard, {
+                        {React.cloneElement(this.cards.bArticleCard, {
                           displayType: "vert"
                         })}
                       </div>
@@ -334,7 +334,7 @@ export default class HomeLayout extends React.Component {
                         <broadstreet-zone zone-id="69405"></broadstreet-zone>
                       </div>
                       <div id="ns" className={css.card}>
-                        {this.state.nsStoryList}
+                        {this.cards.nsStoryList}
                       </div>
                     </div>
                     <div
@@ -345,36 +345,36 @@ export default class HomeLayout extends React.Component {
                       }}
                     >
                       <div id="c1" className={css.card}>
-                        {React.cloneElement(this.state.c1ArticleCard, {
+                        {React.cloneElement(this.cards.c1ArticleCard, {
                           displayType: "full"
                         })}
                       </div>
                       <div id="c2" className={css.card}>
-                        {React.cloneElement(this.state.c2ArticleCard, {
+                        {React.cloneElement(this.cards.c2ArticleCard, {
                           displayType: "horz"
                         })}
                       </div>
                       <div id="MultimediaScroller" className={css.card}>
-                        {this.state.m1MultimediaScroller}
+                        {this.cards.m1MultimediaScroller}
                       </div>
                       <div id="f1" className={css.card}>
-                        {React.cloneElement(this.state.f1ArticleCard, {
+                        {React.cloneElement(this.cards.f1ArticleCard, {
                           displayType: "horz"
                         })}
                       </div>
                       <div id="f2" className={css.card}>
-                        {React.cloneElement(this.state.f2ArticleCard, {
+                        {React.cloneElement(this.cards.f2ArticleCard, {
                           displayType: "horz"
                         })}
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="op" className={css.card}>
-                          {this.state.opStoryList}
+                          {this.cards.opStoryList}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="ae" className={css.card}>
-                          {this.state.aeStoryList}
+                          {this.cards.aeStoryList}
                         </div>
                       </div>
                     </div>
@@ -394,20 +394,20 @@ export default class HomeLayout extends React.Component {
                         <broadstreet-zone zone-id="69405"></broadstreet-zone>
                       </div>
                       <div id="qd" className={css.card}>
-                        {this.state.qdStoryList}
+                        {this.cards.qdStoryList}
                       </div>
                       <div id="d" className={css.card}>
-                        {React.cloneElement(this.state.dArticleCard, {
+                        {React.cloneElement(this.cards.dArticleCard, {
                           displayType: "mini"
                         })}
                       </div>
                       <div id="e" className={css.card}>
-                        {React.cloneElement(this.state.eArticleCard, {
+                        {React.cloneElement(this.cards.eArticleCard, {
                           displayType: "mini"
                         })}
                       </div>
                       <div id="sp" className={css.card}>
-                        {this.state.spStoryList}
+                        {this.cards.spStoryList}
                       </div>
                     </div>
                   </div>

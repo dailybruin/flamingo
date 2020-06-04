@@ -6,11 +6,11 @@ export function renderAuthors(authors) {
     } else {
       for (const i in authors) {
         if (i > 0 && authors.length > 2) {
-          renderedAuthors.push(<span>, </span>);
+          renderedAuthors.push(<span key={i}>, </span>);
         }
         if (i == authors.length - 1 && authors.length > 1) {
           renderedAuthors.push(
-            <span>{authors.length == 2 ? " " : ""}and </span>
+            <span key={i}>{authors.length == 2 ? " " : ""}and </span>
           );
         }
         renderedAuthors.push(

@@ -10,7 +10,7 @@ import * as globals from "../components/globals";
 class Stonewall extends Component {
   componentDidMount() {
     jQuery(document).ready(function() {
-      var position = ["top", "center", "bottom"];
+      let position = ["top", "center", "bottom"];
 
       //source file is https://docs.google.com/spreadsheets/d/1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4/edit#gid=0
       //owner is online@media.ucla.edu
@@ -22,7 +22,7 @@ class Stonewall extends Component {
             jQuery("div#stonewall").append('<div class="stone"></div>');
             jQuery.each(data.feed.entry.reverse(), function(i, entry) {
               if (entry.gsx$date.$t && entry.gsx$copystatus.$t) {
-                var append =
+                let append =
                   '<li class="accordion-navigation stone s' +
                   ((i % 3) + 1) +
                   '">';
@@ -40,9 +40,9 @@ class Stonewall extends Component {
                   '"></div>';
                 append += "</li>";
                 jQuery("ul#stonewall").append(append);
-                var title =
+                let title =
                   "<b>" + entry.gsx$date.$t + ":</b> " + entry.gsx$reason.$t;
-                var desc = entry.gsx$description.$t;
+                let desc = entry.gsx$description.$t;
                 jQuery("#t" + i + "").append(title);
                 jQuery("#panel" + i + "a").append(desc);
               }

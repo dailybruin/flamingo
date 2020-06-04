@@ -95,10 +95,12 @@ export default class Mobile extends React.Component {
               height: 36px;
               width: 36px;
               transition: transform 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
-              transform: ${this.state.menuExpanded
-                ? "rotate(90deg)"
-                : "rotate(0deg)"};
             `}
+            style={{
+              transform: this.state.menuExpanded
+                ? "rotate(90deg)"
+                : "rotate(0deg)"
+            }}
             onClick={this.toggleMenu}
           >
             <img
