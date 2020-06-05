@@ -9,110 +9,194 @@ import PhotoGalleryLayout from "layouts/PhotoGallery";
 import FeatureLayout from "layouts/Feature";
 
 class Preview extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      post: undefined,
+      authors: [],
+      relatedPosts: [],
+      feature: false,
+      tagged: [],
+      gallery: undefined,
+      classifieds: [],
+      photos: null
+    };
+  }
+
   static async getInitialProps(context) {
     const { id, nonce } = context.query;
-    const postRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts/${id}?_wpnonce=${nonce}&_embed`,
+    const previewID = id;
+    const previewNonce = nonce;
+    return { previewID, previewNonce };
+  }
+
+  componentDidMount() {
+    this.setState({ post: "" });
+    let queryPost = undefined;
+    fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts/${this.props.previewID}?_wpnonce=${this.props.previewNonce}&_embed`,
       { credentials: "include" }
-    );
-    const post = await postRes.json();
-    let authors = [];
-    if (post.coauthors != undefined) {
-      for (let author of post.coauthors) {
-        const authorsRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/users/${author.id}`
-        );
-        authors.push(await authorsRes.json());
-      }
-    }
-    let relatedPosts = [];
-    if (post.related_posts != undefined) {
-      for (let related of post.related_posts) {
-        const relatedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts/${related.id}?_embed`
-        );
-        relatedPosts.push(await relatedRes.json());
-      }
-    }
-    if (post.acf["db_feature"] == true) {
-      let feature = true;
-      let tagged = [];
-      if (post.acf["db_feature_tag"] != "") {
-        const taggedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
-            post.acf["db_feature_tag"]
-          }`
-        );
-        tagged = await taggedRes.json();
-      }
-      return { feature, post, authors, tagged, relatedPosts };
-    }
-    if (post.acf.gallery != undefined) {
-      const photosRes = await fetch(
-        `${Config.apiUrl}/wp-json/db/v1/gallery/${post.acf.gallery}`
+    )
+      .then(response => response.json())
+      .then(
+        json => {
+          if (json.code || json.code === "rest_cookie_invalid_nonce") {
+            this.setState({
+              error: "yes"
+            });
+            queryPost = json;
+          } else {
+            this.setState({
+              post: json
+            });
+            return;
+          }
+          console.log(queryPost);
+          if (queryPost.coauthors != undefined) {
+            for (let author of queryPost.coauthors) {
+              fetch(`${Config.apiUrl}/wp-json/wp/v2/users/${author.id}`)
+                .then(response => response.json())
+                .then(json => {
+                  if (json.code || json.code === "rest_cookie_invalid_nonce") {
+                    this.setState({
+                      error: json
+                    });
+                  } else {
+                    this.state.authors.push(json);
+                  }
+                });
+            }
+          }
+          this.setState({ relatedPosts: [] });
+          if (queryPost.related_posts != undefined) {
+            for (let related of queryPost.related_posts) {
+              fetch(`${Config.apiUrl}/wp-json/wp/v2/posts/${related.id}?_embed`)
+                .then(response => response.json())
+                .then(json => {
+                  if (json.code || json.code === "rest_cookie_invalid_nonce") {
+                    this.setState({
+                      error: json
+                    });
+                  } else {
+                    this.state.relatedPosts.push(json);
+                  }
+                });
+            }
+          }
+          if (queryPost.acf["db_feature"] == true) {
+            this.setState({ feature: true });
+            this.setState({ tagged: [] });
+            if (queryPost.acf["db_feature_tag"] != "") {
+              fetch(
+                `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
+                  post.acf["db_feature_tag"]
+                }`
+              )
+                .then(response => response.json())
+                .then(json => {
+                  if (json.code || json.code === "rest_cookie_invalid_nonce") {
+                    this.setState({
+                      error: json
+                    });
+                  } else {
+                    this.state.tagged.push(json);
+                  }
+                });
+            }
+            return;
+          }
+          if (queryPost.acf.gallery != undefined) {
+            fetch(`${Config.apiUrl}/wp-json/db/v1/gallery/${post.acf.gallery}`)
+              .then(response => response.json())
+              .then(json => {
+                if (json.code || json.code === "rest_cookie_invalid_nonce") {
+                  this.setState({
+                    error: json
+                  });
+                } else {
+                  this.setState({ photos: json });
+                }
+              });
+            return;
+          }
+          fetch(`${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`)
+            .then(response => response.json())
+            .then(json => {
+              if (json.code || json.code === "rest_cookie_invalid_nonce") {
+                this.setState({
+                  error: json
+                });
+              } else {
+                this.setState({ classifieds: json });
+              }
+            });
+          return;
+        },
+        error => {
+          this.setState({
+            error: "yes"
+          });
+          queryPost = error;
+        }
       );
-      const photos = await photosRes.json();
-      return { post, photos, authors, relatedPosts };
-    }
-    const classifiedsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
-    );
-    const classifieds = await classifiedsRes.json();
-    return { post, classifieds, authors, relatedPosts };
+    console.log(queryPost);
   }
 
   render() {
-    if (
-      this.props.post == undefined ||
-      this.props.post.data != undefined ||
-      this.props.post.length == 0
-    ) {
-      return <Error statusCode={404} />;
+    const { post } = this.state;
+    if (this.state.post == null || this.state.post == undefined) {
+      return <div />;
+    } else {
+      if (this.state.post) {
+        let renderedMeta = [];
+        for (let meta of this.state.post.yoast_meta) {
+          renderedMeta.push(React.createElement("meta", meta));
+        }
+        return (
+          <>
+            <Head>
+              <title>
+                {he.decode(this.state.post.title.rendered) + " - Daily Bruin"}
+              </title>
+              {renderedMeta}
+            </Head>
+            {this.state.photos != null && (
+              <PhotoGalleryLayout
+                post={this.state.post}
+                photos={this.state.photos}
+                photographers={this.state.authors}
+              />
+            )}
+            {this.state.feature && (
+              <FeatureLayout
+                article={this.state.post}
+                authors={this.state.authors}
+                tagged={this.state.tagged}
+                relatedPosts={this.state.relatedPosts}
+              />
+            )}
+            {this.state.photos == undefined && this.state.feature != true && (
+              <ArticleLayout
+                article={this.state.post}
+                authors={this.state.authors}
+                relatedPosts={this.state.relatedPosts}
+                classifieds={this.state.classifieds.map(c => {
+                  return {
+                    category: {
+                      name: c._embedded["wp:term"][1][0].name,
+                      url: c._embedded["wp:term"][1][0].link
+                    },
+                    content: { name: c.content.rendered, url: c.link }
+                  };
+                })}
+              />
+            )}
+          </>
+        );
+      } else {
+        return <div></div>;
+      }
     }
-    let renderedMeta = [];
-    for (let meta of this.props.post.yoast_meta) {
-      renderedMeta.push(React.createElement("meta", meta));
-    }
-    return (
-      <>
-        <Head>
-          <title>
-            {he.decode(this.props.post.title.rendered) + " - Daily Bruin"}
-          </title>
-          {renderedMeta}
-        </Head>
-        {this.props.photos != undefined && (
-          <PhotoGalleryLayout
-            post={this.props.post}
-            photos={this.props.photos}
-            photographers={this.props.authors}
-          />
-        )}
-        {this.props.feature == true && (
-          <FeatureLayout
-            article={this.props.post}
-            authors={this.props.authors}
-            tagged={this.props.tagged}
-          />
-        )}
-        {this.props.photos == undefined && this.props.feature != true && (
-          <ArticleLayout
-            article={this.props.post}
-            authors={this.props.authors}
-            relatedPosts={this.props.relatedPosts}
-            classifieds={this.props.classifieds.map(c => {
-              return {
-                category: {
-                  name: c._embedded["wp:term"][1][0].name,
-                  url: c._embedded["wp:term"][1][0].link
-                },
-                content: { name: c.content.rendered, url: c.link }
-              };
-            })}
-          />
-        )}
-      </>
-    );
   }
 }
 
