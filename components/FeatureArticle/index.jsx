@@ -51,6 +51,7 @@ export default class FeatureArticle extends React.Component {
                 ? story._embedded["wp:featuredmedia"][0].source_url
                 : "http://dailybruin.com/images/2017/03/db-logo.png"
             }
+            acf={story.acf}
           ></MiniArticleCard>
         </div>
       );
