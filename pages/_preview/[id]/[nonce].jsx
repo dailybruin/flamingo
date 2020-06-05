@@ -31,7 +31,6 @@ class Preview extends Component {
   }
 
   componentDidMount() {
-    this.setState({ post: "" });
     let queryPost = undefined;
     fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts/${this.props.previewID}?_wpnonce=${this.props.previewNonce}&_embed`,

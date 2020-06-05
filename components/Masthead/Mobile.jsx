@@ -1,8 +1,11 @@
 import * as React from "react";
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { Global, css, jsx } from "@emotion/core";
+import Head from "next/head";
 
 import * as globals from "../globals";
+
+import moment from "moment";
 
 import logo from "./dailybruin.svg";
 import menuIcon from "./menu.svg";
@@ -37,6 +40,7 @@ export default class Mobile extends React.Component {
   }
 
   render() {
+    let date = moment();
     let renderedCategories = [];
     if (this.props.categories != null) {
       for (let i = 0; i < this.props.categories.length; i++) {
@@ -129,12 +133,33 @@ export default class Mobile extends React.Component {
               `}
             >
               <img
-                src={logo}
+                src={
+                  date.date() == 1 && date.month() == 3
+                    ? require("./prankd.svg")
+                    : logo
+                }
                 css={css`
                   display: inline-block;
                   height: 100%;
                 `}
               ></img>
+              {date.date() == 1 && date.month() == 3 && (
+                <>
+                  <Head>
+                    <link
+                      href="https://wp.dailybruin.com/wp-content/themes/caeruleum/css/dbcomic.ttf"
+                      rel="stylesheet"
+                    />
+                  </Head>
+                  <Global
+                    styles={css`
+                      * {
+                        font-family: "Comic Sans MS", sans-serif !important;
+                      }
+                    `}
+                  ></Global>
+                </>
+              )}
             </a>
           </div>
           <div

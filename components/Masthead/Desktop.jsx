@@ -1,8 +1,8 @@
 import * as React from "react";
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-import Link from "next/link";
-import * as moment from "moment";
+import { Global, css, jsx } from "@emotion/core";
+import moment from "moment";
+import Head from "next/head";
 
 import * as globals from "../globals";
 
@@ -77,7 +77,8 @@ export default class Desktop extends React.Component {
   }
 
   render() {
-    let today = moment().format("dddd, MMMM D, YYYY");
+    let date = moment();
+    let today = date.format("dddd, MMMM D, YYYY");
     let renderedCategories = [];
     if (this.props.categories != null) {
       for (let i in this.props.categories) {
@@ -181,12 +182,33 @@ export default class Desktop extends React.Component {
               `}
             >
               <img
-                src={logo}
+                src={
+                  date.date() == 1 && date.month() == 3
+                    ? require("./prankd.svg")
+                    : logo
+                }
                 css={css`
                   display: inline-block;
                   height: 100%;
                 `}
               ></img>
+              {date.date() == 1 && date.month() == 3 && (
+                <>
+                  <Head>
+                    <link
+                      href="https://wp.dailybruin.com/wp-content/themes/caeruleum/css/dbcomic.ttf"
+                      rel="stylesheet"
+                    />
+                  </Head>
+                  <Global
+                    styles={css`
+                      * {
+                        font-family: "Comic Sans MS", sans-serif !important;
+                      }
+                    `}
+                  ></Global>
+                </>
+              )}
             </a>
           </div>
           <div
