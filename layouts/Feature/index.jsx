@@ -39,6 +39,7 @@ class FeatureLayout extends React.Component {
           tagged={this.props.tagged.filter(
             article => article.slug != this.props.article.slug
           )}
+          relatedPosts={this.props.relatedPosts}
         />
       </>
     );

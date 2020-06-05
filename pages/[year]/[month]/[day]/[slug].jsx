@@ -97,6 +97,7 @@ class Post extends Component {
             article={this.props.post[0]}
             authors={this.props.authors}
             tagged={this.props.tagged}
+            relatedPosts={this.props.relatedPosts}
           />
         )}
         {this.props.photos == undefined && this.props.feature != true && (

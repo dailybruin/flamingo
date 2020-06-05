@@ -22,6 +22,46 @@ export default class FeatureArticle extends React.Component {
     for (let story of this.props.tagged) {
       renderedTaggedCards.push(
         <div
+          key={story.id}
+          css={css`
+            max-width: 312px;
+            vertical-align: middle;
+            display: inline-block;
+            padding: 6px 12px;
+            white-space: initial;
+
+            &:first-of-type {
+              margin-left: 20px;
+            }
+            &:last-of-type {
+              margin-right: 20px;
+            }
+          `}
+        >
+          <MiniArticleCard
+            headline={story.title.rendered}
+            category={{
+              name: story._embedded["wp:term"][0][0].name,
+              href: `/category/[slug]`,
+              as: `/category/${story._embedded["wp:term"][0][0].slug}`
+            }}
+            as={`/post/${story.slug}`}
+            imageurl={
+              story._embedded["wp:featuredmedia"] != undefined &&
+              !story._embedded["wp:featuredmedia"].empty
+                ? story._embedded["wp:featuredmedia"][0].source_url
+                : "http://dailybruin.com/images/2017/03/db-logo.png"
+            }
+            acf={story.acf}
+          ></MiniArticleCard>
+        </div>
+      );
+    }
+    let renderedRelatedPostsCards = [];
+    for (let story of this.props.relatedPosts) {
+      renderedRelatedPostsCards.push(
+        <div
+          key={story.id}
           css={css`
             max-width: 312px;
             vertical-align: middle;
@@ -160,7 +200,6 @@ export default class FeatureArticle extends React.Component {
         >
           {renderCategories(this.props.categories)}
         </div> */}
-
         <div
           css={css`
             padding: 40px;
@@ -355,6 +394,37 @@ export default class FeatureArticle extends React.Component {
               `}
             >
               {renderedTaggedCards}
+            </div>
+          </div>
+        )}
+        {this.props.tagged.length == 0 && (
+          <div
+            css={css`
+              background-color: #666;
+              width: 100%;
+              margin: auto;
+              padding: 20px 0 0;
+            `}
+          >
+            <div
+              css={css`
+                color: white;
+                margin: -6px 12px 6px;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-family: ${globals.menuFont};
+              `}
+            >
+              Read more stories like this:
+            </div>
+            <div
+              css={css`
+                overflow-x: scroll;
+                white-space: nowrap;
+                padding-bottom: 20px;
+              `}
+            >
+              {renderedRelatedPostsCards}
             </div>
           </div>
         )}
