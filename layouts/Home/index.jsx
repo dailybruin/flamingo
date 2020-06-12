@@ -104,9 +104,11 @@ export default class HomeLayout extends React.Component {
                         displayType: "full"
                       })}
                     </div>
-                    <div className={css.card}>
-                      <TwitterFeed />
-                    </div>
+                    {this.props.mappedBreaking != null && (
+                      <div className={css.card}>
+                        <TwitterFeed />
+                      </div>
+                    )}
                     <div
                       id="above-ad"
                       style={{ textAlign: "center" }}
@@ -130,6 +132,11 @@ export default class HomeLayout extends React.Component {
                     <div id="MultimediaScroller" className={css.card}>
                       {this.cards.m1MultimediaScroller}
                     </div>
+                    {this.props.mappedBreaking == null && (
+                      <div className={css.card}>
+                        <TwitterFeed />
+                      </div>
+                    )}
                     <div id="classifieds" className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
@@ -208,9 +215,11 @@ export default class HomeLayout extends React.Component {
                         displayType: "mini"
                       })}
                     </div>
-                    <div className={css.card}>
-                      <TwitterFeed />
-                    </div>
+                    {this.props.mappedBreaking != null && (
+                      <div className={css.card}>
+                        <TwitterFeed />
+                      </div>
+                    )}
                     <div
                       id="above-ad"
                       style={{ textAlign: "center" }}
@@ -223,6 +232,11 @@ export default class HomeLayout extends React.Component {
                         displayType: "mini"
                       })}
                     </div>
+                    {this.props.mappedBreaking == null && (
+                      <div className={css.card}>
+                        <TwitterFeed />
+                      </div>
+                    )}
                   </div>
                   <div
                     id="c1-c2"
@@ -383,9 +397,11 @@ export default class HomeLayout extends React.Component {
                       className={css.column}
                       style={{ width: "25%" }}
                     >
-                      <div className={css.card}>
-                        <TwitterFeed />
-                      </div>
+                      {this.props.mappedBreaking != null && (
+                        <div className={css.card}>
+                          <TwitterFeed />
+                        </div>
+                      )}
                       <div
                         id="above-ad"
                         className={css.card}
@@ -406,6 +422,11 @@ export default class HomeLayout extends React.Component {
                           displayType: "mini"
                         })}
                       </div>
+                      {this.props.mappedBreaking == null && (
+                        <div className={css.card}>
+                          <TwitterFeed />
+                        </div>
+                      )}
                       <div id="sp" className={css.card}>
                         {this.cards.spStoryList}
                       </div>
