@@ -35,7 +35,8 @@ class SponsoredPost extends Component {
       this.props.post == undefined ||
       this.props.post == null ||
       this.props.post.data != undefined ||
-      this.props.post.length == 0
+      this.props.post.length == 0 ||
+      !this.props.post[0].categories.includes(23087)
     ) {
       return <Error statusCode={404} />;
     }

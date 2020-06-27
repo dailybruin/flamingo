@@ -162,7 +162,7 @@ class Index extends Component {
           <title>{`Daily Bruin - Since 1919`}</title>
           <meta
             name="description"
-            content="the all new redesigned dailybruin.com"
+            content="UCLA's independent, student-run newspaper"
           />
           <link rel="canonical" href="https://dailybruin.com/" />
           <meta
@@ -179,7 +179,7 @@ class Index extends Component {
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
             property="og:description"
-            content="the all new redesigned dailybruin.com"
+            content="UCLA's independent, student-run newspaper"
           />
           <meta property="og:locale" content="en_US" />
           <meta property="fb:pages" content="47311244274" />
@@ -189,7 +189,7 @@ class Index extends Component {
           <meta name="twitter:creator" content="@dailybruin" />
           <meta
             name="twitter:description"
-            content="the all new redesigned dailybruin.com"
+            content="UCLA's independent, student-run newspaper"
           />
           <meta
             name="robots"

@@ -64,6 +64,12 @@ class Post extends Component {
     return { post, classifieds, authors, relatedPosts };
   }
 
+  componentDidMount() {
+    if (this.props.post[0].categories.includes(23087)) {
+      window.location.replace(`/sponsored/${this.props.post[0].slug}`);
+    }
+  }
+
   render() {
     if (
       this.props.post == undefined ||

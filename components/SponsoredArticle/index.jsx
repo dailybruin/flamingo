@@ -69,6 +69,7 @@ export default class FeatureArticle extends React.Component {
           img={this.props.featureimg}
           authors={this.props.authors}
           photostyle={"horz"}
+          disclaimer={this.props.acf.db_sponsored_disclaimer}
         ></Landing>
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
@@ -244,10 +245,23 @@ export default class FeatureArticle extends React.Component {
                   width: 100%;
                   height: auto;
                 }
+
+                ${this.props.acf.db_sponsored_styles}
               `}
               dangerouslySetInnerHTML={{ __html: this.props.content }}
             />
           </div>
+        </div>
+        <div
+          css={css`
+            width: 100%;
+            background-color: #e8e5e5;
+            padding: 20px;
+            font-weight: 700;
+            font-family: ${globals.menuFont};
+          `}
+        >
+          {this.props.acf.db_sponsored_disclaimer}
         </div>
       </div>
     );

@@ -35,6 +35,7 @@ class SponsoredLayout extends React.Component {
             this.props.article["_embedded"].author[0]["avatar_urls"][96]
           }
           content={this.props.article.content.rendered}
+          acf={this.props.article.acf}
         />
       </>
     );

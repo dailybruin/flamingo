@@ -51,7 +51,7 @@ export default function Landing(props) {
           >
             <div
               css={css`
-                font-family: ${globals.headlineFont};
+                font-family: ${globals.bodyFont};
                 font-style: normal;
                 font-weight: 700;
                 font-size: 40px;
@@ -78,7 +78,7 @@ export default function Landing(props) {
                 }
               `}
             >
-              By {renderAuthors(props.authors)}
+              {props.disclaimer}
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function Landing(props) {
           >
             <div
               css={css`
-                font-family: ${globals.headlineFont};
+                font-family: ${globals.bodyFont};
                 font-style: normal;
                 font-weight: 700;
                 font-size: 40px;
@@ -141,7 +141,7 @@ export default function Landing(props) {
                 }
               `}
             >
-              By {renderAuthors(props.authors)}
+              {props.disclaimer}
             </div>
           </div>
         </div>
