@@ -9,6 +9,7 @@ import * as globals from "../globals";
 import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
+import Logo from "./dailybruin.svg";
 
 export default class FeatureArticle extends React.Component {
   constructor(props) {
@@ -64,6 +65,16 @@ export default class FeatureArticle extends React.Component {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         `}
       >
+        <img
+          css={css`
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding: 15px;
+            height: 68px;
+          `}
+          src={Logo}
+        />
         <div
           css={css`
             position: sticky;
@@ -78,7 +89,7 @@ export default class FeatureArticle extends React.Component {
               font-family: Roboto;
               font-style: normal;
               font-weight: bold;
-              font-size: 25px;
+              font-size: 15px;
               line-height: 34px;
               text-align: center;
             `}
