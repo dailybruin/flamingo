@@ -31,6 +31,7 @@ export default class ReviewInfobox extends React.Component {
       <div
         css={css`
           padding: 10px;
+          width: 100%;
           background: #ffffff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           display: inline-block;

@@ -165,6 +165,11 @@ export default class Article extends React.Component {
               margin-left: 20px;
               margin-bottom: 5px;
               max-width: 400px;
+
+              @media (max-width: 600px) {
+                width: 100%;
+                margin: 10px auto 20px;
+              }
             `}
           >
             {renderedInfobox}
