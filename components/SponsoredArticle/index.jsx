@@ -61,9 +61,32 @@ export default class FeatureArticle extends React.Component {
         css={css`
           display: block;
           background-color: #ffffff;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         `}
       >
-        <Tag></Tag>
+        <div
+          css={css`
+            position: sticky;
+            top: 0;
+            text-align: center;
+            background-color: #e8e5e5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          `}
+        >
+          <div
+            css={css`
+              font-family: Roboto;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 25px;
+              line-height: 34px;
+              text-align: center;
+            `}
+          >
+            {" "}
+            PAID POST{" "}
+          </div>
+        </div>
         <Landing
           headline={this.props.headline}
           img={this.props.featureimg}
