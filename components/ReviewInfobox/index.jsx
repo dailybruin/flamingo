@@ -83,16 +83,18 @@ export default class ReviewInfobox extends React.Component {
           `}
           dangerouslySetInnerHTML={{ __html: this.props.title }}
         ></div>
-        <div
-          css={css`
-            text-align: center;
-            padding-top: 2px;
-            padding: 2px 10px 0;
-            margin-bottom: -10px;
-          `}
-        >
-          {stars}
-        </div>
+        {this.props.rating == 0 || (
+          <div
+            css={css`
+              text-align: center;
+              padding-top: 2px;
+              padding: 2px 10px 0;
+              margin-bottom: -10px;
+            `}
+          >
+            {stars}
+          </div>
+        )}
       </div>
     );
   }
