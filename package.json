@@ -24,6 +24,7 @@
     "react-infinite-scroller": "^1.2.4",
     "react-masonry-component": "^6.2.1",
     "react-media": "^1.10.0",
+    "react-native-chartbeat-cs": "^5.2.0",
     "react-swipeable-views": "^0.13.9"
   },
   "devDependencies": {

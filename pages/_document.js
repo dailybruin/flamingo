@@ -115,6 +115,13 @@ class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-28"
           ></script>
+
+          {/* Chartbeat */}
+          <script
+            async
+            src="//static.chartbeat.com/js/chartbeat_mab.js"
+          ></script>
+
           {/* Broadstreet Ads */}
           <script src="https://cdn.broadstreetads.com/init-2.min.js"></script>
         </Head>
