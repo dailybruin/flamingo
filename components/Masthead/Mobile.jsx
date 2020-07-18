@@ -382,6 +382,17 @@ export default class Mobile extends React.Component {
             >
               Advertise
             </a>
+            <a
+              href="https://giving.ucla.edu/campaign/?&amount=100&OrgType=C&OrgNum=11300&fund=31601O&_ga=2.101555268.497205227.1521136411-359345519.1518723170"
+              target="_blank"
+              rel="noopener"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Donate
+            </a>
           </div>
         </div>
       </div>
