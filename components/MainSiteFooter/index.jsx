@@ -12,7 +12,8 @@ export default function MainSiteFooter(props) {
     { text: "Staff", url: "/staff" },
     { text: "Stonewall", url: "/stonewall" },
     { text: "Editorial Board", url: "/editorial-board" },
-    { text: "Privacy", url: "/privacy" }
+    { text: "Privacy", url: "/privacy" },
+    { text: "Comment Policy", url: "/comment" }
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (
