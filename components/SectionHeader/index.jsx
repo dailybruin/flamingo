@@ -3,6 +3,7 @@ import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
+import InFocusLogo from "./infocus.png";
 
 export default class SectionHeader extends React.Component {
   constructor(props) {
@@ -10,6 +11,28 @@ export default class SectionHeader extends React.Component {
   }
   render() {
     let renderedSubcategories = [];
+    const renderTitle = () => {
+      console.log(this.props.category);
+      if (this.props.category === "Daily Bruin: In Focus") {
+        return (
+          <img
+            src={InFocusLogo}
+            css={css`
+              display: inline-block;
+              height: 100%;
+              max-height: 64px;
+              margin: 0px;
+              padding: 0px;
+            `}
+          ></img>
+        );
+      } else {
+        return (
+          <div dangerouslySetInnerHTML={{ __html: this.props.category }}></div>
+        );
+      }
+    };
+
     if (this.props.subcategories != undefined) {
       for (let i = 0; i < this.props.subcategories.length; i++) {
         renderedSubcategories.push(
@@ -53,9 +76,11 @@ export default class SectionHeader extends React.Component {
             font-weight: bold;
             font-size: 40px;
             text-transform: uppercase;
+            padding-top: 8px;
           `}
-          dangerouslySetInnerHTML={{ __html: this.props.category }}
-        ></div>
+        >
+          {renderTitle()}
+        </div>
         <div
           css={css`
             width: 100%;
