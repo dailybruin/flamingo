@@ -56,7 +56,7 @@ export default function VideoCard(props) {
             line-height: 14px;
           `}
         >
-          {moment(props.date).format("MMMM Do, h:mma")}
+          {moment(props.date).format("MMM Do, h:mma")}
         </span>
       </span>
       <a href={props.as} style={{ textDecoration: "none" }}>
