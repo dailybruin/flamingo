@@ -17,7 +17,7 @@ class MyApp extends App {
   //   return { ...appProps }
   // }
 
-  componentDidMount() {
+  componentWillMount() {
     // Custom Date Formats
     moment.updateLocale("en", {
       monthsShort: [
@@ -42,7 +42,9 @@ class MyApp extends App {
         }
       }
     });
+  }
 
+  componentDidMount() {
     // Google Analytics
     window.dataLayer = window.dataLayer || [];
     function gtag() {
