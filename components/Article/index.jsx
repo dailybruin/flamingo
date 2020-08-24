@@ -213,7 +213,7 @@ export default class Article extends React.Component {
                   line-height: 15px;
                 `}
               >
-                {moment(this.props.date).format("MMM D, YYYY h:mm a")}
+                {moment.utc(this.props.date).format("MMM D, YYYY h:mm a")}
               </h4>
             </div>
           </div>
