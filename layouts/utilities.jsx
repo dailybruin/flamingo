@@ -2,6 +2,7 @@ import ArticleCard from "../components/ArticleCard";
 import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.module.css";
+import moment from "moment";
 
 export function buildArticleCard(story, type = "") {
   if (story != null && story != undefined && story.data == undefined) {
@@ -14,7 +15,7 @@ export function buildArticleCard(story, type = "") {
         as={story.link}
         link={story.link}
         key={story.id.toString()}
-        date={new Date(story.date)}
+        date={moment.utc(story.date)}
         authors={story.coauthors != undefined ? story.coauthors : []}
         category={{
           name: story._embedded["wp:term"][0][0].name,
