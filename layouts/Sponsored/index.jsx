@@ -15,7 +15,7 @@ class SponsoredLayout extends React.Component {
       <>
         <SponsoredArticle
           headline={this.props.article.title.rendered}
-          date={new Date(this.props.article.date)}
+          date={moment.utc(this.props.article.date)}
           authors={this.props.authors}
           categories={this.props.article["_embedded"]["wp:term"][0]}
           featureimg={

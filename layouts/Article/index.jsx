@@ -3,6 +3,7 @@ import css from "../style.module.css";
 import Media from "react-media";
 
 import { buildArticleCard } from "../utilities";
+import moment from "moment";
 
 import * as globals from "components/globals";
 
@@ -17,7 +18,7 @@ class ArticleLayout extends React.Component {
       <Article
         headline={this.props.article.title.rendered}
         link={this.props.article.link}
-        date={new Date(this.props.article.date)}
+        date={moment.utc(this.props.article.date)}
         authors={this.props.authors}
         categories={this.props.article["_embedded"]["wp:term"][0]}
         featureimg={
