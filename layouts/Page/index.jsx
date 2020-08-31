@@ -22,7 +22,7 @@ class PageLayout extends React.Component {
       page: (
         <Page
           content={this.props.page.content.rendered}
-          date={moment.utc(this.props.page.modified)}
+          date={new Date(this.props.page.modified)}
         />
       )
     };
