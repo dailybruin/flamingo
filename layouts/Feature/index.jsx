@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PageWrapper from "../PageWrapper";
 import css from "../style.module.css";
 import Media from "react-media";
+import moment from "moment"
 
 import FeatureArticle from "../../components/FeatureArticle";
 
