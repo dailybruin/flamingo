@@ -13,7 +13,9 @@ export default function MainSiteFooter(props) {
     { text: "Stonewall", url: "/stonewall" },
     { text: "Editorial Board", url: "/editorial-board" },
     { text: "Privacy", url: "/privacy" },
-    { text: "Comment Policy", url: "/comment" }
+    { text: "Comment Policy", url: "/comment" },
+    { text: "Community Guide", url: "/the-daily-bruin-community-guide"}
+
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (
