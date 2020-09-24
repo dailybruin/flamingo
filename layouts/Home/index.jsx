@@ -305,7 +305,7 @@ export default class HomeLayout extends React.Component {
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
                             <img
-                              src="https://dailybruin.com/images/2020/06/Image-from-iOS.jpg"
+                              src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
                               style={{ width: "100%" }}
                             />
                           </a>
@@ -430,10 +430,18 @@ export default class HomeLayout extends React.Component {
                       <div id="sp" className={css.card}>
                         {this.cards.spStoryList}
                       </div>
+                      <div className={css.card}>
+                        <a href="https://prime.dailybruin.com">
+                          <img
+                            src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
+                            style={{ width: "100%", height: "auto" }}
+                          />
+                        </a>
+                      </div>
                     </div>
                   </div>
                   <div>
-                    <div className={css.column} style={{ width: "50%" }}>
+                    {/* <div className={css.column} style={{ width: "50%" }}>
                       <div className={css.card}>
                         <a href="https://prime.dailybruin.com">
                           <img
@@ -442,7 +450,7 @@ export default class HomeLayout extends React.Component {
                           />
                         </a>
                       </div>
-                    </div>
+                    </div> */}
                     <div className={css.column} style={{ width: "50%" }}>
                       <div className={css.card}>
                         <SponsoredLinks links={this.props.sponsoredLinks} />
