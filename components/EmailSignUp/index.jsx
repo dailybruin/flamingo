@@ -101,11 +101,13 @@ export default class EmailPopUp extends React.Component {
                 font-weight: bold;
                 color: #0080c6;
                 font-size: 40px;
-                text-align: left;
+                // text-align: left;
+                text-align: center;
                 z-index: 3001;
               `}
             >
-              Get what's Bruin,
+              {/* Get what's Bruin, */}
+              Like what you see?
             </div>
             <div
               css={css`
@@ -122,15 +124,20 @@ export default class EmailPopUp extends React.Component {
                 font-weight: bold;
                 font-size: 30px;
                 color: #474747;
-                text-align: left;
+                // text-align: left;
+                text-align: center;
                 z-index: 3001;
               `}
             >
               <p>
-                every morning,<br></br>right in your inbox.
+                {/* every morning,<br></br>right in your inbox. */}
+                Apply for a Daily Bruin internship now at <br></br>{" "}
+                <a href="apply.uclastudentmedia.com">
+                  apply.uclastudentmedia.com
+                </a>
               </p>
             </div>
-            <form
+            {/* <form
               onClick={this.onSubmit}
               action="//dailybruin.us15.list-manage.com/subscribe/post?u=15fa3629ea46e975a3174fe51&amp;id=ee621e262a"
               method="post"
@@ -189,7 +196,7 @@ export default class EmailPopUp extends React.Component {
                   -webkit-appearance: button;
                 `}
               ></input>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>
