@@ -102,7 +102,7 @@ export default function Landing(props) {
           <div
             css={css`
               padding: 20px;
-
+              width: 100%;
               color: #fff;
               background: rgb(0, 0, 0);
               background: linear-gradient(
