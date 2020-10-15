@@ -106,8 +106,8 @@ export default class EmailPopUp extends React.Component {
                 z-index: 3001;
               `}
             >
-              {/* Get what's Bruin, */}
-              Like what you see?
+              Get what's Bruin,
+              {/* Like what you see? */}
             </div>
             <div
               css={css`
@@ -130,14 +130,14 @@ export default class EmailPopUp extends React.Component {
               `}
             >
               <p>
-                {/* every morning,<br></br>right in your inbox. */}
-                Apply for a Daily Bruin internship now at <br></br>{" "}
+                every morning,<br></br>right in your inbox.
+                {/* Apply for a Daily Bruin internship now at <br></br>{" "}
                 <a href="apply.uclastudentmedia.com">
                   apply.uclastudentmedia.com
-                </a>
+                </a> */}
               </p>
             </div>
-            {/* <form
+            <form
               onClick={this.onSubmit}
               action="//dailybruin.us15.list-manage.com/subscribe/post?u=15fa3629ea46e975a3174fe51&amp;id=ee621e262a"
               method="post"
@@ -196,7 +196,7 @@ export default class EmailPopUp extends React.Component {
                   -webkit-appearance: button;
                 `}
               ></input>
-            </form> */}
+            </form>
           </div>
         </div>
       </div>
