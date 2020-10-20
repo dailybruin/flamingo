@@ -46,6 +46,11 @@ export default class HomeLayout extends React.Component {
         this.props.posts.newsList,
         "/category/news"
       ),
+      enStoryList: utilities.buildStoryList(
+        "ENTERPRISE",
+        this.props.posts.enterpriseList,
+        "/category/enterprise"
+      ),
       opStoryList: utilities.buildStoryList(
         "OPINION",
         this.props.posts.opinionList,
@@ -162,6 +167,9 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="ns" className={css.card}>
                       {this.cards.nsStoryList}
+                    </div>
+                    <div id="en" className={css.card}>
+                      {this.cards.enStoryList}
                     </div>
                     <div id="op" className={css.card}>
                       {this.cards.opStoryList}
@@ -289,6 +297,9 @@ export default class HomeLayout extends React.Component {
                         <div id="ns" className={css.card}>
                           {this.cards.nsStoryList}
                         </div>
+                        <div id="en" className={css.card}>
+                          {this.cards.enStoryList}
+                        </div>
                         <div id="ae" className={css.card}>
                           {this.cards.aeStoryList}
                         </div>
@@ -349,6 +360,9 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div id="ns" className={css.card}>
                         {this.cards.nsStoryList}
+                      </div>
+                      <div id="en" className={css.card}>
+                        {this.cards.enStoryList}
                       </div>
                     </div>
                     <div

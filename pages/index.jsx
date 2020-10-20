@@ -21,6 +21,7 @@ const f2TAGID = 22897;
 
 const quadCATID = 12848;
 const newsCATID = 1424;
+const enterpriseCATID = 21602;
 const opinionCATID = 1460;
 const artsCATID = 1454;
 const sportsCATID = 1431;
@@ -80,6 +81,9 @@ class Index extends Component {
     const nsStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}&${Config.articleCardFields}`
     );
+    const enStoryRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${enterpriseCATID}&${Config.articleCardFields}`
+    );
     const opStoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${opinionCATID}&${Config.articleCardFields}`
     );
@@ -104,6 +108,7 @@ class Index extends Component {
     posts.f1Story = await f1StoryRes.json();
     posts.f2Story = await f2StoryRes.json();
     posts.newsList = await nsStoryRes.json();
+    posts.enterpriseList = await enStoryRes.json();
     posts.opinionList = await opStoryRes.json();
     posts.artsList = await aeStoryRes.json();
     posts.sportsList = await spStoryRes.json();
