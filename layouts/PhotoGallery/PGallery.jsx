@@ -4,47 +4,40 @@ import axios_to_wp from './axios_to_wp';
 
 
 
-function readWPJSON(props) {
-    // let wpID = props.wpID;
-
-    let wpID = 32132;
-
+function getGalleryID(wpID) {
 
     const [wpData, setWPData] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         async function fetchData() {
-            const req = await axios_to_wp.get('/32132');
-            console.log("res.data is an " + typeof req.data);
+            const req = await axios_to_wp.get(`/${wpID}`);
             setWPData(req.data);
         }
         fetchData();
     }, []);
 
-    
-    console.log(wpData);
-    console.log("read JSON finished.\n");
-    console.log(wpData.acf);
-
-    return;
-    if('db_gallery_id' in wpData.acf && wpData.acf.db_gallery_id !== null) {
+    if (wpData.acf !== undefined && wpData.acf.db_gallery_id !== undefined) {
         console.log("There's a gallery id to fetch.\n");
+        return wpData.acf.db_gallery_id;
     } else {
         console.log("There's no gallery id to fetch.\n");
+        return -1;
     }
 
-    console.log(`Yoast tile is ${wpData.yoast_title}`);
 }
 
-function PGallery(props) {
-    let galleryID = props.galleryID;
+function getGalleryInformation(wpID) {
+    const galleryID = getGalleryID(wpID);
+    
+    if (galleryID < 0) { // if article is not supposed to be a gallery
+        return null;
+    }
+    console.log(galleryID);
 
+    return;
     const [galleryData, setGalleryData] = useState([]);
 
-    readWPJSON();
-
-    return (<div></div>);
-    useEffect( () => {
+    useEffect(() => {
         async function fetchData() {
             const req = await axios_to_gallery.get(`/gallery/:${galleryID}`);
             setGalleryData(req.data);
@@ -52,10 +45,17 @@ function PGallery(props) {
         fetchData();
     }, []);
 
+    return galleryData;
+
+
+}
+
+function PGallery(props) {
+    getGalleryInformation(394726);
 
     return (
         <div>
-            
+
         </div>
     )
 }
