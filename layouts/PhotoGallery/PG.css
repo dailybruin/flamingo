@@ -1,0 +1,12 @@
+.photos-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.content-item {
+    height: 2vh;
+    box-sizing: border-box;
+    max-width: 50%;
+}
