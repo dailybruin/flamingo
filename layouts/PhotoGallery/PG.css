@@ -1,12 +1,29 @@
 .photos-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.content-item {
-    height: 2vh;
+.row{
+    max-width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 20px 20px;
+}
+
+.caption{
+    display: flex;
     box-sizing: border-box;
-    max-width: 50%;
+    height: 120px;
+    width: 130px;
+    justify-self: center;
+}
+
+.image{
+    display: flex;
+    justify-self: center;
+    box-sizing: border-box;
+    height: 120px;
+    width: 130px;
 }

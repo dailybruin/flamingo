@@ -4,6 +4,7 @@ import * as moment from "moment";
 import PGallery from '../layouts/PhotoGallery/PGallery';
 
 import style from "style.css";
+import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout";
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -88,7 +89,7 @@ class MyApp extends App {
   render() {
     // const { Component, pageProps } = this.props;
     return <div>
-    <PGallery/>
+    <PGalleryLayout/>
     Hello, the root is from _app.js
     </div>
   }

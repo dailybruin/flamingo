@@ -1,16 +1,17 @@
-import React from 'react'
-import './PG.css';
+import React from 'react';
+import css from '../style.module.css';
+import ContainerItem from './ContainerItem';
 
-dummyData = {
+var dummyData = {
     "type": "alternating",
     "data": [
         {
             "url": "https://wp.dailybruin.com/images/2020/06/breaking-1.png",
-                "caption": "one"
+            "caption": "one"
         },
         {
             "url": "https://wp.dailybruin.com/images/2020/06/web.news_.facultyresponse.KM_.jpg",
-                "caption": "two"
+            "caption": "two"
         },
         {
             "url": "https://brand.ucla.edu/images/identity/logos-and-marks/script-logo.jpg",
@@ -20,24 +21,37 @@ dummyData = {
         {
             "url": "https://wp.dailybruin.com/images/2017/03/db-logo.png",
             "caption": "daily bruin"
-            
+
         }
     ]
 }
 
 
+
 function PGalleryLayout() {
-// dummyData.data[index]
-// index is odd --> left
-// index is even --> right
+    // dummyData.data[index]
+    // index is odd --> left
+    // index is even --> right
 
-    const images = dummyData[data]
+    const entries = dummyData["data"]
     return (
-        <div class="photos-container">
-        {//Next time, make a React ContainerItem component that accepts an img and a caption prop. and also accepts a boolean prop denoting which to display on the LHS.}
-        {images.map( img => (<img src={img.url}/>) )}
+        <div className={css['photos-container']}>
+            {/* {images.map( img => (<img src={img.url}/>) )}
 
-        <ContainerItem img=img_url caption=my_caption first=0 o/>
+            <ContainerItem caption=my_caption img=img_url first=0 o/>'' */}
+            {
+                entries.map((entry, index) => (
+                    <ContainerItem
+                        caption={entry.caption}
+                        img_url={entry.url}
+                        first={index % 2}
+                    />
+
+                ))
+
+            }
+
+
         </div>
     )
 }

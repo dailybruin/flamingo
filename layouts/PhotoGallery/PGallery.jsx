@@ -3,7 +3,6 @@ import axios_to_gallery from './axios_to_gallery';
 import axios_to_wp from './axios_to_wp';
 
 
-
 function getGalleryID(wpID) {
 
     const [wpData, setWPData] = useState([]);
