@@ -72,32 +72,27 @@
   justify-content: center;
 }
 
-.photos-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .row{
-  max-width: 60%;
+  width: 80vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px 20px 20px;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
 
 .caption{
   display: flex;
-  box-sizing: border-box;
-  height: 120px;
-  width: 130px;
+  width: 40vw;
   justify-self: center;
+  margin: 3vw;
 }
 
 .image{
   display: flex;
   justify-self: center;
-  box-sizing: border-box;
-  height: 120px;
-  width: 130px;
+  align-self:flex-start;
+  height: auto;
+  width: 40vw;
+  margin: 3vw;
 }

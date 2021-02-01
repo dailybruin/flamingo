@@ -91,6 +91,7 @@ class MyApp extends App {
     return <div>
     <PGalleryLayout/>
     Hello, the root is from _app.js
+    <PGallery></PGallery>
     </div>
   }
 }
