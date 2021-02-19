@@ -11,11 +11,8 @@ function getGalleryID(wpID) {
         async function fetchData() {
             try {
                 const req = await axios_to_wp.get(`/${wpID}`);
-                // console.log("wp response status:", req.status)
                 setWPData(req.data);
             } catch (e) {
-                console.log(e.response);
-                console.log(e.response.data);
                 console.log(e);
             }
         }
@@ -32,13 +29,13 @@ function getGalleryID(wpID) {
 
 }
 
-function getGalleryInformation(wpID) {
-    var galleryID = getGalleryID(wpID);
+function getGalleryMetadata(wpID) {
+    let galleryID = getGalleryID(wpID);
     galleryID = 1; // testing
     if (galleryID < 0) { // if article is not supposed to be a gallery
         return null;
     }
-    console.log(galleryID);
+    console.log("getGalleryMetaData sees galleryID of ", galleryID);
 
 
     const [galleryData, setGalleryData] = useState([]);
@@ -47,9 +44,7 @@ function getGalleryInformation(wpID) {
         async function fetchData() {
             try {
                 const req = await axios_to_gallery.get(`/${galleryID}`)
-                console.log("gallery server response status", req.status);
                 setGalleryData(req.data);
-                return req;
             } catch (e) {
                 console.log(e);
             }
@@ -63,17 +58,8 @@ function getGalleryInformation(wpID) {
 
 }
 
-function PGallery(props) {
-    getGalleryInformation(394726);
-
-    return (
-        <div>
-
-        </div>
-    )
-}
 
 
-export default PGallery
+export default getGalleryMetadata;
 
 

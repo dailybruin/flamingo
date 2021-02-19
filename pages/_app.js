@@ -1,7 +1,6 @@
 import React from "react";
 import App from "next/app";
 import * as moment from "moment";
-import PGallery from '../layouts/PhotoGallery/PGallery';
 
 import style from "style.css";
 import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout";
@@ -89,9 +88,10 @@ class MyApp extends App {
   render() {
     // const { Component, pageProps } = this.props;
     return <div>
-    <PGalleryLayout/>
-    Hello, the root is from _app.js
-    <PGallery></PGallery>
+    <PGalleryLayout
+        wpID={394726}
+    />
+  
     </div>
   }
 }

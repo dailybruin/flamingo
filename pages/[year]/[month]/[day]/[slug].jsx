@@ -6,7 +6,7 @@ import Head from "next/head";
 import he from "he";
 
 import ArticleLayout from "layouts/Article";
-import PhotoGalleryLayout from "layouts/PhotoGallery";
+import PhotoGalleryLayout from "layouts/PhotoGallery/index_old";
 import FeatureLayout from "layouts/Feature";
 
 class Post extends Component {

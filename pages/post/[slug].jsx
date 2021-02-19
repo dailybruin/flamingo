@@ -6,7 +6,8 @@ import Head from "next/head";
 import he from "he";
 
 import ArticleLayout from "layouts/Article";
-import PhotoGalleryLayout from "layouts/PhotoGallery";
+import PhotoGalleryLayout from "layouts/PhotoGallery/index_old";
+import PGalleryLayout from "layouts/PhotoGallery"; //newer 2021 layout
 import FeatureLayout from "layouts/Feature";
 
 class Post extends Component {
@@ -87,11 +88,14 @@ class Post extends Component {
           {renderedMeta}
         </Head>
         {this.props.photos != undefined && (
-          <PhotoGalleryLayout
+          <PhotoGalleryLayout // old layout
             post={this.props.post[0]}
             photos={this.props.photos}
             photographers={this.props.authors}
           />
+        )}
+        {this.props.is_photo_gallery != undefined && (
+          <PGalleryLayout wpID={this.props.wpID}/> //new 2021 layout
         )}
         {this.props.feature == true && (
           <FeatureLayout
