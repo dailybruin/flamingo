@@ -70,6 +70,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 200px;
 }
 
 .row {
@@ -112,14 +113,22 @@
   font-family: 'Roboto', serif;
   font-style: normal;
   font-size: 0.8rem;
+}
+
+.img-col{
   display: block;
+  margin: 2vw;
+  width: 50vw;
 }
 
 .image {
-  display: flex;
+  height: auto;
+  width: 100%;
   justify-self: center;
   align-self: flex-start;
-  height: auto;
-  width: 50vw;
-  margin: 2vw;
+}
+
+.center-image{
+  max-height: 70vh;
+  max-width: 60vw;
 }

@@ -91,7 +91,7 @@ class MyApp extends App {
     <PGalleryLayout
         wpID={394726}
     />
-  
+    
     </div>
   }
 }

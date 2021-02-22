@@ -46,6 +46,20 @@ var dummyData = {
             "img_url": "https://static2.cbrimages.com/wordpress/wp-content/uploads/2020/02/Burger-King-mascot-header.png?q=50&fit=crop&w=960&h=500&dpr=1.5",
             "description": "The Burger King",
             "credits": "Burger King Corp"
+        },
+        {
+            "type": "article-text",
+            "description": "The impact of the fast food industry on America cannot be underestimated.",
+        },
+        {
+            "type": "center-photo",
+            "img_url": "https://image.freepik.com/free-photo/vertical-view-eiffel-tower-paris-france_1258-3169.jpg",
+            "description": "vertical picture",
+            "credits": "Internet"
+        },
+        {
+            "type": "article-text",
+            "description": "This is how a vertical image looks like.",
         }
     ]
 }
