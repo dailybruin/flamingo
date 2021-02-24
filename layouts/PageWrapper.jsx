@@ -81,6 +81,9 @@ const PageWrapper = Comp =>
       if (this.props.feature == true) {
         return <Comp {...this.props} />;
       }
+      if (this.props.gallery == true) {
+        return <Comp {...this.props} />;
+      }
       let renderedBreakingCard;
       if (this.props.mappedBreaking != null) {
         renderedBreakingCard = (

@@ -51,12 +51,14 @@ class Post extends Component {
       }
       return { feature, post, authors, tagged, relatedPosts };
     }
-    if (post[0].acf.gallery != undefined) {
+    if (post[0].acf["db_gallery_id"] != undefined) {
       const photosRes = await fetch(
-        `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
+        `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
       );
       const photos = await photosRes.json();
-      return { post, photos, authors, relatedPosts };
+      let gallery = true
+      let id = post[0].acf["db_gallery_id"]
+      return { gallery, post, id, photos, authors, relatedPosts };
     }
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
@@ -94,8 +96,10 @@ class Post extends Component {
             photographers={this.props.authors}
           />
         )}
-        {this.props.is_photo_gallery != undefined && (
-          <PGalleryLayout wpID={this.props.wpID}/> //new 2021 layout
+        {this.props.gallery == true && (
+          <PGalleryLayout wpID={this.props.wpID}
+          galleryId={this.props.id}/> //new 2021 layout
+
         )}
         {this.props.feature == true && (
           <FeatureLayout
