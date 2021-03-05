@@ -7,7 +7,7 @@ import he from "he";
 
 import ArticleLayout from "layouts/Article";
 import PhotoGalleryLayout from "layouts/PhotoGallery/index_old";
-import PGalleryLayout from "layouts/PhotoGallery"; //newer 2021 layout
+import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout"; //newer 2021 layout
 import FeatureLayout from "layouts/Feature";
 
 class Post extends Component {
@@ -98,9 +98,9 @@ class Post extends Component {
         )}
         {this.props.gallery == true && (
           <PGalleryLayout wpID={this.props.wpID}
-          galleryId={this.props.id}/> //new 2021 layout
-
+          galleryID={this.props.id}/> //new 2021 layout. Note to future devs: it seems the slug.jsx in year > month > day is the one with real impact
         )}
+        {console.log(this.props.id)}
         {this.props.feature == true && (
           <FeatureLayout
             article={this.props.post[0]}

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import css from '../style.module.css';
 import ContainerItem from './ContainerItem';
-import getGalleryMetadata from './GetGalleryMetadata';
+import axios_to_gallery from './axios_to_gallery';
+import Masthead from '../../components/Masthead';
 
 var dummyData = {
     "type": "alternating",
@@ -74,41 +75,57 @@ const getAltVal = (type) => {
 }
 
 
+
 function PGalleryLayout(props) {
-    // dummyData.data[index]
     // index is odd --> left
     // index is even --> right
-    const testing = true;
-    let entries = null;
-    if(testing) {
-        entries = dummyData['data']
+    const [entries, setEntries] = useState([]);
+    var testing = false;
+    if (testing) {
+        useEffect(() => {
+            async function fetchData() {
+                setEntries(dummyData['data']);
+            }
+            fetchData();
+        }, []);
     } else {
-        console.log("PGalleryLayout sees wpID of", props.wpID);
-        const galleryJSON = getGalleryMetadata(props.wpID);
-        entries = galleryJSON['data']
-    }
-
-
-
-
-    return (
-        <div className={css['photos-container']}>
-            {
-                entries.map((entry, index) => (
-                    <ContainerItem
-                        type={entry.type}
-                        description={entry.description}
-                        img_url={entry.img_url}
-                        first={getAltVal(entry.type)}
-                        credits={entry.credits}
-                    />
-
-                ))
+        useEffect(() => {
+            async function fetchData() {
+                try {
+                    const req = await axios_to_gallery.get(`/${props.galleryID}`)
+                    setEntries(req.data['data']);
+                    console.log(req.data['data']);
+                } catch (e) {
+                    console.log(e);
+                }
 
             }
+            fetchData();
+        }, []);
+    }
+    if (!entries) {
+        return <div>Loading photo galleries</div>
+    }
+    return (
+        <React.Fragment>
+        {/* <Masthead/> */}
+            <div className={css['photos-container']}>
+                {
+                    entries.map((entry, index) => (
+                        <ContainerItem
+                            // type={entry.type}
+                            type={'alt-photo'}
+                            description={entry.description}
+                            img_url={entry.img_url}
+                            first={getAltVal('alt-photo')}
+                            credits={entry.credits}
+                        />
 
+                    ))
 
-        </div>
+                }
+            </div>
+        </React.Fragment>
     )
 }
 

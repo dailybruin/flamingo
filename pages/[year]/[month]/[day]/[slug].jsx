@@ -44,8 +44,7 @@ class Post extends Component {
       let tagged = [];
       if (post[0].acf["db_feature_tag"] != "") {
         const taggedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
-            post[0].acf["db_feature_tag"]
+          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${post[0].acf["db_feature_tag"]
           }`
         );
         tagged = await taggedRes.json();
@@ -57,8 +56,7 @@ class Post extends Component {
       let id = 0;
       if (post[0].acf["db_gallery_id"] != "") {
         const taggedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
-            post[0].acf["db_gallery_id"]
+          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${post[0].acf["db_gallery_id"]
           }`
         );
         id = post[0].acf["db_gallery_id"]; //await taggedRes.json();
@@ -123,8 +121,9 @@ class Post extends Component {
         )}
         {this.props.gallery == true && (
           <PGalleryLayout
-            wpId={this.props.wpId}
-            galleryId={this.props.id}
+            authors={this.props.authors}
+            galleryID={this.props.id}
+            relatedPosts={this.props.relatedPosts}
           />
         )}
         {this.props.photos == undefined && this.props.feature != true && this.props.gallery != true && (

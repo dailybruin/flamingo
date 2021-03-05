@@ -78,12 +78,12 @@ const PageWrapper = Comp =>
     }
 
     render() {
-      if (this.props.feature == true) {
-        return <Comp {...this.props} />;
-      }
-      if (this.props.gallery == true) {
-        return <Comp {...this.props} />;
-      }
+      // if (this.props.feature == true) { Uncomment this if you don't want to render masthead, footer, and peripheral elements on feature or gallery pages
+      //   return <Comp {...this.props} />;
+      // }
+      // if (this.props.gallery == true) {
+      //   return <Comp {...this.props} />;
+      // }
       let renderedBreakingCard;
       if (this.props.mappedBreaking != null) {
         renderedBreakingCard = (
