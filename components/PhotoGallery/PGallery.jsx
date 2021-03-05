@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import css from '../style.module.css';
+import css_selector from '../../layouts/style.module.css';
+import { css, jsx } from "@emotion/core";
+import moment from "moment";
 
 import axios_to_gallery from './axios_to_gallery';
+import { renderCategories, renderAuthors } from "../Article/utilities";
+import * as globals from "../globals";
+import ShareButtons from "../ShareButtons";
+import ReviewInfobox from "../ReviewInfobox";
+import AuthorCard from "../AuthorCard";
 import ContainerItem from './ContainerItem';
+import Header from './Header';
 
 var dummyData = {
     "type": "alternating",
@@ -106,10 +114,47 @@ function PGallery(props) {
     if (!entries) {
         return <div>Loading photo galleries</div>
     }
+
+    // Boiler plate
+    let renderedAuthorCards = [];
+    for (let author of props.authors) {
+        renderedAuthorCards.push(
+            <div
+                css={css`
+            padding: 20px 0;
+          `}
+            >
+                <AuthorCard
+                    image={
+                        author.simple_local_avatar != null
+                            ? author.simple_local_avatar.full
+                            : author.avatar_urls[512]
+                    }
+                    name={author.name}
+                    description={author.description}
+                    position={author.acf.position}
+                    twitter={author.acf.twitter}
+                    email={author.media_email}
+                    link={author.link}
+                />
+            </div>
+        );
+    }
+
+
   
     return (
         <React.Fragment>
-            <div className={css['photos-container']}>
+            <Header
+                headline={props.headline}
+                photographers={props.authors}
+                date={props.date}
+            />
+
+
+
+
+            <div className={css_selector['photos-container']}>
                 {
                     entries.map((entry, index) => (
                         <ContainerItem
@@ -125,8 +170,23 @@ function PGallery(props) {
 
                 }
             </div>
+
+            <div>
+                <ShareButtons
+                    title={props.headline}
+                    url={props.link}
+                ></ShareButtons>
+            </div>
+            <div
+                css={css`
+              max-width: 600px;
+              margin: auto;
+            `}
+            >
+                {renderedAuthorCards}
+            </div>
         </React.Fragment>
-    )
+    );
 }
 
 export default PGallery

@@ -1,5 +1,5 @@
 import React from 'react'
-import css from '../style.module.css';
+import css from '../../layouts/style.module.css';
 
 
 function ContainerItem(props) {

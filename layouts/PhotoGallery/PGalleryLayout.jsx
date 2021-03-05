@@ -2,16 +2,14 @@ import React from "react";
 import css from "../style.module.css";
 import Media from "react-media";
 
-import { buildArticleCard } from "../utilities";
 import moment from "moment";
 
 import * as globals from "components/globals";
 
-import Article from "components/Article";
-import ClassifiedsCard from "components/ClassifiedsCard";
+import PGallery from "components/PhotoGallery/PGallery";
 import CommentsCard from "components/CommentsCard";
 
-class PGalleryLayout extends React.Component {
+export default class PGalleryLayout extends React.Component {
     constructor(props) {
         super(props);
         this.pgallery = (
@@ -28,22 +26,16 @@ class PGalleryLayout extends React.Component {
     }
 
     render() {
-        <Media
-            queries={{
-                phone: "(max-width: 600px)",
-                tablet: "(min-width: 601px) and (max-width: 900px)",
-                desktop: "(min-width: 901px)"
-            }}
-            defaultMatches={{ desktop: true }}
-        >
-            {this.pgallery}
-            <div className={css.card}>
-                <CommentsCard
-                    id={this.props.article.id}
-                    link={this.props.article.link}
-                ></CommentsCard>
-            </div>
-        </Media>
+        return (
+            <div>
+                {this.pgallery}
+                <div className={css.card}>
+                    <CommentsCard
+                        id={this.props.article.id}
+                        link={this.props.article.link}
+                    ></CommentsCard>
+                </div>
+            </div>);
 
     }
 }
