@@ -121,6 +121,7 @@ class Post extends Component {
         )}
         {this.props.gallery == true && (
           <PGalleryLayout
+            acf={this.props.post[0].acf}
             authors={this.props.authors}
             galleryID={this.props.id}
             relatedPosts={this.props.relatedPosts}

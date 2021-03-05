@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import css from '../style.module.css';
-import ContainerItem from './ContainerItem';
+
 import axios_to_gallery from './axios_to_gallery';
-import Masthead from '../../components/Masthead';
+import ContainerItem from './ContainerItem';
 
 var dummyData = {
     "type": "alternating",
@@ -76,7 +76,7 @@ const getAltVal = (type) => {
 
 
 
-function PGalleryLayout(props) {
+function PGallery(props) {
     // index is odd --> left
     // index is even --> right
     const [entries, setEntries] = useState([]);
@@ -106,9 +106,9 @@ function PGalleryLayout(props) {
     if (!entries) {
         return <div>Loading photo galleries</div>
     }
+  
     return (
         <React.Fragment>
-        {/* <Masthead/> */}
             <div className={css['photos-container']}>
                 {
                     entries.map((entry, index) => (
@@ -129,6 +129,6 @@ function PGalleryLayout(props) {
     )
 }
 
-export default PGalleryLayout
+export default PGallery
 
 
