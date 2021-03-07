@@ -28,14 +28,26 @@ export default class PGalleryLayout extends React.Component {
     render() {
         return (
             <div>
-                {this.pgallery}
-                <div className={css.card}>
-                    <CommentsCard
-                        id={this.props.article.id}
-                        link={this.props.article.link}
-                    ></CommentsCard>
-                </div>
+                <Media
+                    queries={{
+                        phone: "(max-width: 600px)",
+                        tablet: "(min-width: 601px) and (max-width: 900px)",
+                        desktop: "(min-width: 901px)"
+                    }}
+                    defaultMatches={{ desktop: true }}
+                >
+                    <div>
+                        {this.pgallery}
+                        <div className={css.card}>
+                            <CommentsCard
+                                id={this.props.article.id}
+                                link={this.props.article.link}
+                            ></CommentsCard>
+                        </div>
+                    </div>
+                </Media>
             </div>);
+
 
     }
 }

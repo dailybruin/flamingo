@@ -1,7 +1,10 @@
+/* This file doesn't do anything right now because the project doesn't allow for local CSS files */
+
 .photos-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: white !important;
 }
 
 .row{

@@ -88,7 +88,7 @@ function PGallery(props) {
     // index is odd --> left
     // index is even --> right
     const [entries, setEntries] = useState([]);
-    var testing = false;
+    var testing = true;
     if (testing) {
         useEffect(() => {
             async function fetchData() {
@@ -158,11 +158,10 @@ function PGallery(props) {
                 {
                     entries.map((entry, index) => (
                         <ContainerItem
-                            // type={entry.type}
-                            type={'alt-photo'}
+                            type={entry.type}
                             description={entry.description}
                             img_url={entry.img_url}
-                            first={getAltVal('alt-photo')}
+                            first={getAltVal(entry.type)}
                             credits={entry.credits}
                         />
 
