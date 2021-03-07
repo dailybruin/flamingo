@@ -264,7 +264,7 @@ export default class FeatureArticle extends React.Component {
                     line-height: 15px;
                   `}
                 >
-                  {moment(this.props.date).format("MMM Do, YYYY, h:mma")}
+                  {moment(this.props.date).format("LL")} at {moment(this.props.date).format('LT')}
                 </h4>
               </div>
             </div>
