@@ -20,20 +20,24 @@ function ContainerItem(props) {
     // }
 
     // This code below should work with the most up-to-date API (not yet avail on the web) and allow for article-text and center-photo
-   
+
     if (props.type == 'center-photo') {
         return (
-            <div className={css['center-photo']}>
-                <img className={css['center-image']} src={props.img_url} alt='gallery-image'></img>
-                {/* <div className={css['caption']}> {props.description}</div> 
+            <div className={css['row']}>
+                <div className={css['center-img-col']}>
+                    <img className={css['center-image']} src={props.img_url} alt='gallery-image'></img>
+                    {/* <div className={css['caption']}> {props.description}</div> 
                 we elect not to have a caption if it's center photo */}
-                <p className={css['credits']}> {props.credits} </p>
+                    <p className={css['credits']}> {props.credits} </p>
+                </div>
             </div>
         )
     } else if (props.type == 'article-text') {
         return (
-            <div className={css['article-text']}>
-                {props.description}
+            <div className={css['row']}>
+                <div className={css['article-text']}>
+                    {props.description}
+                </div>
             </div>
         )
     } else if (props.type == 'alt-photo') {
@@ -62,7 +66,7 @@ function ContainerItem(props) {
             )
 
         }
-        
+
     }
 
 }

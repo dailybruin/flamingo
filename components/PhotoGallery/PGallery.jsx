@@ -69,6 +69,12 @@ var dummyData = {
         {
             "type": "article-text",
             "description": "This is how a vertical image looks like.",
+        },
+        {
+            "type": "center-photo",
+            "img_url": "https://photos.mandarinoriental.com/is/image/MandarinOriental/new-york-2017-columbus-circle-01?wid=1100&hei=733&fmt=jpeg&qlt=75,0&op_sharpen=0&resMode=sharp2&op_usm=1,1,5,0&iccEmbed=0&printRes=72&fit=crop",
+            "description": "Skyline",
+            "credits": "Chinese agency"
         }
     ]
 }
