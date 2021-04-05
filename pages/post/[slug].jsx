@@ -100,7 +100,7 @@ class Post extends Component {
           <PGalleryLayout wpID={this.props.wpID}
           galleryID={this.props.id}/> //new 2021 layout. Note to future devs: it seems the slug.jsx in year > month > day is the one with real impact
         )}
-        {console.log(this.props.id)}
+        {/* {console.log(this.props.id)} */}
         {this.props.feature == true && (
           <FeatureLayout
             article={this.props.post[0]}

@@ -72,6 +72,7 @@
   justify-content: center;
   min-width: 200px;
   margin-top: 2vh;
+  background-color: white;
 }
 
 .row {
@@ -86,14 +87,15 @@
 
 .article-text {
   /* margin: 3vw; */
-  /* padding-left: 3%;
-  padding-right: 3%; */
+  padding-left: 3%;
+  padding-right: 3%;
+
   font-family: 'Roboto', serif;
   font-style: normal;
   font-size: 1rem;
   line-height: 1.75;
   padding-top: 0.5vw;
-  padding-bottom: 3vw;
+  padding-bottom: 2vw;
 }
 
 .caption {
@@ -129,18 +131,18 @@
 .image {
   height: auto;
   width: 100%;
-  /* justify-self: center;
-  align-self: flex-start; */
+  justify-self: center;
+  align-self: flex-start;
 }
 
 .center-img-col{
   display: block;
   margin: auto;
   width: 80%;
+
 }
 
 .center-image{
   height: auto;
   width: 100%;
-  /* max-height: 75%; */
 }

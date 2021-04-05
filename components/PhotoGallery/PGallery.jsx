@@ -94,7 +94,7 @@ function PGallery(props) {
     // index is odd --> left
     // index is even --> right
     const [entries, setEntries] = useState([]);
-    var testing = true;
+    var testing = false;
     if (testing) {
         useEffect(() => {
             async function fetchData() {
@@ -108,7 +108,7 @@ function PGallery(props) {
                 try {
                     const req = await axios_to_gallery.get(`/${props.galleryID}`)
                     setEntries(req.data['data']);
-                    console.log(req.data['data']);
+                    // console.log(req.data['data']);
                 } catch (e) {
                     console.log(e);
                 }
@@ -148,7 +148,7 @@ function PGallery(props) {
     }
 
 
-  
+
     return (
         <React.Fragment>
             <Header
