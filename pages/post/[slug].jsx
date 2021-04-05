@@ -6,7 +6,8 @@ import Head from "next/head";
 import he from "he";
 
 import ArticleLayout from "layouts/Article";
-import PhotoGalleryLayout from "layouts/PhotoGallery";
+import PhotoGalleryLayout from "layouts/PhotoGallery/index_old";
+import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout"; //newer 2021 layout
 import FeatureLayout from "layouts/Feature";
 
 class Post extends Component {
@@ -50,12 +51,14 @@ class Post extends Component {
       }
       return { feature, post, authors, tagged, relatedPosts };
     }
-    if (post[0].acf.gallery != undefined) {
+    if (post[0].acf["db_gallery_id"] != undefined && post[0].acf["db_gallery_id"] != "") {
       const photosRes = await fetch(
-        `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
+        `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
       );
       const photos = await photosRes.json();
-      return { post, photos, authors, relatedPosts };
+      let gallery = true
+      let id = post[0].acf["db_gallery_id"]
+      return { gallery, post, id, photos, authors, relatedPosts };
     }
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
@@ -87,12 +90,17 @@ class Post extends Component {
           {renderedMeta}
         </Head>
         {this.props.photos != undefined && (
-          <PhotoGalleryLayout
+          <PhotoGalleryLayout // old layout
             post={this.props.post[0]}
             photos={this.props.photos}
             photographers={this.props.authors}
           />
         )}
+        {this.props.gallery == true && (
+          <PGalleryLayout wpID={this.props.wpID}
+          galleryID={this.props.id}/> //new 2021 layout. Note to future devs: it seems the slug.jsx in year > month > day is the one with real impact
+        )}
+        {/* {console.log(this.props.id)} */}
         {this.props.feature == true && (
           <FeatureLayout
             article={this.props.post[0]}
