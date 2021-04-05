@@ -51,7 +51,7 @@ class Post extends Component {
       }
       return { feature, post, authors, tagged, relatedPosts };
     }
-    if (post[0].acf["db_gallery_id"] != undefined) {
+    if (post[0].acf["db_gallery_id"] != undefined && post[0].acf["db_gallery_id"] != "") {
       const photosRes = await fetch(
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
       );

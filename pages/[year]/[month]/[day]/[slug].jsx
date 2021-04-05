@@ -51,7 +51,7 @@ class Post extends Component {
       }
       return { gallery, feature, post, authors, tagged, relatedPosts };
     }
-    if (post[0].acf["db_gallery_id"] != undefined) {
+    if (post[0].acf["db_gallery_id"] !=  undefined && post[0].acf["db_gallery_id"] != "") {
       let gallery = true;
       let id = 0;
       if (post[0].acf["db_gallery_id"] != "") {
@@ -104,13 +104,6 @@ class Post extends Component {
           </title>
           {renderedMeta}
         </Head>
-        {this.props.photos != undefined && (
-          <PhotoGalleryLayout
-            post={this.props.post[0]}
-            photos={this.props.photos}
-            photographers={this.props.authors}
-          />
-        )}
         {this.props.feature == true && (
           <FeatureLayout
             article={this.props.post[0]}
