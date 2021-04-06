@@ -6,9 +6,8 @@ import Head from "next/head";
 import he from "he";
 
 import ArticleLayout from "layouts/Article";
-import PhotoGalleryLayout from "layouts/PhotoGallery/index_old";
+import PhotoGalleryLayout from "layouts/PhotoGallery";
 import FeatureLayout from "layouts/Feature";
-import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout";
 
 class Post extends Component {
   static async getInitialProps(context) {
@@ -40,28 +39,16 @@ class Post extends Component {
     }
     if (post[0].acf["db_feature"] == true) {
       let feature = true;
-      let gallery = false;
       let tagged = [];
       if (post[0].acf["db_feature_tag"] != "") {
         const taggedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${post[0].acf["db_feature_tag"]
+          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
+            post[0].acf["db_feature_tag"]
           }`
         );
         tagged = await taggedRes.json();
       }
-      return { gallery, feature, post, authors, tagged, relatedPosts };
-    }
-    if (post[0].acf["db_gallery_id"] !=  undefined && post[0].acf["db_gallery_id"] != "") {
-      let gallery = true;
-      let id = 0;
-      if (post[0].acf["db_gallery_id"] != "") {
-        const taggedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${post[0].acf["db_gallery_id"]
-          }`
-        );
-        id = post[0].acf["db_gallery_id"]; //await taggedRes.json();
-      }
-      return { gallery, post, authors, id, relatedPosts };
+      return { feature, post, authors, tagged, relatedPosts };
     }
     if (post[0].acf.gallery != undefined) {
       const photosRes = await fetch(
@@ -104,6 +91,13 @@ class Post extends Component {
           </title>
           {renderedMeta}
         </Head>
+        {this.props.photos != undefined && (
+          <PhotoGalleryLayout
+            post={this.props.post[0]}
+            photos={this.props.photos}
+            photographers={this.props.authors}
+          />
+        )}
         {this.props.feature == true && (
           <FeatureLayout
             article={this.props.post[0]}
@@ -112,15 +106,7 @@ class Post extends Component {
             relatedPosts={this.props.relatedPosts}
           />
         )}
-        {this.props.gallery == true && (
-          <PGalleryLayout
-            article={this.props.post[0]}
-            authors={this.props.authors}
-            galleryID={this.props.id}
-            relatedPosts={this.props.relatedPosts}
-          />
-        )}
-        {this.props.photos == undefined && this.props.feature != true && this.props.gallery != true && (
+        {this.props.photos == undefined && this.props.feature != true && (
           <ArticleLayout
             article={this.props.post[0]}
             authors={this.props.authors}

@@ -5,7 +5,7 @@ import Head from "next/head";
 import he from "he";
 
 import ArticleLayout from "layouts/Article";
-import PhotoGalleryLayout from "layouts/PhotoGallery/index_old";
+import PhotoGalleryLayout from "layouts/PhotoGallery";
 import FeatureLayout from "layouts/Feature";
 
 class Preview extends Component {
