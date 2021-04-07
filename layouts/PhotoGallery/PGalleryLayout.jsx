@@ -14,13 +14,13 @@ export default class PGalleryLayout extends React.Component {
         super(props);
         this.pgallery = (
             <PGallery
-                headline={this.props.article.title.rendered}
-                link={this.props.article.link}
-                date={moment.utc(this.props.article.date)}
+                headline={this.props.post.title.rendered}
+                link={this.props.post.link}
+                date={moment.utc(this.props.post.date)}
                 authors={this.props.authors}
-                categories={this.props.article["_embedded"]["wp:term"][0]}
+                categories={this.props.post["_embedded"]["wp:term"][0]}
                 galleryID={this.props.galleryID}
-                acf={this.props.article.acf}
+                acf={this.props.post.acf}
             />
         );
     }
@@ -40,8 +40,8 @@ export default class PGalleryLayout extends React.Component {
                         {this.pgallery}
                         <div className={css.card}>
                             <CommentsCard
-                                id={this.props.article.id}
-                                link={this.props.article.link}
+                                id={this.props.post.id}
+                                link={this.props.post.link}
                             ></CommentsCard>
                         </div>
                     </div>

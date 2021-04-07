@@ -86,15 +86,8 @@ class MyApp extends App {
   }
 
   render() {
-    // const { Component, pageProps } = this.props;
-    /*return <div>
-    <PGalleryLayout
-        wpID={394726}
-    />
-    
-    </div> */
     // console.log("hi in app");
-    // console.log(this.props);
+    console.log(this.props);
     const { Component, pageProps } = this.props;
     return <Component {...pageProps} />;
   }

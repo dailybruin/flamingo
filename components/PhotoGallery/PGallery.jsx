@@ -87,6 +87,13 @@ const getAltVal = (type) => {
         return -1; //TODO: this can be used to catch errors down the line
     }
 }
+const wrapCredits = (credits) => {
+    if (credits != undefined && credits != "") {
+        return `(${credits})`;
+    } else {
+        return credits;
+    }
+}
 
 
 
@@ -168,7 +175,7 @@ function PGallery(props) {
                             description={entry.description}
                             img_url={entry.img_url}
                             first={getAltVal(entry.type)}
-                            credits={entry.credits}
+                            credits={wrapCredits(entry.credits)}
                         />
 
                     ))

@@ -89,13 +89,13 @@
   /* margin: 3vw; */
   padding-left: 3%;
   padding-right: 3%;
+  padding-top: 0.5vw;
+  padding-bottom: 2vw;
 
   font-family: 'Roboto', serif;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.75;
-  padding-top: 0.5vw;
-  padding-bottom: 2vw;
 }
 
 .caption {
@@ -108,7 +108,7 @@
   
   font-family: 'Roboto', serif;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.75;
 }
 
@@ -116,7 +116,7 @@
   color: rgb(100, 100, 100);
   font-family: 'Roboto', serif;
   font-style: normal;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .img-col{
