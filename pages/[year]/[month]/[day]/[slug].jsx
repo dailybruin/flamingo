@@ -42,7 +42,6 @@ class Post extends Component {
     }
     if (post[0].acf["db_feature"] == true) {
       let feature = true;
-      let gallery = false;
       let tagged = [];
       if (post[0].acf["db_feature_tag"] != "") {
         const taggedRes = await fetch(
@@ -51,7 +50,7 @@ class Post extends Component {
         );
         tagged = await taggedRes.json();
       }
-      return { gallery, feature, post, authors, tagged, relatedPosts };
+      return { feature, post, authors, tagged, relatedPosts };
     }
     // it's a page with old gallery layout
     if (post[0].acf.gallery != undefined) {
@@ -61,7 +60,7 @@ class Post extends Component {
       );
       const photos = await photosRes.json();
       const oldGallery = true
-      return {oldGallery, post, photos, authors, relatedPosts };
+      return { oldGallery, post, photos, authors, relatedPosts };
     }
     // it's a page with new gallery layout
     if (post[0].acf["db_gallery_id"] != undefined && post[0].acf["db_gallery_id"] != "") {
@@ -72,7 +71,7 @@ class Post extends Component {
       const photos = await photosRes.json();
       const gallery = true
       const id = post[0].acf["db_gallery_id"]
-      return {gallery, post, id, photos, authors, relatedPosts };
+      return { gallery, post, id, photos, authors, relatedPosts };
     }
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`

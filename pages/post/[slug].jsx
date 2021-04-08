@@ -59,7 +59,8 @@ class Post extends Component {
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
       );
       const photos = await photosRes.json();
-      return { post, photos, authors, relatedPosts };
+      const oldGallery = true
+      return { oldGallery, post, photos, authors, relatedPosts };
     }
     // it's a page with new gallery layout
     if (post[0].acf["db_gallery_id"] != undefined && post[0].acf["db_gallery_id"] != "") {
@@ -68,8 +69,8 @@ class Post extends Component {
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
       );
       const photos = await photosRes.json();
-      let gallery = true
-      let id = post[0].acf["db_gallery_id"]
+      const gallery = true
+      const id = post[0].acf["db_gallery_id"]
       return { gallery, post, id, photos, authors, relatedPosts };
     }
     const classifiedsRes = await fetch(
@@ -100,45 +101,53 @@ class Post extends Component {
           </title>
           {renderedMeta}
         </Head>
-        {this.props.feature == true && (
-          <FeatureLayout
-            article={this.props.post[0]}
-            authors={this.props.authors}
-            tagged={this.props.tagged}
-            relatedPosts={this.props.relatedPosts}
-          />
-        )}
-        {this.props.oldGallery == true && (
-          <PhotoGalleryLayout
-            post={this.props.post[0]}
-            photos={this.props.photos}
-            photographers={this.props.authors}
-          />
-        )}
-        {this.props.gallery == true && (
-          <PGalleryLayout
-            post={this.props.post[0]}
-            authors={this.props.authors}
-            galleryID={this.props.id}
-            relatedPosts={this.props.relatedPosts}
-          />
-        )}
-        {this.props.photos == undefined && this.props.feature != true && this.props.gallery != true && (
-          <ArticleLayout
-            article={this.props.post[0]}
-            authors={this.props.authors}
-            relatedPosts={this.props.relatedPosts}
-            classifieds={this.props.classifieds.map(c => {
-              return {
-                category: {
-                  name: c._embedded["wp:term"][1][0].name,
-                  url: c._embedded["wp:term"][1][0].link
-                },
-                content: { name: c.content.rendered, url: c.link }
-              };
-            })}
-          />
-        )}
+        {
+          this.props.feature == true && (
+            <FeatureLayout
+              article={this.props.post[0]}
+              authors={this.props.authors}
+              tagged={this.props.tagged}
+              relatedPosts={this.props.relatedPosts}
+            />
+          )
+        }
+        {
+          this.props.oldGallery == true && (
+            <PhotoGalleryLayout
+              post={this.props.post[0]}
+              photos={this.props.photos}
+              photographers={this.props.authors}
+            />
+          )
+        }
+        {
+          this.props.gallery == true && (
+            <PGalleryLayout
+              post={this.props.post[0]}
+              authors={this.props.authors}
+              galleryID={this.props.id}
+              relatedPosts={this.props.relatedPosts}
+            />
+          )
+        }
+        {
+          this.props.photos == undefined && this.props.feature != true && this.props.gallery != true && (
+            <ArticleLayout
+              article={this.props.post[0]}
+              authors={this.props.authors}
+              relatedPosts={this.props.relatedPosts}
+              classifieds={this.props.classifieds.map(c => {
+                return {
+                  category: {
+                    name: c._embedded["wp:term"][1][0].name,
+                    url: c._embedded["wp:term"][1][0].link
+                  },
+                  content: { name: c.content.rendered, url: c.link }
+                };
+              })}
+            />
+          )
+        }
       </>
     );
   }

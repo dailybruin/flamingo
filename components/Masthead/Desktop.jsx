@@ -304,6 +304,20 @@ export default class Desktop extends React.Component {
                   >
                     <img src={require("./mail.svg")} />
                   </a>
+                  <a                    
+                    href="https://www.overlooked.com"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                   <img src={require("./overlooked.png")}/> 
+                  </a>
+                  <a                    
+                    href="https://www.youtube.com/user/ucladailybruin"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                   <img src={require("./youtube.png")}/> 
+                  </a>
                 </div>
                 <a href="/advertise">Advertise</a>
                 <a href="https://giving.ucla.edu/campaign/?&amount=100&OrgType=C&OrgNum=11300&fund=31601O&_ga=2.101555268.497205227.1521136411-359345519.1518723170">

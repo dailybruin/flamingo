@@ -3,7 +3,6 @@ import App from "next/app";
 import * as moment from "moment";
 
 import style from "style.css";
-import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout";
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -87,7 +86,7 @@ class MyApp extends App {
 
   render() {
     // console.log("hi in app");
-    console.log(this.props);
+    // console.log(this.props);
     const { Component, pageProps } = this.props;
     return <Component {...pageProps} />;
   }
