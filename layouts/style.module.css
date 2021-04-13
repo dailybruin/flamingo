@@ -65,13 +65,22 @@
 }
 
 /* BEGIN PHOTO GALLERY EDIT BY INTERNS */
-.photos-container {
+.alternating-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 200px;
   margin-top: 2vh;
+  background-color: white;
+}
+
+.big-centered-stream-container {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2vh;
+  padding: 3%;
   background-color: white;
 }
 
@@ -87,6 +96,7 @@
 
 .article-text {
   /* margin: 3vw; */
+  /* we choose to use % instead of vw bc alternating has 'row' parent */
   padding-left: 3%;
   padding-right: 3%;
   padding-top: 0.5vw;
@@ -96,6 +106,29 @@
   font-style: normal;
   font-size: 1.1rem;
   line-height: 1.75;
+}
+
+.article-text-large {
+  /* margin: 3vw; */
+  /* padding-left: 0;
+  padding-right: 0;
+  padding-top: 0.5vw;
+  padding-bottom: 2vw; */
+  margin-left: 6vw;
+  margin-right: 6vw;
+  margin-top: 0vh;
+  margin-bottom: 4vh;
+
+  display: inline-block;
+  font-family: 'Roboto', serif;
+  font-style: normal;
+  font-size: 1.45rem;
+  line-height: 1.75;
+  text-align: left;
+}
+
+.center-my-children {
+  text-align: center;
 }
 
 .caption {
@@ -135,6 +168,13 @@
   align-self: flex-start;
 }
 
+.big-center-photo {
+  height: auto;
+  width: 100%;
+  justify-self: center;
+  align-self: flex-start;
+}
+
 .center-img-col{
   display: block;
   margin: auto;
@@ -146,3 +186,5 @@
   height: auto;
   width: 100%;
 }
+
+

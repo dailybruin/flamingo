@@ -31,15 +31,24 @@ function ContainerItem(props) {
                     <p className={css['credits']}> {props.credits} </p>
                 </div>
             </div>
-        )
+        );
     } else if (props.type == 'article-text') {
-        return (
-            <div className={css['row']}>
-                <div className={css['article-text']}>
-                    {props.description}
+        if (props.layout_type == 'alternating') { // only alternating layout needs to use rows
+            return (
+                <div className={css['row']}>
+                    <p className={css['article-text']}>
+                        {props.description}
+                    </p>
                 </div>
+            );
+        } else {
+            return <div className={css['center-my-children']}>
+                <p className={css['article-text-large']}>
+                    {props.description}
+                </p>
             </div>
-        )
+        }
+
     } else if (props.type == 'alt-photo') {
         if (props.first == 0) {
             var cred_style = {
@@ -53,7 +62,7 @@ function ContainerItem(props) {
                         <p className={css['credits']} style={cred_style}> {props.credits} </p>
                     </div>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className={css['row']}>
@@ -63,10 +72,16 @@ function ContainerItem(props) {
                     </div>
                     <div className={css['caption']}> {props.description}</div>
                 </div>
-            )
-
+            );
         }
 
+    } else if (props.type == 'big-center-photo') {
+        return (
+            <div>
+                <img className={css['big-center-photo']} src={props.img_url} alt='big-center-photo'></img>
+                <p className={css['credits']}> {props.credits} </p>
+            </div>
+        )
     }
 
 }
