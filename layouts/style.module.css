@@ -136,8 +136,8 @@
   width: 40%;
   justify-self: center;
   margin: 1vw;
-  padding-top: 5vw;
-  padding-bottom: 5vw;
+  padding-top: 1.5vw;
+  padding-bottom: 1.5vw;
   
   font-family: 'Roboto', serif;
   font-style: normal;
@@ -156,9 +156,8 @@
   display: block;
   margin: 1vw;
   width: 60%;
-  padding-top: 5vw;
-  padding-bottom: 5vw;
-  
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh;
 }
 
 .image {
