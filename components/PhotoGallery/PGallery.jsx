@@ -12,6 +12,20 @@ var dummyData = {
     "type": "alternating",
     "data": [
         {
+            "type": "article-text",
+            "description": "The impact of the fast food industry on America cannot be underestimated. Starting from the 1900s, the belt of quick-service chains arose from...McDonald's restaurants mainly serve hamburgers, cheeseburgers, chicken nuggets, burgers, French fries, breakfast items, soft drinks, hello."
+        },
+        {
+            "type": "center-photo",
+            "img_url": "https://wp.dailybruin.com/images/galleries/traditions-o-issue/4.JDS_.jpg",
+            "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
+            "credits": "James Schaap/Daily Bruin"
+        },
+        {
+            "type": "article-text",
+            "description": "The impact of the fast food industry on America cannot be underestimated. Starting from the 1900s, the belt of quick-service chains arose from...McDonald's restaurants mainly serve hamburgers, cheeseburgers, chicken nuggets, burgers, French fries, breakfast items, soft drinks, milkshakes and desserts. They also have options such as salads, apples, milk, and Snack Wraps on the menu. And kids meals are available too. In Australia, they sell the Frozen Coke[7], which is very popular. More McDonald's food is sold in the United States than in any other area, which means that it is McDonald's largest market.Europe is McDonald's second largest market.[8] The restaurants are either operated directly by McDonalds or more often by a franchisee,[9] where the business is owned and operated by someone else to the standards set by McDonald's and with support from the McDonald's company. The company provides a central source ",
+        },
+        {
             "type": "alt-photo",
             "img_url": "https://wp.dailybruin.com/images/2020/06/breaking-1.png",
             "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
@@ -32,11 +46,24 @@ var dummyData = {
         },
         {
             "type": "alt-photo",
+            "img_url": "https://wp.dailybruin.com/images/2021/01/Jill.Chen_.CK_.jpg",
+            "description": "“All of the things I’ve done were so that I can live without regrets,” Chen said. “This year’s experience has revealed the importance of this mindset even more profoundly.”",
+            "credits": "Christine Kao/Daily Bruin staff"
+        },
+        {
+            "type": "alt-photo",
+            "img_url": "https://wp.dailybruin.com/images/2021/01/Anita.Wong_.EB_.jpg",
+            "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
+            "credits": "Ella Barnes/Daily Bruin"
+        },
+        {
+            "type": "alt-photo",
             "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGUnD4WCHH-z6BcHtUtRD6Jujg_dXp-yMOnQ&usqp=CAU",
             "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
             "credits": "Jonathan Sylvester"
 
-        }, {
+        }, 
+        {
             "type": "center-photo",
             "img_url": "https://i.ytimg.com/vi/0WySwn67yEg/maxresdefault.jpg",
             "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
@@ -65,6 +92,12 @@ var dummyData = {
         {
             "type": "article-text",
             "description": "This is how a vertical image looks like.",
+        },
+        {
+            "type": "center-photo",
+            "img_url": "https://photos.mandarinoriental.com/is/image/MandarinOriental/new-york-2017-columbus-circle-01?wid=1100&hei=733&fmt=jpeg&qlt=75,0&op_sharpen=0&resMode=sharp2&op_usm=1,1,5,0&iccEmbed=0&printRes=72&fit=crop",
+            "description": "Skyline",
+            "credits": "Chinese agency"
         },
         {
             "type": "center-photo",

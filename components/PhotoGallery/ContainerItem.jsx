@@ -25,7 +25,7 @@ function ContainerItem(props) {
         return (
             <div className={css['row']}>
                 <div className={css['center-img-col']}>
-                    <img className={css['center-image']} src={props.img_url} alt='gallery-image'></img>
+                    <img className={css['center-photo']} src={props.img_url} alt='gallery-image'></img>
                     {/* <div className={css['caption']}> {props.description}</div> 
                 we elect not to have a caption if it's center photo */}
                     <p className={css['credits']}> {props.credits} </p>
