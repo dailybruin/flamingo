@@ -13,7 +13,7 @@ var dummyData = {
     "data": [
         {
             "type": "article-text",
-            "description": "The impact of the fast food industry on America cannot be underestimated. Starting from the 1900s, the belt of quick-service chains arose from...McDonald's restaurants mainly serve hamburgers, cheeseburgers, chicken nuggets, burgers, French fries, breakfast items, soft drinks, hello."
+            "description": "This is a caption with *italics* and **bold** font. The impact of the fast food industry on America cannot be underestimated."
         },
         {
             "type": "center-photo",
@@ -23,12 +23,12 @@ var dummyData = {
         },
         {
             "type": "article-text",
-            "description": "The impact of the fast food industry on America cannot be underestimated. Starting from the 1900s, the belt of quick-service chains arose from...McDonald's restaurants mainly serve hamburgers, cheeseburgers, chicken nuggets, burgers, French fries, breakfast items, soft drinks, milkshakes and desserts. They also have options such as salads, apples, milk, and Snack Wraps on the menu. And kids meals are available too. In Australia, they sell the Frozen Coke[7], which is very popular. More McDonald's food is sold in the United States than in any other area, which means that it is McDonald's largest market.Europe is McDonald's second largest market.[8] The restaurants are either operated directly by McDonalds or more often by a franchisee,[9] where the business is owned and operated by someone else to the standards set by McDonald's and with support from the McDonald's company. The company provides a central source ",
+            "description": "The impact of the **fast food industry** on America cannot be underestimated. Starting from the 1900s, the belt of quick-service chains arose from...McDonald's restaurants mainly serve hamburgers, cheeseburgers, chicken nuggets, burgers, French fries, breakfast items, soft drinks, milkshakes and desserts. They also have options such as salads, apples, milk, and Snack Wraps on the menu. And kids meals are available too. In Australia, they sell the Frozen Coke[7], which is very popular. More McDonald's food is sold in the United States than in any other area, which means that it is McDonald's largest market.Europe is McDonald's second largest market.[8] The restaurants are either operated directly by McDonalds or more often by a franchisee,[9] where the business is owned and operated by someone else to the standards set by McDonald's and with support from the McDonald's company. The company provides a central source ",
         },
         {
             "type": "alt-photo",
             "img_url": "https://wp.dailybruin.com/images/2020/06/breaking-1.png",
-            "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
+            "description": "“I would [tell myself](https://wp.dailybruin.com/images/2020/06/breaking-1.png) to not dwell and be hung up on problems that seem large at the time but, in reality, are so *minuscule* and incomparable to the real problems in the world,” Wong said.",
             "credits": "Jonathan Sylvester"
         },
         {

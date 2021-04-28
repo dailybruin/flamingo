@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import css from '../../layouts/style.module.css';
+import ReactMarkdown from 'react-markdown';
 
 
 function ContainerItem(props) {
@@ -37,14 +38,14 @@ function ContainerItem(props) {
             return (
                 <div className={css['row']}>
                     <p className={css['article-text']}>
-                        {props.description}
+                        <ReactMarkdown children={props.description} />
                     </p>
                 </div>
             );
         } else {
             return <div className={css['center-my-children']}>
                 <p className={css['article-text-large']}>
-                    {props.description}
+                    <ReactMarkdown children={props.description} />
                 </p>
             </div>
         }
@@ -56,7 +57,7 @@ function ContainerItem(props) {
             };
             return (
                 <div className={css['row']}>
-                    <div className={css['caption']}> {props.description}</div>
+                    <div className={css['caption']}> <ReactMarkdown children={props.description} /> </div>
                     <div className={css['img-col']}>
                         <img className={css['image']} src={props.img_url} alt='gallery-image'></img>
                         <p className={css['credits']} style={cred_style}> {props.credits} </p>
@@ -70,7 +71,7 @@ function ContainerItem(props) {
                         <img className={css['image']} src={props.img_url} alt='gallery-image'></img>
                         <p className={css['credits']}> {props.credits} </p>
                     </div>
-                    <div className={css['caption']}> {props.description}</div>
+                    <div className={css['caption']}> <ReactMarkdown children={props.description} /> </div>
                 </div>
             );
         }
