@@ -43,11 +43,20 @@ function ContainerItem(props) {
                 </div>
             );
         } else {
-            return <div className={css['center-my-children']}>
-                <p className={css['article-text-large']}>
-                    <ReactMarkdown children={props.description} />
-                </p>
-            </div>
+            if (props.description.substring(0,1) === '#') {
+                return <div className={css['center-my-children']}>
+                    <p className={css['article-text-large']}>
+                        <ReactMarkdown children={props.description} />
+                    </p>
+                </div>
+            } else {
+                return <div>
+                    <p className={css['article-text-large']}>
+                        <ReactMarkdown children={props.description} />
+                    </p>
+                </div>
+            }
+            
         }
 
     } else if (props.type == 'alt-photo') {

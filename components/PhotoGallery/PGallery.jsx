@@ -57,13 +57,6 @@ var dummyData = {
             "credits": "Ella Barnes/Daily Bruin"
         },
         {
-            "type": "alt-photo",
-            "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGUnD4WCHH-z6BcHtUtRD6Jujg_dXp-yMOnQ&usqp=CAU",
-            "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
-            "credits": "Jonathan Sylvester"
-
-        }, 
-        {
             "type": "center-photo",
             "img_url": "https://i.ytimg.com/vi/0WySwn67yEg/maxresdefault.jpg",
             "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
@@ -112,31 +105,62 @@ var dummyDataBig = {
     "type": "big-centered-stream",
     "data": [
         {
+            "type": "article-text",
+            "img_url": "",
+            "description": "# This is a **bolded heading.** ",
+            "credits": ""
+        },
+        {
+            "type": "article-text",
+            "img_url": "",
+            "description": "# This is an *italicized heading.* ",
+            "credits": ""
+        },
+        {
+            "type": "article-text",
+            "img_url": "",
+            "description": "## This is a subheading.",
+            "credits": ""
+        },
+        {
+            "type": "article-text",
+            "img_url": "",
+            "description": "# This is a heading.",
+            "credits": ""
+        },
+        {
             "type": "big-center-photo",
-            "img_url": "https://wp.dailybruin.com/images/2020/06/breaking-1.png",
+            "img_url": "https://i.imgur.com/BLyj5ac.jpg",
             "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
             "credits": "Jonathan Sylvester"
         },
         {
             "type": "article-text",
-            "description": "Shanghai has been described as the 'showpiece' of the booming economy of China. Shanghai has been described as the 'showpiece' of the booming economy of China. Shanghai has been described as the 'showpiece' of the booming economy of China. Shanghai has been described as the 'showpiece' of the booming economy of China. Shanghai has been described as the 'showpiece' of the booming economy of China. Shanghai has been described as the 'showpiece' of the booming economy of China. Shanghai has been described as the 'showpiece' of the booming economy of China. Shanghai has been described as the 'showpiece' of the booming economy of China.",
+            "description": "**Catalina Island** is a popular attraction in California.**Catalina Island** is a popular attraction in California.**Catalina Island** is a popular attraction in California.**Catalina Island** is a popular attraction in California.**Catalina Island** is a popular attraction in California.**Catalina Island** is a popular attraction in California.",
         },
         {
             "type": "big-center-photo",
-            "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGUnD4WCHH-z6BcHtUtRD6Jujg_dXp-yMOnQ&usqp=CAU",
+            "img_url": "https://i.imgur.com/qjuDfzp.jpg",
             "description": "“I would tell myself to not dwell and be hung up on problems that seem large at the time but, in reality, are so minuscule and incomparable to the real problems in the world,” Wong said.",
             "credits": "Jonathan Sylvester"
 
         },
         {
             "type": "article-text",
-            "description": "Shanghai has been described as the 'showpiece' of the booming economy of China.",
+            "description": "Malcom in the Middle was his favorite TV show.",
         },
         {
             "type": "big-center-photo",
-            "img_url": "https://photos.mandarinoriental.com/is/image/MandarinOriental/new-york-2017-columbus-circle-01?wid=1100&hei=733&fmt=jpeg&qlt=75,0&op_sharpen=0&resMode=sharp2&op_usm=1,1,5,0&iccEmbed=0&printRes=72&fit=crop",
+            "img_url": "https://i.imgur.com/flaTOWO.jpg",
             "description": "Skyline",
             "credits": "Chinese agency"
+        },
+        {
+            "type": "big-center-photo",
+            "img_url": "https://i.imgur.com/YuYZAl2.jpg",
+            "description": "Skyline",
+            "credits": "Chinese agency"
+
         }
     ]
 }
@@ -166,12 +190,12 @@ function PGallery(props) {
     const [layout, setLayout] = useState();
     const [entries, setEntries] = useState([]);
 
-    var testing = true;
+    var testing = false;
     if (testing) {
         useEffect(() => {
             async function fetchData() {
-                setLayout(dummyData['type']);
-                setEntries(dummyData['data']);
+                setLayout(dummyDataBig['type']);
+                setEntries(dummyDataBig['data']);
             }
             fetchData();
         }, []);
@@ -224,7 +248,6 @@ function PGallery(props) {
     if (layout === 'big-centered-stream') {
         photosContainerType = 'big-centered-stream-container'
     }
-    console.log(photosContainerType)
 
     return (
         <React.Fragment>

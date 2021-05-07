@@ -12,7 +12,7 @@ export default class SectionHeader extends React.Component {
   render() {
     let renderedSubcategories = [];
     const renderTitle = () => {
-      console.log(this.props.category);
+      // console.log(this.props.category);
       if (this.props.category === "Daily Bruin: In Focus") {
         return (
           <img
