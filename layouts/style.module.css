@@ -65,32 +65,48 @@
 }
 
 /* BEGIN PHOTO GALLERY EDIT BY INTERNS */
-.photos-container {
+.alternating-container {
+  width: 78vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 200px;
-  margin-top: 2vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: white;
+
+  margin-left: 6vw;
+  margin-right: 6vw;
+}
+
+.big-centered-stream-container {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  padding: 4vh 8vw 4vh 8vw;
   background-color: white;
 }
 
 .row {
-  width: 65vw;
+  width: 78vw;
   display: flex;
   /* justify-content: center; */
   align-items: center;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding-left: 0.8vw;
+  padding-right: 0.8vw;
   background-color: #fff;
 }
 
 .article-text {
   /* margin: 3vw; */
+  /* we choose to use % instead of vw bc alternating has 'row' parent */
   padding-left: 3%;
   padding-right: 3%;
-  padding-top: 0.5vw;
-  padding-bottom: 2vw;
 
   font-family: 'Roboto', serif;
   font-style: normal;
@@ -98,13 +114,34 @@
   line-height: 1.75;
 }
 
+.article-text-large {
+  /* margin: 3vw; */
+  /* padding-left: 0;
+  padding-right: 0;
+  padding-top: 0.5vw;
+  padding-bottom: 2vw; */
+  margin-top: 0vh;
+  margin-bottom: 4vh;
+
+  display: inline-block;
+  font-family: 'Roboto', serif;
+  font-style: normal;
+  font-size: 1.45rem;
+  line-height: 1.75;
+  text-align: left;
+}
+
+.center-my-children {
+  text-align: center;
+}
+
 .caption {
   display: flex;
   width: 40%;
   justify-self: center;
   margin: 1vw;
-  padding-top: 5vw;
-  padding-bottom: 5vw;
+  padding-top: 1.5vw;
+  padding-bottom: 1.5vw;
   
   font-family: 'Roboto', serif;
   font-style: normal;
@@ -123,9 +160,15 @@
   display: block;
   margin: 1vw;
   width: 60%;
-  padding-top: 5vw;
-  padding-bottom: 5vw;
-  
+  padding-top: 0vh;
+  padding-bottom: 0vh;
+}
+
+.center-img-col {
+  display: block;
+  margin: auto;
+  width: 80%;
+
 }
 
 .image {
@@ -135,14 +178,20 @@
   align-self: flex-start;
 }
 
-.center-img-col{
-  display: block;
-  margin: auto;
-  width: 80%;
 
-}
-
-.center-image{
+.center-photo {
   height: auto;
   width: 100%;
+  margin-top: 1.5vh;
 }
+
+.big-center-photo {
+  height: auto;
+  width: 100%;
+  justify-self: center;
+  align-self: flex-start;
+}
+
+
+
+

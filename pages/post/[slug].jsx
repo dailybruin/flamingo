@@ -54,7 +54,7 @@ class Post extends Component {
     }
     // it's a page with old gallery layout
     if (post[0].acf.gallery != undefined) {
-      console.log("Detected as old gallery layout.")
+      // console.log("Detected as old gallery layout.")
       const photosRes = await fetch(
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
       );
@@ -64,7 +64,7 @@ class Post extends Component {
     }
     // it's a page with new gallery layout
     if (post[0].acf["db_gallery_id"] != undefined && post[0].acf["db_gallery_id"] != "") {
-      console.log("Detected as new gallery layout.")
+      // console.log("Detected as new gallery layout.")
       const photosRes = await fetch(
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
       );
