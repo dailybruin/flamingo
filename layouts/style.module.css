@@ -66,7 +66,6 @@
 
 /* BEGIN PHOTO GALLERY EDIT BY INTERNS */
 .alternating-container {
-  width: 78vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +73,7 @@
   min-width: 200px;
   margin-top: 3vh;
   margin-bottom: 3vh;
-  padding-top: 2vh;
+  padding-top: 0vh;
   padding-bottom: 2vh;
   background-color: white;
 
@@ -93,13 +92,11 @@
 }
 
 .row {
-  width: 78vw;
   display: flex;
   /* justify-content: center; */
   align-items: center;
   padding-left: 0.8vw;
   padding-right: 0.8vw;
-  background-color: #fff;
 }
 
 .article-text {

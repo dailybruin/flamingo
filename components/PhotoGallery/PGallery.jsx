@@ -9,7 +9,7 @@ import ContainerItem from './ContainerItem';
 import Header from './Header';
 
 var dummyData = {
-    "type": "alternating",
+    "layout": "alternating",
     "data": [
         {
             "type": "article-text",
@@ -102,7 +102,7 @@ var dummyData = {
 }
 
 var dummyDataBig = {
-    "type": "big-centered-stream",
+    "layout": "big-centered-stream",
     "data": [
         {
             "type": "article-text",
@@ -194,7 +194,7 @@ function PGallery(props) {
     if (testing) {
         useEffect(() => {
             async function fetchData() {
-                setLayout(dummyDataBig['type']);
+                setLayout(dummyDataBig['layout']);
                 setEntries(dummyDataBig['data']);
             }
             fetchData();
@@ -204,7 +204,8 @@ function PGallery(props) {
             async function fetchData() {
                 try {
                     const req = await axios_to_gallery.get(`/${props.galleryID}`)
-                    setLayout(req.data['type']);
+                    // console.log(req.data);
+                    setLayout(req.data['layout']);
                     setEntries(req.data['data']);
                 } catch (e) {
                     console.log(e);
@@ -248,7 +249,6 @@ function PGallery(props) {
     if (layout === 'big-centered-stream') {
         photosContainerType = 'big-centered-stream-container'
     }
-
     return (
         <React.Fragment>
             <Header
