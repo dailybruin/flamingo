@@ -21,6 +21,10 @@ export default class Article extends React.Component {
     let renderedAuthorCards = [];
 
     for (let author of this.props.authors) {
+      if (!author || !author.name) { // quick patch to prevent attempting to load an author that was not properly fetched.
+        continue;
+      }
+      console.log(author)
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
           <img
