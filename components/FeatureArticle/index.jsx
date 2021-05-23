@@ -58,7 +58,12 @@ export default class FeatureArticle extends React.Component {
       );
     }
     let renderedRelatedPostsCards = [];
+    console.log(this.props.relatedPosts);
     for (let story of this.props.relatedPosts) {
+      if (story == undefined || story.title == undefined) {
+        //hotfix to prevent page from incurring "Internal Server Error." But we should investigate why we are fetching related posts with "rest_post_invalid_id" from Wordpress at a later time. Should also determine the algorithm for matching related posts.
+        continue;
+      }
       renderedRelatedPostsCards.push(
         <div
           key={story.id}
@@ -264,7 +269,8 @@ export default class FeatureArticle extends React.Component {
                     line-height: 15px;
                   `}
                 >
-                  {moment(this.props.date).format("LL")} at {moment(this.props.date).format('LT')}
+                  {moment(this.props.date).format("LL")} at{" "}
+                  {moment(this.props.date).format("LT")}
                 </h4>
               </div>
             </div>
