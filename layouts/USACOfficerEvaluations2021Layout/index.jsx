@@ -42,12 +42,12 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
               width: 100px;
               height: 100px;
               display: table-cell;
-              background-image: ${url(
-                this.props.posts[i]._embedded["wp:featuredmedia"]
-              ) != undefined
+              background-image: url(${this.props.posts[i]._embedded[
+                "wp:featuredmedia"
+              ] != undefined
                 ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
                     .source_url
-                : ""};
+                : ""});
               background-size: cover;
               background-position: center;
             `}
