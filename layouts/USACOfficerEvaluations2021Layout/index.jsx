@@ -42,12 +42,12 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
               width: 100px;
               height: 100px;
               display: table-cell;
-              background-image: url(${this.props.posts[i]._embedded[
-                "wp:featuredmedia"
-              ] != undefined
+              background-image: ${url(
+                this.props.posts[i]._embedded["wp:featuredmedia"]
+              ) != undefined
                 ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
                     .source_url
-                : ""});
+                : ""};
               background-size: cover;
               background-position: center;
             `}
@@ -137,7 +137,7 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                   font-size: 20px;
                 `}
               >
-                2020 - 2022
+                2020 - 2021
               </h6>
             </div>
             <div
@@ -154,26 +154,35 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 }
               `}
             >
-              <p
-              >
-                The Daily Bruin Editorial Board evaluates Undergraduate Students Association Council
-                 officials every year, but this year was not a normal year. The board wanted to 
-                 acknowledge that fact by treating evaluations as both an assessment and a 
-                 learning opportunity. Students deserve to know what their elected officials were 
-                 up to and how well they carried out the platforms they ran on. What’s equally 
-                 important is the experiences of officers: the struggles they faced on a day-to-day
-                  basis, the triumphs they delighted in or the lessons they learned. As such, the
-                   board changed a few things about this year’s evaluations.
+              <p>
+                The Daily Bruin Editorial Board evaluates Undergraduate Students
+                Association Council officials every year, but this year was not
+                a normal year. The board wanted to acknowledge that fact by
+                treating evaluations as both an assessment and a learning
+                opportunity. Students deserve to know what their elected
+                officials were up to and how well they carried out the platforms
+                they ran on. What’s equally important is the experiences of
+                officers: the struggles they faced on a day-to-day basis, the
+                triumphs they delighted in or the lessons they learned. As such,
+                the board changed a few things about this year’s evaluations.
               </p>
-              <p>After interviewing officers, the board evaluated them on four metrics: <b>platforms/goals, platform execution, transparency and engagement.</b>  
-                Rather than giving officers numeric scores for each criterion, the board 
-                ranked officers’ performances as <b>“excellent,” “moderate”</b> or <b>“needs improvement.” </b> The board also asked officers what they wish
-                 they could’ve done during their terms and included these answers in its 
-                 evaluations. Hopefully, this can serve as inspiration for student leaders 
-                 looking to improve their campus. It’s been a tough year, but it’s almost 
-                 in the rearview mirror. The only thing we can do is look forward.
+              <p>
+                After interviewing officers, the board evaluated them on four
+                metrics:{" "}
+                <b>
+                  platforms/goals, platform execution, transparency and
+                  engagement.
+                </b>
+                Rather than giving officers numeric scores for each criterion,
+                the board ranked officers’ performances as{" "}
+                <b>“excellent,” “moderate”</b> or <b>“needs improvement.” </b>{" "}
+                The board also asked officers what they wish they could’ve done
+                during their terms and included these answers in its
+                evaluations. Hopefully, this can serve as inspiration for
+                student leaders looking to improve their campus. It’s been a
+                tough year, but it’s almost in the rearview mirror. The only
+                thing we can do is look forward.
               </p>
-              
             </div>
           </div>
           <div
