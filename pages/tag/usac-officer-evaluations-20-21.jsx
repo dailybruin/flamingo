@@ -54,24 +54,24 @@ class USACOfficerEvaluations2021 extends React.Component {
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
             property="og:image"
-            content="https://dailybruin.com/images/2020/05/usac-officer.png"
+            content="https://wp.dailybruin.com/images/2021/05/USAC-Officer-Evaluations-2020-2021.png"
           />
           <meta
             property="og:image:secure_url"
-            content="https://wp.dailybruin.com/images/2020/05/usac-officer.png"
+            content="https://wp.dailybruin.com/images/2021/05/USAC-Officer-Evaluations-2020-2021.png"
           />
           <meta property="og:image:width" content="3975" />
           <meta property="og:image:height" content="2088" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:description"
-            content="The Daily Bruin editorial board evaluates the Undergraduate Students Association Council and their work for the 2019-2020 academic year."
+            content="The Daily Bruin editorial board evaluates the Undergraduate Students Association Council and their work for the 2020-2021 academic year."
           />
           <meta name="twitter:title" content={this.props.tag[0].name} />
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
-            content="https://wp.dailybruin.com/images/2020/05/usac-officer.png"
+            content="https://wp.dailybruin.com/images/2021/05/USAC-Officer-Evaluations-2020-2021.png"
           />
         </Head>
         <div>
