@@ -171,9 +171,9 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 metrics:{" "}
                 <b>
                   platforms/goals, platform execution, transparency and
-                  engagement.{" "}
+                  engagement.
                 </b>
-                Rather than giving officers numeric scores for each criterion,
+                {" "}Rather than giving officers numeric scores for each criterion,
                 the board ranked officers’ performances as{" "}
                 <b>“excellent,” “moderate”</b> or <b>“needs improvement.” </b>{" "}
                 The board also asked officers what they wish they could’ve done
