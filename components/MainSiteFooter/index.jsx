@@ -14,8 +14,8 @@ export default function MainSiteFooter(props) {
     { text: "Editorial Board", url: "/editorial-board" },
     { text: "Privacy", url: "/privacy" },
     { text: "Comment Policy", url: "/comment" },
-    { text: "Community Guide", url: "/the-daily-bruin-community-guide"}
-
+    { text: "Community Guide", url: "/the-daily-bruin-community-guide" },
+    { text: "Submit", url: "/submit" }
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (

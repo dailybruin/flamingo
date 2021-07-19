@@ -375,6 +375,7 @@ export default class Mobile extends React.Component {
               Newsletter
             </a>
             <a
+              href="/advertise"
               css={css`
                 display: block;
                 padding: 8px 4px;
@@ -392,6 +393,17 @@ export default class Mobile extends React.Component {
               `}
             >
               Donate
+            </a>
+            <a
+              href="/submit"
+              target="_blank"
+              rel="noopener"
+              css={css`
+                display: block;
+                padding: 8px 4px;
+              `}
+            >
+              Submit
             </a>
           </div>
         </div>
