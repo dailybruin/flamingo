@@ -1,0 +1,28 @@
+# This workflow will do a clean install of node dependencies, build the source code, and deploy on https://dailybruin.com
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+      - uses: actions/checkout@v2 # on the runner, check out this code on
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: yarn build
+      - run: pm2 reload flamingo # reloads on the DigitalOcean droplet
+        env:
+          CI: true
