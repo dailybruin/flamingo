@@ -167,7 +167,7 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 the board changed a few things about this year’s evaluations.
               </p>
               <p>
-                After interviewing officers, the board evaluated them on four
+                After interviewing officers, the board evaluated them on 4
                 metrics:{" "}
                 <b>
                   platforms/goals, platform execution, transparency and
