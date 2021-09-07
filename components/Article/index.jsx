@@ -21,10 +21,11 @@ export default class Article extends React.Component {
     let renderedAuthorCards = [];
 
     for (let author of this.props.authors) {
-      if (!author || !author.name) { // quick patch to prevent attempting to load an author that was not properly fetched.
+      if (!author || !author.name) {
+        // quick patch to prevent attempting to load an author that was not properly fetched.
         continue;
       }
-      console.log(author)
+      console.log(author);
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
           <img
@@ -132,7 +133,7 @@ export default class Article extends React.Component {
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
         <img
-          src={this.props.featureimg}
+          src={this.props.featureimg} // margin -10px to undo the padding 10px
           css={css`
             width: calc(100% + 20px);
             margin: 10px -10px;
@@ -155,7 +156,7 @@ export default class Article extends React.Component {
             }
           `}
         ></div>
-        <div
+        <div // article body padding specified here
           css={css`
             padding: 40px;
             @media (max-width: 40em) {
@@ -233,7 +234,7 @@ export default class Article extends React.Component {
               dangerouslySetInnerHTML={{ __html: this.props.acf.corrections }}
             ></div>
           )}
-          <div
+          <div // content body of article
             css={css`
               font-family: ${globals.bodyFont};
               font-style: normal;
@@ -294,6 +295,11 @@ export default class Article extends React.Component {
 
               & iframe {
                 width: 100%;
+              }
+
+              & .max-width {
+                width: calc(100% + 270px);
+                margin: 10px -134px;
               }
               & figure img,
               & figure a img,
