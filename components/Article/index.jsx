@@ -297,9 +297,9 @@ export default class Article extends React.Component {
                 width: 100%;
               }
 
-              & .max-width {
-                width: calc(100% + 270px);
-                margin: 10px -134px;
+              & .maxWidth {
+                width: calc(100% + 240px);
+                margin: 10px -120px;
               }
               & figure img,
               & figure a img,
