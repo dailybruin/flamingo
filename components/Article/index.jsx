@@ -206,7 +206,7 @@ export default class Article extends React.Component {
                   }
                 `}
               >
-                By (test_msg) {renderAuthors(this.props.authors)}
+                By {renderAuthors(this.props.authors)}
               </h3>
               <h4
                 css={css`
