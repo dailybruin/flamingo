@@ -105,7 +105,7 @@ export default class ClassifiedsCard extends React.Component {
         </div>
         <div style={{ textAlign: "right", padding: "12px 12px 6px" }}>
           <a
-            href="https://dailybruin.com/classifieds"
+            href="https://wp.dailybruin.com/classifieds"
             css={css`
               font-family: ${globals.menuFont};
               font-size: 12px;
