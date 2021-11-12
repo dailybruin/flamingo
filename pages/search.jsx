@@ -6,6 +6,13 @@ import Error from "next/error";
 import Head from "next/head";
 import SearchResults from "../components/SearchResults";
 
+function decodeURIComponentSafe(s) {
+  if (!s) {
+      return s;
+  }
+  return decodeURIComponent(s.replace(/%(?![0-9][0-9a-fA-F]+)/g, '%25'));
+}
+
 class Search extends React.Component {
   static async getInitialProps(context) {
     const { q } = context.query;
@@ -30,9 +37,9 @@ class Search extends React.Component {
         `}
       >
         <Head>
-          <title>{`Search: ${decodeURI(this.props.q)} - Daily Bruin`}</title>
+          <title>{`Search: ${decodeURIComponentSafe(this.props.q)} - Daily Bruin`}</title>
         </Head>
-        <SearchResults query={decodeURI(this.props.q)}></SearchResults>
+        <SearchResults query={decodeURIComponentSafe(this.props.q)}></SearchResults>
       </div>
     );
   }
