@@ -93,7 +93,7 @@ class Post extends Component {
     }
     function flyteDeskSetup (s, p)  { 
       var f = document.getElementsByTagName(s)[0]; 
-      j = document.createElement(s);
+      var j = document.createElement(s);
       j.id = 'flytedigital';
       j.async = true;
       j.src = 'https://digital.flytedesk.com/js/head.js#' + p;
