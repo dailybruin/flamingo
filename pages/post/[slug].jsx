@@ -81,6 +81,15 @@ class Post extends Component {
   }
 
   render() {
+    function flyteDeskSetup (s, p)  { 
+      var f = document.getElementsByTagName(s)[0]; 
+      j = document.createElement(s);
+      j.id = 'flytedigital';
+      j.async = true;
+      j.src = 'https://digital.flytedesk.com/js/head.js#' + p;
+      f.parentNode.insertBefore(j, f) 
+    };
+    flyteDeskSetup('script', '8b8311d2-981d-458c-8590-a1f98bff09cf');
     if (
       this.props.post == undefined ||
       this.props.post == null ||

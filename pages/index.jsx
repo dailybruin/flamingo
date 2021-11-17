@@ -199,7 +199,7 @@ class Index extends Component {
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-          />
+          /> 
         </Head>
         <HomeLayout
           posts={this.props.posts}
