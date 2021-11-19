@@ -85,6 +85,14 @@ function ContainerItem(props) {
                 <p className={css['credits']}> {props.credits} </p>
             </div>
         )
+    } else if (props.type == 'corrections-text') {
+        return (
+            <div>
+                <p className={css['credits']}>
+                    <ReactMarkdown children={props.description} />
+                </p>
+            </div>
+        )
     }
 
 }
