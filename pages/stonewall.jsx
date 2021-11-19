@@ -11,12 +11,20 @@ class Stonewall extends Component {
   componentDidMount() {
     jQuery(document).ready(function() {
       let position = ["top", "center", "bottom"];
+      let id = "1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4";
+      let gid = "0";
+      let stonewall_url =
+        "https://docs.google.com/spreadsheets/d/" +
+        id +
+        "/gviz/tq?tqx=out:json&tq&gid=" +
+        gid;
+      console.log(stonewall_url); // correct and downloads
 
       //source file is https://docs.google.com/spreadsheets/d/1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4/edit#gid=0
       //owner is online@media.ucla.edu
       jQuery(function showstones() {
         jQuery.getJSON(
-          "https://spreadsheets.google.com/feeds/list/1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4/od6/public/values?alt=json",
+          stonewall_url,
 
           function(data) {
             jQuery("div#stonewall").append('<div class="stone"></div>');
