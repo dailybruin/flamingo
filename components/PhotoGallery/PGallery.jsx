@@ -12,6 +12,10 @@ var dummyData = {
     "layout": "alternating",
     "data": [
         {
+            "type": "corrections-text",
+            "description": "This article was modified on Jan 4. 2021 to update the recent changes in food prices."
+        },
+        {
             "type": "article-text",
             "description": "This is a caption with *italics* and **bold** font. The impact of the fast food industry on America cannot be underestimated."
         },
@@ -104,6 +108,10 @@ var dummyData = {
 var dummyDataBig = {
     "layout": "big-centered-stream",
     "data": [
+        {
+            "type": "corrections-text",
+            "description": "This article was modified on Jan 4. 2021 to update the recent changes in food prices."
+        },
         {
             "type": "article-text",
             "img_url": "",
@@ -204,6 +212,7 @@ function PGallery(props) {
             async function fetchData() {
                 try {
                     const req = await axios_to_gallery.get(`/${props.galleryID}`)
+                    console.log("axios get called");
                     // console.log(req.data);
                     setLayout(req.data['layout']);
                     setEntries(req.data['data']);
@@ -257,10 +266,11 @@ function PGallery(props) {
                 date={props.date}
             />
 
-
+            
 
 
             <div className={css_selector[photosContainerType]}>
+                
                 {
                     entries.map((entry, index) => (
                         <ContainerItem
