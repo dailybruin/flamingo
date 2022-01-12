@@ -91,15 +91,6 @@ class Post extends Component {
     if (this.props.post[0].categories.includes(23087)) {
       window.location.replace(`/sponsored/${this.props.post[0].slug}`);
     }
-    function flyteDeskSetup (s, p)  { 
-      var f = document.getElementsByTagName(s)[0]; 
-      var j = document.createElement(s);
-      j.id = 'flytedigital';
-      j.async = true;
-      j.src = 'https://digital.flytedesk.com/js/head.js#' + p;
-      f.parentNode.insertBefore(j, f) 
-    };
-    flyteDeskSetup('script', '8b8311d2-981d-458c-8590-a1f98bff09cf');
   }
 
   render() {

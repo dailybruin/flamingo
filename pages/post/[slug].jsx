@@ -45,7 +45,8 @@ class Post extends Component {
       let tagged = [];
       if (post[0].acf["db_feature_tag"] != "") {
         const taggedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${post[0].acf["db_feature_tag"]
+          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
+            post[0].acf["db_feature_tag"]
           }`
         );
         tagged = await taggedRes.json();
@@ -59,18 +60,21 @@ class Post extends Component {
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
       );
       const photos = await photosRes.json();
-      const oldGallery = true
+      const oldGallery = true;
       return { oldGallery, post, photos, authors, relatedPosts };
     }
     // it's a page with new gallery layout
-    if (post[0].acf["db_gallery_id"] != undefined && post[0].acf["db_gallery_id"] != "") {
+    if (
+      post[0].acf["db_gallery_id"] != undefined &&
+      post[0].acf["db_gallery_id"] != ""
+    ) {
       // console.log("Detected as new gallery layout.")
       const photosRes = await fetch(
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
       );
       const photos = await photosRes.json();
-      const gallery = true
-      const id = post[0].acf["db_gallery_id"]
+      const gallery = true;
+      const id = post[0].acf["db_gallery_id"];
       return { gallery, post, id, photos, authors, relatedPosts };
     }
     const classifiedsRes = await fetch(
@@ -81,15 +85,6 @@ class Post extends Component {
   }
 
   render() {
-    function flyteDeskSetup (s, p)  { 
-      var f = document.getElementsByTagName(s)[0]; 
-      j = document.createElement(s);
-      j.id = 'flytedigital';
-      j.async = true;
-      j.src = 'https://digital.flytedesk.com/js/head.js#' + p;
-      f.parentNode.insertBefore(j, f) 
-    };
-    flyteDeskSetup('script', '8b8311d2-981d-458c-8590-a1f98bff09cf');
     if (
       this.props.post == undefined ||
       this.props.post == null ||
@@ -110,37 +105,32 @@ class Post extends Component {
           </title>
           {renderedMeta}
         </Head>
-        {
-          this.props.feature == true && (
-            <FeatureLayout
-              article={this.props.post[0]}
-              authors={this.props.authors}
-              tagged={this.props.tagged}
-              relatedPosts={this.props.relatedPosts}
-            />
-          )
-        }
-        {
-          this.props.oldGallery == true && (
-            <PhotoGalleryLayout
-              post={this.props.post[0]}
-              photos={this.props.photos}
-              photographers={this.props.authors}
-            />
-          )
-        }
-        {
-          this.props.gallery == true && (
-            <PGalleryLayout
-              post={this.props.post[0]}
-              authors={this.props.authors}
-              galleryID={this.props.id}
-              relatedPosts={this.props.relatedPosts}
-            />
-          )
-        }
-        {
-          this.props.photos == undefined && this.props.feature != true && this.props.gallery != true && (
+        {this.props.feature == true && (
+          <FeatureLayout
+            article={this.props.post[0]}
+            authors={this.props.authors}
+            tagged={this.props.tagged}
+            relatedPosts={this.props.relatedPosts}
+          />
+        )}
+        {this.props.oldGallery == true && (
+          <PhotoGalleryLayout
+            post={this.props.post[0]}
+            photos={this.props.photos}
+            photographers={this.props.authors}
+          />
+        )}
+        {this.props.gallery == true && (
+          <PGalleryLayout
+            post={this.props.post[0]}
+            authors={this.props.authors}
+            galleryID={this.props.id}
+            relatedPosts={this.props.relatedPosts}
+          />
+        )}
+        {this.props.photos == undefined &&
+          this.props.feature != true &&
+          this.props.gallery != true && (
             <ArticleLayout
               article={this.props.post[0]}
               authors={this.props.authors}
@@ -155,8 +145,7 @@ class Post extends Component {
                 };
               })}
             />
-          )
-        }
+          )}
       </>
     );
   }
