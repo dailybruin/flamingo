@@ -126,10 +126,6 @@ export default class Article extends React.Component {
             line-height: 1.25;
             color: #000000;
           `}
-          style={{
-            fontStyle:
-              this.props.acf.db_article_format == "column" ? "italic" : "normal"
-          }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
         <img

@@ -120,7 +120,7 @@ export default function Horz(props) {
             `}
             style={{
               fontStyle:
-                props.acf.db_article_format == "column" ? "italic" : "normal"
+                props.acf.db_article_format == "normal"
             }}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />

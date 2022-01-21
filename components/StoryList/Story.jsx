@@ -38,7 +38,7 @@ export default function Story(props) {
             overflow-wrap: break-word;
             text-align: left;
             color: #000000;
-            font-style: ${props.column ? "italic" : "normal"};
+            font-style: normal;
 
             &:hover {
               color: ${globals.DBblue};
