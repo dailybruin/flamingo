@@ -9,10 +9,11 @@ import Masthead from "components/Masthead";
 import CommentFAB from "components/CommentFAB";
 
 import css from "./style.module.css";
+import * as globals from "../components/globals";
 
 const wrapperStyle = {
   padding: "6px",
-  backgroundColor: "#f1f1f1",
+  backgroundColor: globals.darkMode ? "#010101" : "#f1f1f1",
   width: "100%",
   height: "100%"
 };

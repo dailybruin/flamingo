@@ -1,7 +1,7 @@
 import * as React from 'react'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-
+import * as globals from "../globals";
 const dbLogo=require('./db_logo.svg')
 import * as MainSiteStyles from '../globals'
 // import { faBars, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -109,7 +109,7 @@ class HeaderBar extends React.Component<
           href={propLink.categoryURL}
           css={css`
             text-decoration: none;
-            color: #000;
+            color: ${globals.darkMode ? "#fff" : "#000"};
           `}
         >
           {propLink.category}
@@ -128,7 +128,7 @@ class HeaderBar extends React.Component<
           box-shadow: ${MainSiteStyles.cardShadow};
           font-family: ${MainSiteStyles.headlineFont};
           font-weight: ${MainSiteStyles.boldFont};
-          color: '#000';
+          color: ${globals.darkMode ? "#fff" : "#000"};
         `}
       >
         <div

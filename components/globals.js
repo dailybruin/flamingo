@@ -1,6 +1,9 @@
 import { css } from "@emotion/core";
 
+
+export const darkMode = true;
 /** Reusable common CSS attributes */
+
 /** Colors */
 export const gray = "rgb(197, 197, 197)";
 export const lightGray = "rgb(242, 242, 242)";

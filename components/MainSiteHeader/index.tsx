@@ -33,7 +33,7 @@ class MainSiteHeader extends React.Component<MainSiteHeaderProps> {
               display: block;
             }
             display: none;
-            background-color: #fff;
+            background-color: ${globals.darkMode ? "#000" : "#fff"};
           `}
         >
           <HeaderBar {...this.props} hamburger={true} />
@@ -44,7 +44,7 @@ class MainSiteHeader extends React.Component<MainSiteHeaderProps> {
               display: none;
             }
             display: block;
-            background-color: #fff;
+            background-color: ${globals.darkMode ? "#000" : "#fff"};
           `}
         >
           <HeaderBar {...this.props} hamburger={this.props.hamburger} />

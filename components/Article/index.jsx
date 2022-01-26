@@ -17,6 +17,7 @@ export default class Article extends React.Component {
 
   render() {
     // grab author pics and cards
+    console.log(globals.darkMode);
     let authorPictures = [];
     let renderedAuthorCards = [];
 
@@ -89,7 +90,7 @@ export default class Article extends React.Component {
           display: block;
           padding: 10px;
           box-shadow: ${globals.cardShadow};
-          background-color: #ffffff;
+          background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
         `}
       >
         <div
@@ -124,7 +125,7 @@ export default class Article extends React.Component {
             font-weight: bold;
             font-size: 30px;
             line-height: 1.25;
-            color: #000000;
+            color: ${globals.darkMode ? "#ffffff" : "#000000"};
           `}
           style={{
             fontStyle:
@@ -194,7 +195,7 @@ export default class Article extends React.Component {
                   line-height: 21px;
                   padding: 5px 0 0;
 
-                  color: #000000;
+                  color: ${globals.darkMode ? "#ffffff" : "#000000"};
 
                   a {
                     text-decoration: none;
@@ -227,7 +228,7 @@ export default class Article extends React.Component {
               css={css`
                 font-size: 12px;
                 font-family: ${globals.bodyFont};
-                color: ${globals.darkGray};
+                color: ${globals.darkMode ? "#ffffff" : globals.darkGray};
                 max-width: 640px;
                 margin: 20px auto 0;
               `}
@@ -243,7 +244,7 @@ export default class Article extends React.Component {
               text-align: left;
               line-height: 1.75;
 
-              color: #000000;
+              color: ${globals.darkMode ? "#ffffff" : "#000000"};
               display: block;
               max-width: 640px;
               margin: auto;
