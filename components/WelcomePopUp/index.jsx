@@ -17,6 +17,7 @@ export default class WelcomePopUp extends React.Component {
           height: 100%;
         `}
       >
+        {/* surroundings */}
         <div
           css={css`
             position: fixed;
@@ -80,7 +81,7 @@ export default class WelcomePopUp extends React.Component {
               z-index: 3001;
             `}
           >
-            <div
+            <p
               css={css`
                 @media (max-width: 450px) {
                   font-size: 35px;
@@ -94,11 +95,13 @@ export default class WelcomePopUp extends React.Component {
                 color: #0080c6;
                 font-size: 50px;
                 z-index: 3001;
+                text-align: center;
+                margin: 10px 10px 10px 3px;
               `}
             >
               Welcome!
-            </div>
-            <div
+            </p>
+            <p
               css={css`
                 @media (max-width: 450px) {
                   font-size: 12px;
@@ -107,15 +110,17 @@ export default class WelcomePopUp extends React.Component {
                 position: relative;
                 width: 90%;
                 margin: auto;
-                font-family: ${globals.bodyFont};
-                font-weight: 400;
                 font-size: 16px;
+                font-family: "PT Serif";
+                font-weight: bold;
                 color: #474747;
                 z-index: 3001;
+                text-align: left;
+                margin: 20px;
               `}
             >
               {this.props.bodytext}
-            </div>
+            </p>
           </div>
         </div>
       </div>
