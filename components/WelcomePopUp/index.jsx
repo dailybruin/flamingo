@@ -63,7 +63,6 @@ export default class WelcomePopUp extends React.Component {
               z-index: 3002;
               cursor: pointer;
               background-color: transparent;
-              
             `}
             type="button"
             onClick={this.props.close}
@@ -82,46 +81,46 @@ export default class WelcomePopUp extends React.Component {
               z-index: 3001;
             `}
           >
-              <p 
-                css={css`
-                  @media (max-width: 450px) {
-                    font-size: 35px;
-                    top: 15%;
-                  }
-                  position: relative;
-                  width: 100%;
-                  font-family: ${globals.headlineFont};
-                  font-style: normal;
-                  font-weight: bold;
-                  color: #0080c6;
-                  font-size: 50px;
-                  z-index: 3001;
-                  text-align: center;
-                  margin: 10px 10px 10px 3px;
-                
-                `}
-              >
-                Welcome!
-              </p>
-              <p css={css`
-                  @media (max-width: 450px) {
-                    font-size: 12px;
-                    top: 10%;
-                  }
-                  position: relative;
-                  width: 90%;
-                  margin: auto;
-                  font-size: 16px;
-                  font-family: "PT Serif";
-                  font-weight: bold;
-                  color: #474747;
-                  z-index: 3001;
-                  text-align: center;
-                  margin: 20px;
-                
-                `}>
-                {this.props.bodytext}
-              </p>
+            <p
+              css={css`
+                @media (max-width: 450px) {
+                  font-size: 35px;
+                  top: 15%;
+                }
+                position: relative;
+                width: 100%;
+                font-family: ${globals.headlineFont};
+                font-style: normal;
+                font-weight: bold;
+                color: #0080c6;
+                font-size: 50px;
+                z-index: 3001;
+                text-align: center;
+                margin: 10px 10px 10px 3px;
+              `}
+            >
+              Welcome!
+            </p>
+            <p
+              css={css`
+                @media (max-width: 450px) {
+                  font-size: 12px;
+                  top: 10%;
+                }
+                position: relative;
+                width: 90%;
+                margin: auto;
+                font-size: 16px;
+                font-family: "PT Serif";
+                font-weight: bold;
+                color: #474747;
+                z-index: 3001;
+                text-align: left;
+                margin: 20px;
+              `}
+            >
+              {this.props.bodytext}
+            </p>
           </div>
         </div>
       </div>
