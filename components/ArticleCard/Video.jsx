@@ -14,7 +14,7 @@ export default function Video(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: #ffffff;
+        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
         height: 100%;
       `}
     >

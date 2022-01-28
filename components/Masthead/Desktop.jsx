@@ -95,7 +95,7 @@ export default class Desktop extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: #000;
+              color: ${globals.darkMode ? "#ffffff" : "#000000"};
               white-space: nowrap;
               &:hover {
                 text-decoration: underline;
@@ -115,7 +115,8 @@ export default class Desktop extends React.Component {
       <div
         ref={this.MastheadCard}
         css={css`
-          background: #ffffff;
+          background: ${globals.darkMode ? "#222222" : "#ffffff"};
+          color: ${globals.darkMode ? "#ffffff" : "#000000"};
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
           height: ${expandedHeight};
@@ -241,7 +242,7 @@ export default class Desktop extends React.Component {
                     text-transform: uppercase;
                     line-height: 34px;
                     font-size: 14px;
-                    color: #000;
+                    color: ${globals.darkMode ? "#ffffff" : "#000000"};
                     display: inline-block;
                     vertical-align: middle;
                     height: 36px;
@@ -459,7 +460,8 @@ export default class Desktop extends React.Component {
         </div>
         <div
           css={css`
-            background-color: #fff;
+            background: ${globals.darkMode ? "#222222" : "#ffffff"};
+            color: ${globals.darkMode ? "#ffffff" : "#000000"};
             overflow-x: scroll;
             &::-webkit-scrollbar {
               display: none;

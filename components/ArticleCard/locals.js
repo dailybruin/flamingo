@@ -6,7 +6,7 @@ export const headline = `
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 1.25;
-  color: #000000;
+  color: ${globals.darkMode ? "#ffffff" : "#000000"};
   &:hover {
     color: ${globals.DBblue};
   }`;
@@ -15,7 +15,7 @@ export const excerpt = `
   font-family: ${globals.bodyFont};
   font-weight: 300;
   font-size: 0.75rem;
-  color: #000000;
+  color: ${globals.darkMode ? "#ffffff" : "#000000"};
 
   p {
     margin: 0;

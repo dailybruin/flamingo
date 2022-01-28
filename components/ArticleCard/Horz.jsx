@@ -14,7 +14,7 @@ export default function Horz(props) {
         display: flex;
         box-shadow: ${globals.cardShadow};
         padding: 0px;
-        background-color: #ffffff;
+        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
       `}
     >
       <div
@@ -107,6 +107,8 @@ export default function Horz(props) {
               font-weight: 300;
               font-size: 11px;
               line-height: 14px;
+              color: ${globals.darkMode ? "#ffffff" : "#000000"};
+
             `}
           >
             {moment(props.date).format("MMM D, YYYY h:mm a")}
@@ -141,7 +143,8 @@ export default function Horz(props) {
             font-weight: bold;
             font-size: 11px;
 
-            color: #000000;
+            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+
           `}
         >
           By {utilities.renderAuthors(props.authors)}

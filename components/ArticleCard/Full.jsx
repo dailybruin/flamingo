@@ -14,7 +14,7 @@ export default function Full(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: #ffffff;
+        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
       `}
     >
       <span>
@@ -43,7 +43,7 @@ export default function Full(props) {
             dangerouslySetInnerHTML={{ __html: props.category.name }}
           />
         </a>
-        <span
+        <span          
           css={css`
             border-left: 1px solid #000;
             margin: 0;
@@ -53,6 +53,8 @@ export default function Full(props) {
             font-weight: 300;
             font-size: 11px;
             line-height: 14px;
+            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+
           `}
         >
           {moment(props.date).format("MMM D, YYYY h:mm a")}
@@ -89,7 +91,8 @@ export default function Full(props) {
               margin: 4px 0;
             }
 
-            color: #000000;
+            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+
           `}
           dangerouslySetInnerHTML={{ __html: props.caption }}
         />
@@ -110,7 +113,8 @@ export default function Full(props) {
           font-weight: bold;
           font-size: 11px;
 
-          color: #000000;
+          color: ${globals.darkMode ? "#ffffff" : "#000000"};
+
         `}
       >
         By {utilities.renderAuthors(props.authors)}

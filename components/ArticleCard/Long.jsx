@@ -14,7 +14,7 @@ export default function Long(props) {
         box-shadow: ${globals.cardShadow};
         height: 100%;
         padding: 0px;
-        background-color: #ffffff;
+        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
       `}
     >
       <div

@@ -14,7 +14,7 @@ export default function Vert(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: #ffffff;
+        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
       `}
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
@@ -77,6 +77,8 @@ export default function Vert(props) {
             font-weight: 300;
             font-size: 11px;
             line-height: 14px;
+            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+
           `}
         >
           {moment(props.date).format("MMM D, YYYY h:mm a")}
@@ -111,7 +113,8 @@ export default function Vert(props) {
           font-weight: 700;
           font-size: 11px;
 
-          color: #000000;
+          color: ${globals.darkMode ? "#ffffff" : "#000000"};
+
         `}
       >
         By {utilities.renderAuthors(props.authors)}

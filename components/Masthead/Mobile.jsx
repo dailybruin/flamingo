@@ -70,7 +70,8 @@ export default class Mobile extends React.Component {
     return (
       <div
         css={css`
-          background: #ffffff;
+          background: ${globals.darkMode ? "#222222" : "#ffffff"};
+          color: ${globals.darkMode ? "#ffffff" : "#000000"};
           box-shadow: ${globals.cardShadow};
           transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
           position: sticky;

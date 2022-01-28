@@ -14,7 +14,7 @@ export default function Mini(props) {
         display: flex;
         box-shadow: ${globals.cardShadow};
         padding: 0px;
-        background-color: #ffffff;
+        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
       `}
     >
       <div
