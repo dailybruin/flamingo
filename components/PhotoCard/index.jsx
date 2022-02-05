@@ -71,7 +71,7 @@ export default function PhotoCard(props) {
                   dangerouslySetInnerHTML={{ __html: props.headline }}
                   css={css`
                     color: #ffffff;
-                    font-size: 1.5vw;
+                    font-size: 3.2vh;
                     font-weight: bold;
                     line-height: 1.4;
                     margin-bottom: 0.625rem;
@@ -81,38 +81,38 @@ export default function PhotoCard(props) {
                     }
                   `}
                 ></h3>
-                  <div
-                    id="caption"
-                    dangerouslySetInnerHTML={{ __html: props.excerpt }}
-                    css={css`
-                      color: #fff;
-                      font-size: 1.2vw;
-                      line-height: 20px;
-                      font-family: ${globals.bodyFont};
-                      @media (max-width: 768px) {
-                        font-size: 1.4vw;
-                      }
-                    `}
-                  ></div>
-                  <div
-                    id="credit-block"
-                    css={css`
-                      font-size: 1.0vw;
-                      font-family: ${globals.bodyFont};
-                      font-weight: bold;
-                      color: #000;
-                      line-height: 15px;
-                      @media (max-width: 768px) {
-                        font-size: 1.4vw;
-                      }
-                      padding: 10px;
-                      background-color: #fff;
-                      border-radius: 15px;
-                      opacity: 0.8;
-                    `}
-                  >
-                    Credits: {utilities.renderAuthors(props.authors)}
-                  </div>
+                <div
+                  id="caption"
+                  dangerouslySetInnerHTML={{ __html: props.excerpt }}
+                  css={css`
+                    color: white;
+                    font-size: 2.1vh;
+                    line-height: 20px;
+                    font-family: ${globals.bodyFont};
+                    @media (max-width: 768px) {
+                      font-size: 1.4vw;
+                    }
+                  `}
+                ></div>
+                <div
+                  id="credit-block"
+                  css={css`
+                    font-size: 2.2vh;
+                    font-family: ${globals.bodyFont};
+                    font-weight: bold;
+                    color: black;
+                    line-height: 15px;
+                    @media (max-width: 768px) {
+                      font-size: 1.4vw;
+                    }
+                    padding: 6px;
+                    background-color: white;
+                    border-radius: 10px;
+                    opacity: 0.9;
+                  `}
+                >
+                  Credits: {utilities.renderAuthors(props.authors)}
+                </div>
               </div>
             </div>
           </div>
