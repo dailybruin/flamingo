@@ -3,6 +3,12 @@
   padding: 6px;
 }
 
+.card-dark {
+  display: block;
+  padding: 6px;
+  background-color: black;
+}
+
 .video-card {
   display: inline-block;
   padding: 6px;

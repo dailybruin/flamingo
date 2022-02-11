@@ -1,7 +1,7 @@
 import { css } from "@emotion/core";
 
-
 export const darkMode = true;
+
 /** Reusable common CSS attributes */
 
 /** Colors */

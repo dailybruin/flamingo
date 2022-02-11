@@ -14,12 +14,15 @@ import minisearchIcon from "./minisearch.svg";
 let expandedHeight = "106px";
 let collapsedHeight = "60px";
 
+
+
 export default class Desktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       menuExpanded: true,
-      searchExpanded: false
+      searchExpanded: false,
+      darkMode: false
     };
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
@@ -95,7 +98,7 @@ export default class Desktop extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: ${globals.darkMode ? "#ffffff" : "#000000"};
+              color: ${this.state.darkMode ? "#ffffff" : "#000000"};
               white-space: nowrap;
               &:hover {
                 text-decoration: underline;
@@ -115,8 +118,8 @@ export default class Desktop extends React.Component {
       <div
         ref={this.MastheadCard}
         css={css`
-          background: ${globals.darkMode ? "#222222" : "#ffffff"};
-          color: ${globals.darkMode ? "#ffffff" : "#000000"};
+          background: ${this.state.darkMode ? "#222222" : "#ffffff"};
+          color: ${this.state.darkMode ? "#ffffff" : "#000000"};
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
           height: ${expandedHeight};
@@ -242,7 +245,7 @@ export default class Desktop extends React.Component {
                     text-transform: uppercase;
                     line-height: 34px;
                     font-size: 14px;
-                    color: ${globals.darkMode ? "#ffffff" : "#000000"};
+                    color: ${this.state.darkMode ? "#ffffff" : "#000000"};
                     display: inline-block;
                     vertical-align: middle;
                     height: 36px;
@@ -275,8 +278,78 @@ export default class Desktop extends React.Component {
                     & a:hover img {
                       fill: ${globals.DBblue};
                     }
+                    .switch {
+                      position: relative;
+                      display: inline-block;
+                      width: 30px;
+                      height: 17px;
+                    }
+                    .switch input {
+                      opacity: 0;
+                      width: 0;
+                      height: 0;
+                    }
+
+                    /* The slider */
+                    .slider {
+                      position: absolute;
+                      cursor: pointer;
+                      top: 0;
+                      left: 0;
+                      right: 0;
+                      bottom: 0;
+                      background-color: #ccc;
+                      -webkit-transition: .4s;
+                      transition: .4s;
+                    }
+
+                    .slider:before {
+                      position: absolute;
+                      content: "";
+                      height: 13px;
+                      width: 13px;
+                      left: 2px;
+                      bottom: 2px;
+                      background-color: white;
+                      -webkit-transition: .4s;
+                      transition: .4s;
+                    }
+
+                    input:checked + .slider {
+                      background-color: #2196F3;
+                    }
+
+                    input:focus + .slider {
+                      box-shadow: 0 0 1px #2196F3;
+                    }
+
+                    input:checked + .slider:before {
+                      -webkit-transform: translateX(13px);
+                      -ms-transform: translateX(13px);
+                      transform: translateX(13px);
+                    }
+
+                    /* Rounded sliders */
+                    .slider.round {
+                      border-radius: 17px;
+                    }
+
+                    .slider.round:before {
+                      border-radius: 50%;
+                    }
+
+
                   `}
                 >
+                  <label class="switch">
+                    <input type="checkbox" onClick={() => {
+                      this.setState({
+                        darkMode: !this.state.darkMode
+                      })
+                      }}/>
+                    <span class="slider round"></span>
+                  </label>
+                  
                   <a
                     href="https://www.facebook.com/dailybruin"
                     target="_blank"
@@ -460,8 +533,8 @@ export default class Desktop extends React.Component {
         </div>
         <div
           css={css`
-            background: ${globals.darkMode ? "#222222" : "#ffffff"};
-            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+            background: ${this.state.darkMode ? "#222222" : "#ffffff"};
+            color: ${this.state.darkMode ? "#ffffff" : "#000000"};
             overflow-x: scroll;
             &::-webkit-scrollbar {
               display: none;

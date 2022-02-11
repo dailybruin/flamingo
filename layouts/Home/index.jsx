@@ -11,6 +11,7 @@ import Poll from "../../components/Poll";
 import StoryList from "../../components/StoryList";
 import SponsoredLinks from "../../components/SponsoredLinks";
 import TwitterFeed from "../../components/TwitterFeed";
+import * as globals from "../../components/globals";
 
 const ArticleAdStyle = {
   width: "100%",
@@ -165,19 +166,19 @@ export default class HomeLayout extends React.Component {
                     >
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
-                    <div id="ns" className={css.card}>
+                    <div id="ns" className={globals.darkMode ? css.card-dark : css.card}>
                       {this.cards.nsStoryList}
                     </div>
-                    <div id="en" className={css.card}>
+                    <div id="en" className={globals.darkMode ? css.card-dark : css.card}>
                       {this.cards.enStoryList}
                     </div>
-                    <div id="op" className={css.card}>
+                    <div id="op" className={globals.darkMode ? css.card-dark : css.card}>
                       {this.cards.opStoryList}
                     </div>
-                    <div id="ae" className={css.card}>
+                    <div id="ae" className={globals.darkMode ? css.card-dark : css.card}>
                       {this.cards.aeStoryList}
                     </div>
-                    <div id="sp" className={css.card}>
+                    <div id="sp" className={globals.darkMode ? css.card-dark : css.card}>
                       {this.cards.spStoryList}
                     </div>
                   </div>
