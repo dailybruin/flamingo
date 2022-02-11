@@ -15,12 +15,13 @@ export default class SponsoredLinks extends React.Component {
           background: #fff;
           box-shadow: ${globals.cardShadow};
           padding: 10px;
+          width: 202%;
         `}
       >
         <h1
           css={css`
             font-family: ${globals.menuFont};
-            font-size: 14px;
+            font-size: 18px;
             margin: 0 0 4px;
           `}
         >
@@ -29,7 +30,7 @@ export default class SponsoredLinks extends React.Component {
         <div
           css={css`
             font-family: ${globals.menuFont};
-            font-size: 10px;
+            font-size: 13px;
             list-style: none;
             column-count: 3;
             a {
