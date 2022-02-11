@@ -71,7 +71,8 @@ export default function PhotoCard(props) {
                   dangerouslySetInnerHTML={{ __html: props.headline }}
                   css={css`
                     color: #ffffff;
-                    font-size: 1.5vw;
+                    font-size: 3.2vh;
+                    font-weight: bold;
                     line-height: 1.4;
                     margin-bottom: 0.625rem;
                     font-family: ${globals.headlineFont};
@@ -84,9 +85,9 @@ export default function PhotoCard(props) {
                   id="caption"
                   dangerouslySetInnerHTML={{ __html: props.excerpt }}
                   css={css`
-                    color: rgb(187, 187, 187);
-                    font-size: 0.8vw;
-                    line-height: 15px;
+                    color: white;
+                    font-size: 2.1vh;
+                    line-height: 20px;
                     font-family: ${globals.bodyFont};
                     @media (max-width: 768px) {
                       font-size: 1.4vw;
@@ -96,18 +97,21 @@ export default function PhotoCard(props) {
                 <div
                   id="credit-block"
                   css={css`
-                    color: rgb(187, 187, 187);
-                    font-size: 0.7vw;
+                    font-size: 2.2vh;
                     font-family: ${globals.bodyFont};
                     font-weight: bold;
-                    color: #fff;
-                    line-height: 13px;
+                    color: black;
+                    line-height: 15px;
                     @media (max-width: 768px) {
                       font-size: 1.4vw;
                     }
+                    padding: 6px;
+                    background-color: white;
+                    border-radius: 10px;
+                    opacity: 0.9;
                   `}
                 >
-                  Credit: {utilities.renderAuthors(props.authors)}
+                  Credits: {utilities.renderAuthors(props.authors)}
                 </div>
               </div>
             </div>
