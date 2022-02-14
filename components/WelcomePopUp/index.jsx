@@ -92,7 +92,7 @@ export default class WelcomePopUp extends React.Component {
                 font-family: ${globals.headlineFont};
                 font-style: normal;
                 font-weight: bold;
-                color: #0080c6;
+                color: ${globals.DBblue};
                 font-size: 50px;
                 z-index: 3001;
                 text-align: center;

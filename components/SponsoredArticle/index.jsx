@@ -173,7 +173,7 @@ export default class FeatureArticle extends React.Component {
 
                     a {
                       text-decoration: none;
-                      color: #0080c6;
+                      color: ${globals.DBblue};
                       background-color: #ffffff;
                     }
                     a:hover {
