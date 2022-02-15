@@ -90,7 +90,7 @@ class MyDocument extends Document {
             name="msapplication-TileImage"
             content="/favicons/mstile-144x144.png"
           />
-          <meta name="theme-color" content="#D14F83" />
+          <meta name="theme-color" content="#0080c6" />
           <link
             rel="apple-touch-icon"
             href="/apple-touch-icon-precomposed.png"

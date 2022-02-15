@@ -7,7 +7,7 @@ export const lightGray = "rgb(242, 242, 242)";
 export const black = "#000";
 export const white = "#fff";
 export const darkGray = "rgb(100, 100, 100)";
-export const DBblue = "#D14F83";
+export const DBblue = "#0080C6";
 export const breakingRed = "#CB0000";
 
 /** Font families */
