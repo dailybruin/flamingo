@@ -116,7 +116,7 @@ class Graph extends React.Component {
       .attr('class', 'bar')
       .attr('y', d => y(d.choice))
       .attr('height', '3px')
-      .style('fill', '#D14F83')
+      .style('fill', '#0080C6')
       .transition()
       .delay(250)
       .attr('width', d => x(d.votes))
