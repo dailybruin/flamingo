@@ -109,7 +109,7 @@ export default function Header(props) {
 
               a {
                 text-decoration: none;
-                color:${globals.DBblue};
+                color: #0080c6;
                 background-color: #ffffff;
               }
               a:hover {
