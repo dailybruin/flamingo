@@ -26,14 +26,14 @@ export default class HomeLayout extends React.Component {
   constructor(props) {
     super(props);
     this.cards = {
-      aArticleCard: utilities.buildArticleCard(this.props.posts.aStory[0]),
-      bArticleCard: utilities.buildArticleCard(this.props.posts.bStory[0]),
-      c1ArticleCard: utilities.buildArticleCard(this.props.posts.c1Story[0]),
-      c2ArticleCard: utilities.buildArticleCard(this.props.posts.c2Story[0]),
-      dArticleCard: utilities.buildArticleCard(this.props.posts.dStory[0]),
-      eArticleCard: utilities.buildArticleCard(this.props.posts.eStory[0]),
-      f1ArticleCard: utilities.buildArticleCard(this.props.posts.f1Story[0]),
-      f2ArticleCard: utilities.buildArticleCard(this.props.posts.f2Story[0]),
+      aArticleCard: utilities.buildArticleCard(this.props.posts.aStory[0],"",this.props.darkmode),
+      bArticleCard: utilities.buildArticleCard(this.props.posts.bStory[0],"",this.props.darkmode),
+      c1ArticleCard: utilities.buildArticleCard(this.props.posts.c1Story[0],"",this.props.darkmode),
+      c2ArticleCard: utilities.buildArticleCard(this.props.posts.c2Story[0],"",this.props.darkmode),
+      dArticleCard: utilities.buildArticleCard(this.props.posts.dStory[0],"",this.props.darkmode),
+      eArticleCard: utilities.buildArticleCard(this.props.posts.eStory[0],"",this.props.darkmode),
+      f1ArticleCard: utilities.buildArticleCard(this.props.posts.f1Story[0],"",this.props.darkmode),
+      f2ArticleCard: utilities.buildArticleCard(this.props.posts.f2Story[0],"",this.props.darkmode),
 
       m1MultimediaScroller: utilities.buildMultimediaScroller(this.props.media),
 
@@ -73,6 +73,7 @@ export default class HomeLayout extends React.Component {
   render() {
     return (
       <div>
+        <h1>Darkmode: {this.props.darkmode ? "True" : "False"}</h1>
         <Media
           queries={{
             phone: "(max-width: 600px)",
@@ -92,22 +93,22 @@ export default class HomeLayout extends React.Component {
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.cards.c1ArticleCard, {
-                        displayType: "full"
+                        darkmode: this.props.darkmode, displayType: "full"
                       })}
                     </div>
                     <div id="c2" className={css.card}>
                       {React.cloneElement(this.cards.c2ArticleCard, {
-                        displayType: "full"
+                        darkmode: this.props.darkmode, displayType: "full"
                       })}
                     </div>
                     <div id="a" className={css.card}>
                       {React.cloneElement(this.cards.aArticleCard, {
-                        displayType: "full"
+                        darkmode: this.props.darkmode, displayType: "full"
                       })}
                     </div>
                     <div id="b" className={css.card}>
                       {React.cloneElement(this.cards.bArticleCard, {
-                        displayType: "full"
+                        darkmode: this.props.darkmode, displayType: "full"
                       })}
                     </div>
                     {this.props.mappedBreaking != null && (
@@ -127,12 +128,12 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="d" className={css.card}>
                       {React.cloneElement(this.cards.dArticleCard, {
-                        displayType: "mini"
+                        darkmode: this.props.darkmode, displayType: "mini"
                       })}
                     </div>
                     <div id="e" className={css.card}>
                       {React.cloneElement(this.cards.eArticleCard, {
-                        displayType: "mini"
+                        darkmode: this.props.darkmode, displayType: "mini"
                       })}
                     </div>
                     <div id="MultimediaScroller" className={css.card}>
@@ -151,12 +152,12 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="f1" className={css.card}>
                       {React.cloneElement(this.cards.f1ArticleCard, {
-                        displayType: "mini"
+                        darkmode: this.props.darkmode, displayType: "mini"
                       })}
                     </div>
                     <div id="f2" className={css.card}>
                       {React.cloneElement(this.cards.f2ArticleCard, {
-                        displayType: "mini"
+                        darkmode: this.props.darkmode, displayType: "mini"
                       })}
                     </div>
                     <div
@@ -195,7 +196,7 @@ export default class HomeLayout extends React.Component {
                   >
                     <div id="a" className={css.card}>
                       {React.cloneElement(this.cards.aArticleCard, {
-                        displayType: "vert"
+                        darkmode: this.props.darkmode, displayType: "vert"
                       })}
                     </div>
                     <div
@@ -207,7 +208,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="b" className={css.card}>
                       {React.cloneElement(this.cards.bArticleCard, {
-                        displayType: "vert"
+                        darkmode: this.props.darkmode, displayType: "vert"
                       })}
                     </div>
                     <div id="qd" className={css.card}>
@@ -221,7 +222,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="f1" className={css.card}>
                       {React.cloneElement(this.cards.f1ArticleCard, {
-                        displayType: "mini"
+                        darkmode: this.props.darkmode, displayType: "mini"
                       })}
                     </div>
                     {this.props.mappedBreaking != null && (
@@ -238,7 +239,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="f2" className={css.card}>
                       {React.cloneElement(this.cards.f2ArticleCard, {
-                        displayType: "mini"
+                        darkmode: this.props.darkmode, displayType: "mini"
                       })}
                     </div>
                     {this.props.mappedBreaking == null && (
@@ -256,12 +257,12 @@ export default class HomeLayout extends React.Component {
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.cards.c1ArticleCard, {
-                        displayType: "full"
+                        darkmode: this.props.darkmode, displayType: "full"
                       })}
                     </div>
                     <div id="c2" className={css.card}>
                       {React.cloneElement(this.cards.c2ArticleCard, {
-                        displayType: "horz"
+                        darkmode: this.props.darkmode, displayType: "horz"
                       })}
                     </div>
                     <div
@@ -276,7 +277,7 @@ export default class HomeLayout extends React.Component {
                       >
                         <div id="d" className={css.card}>
                           {React.cloneElement(this.cards.dArticleCard, {
-                            displayType: "mini"
+                            darkmode: this.props.darkmode, displayType: "mini"
                           })}
                         </div>
                       </div>
@@ -287,7 +288,7 @@ export default class HomeLayout extends React.Component {
                       >
                         <div id="e" className={css.card}>
                           {React.cloneElement(this.cards.eArticleCard, {
-                            displayType: "mini"
+                            darkmode: this.props.darkmode, displayType: "mini"
                           })}
                         </div>
                       </div>
@@ -342,12 +343,12 @@ export default class HomeLayout extends React.Component {
                     >
                       <div id="a" className={css.card}>
                         {React.cloneElement(this.cards.aArticleCard, {
-                          displayType: "vert"
+                          darkmode: this.props.darkmode, displayType: "vert"
                         })}
                       </div>
                       <div id="b" className={css.card}>
                         {React.cloneElement(this.cards.bArticleCard, {
-                          displayType: "vert"
+                          darkmode: this.props.darkmode, displayType: "vert"
                         })}
                       </div>
                       <div id="classifieds" className={css.card}>
@@ -375,12 +376,12 @@ export default class HomeLayout extends React.Component {
                     >
                       <div id="c1" className={css.card}>
                         {React.cloneElement(this.cards.c1ArticleCard, {
-                          displayType: "full"
+                          darkmode: this.props.darkmode, displayType: "full"
                         })}
                       </div>
                       <div id="c2" className={css.card}>
                         {React.cloneElement(this.cards.c2ArticleCard, {
-                          displayType: "horz"
+                          darkmode: this.props.darkmode, displayType: "horz"
                         })}
                       </div>
                       <div id="MultimediaScroller" className={css.card}>
@@ -388,12 +389,12 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div id="f1" className={css.card}>
                         {React.cloneElement(this.cards.f1ArticleCard, {
-                          displayType: "horz"
+                          darkmode: this.props.darkmode, displayType: "horz"
                         })}
                       </div>
                       <div id="f2" className={css.card}>
                         {React.cloneElement(this.cards.f2ArticleCard, {
-                          displayType: "horz"
+                          darkmode: this.props.darkmode, displayType: "horz"
                         })}
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
@@ -429,12 +430,12 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div id="d" className={css.card}>
                         {React.cloneElement(this.cards.dArticleCard, {
-                          displayType: "mini"
+                          darkmode: this.props.darkmode, displayType: "mini"
                         })}
                       </div>
                       <div id="e" className={css.card}>
                         {React.cloneElement(this.cards.eArticleCard, {
-                          displayType: "mini"
+                          darkmode: this.props.darkmode, displayType: "mini"
                         })}
                       </div>
                       {this.props.mappedBreaking == null && (

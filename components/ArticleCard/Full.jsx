@@ -14,7 +14,7 @@ export default function Full(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
+        background-color: ${props.darkmode ? "#222222" : "#ffffff"};
       `}
     >
       <span>
@@ -53,7 +53,7 @@ export default function Full(props) {
             font-weight: 300;
             font-size: 11px;
             line-height: 14px;
-            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+            color: ${props.darkmode ? "#ffffff" : "#000000"};
 
           `}
         >
@@ -91,7 +91,7 @@ export default function Full(props) {
               margin: 4px 0;
             }
 
-            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+            color: ${props.darkmode ? "#ffffff" : "#000000"};
 
           `}
           dangerouslySetInnerHTML={{ __html: props.caption }}
@@ -113,7 +113,7 @@ export default function Full(props) {
           font-weight: bold;
           font-size: 11px;
 
-          color: ${globals.darkMode ? "#ffffff" : "#000000"};
+          color: ${props.darkmode ? "#ffffff" : "#000000"};
 
         `}
       >

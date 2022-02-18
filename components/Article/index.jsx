@@ -17,7 +17,7 @@ export default class Article extends React.Component {
 
   render() {
     // grab author pics and cards
-    console.log(globals.darkMode);
+    console.log(this.props.darkmode);
     let authorPictures = [];
     let renderedAuthorCards = [];
 
@@ -52,6 +52,7 @@ export default class Article extends React.Component {
             margin: 20px 0;
           `}
         >
+          
           <AuthorCard
             image={
               author.simple_local_avatar != null

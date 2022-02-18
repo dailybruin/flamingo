@@ -22,7 +22,7 @@ export default class Desktop extends React.Component {
     this.state = {
       menuExpanded: true,
       searchExpanded: false,
-      darkMode: false
+      // darkMode: false
     };
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
@@ -98,7 +98,7 @@ export default class Desktop extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: ${this.state.darkMode ? "#ffffff" : "#000000"};
+              color: ${this.props.darkmode ? "#ffffff" : "#000000"};
               white-space: nowrap;
               &:hover {
                 text-decoration: underline;
@@ -118,8 +118,8 @@ export default class Desktop extends React.Component {
       <div
         ref={this.MastheadCard}
         css={css`
-          background: ${this.state.darkMode ? "#222222" : "#ffffff"};
-          color: ${this.state.darkMode ? "#ffffff" : "#000000"};
+          background: ${this.props.darkmode ? "#222222" : "#ffffff"};
+          color: ${this.props.darkmode ? "#ffffff" : "#000000"};
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
           height: ${expandedHeight};
@@ -245,7 +245,7 @@ export default class Desktop extends React.Component {
                     text-transform: uppercase;
                     line-height: 34px;
                     font-size: 14px;
-                    color: ${this.state.darkMode ? "#ffffff" : "#000000"};
+                    color: ${this.props.darkmode ? "#ffffff" : "#000000"};
                     display: inline-block;
                     vertical-align: middle;
                     height: 36px;
@@ -342,11 +342,7 @@ export default class Desktop extends React.Component {
                   `}
                 >
                   <label class="switch">
-                    <input type="checkbox" onClick={() => {
-                      this.setState({
-                        darkMode: !this.state.darkMode
-                      })
-                      }}/>
+                    <input type="checkbox" onClick={this.props.onToggle}/>
                     <span class="slider round"></span>
                   </label>
                   
@@ -533,8 +529,8 @@ export default class Desktop extends React.Component {
         </div>
         <div
           css={css`
-            background: ${this.state.darkMode ? "#222222" : "#ffffff"};
-            color: ${this.state.darkMode ? "#ffffff" : "#000000"};
+            background: ${this.props.darkmode ? "#222222" : "#ffffff"};
+            color: ${this.props.darkmode ? "#ffffff" : "#000000"};
             overflow-x: scroll;
             &::-webkit-scrollbar {
               display: none;

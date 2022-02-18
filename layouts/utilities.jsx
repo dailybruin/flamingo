@@ -4,10 +4,13 @@ import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.module.css";
 import moment from "moment";
 
-export function buildArticleCard(story, type = "") {
+export function buildArticleCard(story, type = "", darkmode) {
+  console.log(darkmode);
   if (story != null && story != undefined && story.data == undefined) {
     return (
+      
       <ArticleCard
+        darkmode = {darkmode}
         displayType={type}
         headline={story.title != undefined ? story.title.rendered : ""}
         excerpt={story.excerpt != undefined ? story.excerpt.rendered : ""}
@@ -89,7 +92,7 @@ export function buildMultimediaScroller(media) {
 export function buildArticleList(stories) {
   let postArray = [];
   for (let i = 0; i < stories.length; i++) {
-    postArray.push(buildArticleCard(stories[i]));
+    postArray.push(buildArticleCard(stories[i], darkmode = true));
   }
   return postArray;
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Config } from "../config.js";
 import Head from "next/head";
 
@@ -25,6 +25,16 @@ const layoutStyle = {
 
 const PageWrapper = Comp =>
   class extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        darkmode: false
+      }
+  
+    }
+    
+    
+
     static async getInitialProps(ctx) {
       // Load the categories for the header
       // TODO: can we load this once each browser session?
@@ -78,7 +88,21 @@ const PageWrapper = Comp =>
       };
     }
 
+    onToggle = () => {
+      this.setState({
+        darkmode: !this.state.darkmode
+      })
+    }
+
     render() {
+      // console.log(this.state.darkmode);
+      const style = {
+        padding: "6px",
+        backgroundColor: this.state.darkmode ? "#010101" : "#f1f1f1",
+        width: "100%",
+        height: "100%"
+      }
+
       if (this.props.feature == true) {
         return <Comp {...this.props} />;
       }
@@ -99,16 +123,17 @@ const PageWrapper = Comp =>
         );
       }
       return (
-        <div style={wrapperStyle}>
+        <div style={style}>
           <div style={layoutStyle}>
             <CommentFAB></CommentFAB>
             <div className={css["banner-ad"]}>
               <broadstreet-zone zone-id="69404"></broadstreet-zone>
             </div>
-            <Masthead categories={this.props.mappedCategories}></Masthead>
+            <Masthead categories={this.props.mappedCategories} onToggle={this.onToggle} darkmode = {this.state.darkmode}></Masthead>
             {renderedBreakingCard}
             {renderedInTheNews}
-            <Comp {...this.props} />
+            <h1>Darkmode: {this.state.darkmode ? "True" : "False"}</h1>
+            <Comp {...this.props} darkmode = {this.state.darkmode} />
             <div style={{ padding: "6px" }}>
               <MainSiteFooter />
             </div>

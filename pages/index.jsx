@@ -163,6 +163,7 @@ class Index extends Component {
   render() {
     return (
       <>
+        <h1>Darkmode: {this.props.darkmode ? "True" : "False"}</h1>
         <Head>
           <title>{`Daily Bruin - Since 1919`}</title>
           <meta
@@ -202,6 +203,7 @@ class Index extends Component {
           />
         </Head>
         <HomeLayout
+          darkmode = {this.props.darkmode}
           posts={this.props.posts}
           media={this.props.multimediaPosts}
           classifieds={this.props.classifieds.map(c => {

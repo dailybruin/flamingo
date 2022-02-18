@@ -15,6 +15,8 @@ export default class ArticleCard extends React.Component {
   }
 
   render() {
+    // <h1>Darkmode: {this.props.darkmode ? "True" : "False"}</h1>
+    // console.log(this.props.darkmode);
     let card;
     switch (this.props.displayType) {
       case "vert":

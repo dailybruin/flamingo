@@ -47,7 +47,7 @@ class ArticleLayout extends React.Component {
     for (let relatedPost of this.props.relatedPosts) {
       renderedRelatedPosts.push(
         <div key={relatedPost.id} className={css.card}>
-          {buildArticleCard(relatedPost, "mini")}
+          {buildArticleCard(relatedPost, "mini", true)}
         </div>
       );
     }
