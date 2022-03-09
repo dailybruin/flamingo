@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
-import header from "./oscarstest.jpg";
+import header from "./image.gif";
 import MainSiteFooter from "../../components/MainSiteFooter";
 import Masthead from "../../components/Masthead";
 
@@ -16,15 +16,27 @@ export default class Oscars2022Layout extends React.Component {
   render() {
     let renderedPosts = [];
     for (let i in this.props.posts) {
+      console.log(i);
+      console.log(this.props.posts[i].tags);
+      if (this.props.posts[i].tags[0] == 24441 || this.props.posts[i].tags[1] == 24441) {
+        renderedPosts.push(
+          <h1>POST TYPE</h1>
+        )
+      }
+      if (this.props.posts[i].tags[0] == 24442 || this.props.posts[i].tags[1] == 24442) {
+        renderedPosts.push(
+          <h1>POST TYPE 2</h1>
+        )
+      }
       renderedPosts.push(
         <a
           key={i}
           css={css`
             text-align: center;
-            color: black;
+            color: pink;
             display: table;
             min-height: 100px;
-            height: 100px;
+            height: 200px;
             position: relative;
             margin: 20px 10px;
 
@@ -91,6 +103,7 @@ export default class Oscars2022Layout extends React.Component {
         <div
           css={css`
             display: flex;
+            background-color: yellow;
             height: 100vh;
             flex-direction: column;
             justify-content: space-between;
@@ -130,7 +143,7 @@ export default class Oscars2022Layout extends React.Component {
           </div>
           <div
             css={css`
-              background-color: #000;
+              background-color: green;
               color: #fff;
               padding: 60px 20px;
               font-family: "Noto Serif", ${globals.bodyFont};
