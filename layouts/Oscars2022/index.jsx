@@ -35,8 +35,8 @@ export default class Oscars2022Layout extends React.Component {
             text-align: center;
             color: pink;
             display: table;
-            min-height: 100px;
-            height: 200px;
+            min-height: 200px;
+            height: 400px;
             position: relative;
             margin: 20px 10px;
 
@@ -88,7 +88,7 @@ export default class Oscars2022Layout extends React.Component {
               css={css`
                 font-family: ${globals.menuFont};
                 text-transform: uppercase;
-                font-size: 14px;
+                font-size: 24px;
               `}
               dangerouslySetInnerHTML={{
                 __html: `By ${this.props.posts[i].coauthors[0].display_name}`
@@ -127,22 +127,6 @@ export default class Oscars2022Layout extends React.Component {
           </a>
           <div
             css={css`
-              margin: auto;
-              width: 100%;
-            `}
-          >
-            <ArticleCarousel
-              articles={this.props.posts.map(a => {
-                return {
-                  headline: a.title.rendered,
-                  byline: `By ${a.coauthors[0].display_name}`,
-                  link: a.link
-                };
-              })}
-            />
-          </div>
-          <div
-            css={css`
               background-color: green;
               color: #fff;
               padding: 60px 20px;
@@ -156,10 +140,12 @@ export default class Oscars2022Layout extends React.Component {
                 margin: auto;
                 text-align: center;
                 font-size: 0.8rem;
-                line-height: 1.5;
+                line-height: 5.5;
+                height: 40vh;
+                display: block;
               `}
             >
-              the oscars are cool and this is totally a worthwile page{" "}
+              title title!{" "}
               
               
             </p>
@@ -171,6 +157,14 @@ export default class Oscars2022Layout extends React.Component {
             max-width: 700px;
           `}
         >
+                    <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/JcPEPvDohto" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+
+            </iframe>
           {renderedPosts}
         </div>
         <MainSiteFooter></MainSiteFooter>
