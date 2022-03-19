@@ -15,6 +15,7 @@ class FeatureLayout extends React.Component {
     return (
       <>
         <FeatureArticle
+          darkmode={this.props.darkmode}
           headline={this.props.article.title.rendered}
           date={moment.utc(this.props.article.date)}
           authors={this.props.authors}

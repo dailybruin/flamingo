@@ -36,7 +36,7 @@ export default function Vert(props) {
           font-size: 8px;
           text-align: right;
 
-          color: #000000;
+          color: ${props.darkmode ? "#ffffff" : "#000000"};
         `}
       >
         {props.photographer}
@@ -88,7 +88,7 @@ export default function Vert(props) {
         <div
           css={css`
             margin: 2px 0 4px;
-            ${locals.headline};
+            ${props.darkmode ? locals.darkheadline : locals.headline};
           `}
           style={{
             fontStyle:
@@ -99,7 +99,7 @@ export default function Vert(props) {
         <div
           css={css`
             margin: 0 0 5px;
-            ${locals.excerpt}
+            ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
           `}
           dangerouslySetInnerHTML={{ __html: props.excerpt }}
         />

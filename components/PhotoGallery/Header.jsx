@@ -34,7 +34,8 @@ export default function Header(props) {
     <div
       css={css`
         width: 100%;
-        background-color: #fff;
+        background-color: ${this.props.darkmode? "#222" : "#fff"};
+        color:  ${this.props.darkmode? "#fff" : "#000"};
         padding: ${globals.cardPadding};
         display: table;
 
@@ -110,7 +111,7 @@ export default function Header(props) {
               a {
                 text-decoration: none;
                 color: #0080c6;
-                background-color: #ffffff;
+                background-color: ${this.props.darkmode? "#222" : "#fff"};
               }
               a:hover {
                 text-decoration: underline;

@@ -110,7 +110,7 @@ const PageWrapper = Comp =>
       if (this.props.mappedBreaking != null) {
         renderedBreakingCard = (
           <div style={{ padding: "6px" }}>
-            <BreakingCard story={this.props.mappedBreaking} />
+            <BreakingCard story={this.props.mappedBreaking} darkmode={this.state.darkmode}/>
           </div>
         );
       }
@@ -118,7 +118,7 @@ const PageWrapper = Comp =>
       if (this.props.mappedITN != null && this.props.mappedBreaking == null) {
         renderedInTheNews = (
           <div style={{ padding: "6px" }}>
-            <InTheNews stories={this.props.mappedITN} />
+            <InTheNews stories={this.props.mappedITN} darkmode={this.state.darkmode}/>
           </div>
         );
       }
@@ -129,11 +129,10 @@ const PageWrapper = Comp =>
             <div className={css["banner-ad"]}>
               <broadstreet-zone zone-id="69404"></broadstreet-zone>
             </div>
-            <Masthead categories={this.props.mappedCategories} onToggle={this.onToggle} darkmode = {this.state.darkmode}></Masthead>
+            <Masthead categories={this.props.mappedCategories} onToggle={this.onToggle} darkmode={this.state.darkmode}></Masthead>
             {renderedBreakingCard}
             {renderedInTheNews}
-            <h1>Darkmode: {this.state.darkmode ? "True" : "False"}</h1>
-            <Comp {...this.props} darkmode = {this.state.darkmode} />
+            <Comp {...this.props} darkmode={this.state.darkmode} />
             <div style={{ padding: "6px" }}>
               <MainSiteFooter />
             </div>

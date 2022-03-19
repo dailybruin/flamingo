@@ -14,7 +14,7 @@ export default function Podcast(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
+        background-color: ${props.darkMode ? "#222222" : "#ffffff"};
         height: 100%;
       `}
     >
@@ -50,7 +50,7 @@ export default function Podcast(props) {
           font-size: 8px;
           text-align: right;
 
-          color: #000000;
+          color: ${props.darkmode ? "#ffffff" : "#000000"};
         `}
       >
         {props.photographer}
@@ -100,14 +100,14 @@ export default function Podcast(props) {
         <div
           css={css`
             margin: 2px 0 4px;
-            ${locals.headline}
+            ${props.darkmode ? locals.darkheadline : locals.headline};
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
         <div
           css={css`
             margin: 0 0 5px;
-            ${locals.excerpt}
+            ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
           `}
           dangerouslySetInnerHTML={{ __html: props.excerpt }}
         />
@@ -121,7 +121,7 @@ export default function Podcast(props) {
           font-weight: 700;
           font-size: 11px;
 
-          color: #000000;
+          color: ${props.darkmode ? "#ffffff" : "#000000"};
         `}
       >
         By {utilities.renderAuthors(props.authors)}

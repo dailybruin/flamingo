@@ -92,7 +92,7 @@ export function buildMultimediaScroller(media) {
 export function buildArticleList(stories) {
   let postArray = [];
   for (let i = 0; i < stories.length; i++) {
-    postArray.push(buildArticleCard(stories[i], darkmode = true));
+    postArray.push(buildArticleCard(stories[i]));
   }
   return postArray;
 }

@@ -73,7 +73,6 @@ export default class HomeLayout extends React.Component {
   render() {
     return (
       <div>
-        <h1>Darkmode: {this.props.darkmode ? "True" : "False"}</h1>
         <Media
           queries={{
             phone: "(max-width: 600px)",
@@ -167,19 +166,19 @@ export default class HomeLayout extends React.Component {
                     >
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
-                    <div id="ns" className={globals.darkMode ? css.card-dark : css.card}>
+                    <div id="ns" className={globals.darkMode ? css.card_dark : css.card}>
                       {this.cards.nsStoryList}
                     </div>
-                    <div id="en" className={globals.darkMode ? css.card-dark : css.card}>
+                    <div id="en" className={globals.darkMode ? css.card_dark : css.card}>
                       {this.cards.enStoryList}
                     </div>
-                    <div id="op" className={globals.darkMode ? css.card-dark : css.card}>
+                    <div id="op" className={globals.darkMode ? css.card_dark : css.card}>
                       {this.cards.opStoryList}
                     </div>
-                    <div id="ae" className={globals.darkMode ? css.card-dark : css.card}>
+                    <div id="ae" className={globals.darkMode ? css.card_dark : css.card}>
                       {this.cards.aeStoryList}
                     </div>
-                    <div id="sp" className={globals.darkMode ? css.card-dark : css.card}>
+                    <div id="sp" className={globals.darkMode ? css.card_dark : css.card}>
                       {this.cards.spStoryList}
                     </div>
                   </div>

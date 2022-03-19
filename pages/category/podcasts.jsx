@@ -67,6 +67,7 @@ class Category extends Component {
         </div>
         <PodcastsLayout
           posts={this.props.posts}
+          darkmode={this.props.darkmode}
           categoryID={this.props.category[0].id}
           classifieds={this.props.classifieds.map(c => {
             return {

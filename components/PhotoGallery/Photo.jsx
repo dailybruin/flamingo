@@ -69,7 +69,8 @@ export default class Photo extends React.Component {
               max-width: 400px;
               padding: 20px;
               margin: 6px;
-              background-color: #fff;
+              background-color: ${this.props.darkmode? "#222" : "#fff"};
+              color:  ${this.props.darkmode? "#fff" : "#000"};
               @media (max-width: 800px) {
                 max-width: initial;
                 min-width: initial;

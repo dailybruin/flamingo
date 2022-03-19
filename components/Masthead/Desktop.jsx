@@ -351,42 +351,54 @@ export default class Desktop extends React.Component {
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./facebook.svg")} />
+                    <img src={require("./facebook.svg")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.twitter.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./twitter.svg")} />
+                    <img src={require("./twitter.svg")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.instagram.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./instagram.svg")} />
+                    <img src={require("./instagram.svg")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="http://eepurl.com/cFEiZX"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./mail.svg")} />
+                    <img src={require("./mail.svg")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.overlooked.com"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./overlooked.png")} />
+                    <img src={require("./overlooked.png")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./youtube.png")} />
+                    <img src={require("./youtube.png")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                 </div>
                 <a href="/advertise">Advertise</a>
@@ -462,6 +474,7 @@ export default class Desktop extends React.Component {
                       display: none;
                       background-color: #000;
                       background-image: url(${minisearchIcon});
+                      /* filter: invert(%100); */
                       background-repeat: no-repeat;
                       background-size: 24px;
                       background-position: 6px;
@@ -505,6 +518,8 @@ export default class Desktop extends React.Component {
                         transition-delay: 100ms;
                         width: 36px;
                         height: 36px;
+                        ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                        
                       `}
                       src={searchIcon}
                     ></img>

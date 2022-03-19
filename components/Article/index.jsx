@@ -17,7 +17,7 @@ export default class Article extends React.Component {
 
   render() {
     // grab author pics and cards
-    console.log(this.props.darkmode);
+    // console.log(this.props.darkmode);
     let authorPictures = [];
     let renderedAuthorCards = [];
 
@@ -91,9 +91,10 @@ export default class Article extends React.Component {
           display: block;
           padding: 10px;
           box-shadow: ${globals.cardShadow};
-          background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
+          background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
         `}
       >
+        {/* <h1>Darkmode = {this.props.darkmode ? "True" : "False"}</h1> */}
         <div
           css={css`
             a {
@@ -123,10 +124,10 @@ export default class Article extends React.Component {
 
             font-family: ${globals.headlineFont};
             font-style: normal;
-            font-weight: bold;
+            font-weight: ${this.props.darkmode ? 550 : "bold"};
             font-size: 30px;
             line-height: 1.25;
-            color: ${globals.darkMode ? "#ffffff" : "#000000"};
+            color: ${this.props.darkmode ? "#ffffff" : "#000000"};
           `}
           style={{
             fontStyle:
@@ -196,12 +197,12 @@ export default class Article extends React.Component {
                   line-height: 21px;
                   padding: 5px 0 0;
 
-                  color: ${globals.darkMode ? "#ffffff" : "#000000"};
+                  color: ${this.props.darkmode ? "#ffffff" : "#000000"};
 
                   a {
                     text-decoration: none;
                     color: #0080c6;
-                    background-color: #ffffff;
+                    background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
                   }
                   a:hover {
                     text-decoration: underline;
@@ -218,6 +219,7 @@ export default class Article extends React.Component {
                   font-weight: 300;
                   font-size: 12px;
                   line-height: 15px;
+                  color: ${this.props.darkmode ? "#fff" : "000"};
                 `}
               >
                 {moment.utc(this.props.date).format("MMM D, YYYY h:mm a")}
@@ -229,7 +231,7 @@ export default class Article extends React.Component {
               css={css`
                 font-size: 12px;
                 font-family: ${globals.bodyFont};
-                color: ${globals.darkMode ? "#ffffff" : globals.darkGray};
+                color: ${this.props.darkmode ? "#ffffff" : globals.darkGray};
                 max-width: 640px;
                 margin: 20px auto 0;
               `}
@@ -245,7 +247,7 @@ export default class Article extends React.Component {
               text-align: left;
               line-height: 1.75;
 
-              color: ${globals.darkMode ? "#ffffff" : "#000000"};
+              color: ${this.props.darkmode  ? "#ffffff" : "#000000"};
               display: block;
               max-width: 640px;
               margin: auto;
@@ -340,6 +342,7 @@ export default class Article extends React.Component {
           />
           <div>
             <ShareButtons
+              darkmode={this.props.darkmode}
               title={this.props.headline}
               url={this.props.link}
             ></ShareButtons>

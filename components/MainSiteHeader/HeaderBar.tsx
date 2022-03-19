@@ -109,7 +109,7 @@ class HeaderBar extends React.Component<
           href={propLink.categoryURL}
           css={css`
             text-decoration: none;
-            color: ${globals.darkMode ? "#fff" : "#000"};
+            color: #f50505;
           `}
         >
           {propLink.category}
@@ -128,7 +128,7 @@ class HeaderBar extends React.Component<
           box-shadow: ${MainSiteStyles.cardShadow};
           font-family: ${MainSiteStyles.headlineFont};
           font-weight: ${MainSiteStyles.boldFont};
-          color: ${globals.darkMode ? "#fff" : "#000"};
+          color: #f50505;
         `}
       >
         <div

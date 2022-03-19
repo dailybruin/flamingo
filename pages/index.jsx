@@ -163,7 +163,6 @@ class Index extends Component {
   render() {
     return (
       <>
-        <h1>Darkmode: {this.props.darkmode ? "True" : "False"}</h1>
         <Head>
           <title>{`Daily Bruin - Since 1919`}</title>
           <meta

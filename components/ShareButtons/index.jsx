@@ -53,6 +53,7 @@ export default function ShareButtons(props) {
           @media (max-width: 450px) {
             display: block;
           }
+          color: ${props.darkmode ? '#ffffff' : '#000000'};
         `}
       >
         Share this story:

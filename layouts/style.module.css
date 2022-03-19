@@ -3,10 +3,10 @@
   padding: 6px;
 }
 
-.card-dark {
+.card_dark {
   display: block;
   padding: 6px;
-  background-color: black;
+  background-color: #222;
 }
 
 .video-card {

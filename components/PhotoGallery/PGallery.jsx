@@ -269,8 +269,11 @@ function PGallery(props) {
             
 
 
-            <div className={css_selector[photosContainerType]}>
-                
+            <div className={css_selector[photosContainerType]} 
+                css={css`
+                background-color: ${this.props.darkmode ? "#000" : "#222"};
+            `}>
+                <h1>{this.props.darkmode ? "PGallery True" : "PGallery False"}</h1>
                 {
                     entries.map((entry, index) => (
                         <ContainerItem
@@ -289,6 +292,7 @@ function PGallery(props) {
 
             <div>
                 <ShareButtons
+                    darkmode={props.darkmode}
                     title={props.headline}
                     url={props.link}
                 ></ShareButtons>

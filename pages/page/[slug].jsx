@@ -30,7 +30,7 @@ class Page extends Component {
               }}
             />
           </Head>
-          <PageLayout page={this.props.page[0]} />
+          <PageLayout page={this.props.page[0]} darkmode={this.props.darkmode}/>
         </div>
       );
   }

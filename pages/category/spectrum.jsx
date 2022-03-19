@@ -74,6 +74,7 @@ class Spectrum extends Component {
           />
         </div>
         <MultimediaLayout
+          darkmode={this.props.darkmode}
           posts={this.props.posts}
           categoryID={this.props.category[0].id}
         />

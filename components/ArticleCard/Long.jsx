@@ -68,7 +68,7 @@ export default function Long(props) {
           <h1
             css={css`
               margin: 2px 0;
-              ${locals.headline};
+              ${props.darkmode ? locals.darkheadline : locals.headline};
             `}
             style={{
               fontStyle:
@@ -80,7 +80,7 @@ export default function Long(props) {
         <a href={props.as} style={{ textDecoration: "none" }}>
           <div
             css={css`
-              ${locals.excerpt}
+              ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
             `}
             dangerouslySetInnerHTML={{ __html: props.excerpt }}
           />
@@ -94,7 +94,7 @@ export default function Long(props) {
             font-weight: bold;
             font-size: 11px;
 
-            color: #000000;
+            color: ${props.darkmode ? "#ffffff" : "#000000"};
           `}
         >
           By {utilities.renderAuthors(props.authors)}

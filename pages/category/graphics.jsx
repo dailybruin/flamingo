@@ -75,6 +75,7 @@ class Graphics extends Component {
         </div>
         <MultimediaLayout
           posts={this.props.posts}
+          darkmode={this.props.darkmode}
           categoryID={this.props.category[0].id}
         />
       </div>

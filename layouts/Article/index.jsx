@@ -14,8 +14,10 @@ import CommentsCard from "components/CommentsCard";
 class ArticleLayout extends React.Component {
   constructor(props) {
     super(props);
+
     this.article = (
       <Article
+        darkmode={this.props.darkmode}
         headline={this.props.article.title.rendered}
         link={this.props.article.link}
         date={moment.utc(this.props.article.date)}
@@ -40,6 +42,13 @@ class ArticleLayout extends React.Component {
         acf={this.props.article.acf}
       />
     );
+
+    this.classifiedsCards = (
+      <ClassifiedsCard
+        header="Featured Classifieds"
+        classifieds={this.props.classifieds}
+      />
+    )
   }
 
   render() {
@@ -47,7 +56,7 @@ class ArticleLayout extends React.Component {
     for (let relatedPost of this.props.relatedPosts) {
       renderedRelatedPosts.push(
         <div key={relatedPost.id} className={css.card}>
-          {buildArticleCard(relatedPost, "mini", true)}
+          {buildArticleCard(relatedPost, "mini", this.props.darkmode)}
         </div>
       );
     }
@@ -60,7 +69,8 @@ class ArticleLayout extends React.Component {
             desktop: "(min-width: 901px)"
           }}
           defaultMatches={{ desktop: true }}
-        >
+          >
+          
           {matches => (
             <div>
               {matches.phone && (
@@ -72,7 +82,11 @@ class ArticleLayout extends React.Component {
                       width: "100%"
                     }}
                   >
-                    <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>
+                      {React.cloneElement(this.article, {
+                        darkmode: this.props.darkmode
+                      })}
+                    </div>
                     <div>
                       <div className={css.card}>
                         <div
@@ -105,10 +119,9 @@ class ArticleLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
+                      {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                      })}
                     </div>
                   </div>
                 </div>
@@ -122,7 +135,9 @@ class ArticleLayout extends React.Component {
                       width: "100%"
                     }}
                   >
-                    <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>{React.cloneElement(this.article, {
+                      darkmode: this.props.darkmode
+                    })}</div>
                     <div className={css.card}>
                       <CommentsCard
                         id={this.props.article.id}
@@ -166,10 +181,9 @@ class ArticleLayout extends React.Component {
                     }}
                   >
                     <div className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
+                      {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                      })}
                     </div>
                   </div>
                   <div
@@ -193,7 +207,11 @@ class ArticleLayout extends React.Component {
                       width: "75%"
                     }}
                   >
-                    <div className={css.card}>{this.article}</div>
+                    {/* <h1>Darkmode = {this.props.darkmode ? "True" : "False"}</h1> */}
+                    <div className={css.card}>
+                    {React.cloneElement(this.article, {
+                      darkmode: this.props.darkmode
+                    })}</div>
                     <div className={css.card}>
                       <CommentsCard
                         id={this.props.article.id}
@@ -212,10 +230,9 @@ class ArticleLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
+                      {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                      })}
                     </div>
                     <div>
                       <div className={css.card}>

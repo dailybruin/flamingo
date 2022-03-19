@@ -15,6 +15,7 @@ export default class PhotoGalleryLayout extends React.Component {
       <>
         <div className={css.card}>
           <PhotoGallery
+            darkmode={this.props.darkmode}
             headline={this.props.post.title.rendered}
             photos={this.props.photos}
             photographers={this.props.photographers}

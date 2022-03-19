@@ -135,6 +135,7 @@ class Post extends Component {
             <ArticleLayout
               article={this.props.post[0]}
               authors={this.props.authors}
+              darkmode={this.props.darkmode}
               relatedPosts={this.props.relatedPosts}
               classifieds={this.props.classifieds.map(c => {
                 return {

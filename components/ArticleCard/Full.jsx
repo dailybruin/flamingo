@@ -64,7 +64,7 @@ export default function Full(props) {
         <div
           css={css`
             margin: 2px 0 6px;
-            ${locals.headline};
+            ${props.darkmode ? locals.darkheadline : locals.headline};
           `}
           style={{
             fontStyle:
@@ -99,7 +99,7 @@ export default function Full(props) {
         <div
           css={css`
             margin: 0 0 5px;
-            ${locals.excerpt}
+            ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
           `}
           dangerouslySetInnerHTML={{ __html: props.excerpt }}
         />

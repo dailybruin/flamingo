@@ -63,7 +63,7 @@ export default function VideoCard(props) {
         <div
           css={css`
             margin: 2px 0 6px;
-            ${locals.headline}
+            ${props.darkmode ? locals.darkheadline : locals.headline};
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
@@ -75,7 +75,7 @@ export default function VideoCard(props) {
               //height: 0;
             }
             p {
-              ${locals.excerpt}
+              ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
             }
           `}
           dangerouslySetInnerHTML={{ __html: props.content }}

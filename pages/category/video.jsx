@@ -68,6 +68,7 @@ class Category extends Component {
         <VideoLayout
           posts={this.props.posts}
           categoryID={this.props.category[0].id}
+          darkmode={this.props.darkmode}
           classifieds={this.props.classifieds.map(c => {
             return {
               category: {

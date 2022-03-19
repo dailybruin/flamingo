@@ -100,14 +100,14 @@ export default function Video(props) {
         <div
           css={css`
             margin: 2px 0 4px;
-            ${locals.headline}
+            ${props.darkmode ? locals.darkheadline : locals.headline};
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
         <div
           css={css`
             margin: 0 0 5px;
-            ${locals.excerpt}
+            ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
           `}
           dangerouslySetInnerHTML={{ __html: props.excerpt }}
         />
