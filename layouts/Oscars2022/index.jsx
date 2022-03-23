@@ -5,7 +5,10 @@ import * as globals from "../../components/globals";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
 import header from "./image.gif";
+import description from "./oscarsheader.svg"
+import gradient from "./gradient.svg";
 import MainSiteFooter from "../../components/MainSiteFooter";
+import background from "./oscars1.svg";
 import Masthead from "../../components/Masthead";
 
 export default class Oscars2022Layout extends React.Component {
@@ -103,7 +106,7 @@ export default class Oscars2022Layout extends React.Component {
         <div
           css={css`
             display: flex;
-            background-color: yellow;
+            background-image: url(${gradient});
             height: 100vh;
             flex-direction: column;
             justify-content: space-between;
@@ -126,35 +129,35 @@ export default class Oscars2022Layout extends React.Component {
             />
           </a>
           <div
-            css={css`
-              background-color: green;
-              color: #fff;
-              padding: 60px 20px;
-              font-family: "Noto Serif", ${globals.bodyFont};
+            css={css `
+            position: relative;
+            align: center;
+            align-items: center;
+            justify-content: center;
+            padding-top: 3%;
+            width: 100%;
+            margin: 0 auto;
             `}
           >
-            <p
+            <img src={description}
               css={css`
-                max-width: 900px;
-                width: 100%;
-                margin: auto;
-                text-align: center;
-                font-size: 0.8rem;
-                line-height: 5.5;
-                height: 40vh;
+              width: 100vw;
+              height: 80vh;
+                background-size: cover;
                 display: block;
               `}
             >
-              title title!{" "}
               
               
-            </p>
+            </img>
           </div>
         </div>
         <div
           css={css`
             margin: auto;
-            max-width: 700px;
+            width: 100%;
+            background-image: url(${gradient});
+            display: block;
           `}
         >
                     <iframe width="560" height="315" 
