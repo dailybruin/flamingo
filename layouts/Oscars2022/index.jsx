@@ -19,14 +19,14 @@ export default class Oscars2022Layout extends React.Component {
   render() {
     let renderedPosts = [];
     for (let i in this.props.posts) {
-      console.log(i);
-      console.log(this.props.posts[i].tags);
-      if (this.props.posts[i].tags[0] == 24441 || this.props.posts[i].tags[1] == 24441) {
+      //console.log(i);
+      if(this.props.posts[i].tags.length > 2) {console.log(this.props.posts[i])};
+      if (this.props.posts[i].tags[0] == 24441 || this.props.posts[i].tags[1] == 24441 || ((this.props.posts[i].tags.length > 2) && this.props.posts[i].tags[3] == 24441)) {
         renderedPosts.push(
-          <h1>POST TYPE</h1>
+          <h1>FILMMAKER</h1>
         )
       }
-      if (this.props.posts[i].tags[0] == 24442 || this.props.posts[i].tags[1] == 24442) {
+      if (this.props.posts[i].tags[0] == 24494 || this.props.posts[i].tags[1] == 24494) {
         renderedPosts.push(
           <h1>POST TYPE 2</h1>
         )
@@ -36,13 +36,13 @@ export default class Oscars2022Layout extends React.Component {
           key={i}
           css={css`
             text-align: center;
-            color: pink;
+            color: black;
             display: table;
             min-height: 200px;
-            height: 400px;
+            
             position: relative;
             margin: 20px 10px;
-
+            font-size: 15px;
             &:hover {
               text-decoration: none;
             }
@@ -57,8 +57,7 @@ export default class Oscars2022Layout extends React.Component {
                 : null
             }
             css={css`
-              width: 150px;
-              height: 100%;
+              width: 37%;
               display: table-cell;
               background-image: url(${this.props.posts[i]._embedded[
                 "wp:featuredmedia"
@@ -91,7 +90,7 @@ export default class Oscars2022Layout extends React.Component {
               css={css`
                 font-family: ${globals.menuFont};
                 text-transform: uppercase;
-                font-size: 24px;
+                font-size: 12px;
               `}
               dangerouslySetInnerHTML={{
                 __html: `By ${this.props.posts[i].coauthors[0].display_name}`
@@ -160,7 +159,7 @@ export default class Oscars2022Layout extends React.Component {
             display: block;
           `}
         >
-                    <iframe width="560" height="315" 
+                    <iframe width="100%" height="315" 
             src="https://www.youtube.com/embed/JcPEPvDohto" 
             title="YouTube video player" 
             frameborder="0" 
