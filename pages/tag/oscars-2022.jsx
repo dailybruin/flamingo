@@ -36,10 +36,7 @@ class Oscars2022 extends React.Component {
               __html: this.props.tag[0].name + " - Daily Bruin"
             }}
           />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap"
-            rel="stylesheet"
-          />
+          <link href="https://fonts.googleapis.com/css2?family=Courgette&family=DM+Sans&family=Forum&family=Merienda:wght@700&family=Staatliches&display=swap" rel="stylesheet" />
           <title>Oscars 2022</title>
           <meta
             name="robots"
