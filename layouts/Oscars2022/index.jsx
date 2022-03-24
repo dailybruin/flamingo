@@ -6,13 +6,10 @@ import * as globals from "../../components/globals";
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
 import header from "./Oscar2022VID.gif";
 import description from "./oscarsheader.svg"
-import gradient from "./gradient.svg";
 import MainSiteFooter from "../../components/MainSiteFooter";
 import relatedImg from "./related.gif";
 import filmmakerImg from "./filmmaker.gif";
 import bruinImg from "./bruin.gif";
-import background from "./oscars1.svg";
-import Masthead from "../../components/Masthead";
 
 export default class Oscars2022Layout extends React.Component {
   constructor(props) {
