@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
-import header from "./image.gif";
+import header from "./Oscar2022VID.gif";
 import description from "./oscarsheader.svg"
 import gradient from "./gradient.svg";
 import MainSiteFooter from "../../components/MainSiteFooter";
@@ -36,10 +36,15 @@ export default class Oscars2022Layout extends React.Component {
         {
           renderedPostsFilm.push(
           <img src={filmmakerImg} css={css`
-            width: 100vw;
-            height: 50vh;
+          max-width: 100vw;
+          height: auto;
+          padding-left: 5%;
+          padding-right: 5%;
             background-size: cover;
-            display: block;`}/>
+            object-fit: cover;
+            display: block;
+            padding-bottom: 30px;
+            padding-top: 20px;`}/>
         );
         filmmaker = false;
           }
@@ -49,10 +54,15 @@ export default class Oscars2022Layout extends React.Component {
         if (bruin) {
           renderedPostsBruin.push(
           <img src={bruinImg} css={css`
-            width: 100vw;
-            height: 50vh;
+          max-width: 100vw;
+          height: auto;
+          padding-left: 5%;
+          padding-right: 5%;
             background-size: cover;
-            display: block;`}/>
+            object-fit: cover;
+            display: block;
+            padding-bottom: 30px;
+            padding-top: 20px;`}/>
         );
         bruin = false;}
         currentSet = renderedPostsBruin;
@@ -61,10 +71,15 @@ export default class Oscars2022Layout extends React.Component {
         if(related) {
           renderedPostsRelated.push(
           <img src={relatedImg} css={css`
-            width: 100vw;
-            height: 50vh;
+          width: 100%;
+          height: auto;
+          padding-left: 5%;
+          padding-right: 5%;
             background-size: cover;
-            display: block;`}/>
+            object-fit: cover;
+            display: block;
+            padding-bottom: 30px;
+            padding-top: 20px;`}/>
         );
         related = false;}
         currentSet = renderedPostsRelated;
@@ -79,11 +94,15 @@ export default class Oscars2022Layout extends React.Component {
             min-height: 200px;
             
             position: relative;
-            margin: 20px 10px;
+            margin: 0 auto;
             font-size: 15px;
             &:hover {
               text-decoration: none;
             }
+            width: 80%;
+            align: center;
+
+            padding-bottom: 2%;
           `}
           href={this.props.posts[i].link}
         >
@@ -117,8 +136,9 @@ export default class Oscars2022Layout extends React.Component {
           >
             <div
               css={css`
-                font-family: "Noto Serif", ${globals.headlineFont};
+                font-family: 'Forum', cursive;
                 font-weight: 700;
+                font-size: 18px;
               `}
               dangerouslySetInnerHTML={{
                 __html: this.props.posts[i].title.rendered
@@ -126,9 +146,10 @@ export default class Oscars2022Layout extends React.Component {
             />
             <div
               css={css`
-                font-family: ${globals.menuFont};
+                font-family: 'Forum', cursive;
                 text-transform: uppercase;
                 font-size: 12px;
+                padding-top: 4px;
               `}
               dangerouslySetInnerHTML={{
                 __html: `By ${this.props.posts[i].coauthors[0].display_name}`
@@ -144,7 +165,6 @@ export default class Oscars2022Layout extends React.Component {
           css={css`
             display: flex;
             
-            height: 100vh;
             flex-direction: column;
             justify-content: space-between;
           `}
@@ -153,9 +173,9 @@ export default class Oscars2022Layout extends React.Component {
             css={css`
               width: 100%;
               padding: 15px;
-              max-width: 700px;
+              
               margin: auto;
-              height: 400px;
+              
             `}
             href="/"
           >
@@ -183,7 +203,7 @@ export default class Oscars2022Layout extends React.Component {
             <img src={description}
               css={css`
               width: 100vw;
-              height: 80vh;
+              
                 background-size: cover;
                 display: block;
                 padding-bottom: 10px;
@@ -202,8 +222,9 @@ export default class Oscars2022Layout extends React.Component {
             display: block;
           `}
         >
+          {renderedPostsBruin}
           <div css={css` display: block; align-items: center; align: center;`}>
-            <iframe width="70%" height="300"
+            <iframe width="60%" height="300"
               src="https://www.youtube.com/embed/B70cT-sumVg" 
               css={css`margin: 0 auto; display: block; `}
               title="YouTube video player" 
@@ -212,7 +233,6 @@ export default class Oscars2022Layout extends React.Component {
               allowfullscreen>
             </iframe>
             </div>
-          {renderedPostsBruin}
           {renderedPostsFilm}
           {renderedPostsRelated}
         </div>
