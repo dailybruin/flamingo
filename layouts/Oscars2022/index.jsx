@@ -8,6 +8,9 @@ import header from "./image.gif";
 import description from "./oscarsheader.svg"
 import gradient from "./gradient.svg";
 import MainSiteFooter from "../../components/MainSiteFooter";
+import relatedImg from "./related.gif";
+import filmmakerImg from "./filmmaker.gif";
+import bruinImg from "./bruin.gif";
 import background from "./oscars1.svg";
 import Masthead from "../../components/Masthead";
 
@@ -17,21 +20,56 @@ export default class Oscars2022Layout extends React.Component {
   }
 
   render() {
-    let renderedPosts = [];
+    let renderedPostsFilm = [];
+    let renderedPostsBruin = [];
+    let renderedPostsRelated = [];
+    let related = true;
+    let bruin = true;
+    let filmmaker = true;
     for (let i in this.props.posts) {
-      //console.log(i);
-      if(this.props.posts[i].tags.length > 2) {console.log(this.props.posts[i])};
-      if (this.props.posts[i].tags[0] == 24441 || this.props.posts[i].tags[1] == 24441 || ((this.props.posts[i].tags.length > 2) && this.props.posts[i].tags[3] == 24441)) {
-        renderedPosts.push(
-          <h1>FILMMAKER</h1>
-        )
+      let tags = this.props.posts[i].tags;
+      var currentSet;
+      if(tags.length > 2) {console.log(this.props.posts[i])};
+      //console.log(tags);
+      if (tags[0] == 24441 || tags[1] == 24441 || ((tags.length > 2) && tags[2] == 24441)) {
+        if (filmmaker)
+        {
+          renderedPostsFilm.push(
+          <img src={filmmakerImg} css={css`
+            width: 100vw;
+            height: 50vh;
+            background-size: cover;
+            display: block;`}/>
+        );
+        filmmaker = false;
+          }
+        currentSet = renderedPostsFilm;
       }
-      if (this.props.posts[i].tags[0] == 24494 || this.props.posts[i].tags[1] == 24494) {
-        renderedPosts.push(
-          <h1>POST TYPE 2</h1>
-        )
+      if (tags[0] == 24494 || tags[1] == 24494 || ((tags.length > 2) && tags[2] == 24494)) {
+        if (bruin) {
+          renderedPostsBruin.push(
+          <img src={bruinImg} css={css`
+            width: 100vw;
+            height: 50vh;
+            background-size: cover;
+            display: block;`}/>
+        );
+        bruin = false;}
+        currentSet = renderedPostsBruin;
       }
-      renderedPosts.push(
+      if (tags[0] == 24442 || tags[1] == 24442 || ((tags.length > 2) && tags[2] == 24442)) {
+        if(related) {
+          renderedPostsRelated.push(
+          <img src={relatedImg} css={css`
+            width: 100vw;
+            height: 50vh;
+            background-size: cover;
+            display: block;`}/>
+        );
+        related = false;}
+        currentSet = renderedPostsRelated;
+      }
+      currentSet.push(
         <a
           key={i}
           css={css`
@@ -101,22 +139,23 @@ export default class Oscars2022Layout extends React.Component {
       );
     }
     return (
-      <>
+      <div css={css`background: linear-gradient(#951200, #D4421B, #E38522); background-repeat: no-repeat;`}>
         <div
           css={css`
             display: flex;
-            background-image: url(${gradient});
+            
             height: 100vh;
             flex-direction: column;
             justify-content: space-between;
           `}
         >
-          <a
+          <div
             css={css`
               width: 100%;
-              padding: 10px;
+              padding: 15px;
               max-width: 700px;
               margin: auto;
+              height: 400px;
             `}
             href="/"
           >
@@ -124,18 +163,21 @@ export default class Oscars2022Layout extends React.Component {
               src={header}
               css={css`
                 width: 100%;
+                
               `}
             />
-          </a>
+          </div>
+          </div>
           <div
             css={css `
-            position: relative;
+            display: block;
             align: center;
             align-items: center;
             justify-content: center;
             padding-top: 3%;
             width: 100%;
             margin: 0 auto;
+            
             `}
           >
             <img src={description}
@@ -144,33 +186,38 @@ export default class Oscars2022Layout extends React.Component {
               height: 80vh;
                 background-size: cover;
                 display: block;
+                padding-bottom: 10px;
               `}
             >
               
               
             </img>
           </div>
-        </div>
+        
         <div
           css={css`
             margin: auto;
             width: 100%;
-            background-image: url(${gradient});
+            
             display: block;
           `}
         >
-                    <iframe width="100%" height="315" 
-            src="https://www.youtube.com/embed/JcPEPvDohto" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-
+          <div css={css` display: block; align-items: center; align: center;`}>
+            <iframe width="70%" height="300"
+              src="https://www.youtube.com/embed/B70cT-sumVg" 
+              css={css`margin: 0 auto; display: block; `}
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
             </iframe>
-          {renderedPosts}
+            </div>
+          {renderedPostsBruin}
+          {renderedPostsFilm}
+          {renderedPostsRelated}
         </div>
         <MainSiteFooter></MainSiteFooter>
-      </>
+      </div>
     );
   }
 }
