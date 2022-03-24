@@ -49,11 +49,8 @@ class Oscars2022 extends React.Component {
           <link rel="next" href="/tag/oscars-2022/page/2/" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="object" />
-          <meta property="og:title" content="Columns From Quarantine" />
-          <meta
-            property="og:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
-          />
+          <meta property="og:title" content="Oscars 2022" />
+          
           <meta
             property="og:url"
             content="https://dailybruin.com/tag/oscars-2022/"
@@ -70,11 +67,8 @@ class Oscars2022 extends React.Component {
           <meta property="og:image:width" content="1024" />
           <meta property="og:image:height" content="605" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta
-            name="twitter:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
-          />
-          <meta name="twitter:title" content="Columns From Quarantine" />
+          
+          <meta name="twitter:title" content="Oscars 2022" />
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
