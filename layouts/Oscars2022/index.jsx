@@ -169,7 +169,7 @@ export default class Oscars2022Layout extends React.Component {
           <div
             css={css`
               width: 100%;
-              padding: 15px;
+              padding-bottom: 15px;
               
               margin: auto;
               
