@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
-import header from "./Oscar2022VID.gif";
+import header from "./landing.gif";
 import description from "./oscarsheader.svg"
 import MainSiteFooter from "../../components/MainSiteFooter";
 import relatedImg from "./related.gif";
@@ -35,8 +35,8 @@ export default class Oscars2022Layout extends React.Component {
           <img src={filmmakerImg} css={css`
           max-width: 100vw;
           height: auto;
-          padding-left: 5%;
-          padding-right: 5%;
+          padding-left: 10%;
+          padding-right: 10%;
             background-size: cover;
             object-fit: cover;
             display: block;
@@ -53,8 +53,8 @@ export default class Oscars2022Layout extends React.Component {
           <img src={bruinImg} css={css`
           max-width: 100vw;
           height: auto;
-          padding-left: 5%;
-          padding-right: 5%;
+          padding-left: 10%;
+          padding-right: 10%;
             background-size: cover;
             object-fit: cover;
             display: block;
@@ -70,8 +70,8 @@ export default class Oscars2022Layout extends React.Component {
           <img src={relatedImg} css={css`
           width: 100%;
           height: auto;
-          padding-left: 5%;
-          padding-right: 5%;
+          padding-left: 10%;
+          padding-right: 10%;
             background-size: cover;
             object-fit: cover;
             display: block;
@@ -221,7 +221,7 @@ export default class Oscars2022Layout extends React.Component {
         >
           {renderedPostsBruin}
           <div css={css` display: block; align-items: center; align: center;`}>
-            <iframe width="60%" height="300"
+            <iframe width="80%" height="400"
               src="https://www.youtube.com/embed/B70cT-sumVg" 
               css={css`margin: 0 auto; display: block; `}
               title="YouTube video player" 
