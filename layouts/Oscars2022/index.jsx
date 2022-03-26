@@ -220,16 +220,7 @@ export default class Oscars2022Layout extends React.Component {
           `}
         >
           {renderedPostsBruin}
-          <div css={css` display: block; align-items: center; align: center;`}>
-            <iframe width="80%" height="400"
-              src="https://www.youtube.com/embed/B70cT-sumVg" 
-              css={css`margin: 0 auto; display: block; `}
-              title="YouTube video player" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-            </div>
+          
           {renderedPostsFilm}
           {renderedPostsRelated}
         </div>
