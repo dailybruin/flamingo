@@ -11,13 +11,6 @@ import CommentFAB from "components/CommentFAB";
 import css from "./style.module.css";
 import * as globals from "../components/globals";
 
-const wrapperStyle = {
-  padding: "6px",
-  backgroundColor: globals.darkMode ? "#010101" : "#f1f1f1",
-  width: "100%",
-  height: "100%"
-};
-
 const layoutStyle = {
   maxWidth: 1248,
   margin: "auto"
@@ -30,10 +23,7 @@ const PageWrapper = Comp =>
       this.state = {
         darkmode: false
       }
-  
-    }
-    
-    
+    } 
 
     static async getInitialProps(ctx) {
       // Load the categories for the header
@@ -133,8 +123,8 @@ const PageWrapper = Comp =>
             {renderedBreakingCard}
             {renderedInTheNews}
             <Comp {...this.props} darkmode={this.state.darkmode} />
-            <div style={{ padding: "6px" }}>
-              <MainSiteFooter />
+            <div style={{ padding: "6px" }}>              
+              <MainSiteFooter darkmode={this.state.darkmode}/>
             </div>
           </div>
         </div>

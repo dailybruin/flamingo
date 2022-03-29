@@ -48,7 +48,7 @@ export function buildArticleCard(story, type = "", darkmode) {
   }
 }
 
-export function buildStoryList(type, list, link) {
+export function buildStoryList(type, list, link, darkmode) {
   const mappedList = list.map(index => {
     return {
       title: index.title.rendered,
@@ -61,6 +61,7 @@ export function buildStoryList(type, list, link) {
   mappedList[2].text = "";
   return (
     <StoryList
+      darkmode={darkmode}
       type={type}
       link={link}
       story={mappedList}

@@ -54,6 +54,7 @@ export default class Article extends React.Component {
         >
           
           <AuthorCard
+            darkmode={this.props.darkmode}
             image={
               author.simple_local_avatar != null
                 ? author.simple_local_avatar.full

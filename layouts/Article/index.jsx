@@ -209,9 +209,10 @@ class ArticleLayout extends React.Component {
                   >
                     {/* <h1>Darkmode = {this.props.darkmode ? "True" : "False"}</h1> */}
                     <div className={css.card}>
-                    {React.cloneElement(this.article, {
-                      darkmode: this.props.darkmode
-                    })}</div>
+                      {React.cloneElement(this.article, {
+                        darkmode: this.props.darkmode
+                      })}
+                    </div>
                     <div className={css.card}>
                       <CommentsCard
                         id={this.props.article.id}

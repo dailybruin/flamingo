@@ -31,9 +31,10 @@ export default function MainSiteFooter(props) {
         font-size: 0.85rem;
         flex-direction: row;
         padding: 0.4rem;
-        background-color: white;
+        background-color: ${props.darkmode ? "#222222" : "#ffffff"};
+        color: ${props.darkmode ? "#ffffff" : "#000000"};
         font-family: ${MainSiteStyles.headlineFont};
-        font-weight: ${MainSiteStyles.boldFont};
+        font-weight: ${props.darkmode ? 550 : MainSiteStyles.boldFont};
         box-shadow: ${MainSiteStyles.cardShadow};
         border-top: 5px solid black;
 

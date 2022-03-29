@@ -24,7 +24,7 @@ export default function Story(props) {
   return (
     <div
       css={css`
-        border-bottom: 0.5px solid #000;
+        border-bottom: 0.5px solid ${props.darkmode ? "#fff" : "#000"};;
       `}
     >
       <a href={props.link} style={{ textDecoration: "none" }}>
@@ -37,7 +37,7 @@ export default function Story(props) {
             margin: 3px 0px;
             overflow-wrap: break-word;
             text-align: left;
-            color: #000000;
+            color: ${props.darkmode ? "#fff" : "#000"};
             font-style: ${props.column ? "italic" : "normal"};
 
             &:hover {
@@ -48,7 +48,7 @@ export default function Story(props) {
         ></h3>
         <div
           css={css`
-            color: ${globals.black};
+            color: ${props.darkmode ? "#fff" : "#000"};
             font-family: ${globals.bodyFont};
             font-weight: 300;
             font-size: 0.78rem;

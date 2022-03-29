@@ -19,7 +19,7 @@ export default function TwitterFeed(props) {
         <a
           className="twitter-timeline"
           data-height="500"
-          href="https://twitter.com/dailybruin?ref_src=twsrc%5Etfw"
+          href="https://twitter.com/dailybruin?ref_src=twsrc%5Etfw"          
         >
           Tweets by dailybruin
         </a>

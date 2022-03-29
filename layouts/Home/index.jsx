@@ -40,33 +40,48 @@ export default class HomeLayout extends React.Component {
       qdStoryList: utilities.buildStoryList(
         "THE QUAD",
         this.props.posts.quadList,
-        "/category/quad"
+        "/category/quad",
+        this.props.darkmode
       ),
       nsStoryList: utilities.buildStoryList(
         "NEWS",
         this.props.posts.newsList,
-        "/category/news"
+        "/category/news",
+        this.props.darkmode
       ),
       enStoryList: utilities.buildStoryList(
         "ENTERPRISE",
         this.props.posts.enterpriseList,
-        "/category/enterprise"
+        "/category/enterprise",
+        this.props.darkmode
       ),
       opStoryList: utilities.buildStoryList(
         "OPINION",
         this.props.posts.opinionList,
-        "/category/opinion"
+        "/category/opinion",
+        this.props.darkmode
       ),
       aeStoryList: utilities.buildStoryList(
         "A&E",
         this.props.posts.artsList,
-        "/category/arts-entertainment"
+        "/category/arts-entertainment",
+        this.props.darkmode
       ),
       spStoryList: utilities.buildStoryList(
         "SPORTS",
         this.props.posts.sportsList,
-        "/category/sports"
-      )
+        "/category/sports",
+        this.props.darkmode
+      ),
+      classifieds: (<ClassifiedsCard
+        darkmode={this.props.darkmode}
+        header="Featured Classifieds"
+        classifieds={this.props.classifieds}
+      />),
+      sponsored: (<SponsoredLinks 
+        links={this.props.sponsoredLinks} 
+        darkmode={this.props.darkmode}
+      />)
     };
   }
 
@@ -123,7 +138,9 @@ export default class HomeLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="qd" className={css.card}>
-                      {this.cards.qdStoryList}
+                      {React.cloneElement(this.cards.qdStoryList, {
+                        darkmode: this.props.darkmode
+                      })}
                     </div>
                     <div id="d" className={css.card}>
                       {React.cloneElement(this.cards.dArticleCard, {
@@ -144,10 +161,9 @@ export default class HomeLayout extends React.Component {
                       </div>
                     )}
                     <div id="classifieds" className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
+                      {React.cloneElement(this.cards.classifieds, {
+                        darkmode: this.props.darkmode
+                      })}
                     </div>
                     <div id="f1" className={css.card}>
                       {React.cloneElement(this.cards.f1ArticleCard, {
@@ -166,20 +182,30 @@ export default class HomeLayout extends React.Component {
                     >
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
-                    <div id="ns" className={globals.darkMode ? css.card_dark : css.card}>
-                      {this.cards.nsStoryList}
+                    <div id="ns" className={css.card}>
+                      {React.cloneElement(this.cards.nsStoryList, {
+                        darkmode: this.props.darkmode, displayType: "mini"
+                      })}
                     </div>
-                    <div id="en" className={globals.darkMode ? css.card_dark : css.card}>
-                      {this.cards.enStoryList}
+                    <div id="en" className={css.card}>
+                      {React.cloneElement(this.cards.enStoryList, {
+                        darkmode: this.props.darkmode, displayType: "mini"
+                      })}
                     </div>
-                    <div id="op" className={globals.darkMode ? css.card_dark : css.card}>
-                      {this.cards.opStoryList}
+                    <div id="op" className={css.card}>
+                      {React.cloneElement(this.cards.opStoryList, {
+                        darkmode: this.props.darkmode, displayType: "mini"
+                      })}
                     </div>
-                    <div id="ae" className={globals.darkMode ? css.card_dark : css.card}>
-                      {this.cards.aeStoryList}
+                    <div id="ae" className={css.card}>
+                      {React.cloneElement(this.cards.aeStoryList, {
+                        darkmode: this.props.darkmode, displayType: "mini"
+                      })}
                     </div>
-                    <div id="sp" className={globals.darkMode ? css.card_dark : css.card}>
-                      {this.cards.spStoryList}
+                    <div id="sp" className={css.card}>
+                      {React.cloneElement(this.cards.spStoryList, {
+                        darkmode: this.props.darkmode, displayType: "mini"
+                      })}
                     </div>
                   </div>
                 </div>
@@ -211,13 +237,14 @@ export default class HomeLayout extends React.Component {
                       })}
                     </div>
                     <div id="qd" className={css.card}>
-                      {this.cards.qdStoryList}
+                      {React.cloneElement(this.cards.qdStoryList, {
+                        darkmode: this.props.darkmode
+                      })}
                     </div>
                     <div id="classifieds" className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
+                      {React.cloneElement(this.cards.classifieds, {
+                        darkmode: this.props.darkmode
+                      })}
                     </div>
                     <div id="f1" className={css.card}>
                       {React.cloneElement(this.cards.f1ArticleCard, {
@@ -296,21 +323,31 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="ns" className={css.card}>
-                          {this.cards.nsStoryList}
+                          {React.cloneElement(this.cards.nsStoryList, {
+                            darkmode: this.props.darkmode, displayType: "mini"
+                          })}
                         </div>
                         <div id="en" className={css.card}>
-                          {this.cards.enStoryList}
+                          {React.cloneElement(this.cards.enStoryList, {
+                            darkmode: this.props.darkmode, displayType: "mini"
+                          })}
                         </div>
                         <div id="ae" className={css.card}>
-                          {this.cards.aeStoryList}
+                          {React.cloneElement(this.cards.aeStoryList, {
+                            darkmode: this.props.darkmode, displayType: "mini"
+                          })}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="op" className={css.card}>
-                          {this.cards.opStoryList}
+                          {React.cloneElement(this.cards.opStoryList, {
+                            darkmode: this.props.darkmode, displayType: "mini"
+                          })}
                         </div>
                         <div id="sp" className={css.card}>
-                          {this.cards.spStoryList}
+                        {React.cloneElement(this.cards.spStoryList, {
+                            darkmode: this.props.darkmode, displayType: "mini"
+                          })}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "100%" }}>
@@ -323,7 +360,9 @@ export default class HomeLayout extends React.Component {
                           </a>
                         </div>
                         <div className={css.card}>
-                          <SponsoredLinks links={this.props.sponsoredLinks} />
+                          {React.cloneElement(this.cards.sponsored, {
+                            darkmode: this.props.darkmode
+                          })}
                         </div>
                       </div>
                     </div>
@@ -351,19 +390,22 @@ export default class HomeLayout extends React.Component {
                         })}
                       </div>
                       <div id="classifieds" className={css.card}>
-                        <ClassifiedsCard
-                          header="Featured Classifieds"
-                          classifieds={this.props.classifieds}
-                        />
+                        {React.cloneElement(this.cards.classifieds, {
+                          darkmode: this.props.darkmode
+                        })}
                       </div>
                       <div style={{ textAlign: "center" }} className={css.card}>
                         <broadstreet-zone zone-id="69405"></broadstreet-zone>
                       </div>
                       <div id="ns" className={css.card}>
-                        {this.cards.nsStoryList}
+                      {React.cloneElement(this.cards.nsStoryList, {
+                          darkmode: this.props.darkmode
+                        })}
                       </div>
                       <div id="en" className={css.card}>
-                        {this.cards.enStoryList}
+                      {React.cloneElement(this.cards.enStoryList, {
+                          darkmode: this.props.darkmode
+                        })}
                       </div>
                     </div>
                     <div
@@ -398,12 +440,16 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="op" className={css.card}>
-                          {this.cards.opStoryList}
+                          {React.cloneElement(this.cards.opStoryList, {
+                            darkmode: this.props.darkmode, displayType: "mini"
+                          })}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="ae" className={css.card}>
-                          {this.cards.aeStoryList}
+                          {React.cloneElement(this.cards.aeStoryList, {
+                            darkmode: this.props.darkmode, displayType: "mini"
+                          })}
                         </div>
                       </div>
                     </div>
@@ -425,7 +471,9 @@ export default class HomeLayout extends React.Component {
                         <broadstreet-zone zone-id="69405"></broadstreet-zone>
                       </div>
                       <div id="qd" className={css.card}>
-                        {this.cards.qdStoryList}
+                        {React.cloneElement(this.cards.qdStoryList, {
+                          darkmode: this.props.darkmode
+                        })}
                       </div>
                       <div id="d" className={css.card}>
                         {React.cloneElement(this.cards.dArticleCard, {
@@ -443,7 +491,9 @@ export default class HomeLayout extends React.Component {
                         </div>
                       )}
                       <div id="sp" className={css.card}>
-                        {this.cards.spStoryList}
+                      {React.cloneElement(this.cards.spStoryList, {
+                          darkmode: this.props.darkmode
+                        })}
                       </div>
                       <div className={css.card}>
                         <a href="https://prime.dailybruin.com">
@@ -468,7 +518,9 @@ export default class HomeLayout extends React.Component {
                     </div> */}
                     <div className={css.column} style={{ width: "50%" }}>
                       <div className={css.card}>
-                        <SponsoredLinks links={this.props.sponsoredLinks} />
+                        {React.cloneElement(this.cards.sponsored, {
+                          darkmode: this.props.darkmode
+                        })}
                       </div>
                     </div>
                   </div>

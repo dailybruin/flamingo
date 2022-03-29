@@ -10,7 +10,6 @@ export default function CommentsCard(props) {
     <div
       css={css`
         box-shadow: ${cardShadow};
-        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
       `}
     >
       <div

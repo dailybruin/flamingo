@@ -119,6 +119,7 @@ export default class AuthorCard extends React.Component {
               </a>
               <span
                 css={css`
+                  color:  ${this.props.darkmode? "#fff" : "#000"};
                   @media (max-width: 600px) {
                     display: none;
                   }
@@ -132,7 +133,7 @@ export default class AuthorCard extends React.Component {
                 css={css`
                   font-family: ${globals.bodyFont};
                   font-size: 16px;
-
+                  color:  ${this.props.darkmode? "#fff" : "#000"};
                   @media (max-width: 600px) {
                     display: block;
                   }
