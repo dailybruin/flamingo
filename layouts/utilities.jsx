@@ -5,7 +5,6 @@ import css from "./style.module.css";
 import moment from "moment";
 
 export function buildArticleCard(story, type = "", darkmode) {
-  console.log(darkmode);
   if (story != null && story != undefined && story.data == undefined) {
     return (
       
