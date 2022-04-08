@@ -4,7 +4,7 @@ import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.module.css";
 import moment from "moment";
 
-export function buildArticleCard(story, type = "", darkmode) {
+export function buildArticleCard(story, type = "", darkmode = false) {
   if (story != null && story != undefined && story.data == undefined) {
     return (
       
@@ -89,21 +89,21 @@ export function buildMultimediaScroller(media) {
   return <MultimediaScroller media={mappedMedia} />;
 }
 
-export function buildArticleList(stories) {
+export function buildArticleList(stories, darkmode = false) {
   let postArray = [];
   for (let i = 0; i < stories.length; i++) {
-    postArray.push(buildArticleCard(stories[i]));
+    postArray.push(buildArticleCard(stories[i], "", darkmode));
   }
   return postArray;
 }
 
-export function renderPostArray(otherArticleCards, type) {
+export function renderPostArray(otherArticleCards, type, darkmode = false) {
   let renderedPostArray = [];
   for (let i = 0; i < otherArticleCards.length; i++) {
     renderedPostArray.push(
       <div className={css.card} key={i}>
         {React.cloneElement(otherArticleCards[i], {
-          displayType: type
+          displayType: type, darkmode: darkmode
         })}
       </div>
     );
@@ -111,13 +111,13 @@ export function renderPostArray(otherArticleCards, type) {
   return renderedPostArray;
 }
 
-export function renderVideoArray(otherArticleCards, type) {
+export function renderVideoArray(otherArticleCards, type, darkmode = false) {
   let renderedPostArray = [];
   for (let i = 0; i < otherArticleCards.length; i++) {
     renderedPostArray.push(
       <div className={css["video-card"]}>
         {React.cloneElement(otherArticleCards[i], {
-          displayType: type
+          displayType: type, darkmode: darkmode
         })}
       </div>
     );
@@ -125,13 +125,13 @@ export function renderVideoArray(otherArticleCards, type) {
   return renderedPostArray;
 }
 
-export function renderPodcastArray(otherArticleCards, type) {
+export function renderPodcastArray(otherArticleCards, type, darkmode = false) {
   let renderedPostArray = [];
   for (let i = 0; i < otherArticleCards.length; i++) {
     renderedPostArray.push(
       <div className={css["podcast-card"]}>
         {React.cloneElement(otherArticleCards[i], {
-          displayType: type
+          displayType: type, darkmode: darkmode
         })}
       </div>
     );

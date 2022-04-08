@@ -1,10 +1,11 @@
 import PhotoCard from "../../components/PhotoCard";
 
-export function buildPhotoCard(story) {
+export function buildPhotoCard(story, darkmode) {
   if (story != undefined) {
     return (
       <div className="grid-item">
         <PhotoCard
+          darkmode={darkmode}
           headline={story.title != undefined ? story.title.rendered : ""}
           href={`/post/[slug]`}
           as={story.link}
@@ -24,10 +25,10 @@ export function buildPhotoCard(story) {
   }
 }
 
-export function buildPhotoList(stories) {
+export function buildPhotoList(stories, darkmode) {
   let postArray = [];
   for (let story of stories) {
-    postArray.push(buildPhotoCard(story));
+    postArray.push(buildPhotoCard(story, darkmode));
   }
   return postArray;
 }

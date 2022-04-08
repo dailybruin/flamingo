@@ -38,7 +38,9 @@ export default class PGalleryLayout extends React.Component {
                     defaultMatches={{ desktop: true }}
                 >
                     <div>
-                        {this.pgallery}
+                        {React.cloneElement(this.pgallery, {
+                            darkmode: this.props.darkmode
+                        })}
                         <div className={css.card}>
                             <CommentsCard
                                 id={this.props.post.id}

@@ -1,3 +1,8 @@
+.dark {
+  background-color: #222 !important;
+  color: #fff;
+}
+
 .card {
   display: block;
   padding: 6px;

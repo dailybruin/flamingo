@@ -11,7 +11,7 @@ import Tag from "./Tag";
 import Landing from "./Landing";
 
 import MiniArticleCard from "../ArticleCard/Mini";
-
+// TODO
 export default class FeatureArticle extends React.Component {
   constructor(props) {
     super(props);

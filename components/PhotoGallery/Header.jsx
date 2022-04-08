@@ -34,8 +34,8 @@ export default function Header(props) {
     <div
       css={css`
         width: 100%;
-        background-color: ${this.props.darkmode? "#222" : "#fff"};
-        color:  ${this.props.darkmode? "#fff" : "#000"};
+        background-color: ${props.darkmode? "#222" : "#fff"};
+        color:  ${props.darkmode? "#fff" : "#000"};
         padding: ${globals.cardPadding};
         display: table;
 
@@ -69,6 +69,7 @@ export default function Header(props) {
               display: inline-block;
               height: 100%;
               max-height: 64px;
+              ${ props.darkmode ? "filter: invert(100%);" : ""};
             `}
           ></img>
         </a>
@@ -106,12 +107,12 @@ export default function Header(props) {
               line-height: 21px;
               padding: 5px 0 0;
 
-              color: #000000;
+              color: ${props.darkmode? "#fff" : "#000"};
 
               a {
                 text-decoration: none;
                 color: #0080c6;
-                background-color: ${this.props.darkmode? "#222" : "#fff"};
+                background-color: ${props.darkmode? "#222" : "#fff"};
               }
               a:hover {
                 text-decoration: underline;

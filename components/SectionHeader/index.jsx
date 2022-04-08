@@ -23,6 +23,7 @@ export default class SectionHeader extends React.Component {
               max-height: 64px;
               margin: 0px;
               padding: 0px;
+              ${this. props.darkmode ? "filter: invert(100%);" : ""};
             `}
           ></img>
         );
@@ -47,7 +48,7 @@ export default class SectionHeader extends React.Component {
               font-weight: bold;
               font-size: 12px;
               padding: 1px 5px;
-              color: black;
+              color: ${this.props.darkmode ? "#fff" : "#000"};
               text-decoration: none;
               &:hover {
                 text-decoration: underline;
@@ -62,7 +63,7 @@ export default class SectionHeader extends React.Component {
       <div
         css={css`
           box-shadow: ${globals.cardShadow};
-          background-color: white;
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
           display: block;
           padding: 0 10px 10px;
         `}
@@ -71,7 +72,7 @@ export default class SectionHeader extends React.Component {
           css={css`
             text-align: center;
             list-style: none;
-            color: black;
+            color: ${this.props.darkmode ? "#fff" : "#000"};
             font-family: ${globals.menuFont};
             font-weight: bold;
             font-size: 40px;
@@ -84,7 +85,7 @@ export default class SectionHeader extends React.Component {
         <div
           css={css`
             width: 100%;
-            background-color: black;
+            background-color: ${this.props.darkmode ? "#fff" : "#000"};
             height: 1px;
             margin-bottom: 5px;
           `}

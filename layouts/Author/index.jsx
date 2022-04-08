@@ -110,7 +110,7 @@ export default class Author extends React.Component {
                   >
                     {utilities.renderPostArray(
                       this.state.otherArticleCards,
-                      "full"
+                      "full",
                     )}
                   </InfiniteScroll>
                   {!this.state.more ? (

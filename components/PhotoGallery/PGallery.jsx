@@ -238,6 +238,7 @@ function PGallery(props) {
           `}
             >
                 <AuthorCard
+                darkmode={props.darkmode}
                     image={
                         author.simple_local_avatar != null
                             ? author.simple_local_avatar.full
@@ -261,6 +262,7 @@ function PGallery(props) {
     return (
         <React.Fragment>
             <Header
+                darkmode={props.darkmode}
                 headline={props.headline}
                 photographers={props.authors}
                 date={props.date}
@@ -268,15 +270,11 @@ function PGallery(props) {
 
             
 
-
-            <div className={css_selector[photosContainerType]} 
-                css={css`
-                background-color: ${this.props.darkmode ? "#000" : "#222"};
-            `}>
-                <h1>{this.props.darkmode ? "PGallery True" : "PGallery False"}</h1>
+            <div className={`${css_selector[photosContainerType]} ${props.darkmode ? css_selector['dark'] : ""}`}>
                 {
                     entries.map((entry, index) => (
                         <ContainerItem
+                            darkmode={props.darkmode}
                             layout_type={layout}
                             type={entry.type}
                             description={entry.description}

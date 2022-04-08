@@ -14,10 +14,11 @@ export default function Video(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: ${globals.darkMode ? "#222222" : "#ffffff"};
+        background-color: ${props.darkmode ? "#222222" : "#ffffff"};
         height: 100%;
       `}
     >
+     
       <a href={props.as} style={{ textDecoration: "none" }}>
         <div
           css={css`
@@ -40,6 +41,7 @@ export default function Video(props) {
           />
         </div>
       </a>
+    
       <h4
         css={css`
           margin: 2px 0;
@@ -50,7 +52,7 @@ export default function Video(props) {
           font-size: 8px;
           text-align: right;
 
-          color: #000000;
+          color: ${props.darkmode ? "#ffffff" : "#000000"};
         `}
       >
         {props.photographer}
@@ -121,7 +123,7 @@ export default function Video(props) {
           font-weight: 700;
           font-size: 11px;
 
-          color: #000000;
+          color: ${props.darkmode ? "#ffffff" : "#000000"};;
         `}
       >
         By {utilities.renderAuthors(props.authors)}

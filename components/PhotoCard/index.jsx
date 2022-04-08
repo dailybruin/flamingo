@@ -35,7 +35,7 @@ export default function PhotoCard(props) {
               css={css`
                 display: block;
                 width: 100%;
-                border: 15px solid #ffffff;
+                border: 15px solid ${props.darkmode ? "#444" : "#fff"};
               `}
             ></img>
             <div
@@ -54,7 +54,7 @@ export default function PhotoCard(props) {
                 opacity: 0;
                 height: 100%;
                 width: 100%;
-                border: 15px solid #ffffff;
+                border: 15px solid ${props.darkmode ? "#444" : "#fff"};
                 transition: 0.5s ease;
               `}
             >
@@ -85,7 +85,7 @@ export default function PhotoCard(props) {
                   dangerouslySetInnerHTML={{ __html: props.excerpt }}
                   css={css`
                     color: rgb(187, 187, 187);
-                    font-size: 0.8vw;
+                    font-size: 0.9vw;
                     line-height: 15px;
                     font-family: ${globals.bodyFont};
                     @media (max-width: 768px) {
@@ -97,7 +97,7 @@ export default function PhotoCard(props) {
                   id="credit-block"
                   css={css`
                     color: rgb(187, 187, 187);
-                    font-size: 0.7vw;
+                    font-size: 0.9vw;
                     font-family: ${globals.bodyFont};
                     font-weight: bold;
                     color: #fff;
@@ -136,7 +136,7 @@ export default function PhotoCard(props) {
             css={css`
               box-sizing: border-box;
               position: relative;
-              background: #fff;
+              background-color: ${props.darkmode ? "#222" : "#fff"};
               width: 100%;
               box-shadow: ${globals.cardShadow};
             `}
@@ -153,7 +153,7 @@ export default function PhotoCard(props) {
             <div
               id="text"
               css={css`
-                color: #000;
+                color: ${props.darkmode ? "#fff" : "#000"};
                 padding: 18px;
               `}
             >

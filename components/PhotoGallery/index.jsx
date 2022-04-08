@@ -34,8 +34,6 @@ export default class PhotoGallery extends React.Component {
         <div
           css={css`
             padding: 20px 0;
-            background-color: ${this.props.darkmode? "#222" : "#fff"};
-            color:  ${this.props.darkmode? "#fff" : "#000"};
           `}
         >
           <AuthorCard
@@ -61,7 +59,7 @@ export default class PhotoGallery extends React.Component {
         css={css`
           width: 100%;
           box-shadow: ${globals.cardShadow};
-          background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
           color:  ${this.props.darkmode? "#fff" : "#000"};
         `}
       >

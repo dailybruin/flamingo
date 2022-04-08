@@ -14,7 +14,7 @@ export default function Podcast(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: ${props.darkMode ? "#222222" : "#ffffff"};
+        background-color: ${props.darkmode ? "#222222" : "#ffffff"};
         height: 100%;
       `}
     >
