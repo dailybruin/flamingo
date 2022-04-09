@@ -70,7 +70,7 @@ export default function PhotoCard(props) {
                 <h3
                   dangerouslySetInnerHTML={{ __html: props.headline }}
                   css={css`
-                    color: #ffffff;
+                    color: #fff;
                     font-size: 1.5vw;
                     line-height: 1.4;
                     margin-bottom: 0.625rem;
@@ -153,7 +153,7 @@ export default function PhotoCard(props) {
             <div
               id="text"
               css={css`
-                color: ${props.darkmode ? "#fff" : "#000"};
+                color: ${props.darkmode ? "#ddd" : "#000"};
                 padding: 18px;
               `}
             >

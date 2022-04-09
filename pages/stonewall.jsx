@@ -66,7 +66,7 @@ class Stonewall extends Component {
             display: block;
             padding: 10px 30px;
             box-shadow: ${globals.cardShadow};
-            background-color: #ffffff;
+            background-color: #fff;
             margin: 6px;
 
             .accordion {
@@ -76,7 +76,7 @@ class Stonewall extends Component {
 
             .accordion .accordion-navigation > a {
               background: none;
-              color: #222222 !important;
+              color: #222 !important;
               display: block;
               font-family: ${globals.bodyFont};
               font-size: 1.5rem;

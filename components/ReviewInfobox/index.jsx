@@ -32,7 +32,7 @@ export default class ReviewInfobox extends React.Component {
         css={css`
           padding: 10px;
           width: 100%;
-          background: #ffffff;
+          background: #fff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           display: inline-block;
           min-width: 250px;
@@ -44,7 +44,7 @@ export default class ReviewInfobox extends React.Component {
             right: 0;
 
             margin: 0;
-            color: #000000;
+            color: #000;
             font-family: ${globals.menuFont} !important;
 
             & p,
@@ -59,8 +59,8 @@ export default class ReviewInfobox extends React.Component {
               margin: -10px -10px 0;
               line-height: 36px;
               min-height: 36px;
-              background-color: #000000;
-              color: #ffffff;
+              background-color: #000;
+              color: #fff;
 
               font-style: normal;
               font-weight: bold;

@@ -37,7 +37,7 @@ export default function Story(props) {
             margin: 3px 0px;
             overflow-wrap: break-word;
             text-align: left;
-            color: ${props.darkmode ? "#fff" : "#000"};
+            color: ${props.darkmode ? "#ddd" : "#000"};
             font-style: ${props.column ? "italic" : "normal"};
 
             &:hover {
@@ -48,7 +48,7 @@ export default function Story(props) {
         ></h3>
         <div
           css={css`
-            color: ${props.darkmode ? "#fff" : "#000"};
+            color: ${props.darkmode ? "#ddd" : "#000"};
             font-family: ${globals.bodyFont};
             font-weight: 300;
             font-size: 0.78rem;

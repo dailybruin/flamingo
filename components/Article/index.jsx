@@ -92,7 +92,7 @@ export default class Article extends React.Component {
           display: block;
           padding: 10px;
           box-shadow: ${globals.cardShadow};
-          background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
         `}
       >
         {/* <h1>Darkmode = {this.props.darkmode ? "True" : "False"}</h1> */}
@@ -128,7 +128,7 @@ export default class Article extends React.Component {
             font-weight: ${this.props.darkmode ? 550 : "bold"};
             font-size: 30px;
             line-height: 1.25;
-            color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+            color: ${this.props.darkmode ? "#ddd" : "#000"};
           `}
           style={{
             fontStyle:
@@ -198,12 +198,12 @@ export default class Article extends React.Component {
                   line-height: 21px;
                   padding: 5px 0 0;
 
-                  color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+                  color: ${this.props.darkmode ? "#ddd" : "#000"};
 
                   a {
                     text-decoration: none;
                     color: #0080c6;
-                    background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
+                    background-color: ${this.props.darkmode ? "#222" : "#fff"};
                   }
                   a:hover {
                     text-decoration: underline;
@@ -232,7 +232,7 @@ export default class Article extends React.Component {
               css={css`
                 font-size: 12px;
                 font-family: ${globals.bodyFont};
-                color: ${this.props.darkmode ? "#ffffff" : globals.darkGray};
+                color: ${this.props.darkmode ? "#fff" : globals.darkGray};
                 max-width: 640px;
                 margin: 20px auto 0;
               `}
@@ -248,7 +248,7 @@ export default class Article extends React.Component {
               text-align: left;
               line-height: 1.75;
 
-              color: ${this.props.darkmode  ? "#ffffff" : "#000000"};
+              color: ${this.props.darkmode  ? "#fff" : "#000"};
               display: block;
               max-width: 640px;
               margin: auto;
@@ -299,6 +299,7 @@ export default class Article extends React.Component {
               }
 
               & iframe {
+                ${this.props.darkmode ? "filter: invert(1);" : ""}
                 width: 100%;
               }
 

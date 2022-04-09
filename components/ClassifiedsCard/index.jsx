@@ -36,7 +36,7 @@ function Classified(props) {
           font-family: ${globals.bodyFont};
           font-weight: 300;
           font-size: 11px;
-          color: ${props.darkmode ? "#fff" : "#000"};
+          color: ${props.darkmode ? "#ddd" : "#000"};
           text-decoration: none;
           background-color: ${props.darkmode ? "#222" : "#fff"};
 
@@ -101,8 +101,8 @@ export default class ClassifiedsCard extends React.Component {
             line-height: 24px;
             text-transform: uppercase;
 
-            /* color: ${this.props.darkmode ? "#000" : "#fff"}; */
-            color: #fff;
+            color: ${this.props.darkmode ? "#ddd" : "#fff"};
+            /* color: #fff; */
           `}
         >
           {this.props.header}
@@ -111,7 +111,7 @@ export default class ClassifiedsCard extends React.Component {
           css={css`
             padding: 0 12px;
             background-color: ${this.props.darkmode ? "#222" : "#fff"};
-            color: ${this.props.darkmode ? "#fff" : "#000"};
+            color: ${this.props.darkmode ? "#ddd" : "#000"};
           `}
         >
           {this.renderedClassifieds}

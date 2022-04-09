@@ -14,7 +14,7 @@ export default function Horz(props) {
         display: flex;
         box-shadow: ${globals.cardShadow};
         padding: 0px;
-        background-color: ${props.darkmode ? "#222222" : "#ffffff"};
+        background-color: ${props.darkmode ? "#222" : "#fff"};
       `}
     >
       <div
@@ -58,7 +58,7 @@ export default function Horz(props) {
             font-size: 8px;
             text-align: right;
 
-            color: ${props.darkmode ? "#ffffff" : "#000000"};
+            color: ${props.darkmode ? "#ddd" : "#000"};
           `}
         >
           {props.photographer}
@@ -99,7 +99,7 @@ export default function Horz(props) {
           </a>
           <span
             css={css`
-              border-left: 1px solid #000;
+              border-left: 1px solid ${props.darkmode ? "#ddd" : "#000"};
               margin: 0;
               padding-left: 4px;
               font-family: ${globals.bodyFont};
@@ -107,7 +107,7 @@ export default function Horz(props) {
               font-weight: 300;
               font-size: 11px;
               line-height: 14px;
-              color: ${props.darkmode ? "#ffffff" : "#000000"};
+              color: ${props.darkmode ? "#ddd" : "#000"};
 
             `}
           >
@@ -143,7 +143,7 @@ export default function Horz(props) {
             font-weight: bold;
             font-size: 11px;
 
-            color: ${props.darkmode ? "#ffffff" : "#000000"};
+            color: ${props.darkmode ? "#ddd" : "#000"};
 
           `}
         >

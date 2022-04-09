@@ -56,7 +56,7 @@ export default class Mobile extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+              color: ${this.props.darkmode ? "#ddd" : "#000"};
               &:hover {
                 text-decoration: underline;
               }
@@ -70,8 +70,8 @@ export default class Mobile extends React.Component {
     return (
       <div
         css={css`
-          background: ${this.props.darkmode ? "#222222" : "#ffffff"};
-          color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+          background: ${this.props.darkmode ? "#222" : "#fff"};
+          color: ${this.props.darkmode ? "#ddd" : "#000"};
           box-shadow: ${globals.cardShadow};
           transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
           position: sticky;

@@ -29,8 +29,8 @@ export default class FeatureArticle extends React.Component {
             display: inline-block;
             padding: 6px 12px;
             white-space: initial;
-            background-color: ${this.props.darkmode? "#222" : "#fff"};
-            color:  ${this.props.darkmode? "#fff" : "#000"};
+            /* background-color: ${this.props.darkmode? "#222" : "#fff"};
+            color:  ${this.props.darkmode? "#fff" : "#000"}; */
 
             &:first-of-type {
               margin-left: 20px;
@@ -41,6 +41,7 @@ export default class FeatureArticle extends React.Component {
           `}
         >
           <MiniArticleCard
+          darkmode={this.props.darkmode}
             headline={story.title.rendered}
             category={{
               name: story._embedded["wp:term"][0][0].name,
@@ -87,6 +88,7 @@ export default class FeatureArticle extends React.Component {
           `}
         >
           <MiniArticleCard
+            darkmode={this.props.darkmode}
             headline={story.title.rendered}
             category={{
               name: story._embedded["wp:term"][0][0].name,
@@ -112,11 +114,10 @@ export default class FeatureArticle extends React.Component {
         <div
           css={css`
             margin: 20px 0;
-            background-color: ${this.props.darkmode? "#222" : "#fff"};
-            color:  ${this.props.darkmode? "#fff" : "#000"};
           `}
         >
           <AuthorCard
+            darkmode={this.props.darkmode}
             image={author.avatar_urls[512]}
             name={author.name}
             description={author.description}
@@ -171,7 +172,6 @@ export default class FeatureArticle extends React.Component {
           color:  ${this.props.darkmode? "#fff" : "#000"};
         `}
       >
-        {/* <h1>HELLO WORLD</h1> */}
         <Tag></Tag>
         <Landing
           headline={this.props.headline}
@@ -254,12 +254,12 @@ export default class FeatureArticle extends React.Component {
                     line-height: 21px;
                     padding: 5px 0 0;
 
-                    color: #000000;
+                    color: ${this.props.darkmode ? "#ddd" : "#000"};
 
                     a {
                       text-decoration: none;
                       color: #0080c6;
-                      background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
+                      background-color: ${this.props.darkmode ? "#222" : "#fff"};
                     }
                     a:hover {
                       text-decoration: underline;
@@ -292,8 +292,8 @@ export default class FeatureArticle extends React.Component {
                 text-align: left;
                 line-height: 1.75;
 
-                background: ${this.props.darkmode ? "#222222" : "#ffffff"};
-                color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+                background: ${this.props.darkmode ? "#222" : "#fff"};
+                color: ${this.props.darkmode ? "#ddd" : "#000"};
                 display: block;
                 max-width: 640px;
                 margin: auto;
@@ -309,8 +309,8 @@ export default class FeatureArticle extends React.Component {
                   min-width: 150px;
                   font-family: "Playfair Display", serif;
                   font-size: 1.1rem;
-                  background: ${this.props.darkmode ? "#222222" : "#ffffff"};
-                  color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+                  background: ${this.props.darkmode ? "#222" : "#fff"};
+                  color: ${this.props.darkmode ? "#ddd" : "#000"};
                 }
                 @media (max-width: 40em) {
                   aside {
@@ -356,6 +356,7 @@ export default class FeatureArticle extends React.Component {
                 }
 
                 iframe {
+                  ${this.props.darkmode ? "filter: invert(1);" : ""}
                   width: 100%;
                 }
 

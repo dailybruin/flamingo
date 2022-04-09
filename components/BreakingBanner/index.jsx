@@ -11,7 +11,7 @@ export default class BreakingBanner extends React.Component {
     return (
       <div
         css={css`
-          background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
           padding: ${globals.cardPadding};
           box-shadow: ${globals.cardShadow};
           display: table;
@@ -62,7 +62,7 @@ export default class BreakingBanner extends React.Component {
               font-size: 16px;
               font-family: ${globals.bodyFont};
               font-weight: 700;
-              color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+              color: ${this.props.darkmode ? "#ddd" : "#000"};
               text-decoration: none;
               &:hover {
                 color: ${globals.DBblue};

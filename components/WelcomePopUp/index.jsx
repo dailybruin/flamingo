@@ -42,7 +42,7 @@ export default class WelcomePopUp extends React.Component {
             top: 29%;
             left: 0;
             right: 0;
-            background-color: #ffffff;
+            background-color: #fff;
             box-shadow: ${globals.cardShadow};
             z-index: 3001;
           `}

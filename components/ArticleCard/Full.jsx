@@ -14,7 +14,7 @@ export default function Full(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: ${props.darkmode ? "#222222" : "#ffffff"};
+        background-color: ${props.darkmode ? "#222" : "#fff"};
       `}
     >
       <span>
@@ -45,7 +45,7 @@ export default function Full(props) {
         </a>
         <span          
           css={css`
-            border-left: 1px solid #000;
+            border-left: 1px solid ${props.darkmode ? "#ddd" : "#000"};
             margin: 0;
             padding-left: 4px;
             font-family: ${globals.bodyFont};
@@ -53,7 +53,7 @@ export default function Full(props) {
             font-weight: 300;
             font-size: 11px;
             line-height: 14px;
-            color: ${props.darkmode ? "#ffffff" : "#000000"};
+            color: ${props.darkmode ? "#ddd" : "#000"};
 
           `}
         >
@@ -91,7 +91,7 @@ export default function Full(props) {
               margin: 4px 0;
             }
 
-            color: ${props.darkmode ? "#ffffff" : "#000000"};
+            color: ${props.darkmode ? "#ddd" : "#000"};
 
           `}
           dangerouslySetInnerHTML={{ __html: props.caption }}
@@ -113,7 +113,7 @@ export default function Full(props) {
           font-weight: bold;
           font-size: 11px;
 
-          color: ${props.darkmode ? "#ffffff" : "#000000"};
+          color: ${props.darkmode ? "#ddd" : "#000"};
 
         `}
       >

@@ -17,7 +17,7 @@ export default class Page extends React.Component {
           display: block;
           padding: 10px 30px;
           box-shadow: ${globals.cardShadow};
-          background-color: #ffffff;
+          background-color: #fff;
           font-family: ${globals.bodyFont};
         `}
       >
@@ -28,7 +28,7 @@ export default class Page extends React.Component {
             font-weight: normal;
             font-size: 14px;
 
-            color: #000000;
+            color: #000;
             margin: auto;
             display: block;
 

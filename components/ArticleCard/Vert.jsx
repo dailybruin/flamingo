@@ -14,7 +14,7 @@ export default function Vert(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: ${props.darkmode ? "#222222" : "#ffffff"};
+        background-color: ${props.darkmode ? "#222" : "#fff"};
       `}
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
@@ -36,7 +36,7 @@ export default function Vert(props) {
           font-size: 8px;
           text-align: right;
 
-          color: ${props.darkmode ? "#ffffff" : "#000000"};
+          color: ${props.darkmode ? "#ddd" : "#000"};
         `}
       >
         {props.photographer}
@@ -69,7 +69,7 @@ export default function Vert(props) {
         </a>
         <span
           css={css`
-            border-left: 1px solid #000;
+            border-left: 1px solid ${props.darkmode ? "#ddd" : "#000"};
             margin: 0;
             padding-left: 4px;
             font-family: ${globals.bodyFont};
@@ -77,7 +77,7 @@ export default function Vert(props) {
             font-weight: 300;
             font-size: 11px;
             line-height: 14px;
-            color: ${props.darkmode ? "#ffffff" : "#000000"};
+            color: ${props.darkmode ? "#ddd" : "#000"};
 
           `}
         >
@@ -113,7 +113,7 @@ export default function Vert(props) {
           font-weight: 700;
           font-size: 11px;
 
-          color: ${props.darkmode ? "#ffffff" : "#000000"};
+          color: ${props.darkmode ? "#ddd" : "#000"};
 
         `}
       >

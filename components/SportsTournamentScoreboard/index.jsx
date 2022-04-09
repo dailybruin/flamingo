@@ -20,7 +20,7 @@ export default class SportsTournamentScoreboard extends React.Component {
       <div
         css={css`
           padding: 0;
-          background: #ffffff;
+          background: #fff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           display: inline-block;
         `}
@@ -34,9 +34,9 @@ export default class SportsTournamentScoreboard extends React.Component {
             padding: 4px 8px;
 
             min-height: 36px;
-            background-color: #000000;
+            background-color: #000;
 
-            color: #ffffff;
+            color: #fff;
 
             font-family: Source Sans Pro;
             font-style: normal;

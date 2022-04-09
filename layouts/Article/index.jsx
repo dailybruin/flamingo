@@ -91,7 +91,7 @@ class ArticleLayout extends React.Component {
                       <div className={css.card}>
                         <div
                           style={{
-                            backgroundColor: "#000000",
+                            backgroundColor: "#000",
                             height: "27px",
                             padding: "2px 10px 0",
                             boxShadow: globals.cardShadow,
@@ -101,7 +101,7 @@ class ArticleLayout extends React.Component {
                             fontSize: "18px",
                             lineHeight: "24px",
                             textTransform: "uppercase",
-                            color: "#ffffff"
+                            color: "#fff"
                           }}
                         >
                           Related Posts
@@ -155,7 +155,7 @@ class ArticleLayout extends React.Component {
                       <div className={css.card}>
                         <div
                           style={{
-                            backgroundColor: "#000000",
+                            backgroundColor: "#000",
                             height: "27px",
                             padding: "2px 10px 0",
                             boxShadow: globals.cardShadow,
@@ -165,7 +165,7 @@ class ArticleLayout extends React.Component {
                             fontSize: "18px",
                             lineHeight: "24px",
                             textTransform: "uppercase",
-                            color: "#ffffff"
+                            color: "#fff"
                           }}
                         >
                           Related Posts
@@ -239,7 +239,7 @@ class ArticleLayout extends React.Component {
                       <div className={css.card}>
                         <div
                           style={{
-                            backgroundColor: "#000000",
+                            backgroundColor: "#000",
                             height: "27px",
                             padding: "2px 10px 0",
                             boxShadow: globals.cardShadow,
@@ -249,7 +249,7 @@ class ArticleLayout extends React.Component {
                             fontSize: "18px",
                             lineHeight: "24px",
                             textTransform: "uppercase",
-                            color: "#ffffff"
+                            color: "#fff"
                           }}
                         >
                           Related Posts

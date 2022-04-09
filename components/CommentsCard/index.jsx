@@ -14,7 +14,7 @@ export default function CommentsCard(props) {
     >
       <div
         css={css`
-          background-color: #000000;
+          background-color: #000;
           height: 27px;
           padding: 2px 10px 0;
 
@@ -25,7 +25,7 @@ export default function CommentsCard(props) {
           line-height: 24px;
           text-transform: uppercase;
 
-          color: #ffffff;
+          color: #fff;
         `}
       >
         COMMENTS

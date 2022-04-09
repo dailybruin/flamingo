@@ -22,7 +22,7 @@ class StoryList extends React.Component {
       <div
         css={css`
           background-color: ${this.props.darkmode ? "#222" : "#fff"};
-          color: ${this.props.darkmode ? "#fff" : "#000"};
+          color: ${this.props.darkmode ? "#ddd" : "#000"};
 
           box-shadow: ${globals.cardShadow};
           justify-content: center;

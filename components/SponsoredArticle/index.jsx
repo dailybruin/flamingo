@@ -10,7 +10,7 @@ import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
 import Logo from "./dailybruin.svg";
-
+// TODO
 export default class FeatureArticle extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +26,7 @@ export default class FeatureArticle extends React.Component {
           `}
         >
           <AuthorCard
+            darkmode={this.props.darkmode}
             image={author.avatar_urls[512]}
             name={author.name}
             description={author.description}
@@ -61,7 +62,7 @@ export default class FeatureArticle extends React.Component {
       <div
         css={css`
           display: block;
-          background-color: #ffffff;
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         `}
       >
@@ -169,12 +170,12 @@ export default class FeatureArticle extends React.Component {
                     line-height: 21px;
                     padding: 5px 0 0;
 
-                    color: #000000;
+                    color: #000;
 
                     a {
                       text-decoration: none;
                       color: #0080c6;
-                      background-color: #ffffff;
+                      background-color: ${this.props.darkmode ? "#222" : "#fff"};
                     }
                     a:hover {
                       text-decoration: underline;
@@ -206,7 +207,7 @@ export default class FeatureArticle extends React.Component {
                 text-align: left;
                 line-height: 1.75;
 
-                color: #000000;
+                color: #000;
                 display: block;
                 max-width: 640px;
                 margin: auto;
@@ -268,6 +269,7 @@ export default class FeatureArticle extends React.Component {
                 }
 
                 iframe {
+                  ${this.props.darkmode ? "filter: invert(1);" : ""}
                   width: 100%;
                 }
 

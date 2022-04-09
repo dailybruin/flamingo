@@ -45,7 +45,7 @@ export default class EmailPopUp extends React.Component {
             top: 29%;
             left: 0;
             right: 0;
-            background-color: #ffffff;
+            background-color: #fff;
             box-shadow: ${globals.cardShadow};
             z-index: 3001;
           `}
@@ -162,7 +162,7 @@ export default class EmailPopUp extends React.Component {
                   top: 40px;
                   left: 20px;
                   padding-left: 5px;
-                  border: 2px solid #cccccc;
+                  border: 2px solid #ccc;
                   font-family: "PT Serif";
                   font-size: 15px;
                   font-weight: bold;
@@ -189,7 +189,7 @@ export default class EmailPopUp extends React.Component {
                   font-family: "PT Serif";
                   font-weight: bolder;
                   font-size: 16px;
-                  color: #ffffff;
+                  color: #fff;
                   z-index: 3001;
                   cursor: pointer;
                   border-radius: 0;

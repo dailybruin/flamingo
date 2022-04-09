@@ -4,6 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 import style from "../style.module.css";
 
+// TODO
 export default class ColumnsFromQuarantineLayout extends React.Component {
   constructor(props) {
     super(props);

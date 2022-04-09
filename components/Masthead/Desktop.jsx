@@ -98,7 +98,7 @@ export default class Desktop extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+              color: ${this.props.darkmode ? "#ddd" : "#000"};
               white-space: nowrap;
               &:hover {
                 text-decoration: underline;
@@ -118,8 +118,8 @@ export default class Desktop extends React.Component {
       <div
         ref={this.MastheadCard}
         css={css`
-          background: ${this.props.darkmode ? "#222222" : "#ffffff"};
-          color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+          background: ${this.props.darkmode ? "#222" : "#fff"};
+          color: ${this.props.darkmode ? "#ddd" : "#000"};
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
           height: ${expandedHeight};
@@ -245,7 +245,7 @@ export default class Desktop extends React.Component {
                     text-transform: uppercase;
                     line-height: 34px;
                     font-size: 14px;
-                    color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+                    color: ${this.props.darkmode ? "#ddd" : "#000"};
                     display: inline-block;
                     vertical-align: middle;
                     height: 36px;
@@ -281,8 +281,8 @@ export default class Desktop extends React.Component {
                     .switch {
                       position: relative;
                       display: inline-block;
-                      width: 30px;
-                      height: 17px;
+                      width: 18px;
+                      height: 20px;
                     }
                     .switch input {
                       opacity: 0;
@@ -294,39 +294,42 @@ export default class Desktop extends React.Component {
                     .slider {
                       position: absolute;
                       cursor: pointer;
-                      top: 0;
+                      top: 3px;
                       left: 0;
                       right: 0;
                       bottom: 0;
-                      background-color: #ccc;
+                      background-color: rgba(255,255,255,0);
                       -webkit-transition: .4s;
                       transition: .4s;
                     }
 
                     .slider:before {
                       position: absolute;
-                      content: "";
+                      content: "🌒︎";
+                      font-size: 18px;
+                      /* font-weight: bold; */
+                      color: black;
                       height: 13px;
                       width: 13px;
-                      left: 2px;
+                      left: 0px;
                       bottom: 2px;
-                      background-color: white;
+                      text-align: center;
+                      line-height: 13px;
+                      background-color: rgba(255,255,255,0);
                       -webkit-transition: .4s;
                       transition: .4s;
                     }
 
-                    input:checked + .slider {
-                      background-color: #2196F3;
-                    }
+                    /* input:checked + .slider { } */
 
-                    input:focus + .slider {
-                      box-shadow: 0 0 1px #2196F3;
-                    }
+                    /* input:focus + .slider { } */
 
                     input:checked + .slider:before {
-                      -webkit-transform: translateX(13px);
-                      -ms-transform: translateX(13px);
-                      transform: translateX(13px);
+                      /* -webkit-transform: translateX(7px);
+                      -ms-transform: translateX(7px);
+                      transform: translateX(7px); */
+                      /* content: "🌖︎"; */
+                      color: white;
                     }
 
                     /* Rounded sliders */
@@ -335,6 +338,7 @@ export default class Desktop extends React.Component {
                     }
 
                     .slider.round:before {
+                      /* content: '☽︎'; */
                       border-radius: 50%;
                     }
 
@@ -544,8 +548,8 @@ export default class Desktop extends React.Component {
         </div>
         <div
           css={css`
-            background: ${this.props.darkmode ? "#222222" : "#ffffff"};
-            color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+            background: ${this.props.darkmode ? "#222" : "#fff"};
+            color: ${this.props.darkmode ? "#ddd" : "#000"};
             overflow-x: scroll;
             &::-webkit-scrollbar {
               display: none;

@@ -14,7 +14,7 @@ export default function VideoCard(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: #ffffff;
+        background-color: #fff;
       `}
     >
       <span>
@@ -70,6 +70,7 @@ export default function VideoCard(props) {
         <div
           css={css`
             div div iframe {
+              ${props.darkmode ? "filter: invert(1);" : ""}              
               width: 100%;
               //padding-top: 100%;
               //height: 0;
@@ -90,7 +91,7 @@ export default function VideoCard(props) {
           font-weight: bold;
           font-size: 11px;
 
-          color: #000000;
+          color: #000;
         `}
       >
         By {utilities.renderAuthors(props.authors)}

@@ -17,6 +17,13 @@ export default class TagLayout extends React.Component {
       more: true
     };
     this.getPosts = this.getPosts.bind(this);
+
+    this.classifiedsCards = (
+      <ClassifiedsCard
+        header="Featured Classifieds"
+        classifieds={this.props.classifieds}
+      />
+    )
   }
 
   getPosts(page) {
@@ -88,7 +95,8 @@ export default class TagLayout extends React.Component {
                   >
                     {utilities.renderPostArray(
                       this.state.otherArticleCards,
-                      "full"
+                      "full",
+                      this.props.darkmode
                     )}
                   </InfiniteScroll>
                   {!this.state.more ? (
@@ -122,7 +130,8 @@ export default class TagLayout extends React.Component {
                     >
                       {utilities.renderPostArray(
                         this.state.otherArticleCards,
-                        "horz"
+                        "horz",
+                        this.props.darkmode
                       )}
                     </InfiniteScroll>
                     {!this.state.more ? (
@@ -151,10 +160,9 @@ export default class TagLayout extends React.Component {
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
                   <div id="classifieds" className={css.card}>
-                    <ClassifiedsCard
-                      header="Featured Classifieds"
-                      classifieds={this.props.classifieds}
-                    />
+                    {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                    })}
                   </div>
                 </div>
               </div>
@@ -178,7 +186,8 @@ export default class TagLayout extends React.Component {
                     >
                       {utilities.renderPostArray(
                         this.state.otherArticleCards,
-                        "long"
+                        "long",
+                        this.props.darkmode
                       )}
                     </InfiniteScroll>
                     {!this.state.more ? (
@@ -206,10 +215,9 @@ export default class TagLayout extends React.Component {
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
                   <div id="classifieds" className={css.card}>
-                    <ClassifiedsCard
-                      header="Featured Classifieds"
-                      classifieds={this.props.classifieds}
-                    />
+                    {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                    })}
                   </div>
                 </div>
               </div>

@@ -41,7 +41,7 @@ export default class Photo extends React.Component {
                   css={css`
                     display: block;
                     width: 100%;
-                    border: 15px solid #ffffff;
+                    border: 15px solid #fff;
                   `}
                 ></img>
                 <div

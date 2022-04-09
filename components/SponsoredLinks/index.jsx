@@ -12,8 +12,8 @@ export default class SponsoredLinks extends React.Component {
     return (
       <div
         css={css`
-          background-color: ${this.props.darkmode ? "#222222" : "#ffffff"};
-          color: ${this.props.darkmode ? "#ffffff" : "#000000"};
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
+          color: ${this.props.darkmode ? "#ddd" : "#000"};
           box-shadow: ${globals.cardShadow};
           padding: 10px;
         `}
