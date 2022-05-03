@@ -164,6 +164,13 @@ export default class Desktop extends React.Component {
               {today}
             </h2>
           </div>
+          {/* <div
+            css={css`
+              display: table-cell;
+              text-align: center;
+              white-space: nowrap;
+            `}
+          ></div> TODOOOOO*/}
           <div
             css={css`
               display: table-cell;
@@ -281,8 +288,8 @@ export default class Desktop extends React.Component {
                     .switch {
                       position: relative;
                       display: inline-block;
-                      width: 18px;
-                      height: 20px;
+                      width: 30px;
+                      height: 17px;
                     }
                     .switch input {
                       opacity: 0;
@@ -294,42 +301,39 @@ export default class Desktop extends React.Component {
                     .slider {
                       position: absolute;
                       cursor: pointer;
-                      top: 3px;
+                      top: 0;
                       left: 0;
                       right: 0;
                       bottom: 0;
-                      background-color: rgba(255,255,255,0);
+                      background-color: #ccc;
                       -webkit-transition: .4s;
                       transition: .4s;
                     }
 
                     .slider:before {
                       position: absolute;
-                      content: "🌒︎";
-                      font-size: 18px;
-                      /* font-weight: bold; */
-                      color: black;
+                      content: "";
                       height: 13px;
                       width: 13px;
-                      left: 0px;
+                      left: 2px;
                       bottom: 2px;
-                      text-align: center;
-                      line-height: 13px;
-                      background-color: rgba(255,255,255,0);
+                      background-color: white;
                       -webkit-transition: .4s;
                       transition: .4s;
                     }
 
-                    /* input:checked + .slider { } */
+                    input:checked + .slider {
+                      background-color: #2196F3;
+                    }
 
-                    /* input:focus + .slider { } */
+                    input:focus + .slider {
+                      box-shadow: 0 0 1px #2196F3;
+                    }
 
                     input:checked + .slider:before {
-                      /* -webkit-transform: translateX(7px);
-                      -ms-transform: translateX(7px);
-                      transform: translateX(7px); */
-                      /* content: "🌖︎"; */
-                      color: white;
+                      -webkit-transform: translateX(13px);
+                      -ms-transform: translateX(13px);
+                      transform: translateX(13px);
                     }
 
                     /* Rounded sliders */
@@ -338,7 +342,6 @@ export default class Desktop extends React.Component {
                     }
 
                     .slider.round:before {
-                      /* content: '☽︎'; */
                       border-radius: 50%;
                     }
 
@@ -346,7 +349,7 @@ export default class Desktop extends React.Component {
                   `}
                 >
                   <label class="switch">
-                    <input type="checkbox" onClick={this.props.onToggle}/>
+                    <input type="checkbox" onChange={(e)=>this.props.onToggle(e)}/>
                     <span class="slider round"></span>
                   </label>
                   
@@ -478,7 +481,6 @@ export default class Desktop extends React.Component {
                       display: none;
                       background-color: #000;
                       background-image: url(${minisearchIcon});
-                      /* filter: invert(%100); */
                       background-repeat: no-repeat;
                       background-size: 24px;
                       background-position: 6px;
@@ -522,7 +524,7 @@ export default class Desktop extends React.Component {
                         transition-delay: 100ms;
                         width: 36px;
                         height: 36px;
-                        ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                        ${this. props.darkmode ? "filter: invert(1);" : ""};
                         
                       `}
                       src={searchIcon}

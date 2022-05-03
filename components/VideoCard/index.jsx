@@ -70,7 +70,7 @@ export default function VideoCard(props) {
         <div
           css={css`
             div div iframe {
-              ${props.darkmode ? "filter: invert(1);" : ""}              
+              ${props.darkmode ? "filter: brightness(0.6);" : ""}    
               width: 100%;
               //padding-top: 100%;
               //height: 0;

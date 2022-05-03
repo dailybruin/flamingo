@@ -78,14 +78,18 @@ const PageWrapper = Comp =>
       };
     }
 
-    onToggle = () => {
+    onToggle = (e) => {
+      // console.log(`######## ${e.target.checked} ########`);
+      localStorage.setItem('darkmode', e.target.checked);
+      // localStorage.darkmode = e.target.checked;
       this.setState({
-        darkmode: !this.state.darkmode
+        darkmode: e.target.checked
       })
     }
 
     render() {
       // console.log(this.state.darkmode);
+      // let darkmode = localStorage.getItem('darkmode');
       const style = {
         padding: "6px",
         backgroundColor: this.state.darkmode ? "#010101" : "#f1f1f1",

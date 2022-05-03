@@ -356,7 +356,7 @@ export default class FeatureArticle extends React.Component {
                 }
 
                 iframe {
-                  ${this.props.darkmode ? "filter: invert(1);" : ""}
+                  ${this.props.darkmode ? "filter: brightness(0.6);" : ""}
                   width: 100%;
                 }
 
