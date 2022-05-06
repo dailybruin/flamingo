@@ -4,12 +4,11 @@ import { Config } from "../../config.js";
 import Head from "next/head";
 import PageWrapper from "../../layouts/PageWrapper";
 
-import NationalLongtermLayout from "layouts/NationalLongterm/index.jsx";
-("../../layouts/NationalLongterm");
+import AAPILayout from "layouts/AAPI";
 
-class NationalLongterm extends React.Component {
+export default class AAPI extends React.Component {
   static async getInitialProps() {
-    const slug = "national-longterm"; // change to national-longterm later
+    const slug = "aapi"; // change to national-longterm later
     const slug2 = "columns-from-quarantine";
     const tagRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
@@ -90,15 +89,9 @@ class NationalLongterm extends React.Component {
           {/* need to add meta tags! */}
         </Head>
         <div>
-          <NationalLongtermLayout
-            posts={this.props.posts}
-            tag={this.props.tag[0]}
-          />
-          {/* <NationalLongtermLayout /> */}
+          <AAPILayout posts={this.props.posts} tag={this.props.tag[0]} />
         </div>
       </>
     );
   }
 }
-
-export default NationalLongterm;
