@@ -2,11 +2,12 @@ import React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
-
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
 import header from "./columnsfromquarantine.svg";
 import MainSiteFooter from "../../components/MainSiteFooter";
-import Masthead from "../../components/Masthead";
+import FooterImage from './footer.jpg';
+import AAPIFooter from "./Footer";
+
 
 export default class AAPILayout extends React.Component {
   constructor(props) {
@@ -175,7 +176,7 @@ export default class AAPILayout extends React.Component {
         >
           {renderedPosts}
         </div>
-        <MainSiteFooter></MainSiteFooter>
+        <AAPIFooter/>
       </>
     );
   }
