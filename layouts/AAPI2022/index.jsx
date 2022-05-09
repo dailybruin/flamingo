@@ -34,7 +34,7 @@ export default class AAPILayout extends React.Component {
             text-align: center;
             color: black;
             display: table;
-            font-size: 14px;
+            font-size: min(2.5vw, 14px);
             &:hover {
               text-decoration: none;
             }
@@ -109,7 +109,7 @@ export default class AAPILayout extends React.Component {
             text-align: center;
             color: black;
             display: table;
-            font-size: 16px;
+            font-size: min(3vw, 16px);
             &:hover {
               text-decoration: none;
             }
