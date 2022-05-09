@@ -100,7 +100,7 @@ export default class AAPILayout extends React.Component {
     }
 
     let relatedPosts = [];
-    for (let i in this.props.relatedPosts) {
+    for (let i in this.props.posts) { // change this to this.props.relatedPosts
       relatedPosts.push(
         <a
           key={i}
