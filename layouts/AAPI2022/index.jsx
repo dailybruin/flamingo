@@ -3,6 +3,7 @@ import React from "react";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 import DesktopImg from "./desktop_landing.svg";
+import MobileImg from "./mobile_landing.svg";
 import DescriptionBoxBg from "./DescriptionBox.svg";
 import Header from "./Header";
 import AAPIFooter from "./Footer";
@@ -100,6 +101,9 @@ export default class AAPILayout extends React.Component {
           <div
             css={css`
               background-image: url(${DesktopImg});
+              @media (max-width: 450px) {
+                background-image: url(${MobileImg});
+              }
               background-position: center;
               background-size: 100%;
               background-repeat: no-repeat;
@@ -128,6 +132,9 @@ export default class AAPILayout extends React.Component {
                 margin: auto;
                 text-align: center;
                 font-size: 24px;
+                @media (max-width: 450px) {
+                  font-size: 12px;
+                }
                 line-height: 1.5;
               `}
             >
