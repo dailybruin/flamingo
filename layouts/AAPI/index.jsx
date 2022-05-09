@@ -2,6 +2,7 @@ import React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
+import DesktopImg from "./desktop_landing.svg";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
 import header from "./columnsfromquarantine.svg";
@@ -87,7 +88,7 @@ export default class AAPILayout extends React.Component {
       );
     }
     return (
-      <>
+        <>
         <div
           css={css`
             display: flex;
@@ -98,17 +99,22 @@ export default class AAPILayout extends React.Component {
         >
           <a
             css={css`
-              width: 100%;
+              width: 1440px;
               padding: 10px;
               max-width: 700px;
+              height: 900px;
               margin: auto;
             `}
             href="/"
           >
             <img
-              src={header}
+              src={DesktopImg}
               css={css`
+                flex: 1;
+                height: 100%;
                 width: 100%;
+                padding: -10;
+                
               `}
             />
           </a>
@@ -118,21 +124,13 @@ export default class AAPILayout extends React.Component {
               width: 100%;
             `}
           >
-            <ArticleCarousel
-              articles={this.props.posts.map(a => {
-                return {
-                  headline: a.title.rendered,
-                  byline: `By ${a.coauthors[0].display_name}`,
-                  link: a.link
-                };
-              })}
-            />
+           
           </div>
           <div
             css={css`
-              background-color: #000;
+              background-color: #8d91fd;
               color: #fff;
-              padding: 60px 20px;
+              padding: 100px 100px;
               font-family: "Noto Serif", ${globals.bodyFont};
             `}
           >
@@ -171,6 +169,7 @@ export default class AAPILayout extends React.Component {
           css={css`
             margin: auto;
             max-width: 700px;
+            
           `}
         >
           {renderedPosts}
