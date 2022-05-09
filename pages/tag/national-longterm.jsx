@@ -4,15 +4,17 @@ import { Config } from "../../config.js";
 import Head from "next/head";
 import PageWrapper from "../../layouts/PageWrapper";
 
-import ColumnsFromQuarantineLayout from "../../layouts/ColumnsFromQuarantine";
+import NationalLongtermLayout from "layouts/NationalLongterm/index.jsx";
+("../../layouts/NationalLongterm");
 
-class ColumnsFromQuarantine extends React.Component {
+class NationalLongterm extends React.Component {
   static async getInitialProps() {
-    const slug = "columns-from-quarantine";
+    const slug = "national-longterm"; // change to national-longterm later
+    const slug2 = "columns-from-quarantine";
     const tagRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
     );
-    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`);
+    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`);
     const tag = await tagRes.json();
     if (tag.length > 0) {
       const postsRes = await fetch(
@@ -28,13 +30,14 @@ class ColumnsFromQuarantine extends React.Component {
     return { tag };
   }
   render() {
+    // return <div>Hello</div>;
     if (this.props.tag.length == 0) return <Error statusCode={404} />;
     return (
       <>
         <Head>
           <title
             dangerouslySetInnerHTML={{
-              __html: this.props.tag[0].name + " - Daily Bruin"
+              __html: "TNL" + " - Daily Bruin"
             }}
           />
           <link
@@ -87,14 +90,15 @@ class ColumnsFromQuarantine extends React.Component {
           {/* need to add meta tags! */}
         </Head>
         <div>
-          <ColumnsFromQuarantineLayout
+          <NationalLongtermLayout
             posts={this.props.posts}
             tag={this.props.tag[0]}
           />
+          {/* <NationalLongtermLayout /> */}
         </div>
       </>
     );
   }
 }
 
-export default ColumnsFromQuarantine;
+export default NationalLongterm;

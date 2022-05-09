@@ -4,16 +4,23 @@ import { Config } from "../../config.js";
 import Head from "next/head";
 import PageWrapper from "../../layouts/PageWrapper";
 
-import ColumnsFromQuarantineLayout from "../../layouts/ColumnsFromQuarantine";
+import AAPI2022Layout from "layouts/AAPI2022";
 
-class ColumnsFromQuarantine extends React.Component {
+export default class AAPI extends React.Component {
+  // Reminder that the jsx filename determines the suffix of the url i.e., dailybruin.comtag/filename
   static async getInitialProps() {
-    const slug = "columns-from-quarantine";
+    const slug = "aapi-2022"; // this is the website page url
+    const slug2 = "aapi-2022-stories";
+    const slug3 = "aapi-2022-related";
     const tagRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
     );
-    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`);
+    const tagResRelated = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug3}`
+    );
+
     const tag = await tagRes.json();
+    const tagRelated = await tagResRelated.json();
     if (tag.length > 0) {
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tag[0].id}&per_page=50`
@@ -23,11 +30,17 @@ class ColumnsFromQuarantine extends React.Component {
         `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
       );
       const classifieds = await classifiedsRes.json();
-      return { tag, posts, classifieds };
+
+      const postsResRelated = await fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tagRelated[0].id}&per_page=50`
+      );
+      const relatedPosts = await postsResRelated.json();
+      return { tag, tagRelated, posts, relatedPosts, classifieds };
     }
     return { tag };
   }
   render() {
+    // return <div>Hello</div>;
     if (this.props.tag.length == 0) return <Error statusCode={404} />;
     return (
       <>
@@ -41,31 +54,34 @@ class ColumnsFromQuarantine extends React.Component {
             href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <title>Columns From Quarantine - Daily Bruin</title>
+          <title>
+            Asian American and Pacific Islander Heritage Month 2022 - Daily
+            Bruin
+          </title>
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
           />
-          <link
-            rel="canonical"
-            href="https://dailybruin.com/tag/columns-from-quarantine/"
-          />
-          <link rel="next" href="/tag/columns-from-quarantine/page/2/" />
+          <link rel="canonical" href="https://dailybruin.com/tag/aapi-2022/" />
+          <link rel="next" href="/tag/aapi-2022/page/2/" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="object" />
-          <meta property="og:title" content="Columns From Quarantine" />
+          <meta
+            property="og:title"
+            content="Asian American and Pacific Islander Heritage Month 2022"
+          />
           <meta
             property="og:description"
             content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
           />
           <meta
             property="og:url"
-            content="https://dailybruin.com/tag/columns-from-quarantine/"
+            content="https://dailybruin.com/tag/aapi-2022/"
           />
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
             property="og:image"
-            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg"
+            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg" // TODO: replace this and below
           />
           <meta
             property="og:image:secure_url"
@@ -87,8 +103,9 @@ class ColumnsFromQuarantine extends React.Component {
           {/* need to add meta tags! */}
         </Head>
         <div>
-          <ColumnsFromQuarantineLayout
+          <AAPI2022Layout
             posts={this.props.posts}
+            relatedPosts={this.props.relatedPosts}
             tag={this.props.tag[0]}
           />
         </div>
@@ -96,5 +113,3 @@ class ColumnsFromQuarantine extends React.Component {
     );
   }
 }
-
-export default ColumnsFromQuarantine;
