@@ -9,13 +9,18 @@ import AAPI2022Layout from "layouts/AAPI2022";
 export default class AAPI extends React.Component {
   // Reminder that the jsx filename determines the suffix of the url i.e., dailybruin.comtag/filename
   static async getInitialProps() {
-    const slug = "aapi-2022"; // change to national-longterm later
-    const slug2 = "columns-from-quarantine";
+    const slug = "aapi-2022"; // this is the website page url
+    const slug2 = "aapi-2022-stories";
+    const slug3 = "aapi-2022-related";
     const tagRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
     );
-    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`);
+    const tagResRelated = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug3}`
+    );
+
     const tag = await tagRes.json();
+    const tagRelated = await tagResRelated.json();
     if (tag.length > 0) {
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tag[0].id}&per_page=50`
@@ -25,7 +30,12 @@ export default class AAPI extends React.Component {
         `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
       );
       const classifieds = await classifiedsRes.json();
-      return { tag, posts, classifieds };
+
+      const postsResRelated = await fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tagRelated[0].id}&per_page=50`
+      );
+      const relatedPosts = await postsResRelated.json();
+      return { tag, posts, relatedPosts, classifieds };
     }
     return { tag };
   }
@@ -93,7 +103,11 @@ export default class AAPI extends React.Component {
           {/* need to add meta tags! */}
         </Head>
         <div>
-          <AAPI2022Layout posts={this.props.posts} tag={this.props.tag[0]} />
+          <AAPI2022Layout
+            posts={this.props.posts}
+            relatedPosts={this.props.relatedPosts}
+            tag={this.props.tag[0]}
+          />
         </div>
       </>
     );
