@@ -3,11 +3,9 @@ import React from "react";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 import DesktopImg from "./desktop_landing.svg";
-
-import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
-import header from "./columnsfromquarantine.svg";
-import MainSiteFooter from "../../components/MainSiteFooter";
-import Masthead from "../../components/Masthead";
+import DescriptionBoxBg from "./DescriptionBox.svg";
+import Header from "./Header";
+import AAPIFooter from "./Footer";
 
 export default class AAPILayout extends React.Component {
   constructor(props) {
@@ -88,80 +86,58 @@ export default class AAPILayout extends React.Component {
       );
     }
     return (
-        <>
+      <>
         <div
           css={css`
             display: flex;
-            height: 100vh;
+            /* height: 100vh; */
             flex-direction: column;
             justify-content: space-between;
           `}
         >
-          <a
-            css={css`
-              width: 1440px;
-              padding: 10px;
-              max-width: 700px;
-              height: 900px;
-              margin: auto;
-            `}
-            href="/"
-          >
-            <img
-              src={DesktopImg}
-              css={css`
-              
-                height: 100%;
-                width: 100%;
-              
-                
-              `}
-            />
-          </a>
+          <Header></Header>
+
           <div
             css={css`
-              margin: auto;
-              width: 100%;
+              background-image: url(${DesktopImg});
+              background-position: center;
+              background-size: 100%;
+              background-repeat: no-repeat;
+              padding-top: 350px;
+              padding-bottom: 350px;
+              color: black;
+              width: 100vw;
             `}
-          >
-           
-          </div>
+          ></div>
           <div
             css={css`
+              background-image: url(${DescriptionBoxBg});
+              background-position: center;
               background-color: #8d91fd;
               color: #fff;
-              padding: 100px 100px;
+              padding: 120px 100px;
               font-family: "Noto Serif", ${globals.bodyFont};
+              height: 500px;
+              width: 100vw;
             `}
           >
             <p
               css={css`
-                max-width: 900px;
+                max-width: 800px;
                 width: 100%;
                 margin: auto;
                 text-align: center;
-                font-size: 0.8rem;
+                font-size: 24px;
                 line-height: 1.5;
               `}
             >
-              The coronavirus pandemic has drastically upended life in the most
-              unforeseeable of ways. At UCLA, our community is remarkably united
-              by similar feelings of loss, confusion and concern, but also by
-              light, hope and perspective that the pandemic has brought to the
-              forefront. In “Columns From Quarantine,” Daily Bruin staffers and
-              community submissions highlight the personal stories that mark
-              this unprecedented moment. If you have a quarantine story to tell,
-              you can submit it here or email{" "}
-              <a
-                css={css`
-                  text-decoration: underline;
-                  color: white;
-                `}
-                href="mailto:columnsfromquarantine@gmail.com"
-              >
-                columnsfromquarantine@gmail.com
-              </a>
-              .
+              As we celebrate Asian American and Pacific Islander Heritage
+              Month, the Daily Bruin spotlights the voices and contributions of
+              the AAPI community during and beyond May. This special issue tells
+              stories about advocacy groups’ fight against gentrification in
+              Chinatown, features of UCLA student-athletes in the AAPI
+              community, coverage of the Los Angeles Asian Pacific Film
+              Festival, and more.
             </p>
           </div>
         </div>
@@ -169,12 +145,12 @@ export default class AAPILayout extends React.Component {
           css={css`
             margin: auto;
             max-width: 700px;
-            
+            /* padding-top: 600px; */
           `}
         >
           {renderedPosts}
         </div>
-        <MainSiteFooter></MainSiteFooter>
+        <AAPIFooter />
       </>
     );
   }
