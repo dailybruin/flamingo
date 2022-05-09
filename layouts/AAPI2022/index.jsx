@@ -248,7 +248,7 @@ export default class AAPILayout extends React.Component {
           <div
             css={css`
               background-image: url("/_next/static/images/storiesbg-f9763944e55a2a413e3c07f28ef1f782.svg");
-              background-size: contain;
+              background-size: cover;
             `}
           >
             <div
@@ -275,7 +275,7 @@ export default class AAPILayout extends React.Component {
           <div
             css={css`
               background-image: url("/_next/static/images/relatedbg-bf60610495bb618e764cc9fdf9a50c4f.svg");
-              background-size: contain;
+              background-size: cover;
             `}
           >
             <div
