@@ -110,10 +110,10 @@ export default class AAPILayout extends React.Component {
             <img
               src={DesktopImg}
               css={css`
-                flex: 1;
+              
                 height: 100%;
                 width: 100%;
-                padding: -10;
+              
                 
               `}
             />
