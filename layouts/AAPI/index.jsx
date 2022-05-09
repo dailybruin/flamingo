@@ -29,23 +29,20 @@ export default class AAPILayout extends React.Component {
           css={css`
             width: 100%;
             height: 13vh;
-            margin: 15px auto;
+            margin: 3% auto;
+            padding: 2% 3%;
             background-color: #fff;
             text-align: center;
             color: black;
             display: table;
-            font-size: 12px;
+            font-size: 14px;
             &:hover {
               text-decoration: none;
             }
           `}
           href={this.props.posts[i].link}
         >
-          <div
-            css={css`
-              margin: 2.5% 3.5%;
-            `}
-          >
+          
             <div
               src={
                 this.props.posts[i]._embedded["wp:featuredmedia"] != undefined
@@ -54,6 +51,7 @@ export default class AAPILayout extends React.Component {
                   : null
               }
               css={css`
+                padding: 2%;
                 width: 24%;
                 height: 100%;
                 display: table-cell;
@@ -69,6 +67,7 @@ export default class AAPILayout extends React.Component {
             />
             <div
               css={css`
+                margin: 2.5% 3.5%;
                 display: table-cell;
                 vertical-align: middle;
                 text-align: left;
@@ -79,7 +78,6 @@ export default class AAPILayout extends React.Component {
                 css={css`
                   font-family: "Noto Serif", ${globals.headlineFont};
                   font-weight: 700;
-                  font-size: 1em;
                 `}
                 dangerouslySetInnerHTML={{
                   __html: this.props.posts[i].title.rendered
@@ -89,18 +87,98 @@ export default class AAPILayout extends React.Component {
                 css={css`
                   font-family: ${globals.menuFont};
                   text-transform: uppercase;
-                  font-size: 1em;
                 `}
                 dangerouslySetInnerHTML={{
                   __html: `By ${this.props.posts[i].coauthors[0].display_name}`
                 }}
               />
             </div>
-          </div>
+         
         </a>
         
       );
     }
+
+    let relatedPosts = [];
+    for (let i in this.props.relatedPosts) {
+      relatedPosts.push(
+        <a
+          key={i}
+          css={css`
+            width: 100%;
+            height: 15vh;
+            margin: 5% auto;
+            padding: 2% 3%;
+            background-color: #fff;
+            text-align: center;
+            color: black;
+            display: table;
+            font-size: 16px;
+            &:hover {
+              text-decoration: none;
+            }
+          `}
+          href={this.props.posts[i].link}
+        >
+
+            <div
+              src={
+                this.props.posts[i]._embedded["wp:featuredmedia"] != undefined
+                  ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
+                      .source_url
+                  : null
+              }
+              css={css`
+                padding: 2%;
+                width: 24%;
+                height: 100%;
+                display: table-cell;
+                background-image: url(${this.props.posts[i]._embedded[
+                  "wp:featuredmedia"
+                ] != undefined
+                  ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
+                      .source_url
+                  : ""});
+                background-size: cover;
+                background-position: center;
+              `}
+            />
+            <div
+              css={css`
+                margin: 2.5% 3.5%;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: left;
+                padding-left: 5%;
+              `}
+            >
+              <div
+                css={css`
+                  font-family: "Noto Serif", ${globals.headlineFont};
+                  font-weight: 700;
+                `}
+                dangerouslySetInnerHTML={{
+                  __html: this.props.posts[i].title.rendered
+                }}
+              />
+              <div
+                css={css`
+                  font-family: ${globals.menuFont};
+                  text-transform: uppercase;
+                `}
+                dangerouslySetInnerHTML={{
+                  __html: `By ${this.props.posts[i].coauthors[0].display_name}`
+                }}
+              />
+            </div>
+         
+        </a>
+        
+      );
+    }
+
+
+
     return (
       <>
         <div
@@ -203,9 +281,9 @@ export default class AAPILayout extends React.Component {
             <div
               css={css`
                 padding-top: 7%;
-                width: 94%;
+                width: 93%;
                 display: grid;
-                grid-template-columns: 47% 47%;
+                grid-template-columns: 46% 46%;
                 justify-content: space-around;
                 margin: auto;
               `}
@@ -216,6 +294,7 @@ export default class AAPILayout extends React.Component {
           <img 
             src={relatedheader}
             css={css`
+              padding-top: 7%;
               margin: auto;
               width: 100%;
             `}
@@ -228,11 +307,13 @@ export default class AAPILayout extends React.Component {
           >
             <div
               css={css`
+                padding-top: 7%;
+                padding-bottom: 7%;
                 margin: auto;
                 width: 55%;
               `}
             >
-              {renderedPosts}
+              {relatedPosts}
             </div>
           </div>
         </div>
