@@ -3,8 +3,15 @@ import React from "react";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 
+
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
+
 import header from "./columnsfromquarantine.svg";
+import storiesheader from "./storiesheader.svg";
+import storiesbg from "./storiesbg.svg";
+import relatedheader from "./relatedheader.svg";
+import relatedbg from "./relatedbg.svg";
+
 import MainSiteFooter from "../../components/MainSiteFooter";
 import Masthead from "../../components/Masthead";
 
@@ -20,14 +27,14 @@ export default class AAPILayout extends React.Component {
         <a
           key={i}
           css={css`
+            width: 100%;
+            height: 13vh;
+            margin: 15px auto;
+            background-color: #fff;
             text-align: center;
             color: black;
             display: table;
-            min-height: 100px;
-            height: 100px;
-            position: relative;
-            margin: 20px 10px;
-
+            font-size: 12px;
             &:hover {
               text-decoration: none;
             }
@@ -35,55 +42,63 @@ export default class AAPILayout extends React.Component {
           href={this.props.posts[i].link}
         >
           <div
-            src={
-              this.props.posts[i]._embedded["wp:featuredmedia"] != undefined
-                ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
-                    .source_url
-                : null
-            }
             css={css`
-              width: 150px;
-              height: 100%;
-              display: table-cell;
-              background-image: url(${this.props.posts[i]._embedded[
-                "wp:featuredmedia"
-              ] != undefined
-                ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
-                    .source_url
-                : ""});
-              background-size: cover;
-              background-position: center;
-            `}
-          />
-          <div
-            css={css`
-              display: table-cell;
-              vertical-align: middle;
-              text-align: left;
-              padding-left: 10px;
+              margin: 2.5% 3.5%;
             `}
           >
             <div
+              src={
+                this.props.posts[i]._embedded["wp:featuredmedia"] != undefined
+                  ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
+                      .source_url
+                  : null
+              }
               css={css`
-                font-family: "Noto Serif", ${globals.headlineFont};
-                font-weight: 700;
+                width: 24%;
+                height: 100%;
+                display: table-cell;
+                background-image: url(${this.props.posts[i]._embedded[
+                  "wp:featuredmedia"
+                ] != undefined
+                  ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
+                      .source_url
+                  : ""});
+                background-size: cover;
+                background-position: center;
               `}
-              dangerouslySetInnerHTML={{
-                __html: this.props.posts[i].title.rendered
-              }}
             />
             <div
               css={css`
-                font-family: ${globals.menuFont};
-                text-transform: uppercase;
-                font-size: 14px;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: left;
+                padding-left: 5%;
               `}
-              dangerouslySetInnerHTML={{
-                __html: `By ${this.props.posts[i].coauthors[0].display_name}`
-              }}
-            />
+            >
+              <div
+                css={css`
+                  font-family: "Noto Serif", ${globals.headlineFont};
+                  font-weight: 700;
+                  font-size: 1em;
+                `}
+                dangerouslySetInnerHTML={{
+                  __html: this.props.posts[i].title.rendered
+                }}
+              />
+              <div
+                css={css`
+                  font-family: ${globals.menuFont};
+                  text-transform: uppercase;
+                  font-size: 1em;
+                `}
+                dangerouslySetInnerHTML={{
+                  __html: `By ${this.props.posts[i].coauthors[0].display_name}`
+                }}
+              />
+            </div>
           </div>
         </a>
+        
       );
     }
     return (
@@ -169,12 +184,60 @@ export default class AAPILayout extends React.Component {
         </div>
         <div
           css={css`
-            margin: auto;
-            max-width: 700px;
+            background-image: linear-gradient(#8E90FD, #C08DD4, #E09CB8);
+            display: inline-block;
           `}
         >
-          {renderedPosts}
+          <img 
+            src={storiesheader}
+            css={css`
+              width: 100%;
+            `}
+          />
+          <div
+            css={css`
+              background-image: url("/_next/static/images/storiesbg-f9763944e55a2a413e3c07f28ef1f782.svg");
+              background-size: contain
+            `}
+          >
+            <div
+              css={css`
+                padding-top: 7%;
+                width: 94%;
+                display: grid;
+                grid-template-columns: 47% 47%;
+                justify-content: space-around;
+                margin: auto;
+              `}
+            >
+              {renderedPosts}
+            </div>
+          </div>
+          <img 
+            src={relatedheader}
+            css={css`
+              margin: auto;
+              width: 100%;
+            `}
+          />
+          <div
+            css={css`
+              background-image: url("/_next/static/images/relatedbg-bf60610495bb618e764cc9fdf9a50c4f.svg");
+              background-size: contain;
+            `}
+          >
+            <div
+              css={css`
+                margin: auto;
+                width: 55%;
+              `}
+            >
+              {renderedPosts}
+            </div>
+          </div>
         </div>
+        
+        
         <MainSiteFooter></MainSiteFooter>
       </>
     );
