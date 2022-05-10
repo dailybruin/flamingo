@@ -81,11 +81,11 @@ export default class AAPI extends React.Component {
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
             property="og:image"
-            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg" // TODO: replace this and below
+            content="https://wp.dailybruin.com/images/2022/05/desktop-landing.png" // TODO: replace this and below
           />
           <meta
             property="og:image:secure_url"
-            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg"
+            content="https://wp.dailybruin.com/images/2022/05/desktop-landing.png"
           />
           <meta property="og:image:width" content="1024" />
           <meta property="og:image:height" content="605" />
@@ -101,7 +101,7 @@ export default class AAPI extends React.Component {
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
-            content="https://dailybruin.com/images/2020/04/colfromquar.jpeg"
+            content="https://wp.dailybruin.com/images/2022/05/desktop-landing.png"
           />
           {/* need to add meta tags! */}
         </Head>
