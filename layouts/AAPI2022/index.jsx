@@ -226,12 +226,12 @@ export default class AAPILayout extends React.Component {
           >
             <p
               css={css`
-                min-width: 600px;
+                //min-width: 600px;
                 width: 100%;
                 margin: auto;
                 text-align: center;
                 font-size: 24px;
-                @media (max-width: 450px) {
+                @media (max-width: 800px) {
                   font-size: 12px;
                 }
                 line-height: 1.5;
