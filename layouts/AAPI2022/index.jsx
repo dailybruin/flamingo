@@ -197,7 +197,7 @@ export default class AAPILayout extends React.Component {
           `}
         >
           <Header></Header>
-
+          {/** 
           <div
             css={css`
               background-image: url(${DesktopImg});
@@ -213,10 +213,34 @@ export default class AAPILayout extends React.Component {
               width: 100vw;
             `}
           ></div>
+          */}
+
+          <img
+            src={DesktopImg}
+            css={css`
+              padding-top: 7%;
+              margin: auto;
+              width: 100%;
+              @media all and (max-width: 800px) {
+                display: none;
+              }
+            `}
+          />
+          <img
+            src={MobileImg}
+            css={css`
+              width: 100vw;
+              display: none;
+              @media all and (max-width: 800px) {
+                display: inline-block;
+              }
+            `}
+          />
+
           <img
             src={description}
             css={css`
-              padding-top: 7%;
+              //padding-top: 7%;
               margin: auto;
               width: 100%;
               @media all and (max-width: 800px) {
@@ -285,7 +309,7 @@ export default class AAPILayout extends React.Component {
           <img
             src={storiesheader}
             css={css`
-              width: 100%;
+              width: 100vw;
               @media all and (max-width: 800px) {
                 display: none;
               }
