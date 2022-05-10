@@ -72,7 +72,7 @@ export default class AAPI extends React.Component {
           />
           <meta
             property="og:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content="As we celebrate Asian American and Pacific Islander Heritage Month, the Daily Bruin spotlights the voices and contributions of the AAPI community during and beyond May."
           />
           <meta
             property="og:url"
@@ -92,9 +92,12 @@ export default class AAPI extends React.Component {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content="As we celebrate Asian American and Pacific Islander Heritage Month, the Daily Bruin spotlights the voices and contributions of the AAPI community during and beyond May."
           />
-          <meta name="twitter:title" content="Columns From Quarantine" />
+          <meta
+            name="twitter:title"
+            content="Asian American and Pacific Islander Heritage Month 2022"
+          />
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
