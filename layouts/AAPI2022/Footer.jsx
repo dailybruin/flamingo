@@ -2,7 +2,8 @@ import React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
-import FooterImage from "./footer.svg";
+import footer from "./footer.svg";
+import footermobile from "./footermobile.svg";
 import Instagram from "./icons/Instagram.png";
 import Facebook from "./icons/Facebook.png";
 import Twitter from "./icons/Twitter.png";
@@ -34,13 +35,15 @@ export default function AAPIFooter() {
   return (
     <div
       css={css`
-        background-image: url(${FooterImage});
+        background-image: url(${footer});
         background-size: cover;
         background-repeat: no-repeat;
+        display: block;
         min-height: 30vh;
         @media all and (max-width: 800px) {
+          background-image: url(${footermobile});
           background-size: contain;
-          min-width: 100vw;
+         
         }
       `}
     >
@@ -55,7 +58,7 @@ export default function AAPIFooter() {
         {ls.map(e => (
           <IconButton type={e} />
         ))}
-        </div>*/}
+        </div>
       <div
         css={css`
           display: flex;
@@ -66,8 +69,8 @@ export default function AAPIFooter() {
         `}
       >
         {/*Built with Suzy's Love in Kerchoff 118 by [developers]. Designed by
-        [designers].*/}
-      </div>
+        [designers].
+      </div>*/}
     </div>
   );
 }
