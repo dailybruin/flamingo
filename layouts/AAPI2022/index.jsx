@@ -38,6 +38,9 @@ export default class AAPILayout extends React.Component {
             &:hover {
               text-decoration: none;
             }
+            @media all and (max-width: 800px) {
+              font-size: 14px;
+            }
           `}
           href={this.props.posts[i].link}
         >
@@ -112,6 +115,9 @@ export default class AAPILayout extends React.Component {
             font-size: min(3vw, 16px);
             &:hover {
               text-decoration: none;
+            }
+            @media all and (max-width: 800px) {
+              font-size: 14px;
             }
           `}
           href={this.props.relatedPosts[i].link}
@@ -259,6 +265,10 @@ export default class AAPILayout extends React.Component {
                 grid-template-columns: 46% 46%;
                 justify-content: space-around;
                 margin: auto;
+                @media all and (max-width: 800px) {
+                  width: 85vw;
+                  grid-template-columns: 100%;
+                }x
               `}
             >
               {renderedPosts}
@@ -280,10 +290,14 @@ export default class AAPILayout extends React.Component {
           >
             <div
               css={css`
+                width: 55%;
                 padding-top: 7%;
                 padding-bottom: 7%;
                 margin: auto;
-                width: 55%;
+                @media all and (max-width: 800px) {
+                  width: 85vw;
+                  grid-template-columns: 100%;
+                }
               `}
             >
               {relatedPosts}
