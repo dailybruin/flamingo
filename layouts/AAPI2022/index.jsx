@@ -8,6 +8,11 @@ import storiesbg from "./storiesbg.svg";
 import relatedheader from "./relatedheader.svg";
 import relatedbg from "./relatedbg.svg";
 
+import storiesheadermobile from "./storiesheadermobile.svg";
+import storiesbgmobile from "./storiesbgmobile.svg";
+import relatedheadermobile from "./relatedheadermobile.svg";
+import relatedbgmobile from "./relatedbgmobile.svg";
+
 import DesktopImg from "./desktop_landing.svg";
 import MobileImg from "./mobile_landing.svg";
 import DescriptionBoxBg from "./DescriptionBox.svg";
@@ -40,6 +45,7 @@ export default class AAPILayout extends React.Component {
             }
             @media all and (max-width: 800px) {
               font-size: 14px;
+              margin: 5% auto;
             }
           `}
           href={this.props.posts[i].link}
@@ -118,6 +124,8 @@ export default class AAPILayout extends React.Component {
             }
             @media all and (max-width: 800px) {
               font-size: 14px;
+              height: 13vh;
+              margin: 5% auto;
             }
           `}
           href={this.props.relatedPosts[i].link}
@@ -218,12 +226,12 @@ export default class AAPILayout extends React.Component {
           >
             <p
               css={css`
-                max-width: 800px;
+                //min-width: 600px;
                 width: 100%;
                 margin: auto;
                 text-align: center;
                 font-size: 24px;
-                @media (max-width: 450px) {
+                @media (max-width: 800px) {
                   font-size: 12px;
                 }
                 line-height: 1.5;
@@ -249,12 +257,29 @@ export default class AAPILayout extends React.Component {
             src={storiesheader}
             css={css`
               width: 100%;
+              @media all and (max-width: 800px) {
+                display: none;
+              }
+            `}
+          />
+          <img
+            src={storiesheadermobile}
+            css={css`
+              width: 100vw;
+              display: none;
+              @media all and (max-width: 800px) {
+                display: inline-block;
+                
+              }
             `}
           />
           <div
             css={css`
-              background-image: url("/_next/static/images/storiesbg-f9763944e55a2a413e3c07f28ef1f782.svg");
+              background-image: url(${storiesbg});
               background-size: cover;
+              @media all and (max-width: 800px) {
+                background-image: url(${storiesbgmobile});
+              }
             `}
           >
             <div
@@ -268,7 +293,7 @@ export default class AAPILayout extends React.Component {
                 @media all and (max-width: 800px) {
                   width: 85vw;
                   grid-template-columns: 100%;
-                }x
+                }
               `}
             >
               {renderedPosts}
@@ -280,12 +305,28 @@ export default class AAPILayout extends React.Component {
               padding-top: 7%;
               margin: auto;
               width: 100%;
+              @media all and (max-width: 800px) {
+                display: none;
+              }
+            `}
+          />
+          <img
+            src={relatedheadermobile}
+            css={css`
+              width: 100vw;
+              display: none;
+              @media all and (max-width: 800px) {
+                display: inline-block;
+              }
             `}
           />
           <div
             css={css`
-              background-image: url("/_next/static/images/relatedbg-bf60610495bb618e764cc9fdf9a50c4f.svg");
+              background-image: url(${relatedbg});
               background-size: cover;
+              @media all and (max-width: 800px) {
+                background-image: url(${relatedbgmobile});
+              }
             `}
           >
             <div
