@@ -1,6 +1,7 @@
 import React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { mediaQueries } from "./config";
 import * as globals from "../../components/globals";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
@@ -130,9 +131,9 @@ export default class NationalLongtermLayout extends React.Component {
               })}
             />
           </div>
-          <div 
+          <div
             css={css`
-              background-color: #FFE249;
+              background-color: #ffe249;
               color: #000;
               font-weight: bold;
               padding: 20px 20px;
@@ -152,18 +153,20 @@ export default class NationalLongtermLayout extends React.Component {
 
             <div
               css={css`
-                background-color: #FFF1A5;
+                background-color: #fff1a5;
                 color: #000;
                 padding: 20px 80px;
                 font-family: "Noto Serif", ${globals.bodyFont};
               `}
             >
-              <img src={CampusLogo} css={css`
-                float:right;
-                height: 130px;
-                width: 130px;
-                transform: rotate(10deg);
-              `}
+              <img
+                src={CampusLogo}
+                css={css`
+                  float: right;
+                  height: 130px;
+                  width: 130px;
+                  transform: rotate(10deg);
+                `}
               />
               <p
                 css={css`
@@ -173,17 +176,17 @@ export default class NationalLongtermLayout extends React.Component {
                   font-size: 0.8rem;
                   line-height: 1.5;
                   padding-top: 10px;
-                  padding-bottom:15px;
+                  padding-bottom: 15px;
                 `}
               >
-                The coronavirus pandemic has drastically upended life in the most
-                unforeseeable of ways. At UCLA, our community is remarkably united
-                by similar feelings of loss, confusion and concern, but also by
-                light, hope and perspective that the pandemic has brought to the
-                forefront. In “Columns From Quarantine,” Daily Bruin staffers and
-                community submissions highlight the personal stories that mark
-                this unprecedented moment. If you have a quarantine story to tell,
-                you can submit it here or email{" "}
+                The coronavirus pandemic has drastically upended life in the
+                most unforeseeable of ways. At UCLA, our community is remarkably
+                united by similar feelings of loss, confusion and concern, but
+                also by light, hope and perspective that the pandemic has
+                brought to the forefront. In “Columns From Quarantine,” Daily
+                Bruin staffers and community submissions highlight the personal
+                stories that mark this unprecedented moment. If you have a
+                quarantine story to tell, you can submit it here or email{" "}
                 <a
                   css={css`
                     text-decoration: underline;
