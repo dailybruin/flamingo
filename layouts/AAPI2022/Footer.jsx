@@ -42,8 +42,8 @@ export default function AAPIFooter() {
         min-height: 30vh;
         @media all and (max-width: 800px) {
           background-image: url(${footermobile});
-          background-size: contain;
-         
+          background-size: cover;
+          min-height: 15vh;
         }
       `}
     >

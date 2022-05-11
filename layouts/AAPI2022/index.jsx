@@ -13,8 +13,8 @@ import storiesbgmobile from "./storiesbgmobile.svg";
 import relatedheadermobile from "./relatedheadermobile.svg";
 import relatedbgmobile from "./relatedbgmobile.svg";
 
-import DesktopImg from "./desktop_landing.svg";
-import MobileImg from "./mobile_landing.svg";
+import DesktopImg from "./desktop_landing.png";
+import MobileImg from "./mobile_landing.png";
 import description from "./description.svg";
 import descriptionmobile from "./descriptionmobile.svg";
 import Header from "./Header";
@@ -218,7 +218,7 @@ export default class AAPILayout extends React.Component {
           <img
             src={DesktopImg}
             css={css`
-              padding-top: 7%;
+              /* padding-top: 7%; */
               margin: auto;
               width: 100%;
               @media all and (max-width: 800px) {
@@ -322,7 +322,6 @@ export default class AAPILayout extends React.Component {
               display: none;
               @media all and (max-width: 800px) {
                 display: inline-block;
-                
               }
             `}
           />
