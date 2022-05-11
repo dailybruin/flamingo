@@ -8,7 +8,7 @@ import AAPILayout from "layouts/AAPI";
 
 export default class AAPI extends React.Component {
   static async getInitialProps() {
-    const slug = "national-longterm"; // change to national-longterm later
+    const slug = "aapi"; // change to national-longterm later
     const slug2 = "columns-from-quarantine";
     const tagRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
