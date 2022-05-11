@@ -136,6 +136,14 @@ export default class NationalLongtermLayout extends React.Component {
               font-family: "Noto Serif", ${globals.bodyFont};
             `}
           >
+            <div
+              css={css`
+              background-color: #FFF1A5;
+              color: #000;
+              padding: 60px 20px;
+              font-family: "Noto Serif", ${globals.bodyFont};
+              `}
+            >
             <p
               css={css`
                 max-width: 900px;
