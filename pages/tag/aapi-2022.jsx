@@ -4,17 +4,23 @@ import { Config } from "../../config.js";
 import Head from "next/head";
 import PageWrapper from "../../layouts/PageWrapper";
 
-import AAPILayout from "layouts/AAPI";
+import AAPI2022Layout from "layouts/AAPI2022";
 
 export default class AAPI extends React.Component {
+  // Reminder that the jsx filename determines the suffix of the url i.e., dailybruin.comtag/filename
   static async getInitialProps() {
-    const slug = "aapi"; // change to national-longterm later
-    const slug2 = "columns-from-quarantine";
+    const slug = "aapi-2022"; // this is the website page url
+    const slug2 = "aapi-2022-stories";
+    const slug3 = "aapi-2022-related";
     const tagRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
     );
-    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`);
+    const tagResRelated = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug3}`
+    );
+
     const tag = await tagRes.json();
+    const tagRelated = await tagResRelated.json();
     if (tag.length > 0) {
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tag[0].id}&per_page=50`
@@ -24,7 +30,12 @@ export default class AAPI extends React.Component {
         `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
       );
       const classifieds = await classifiedsRes.json();
-      return { tag, posts, classifieds };
+
+      const postsResRelated = await fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tagRelated[0].id}&per_page=50`
+      );
+      const relatedPosts = await postsResRelated.json();
+      return { tag, tagRelated, posts, relatedPosts, classifieds };
     }
     return { tag };
   }
@@ -36,60 +47,70 @@ export default class AAPI extends React.Component {
         <Head>
           <title
             dangerouslySetInnerHTML={{
-              __html: "TNL" + " - Daily Bruin"
+              __html: this.props.tag[0].name + " - Daily Bruin"
             }}
           />
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <title>Columns From Quarantine - Daily Bruin</title>
+          <title>
+            Asian American and Pacific Islander Heritage Month 2022 - Daily
+            Bruin
+          </title>
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
           />
-          <link
-            rel="canonical"
-            href="https://dailybruin.com/tag/columns-from-quarantine/"
-          />
-          <link rel="next" href="/tag/columns-from-quarantine/page/2/" />
+          <link rel="canonical" href="https://dailybruin.com/tag/aapi-2022/" />
+          <link rel="next" href="/tag/aapi-2022/page/2/" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="object" />
-          <meta property="og:title" content="Columns From Quarantine" />
+          <meta
+            property="og:title"
+            content="Asian American and Pacific Islander Heritage Month 2022"
+          />
           <meta
             property="og:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content="As we celebrate Asian American and Pacific Islander Heritage Month, the Daily Bruin spotlights the voices and contributions of the AAPI community during and beyond May."
           />
           <meta
             property="og:url"
-            content="https://dailybruin.com/tag/columns-from-quarantine/"
+            content="https://dailybruin.com/tag/aapi-2022/"
           />
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
             property="og:image"
-            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg"
+            content="https://wp.dailybruin.com/images/2022/05/desktop-landing.png" // TODO: replace this and below
           />
           <meta
             property="og:image:secure_url"
-            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg"
+            content="https://wp.dailybruin.com/images/2022/05/desktop-landing.png"
           />
           <meta property="og:image:width" content="1024" />
           <meta property="og:image:height" content="605" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content="As we celebrate Asian American and Pacific Islander Heritage Month, the Daily Bruin spotlights the voices and contributions of the AAPI community during and beyond May."
           />
-          <meta name="twitter:title" content="Columns From Quarantine" />
+          <meta
+            name="twitter:title"
+            content="Asian American and Pacific Islander Heritage Month 2022"
+          />
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
-            content="https://dailybruin.com/images/2020/04/colfromquar.jpeg"
+            content="https://wp.dailybruin.com/images/2022/05/desktop-landing.png"
           />
           {/* need to add meta tags! */}
         </Head>
         <div>
-          <AAPILayout posts={this.props.posts} tag={this.props.tag[0]} />
+          <AAPI2022Layout
+            posts={this.props.posts}
+            relatedPosts={this.props.relatedPosts}
+            tag={this.props.tag[0]}
+          />
         </div>
       </>
     );
