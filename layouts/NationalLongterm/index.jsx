@@ -7,6 +7,7 @@ import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
 import header from "./columnsfromquarantine.svg";
 import MainSiteFooter from "../../components/MainSiteFooter";
 import Masthead from "../../components/Masthead";
+import CampusLogo from "./campusseal.png";
 
 export default class NationalLongtermLayout extends React.Component {
   constructor(props) {
@@ -94,6 +95,7 @@ export default class NationalLongtermLayout extends React.Component {
             height: 100vh;
             flex-direction: column;
             justify-content: space-between;
+            padding-bottom: 30px;
           `}
         >
           <a
@@ -128,51 +130,72 @@ export default class NationalLongtermLayout extends React.Component {
               })}
             />
           </div>
-          <div
+          <div 
             css={css`
-              background-color: #000;
-              color: #fff;
-              padding: 60px 20px;
+              background-color: #FFE249;
+              color: #000;
+              font-weight: bold;
+              padding: 20px 20px;
               font-family: "Noto Serif", ${globals.bodyFont};
+              padding-top: 10px;
+              overflow: auto;
             `}
           >
-            <div
-              css={css`
-              background-color: #FFF1A5;
-              color: #000;
-              padding: 60px 20px;
-              font-family: "Noto Serif", ${globals.bodyFont};
-              `}
-            >
             <p
               css={css`
-                max-width: 900px;
-                width: 100%;
-                margin: auto;
-                text-align: center;
-                font-size: 0.8rem;
-                line-height: 1.5;
+                font-size: 1.8rem;
+                line-height: 0;
               `}
             >
-              The coronavirus pandemic has drastically upended life in the most
-              unforeseeable of ways. At UCLA, our community is remarkably united
-              by similar feelings of loss, confusion and concern, but also by
-              light, hope and perspective that the pandemic has brought to the
-              forefront. In “Columns From Quarantine,” Daily Bruin staffers and
-              community submissions highlight the personal stories that mark
-              this unprecedented moment. If you have a quarantine story to tell,
-              you can submit it here or email{" "}
-              <a
-                css={css`
-                  text-decoration: underline;
-                  color: white;
-                `}
-                href="mailto:columnsfromquarantine@gmail.com"
-              >
-                columnsfromquarantine@gmail.com
-              </a>
-              .
+              Title of Page
             </p>
+
+            <div
+              css={css`
+                background-color: #FFF1A5;
+                color: #000;
+                padding: 20px 80px;
+                font-family: "Noto Serif", ${globals.bodyFont};
+              `}
+            >
+              <img src={CampusLogo} css={css`
+                float:right;
+                height: 130px;
+                width: 130px;
+                transform: rotate(10deg);
+              `}
+              />
+              <p
+                css={css`
+                  max-width: 900px;
+                  width: 100%;
+                  font-weight: normal;
+                  font-size: 0.8rem;
+                  line-height: 1.5;
+                  padding-top: 10px;
+                  padding-bottom:15px;
+                `}
+              >
+                The coronavirus pandemic has drastically upended life in the most
+                unforeseeable of ways. At UCLA, our community is remarkably united
+                by similar feelings of loss, confusion and concern, but also by
+                light, hope and perspective that the pandemic has brought to the
+                forefront. In “Columns From Quarantine,” Daily Bruin staffers and
+                community submissions highlight the personal stories that mark
+                this unprecedented moment. If you have a quarantine story to tell,
+                you can submit it here or email{" "}
+                <a
+                  css={css`
+                    text-decoration: underline;
+                    color: black;
+                  `}
+                  href="mailto:columnsfromquarantine@gmail.com"
+                >
+                  columnsfromquarantine@gmail.com
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </div>
         <div
