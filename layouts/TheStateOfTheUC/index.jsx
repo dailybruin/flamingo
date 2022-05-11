@@ -137,29 +137,29 @@ export default class TheStateOfTheUCLayout extends React.Component {
               color: #000;
               font-weight: bold;
               padding: 20px 20px;
-              font-family: "Noto Serif", ${globals.bodyFont};
-              padding-top: 10px;
+              font-family: "Open Sans", ${globals.bodyFont};
               overflow: auto;
             `}
           >
-            <p
+            {/* <p
               css={css`
                 font-size: 1.8rem;
                 line-height: 0;
               `}
             >
               Title of Page
-            </p>
+            </p> */}
 
             <div
               css={css`
                 background-color: #fff1a5;
                 color: #000;
-                padding: 20px 80px;
-                font-family: "Noto Serif", ${globals.bodyFont};
+                padding: 15px 35px;
+                font-family: "Open Sans", ${globals.bodyFont};
+                /* background-color: red; */
               `}
             >
-              <img
+              {/* <img
                 src={CampusLogo}
                 css={css`
                   float: right;
@@ -167,36 +167,26 @@ export default class TheStateOfTheUCLayout extends React.Component {
                   width: 130px;
                   transform: rotate(10deg);
                 `}
-              />
+              /> */}
               <p
                 css={css`
-                  max-width: 900px;
                   width: 100%;
                   font-weight: normal;
-                  font-size: 0.8rem;
+                  font-size: 24px;
                   line-height: 1.5;
-                  padding-top: 10px;
-                  padding-bottom: 15px;
                 `}
               >
-                The coronavirus pandemic has drastically upended life in the
-                most unforeseeable of ways. At UCLA, our community is remarkably
-                united by similar feelings of loss, confusion and concern, but
-                also by light, hope and perspective that the pandemic has
-                brought to the forefront. In “Columns From Quarantine,” Daily
-                Bruin staffers and community submissions highlight the personal
-                stories that mark this unprecedented moment. If you have a
-                quarantine story to tell, you can submit it here or email{" "}
-                <a
-                  css={css`
-                    text-decoration: underline;
-                    color: black;
-                  `}
-                  href="mailto:columnsfromquarantine@gmail.com"
-                >
-                  columnsfromquarantine@gmail.com
-                </a>
-                .
+                The University of California has ambitious goals to reshape the
+                current state of UC campuses. In the coming years, twice the
+                amount of students could be walking on campuses that get most of
+                their energy from electricity rather than fossil fuels. A
+                student at one UC campus could have access to the same resources
+                as a student at another UC campus. However, while the UC has
+                made strides to change over the years, there is still much work
+                to be done according to community members across the system. In
+                “The state of the UC,” UC faculty and students highlight
+                existing issues and explore potential solutions related to
+                funding, sustainability and enrollment.
               </p>
             </div>
           </div>
