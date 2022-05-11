@@ -4,17 +4,15 @@ import { Config } from "../../config.js";
 import Head from "next/head";
 import PageWrapper from "../../layouts/PageWrapper";
 
-import NationalLongtermLayout from "layouts/NationalLongterm/index.jsx";
-("../../layouts/NationalLongterm");
+import TheStateOfTheUCLayout from "layouts/TheStateOfTheUC";
 
-class NationalLongterm extends React.Component {
+export default class TheStateOfTheUC extends React.Component {
   static async getInitialProps() {
-    const slug = "national-longterm"; // change to national-longterm later
-    const slug2 = "columns-from-quarantine";
+    const slug = "the-state-of-the-uc"; // change to national-longterm later
     const tagRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`
     );
-    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`);
+    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`);
     const tag = await tagRes.json();
     if (tag.length > 0) {
       const postsRes = await fetch(
@@ -90,7 +88,7 @@ class NationalLongterm extends React.Component {
           {/* need to add meta tags! */}
         </Head>
         <div>
-          <NationalLongtermLayout
+          <TheStateOfTheUCLayout
             posts={this.props.posts}
             tag={this.props.tag[0]}
           />
@@ -100,5 +98,3 @@ class NationalLongterm extends React.Component {
     );
   }
 }
-
-export default NationalLongterm;

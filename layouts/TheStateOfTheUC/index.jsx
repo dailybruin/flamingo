@@ -10,7 +10,7 @@ import MainSiteFooter from "../../components/MainSiteFooter";
 import Masthead from "../../components/Masthead";
 import CampusLogo from "./campusseal.png";
 
-export default class NationalLongtermLayout extends React.Component {
+export default class TheStateOfTheUCLayout extends React.Component {
   constructor(props) {
     super(props);
   }
