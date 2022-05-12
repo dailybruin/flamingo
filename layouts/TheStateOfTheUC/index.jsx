@@ -11,6 +11,9 @@ import Masthead from "../../components/Masthead";
 import CampusLogo from "./campusseal.png";
 
 import columnbg from "./columnbg.svg";
+import columnbgmobile from "./columnbgmobile.svg";
+import storiesbg from "../AAPI2022/storiesbg.svg";
+import storiesbgmobile from "../AAPI2022/storiesbgmobile.svg";
 
 
 export default class TheStateOfTheUCLayout extends React.Component {
@@ -193,7 +196,7 @@ export default class TheStateOfTheUCLayout extends React.Component {
             background-image: url(${columnbg});
             background-size: cover;
             @media all and (max-width: 800px) {
-              
+              background-image: url(${columnbgmobile});
             }
           `}
         >
