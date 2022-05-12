@@ -23,7 +23,7 @@ export default function UCEnrollment() {
     >
       <iframe
         width="95%"
-        height="550"
+        height="700"
         frameborder="0"
         src="https://dailybruin.com/wp-content/themes/caeruleum/js/interactives/5.9.news.tagpage-national-longterm/5_3_news_tagpage-national-longterm1"
       ></iframe>
