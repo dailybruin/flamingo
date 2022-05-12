@@ -161,17 +161,7 @@ export default class TheStateOfTheUCLayout extends React.Component {
                 }
               `}
             >
-              The University of California has ambitious goals to reshape the
-              current state of UC campuses. In the coming years, twice the
-              amount of students could be walking on campuses that get most of
-              their energy from electricity rather than fossil fuels. A student
-              at one UC campus could have access to the same resources as a
-              student at another UC campus. However, while the UC has made
-              strides to change over the years, there is still much work to be
-              done according to community members across the system. In “The
-              state of the UC,” UC faculty and students highlight existing
-              issues and explore potential solutions related to funding,
-              sustainability and enrollment.
+              The University of California has ambitious goals to reshape the state of UC campuses. In the coming years, twice the number of students could be walking on campuses that get most of their energy from electricity rather than fossil fuels. A student at any UC campus could have access to the same resources as a student at any other UC campus. However, while the UC has made strides to change over the years, there is still much work to be done, according to community members across the system. In “The state of the UC,” UC faculty and students highlight existing issues and explore potential solutions related to funding, sustainability and enrollment.
             </p>
           </div>
         </div>
