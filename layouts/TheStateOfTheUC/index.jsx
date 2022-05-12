@@ -123,22 +123,7 @@ export default class TheStateOfTheUCLayout extends React.Component {
               `}
             />
           </a>
-          <div
-            css={css`
-              margin: auto;
-              width: 100%;
-            `}
-          >
-            <ArticleCarousel
-              articles={this.props.posts.map(a => {
-                return {
-                  headline: a.title.rendered,
-                  byline: `By ${a.coauthors[0].display_name}`,
-                  link: a.link
-                };
-              })}
-            />
-          </div>
+
           <div
             css={css`
               background-color: #ffe249;
