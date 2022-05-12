@@ -22,16 +22,22 @@ export default class TheStateOfTheUCLayout extends React.Component {
         <a
           key={i}
           css={css`
+            width: 100%;
+            height: 15vh;
+            margin: 5% auto;
+            padding: 2% 3%;
+            background-color: rgba(255, 255, 255, 0.7);
             text-align: center;
             color: black;
             display: table;
-            min-height: 100px;
-            height: 100px;
-            position: relative;
-            margin: 20px 10px;
-
+            font-size: min(3vw, 16px);
             &:hover {
               text-decoration: none;
+            }
+            @media all and (max-width: 800px) {
+              font-size: 14px;
+              height: 13vh;
+              margin: 5% auto;
             }
           `}
           href={this.props.posts[i].link}
@@ -44,7 +50,8 @@ export default class TheStateOfTheUCLayout extends React.Component {
                 : null
             }
             css={css`
-              width: 150px;
+              padding: 2%;
+              width: 24%;
               height: 100%;
               display: table-cell;
               background-image: url(${this.props.posts[i]._embedded[
@@ -59,6 +66,7 @@ export default class TheStateOfTheUCLayout extends React.Component {
           />
           <div
             css={css`
+              margin: 2.5% 3.5%;
               display: table-cell;
               vertical-align: middle;
               text-align: left;
@@ -190,15 +198,22 @@ export default class TheStateOfTheUCLayout extends React.Component {
               </p>
             </div>
           </div>
+          
         </div>
         <div
-          css={css`
-            margin: auto;
-            max-width: 700px;
-          `}
-        >
-          {renderedPosts}
-        </div>
+              css={css`
+                width: 55%;
+                padding-top: 7%;
+                padding-bottom: 7%;
+                margin: auto;
+                @media all and (max-width: 800px) {
+                  width: 85vw;
+                  grid-template-columns: 100%;
+                }
+              `}
+            >
+              {renderedPosts}
+            </div>
         <MainSiteFooter></MainSiteFooter>
       </>
     );
