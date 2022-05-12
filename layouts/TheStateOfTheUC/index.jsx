@@ -5,7 +5,8 @@ import { mediaQueries } from "./config";
 import * as globals from "../../components/globals";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
-import header from "./columnsfromquarantine.svg";
+import DesktopImg from "./desktop_landing.png";
+import MobileImg from "./mobile_landing.png";
 import MainSiteFooter from "../../components/MainSiteFooter";
 import Masthead from "../../components/Masthead";
 import CampusLogo from "./campusseal.png";
@@ -14,7 +15,6 @@ import columnbg from "./columnbg.svg";
 import columnbgmobile from "./columnbgmobile.svg";
 import storiesbg from "../AAPI2022/storiesbg.svg";
 import storiesbgmobile from "../AAPI2022/storiesbgmobile.svg";
-
 
 export default class TheStateOfTheUCLayout extends React.Component {
   constructor(props) {
@@ -104,27 +104,28 @@ export default class TheStateOfTheUCLayout extends React.Component {
     }
     return (
       <>
-        <div
-          css={css`
-            display: flex;
-            height: 100vh;
-            flex-direction: column;
-            justify-content: space-between;
-          `}
-        >
-          <a
-            css={css`
-              width: 100%;
-              padding: 10px;
-              max-width: 700px;
-              margin: auto;
-            `}
-            href="/"
-          >
+        <div>
+          <a href="/">
             <img
-              src={header}
+              src={DesktopImg}
               css={css`
+                margin: auto;
                 width: 100%;
+                display: block;
+                ${mediaQueries.mobile} {
+                  display: none;
+                }
+              `}
+            />
+            <img
+              src={MobileImg}
+              css={css`
+                margin: auto;
+                width: 100%;
+                display: block;
+                ${mediaQueries.notMobile} {
+                  display: none;
+                }
               `}
             />
           </a>
@@ -137,17 +138,9 @@ export default class TheStateOfTheUCLayout extends React.Component {
               padding: 20px 20px;
               font-family: "Open Sans", ${globals.bodyFont};
               overflow: auto;
+              display: block;
             `}
           >
-            {/* <p
-              css={css`
-                font-size: 1.8rem;
-                line-height: 0;
-              `}
-            >
-              Title of Page
-            </p> */}
-
             <div
               css={css`
                 background-color: #fff1a5;
@@ -157,15 +150,6 @@ export default class TheStateOfTheUCLayout extends React.Component {
                 /* background-color: red; */
               `}
             >
-              {/* <img
-                src={CampusLogo}
-                css={css`
-                  float: right;
-                  height: 130px;
-                  width: 130px;
-                  transform: rotate(10deg);
-                `}
-              /> */}
               <p
                 css={css`
                   width: 100%;
@@ -216,7 +200,6 @@ export default class TheStateOfTheUCLayout extends React.Component {
             {renderedPosts}
           </div>
         </div>
-        <MainSiteFooter></MainSiteFooter>
       </>
     );
   }
