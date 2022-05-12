@@ -42,48 +42,48 @@ export default class TheStateOfTheUC extends React.Component {
             href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <title>Columns From Quarantine - Daily Bruin</title>
+          <title>The state of the UC</title>
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
           />
           <link
             rel="canonical"
-            href="https://dailybruin.com/tag/columns-from-quarantine/"
+            href="https://dailybruin.com/tag/the-state-of-the-uc/"
           />
-          <link rel="next" href="/tag/columns-from-quarantine/page/2/" />
+          <link rel="next" href="/tag/the-state-of-the-uc/" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="object" />
-          <meta property="og:title" content="Columns From Quarantine" />
+          <meta property="og:title" content="The state of the UC" />
           <meta
             property="og:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content='In "The state of the UC," University of California faculty and students highlight existing issues and explore potential solutions related to funding, sustainability and enrollment.'
           />
           <meta
             property="og:url"
-            content="https://dailybruin.com/tag/columns-from-quarantine/"
+            content="https://dailybruin.com/tag/the-state-of-the-uc/"
           />
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
             property="og:image"
-            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg"
+            content="https://s3.us-west-1.amazonaws.com/assets3.dailybruin.com/images/desktop+landing+news.png"
           />
           <meta
             property="og:image:secure_url"
-            content="https://dailybruin.com/images/2020/04/colfromquar-1024x605.jpeg"
+            content="https://s3.us-west-1.amazonaws.com/assets3.dailybruin.com/images/desktop+landing+news.png"
           />
           <meta property="og:image:width" content="1024" />
           <meta property="og:image:height" content="605" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content='In "The state of the UC," University of California faculty and students highlight existing issues and explore potential solutions related to funding, sustainability and enrollment.'
           />
-          <meta name="twitter:title" content="Columns From Quarantine" />
+          <meta name="twitter:title" content="The state of the UC" />
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
-            content="https://dailybruin.com/images/2020/04/colfromquar.jpeg"
+            content="https://s3.us-west-1.amazonaws.com/assets3.dailybruin.com/images/desktop+landing+news.png"
           />
           {/* need to add meta tags! */}
         </Head>
