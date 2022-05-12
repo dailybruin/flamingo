@@ -10,6 +10,9 @@ import MainSiteFooter from "../../components/MainSiteFooter";
 import Masthead from "../../components/Masthead";
 import CampusLogo from "./campusseal.png";
 
+import columnbg from "./columnbg.svg";
+
+
 export default class TheStateOfTheUCLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -201,19 +204,29 @@ export default class TheStateOfTheUCLayout extends React.Component {
           
         </div>
         <div
-              css={css`
-                width: 55%;
-                padding-top: 7%;
-                padding-bottom: 7%;
-                margin: auto;
-                @media all and (max-width: 800px) {
-                  width: 85vw;
-                  grid-template-columns: 100%;
-                }
-              `}
-            >
-              {renderedPosts}
-            </div>
+          css={css`
+            background-image: url(${columnbg});
+            background-size: cover;
+            @media all and (max-width: 800px) {
+              
+            }
+          `}
+        >
+          <div
+            css={css`
+              width: 55%;
+              padding-top: 7%;
+              padding-bottom: 7%;
+              margin: auto;
+              @media all and (max-width: 800px) {
+                width: 85vw;
+                grid-template-columns: 100%;
+              }
+            `}
+          >
+            {renderedPosts}
+          </div>
+        </div>
         <MainSiteFooter></MainSiteFooter>
       </>
     );
