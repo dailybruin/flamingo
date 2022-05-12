@@ -110,7 +110,6 @@ export default class TheStateOfTheUCLayout extends React.Component {
             height: 100vh;
             flex-direction: column;
             justify-content: space-between;
-            padding-bottom: 30px;
           `}
         >
           <a
@@ -189,7 +188,6 @@ export default class TheStateOfTheUCLayout extends React.Component {
               </p>
             </div>
           </div>
-          
         </div>
         <div
           css={css`
