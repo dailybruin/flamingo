@@ -173,7 +173,10 @@ export default class TheStateOfTheUCLayout extends React.Component {
                   width: 100%;
                   font-weight: normal;
                   font-size: 24px;
-                  line-height: 1.5;
+                  line-height: 1.3;
+                  @media all and (max-width: 800px) {
+                    font-size: 12px;
+                  }
                 `}
               >
                 The University of California has ambitious goals to reshape the
