@@ -5,8 +5,9 @@ import { mediaQueries } from "./config";
 import * as globals from "../../components/globals";
 
 import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
-import DesktopImg from "./desktop_landing.svg";
-import MobileImg from "./mobile_landing.svg";
+import DesktopLanding from "./desktop_landing.gif";
+import DesktopImg from "./desktop_description_bg.svg";
+import MobileImg from "./mobile_description_bg.svg";
 import columnbg from "./desktop_columnbg.svg";
 import columnbgmobile from "./mobile_columnbg.svg";
 import DesktopArticleCardBg from "./desktop_article_card_bg.svg";
@@ -109,6 +110,17 @@ export default class SpringSing2022Layout extends React.Component {
       <>
         <a href="/">
           <img
+            src={DesktopLanding}
+            css={css`
+              margin: auto;
+              width: 100%;
+              display: block;
+              /* ${mediaQueries.mobile} {
+                display: none;
+              } */
+            `}
+          />
+          <img
             src={DesktopImg}
             css={css`
               margin: auto;
@@ -135,7 +147,7 @@ export default class SpringSing2022Layout extends React.Component {
         <div
           css={css`
             background-image: url(${columnbg});
-            background-size: cover;
+            background-size: contain;
             @media all and (max-width: 800px) {
               background-image: url(${columnbgmobile});
             }

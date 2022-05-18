@@ -45,7 +45,7 @@ export default class SpringSing2022 extends React.Component {
             href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap"
             rel="stylesheet"
           />
-          <title>The state of the UC</title>
+          <title>Spring Sing 2022</title>
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
@@ -54,26 +54,26 @@ export default class SpringSing2022 extends React.Component {
             rel="canonical"
             href="https://dailybruin.com/tag/spring-sing-2022/"
           />
-          <link rel="next" href="/tag/the-state-of-the-uc/" />
+          <link rel="next" href="/tag/spring-sing-2022/" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="object" />
-          <meta property="og:title" content="The state of the UC" />
+          <meta property="og:title" content="Spring Sing 2022" />
           <meta
             property="og:description"
             content="Spring Sing is taking the stage again. The annual event, featuring music and performances from students, will kick off May 20 at the Los Angeles Tennis Center. With categories such as solo acts, duos, bands, a cappella groups, dancers and interdisciplinary creators, the 77th Spring Sing will spotlight 16 acts as they are judged before a surprise celebrity panel."
           />
           <meta
             property="og:url"
-            content="https://dailybruin.com/tag/the-state-of-the-uc/"
+            content="https://dailybruin.com/tag/spring-sing-2022/"
           />
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
             property="og:image"
-            content="https://s3.us-west-1.amazonaws.com/assets3.dailybruin.com/images/desktop+landing+news.png"
+            content="https://wp.dailybruin.com/images/2022/05/SpringSingLandingStaticSmall.jpg"
           />
           <meta
             property="og:image:secure_url"
-            content="https://s3.us-west-1.amazonaws.com/assets3.dailybruin.com/images/desktop+landing+news.png"
+            content="https://wp.dailybruin.com/images/2022/05/SpringSingLandingStaticSmall.jpg"
           />
           <meta property="og:image:width" content="1024" />
           <meta property="og:image:height" content="605" />
@@ -82,11 +82,11 @@ export default class SpringSing2022 extends React.Component {
             name="twitter:description"
             content="Spring Sing is taking the stage again. The annual event, featuring music and performances from students, will kick off May 20 at the Los Angeles Tennis Center. With categories such as solo acts, duos, bands, a cappella groups, dancers and interdisciplinary creators, the 77th Spring Sing will spotlight 16 acts as they are judged before a surprise celebrity panel."
           />
-          <meta name="twitter:title" content="The state of the UC" />
+          <meta name="twitter:title" content="Spring Sing 2022" />
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
-            content="https://s3.us-west-1.amazonaws.com/assets3.dailybruin.com/images/desktop+landing+news.png"
+            content="https://wp.dailybruin.com/images/2022/05/SpringSingLandingStaticSmall.jpg"
           />
         </Head>
         <div>
