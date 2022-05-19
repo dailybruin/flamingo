@@ -34,7 +34,7 @@ export default class SpringSing2022Layout extends React.Component {
             min-height: 20vw;
             height: 16vh;
             
-            @media all and (max-width: 800px) {
+            ${mediaQueries.mobile} {
                 background-image: url(${MobileArticleCardBg});
                 background-size: cover;
                 min-height: 35vw;
@@ -58,7 +58,7 @@ export default class SpringSing2022Layout extends React.Component {
               &:hover {
                 text-decoration: none;
               }
-              @media all and (max-width: 800px) {
+              ${mediaQueries.mobile} {
                 font-size: 3vw;
                 height: 13vh;
                 margin: 3%;
@@ -112,7 +112,7 @@ export default class SpringSing2022Layout extends React.Component {
                   font-family: ${globals.menuFont};
                   text-transform: uppercase;
                   font-size: min(1.2vw, 16px);
-                  @media all and (max-width: 800px) {
+                  ${mediaQueries.mobile} {
                     font-size: 3vw;
                   }
                 `} 
