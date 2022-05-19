@@ -31,7 +31,7 @@ export default class SpringSing2022Layout extends React.Component {
             background-size: contain;
             background-repeat: no-repeat;
             padding-bottom: 10%;
-            min-height: 225px;
+            min-height: 20vw;
             height: 16vh;
             
             
@@ -54,6 +54,7 @@ export default class SpringSing2022Layout extends React.Component {
               color: black;
               display: table;
               font-size: min(1.2vw, 16px);
+
               
               &:hover {
                 text-decoration: none;
@@ -168,7 +169,14 @@ export default class SpringSing2022Layout extends React.Component {
             />
           </a>
 
-          <div>
+          <div
+            css={css`
+                background-image: url(${column_art_bottom});
+                background-position: bottom;
+                background-size: contain;
+                background-repeat: no-repeat;
+            `}
+          >
             <img 
               src={column_art_top}
               css={css`
@@ -176,13 +184,13 @@ export default class SpringSing2022Layout extends React.Component {
                 width: 100%;
               `}
             />
+            
             <div
               css={css`
                 width: 80%;
                 padding-top: 7%;
-                padding-bottom: 7%;
+                padding-bottom: 20%;
                 margin: auto;
-                margin-bottom: -25%;
                 display: grid;
                 grid-template-columns: 47% 47%;
                 justify-content: space-around;
@@ -195,13 +203,7 @@ export default class SpringSing2022Layout extends React.Component {
             >
               {renderedPosts}
             </div>
-            <img 
-              src={column_art_bottom}
-              css={css`
-                width: 100%;
-                clear: both;
-              `}
-            />
+          
           </div>
         </div>
       </>
