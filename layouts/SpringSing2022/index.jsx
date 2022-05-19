@@ -8,8 +8,11 @@ import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
 import DesktopLanding from "./desktop_landing.gif";
 import DesktopImg from "./desktop_description_bg.svg";
 import MobileImg from "./mobile_description_bg.svg";
-import columnbg from "./desktop_columnbg.svg";
-import columnbgmobile from "./mobile_columnbg.svg";
+
+import column_art_top from "./column_art_top.svg";
+import column_art_bottom from "./column_art_bottom.svg";
+
+
 import DesktopArticleCardBg from "./desktop_article_card_bg.svg";
 import MobileArticleCardBg from "./mobile_article_card_bg.svg";
 
@@ -25,21 +28,27 @@ export default class SpringSing2022Layout extends React.Component {
         <div
           css={css`
             background-image: url(${DesktopArticleCardBg});
-            padding: 5% 2%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            
+            padding-bottom: 10%;
+            min-height: 250px;
+            height: 16vh;
+            width: 100%;
           `}
         >
           <a
             key={i}
             css={css`
-              width: 100%;
-              height: 15vh;
-              margin: 5% auto;
-              padding: 2% 3%;
-              background-color: rgba(255, 255, 255, 0.7);
+              width: 100%
+              height: 100%;
+              margin: 5%;
+              padding: 5%;
+              //background-color: rgba(255, 255, 255, 0.7);
               text-align: center;
               color: black;
               display: table;
-              font-size: min(3vw, 16px);
+              font-size: min(1.2vw, 16px);
               &:hover {
                 text-decoration: none;
               }
@@ -80,6 +89,8 @@ export default class SpringSing2022Layout extends React.Component {
                 vertical-align: middle;
                 text-align: left;
                 padding-left: 10px;
+                padding: 2%;
+                
               `}
             >
               <div
@@ -95,7 +106,7 @@ export default class SpringSing2022Layout extends React.Component {
                 css={css`
                   font-family: ${globals.menuFont};
                   text-transform: uppercase;
-                  font-size: 14px;
+                  font-size: min(1.2vw, 16px)
                 `}
                 dangerouslySetInnerHTML={{
                   __html: `By ${this.props.posts[i].coauthors[0].display_name}`
@@ -108,67 +119,80 @@ export default class SpringSing2022Layout extends React.Component {
     }
     return (
       <>
+      <div
+        css={css`
+          background-color: #CCD68F;
+        `}
+      >
         <a href="/">
-          <img
-            src={DesktopLanding}
-            css={css`
-              margin: auto;
-              width: 100%;
-              display: block;
-              /* ${mediaQueries.mobile} {
-                display: none;
-              } */
-            `}
-          />
-          <img
-            src={DesktopImg}
-            css={css`
-              margin: auto;
-              width: 100%;
-              display: block;
-              ${mediaQueries.mobile} {
-                display: none;
-              }
-            `}
-          />
-          <img
-            src={MobileImg}
-            css={css`
-              margin: auto;
-              width: 100%;
-              display: block;
-              ${mediaQueries.notMobile} {
-                display: none;
-              }
-            `}
-          />
-        </a>
+            <img
+              src={DesktopLanding}
+              css={css`
+                margin: auto;
+                width: 100%;
+                display: block;
+                /* ${mediaQueries.mobile} {
+                  display: none;
+                } */
+              `}
+            />
+            <img
+              src={DesktopImg}
+              css={css`
+                margin: auto;
+                width: 100%;
+                display: block;
+                ${mediaQueries.mobile} {
+                  display: none;
+                }
+              `}
+            />
+            <img
+              src={MobileImg}
+              css={css`
+                margin: auto;
+                width: 100%;
+                display: block;
+                ${mediaQueries.notMobile} {
+                  display: none;
+                }
+              `}
+            />
+          </a>
 
-        <div
-          css={css`
-            background-image: url(${columnbg});
-            background-size: contain;
-            @media all and (max-width: 800px) {
-              background-image: url(${columnbgmobile});
-            }
-          `}
-        >
-          <div
-            css={css`
-              width: 80%;
-              padding-top: 7%;
-              padding-bottom: 7%;
-              margin: auto;
-              display: grid;
-              grid-template-columns: 46% 46%;
-              justify-content: space-around;
-              ${mediaQueries.mobile} {
-                width: 85vw;
-                grid-template-columns: 100%;
-              }
-            `}
-          >
-            {renderedPosts}
+          <div>
+            <img 
+              src={column_art_top}
+              css={css`
+                margin-bottom: -15%;
+                width: 100%;
+              `}
+            />
+            <div
+              css={css`
+                width: 80%;
+                padding-top: 7%;
+                padding-bottom: 7%;
+                margin: auto;
+                margin-bottom: -25%;
+                display: grid;
+                grid-template-columns: 47% 47%;
+                justify-content: space-around;
+                ${mediaQueries.mobile} {
+                  width: 85vw;
+                  grid-template-columns: 100%;
+                }
+              `}
+            >
+              {renderedPosts}
+            </div>
+            <img 
+              src={column_art_bottom}
+              css={css`
+                width: 100%;
+                clear: both;
+              `}
+            />
           </div>
         </div>
       </>
