@@ -30,32 +30,38 @@ export default class SpringSing2022Layout extends React.Component {
             background-image: url(${DesktopArticleCardBg});
             background-size: contain;
             background-repeat: no-repeat;
-            
             padding-bottom: 10%;
-            min-height: 250px;
+            min-height: 225px;
             height: 16vh;
-            width: 100%;
+            
+            
+            @media all and (max-width: 800px) {
+                background-image: url(${MobileArticleCardBg});
+                background-size: cover;
+                min-height: 110%;
+                
+            }
           `}
         >
           <a
             key={i}
             css={css`
-              width: 100%
+              width: 90%
               height: 100%;
               margin: 5%;
-              padding: 5%;
-              //background-color: rgba(255, 255, 255, 0.7);
+              padding: 4%;
               text-align: center;
               color: black;
               display: table;
               font-size: min(1.2vw, 16px);
+              
               &:hover {
                 text-decoration: none;
               }
               @media all and (max-width: 800px) {
-                font-size: 14px;
+                font-size: 3vw;
                 height: 13vh;
-                margin: 5% auto;
+                margin: 3%;
               }
             `}
             href={this.props.posts[i].link}
@@ -90,7 +96,6 @@ export default class SpringSing2022Layout extends React.Component {
                 text-align: left;
                 padding-left: 10px;
                 padding: 2%;
-                
               `}
             >
               <div
@@ -106,8 +111,11 @@ export default class SpringSing2022Layout extends React.Component {
                 css={css`
                   font-family: ${globals.menuFont};
                   text-transform: uppercase;
-                  font-size: min(1.2vw, 16px)
-                `}
+                  font-size: min(1.2vw, 16px);
+                  @media all and (max-width: 800px) {
+                    font-size: 3vw;
+                  }
+                `} 
                 dangerouslySetInnerHTML={{
                   __html: `By ${this.props.posts[i].coauthors[0].display_name}`
                 }}
@@ -179,7 +187,8 @@ export default class SpringSing2022Layout extends React.Component {
                 grid-template-columns: 47% 47%;
                 justify-content: space-around;
                 ${mediaQueries.mobile} {
-                  width: 85vw;
+                  margin: 0px auto;
+                  width: 90vw;
                   grid-template-columns: 100%;
                 }
               `}
