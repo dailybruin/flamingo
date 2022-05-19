@@ -31,9 +31,9 @@ export default class SpringSing2022Layout extends React.Component {
             background-size: contain;
             background-repeat: no-repeat;
             padding-bottom: 10%;
-            min-height: 250px;
+            min-height: 225px;
             height: 16vh;
-            width: 100%;
+            
             
             @media all and (max-width: 800px) {
                 background-image: url(${MobileArticleCardBg});
@@ -46,7 +46,7 @@ export default class SpringSing2022Layout extends React.Component {
           <a
             key={i}
             css={css`
-              width: 100%
+              width: 90%
               height: 100%;
               margin: 5%;
               padding: 4%;
