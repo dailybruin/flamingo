@@ -34,12 +34,11 @@ export default class SpringSing2022Layout extends React.Component {
             min-height: 20vw;
             height: 16vh;
             
-            
             @media all and (max-width: 800px) {
                 background-image: url(${MobileArticleCardBg});
                 background-size: cover;
-                min-height: 110%;
-                
+                min-height: 35vw;
+
             }
           `}
         >
@@ -198,6 +197,7 @@ export default class SpringSing2022Layout extends React.Component {
                   margin: 0px auto;
                   width: 90vw;
                   grid-template-columns: 100%;
+                  padding-bottom: 35%;
                 }
               `}
             >
