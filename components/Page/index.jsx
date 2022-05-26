@@ -20,8 +20,8 @@ export default class Page extends React.Component {
           display: block;
           padding: 10px 30px;
           box-shadow: ${globals.cardShadow};
-          background-color: {this.props.darkmode ? #222 : #fff};
-          color: {this.props.darkmode ? #f11 : #88f};
+          background-color: ${this.props.darkmode ? '#222' : '#fff'};
+          color: ${this.props.darkmode ? '#f11' : '#88f'};
           font-family: ${globals.bodyFont};
         `}
       >

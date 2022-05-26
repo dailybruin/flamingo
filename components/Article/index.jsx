@@ -17,7 +17,6 @@ export default class Article extends React.Component {
 
   render() {
     // grab author pics and cards
-    // console.log(this.props.darkmode);
     let authorPictures = [];
     let renderedAuthorCards = [];
 
@@ -95,7 +94,6 @@ export default class Article extends React.Component {
           background-color: ${this.props.darkmode ? "#222" : "#fff"};
         `}
       >
-        {/* <h1>Darkmode = {this.props.darkmode ? "True" : "False"}</h1> */}
         <div
           css={css`
             a {

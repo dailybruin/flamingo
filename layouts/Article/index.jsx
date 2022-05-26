@@ -207,7 +207,6 @@ class ArticleLayout extends React.Component {
                       width: "75%"
                     }}
                   >
-                    {/* <h1>Darkmode = {this.props.darkmode ? "True" : "False"}</h1> */}
                     <div className={css.card}>
                       {React.cloneElement(this.article, {
                         darkmode: this.props.darkmode

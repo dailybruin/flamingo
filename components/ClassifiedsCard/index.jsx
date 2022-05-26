@@ -10,10 +10,8 @@ function Classified(props) {
         font-size: 12px;
         padding: 6px 0;
         border-bottom: 0.5px solid #474747;
-        /* background-color: ${props.darkmode ? "#222" : "#fff"}; */
       `}
     >
-      {/* <h1>Darkmode = {props.darkmode ? "True" : "False"}</h1> */}
       <a
         href={props.category.url}
         css={css`
@@ -73,7 +71,6 @@ export default class ClassifiedsCard extends React.Component {
         />);
         this.renderedClassifieds.push(
           <div className={css.card} key={i}>
-            {/* <h1>Darkmode = {this.props.darkmode ? "True" : "False"}</h1> */}
             {React.cloneElement(c, {
               darkmode: this.props.darkmode
             })}
