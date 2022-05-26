@@ -8,16 +8,20 @@ import { date2string } from "./utilities.js";
 export default class Page extends React.Component {
   constructor(props) {
     super(props);
+
+    this.Page = React.createRef();
   }
 
   render() {
     return (
       <div
+        ref={this.Page}
         css={css`
           display: block;
           padding: 10px 30px;
           box-shadow: ${globals.cardShadow};
-          background-color: #fff;
+          background-color: {this.props.darkmode ? #222 : #fff};
+          color: {this.props.darkmode ? #f11 : #88f};
           font-family: ${globals.bodyFont};
         `}
       >
@@ -27,10 +31,9 @@ export default class Page extends React.Component {
             font-style: normal;
             font-weight: normal;
             font-size: 14px;
-
-            color: #000;
             margin: auto;
             display: block;
+            
 
             a img,
             img {
