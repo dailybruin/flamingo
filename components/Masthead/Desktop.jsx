@@ -349,7 +349,7 @@ export default class Desktop extends React.Component {
                   `}
                 >
                   <label class="switch">
-                    <input type="checkbox" onChange={(e)=>this.props.onToggle(e)}/>
+                    <input type="checkbox" checked={this.props.darkmode} onChange={(e)=>this.props.onToggle(e)}/>
                     <span class="slider round"></span>
                   </label>
                   
@@ -368,7 +368,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./twitter.svg")} css={css`
-                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                      ${this.props.darkmode ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a

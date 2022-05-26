@@ -19,11 +19,10 @@ const layoutStyle = {
 const PageWrapper = Comp =>
   class extends Component {
     constructor(props) {
-      super(props);
-      this.state = {
-        darkmode: false
-      }
+      super(props);      
+        this.state = {}
     } 
+
 
     static async getInitialProps(ctx) {
       // Load the categories for the header
@@ -79,17 +78,19 @@ const PageWrapper = Comp =>
     }
 
     onToggle = (e) => {
-      // console.log(`######## ${e.target.checked} ########`);
-      localStorage.setItem('darkmode', e.target.checked);
-      // localStorage.darkmode = e.target.checked;
+      localStorage.setItem('darkmode', JSON.stringify(e.target.checked));
       this.setState({
-        darkmode: e.target.checked
+        darkmode: JSON.parse(localStorage.getItem('darkmode'))
+      })
+    }
+
+    componentDidMount() {
+      this.setState({
+        darkmode: JSON.parse(localStorage.getItem('darkmode'))
       })
     }
 
     render() {
-      // console.log(this.state.darkmode);
-      // let darkmode = localStorage.getItem('darkmode');
       const style = {
         padding: "6px",
         backgroundColor: this.state.darkmode ? "#010101" : "#f1f1f1",

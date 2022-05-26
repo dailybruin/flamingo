@@ -139,7 +139,7 @@ class Post extends Component {
             galleryID={this.props.id}
             relatedPosts={this.props.relatedPosts}
           />
-        )}
+        )} 
         {this.props.photos == undefined &&
           this.props.feature != true &&
           this.props.gallery != true && (
