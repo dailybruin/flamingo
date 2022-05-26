@@ -12,6 +12,7 @@ class ColumnsFromQuarantine extends React.Component {
     const tagRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`
     );
+    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`);
     const tag = await tagRes.json();
     if (tag.length > 0) {
       const postsRes = await fetch(

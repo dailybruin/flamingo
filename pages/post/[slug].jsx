@@ -45,7 +45,8 @@ class Post extends Component {
       let tagged = [];
       if (post[0].acf["db_feature_tag"] != "") {
         const taggedRes = await fetch(
-          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${post[0].acf["db_feature_tag"]
+          `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
+            post[0].acf["db_feature_tag"]
           }`
         );
         tagged = await taggedRes.json();
@@ -59,18 +60,21 @@ class Post extends Component {
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
       );
       const photos = await photosRes.json();
-      const oldGallery = true
+      const oldGallery = true;
       return { oldGallery, post, photos, authors, relatedPosts };
     }
     // it's a page with new gallery layout
-    if (post[0].acf["db_gallery_id"] != undefined && post[0].acf["db_gallery_id"] != "") {
+    if (
+      post[0].acf["db_gallery_id"] != undefined &&
+      post[0].acf["db_gallery_id"] != ""
+    ) {
       // console.log("Detected as new gallery layout.")
       const photosRes = await fetch(
         `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
       );
       const photos = await photosRes.json();
-      const gallery = true
-      const id = post[0].acf["db_gallery_id"]
+      const gallery = true;
+      const id = post[0].acf["db_gallery_id"];
       return { gallery, post, id, photos, authors, relatedPosts };
     }
     const classifiedsRes = await fetch(
@@ -101,6 +105,7 @@ class Post extends Component {
           </title>
           {renderedMeta}
         </Head>
+
         {
           this.props.feature == true && (
             <FeatureLayout
@@ -135,6 +140,7 @@ class Post extends Component {
         }
         {
           this.props.photos == undefined && this.props.feature != true && this.props.gallery != true && (
+
             <ArticleLayout
               article={this.props.post[0]}
               authors={this.props.authors}
@@ -150,8 +156,7 @@ class Post extends Component {
                 };
               })}
             />
-          )
-        }
+          )}
       </>
     );
   }
