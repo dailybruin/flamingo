@@ -13,8 +13,8 @@ import storiesbgmobile from "./storiesbgmobile.svg";
 import relatedheadermobile from "./relatedheadermobile.svg";
 import relatedbgmobile from "./relatedbgmobile.svg";
 
-import DesktopImg from "./desktop_landing.png";
-import MobileImg from "./mobile_landing.png";
+import DesktopLanding from "./desktop_landing.gif";
+import MobileLanding from "./mobile_landing.gif";
 import description from "./description.svg";
 import descriptionmobile from "./descriptionmobile.svg";
 import Header from "./Header";
@@ -197,26 +197,10 @@ export default class AAPILayout extends React.Component {
           `}
         >
           <Header></Header>
-          {/** 
-          <div
-            css={css`
-              background-image: url(${DesktopImg});
-              @media (max-width: 450px) {
-                background-image: url(${MobileImg});
-              }
-              background-position: center;
-              background-size: 100%;
-              background-repeat: no-repeat;
-              padding-top: 350px;
-              padding-bottom: 350px;
-              color: black;
-              width: 100vw;
-            `}
-          ></div>
-          */}
+          
 
           <img
-            src={DesktopImg}
+            src={DesktopLanding}
             css={css`
               /* padding-top: 7%; */
               margin: auto;
@@ -227,7 +211,7 @@ export default class AAPILayout extends React.Component {
             `}
           />
           <img
-            src={MobileImg}
+            src={MobileLanding}
             css={css`
               width: 100vw;
               display: none;
