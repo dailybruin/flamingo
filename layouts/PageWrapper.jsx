@@ -7,6 +7,7 @@ import BreakingCard from "components/BreakingBanner";
 import InTheNews from "components/InTheNewsBanner";
 import Masthead from "components/Masthead";
 import CommentFAB from "components/CommentFAB";
+import { headlineFont } from "components/globals.js";
 
 import css from "./style.module.css";
 
@@ -103,6 +104,15 @@ const PageWrapper = Comp =>
             <CommentFAB></CommentFAB>
             <div className={css["banner-ad"]}>
               <broadstreet-zone zone-id="69404"></broadstreet-zone>
+            </div>
+            <div style={{ height: "27px", lineHeight: "25px", borderWidth: "1px", borderStyle: "solid", borderColor: "#000000", alignContent: "center", fontFamily: headlineFont, color: "#000000"}}>
+              <div style={{ textAlign: "center", margin: "auto"}}>
+                Interested in joining us? Apply
+                <a href="https://apply.uclastudentmedia.com/">
+                  <strong> HERE </strong>
+                </a>
+                by October 3!
+              </div>
             </div>
             <Masthead categories={this.props.mappedCategories}></Masthead>
             {renderedBreakingCard}
