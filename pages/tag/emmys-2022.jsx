@@ -59,12 +59,12 @@ class Emmys2022 extends React.Component {
           />
           <link
             rel="canonical"
-            href="https://dailybruin.com/tag/columns-from-quarantine/"
+            href="https://dailybruin.com/tag/emmys-2022/"
           />
-          <link rel="next" href="/tag/columns-from-quarantine/page/2/" />
+          <link rel="next" href="/tag/emmys-2022/page/2/" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="object" />
-          <meta property="og:title" content="Columns From Quarantine" />
+          <meta property="og:title" content="Emmys 2022" />
           <meta
             property="og:description"
             content='After a year of recording-breaking series and refreshing spins on traditional genres, the 2022 Emmy Awards commemorates another year of television visionaries decorated in purple and gold. Read on for the Daily Bruin’s coverage of the 74th annual Emmy Awards and the meticulous work of nominated alumni.'

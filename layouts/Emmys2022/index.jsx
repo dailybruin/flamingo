@@ -22,7 +22,7 @@ export default class AAPILayout extends React.Component {
 
   render() {
     let renderedPosts = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i in this.props.posts) {
       renderedPosts.push(
         <a
           key={i}
@@ -101,7 +101,7 @@ export default class AAPILayout extends React.Component {
     }
 
     let relatedPosts = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i in this.props.relatedPosts) {
       relatedPosts.push(
         <a
           key={i}
