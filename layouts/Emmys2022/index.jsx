@@ -3,33 +3,45 @@ import React from "react";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../../components/globals";
 
-import ArticleCarousel from "../../components/ArticleCarousel/index.jsx";
-import header from "../ColumnsFromQuarantine/columnsfromquarantine.svg";
-import MainSiteFooter from "../../components/MainSiteFooter";
-import Masthead from "../../components/Masthead";
+import storiesbg from "./storiesbg.svg";
+import relatedbg from "./relatedbg.svg";
 
-export default class Emmys2022Layout extends React.Component {
+import relatedheadermobile from "./relatedheadermobile.svg";
+import storiesbgmobile from "./storiesbgmobile.svg";
+
+import Landing from "./landing.png";
+import description from "./description.svg";
+import descriptionmobile from "./descriptionmobile.svg";
+import Header from "./Header";
+import Footer from "./Footer";
+
+export default class AAPILayout extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     let renderedPosts = [];
-    for (let i in this.props.posts) {
+    for (let i = 0; i < 3; i++) {
       renderedPosts.push(
         <a
           key={i}
           css={css`
+            width: 100%;
+            height: 13vh;
+            margin: 3% auto;
+            padding: 2% 3%;
             text-align: center;
-            color: black;
+            color: white;
             display: table;
-            min-height: 100px;
-            height: 100px;
-            position: relative;
-            margin: 20px 10px;
-
+            font-size: min(2.5vw, 14px);
             &:hover {
               text-decoration: none;
+            }
+            @media all and (max-width: 800px) {
+              font-size: 14px;
+              margin: 5% auto;
+              color: black
             }
           `}
           href={this.props.posts[i].link}
@@ -42,7 +54,8 @@ export default class Emmys2022Layout extends React.Component {
                 : null
             }
             css={css`
-              width: 150px;
+              padding: 2%;
+              width: 24%;
               height: 100%;
               display: table-cell;
               background-image: url(${this.props.posts[i]._embedded[
@@ -57,10 +70,11 @@ export default class Emmys2022Layout extends React.Component {
           />
           <div
             css={css`
+              margin: 2.5% 3.5%;
               display: table-cell;
               vertical-align: middle;
               text-align: left;
-              padding-left: 10px;
+              padding-left: 5%;
             `}
           >
             <div
@@ -76,7 +90,6 @@ export default class Emmys2022Layout extends React.Component {
               css={css`
                 font-family: ${globals.menuFont};
                 text-transform: uppercase;
-                font-size: 14px;
               `}
               dangerouslySetInnerHTML={{
                 __html: `By ${this.props.posts[i].coauthors[0].display_name}`
@@ -86,96 +99,230 @@ export default class Emmys2022Layout extends React.Component {
         </a>
       );
     }
+
+    let relatedPosts = [];
+    for (let i = 0; i < 4; i++) {
+      relatedPosts.push(
+        <a
+          key={i}
+          css={css`
+            width: 100%;
+            height: 10vh;
+            margin: 1% auto;
+            padding: 1%;
+            text-align: center;
+            color: white;
+            display: table;
+            font-size: 14px;
+            &:hover {
+              text-decoration: none;
+            }
+            @media all and (max-width: 800px) {
+              font-size: 14px;
+              height: 13vh;
+              margin: 5% auto;
+              color: black
+            }
+          `}
+          href={this.props.relatedPosts[i].link}
+        >
+          <div
+            src={
+              this.props.relatedPosts[i]._embedded["wp:featuredmedia"] !=
+              undefined
+                ? this.props.relatedPosts[i]._embedded["wp:featuredmedia"][0]
+                    .source_url
+                : null
+            }
+            css={css`
+              padding: 2%;
+              width: 24%;
+              height: 100%;
+              display: table-cell;
+              background-image: url(${this.props.relatedPosts[i]._embedded[
+                "wp:featuredmedia"
+              ] != undefined
+                ? this.props.relatedPosts[i]._embedded["wp:featuredmedia"][0]
+                    .source_url
+                : ""});
+              background-size: cover;
+              background-position: center;
+            `}
+          />
+          <div
+            css={css`
+              margin: 2.5% 3.5%;
+              display: table-cell;
+              vertical-align: middle;
+              text-align: left;
+              padding-left: 5%;
+            `}
+          >
+            <div
+              css={css`
+                font-family: "Noto Serif", ${globals.headlineFont};
+                font-weight: 700;
+              `}
+              dangerouslySetInnerHTML={{
+                __html: this.props.relatedPosts[i].title.rendered
+              }}
+            />
+            <div
+              css={css`
+                font-family: ${globals.menuFont};
+                text-transform: uppercase;
+              `}
+              dangerouslySetInnerHTML={{
+                __html: `By ${this.props.relatedPosts[i].coauthors[0].display_name}`
+              }}
+            />
+          </div>
+        </a>
+      );
+    }
+
     return (
       <>
         <div
           css={css`
             display: flex;
-            height: 100vh;
+            /* height: 100vh; */
             flex-direction: column;
             justify-content: space-between;
           `}
         >
-          <a
-            css={css`
-              width: 100%;
-              padding: 10px;
-              max-width: 700px;
-              margin: auto;
-            `}
-            href="/"
-          >
-            <img
-              src={header}
-              css={css`
-                width: 100%;
-              `}
-            />
-          </a>
-          <div
+          <Header></Header>
+
+          <img
+            src={Landing}
             css={css`
               margin: auto;
               width: 100%;
+              @media all and (max-width: 800px) {
+                display: none;
+              }
             `}
-          >
-            <ArticleCarousel
-              articles={this.props.posts.map(a => {
-                return {
-                  headline: a.title.rendered,
-                  byline: `By ${a.coauthors[0].display_name}`,
-                  link: a.link
-                };
-              })}
-            />
-          </div>
-          <div
+          />
+          <img
+            src={Landing}
             css={css`
-              background-color: #000;
-              color: #fff;
-              padding: 60px 20px;
-              font-family: "Noto Serif", ${globals.bodyFont};
+              width: 100vw;
+              display: none;
+              @media all and (max-width: 800px) {
+                display: inline-block;
+              }
             `}
-          >
-            <p
-              css={css`
-                max-width: 900px;
-                width: 100%;
-                margin: auto;
-                text-align: center;
-                font-size: 0.8rem;
-                line-height: 1.5;
-              `}
-            >
-              The coronavirus pandemic has drastically upended life in the most
-              unforeseeable of ways. At UCLA, our community is remarkably united
-              by similar feelings of loss, confusion and concern, but also by
-              light, hope and perspective that the pandemic has brought to the
-              forefront. In “Columns From Quarantine,” Daily Bruin staffers and
-              community submissions highlight the personal stories that mark
-              this unprecedented moment. If you have a quarantine story to tell,
-              you can submit it here or email{" "}
-              <a
-                css={css`
-                  text-decoration: underline;
-                  color: white;
-                `}
-                href="mailto:columnsfromquarantine@gmail.com"
-              >
-                columnsfromquarantine@gmail.com
-              </a>
-              .
-            </p>
-          </div>
+          />
+
+          <img
+            src={description}
+            css={css`
+              margin: auto;
+              width: 100%;
+              @media all and (max-width: 800px) {
+                display: none;
+              }
+            `}
+          />
+          <img
+            src={descriptionmobile}
+            css={css`
+              width: 100vw;
+              display: none;
+              @media all and (max-width: 800px) {
+                display: inline-block;
+                margin-top: -9vh;
+              }
+            `}
+          />
         </div>
         <div
           css={css`
-            margin: auto;
-            max-width: 700px;
+            background-color: #DCABE8;
           `}
         >
-          {renderedPosts}
+          <div
+            css={css`
+              width = 100%;
+              background-image: url(${storiesbg});
+              background-size: cover;
+              @media all and (max-width: 800px) {
+                background-image: url(${storiesbgmobile});
+              }
+            `}
+          >
+            <div
+              css={css`
+                padding-top: 7%;
+                margin: auto;
+                display: grid;
+                width: 40%;
+                @media all and (max-width: 800px) {
+                  width: 85vw;
+                  grid-template-columns: 100%;
+                }
+              `}
+            >
+              {renderedPosts}
+            </div>
+            <img
+              src={relatedheadermobile}
+              css={css`
+                width: 100vw;
+                display: none;
+                @media all and (max-width: 800px) {
+                  display: inline-block;
+                }
+              `}
+            />
+            <div
+              css={css`
+                width = 100%;
+                padding-top: 7%;
+                padding-bottom: 15%;
+                margin: auto;
+                height: 100%;
+                background-image: url(${relatedbg});
+                background-size: cover;
+                @media all and (max-width: 800px) {
+                  background-image: none;
+                }
+              `}
+            >
+              <div
+                css={css`
+                  margin-top: 26%;
+                  margin-left: 20vw;
+                  margin-right: 40vw;
+                  display: grid;
+                  @media all and (max-width: 800px) {
+                    padding-top: 0%;
+                    margin: auto;
+                    width: 52%;
+                    width: 85vw;
+                    grid-template-columns: 100%;
+                  }
+                `}
+              >
+                <h1
+                  css={css`
+                  font-family: "Noto Serif", ${globals.headlineFont};
+                  font-weight: 700;
+                  color: white;
+                  @media all and (max-width: 800px) {
+                    display: none;
+                  }
+                `}
+                >
+                  RELATED COVERAGE
+                </h1>
+                {relatedPosts}
+              </div>
+            </div>      
+          </div>
+          
         </div>
-        <MainSiteFooter></MainSiteFooter>
+        <Footer />
       </>
     );
   }

@@ -8,12 +8,18 @@ import Emmys2022Layout from "../../layouts/Emmys2022";
 
 class Emmys2022 extends React.Component {
   static async getInitialProps() {
-    const slug = "emmys-2022";
+    const slug = "emmys-2022"; // this is the website page url
+    const slug2 = "emmys-2022-stories";
+    const slug3 = "emmys-2022-related";
     const tagRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=columns-from-quarantine`
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug2}`
     );
-    console.log(`${Config.apiUrl}/wp-json/wp/v2/tags?slug=columns-from-quarantine`);
+    const tagResRelated = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug3}`
+    );
+
     const tag = await tagRes.json();
+    const tagRelated = await tagResRelated.json();
     if (tag.length > 0) {
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tag[0].id}&per_page=50`
@@ -23,7 +29,12 @@ class Emmys2022 extends React.Component {
         `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
       );
       const classifieds = await classifiedsRes.json();
-      return { tag, posts, classifieds };
+
+      const postsResRelated = await fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tagRelated[0].id}&per_page=50`
+      );
+      const relatedPosts = await postsResRelated.json();
+      return { tag, tagRelated, posts, relatedPosts, classifieds };
     }
     return { tag };
   }
@@ -41,7 +52,7 @@ class Emmys2022 extends React.Component {
             href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <title>Columns From Quarantine - Daily Bruin</title>
+          <title>Emmys 2022 - Daily Bruin</title>
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
@@ -56,11 +67,11 @@ class Emmys2022 extends React.Component {
           <meta property="og:title" content="Columns From Quarantine" />
           <meta
             property="og:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content='After a year of recording-breaking series and refreshing spins on traditional genres, the 2022 Emmy Awards commemorates another year of television visionaries decorated in purple and gold. Read on for the Daily Bruin’s coverage of the 74th annual Emmy Awards and the meticulous work of nominated alumni.'
           />
           <meta
             property="og:url"
-            content="https://dailybruin.com/tag/columns-from-quarantine/"
+            content="https://dailybruin.com/tag/emmys-2022/"
           />
           <meta property="og:site_name" content="Daily Bruin" />
           <meta
@@ -76,9 +87,9 @@ class Emmys2022 extends React.Component {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:description"
-            content='"Columns From Quarantine” explores the multifaceted experiences the UCLA community has endured since the outset of the COVID-19 pandemic.'
+            content='After a year of recording-breaking series and refreshing spins on traditional genres, the 2022 Emmy Awards commemorates another year of television visionaries decorated in purple and gold. Read on for the Daily Bruin’s coverage of the 74th annual Emmy Awards and the meticulous work of nominated alumni.'
           />
-          <meta name="twitter:title" content="Columns From Quarantine" />
+          <meta name="twitter:title" content="Emmys 2022" />
           <meta name="twitter:site" content="@dailybruin" />
           <meta
             name="twitter:image"
@@ -89,6 +100,7 @@ class Emmys2022 extends React.Component {
         <div>
           <Emmys2022Layout
             posts={this.props.posts}
+            relatedPosts={this.props.relatedPosts}
             tag={this.props.tag[0]}
           />
         </div>
