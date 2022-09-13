@@ -23,6 +23,11 @@ export default class AAPILayout extends React.Component {
   render() {
     let renderedPosts = [];
     for (let i in this.props.posts) {
+      let authors = [];
+      for (let j in this.props.posts[i].coauthors) {
+        authors.push(this.props.posts[i].coauthors[j].display_name);
+      }
+      let authors_string = authors.join(', ');
       renderedPosts.push(
         <a
           key={i}
@@ -92,7 +97,7 @@ export default class AAPILayout extends React.Component {
                 text-transform: uppercase;
               `}
               dangerouslySetInnerHTML={{
-                __html: `By ${this.props.posts[i].coauthors[0].display_name}`
+                __html: `By ${authors_string}`
               }}
             />
           </div>
