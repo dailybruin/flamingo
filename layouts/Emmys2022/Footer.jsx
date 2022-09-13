@@ -76,7 +76,7 @@ export default function AAPIFooter() {
           padding-bottom: 50px;
         `}
       >
-        Built with Suzy's Love in Kerchoff 118 by Kaylyn. 
+        Built with Suzy's Love in Kerckhoff 118 by Kaylyn. 
         Designed by Tang.
       </div>
     </div>
