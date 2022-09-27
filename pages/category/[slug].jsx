@@ -49,6 +49,11 @@ class Category extends Component {
     ) {
       return <Error statusCode={404} />;
     }
+    if (
+      this.props.category[0].name == "Uncategorized"
+    ) {
+      return <Error statusCode={404}/>
+    }
     const sectionLinks = this.props.subcategories.map(index => {
       const subsubcategoriesSimple = index.subsubcategories.map(index => {
         return { name: index.name, link: `/category/${index.slug}` };
