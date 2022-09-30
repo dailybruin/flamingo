@@ -42,7 +42,7 @@ export default class HomeLayout extends React.Component {
         "/category/quad"
       ),
       nsStoryList: utilities.buildStoryList(
-        "NEWS",
+        "NEWs",
         this.props.posts.newsList,
         "/category/news"
       ),
