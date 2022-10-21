@@ -48,72 +48,94 @@ class Index extends Component {
   }
   static async getInitialProps(context) {
     const posts = {};
-    const aStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${aTAGID}&${Config.articleCardFields}`
-    );
-    const bStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${bTAGID}&${Config.articleCardFields}`
-    );
-    const c1StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${c1TAGID}&${Config.articleCardFields}`
-    );
-    const c2StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${c2TAGID}&${Config.articleCardFields}`
-    );
-    const dStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${dTAGID}&${Config.articleCardFields}`
-    );
-    const eStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${eTAGID}&${Config.articleCardFields}`
-    );
-    const qdStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${quadCATID}&${Config.articleCardFields}`
-    );
-    const mmStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}&${Config.articleCardFields}`
-    );
-    const f1StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f1TAGID}&${Config.articleCardFields}`
-    );
-    const f2StoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}&${Config.articleCardFields}`
-    );
-    const nsStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}&${Config.articleCardFields}`
-    );
-    const enStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${enterpriseCATID}&${Config.articleCardFields}`
-    );
-    const opStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${opinionCATID}&${Config.articleCardFields}`
-    );
-    const aeStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${artsCATID}&${Config.articleCardFields}`
-    );
-    const spStoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${sportsCATID}&${Config.articleCardFields}`
-    );
-    const classifiedsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
-    );
-    const sponsoredRes = await fetch(`${Config.apiUrl}/wp-json/db/v1/links`);
-    posts.aStory = await aStoryRes.json();
-    posts.bStory = await bStoryRes.json();
-    posts.c1Story = await c1StoryRes.json();
-    posts.c2Story = await c2StoryRes.json();
-    posts.dStory = await dStoryRes.json();
-    posts.eStory = await eStoryRes.json();
-    posts.quadList = await qdStoryRes.json();
-    const multimediaPosts = await mmStoryRes.json();
-    posts.f1Story = await f1StoryRes.json();
-    posts.f2Story = await f2StoryRes.json();
-    posts.newsList = await nsStoryRes.json();
-    posts.enterpriseList = await enStoryRes.json();
-    posts.opinionList = await opStoryRes.json();
-    posts.artsList = await aeStoryRes.json();
-    posts.sportsList = await spStoryRes.json();
-    const classifieds = await classifiedsRes.json();
-    const sponsored = await sponsoredRes.text();
+    let [
+      aStoryResJson,
+      bStoryResJson,
+      c1StoryResJson,
+      c2StoryResJson,
+      dStoryResJson,
+      eStoryResJson,
+      qdStoryResJson,
+      mmStoryResJson,
+      f1StoryResJson,
+      f2StoryResJson,
+      nsStoryResJson,
+      enStoryResJson,
+      opStoryResJson,
+      aeStoryResJson,
+      spStoryResJson,
+      classifiedsResJson,
+      sponsoredResText
+    ] = await Promise.all([
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${aTAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${bTAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${c1TAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${c2TAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${dTAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${eTAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${quadCATID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f1TAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${enterpriseCATID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${opinionCATID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${artsCATID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${sportsCATID}&${Config.articleCardFields}`
+      ).then(res => res.json()),
+      fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
+      ).then(res => res.json()),
+      fetch(`${Config.apiUrl}/wp-json/db/v1/links`).then(res => res.text())
+    ]);
+
+    posts.aStory = aStoryResJson;
+    posts.bStory = bStoryResJson;
+    posts.c1Story = c1StoryResJson;
+    posts.c2Story = c2StoryResJson;
+    posts.dStory = dStoryResJson;
+    posts.eStory = eStoryResJson;
+    posts.quadList = qdStoryResJson;
+    const multimediaPosts = mmStoryResJson;
+    posts.f1Story = f1StoryResJson;
+    posts.f2Story = f2StoryResJson;
+    posts.newsList = nsStoryResJson;
+    posts.enterpriseList = enStoryResJson;
+    posts.opinionList = opStoryResJson;
+    posts.artsList = aeStoryResJson;
+    posts.sportsList = spStoryResJson;
+    const classifieds = classifiedsResJson;
+    const sponsored = sponsoredResText;
+
     return { posts, multimediaPosts, classifieds, sponsored };
   }
 
@@ -199,7 +221,7 @@ class Index extends Component {
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-          /> 
+          />
         </Head>
         <HomeLayout
           posts={this.props.posts}
