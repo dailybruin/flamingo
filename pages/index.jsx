@@ -42,7 +42,7 @@ class Index extends Component {
     super(props);
 
     this.state = {
-      showPopUp: false,
+      showNewsletterPopUp: false,
       showWelcome: false
     };
   }
@@ -133,7 +133,7 @@ class Index extends Component {
       }
     }
     if (Cookies.get("visited") === undefined) {
-      this.setState({ showWelcome: true });
+      this.setState({ showNewsletterPopUp: true });
       Cookies.set("visited", "true", { expires: 365 });
     }
   }
@@ -143,15 +143,11 @@ class Index extends Component {
   };
 
   displayNewsletterPopup = () => {
-    this.setState({ showPopUp: true });
+    this.setState({ showNewsletterPopUp: true });
   };
 
   closeNewsletterPopup = () => {
-    this.setState({ showPopUp: false });
-  };
-
-  closeWelcomePopup = () => {
-    this.setState({ showWelcome: false });
+    this.setState({ showNewsletterPopUp: false });
   };
 
   removeCookies = () => {
@@ -215,16 +211,10 @@ class Index extends Component {
           })}
           sponsoredLinks={this.props.sponsored.replace("null", "")}
         />
-        {this.state.showPopUp && !this.state.showWelcome ? (
+        {this.state.showNewsletterPopUp ? (
           <EmailPopUp
             sub2Newsletter={this.subscribeToNewsletter}
             close={this.closeNewsletterPopup}
-          />
-        ) : null}
-        {this.state.showWelcome ? (
-          <WelcomePopUp
-            bodytext="You're looking at the new dailybruin.com! Feel free to leave us some feedback by clicking the blue button at the bottom right. We appreciate it!"
-            close={this.closeWelcomePopup}
           />
         ) : null}
       </>
