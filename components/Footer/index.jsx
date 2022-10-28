@@ -53,7 +53,7 @@ class Footer extends React.Component {
           )}
         </div>
         <div>
-          Built with Joyce's <Heart /> in Kerckhoff 118 by{' '}
+          Built with Joyce CHen <Heart /> in Kerckhoff 118 by{' '}
           {typeof this.props.developers === 'string'
             ? this.props.developers
             : toSentence(this.props.developers)}
