@@ -171,6 +171,13 @@ export default class HomeLayout extends React.Component {
                     <div id="en" className={css.card}>
                       {this.cards.enStoryList}
                     </div>
+                    <div
+                      id="above-ad"
+                      style={{ textAlign: "center" }}
+                      className={css.card}
+                    >
+                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                    </div>
                     <div id="op" className={css.card}>
                       {this.cards.opStoryList}
                     </div>
