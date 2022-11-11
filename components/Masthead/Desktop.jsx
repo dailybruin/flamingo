@@ -21,8 +21,7 @@ export default class Desktop extends React.Component {
     super(props);
     this.state = {
       menuExpanded: true,
-      searchExpanded: false,
-      // darkMode: false
+      searchExpanded: false
     };
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
@@ -36,6 +35,9 @@ export default class Desktop extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.isScrolled);
+    this.setState({
+      darkmode: JSON.parse(localStorage.getItem('darkmode'))
+    })
   }
 
   componentWillUnmount() {
@@ -98,7 +100,7 @@ export default class Desktop extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
+              color: ${this.state.darkmode ? "#ddd" : "#000"};
               white-space: nowrap;
               &:hover {
                 text-decoration: underline;
@@ -118,8 +120,8 @@ export default class Desktop extends React.Component {
       <div
         ref={this.MastheadCard}
         css={css`
-          background: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
-          color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
+          background: ${this.state.darkmode ? "#222" : "#fff"};
+          color: ${this.state.darkmode ? "#ddd" : "#000"};
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
           height: ${expandedHeight};
@@ -311,7 +313,7 @@ export default class Desktop extends React.Component {
                     text-transform: uppercase;
                     line-height: 34px;
                     font-size: 14px;
-                    color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
+                    color: ${this.state.darkmode ? "#ddd" : "#000"};
                     display: inline-block;
                     vertical-align: middle;
                     height: 36px;
@@ -354,7 +356,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./facebook.svg")} css={css`
-                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
+                      ${this.state.darkmode ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -363,7 +365,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./twitter.svg")} css={css`
-                      ${JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
+                      ${this.state.darkmode ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -372,7 +374,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./instagram.svg")} css={css`
-                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
+                      ${this.state.darkmode ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -381,7 +383,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./mail.svg")} css={css`
-                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
+                      ${this.state.darkmode ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -390,7 +392,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./overlooked.png")} css={css`
-                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
+                      ${this.state.darkmode ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -399,7 +401,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./youtube.png")} css={css`
-                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
+                      ${this.state.darkmode ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                 </div>
@@ -519,7 +521,7 @@ export default class Desktop extends React.Component {
                         transition-delay: 100ms;
                         width: 36px;
                         height: 36px;
-                        ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(1);" : ""};
+                        ${this.state.darkmode ? "filter: invert(1);" : ""};
                         
                       `}
                       src={searchIcon}
@@ -545,8 +547,8 @@ export default class Desktop extends React.Component {
         </div>
         <div
           css={css`
-            background: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
-            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
+            background: ${this.state.darkmode ? "#222" : "#fff"};
+            color: ${this.state.darkmode ? "#ddd" : "#000"};
             overflow-x: scroll;
             &::-webkit-scrollbar {
               display: none;
