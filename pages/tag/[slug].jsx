@@ -49,7 +49,7 @@ class Tag extends Component {
           <TagLayout
             tagID={this.props.tag[0].id}
             posts={this.props.posts}
-            darkmode={this.props.darkmode}
+            
             classifieds={this.props.classifieds.map(c => {
               return {
                 category: {

@@ -61,7 +61,7 @@ class Category extends Component {
         </Head>
         <div style={{ padding: "6px" }}>
           <SectionHeader
-            darkmode={this.props.darkmode}
+            
             category={this.props.category[0].name}
             subcategories={sectionLinks}
           />
@@ -69,7 +69,7 @@ class Category extends Component {
         <VideoLayout
           posts={this.props.posts}
           categoryID={this.props.category[0].id}
-          darkmode={this.props.darkmode}
+          
           classifieds={this.props.classifieds.map(c => {
             return {
               category: {

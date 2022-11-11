@@ -15,7 +15,7 @@ class SponsoredLayout extends React.Component {
     return (
       <>
         <SponsoredArticle
-          darkmode={this.props.darkmode}
+          
           headline={this.props.article.title.rendered}
           date={moment.utc(this.props.article.date)}
           authors={this.props.authors}

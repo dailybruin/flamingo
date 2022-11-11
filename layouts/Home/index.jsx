@@ -74,13 +74,13 @@ export default class HomeLayout extends React.Component {
         this.props.darkmode
       ),
       classifieds: (<ClassifiedsCard
-        darkmode={this.props.darkmode}
+        
         header="Featured Classifieds"
         classifieds={this.props.classifieds}
       />),
       sponsored: (<SponsoredLinks 
         links={this.props.sponsoredLinks} 
-        darkmode={this.props.darkmode}
+        
       />)
     };
   }
@@ -127,7 +127,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
-                        <TwitterFeed darkmode={this.props.darkmode}/>
+                        <TwitterFeed />
                       </div>
                     )}
                     <div
@@ -157,7 +157,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking == null && (
                       <div className={css.card}>
-                        <TwitterFeed darkmode={this.props.darkmode}/>
+                        <TwitterFeed />
                       </div>
                     )}
                     <div id="classifieds" className={css.card}>
@@ -253,7 +253,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
-                        <TwitterFeed darkmode={this.props.darkmode}/>
+                        <TwitterFeed />
                       </div>
                     )}
                     <div
@@ -270,7 +270,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking == null && (
                       <div className={css.card}>
-                        <TwitterFeed darkmode={this.props.darkmode}/>
+                        <TwitterFeed />
                       </div>
                     )}
                   </div>
@@ -460,7 +460,7 @@ export default class HomeLayout extends React.Component {
                     >
                       {this.props.mappedBreaking != null && (
                         <div className={css.card}>
-                          <TwitterFeed darkmode={this.props.darkmode}/>
+                          <TwitterFeed />
                         </div>
                       )}
                       <div
@@ -487,7 +487,7 @@ export default class HomeLayout extends React.Component {
                       </div>
                       {this.props.mappedBreaking == null && (
                         <div className={css.card}>
-                          <TwitterFeed darkmode={this.props.darkmode}/>
+                          <TwitterFeed />
                         </div>
                       )}
                       <div id="sp" className={css.card}>

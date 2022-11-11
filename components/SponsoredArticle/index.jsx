@@ -26,7 +26,7 @@ export default class FeatureArticle extends React.Component {
           `}
         >
           <AuthorCard
-            darkmode={this.props.darkmode}
+            
             image={author.avatar_urls[512]}
             name={author.name}
             description={author.description}
@@ -62,7 +62,7 @@ export default class FeatureArticle extends React.Component {
       <div
         css={css`
           display: block;
-          background-color: ${this.props.darkmode ? "#222" : "#fff"};
+          background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         `}
       >
@@ -175,7 +175,7 @@ export default class FeatureArticle extends React.Component {
                     a {
                       text-decoration: none;
                       color: #0080c6;
-                      background-color: ${this.props.darkmode ? "#222" : "#fff"};
+                      background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
                     }
                     a:hover {
                       text-decoration: underline;
@@ -269,7 +269,7 @@ export default class FeatureArticle extends React.Component {
                 }
 
                 iframe {
-                  ${this.props.darkmode ? "filter: brightness(0.6);" : ""}
+                  ${JSON.parse(localStorage.getItem('darkmode')) ? "filter: brightness(0.6);" : ""}
                   width: 100%;
                 }
 

@@ -23,7 +23,7 @@ class PageLayout extends React.Component {
         <Page
           content={this.props.page.content.rendered}
           date={new Date(this.props.page.modified)}
-          // darkmode={this.props.darkmode}
+          // 
         />
       )
     };

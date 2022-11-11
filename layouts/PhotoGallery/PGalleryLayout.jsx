@@ -14,7 +14,7 @@ export default class PGalleryLayout extends React.Component {
         super(props);
         this.pgallery = (
             <PGallery
-                darkmode={this.props.darkmode}
+                
                 headline={this.props.post.title.rendered}
                 link={this.props.post.link}
                 date={moment.utc(this.props.post.date)}

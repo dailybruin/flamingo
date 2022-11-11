@@ -41,7 +41,7 @@ export default class FeatureArticle extends React.Component {
           `}
         >
           <MiniArticleCard
-          darkmode={this.props.darkmode}
+          
             headline={story.title.rendered}
             category={{
               name: story._embedded["wp:term"][0][0].name,
@@ -88,7 +88,7 @@ export default class FeatureArticle extends React.Component {
           `}
         >
           <MiniArticleCard
-            darkmode={this.props.darkmode}
+            
             headline={story.title.rendered}
             category={{
               name: story._embedded["wp:term"][0][0].name,
@@ -117,7 +117,7 @@ export default class FeatureArticle extends React.Component {
           `}
         >
           <AuthorCard
-            darkmode={this.props.darkmode}
+            
             image={author.avatar_urls[512]}
             name={author.name}
             description={author.description}
@@ -254,12 +254,12 @@ export default class FeatureArticle extends React.Component {
                     line-height: 21px;
                     padding: 5px 0 0;
 
-                    color: ${this.props.darkmode ? "#ddd" : "#000"};
+                    color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
 
                     a {
                       text-decoration: none;
                       color: #0080c6;
-                      background-color: ${this.props.darkmode ? "#222" : "#fff"};
+                      background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
                     }
                     a:hover {
                       text-decoration: underline;
@@ -292,8 +292,8 @@ export default class FeatureArticle extends React.Component {
                 text-align: left;
                 line-height: 1.75;
 
-                background: ${this.props.darkmode ? "#222" : "#fff"};
-                color: ${this.props.darkmode ? "#ddd" : "#000"};
+                background: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
+                color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
                 display: block;
                 max-width: 640px;
                 margin: auto;
@@ -309,8 +309,8 @@ export default class FeatureArticle extends React.Component {
                   min-width: 150px;
                   font-family: "Playfair Display", serif;
                   font-size: 1.1rem;
-                  background: ${this.props.darkmode ? "#222" : "#fff"};
-                  color: ${this.props.darkmode ? "#ddd" : "#000"};
+                  background: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
+                  color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
                 }
                 @media (max-width: 40em) {
                   aside {
@@ -356,7 +356,7 @@ export default class FeatureArticle extends React.Component {
                 }
 
                 iframe {
-                  ${this.props.darkmode ? "filter: brightness(0.6);" : ""}
+                  ${JSON.parse(localStorage.getItem('darkmode')) ? "filter: brightness(0.6);" : ""}
                   width: 100%;
                 }
 

@@ -56,7 +56,7 @@ class SponsoredPost extends Component {
         <SponsoredLayout
           article={this.props.post[0]}
           authors={this.props.authors}
-          darkmode={this.props.darkmode}
+          
         />
       </>
     );

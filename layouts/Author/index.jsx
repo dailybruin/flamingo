@@ -88,7 +88,7 @@ export default class Author extends React.Component {
                 >
                   <div className={css.card}>
                     <AuthorCard
-                      darkmode={this.props.darkmode}
+                      
                       image={
                         this.props.author.simple_local_avatar != null
                           ? this.props.author.simple_local_avatar.full
@@ -149,7 +149,7 @@ export default class Author extends React.Component {
                 >
                   <div className={css.card}>
                     <AuthorCard
-                      darkmode={this.props.darkmode}
+                      
                       image={
                         this.props.author.simple_local_avatar != null
                           ? this.props.author.simple_local_avatar.full
@@ -249,7 +249,7 @@ export default class Author extends React.Component {
                   </div> */}
                   <div className={css.card}>
                     <AuthorCard
-                      darkmode={this.props.darkmode}
+                      
                       image={
                         this.props.author.simple_local_avatar != null
                           ? this.props.author.simple_local_avatar.full

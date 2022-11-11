@@ -9,7 +9,7 @@ class StoryList extends React.Component {
   render() {
     const renderedStories = this.props.story.map((story, index) => (
       <Story
-        darkmode={this.props.darkmode}
+        
         title={story.title}
         text={story.text}
         link={story.link}
@@ -21,8 +21,8 @@ class StoryList extends React.Component {
     return (
       <div
         css={css`
-          background-color: ${this.props.darkmode ? "#222" : "#fff"};
-          color: ${this.props.darkmode ? "#ddd" : "#000"};
+          background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
+          color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
 
           box-shadow: ${globals.cardShadow};
           justify-content: center;

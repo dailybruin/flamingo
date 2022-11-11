@@ -18,7 +18,7 @@ export default class PhotoGallery extends React.Component {
     for (let i in this.props.photos) {
       renderedGallery.push(
         <Photo
-          darkmode={this.props.darkmode}
+          
           image={this.props.photos[i].image}
           caption={this.props.photos[i].caption}
           credit={this.props.photos[i].credit}
@@ -37,7 +37,7 @@ export default class PhotoGallery extends React.Component {
           `}
         >
           <AuthorCard
-            darkmode={this.props.darkmode}
+            
             image={
               author.simple_local_avatar != null
                 ? author.simple_local_avatar.full
@@ -59,12 +59,12 @@ export default class PhotoGallery extends React.Component {
         css={css`
           width: 100%;
           box-shadow: ${globals.cardShadow};
-          background-color: ${this.props.darkmode ? "#222" : "#fff"};
+          background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
           color:  ${this.props.darkmode? "#fff" : "#000"};
         `}
       >
         <Header
-          darkmode={this.props.darkmode}
+          
           headline={this.props.headline}
           photographers={this.props.photographers}
           date={this.props.date}
@@ -79,7 +79,7 @@ export default class PhotoGallery extends React.Component {
           `}
         >
           {renderedGallery}
-          <ShareButtons darkmode={this.props.darkmode} url={this.props.link} title={this.props.headline} />
+          <ShareButtons  url={this.props.link} title={this.props.headline} />
           {renderedAuthorCards}
         </div> 
       </div>

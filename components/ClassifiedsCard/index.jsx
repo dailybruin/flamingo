@@ -64,7 +64,7 @@ export default class ClassifiedsCard extends React.Component {
     if (this.props.classifieds != null) {
       for (const i of this.props.classifieds) {
         let c = (<Classified
-          darkmode={this.props.darkmode}
+          
           key={i.content.url}
           category={i.category}
           content={i.content}
@@ -98,7 +98,7 @@ export default class ClassifiedsCard extends React.Component {
             line-height: 24px;
             text-transform: uppercase;
 
-            color: ${this.props.darkmode ? "#ddd" : "#fff"};
+            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#fff"};
             /* color: #fff; */
           `}
         >
@@ -107,8 +107,8 @@ export default class ClassifiedsCard extends React.Component {
         <div
           css={css`
             padding: 0 12px;
-            background-color: ${this.props.darkmode ? "#222" : "#fff"};
-            color: ${this.props.darkmode ? "#ddd" : "#000"};
+            background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
+            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
           `}
         >
           {this.renderedClassifieds}

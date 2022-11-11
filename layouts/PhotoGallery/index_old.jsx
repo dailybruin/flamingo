@@ -10,7 +10,7 @@ export default class PhotoGalleryLayout extends React.Component {
     super(props);
     this.photogallery = (
       <PhotoGallery
-        darkmode={this.props.darkmode}
+        
         headline={this.props.post.title.rendered}
         photos={this.props.photos}
         photographers={this.props.photographers}

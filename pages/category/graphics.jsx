@@ -69,14 +69,14 @@ class Graphics extends Component {
         </Head>
         <div style={{ padding: "6px" }}>
           <SectionHeader
-            darkmode={this.props.darkmode}
+            
             category={this.props.category[0].name}
             subcategories={sectionLinks}
           />
         </div>
         <MultimediaLayout
           posts={this.props.posts}
-          darkmode={this.props.darkmode}
+          
           categoryID={this.props.category[0].id}
         />
       </div>

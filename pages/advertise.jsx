@@ -12,7 +12,7 @@ class Page extends Component {
     return { page };
   }
   render() {
-    return <PageLayout darkmode={this.props.darkmode} page={this.props.page} />;
+    return <PageLayout  page={this.props.page} />;
   }
 }
 

@@ -116,7 +116,7 @@ class Post extends Component {
         </Head>
         {this.props.feature == true && (
           <FeatureLayout
-            darkmode={this.props.darkmode}
+            
             article={this.props.post[0]}
             authors={this.props.authors}
             tagged={this.props.tagged}
@@ -125,7 +125,7 @@ class Post extends Component {
         )}
         {this.props.oldGallery == true && (
           <PhotoGalleryLayout
-            darkmode={this.props.darkmode}
+            
             post={this.props.post[0]}
             photos={this.props.photos}
             photographers={this.props.authors}
@@ -133,7 +133,7 @@ class Post extends Component {
         )}
         {this.props.gallery == true && (
           <PGalleryLayout
-            darkmode={this.props.darkmode}
+            
             post={this.props.post[0]}
             authors={this.props.authors}
             galleryID={this.props.id}
@@ -144,7 +144,7 @@ class Post extends Component {
           this.props.feature != true &&
           this.props.gallery != true && (
             <ArticleLayout
-              darkmode={this.props.darkmode}
+              
               article={this.props.post[0]}
               authors={this.props.authors}
               relatedPosts={this.props.relatedPosts}

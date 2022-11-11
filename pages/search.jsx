@@ -40,7 +40,7 @@ class Search extends React.Component {
           <title>{`Search: ${decodeURIComponentSafe(this.props.q)} - Daily Bruin`}</title>
         </Head>
 
-        <SearchResults darkmode={this.props.darkmode} query={decodeURI(this.props.q)}></SearchResults>
+        <SearchResults  query={decodeURI(this.props.q)}></SearchResults>
 
       </div>
     );

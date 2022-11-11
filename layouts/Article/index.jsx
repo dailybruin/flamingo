@@ -17,7 +17,7 @@ class ArticleLayout extends React.Component {
 
     this.article = (
       <Article
-        darkmode={this.props.darkmode}
+        
         headline={this.props.article.title.rendered}
         link={this.props.article.link}
         date={moment.utc(this.props.article.date)}
