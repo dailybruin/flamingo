@@ -7,6 +7,12 @@ import * as globals from "../globals";
 export default class InTheNewsBanner extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
+  }
+  componentDidMount() {
+    this.setState({
+      darkmode: JSON.parse(localStorage.getItem('darkmode'))
+    })
   }
   render() {
     let renderedStories = [];
@@ -21,7 +27,7 @@ export default class InTheNewsBanner extends React.Component {
             padding: 2px 5px;
             font-family: ${globals.bodyFont};
             font-weight: 700;
-            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
+            color: ${this.state.darkmode ? "#ddd" : "#000"};
             text-decoration: none;
             &:hover {
               color: ${globals.DBblue};
@@ -36,8 +42,8 @@ export default class InTheNewsBanner extends React.Component {
     return (
       <div
         css={css`
-          background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
-          color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
+          background-color: ${this.state.darkmode ? "#222" : "#fff"};
+          color: ${this.state.darkmode ? "#ddd" : "#000"};
           width: 100%;
           display: table;
           padding: ${globals.cardPadding};
