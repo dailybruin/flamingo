@@ -270,7 +270,7 @@ function PGallery(props) {
 
             
 
-            <div className={`${css_selector[photosContainerType]} ${props.darkmode ? css_selector['dark'] : ""}`}>
+            <div className={`${css_selector[photosContainerType]} ${JSON.parse(localStorage.getItem('darkmode')) ? css_selector['dark'] : ""}`}>
                 {
                     entries.map((entry, index) => (
                         <ContainerItem

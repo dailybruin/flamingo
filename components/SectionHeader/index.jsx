@@ -23,7 +23,7 @@ export default class SectionHeader extends React.Component {
               max-height: 64px;
               margin: 0px;
               padding: 0px;
-              ${this. props.darkmode ? "filter: invert(100%);" : ""};
+              ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
             `}
           ></img>
         );

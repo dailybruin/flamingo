@@ -69,7 +69,7 @@ export default function Header(props) {
               display: inline-block;
               height: 100%;
               max-height: 64px;
-              ${ props.darkmode ? "filter: invert(100%);" : ""};
+              ${ JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
             `}
           ></img>
         </a>

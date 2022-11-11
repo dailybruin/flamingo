@@ -34,12 +34,12 @@ function Classified(props) {
           font-family: ${globals.bodyFont};
           font-weight: 300;
           font-size: 11px;
-          color: ${props.darkmode ? "#ddd" : "#000"};
+          color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
           text-decoration: none;
-          background-color: ${props.darkmode ? "#222" : "#fff"};
+          background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
 
           &:hover {
-            color: ${props.darkmode ? "#bbb" : "#444"};
+            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#bbb" : "#444"};
             text-decoration: none;
           }
 

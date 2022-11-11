@@ -14,7 +14,7 @@ export default function Full(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: ${props.darkmode ? "#222" : "#fff"};
+        background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
       `}
     >
       <span>
@@ -45,7 +45,7 @@ export default function Full(props) {
         </a>
         <span          
           css={css`
-            border-left: 1px solid ${props.darkmode ? "#ddd" : "#000"};
+            border-left: 1px solid ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
             margin: 0;
             padding-left: 4px;
             font-family: ${globals.bodyFont};
@@ -53,7 +53,7 @@ export default function Full(props) {
             font-weight: 300;
             font-size: 11px;
             line-height: 14px;
-            color: ${props.darkmode ? "#ddd" : "#000"};
+            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
 
           `}
         >
@@ -64,7 +64,7 @@ export default function Full(props) {
         <div
           css={css`
             margin: 2px 0 6px;
-            ${props.darkmode ? locals.darkheadline : locals.headline};
+            ${JSON.parse(localStorage.getItem('darkmode')) ? locals.darkheadline : locals.headline};
           `}
           style={{
             fontStyle:
@@ -91,7 +91,7 @@ export default function Full(props) {
               margin: 4px 0;
             }
 
-            color: ${props.darkmode ? "#ddd" : "#000"};
+            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
 
           `}
           dangerouslySetInnerHTML={{ __html: props.caption }}
@@ -99,7 +99,7 @@ export default function Full(props) {
         <div
           css={css`
             margin: 0 0 5px;
-            ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
+            ${JSON.parse(localStorage.getItem('darkmode')) ? locals.darkexcerpt : locals.excerpt}
           `}
           dangerouslySetInnerHTML={{ __html: props.excerpt }}
         />
@@ -113,7 +113,7 @@ export default function Full(props) {
           font-weight: bold;
           font-size: 11px;
 
-          color: ${props.darkmode ? "#ddd" : "#000"};
+          color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
 
         `}
       >

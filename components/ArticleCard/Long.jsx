@@ -14,7 +14,7 @@ export default function Long(props) {
         box-shadow: ${globals.cardShadow};
         height: 100%;
         padding: 0px;
-        background-color: ${props.darkmode ? "#222" : "#fff"};
+        background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
       `}
     >
       <div
@@ -51,7 +51,7 @@ export default function Long(props) {
           </a>
           <span
             css={css`
-              border-left: 1px solid ${props.darkmode ? "#ddd" : "#000"};
+              border-left: 1px solid ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
               margin: 0;
               padding-left: 4px;
               font-family: ${globals.bodyFont};
@@ -59,7 +59,7 @@ export default function Long(props) {
               font-weight: 300;
               font-size: 11px;
               line-height: 14px;
-              color: ${props.darkmode ? "#ddd" : "#000"};
+              color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
             `}
           >
             {moment(props.date).format("MMM D, YYYY h:mm a")}
@@ -69,7 +69,7 @@ export default function Long(props) {
           <h1
             css={css`
               margin: 2px 0;
-              ${props.darkmode ? locals.darkheadline : locals.headline};
+              ${JSON.parse(localStorage.getItem('darkmode')) ? locals.darkheadline : locals.headline};
             `}
             style={{
               fontStyle:
@@ -81,7 +81,7 @@ export default function Long(props) {
         <a href={props.as} style={{ textDecoration: "none" }}>
           <div
             css={css`
-              ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
+              ${JSON.parse(localStorage.getItem('darkmode')) ? locals.darkexcerpt : locals.excerpt}
             `}
             dangerouslySetInnerHTML={{ __html: props.excerpt }}
           />
@@ -95,7 +95,7 @@ export default function Long(props) {
             font-weight: bold;
             font-size: 11px;
 
-            color: ${props.darkmode ? "#ddd" : "#000"};
+            color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
           `}
         >
           By {utilities.renderAuthors(props.authors)}

@@ -31,10 +31,10 @@ export default function MainSiteFooter(props) {
         font-size: 0.85rem;
         flex-direction: row;
         padding: 0.4rem;
-        background-color: ${props.darkmode ? "#222" : "#fff"};
-        color: ${props.darkmode ? "#ddd" : "#000"};
+        background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
+        color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
         font-family: ${MainSiteStyles.headlineFont};
-        font-weight: ${props.darkmode ? 550 : MainSiteStyles.boldFont};
+        font-weight: ${JSON.parse(localStorage.getItem('darkmode')) ? 550 : MainSiteStyles.boldFont};
         box-shadow: ${MainSiteStyles.cardShadow};
         border-top: 5px solid black;
 

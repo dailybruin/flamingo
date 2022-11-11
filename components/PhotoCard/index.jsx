@@ -35,7 +35,7 @@ export default function PhotoCard(props) {
               css={css`
                 display: block;
                 width: 100%;
-                border: 15px solid ${props.darkmode ? "#444" : "#fff"};
+                border: 15px solid ${JSON.parse(localStorage.getItem('darkmode')) ? "#444" : "#fff"};
               `}
             ></img>
             <div
@@ -54,7 +54,7 @@ export default function PhotoCard(props) {
                 opacity: 0;
                 height: 100%;
                 width: 100%;
-                border: 15px solid ${props.darkmode ? "#444" : "#fff"};
+                border: 15px solid ${JSON.parse(localStorage.getItem('darkmode')) ? "#444" : "#fff"};
                 transition: 0.5s ease;
               `}
             >
@@ -146,7 +146,7 @@ export default function PhotoCard(props) {
             css={css`
               box-sizing: border-box;
               position: relative;
-              background-color: ${props.darkmode ? "#222" : "#fff"};
+              background-color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#222" : "#fff"};
               width: 100%;
               box-shadow: ${globals.cardShadow};
             `}
@@ -163,7 +163,7 @@ export default function PhotoCard(props) {
             <div
               id="text"
               css={css`
-                color: ${props.darkmode ? "#ddd" : "#000"};
+                color: ${JSON.parse(localStorage.getItem('darkmode')) ? "#ddd" : "#000"};
                 padding: 18px;
               `}
             >

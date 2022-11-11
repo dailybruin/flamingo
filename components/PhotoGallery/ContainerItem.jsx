@@ -21,9 +21,9 @@ function ContainerItem(props) {
     // }
 
     // This code below should work with the most up-to-date API (not yet avail on the web) and allow for article-text and center-photo
-    // className={`${css['row']} ${props.darkmode ? css[dark] : ""}`}
-    let classNameRow = `${css['row']} ${props.darkmode ? css['dark'] : ""}`;
-    let classNameNoRow = `${props.darkmode ? css['dark'] : ""}`;
+    // className={`${css['row']} ${JSON.parse(localStorage.getItem('darkmode')) ? css[dark] : ""}`}
+    let classNameRow = `${css['row']} ${JSON.parse(localStorage.getItem('darkmode')) ? css['dark'] : ""}`;
+    let classNameNoRow = `${JSON.parse(localStorage.getItem('darkmode')) ? css['dark'] : ""}`;
 
     if (props.type == 'center-photo') {
         return (

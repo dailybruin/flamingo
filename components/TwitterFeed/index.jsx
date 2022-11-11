@@ -14,7 +14,7 @@ export default function TwitterFeed(props) {
           ${globals.cardStyles}
           padding: 10px 10px 0;
           min-height: 514px;
-          ${props.darkmode ? "filter: brightness(0.6);" : ""}
+          ${JSON.parse(localStorage.getItem('darkmode')) ? "filter: brightness(0.6);" : ""}
         `}
       >
         <a

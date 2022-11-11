@@ -63,20 +63,20 @@ export default function VideoCard(props) {
         <div
           css={css`
             margin: 2px 0 6px;
-            ${props.darkmode ? locals.darkheadline : locals.headline};
+            ${JSON.parse(localStorage.getItem('darkmode')) ? locals.darkheadline : locals.headline};
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
         <div
           css={css`
             div div iframe {
-              ${props.darkmode ? "filter: brightness(0.6);" : ""}    
+              ${JSON.parse(localStorage.getItem('darkmode')) ? "filter: brightness(0.6);" : ""}    
               width: 100%;
               //padding-top: 100%;
               //height: 0;
             }
             p {
-              ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
+              ${JSON.parse(localStorage.getItem('darkmode')) ? locals.darkexcerpt : locals.excerpt}
             }
           `}
           dangerouslySetInnerHTML={{ __html: props.content }}

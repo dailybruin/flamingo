@@ -354,7 +354,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./facebook.svg")} css={css`
-                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -372,7 +372,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./instagram.svg")} css={css`
-                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -381,7 +381,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./mail.svg")} css={css`
-                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -390,7 +390,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./overlooked.png")} css={css`
-                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                   <a
@@ -399,7 +399,7 @@ export default class Desktop extends React.Component {
                     rel="noopener"
                   >
                     <img src={require("./youtube.png")} css={css`
-                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                      ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(100%);" : ""};
                 `   } />
                   </a>
                 </div>
@@ -519,7 +519,7 @@ export default class Desktop extends React.Component {
                         transition-delay: 100ms;
                         width: 36px;
                         height: 36px;
-                        ${this. props.darkmode ? "filter: invert(1);" : ""};
+                        ${this. JSON.parse(localStorage.getItem('darkmode')) ? "filter: invert(1);" : ""};
                         
                       `}
                       src={searchIcon}

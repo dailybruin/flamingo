@@ -53,7 +53,7 @@ export default function ShareButtons(props) {
           @media (max-width: 450px) {
             display: block;
           }
-          color: ${props.darkmode ? '#fff' : '#000'};
+          color: ${JSON.parse(localStorage.getItem('darkmode')) ? '#fff' : '#000'};
         `}
       >
         Share this story:
