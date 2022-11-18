@@ -321,11 +321,11 @@ export default class HomeLayout extends React.Component {
                             />
                           </a>
                         </div>
-                        <div className={css.card}>
-                          <SponsoredLinks links={this.props.sponsoredLinks} />
-                        </div>
                       </div>
                     </div>
+                  </div>
+                  <div className={css.card}>
+                        <SponsoredLinks links={this.props.sponsoredLinks} />
                   </div>
                 </div>
               )}
