@@ -105,35 +105,46 @@ class Post extends Component {
           </title>
           {renderedMeta}
         </Head>
-        {this.props.feature == true && (
-          <FeatureLayout
-            article={this.props.post[0]}
-            authors={this.props.authors}
-            tagged={this.props.tagged}
-            relatedPosts={this.props.relatedPosts}
-          />
-        )}
-        {this.props.oldGallery == true && (
-          <PhotoGalleryLayout
-            post={this.props.post[0]}
-            photos={this.props.photos}
-            photographers={this.props.authors}
-          />
-        )}
-        {this.props.gallery == true && (
-          <PGalleryLayout
-            post={this.props.post[0]}
-            authors={this.props.authors}
-            galleryID={this.props.id}
-            relatedPosts={this.props.relatedPosts}
-          />
-        )}
-        {this.props.photos == undefined &&
-          this.props.feature != true &&
-          this.props.gallery != true && (
+
+        {
+          this.props.feature == true && (
+            <FeatureLayout
+              darkmode={this.props.darkmode}
+              article={this.props.post[0]}
+              authors={this.props.authors}
+              tagged={this.props.tagged}
+              relatedPosts={this.props.relatedPosts}
+            />
+          )
+        }
+        {
+          this.props.oldGallery == true && (
+            <PhotoGalleryLayout
+              darkmode={this.props.darkmode}
+              post={this.props.post[0]}
+              photos={this.props.photos}
+              photographers={this.props.authors}
+            />
+          )
+        }
+        {
+          this.props.gallery == true && (
+            <PGalleryLayout
+              darkmode={this.props.darkmode}
+              post={this.props.post[0]}
+              authors={this.props.authors}
+              galleryID={this.props.id}
+              relatedPosts={this.props.relatedPosts}
+            />
+          )
+        }
+        {
+          this.props.photos == undefined && this.props.feature != true && this.props.gallery != true && (
+
             <ArticleLayout
               article={this.props.post[0]}
               authors={this.props.authors}
+              darkmode={this.props.darkmode}
               relatedPosts={this.props.relatedPosts}
               classifieds={this.props.classifieds.map(c => {
                 return {

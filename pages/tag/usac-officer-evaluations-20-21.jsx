@@ -76,6 +76,7 @@ class USACOfficerEvaluations2021 extends React.Component {
         </Head>
         <div>
           <USACOfficerEvaluations2021Layout
+            darkmode={this.props.darkmode}
             posts={this.props.posts}
             tag={this.props.tag[0]}
           />

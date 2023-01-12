@@ -17,7 +17,7 @@ export default class Scoreboard extends React.Component {
           border-collapse: collapse;
           border-style: hidden;
           border: none !important;
-          color: #000000;
+          color: #000;
         `}
       >
         <tr
@@ -37,7 +37,7 @@ export default class Scoreboard extends React.Component {
               transform: rotate(-90deg);
               padding: 0;
               margin: 0;
-              border-top: 2px solid #ffffff;
+              border-top: 2px solid #fff;
             `}
             rowspan="2"
           >
@@ -46,7 +46,7 @@ export default class Scoreboard extends React.Component {
           <td
             className={css`
               padding: 0 8px;
-              border-right: 4px solid #ffffff;
+              border-right: 4px solid #fff;
               background-color: #efefef;
             `}
           >

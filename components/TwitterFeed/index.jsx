@@ -14,12 +14,13 @@ export default function TwitterFeed(props) {
           ${globals.cardStyles}
           padding: 10px 10px 0;
           min-height: 514px;
+          ${props.darkmode ? "filter: brightness(0.6);" : ""}
         `}
       >
         <a
           className="twitter-timeline"
           data-height="500"
-          href="https://twitter.com/dailybruin?ref_src=twsrc%5Etfw"
+          href="https://twitter.com/dailybruin?ref_src=twsrc%5Etfw"          
         >
           Tweets by dailybruin
         </a>

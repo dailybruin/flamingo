@@ -8,12 +8,13 @@ export default class SearchResults extends React.Component {
     return (
       <div
         css={css`
-          background-color: #fff;
+          background-color: ${this.props.darkmode? "#222" : "#fff"};
           box-shadow: ${globals.cardShadow};
           padding: ${globals.cardPadding};
           font-family: ${globals.menuFont};
           font-weight: bold;
           font-size: 36px;
+          color:  ${this.props.darkmode? "#fff" : "#000"};
 
           ${globals.phone} {
             font-size: 24px;

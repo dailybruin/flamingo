@@ -10,16 +10,20 @@ import logo from "./dailybruin.svg";
 import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
 import minisearchIcon from "./minisearch.svg";
+import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
 let expandedHeight = "106px";
 let collapsedHeight = "60px";
+
+
 
 export default class Desktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       menuExpanded: true,
-      searchExpanded: false
+      searchExpanded: false,
+      // darkMode: false
     };
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
@@ -95,7 +99,7 @@ export default class Desktop extends React.Component {
               font-weight: bold;
               text-decoration: none;
               text-transform: uppercase;
-              color: #000;
+              color: ${this.props.darkmode ? "#ddd" : "#000"};
               white-space: nowrap;
               &:hover {
                 text-decoration: underline;
@@ -115,7 +119,8 @@ export default class Desktop extends React.Component {
       <div
         ref={this.MastheadCard}
         css={css`
-          background: #ffffff;
+          background: ${this.props.darkmode ? "#222" : "#fff"};
+          color: ${this.props.darkmode ? "#ddd" : "#000"};
           box-shadow: ${globals.cardShadow};
           overflow: hidden;
           height: ${expandedHeight};
@@ -144,6 +149,48 @@ export default class Desktop extends React.Component {
               @media (max-width: 900px) {
                 display: none;
               }
+
+              #darkmode{
+                display: inline-block;
+                margin-left: 20px;
+              }
+              #darkmode .checkbox {
+                opacity: 0;
+                position: relative;
+              }
+              #darkmode .label {
+                width: 48px;
+                height: 14px;
+                background-color:#111;
+                display: inline;
+                border-radius:50px;
+                padding: 8px 6px 5px 6px;
+                position: relative;
+                cursor: pointer;
+              }
+              #darkmode .moon {
+                margin-left: 0px;
+              }
+              #darkmode .sun {
+                margin-left: 10px;
+              }
+              #darkmode .ball {
+                width: 24px;
+                height: 24px;
+                background-color: white;
+                position: absolute;
+                top: 3.5px;
+                left: 3px;
+                border-radius: 50%;
+                transition: transform 0.2s linear;
+              }
+              #darkmode .checkbox:checked + .label .ball{
+                transform: translateX(24px);
+                background-color:#111;
+              }
+              #darkmode .checkbox:checked + .label{
+                background-color: #ddd;
+              }
             `}
           >
             <h2
@@ -159,7 +206,20 @@ export default class Desktop extends React.Component {
             >
               {today}
             </h2>
+
+            <div id="darkmode">
+              <input type="checkbox" className="checkbox" id="checkbox"
+               checked={this.props.darkmode}
+               onChange={(e)=>this.props.onToggle(e)}
+              />
+              <label htmlFor="checkbox" className="label">
+                <BsMoonStarsFill color="black" className="moon"/>
+                <BsFillSunFill color="yellow" className="sun"/>
+                <div className="ball"></div>
+              </label>
+            </div>
           </div>
+
           <div
             css={css`
               display: table-cell;
@@ -241,7 +301,7 @@ export default class Desktop extends React.Component {
                     text-transform: uppercase;
                     line-height: 34px;
                     font-size: 14px;
-                    color: #000;
+                    color: ${this.props.darkmode ? "#ddd" : "#000"};
                     display: inline-block;
                     vertical-align: middle;
                     height: 36px;
@@ -274,49 +334,63 @@ export default class Desktop extends React.Component {
                     & a:hover img {
                       fill: ${globals.DBblue};
                     }
+                    
                   `}
                 >
+                  
                   <a
                     href="https://www.facebook.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./facebook.svg")} />
+                    <img src={require("./facebook.svg")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.twitter.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./twitter.svg")} />
+                    <img src={require("./twitter.svg")} css={css`
+                      ${this.props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.instagram.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./instagram.svg")} />
+                    <img src={require("./instagram.svg")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="http://eepurl.com/cFEiZX"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./mail.svg")} />
+                    <img src={require("./mail.svg")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.overlooked.com"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./overlooked.png")} />
+                    <img src={require("./overlooked.png")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                   <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./youtube.png")} />
+                    <img src={require("./youtube.png")} css={css`
+                      ${this. props.darkmode ? "filter: invert(100%);" : ""};
+                `   } />
                   </a>
                 </div>
                 <a href="/advertise">Advertise</a>
@@ -435,6 +509,8 @@ export default class Desktop extends React.Component {
                         transition-delay: 100ms;
                         width: 36px;
                         height: 36px;
+                        ${this. props.darkmode ? "filter: invert(1);" : ""};
+                        
                       `}
                       src={searchIcon}
                     ></img>
@@ -459,7 +535,8 @@ export default class Desktop extends React.Component {
         </div>
         <div
           css={css`
-            background-color: #fff;
+            background: ${this.props.darkmode ? "#222" : "#fff"};
+            color: ${this.props.darkmode ? "#ddd" : "#000"};
             overflow-x: scroll;
             &::-webkit-scrollbar {
               display: none;

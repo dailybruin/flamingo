@@ -56,7 +56,7 @@ export default class MultimediaLayout extends React.Component {
   }
 
   render() {
-    let rendered = utilities.buildPhotoList(this.state.cards);
+    let rendered = utilities.buildPhotoList(this.state.cards, this.props.darkmode);
     return (
       <>
         <InfiniteScroll

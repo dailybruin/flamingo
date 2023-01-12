@@ -13,14 +13,21 @@ export default class CategoryLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      aArticleCard: utilities.buildArticleCard(this.props.posts[0]),
-      bArticleCard: utilities.buildArticleCard(this.props.posts[1]),
-      cArticleCard: utilities.buildArticleCard(this.props.posts[2]),
-      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(3)),
+      aArticleCard: utilities.buildArticleCard(this.props.posts[0], "", this.props.darkmode),
+      bArticleCard: utilities.buildArticleCard(this.props.posts[1], "", this.props.darkmode),
+      cArticleCard: utilities.buildArticleCard(this.props.posts[2], "", this.props.darkmode),
+      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(3), "", this.props.darkmode),
 
       more: true
     };
     this.getPosts = this.getPosts.bind(this);
+
+    this.classifiedsCards = (
+      <ClassifiedsCard
+        header="Featured Classifieds"
+        classifieds={this.props.classifieds}
+      />
+    )
   }
 
   getPosts(page) {
@@ -83,17 +90,17 @@ export default class CategoryLayout extends React.Component {
                 >
                   <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "full"
+                      darkmode: this.props.darkmode, displayType: "full"
                     })}
                   </div>
                   <div id="c2" className={css.card}>
                     {React.cloneElement(this.state.bArticleCard, {
-                      displayType: "full"
+                      darkmode: this.props.darkmode, displayType: "full"
                     })}
                   </div>
                   <div id="c2" className={css.card}>
                     {React.cloneElement(this.state.cArticleCard, {
-                      displayType: "full"
+                      darkmode: this.props.darkmode, displayType: "full"
                     })}
                   </div>
                   <InfiniteScroll
@@ -107,7 +114,8 @@ export default class CategoryLayout extends React.Component {
                   >
                     {utilities.renderPostArray(
                       this.state.otherArticleCards,
-                      "full"
+                      "full",
+                      this.props.darkmode
                     )}
                   </InfiniteScroll>
                   {!this.state.more ? (
@@ -137,7 +145,7 @@ export default class CategoryLayout extends React.Component {
                 >
                   <div id="a" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "full"
+                      darkmode: this.props.darkmode, displayType: "full"
                     })}
                   </div>
                   <div>
@@ -152,7 +160,8 @@ export default class CategoryLayout extends React.Component {
                     >
                       {utilities.renderPostArray(
                         this.state.otherArticleCards,
-                        "horz"
+                        "horz",
+                        this.props.darkmode
                       )}
                     </InfiniteScroll>
                     {!this.state.more ? (
@@ -179,19 +188,18 @@ export default class CategoryLayout extends React.Component {
                 >
                   <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.bArticleCard, {
-                      displayType: "vert"
+                      darkmode: this.props.darkmode, displayType: "vert"
                     })}
                   </div>
                   <div id="c2" className={css.card}>
                     {React.cloneElement(this.state.cArticleCard, {
-                      displayType: "mini"
+                      darkmode: this.props.darkmode, displayType: "mini"
                     })}
                   </div>
                   <div id="classifieds" className={css.card}>
-                    <ClassifiedsCard
-                      header="Featured Classifieds"
-                      classifieds={this.props.classifieds}
-                    />
+                    {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                    })}
                   </div>
                 </div>
               </div>
@@ -212,7 +220,7 @@ export default class CategoryLayout extends React.Component {
                   >
                     <div id="a" className={css.card}>
                       {React.cloneElement(this.state.aArticleCard, {
-                        displayType: "full"
+                        darkmode: this.props.darkmode, displayType: "full"
                       })}
                     </div>
                   </div>
@@ -226,12 +234,12 @@ export default class CategoryLayout extends React.Component {
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.state.bArticleCard, {
-                        displayType: "vert"
+                        darkmode: this.props.darkmode, displayType: "vert"
                       })}
                     </div>
                     <div id="c2" className={css.card}>
                       {React.cloneElement(this.state.cArticleCard, {
-                        displayType: "mini"
+                        darkmode: this.props.darkmode, displayType: "mini"
                       })}
                     </div>
                   </div>
@@ -248,7 +256,8 @@ export default class CategoryLayout extends React.Component {
                     >
                       {utilities.renderPostArray(
                         this.state.otherArticleCards,
-                        "long"
+                        "long",
+                        this.props.darkmode
                       )}
                     </InfiniteScroll>
                     {!this.state.more ? (
@@ -276,10 +285,9 @@ export default class CategoryLayout extends React.Component {
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
                   <div id="classifieds" className={css.card}>
-                    <ClassifiedsCard
-                      header="Featured Classifieds"
-                      classifieds={this.props.classifieds}
-                    />
+                    {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                    })}
                   </div>
                 </div>
               </div>

@@ -47,7 +47,8 @@ export default class AuthorCard extends React.Component {
     return (
       <div
         css={css`
-          background-color: white;
+          background-color: ${this.props.darkmode? "#222" : "#fff"};
+          color:  ${this.props.darkmode? "#fff" : "#000"};
           box-shadow: ${globals.cardShadow};
           height: auto;
           border-top: 7px solid #000;
@@ -109,7 +110,8 @@ export default class AuthorCard extends React.Component {
             >
               <a
                 css={css`
-                  color: #000;
+                  background-color: ${this.props.darkmode? "#222" : "#fff"};
+                  color:  ${this.props.darkmode? "#fff" : "#000"};
                 `}
                 href={this.props.link}
               >
@@ -117,6 +119,7 @@ export default class AuthorCard extends React.Component {
               </a>
               <span
                 css={css`
+                  color:  ${this.props.darkmode? "#fff" : "#000"};
                   @media (max-width: 600px) {
                     display: none;
                   }
@@ -130,7 +133,7 @@ export default class AuthorCard extends React.Component {
                 css={css`
                   font-family: ${globals.bodyFont};
                   font-size: 16px;
-
+                  color:  ${this.props.darkmode? "#fff" : "#000"};
                   @media (max-width: 600px) {
                     display: block;
                   }

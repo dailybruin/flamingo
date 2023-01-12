@@ -21,7 +21,7 @@ export default class InTheNewsBanner extends React.Component {
             padding: 2px 5px;
             font-family: ${globals.bodyFont};
             font-weight: 700;
-            color: #000;
+            color: ${this.props.darkmode ? "#ddd" : "#000"};
             text-decoration: none;
             &:hover {
               color: ${globals.DBblue};
@@ -36,7 +36,8 @@ export default class InTheNewsBanner extends React.Component {
     return (
       <div
         css={css`
-          background-color: white;
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
+          color: ${this.props.darkmode ? "#ddd" : "#000"};
           width: 100%;
           display: table;
           padding: ${globals.cardPadding};

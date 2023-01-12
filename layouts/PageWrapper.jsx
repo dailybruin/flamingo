@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Config } from "../config.js";
 import Head from "next/head";
 
@@ -9,13 +9,7 @@ import Masthead from "components/Masthead";
 import CommentFAB from "components/CommentFAB";
 
 import css from "./style.module.css";
-
-const wrapperStyle = {
-  padding: "6px",
-  backgroundColor: "#f1f1f1",
-  width: "100%",
-  height: "100%"
-};
+import * as globals from "../components/globals";
 
 const layoutStyle = {
   maxWidth: 1248,
@@ -24,6 +18,12 @@ const layoutStyle = {
 
 const PageWrapper = Comp =>
   class extends Component {
+    constructor(props) {
+      super(props);      
+        this.state = {}
+    } 
+
+
     static async getInitialProps(ctx) {
       // Load the categories for the header
       // TODO: can we load this once each browser session?
@@ -77,7 +77,27 @@ const PageWrapper = Comp =>
       };
     }
 
+    onToggle = (e) => {
+      localStorage.setItem('darkmode', JSON.stringify(e.target.checked));
+      this.setState({
+        darkmode: JSON.parse(localStorage.getItem('darkmode'))
+      })
+    }
+
+    componentDidMount() {
+      this.setState({
+        darkmode: JSON.parse(localStorage.getItem('darkmode'))
+      })
+    }
+
     render() {
+      const style = {
+        padding: "6px",
+        backgroundColor: this.state.darkmode ? "#010101" : "#f1f1f1",
+        width: "100%",
+        height: "100%"
+      }
+
       if (this.props.feature == true) {
         return <Comp {...this.props} />;
       }
@@ -85,7 +105,7 @@ const PageWrapper = Comp =>
       if (this.props.mappedBreaking != null) {
         renderedBreakingCard = (
           <div style={{ padding: "6px" }}>
-            <BreakingCard story={this.props.mappedBreaking} />
+            <BreakingCard story={this.props.mappedBreaking} darkmode={this.state.darkmode}/>
           </div>
         );
       }
@@ -93,23 +113,23 @@ const PageWrapper = Comp =>
       if (this.props.mappedITN != null && this.props.mappedBreaking == null) {
         renderedInTheNews = (
           <div style={{ padding: "6px" }}>
-            <InTheNews stories={this.props.mappedITN} />
+            <InTheNews stories={this.props.mappedITN} darkmode={this.state.darkmode}/>
           </div>
         );
       }
       return (
-        <div style={wrapperStyle}>
+        <div style={style}>
           <div style={layoutStyle}>
             <CommentFAB></CommentFAB>
             <div className={css["banner-ad"]}>
               <broadstreet-zone zone-id="69404"></broadstreet-zone>
             </div>
-            <Masthead categories={this.props.mappedCategories}></Masthead>
+            <Masthead categories={this.props.mappedCategories} onToggle={this.onToggle} darkmode={this.state.darkmode}></Masthead>
             {renderedBreakingCard}
             {renderedInTheNews}
-            <Comp {...this.props} />
-            <div style={{ padding: "6px" }}>
-              <MainSiteFooter />
+            <Comp {...this.props} darkmode={this.state.darkmode} />
+            <div style={{ padding: "6px" }}>              
+              <MainSiteFooter darkmode={this.state.darkmode}/>
             </div>
           </div>
         </div>

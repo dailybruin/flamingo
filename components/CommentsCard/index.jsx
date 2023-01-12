@@ -1,7 +1,7 @@
 import * as React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-
+import * as globals from "../globals";
 import { cardShadow, cardPadding, menuFont } from "../globals";
 import { DiscussionEmbed } from "disqus-react";
 
@@ -10,12 +10,11 @@ export default function CommentsCard(props) {
     <div
       css={css`
         box-shadow: ${cardShadow};
-        background-color: #ffffff;
       `}
     >
       <div
         css={css`
-          background-color: #000000;
+          background-color: #000;
           height: 27px;
           padding: 2px 10px 0;
 
@@ -26,7 +25,7 @@ export default function CommentsCard(props) {
           line-height: 24px;
           text-transform: uppercase;
 
-          color: #ffffff;
+          color: #fff;
         `}
       >
         COMMENTS

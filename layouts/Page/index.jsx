@@ -14,7 +14,7 @@ const ArticleAdStyle = {
   fontWeight: "bold",
   fontFamily: "sans-serif"
 };
-
+// TODO
 class PageLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -23,13 +23,14 @@ class PageLayout extends React.Component {
         <Page
           content={this.props.page.content.rendered}
           date={new Date(this.props.page.modified)}
+          // darkmode={this.props.darkmode}
         />
       )
     };
   }
 
   render() {
-    return <div className={css.card}>{this.state.page}</div>;
+    return <div className={this.props.darkmode? css.card_dark : css.card}>{this.state.page}</div>;
   }
 }
 

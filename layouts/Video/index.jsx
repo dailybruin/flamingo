@@ -19,6 +19,13 @@ export default class VideoLayout extends React.Component {
       more: true
     };
     this.getPosts = this.getPosts.bind(this);
+
+    this.classifiedsCards = (
+      <ClassifiedsCard
+        header="Featured Classifieds"
+        classifieds={this.props.classifieds}
+      />
+    )
   }
 
   getPosts(page) {
@@ -31,7 +38,7 @@ export default class VideoLayout extends React.Component {
           if (json.data == undefined) {
             this.setState({
               otherArticleCards: this.state.otherArticleCards.concat(
-                utilities.buildArticleList(json)
+                utilities.buildArticleList(json, this.props.darkmode)
               )
             });
           } else {
@@ -81,7 +88,7 @@ export default class VideoLayout extends React.Component {
                 >
                   <div id="c1" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "video"
+                      displayType: "video", darkmode: this.props.darkmode
                     })}
                   </div>
                   <InfiniteScroll
@@ -95,7 +102,8 @@ export default class VideoLayout extends React.Component {
                   >
                     {utilities.renderVideoArray(
                       this.state.otherArticleCards,
-                      "video"
+                      "video",
+                      this.props.darkmode
                     )}
                   </InfiniteScroll>
                   {!this.state.more ? (
@@ -125,7 +133,7 @@ export default class VideoLayout extends React.Component {
                 >
                   <div id="a" className={css.card}>
                     {React.cloneElement(this.state.aArticleCard, {
-                      displayType: "full"
+                      displayType: "full", darkmode: this.props.darkmode
                     })}
                   </div>
                   <div>
@@ -147,7 +155,8 @@ export default class VideoLayout extends React.Component {
                       >
                         {utilities.renderVideoArray(
                           this.state.otherArticleCards,
-                          "video"
+                          "video",
+                          this.props.darkmode
                         )}
                       </div>
                     </InfiniteScroll>
@@ -174,10 +183,9 @@ export default class VideoLayout extends React.Component {
                   }}
                 >
                   <div id="classifieds" className={css.card}>
-                    <ClassifiedsCard
-                      header="Featured Classifieds"
-                      classifieds={this.props.classifieds}
-                    />
+                    {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                    })}
                   </div>
                 </div>
               </div>
@@ -198,7 +206,7 @@ export default class VideoLayout extends React.Component {
                   >
                     <div id="a" className={css.card}>
                       {React.cloneElement(this.state.aArticleCard, {
-                        displayType: "full"
+                        displayType: "full", darkmode: this.props.darkmode
                       })}
                     </div>
                   </div>
@@ -221,7 +229,8 @@ export default class VideoLayout extends React.Component {
                       >
                         {utilities.renderVideoArray(
                           this.state.otherArticleCards,
-                          "video"
+                          "video",
+                          this.props.darkmode
                         )}
                       </div>
                     </InfiniteScroll>
@@ -250,10 +259,9 @@ export default class VideoLayout extends React.Component {
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
                   <div id="classifieds" className={css.card}>
-                    <ClassifiedsCard
-                      header="Featured Classifieds"
-                      classifieds={this.props.classifieds}
-                    />
+                    {React.cloneElement(this.classifiedsCards, {
+                        darkmode: this.props.darkmode
+                    })}
                   </div>
                 </div>
               </div>

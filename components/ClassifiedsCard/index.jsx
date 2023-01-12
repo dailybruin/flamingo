@@ -34,11 +34,12 @@ function Classified(props) {
           font-family: ${globals.bodyFont};
           font-weight: 300;
           font-size: 11px;
-          color: #000000;
+          color: ${props.darkmode ? "#ddd" : "#000"};
           text-decoration: none;
+          background-color: ${props.darkmode ? "#222" : "#fff"};
 
           &:hover {
-            color: #444;
+            color: ${props.darkmode ? "#bbb" : "#444"};
             text-decoration: none;
           }
 
@@ -55,18 +56,25 @@ function Classified(props) {
 export default class ClassifiedsCard extends React.Component {
   constructor(props) {
     super(props);
+    this.renderedClassifieds = [];
   }
 
   render() {
-    const renderedClassifieds = [];
+    this.renderedClassifieds = [];
     if (this.props.classifieds != null) {
       for (const i of this.props.classifieds) {
-        renderedClassifieds.push(
-          <Classified
-            key={i.content.url}
-            category={i.category}
-            content={i.content}
-          />
+        let c = (<Classified
+          darkmode={this.props.darkmode}
+          key={i.content.url}
+          category={i.category}
+          content={i.content}
+        />);
+        this.renderedClassifieds.push(
+          <div className={css.card} key={i}>
+            {React.cloneElement(c, {
+              darkmode: this.props.darkmode
+            })}
+          </div>
         );
       }
     }
@@ -75,12 +83,11 @@ export default class ClassifiedsCard extends React.Component {
       <div
         css={css`
           box-shadow: ${globals.cardShadow};
-          background-color: #ffffff;
         `}
       >
         <div
           css={css`
-            background-color: #000000;
+            background-color: #000;
             height: 27px;
             padding: 2px 10px 0;
 
@@ -91,7 +98,8 @@ export default class ClassifiedsCard extends React.Component {
             line-height: 24px;
             text-transform: uppercase;
 
-            color: #ffffff;
+            color: ${this.props.darkmode ? "#ddd" : "#fff"};
+            /* color: #fff; */
           `}
         >
           {this.props.header}
@@ -99,9 +107,11 @@ export default class ClassifiedsCard extends React.Component {
         <div
           css={css`
             padding: 0 12px;
+            background-color: ${this.props.darkmode ? "#222" : "#fff"};
+            color: ${this.props.darkmode ? "#ddd" : "#000"};
           `}
         >
-          {renderedClassifieds}
+          {this.renderedClassifieds}
         </div>
         <div style={{ textAlign: "right", padding: "12px 12px 6px" }}>
           <a

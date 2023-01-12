@@ -14,7 +14,7 @@ export default function VideoCard(props) {
         display: block;
         padding: 10px;
         box-shadow: ${globals.cardShadow};
-        background-color: #ffffff;
+        background-color: #fff;
       `}
     >
       <span>
@@ -63,19 +63,20 @@ export default function VideoCard(props) {
         <div
           css={css`
             margin: 2px 0 6px;
-            ${locals.headline}
+            ${props.darkmode ? locals.darkheadline : locals.headline};
           `}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
         <div
           css={css`
             div div iframe {
+              ${props.darkmode ? "filter: brightness(0.6);" : ""}    
               width: 100%;
               //padding-top: 100%;
               //height: 0;
             }
             p {
-              ${locals.excerpt}
+              ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
             }
           `}
           dangerouslySetInnerHTML={{ __html: props.content }}
@@ -90,7 +91,7 @@ export default function VideoCard(props) {
           font-weight: bold;
           font-size: 11px;
 
-          color: #000000;
+          color: #000;
         `}
       >
         By {utilities.renderAuthors(props.authors)}

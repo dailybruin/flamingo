@@ -198,6 +198,7 @@ class Index extends Component {
           /> 
         </Head>
         <HomeLayout
+          darkmode = {this.props.darkmode}
           posts={this.props.posts}
           media={this.props.multimediaPosts}
           classifieds={this.props.classifieds.map(c => {

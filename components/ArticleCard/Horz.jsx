@@ -14,7 +14,7 @@ export default function Horz(props) {
         display: flex;
         box-shadow: ${globals.cardShadow};
         padding: 0px;
-        background-color: #ffffff;
+        background-color: ${props.darkmode ? "#222" : "#fff"};
       `}
     >
       <div
@@ -58,7 +58,7 @@ export default function Horz(props) {
             font-size: 8px;
             text-align: right;
 
-            color: #000000;
+            color: ${props.darkmode ? "#ddd" : "#000"};
           `}
         >
           {props.photographer}
@@ -99,7 +99,7 @@ export default function Horz(props) {
           </a>
           <span
             css={css`
-              border-left: 1px solid #000;
+              border-left: 1px solid ${props.darkmode ? "#ddd" : "#000"};
               margin: 0;
               padding-left: 4px;
               font-family: ${globals.bodyFont};
@@ -107,6 +107,8 @@ export default function Horz(props) {
               font-weight: 300;
               font-size: 11px;
               line-height: 14px;
+              color: ${props.darkmode ? "#ddd" : "#000"};
+
             `}
           >
             {moment(props.date).format("MMM D, YYYY h:mm a")}
@@ -116,7 +118,7 @@ export default function Horz(props) {
           <div
             css={css`
               margin: 2px 0 4px;
-              ${locals.headline};
+              ${props.darkmode ? locals.darkheadline : locals.headline};
             `}
             style={{
               fontStyle:
@@ -127,7 +129,7 @@ export default function Horz(props) {
           <div
             css={css`
               margin: 0 0 5px;
-              ${locals.excerpt}
+              ${props.darkmode ? locals.darkexcerpt : locals.excerpt}
             `}
             dangerouslySetInnerHTML={{ __html: props.excerpt }}
           />
@@ -141,7 +143,8 @@ export default function Horz(props) {
             font-weight: bold;
             font-size: 11px;
 
-            color: #000000;
+            color: ${props.darkmode ? "#ddd" : "#000"};
+
           `}
         >
           By {utilities.renderAuthors(props.authors)}

@@ -12,7 +12,7 @@ export default class SportsScoreboard extends React.Component {
       <div
         css={css`
           padding: 0;
-          background: #ffffff;
+          background: #fff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           display: inline-block;
         `}
@@ -26,9 +26,9 @@ export default class SportsScoreboard extends React.Component {
             padding: 4px 8px;
 
             min-height: 36px;
-            background-color: #000000;
+            background-color: #000;
 
-            color: #ffffff;
+            color: #fff;
 
             font-family: Source Sans Pro;
             font-style: normal;
@@ -49,7 +49,7 @@ export default class SportsScoreboard extends React.Component {
               border-collapse: collapse;
               border-style: hidden;
               border: none !important;
-              color: #000000;
+              color: #000;
             `}
           >
             <tr
@@ -61,7 +61,7 @@ export default class SportsScoreboard extends React.Component {
               <td
                 css={css`
                   padding: 0 8px;
-                  border-right: 4px solid #ffffff;
+                  border-right: 4px solid #fff;
                 `}
               >
                 {this.props.team1}

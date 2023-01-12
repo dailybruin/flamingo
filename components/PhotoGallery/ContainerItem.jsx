@@ -21,10 +21,13 @@ function ContainerItem(props) {
     // }
 
     // This code below should work with the most up-to-date API (not yet avail on the web) and allow for article-text and center-photo
+    // className={`${css['row']} ${props.darkmode ? css[dark] : ""}`}
+    let classNameRow = `${css['row']} ${props.darkmode ? css['dark'] : ""}`;
+    let classNameNoRow = `${props.darkmode ? css['dark'] : ""}`;
 
     if (props.type == 'center-photo') {
         return (
-            <div className={css['row']}>
+            <div className={classNameRow}>
                 <div className={css['center-img-col']}>
                     <img className={css['center-photo']} src={props.img_url} alt='gallery-image'></img>
                     {/* <div className={css['caption']}> {props.description}</div> 
@@ -36,7 +39,7 @@ function ContainerItem(props) {
     } else if (props.type == 'article-text') {
         if (props.layout_type == 'alternating') { // only alternating layout needs to use rows
             return (
-                <div className={css['row']}>
+                <div className={classNameRow}>
                     <p className={css['article-text']}>
                         <ReactMarkdown children={props.description} />
                     </p>
@@ -44,7 +47,7 @@ function ContainerItem(props) {
             );
         } else {
 
-            return <div>
+            return <div className={classNameNoRow}>
                 <p className={css['article-text-large']}>
                     <ReactMarkdown children={props.description} />
                 </p>
@@ -58,7 +61,7 @@ function ContainerItem(props) {
                 textAlign: 'right'
             };
             return (
-                <div className={css['row']}>
+                <div className={classNameRow}>
                     <div className={css['caption']}> <ReactMarkdown children={props.description} /> </div>
                     <div className={css['img-col']}>
                         <img className={css['image']} src={props.img_url} alt='gallery-image'></img>
@@ -68,7 +71,7 @@ function ContainerItem(props) {
             );
         } else {
             return (
-                <div className={css['row']}>
+                <div className={classNameRow}>
                     <div className={css['img-col']}>
                         <img className={css['image']} src={props.img_url} alt='gallery-image'></img>
                         <p className={css['credits']}> {props.credits} </p>
@@ -80,14 +83,14 @@ function ContainerItem(props) {
 
     } else if (props.type == 'big-center-photo') {
         return (
-            <div>
+            <div className={classNameNoRow}>
                 <img className={css['big-center-photo']} src={props.img_url} alt='big-center-photo'></img>
                 <p className={css['credits']}> {props.credits} </p>
             </div>
         )
     } else if (props.type == 'corrections-text') {
         return (
-            <div>
+            <div className={classNameNoRow}>
                 <p className={css['credits']}>
                     <ReactMarkdown children={props.description} />
                 </p>

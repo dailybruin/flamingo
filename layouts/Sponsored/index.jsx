@@ -5,7 +5,7 @@ import Media from "react-media";
 import moment from "moment";
 
 import SponsoredArticle from "components/SponsoredArticle";
-
+// TODO
 class SponsoredLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +15,7 @@ class SponsoredLayout extends React.Component {
     return (
       <>
         <SponsoredArticle
+          darkmode={this.props.darkmode}
           headline={this.props.article.title.rendered}
           date={moment.utc(this.props.article.date)}
           authors={this.props.authors}

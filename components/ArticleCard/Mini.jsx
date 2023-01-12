@@ -14,7 +14,7 @@ export default function Mini(props) {
         display: flex;
         box-shadow: ${globals.cardShadow};
         padding: 0px;
-        background-color: #ffffff;
+        background-color: ${props.darkmode ? "#222" : "#fff"};
       `}
     >
       <div
@@ -84,7 +84,7 @@ export default function Mini(props) {
           <h1
             css={css`
               margin: 2px 0 4px;
-              ${locals.headline};
+              ${props.darkmode ? locals.darkheadline : locals.headline};
               font-size: 0.85rem;
               font-weight: 550;
             `}

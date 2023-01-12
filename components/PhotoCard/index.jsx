@@ -35,7 +35,7 @@ export default function PhotoCard(props) {
               css={css`
                 display: block;
                 width: 100%;
-                border: 15px solid #ffffff;
+                border: 15px solid ${props.darkmode ? "#444" : "#fff"};
               `}
             ></img>
             <div
@@ -54,7 +54,7 @@ export default function PhotoCard(props) {
                 opacity: 0;
                 height: 100%;
                 width: 100%;
-                border: 15px solid #ffffff;
+                border: 15px solid ${props.darkmode ? "#444" : "#fff"};
                 transition: 0.5s ease;
               `}
             >
@@ -70,9 +70,10 @@ export default function PhotoCard(props) {
                 <h3
                   dangerouslySetInnerHTML={{ __html: props.headline }}
                   css={css`
-                    color: #ffffff;
-                    font-size: 3.2vh;
-                    font-weight: bold;
+
+                    color: #fff;
+                    font-size: 1.5vw;
+
                     line-height: 1.4;
                     margin-bottom: 0.625rem;
                     font-family: ${globals.headlineFont};
@@ -85,9 +86,11 @@ export default function PhotoCard(props) {
                   id="caption"
                   dangerouslySetInnerHTML={{ __html: props.excerpt }}
                   css={css`
-                    color: white;
-                    font-size: 2.1vh;
-                    line-height: 20px;
+
+                    color: rgb(187, 187, 187);
+                    font-size: 0.9vw;
+                    line-height: 15px;
+
                     font-family: ${globals.bodyFont};
                     @media (max-width: 768px) {
                       font-size: 1.4vw;
@@ -97,7 +100,10 @@ export default function PhotoCard(props) {
                 <div
                   id="credit-block"
                   css={css`
-                    font-size: 2.2vh;
+
+                    color: rgb(187, 187, 187);
+                    font-size: 0.9vw;
+
                     font-family: ${globals.bodyFont};
                     font-weight: bold;
                     color: black;
@@ -140,7 +146,7 @@ export default function PhotoCard(props) {
             css={css`
               box-sizing: border-box;
               position: relative;
-              background: #fff;
+              background-color: ${props.darkmode ? "#222" : "#fff"};
               width: 100%;
               box-shadow: ${globals.cardShadow};
             `}
@@ -157,7 +163,7 @@ export default function PhotoCard(props) {
             <div
               id="text"
               css={css`
-                color: #000;
+                color: ${props.darkmode ? "#ddd" : "#000"};
                 padding: 18px;
               `}
             >

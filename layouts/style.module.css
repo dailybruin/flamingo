@@ -1,6 +1,17 @@
+.dark {
+  background-color: #222 !important;
+  color: #fff;
+}
+
 .card {
   display: block;
   padding: 6px;
+}
+
+.card_dark {
+  display: block;
+  padding: 6px;
+  background-color: #222;
 }
 
 .video-card {

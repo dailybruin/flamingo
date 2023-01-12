@@ -51,7 +51,9 @@ export default class Article extends React.Component {
             margin: 20px 0;
           `}
         >
+          
           <AuthorCard
+            darkmode={this.props.darkmode}
             image={
               author.simple_local_avatar != null
                 ? author.simple_local_avatar.full
@@ -89,7 +91,7 @@ export default class Article extends React.Component {
           display: block;
           padding: 10px;
           box-shadow: ${globals.cardShadow};
-          background-color: #ffffff;
+          background-color: ${this.props.darkmode ? "#222" : "#fff"};
         `}
       >
         <div
@@ -121,10 +123,10 @@ export default class Article extends React.Component {
 
             font-family: ${globals.headlineFont};
             font-style: normal;
-            font-weight: bold;
+            font-weight: ${this.props.darkmode ? 550 : "bold"};
             font-size: 30px;
             line-height: 1.25;
-            color: #000000;
+            color: ${this.props.darkmode ? "#ddd" : "#000"};
           `}
           style={{
             fontStyle:
@@ -194,12 +196,12 @@ export default class Article extends React.Component {
                   line-height: 21px;
                   padding: 5px 0 0;
 
-                  color: #000000;
+                  color: ${this.props.darkmode ? "#ddd" : "#000"};
 
                   a {
                     text-decoration: none;
                     color: #0080c6;
-                    background-color: #ffffff;
+                    background-color: ${this.props.darkmode ? "#222" : "#fff"};
                   }
                   a:hover {
                     text-decoration: underline;
@@ -216,6 +218,7 @@ export default class Article extends React.Component {
                   font-weight: 300;
                   font-size: 12px;
                   line-height: 15px;
+                  color: ${this.props.darkmode ? "#fff" : "000"};
                 `}
               >
                 {moment.utc(this.props.date).format("MMM D, YYYY h:mm a")}
@@ -227,7 +230,7 @@ export default class Article extends React.Component {
               css={css`
                 font-size: 12px;
                 font-family: ${globals.bodyFont};
-                color: ${globals.darkGray};
+                color: ${this.props.darkmode ? "#fff" : globals.darkGray};
                 max-width: 640px;
                 margin: 20px auto 0;
               `}
@@ -243,7 +246,7 @@ export default class Article extends React.Component {
               text-align: left;
               line-height: 1.75;
 
-              color: #000000;
+              color: ${this.props.darkmode  ? "#fff" : "#000"};
               display: block;
               max-width: 640px;
               margin: auto;
@@ -294,6 +297,7 @@ export default class Article extends React.Component {
               }
 
               & iframe {
+                ${this.props.darkmode ? "filter: brightness(0.6);" : ""}
                 width: 100%;
               }
 
@@ -338,6 +342,7 @@ export default class Article extends React.Component {
           />
           <div>
             <ShareButtons
+              darkmode={this.props.darkmode}
               title={this.props.headline}
               url={this.props.link}
             ></ShareButtons>
