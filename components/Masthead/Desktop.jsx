@@ -10,6 +10,7 @@ import logo from "./dailybruin.svg";
 import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
 import minisearchIcon from "./minisearch.svg";
+import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
 let expandedHeight = "106px";
 let collapsedHeight = "60px";
@@ -148,66 +149,47 @@ export default class Desktop extends React.Component {
               @media (max-width: 900px) {
                 display: none;
               }
-              .switch {
-                position: relative;
+
+              #darkmode{
                 display: inline-block;
-                margin-top: 20px;
                 margin-left: 20px;
-                width: 30px;
-                height: 17px;
               }
-              .switch input {
+              #darkmode .checkbox {
                 opacity: 0;
-                width: 0;
-                height: 0;
+                position: relative;
               }
-
-              /* The slider */
-              .slider {
-                position: absolute;
+              #darkmode .label {
+                width: 48px;
+                height: 14px;
+                background-color:#111;
+                display: inline;
+                border-radius:50px;
+                padding: 8px 6px 5px 6px;
+                position: relative;
                 cursor: pointer;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: #ccc;
-                -webkit-transition: .4s;
-                transition: .4s;
               }
-
-              .slider:before {
-                position: absolute;
-                content: "";
-                height: 13px;
-                width: 13px;
-                left: 2px;
-                bottom: 2px;
+              #darkmode .moon {
+                margin-left: 0px;
+              }
+              #darkmode .sun {
+                margin-left: 10px;
+              }
+              #darkmode .ball {
+                width: 24px;
+                height: 24px;
                 background-color: white;
-                -webkit-transition: .4s;
-                transition: .4s;
-              }
-
-              input:checked + .slider {
-                background-color: #2196F3;
-              }
-
-              input:focus + .slider {
-                box-shadow: 0 0 1px #2196F3;
-              }
-
-              input:checked + .slider:before {
-                -webkit-transform: translateX(13px);
-                -ms-transform: translateX(13px);
-                transform: translateX(13px);
-              }
-
-              /* Rounded sliders */
-              .slider.round {
-                border-radius: 17px;
-              }
-
-              .slider.round:before {
+                position: absolute;
+                top: 3.5px;
+                left: 3px;
                 border-radius: 50%;
+                transition: transform 0.2s linear;
+              }
+              #darkmode .checkbox:checked + .label .ball{
+                transform: translateX(24px);
+                background-color:#111;
+              }
+              #darkmode .checkbox:checked + .label{
+                background-color: #ddd;
               }
             `}
           >
@@ -224,12 +206,20 @@ export default class Desktop extends React.Component {
             >
               {today}
             </h2>
-            <label class="switch">
-              <input type="checkbox" checked={this.props.darkmode} onChange={(e)=>this.props.onToggle(e)}/>
-              <span class="slider round"></span>
-            </label>
+
+            <div id="darkmode">
+              <input type="checkbox" className="checkbox" id="checkbox"
+               checked={this.props.darkmode}
+               onChange={(e)=>this.props.onToggle(e)}
+              />
+              <label htmlFor="checkbox" className="label">
+                <BsMoonStarsFill color="black" className="moon"/>
+                <BsFillSunFill color="yellow" className="sun"/>
+                <div className="ball"></div>
+              </label>
+            </div>
           </div>
-          
+
           <div
             css={css`
               display: table-cell;
