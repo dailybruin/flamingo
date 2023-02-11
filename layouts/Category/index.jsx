@@ -8,6 +8,7 @@ import Media from "react-media";
 
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
+import Poll from "../../components/Poll";
 
 export default class CategoryLayout extends React.Component {
   constructor(props) {
@@ -274,6 +275,33 @@ export default class CategoryLayout extends React.Component {
                 >
                   <div id="above-ad" className={css.card}>
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                  </div>
+                  <div className={css.card}>
+                      <Poll
+                          poll={[
+                            {
+                              choice: 'Great!',
+                              votes: 0,
+                            },
+                            {
+                              choice: 'Good!',
+                              votes: 0,
+                            },
+                            {
+                              choice: 'Meh',
+                              votes: 0,
+                            },
+                            {
+                              choice: 'Bad :(',
+                              votes: 0,
+                            }
+                          ]}
+                          question={
+                            "How are you feeling today?"
+                          }
+                          hasVoted={false}
+                          legend={'Number of Students'}
+                      />
                   </div>
                   <div id="classifieds" className={css.card}>
                     <ClassifiedsCard

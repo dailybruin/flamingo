@@ -43,8 +43,8 @@ class Choice extends React.Component {
           `}
         >
           <a onClick={this.handleClick}>
+            {this.props.choice}
           </a>
-          {this.props.choice}
         </p>
       </div>
     )
