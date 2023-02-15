@@ -99,7 +99,7 @@ export default class EmailPopUp extends React.Component {
                 font-family: Playfair Display;
                 font-style: normal;
                 font-weight: bold;
-                color: ${globals.DBblue};
+                color: #0080c6;
                 font-size: 40px;
                 // text-align: left;
                 text-align: center;
