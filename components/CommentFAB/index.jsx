@@ -38,7 +38,7 @@ export default class CommentFAB extends React.Component {
           position: fixed;
           right: 20px;
           bottom: 20px;
-          background-color: ${globals.DBblue};
+          background-color: #0080c6;
           border-radius: 50%;
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
             0 6px 6px rgba(0, 0, 0, 0.23);

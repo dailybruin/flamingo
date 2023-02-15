@@ -1,130 +1,130 @@
-import React from "react";
+import React from 'react'
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-import * as MainSiteStyles from "../globals";
-import * as d3 from "d3";
-import Choice from "./Choice";
+import { css, jsx } from '@emotion/core'
+import * as MainSiteStyles from '../globals'
+import * as d3 from 'd3'
+import Choice from './Choice'
 
 class Graph extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { h: 200 };
-    this.wrap = this.wrap.bind(this);
+    super(props)
+    this.state = { h: 200 }
+    this.wrap = this.wrap.bind(this)
   }
 
-  wrap(text, width) {
-    let maxLines = 1;
+   wrap(text, width) {
+    let maxLines = 1
     text.each(function() {
-      const t = d3.select(this);
+      const t = d3.select(this)
       const words = t
         .text()
         .split(/\s+/)
-        .reverse();
-      let word;
-      let line = [];
-      let lineNumber = 1;
-      const y = t.attr("y");
-      const dy = 10;
+        .reverse()
+      let word
+      let line = []
+      let lineNumber = 1
+      const y = t.attr('y')
+      const dy = 10
       let tspan = t
         .text(null)
-        .append("tspan")
-        .attr("x", 0)
-        .attr("y", y);
-      word = words.pop();
+        .append('tspan')
+        .attr('x', 0)
+        .attr('y', y)
+      word = words.pop()
       while (word) {
-        line.push(word);
-        tspan.text(line.join(" "));
+        line.push(word)
+        tspan.text(line.join(' '))
         if (tspan.node().getComputedTextLength() > width) {
-          line.pop();
-          tspan.text(line.join(" "));
-          line = [word];
+          line.pop()
+          tspan.text(line.join(' '))
+          line = [word]
           tspan = t
-            .append("tspan")
-            .attr("x", 0)
-            .attr("dy", dy + "px")
-            .text(word);
-          lineNumber++;
+            .append('tspan')
+            .attr('x', 0)
+            .attr('dy', dy + 'px')
+            .text(word)
+          lineNumber++
         }
         if (lineNumber > maxLines) {
-          maxLines = lineNumber;
+          maxLines = lineNumber
         }
-        word = words.pop();
+        word = words.pop()
       }
-    });
-    const newHeightValue = (maxLines - 2) * 35;
+    })
+    const newHeightValue = (maxLines - 2) * 35
     if (this.state.h !== 200 + newHeightValue) {
-      this.setState({ h: this.state.h + newHeightValue });
+      this.setState({ h: this.state.h + newHeightValue })
     }
   }
 
-  componentDidMount() {
-    this.draw();
+   componentDidMount() {
+    this.draw()
   }
 
-  componentDidUpdate() {
-    this.draw();
+   componentDidUpdate() {
+    this.draw()
   }
 
-  draw = () => {
-    const data = [...this.props.data];
-    data.sort((a, b) => a.votes - b.votes);
+   draw = () => {
+    const data = [...this.props.data]
+    data.sort((a, b) => a.votes - b.votes)
 
-    const svg = d3.select(this.svg);
-    const margin = { top: 15, right: 120, bottom: 0, left: 20 };
-    const width = 225;
-    const height = this.state.h;
+    const svg = d3.select(this.svg)
+    const margin = { top: 15, right: 120, bottom: 0, left: 20 }
+    const width = 225
+    const height = this.state.h
 
-    svg.selectAll("g").remove();
+    svg.selectAll('g').remove()
 
     const g = svg
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
     const x = d3
       .scaleLinear()
       .domain([0, d3.max(data, d => d.votes)])
-      .rangeRound([0, width]);
+      .rangeRound([0, width])
 
     const y = d3
       .scaleBand()
       .rangeRound([height, 0])
       .padding(1)
-      .domain(data.map(d => d.choice));
+      .domain(data.map(d => d.choice))
 
-    g.append("g")
+    g.append('g')
       .call(d3.axisRight(y).tickSize(0))
-      .attr("font-family", "PT Serif")
-      .attr("font-size", "10px")
-      .attr("font-weight", "bold")
-      .attr("transform", "translate(0, -15)")
-      .selectAll("path")
-      .attr("stroke", "transparent");
+      .attr('font-family', 'PT Serif')
+      .attr('font-size', '10px')
+      .attr('font-weight', 'bold')
+      .attr('transform', 'translate(0, -15)')
+      .selectAll('path')
+      .attr('stroke', 'transparent')
 
-    g.append("g")
+    g.append('g')
       .call(d3.axisTop(x).tickSize(0))
-      .attr("font-family", "PT Serif")
-      .attr("font-size", "10px")
-      .attr("font-weight", "bold")
-      .attr("transform", "translate(0, " + (this.state.h - 200) / 10 + ")")
-      .selectAll("path");
+      .attr('font-family', 'PT Serif')
+      .attr('font-size', '10px')
+      .attr('font-weight', 'bold')
+      .attr('transform', 'translate(0, ' + (this.state.h - 200) / 10 + ')')
+      .selectAll('path')
 
-    g.selectAll(".bar")
+    g.selectAll('.bar')
       .data(data)
       .enter()
-      .append("rect")
-      .attr("transform", "translate(0, -25)")
-      .attr("class", "bar")
-      .attr("y", d => y(d.choice))
-      .attr("height", "3px")
-      .style("fill", "#D14F83")
+      .append('rect')
+      .attr('transform', 'translate(0, -25)')
+      .attr('class', 'bar')
+      .attr('y', d => y(d.choice))
+      .attr('height', '3px')
+      .style('fill', '#0080C6')
       .transition()
       .delay(250)
-      .attr("width", d => x(d.votes));
+      .attr('width', d => x(d.votes))
 
-    g.selectAll(".tick text").call(this.wrap, width);
-  };
+    g.selectAll('.tick text').call(this.wrap, width)
+  }
 
-  render() {
+   render() {
     return (
       <div>
         <p
@@ -144,8 +144,8 @@ class Graph extends React.Component {
           ref={e => (this.svg = e)}
         />
       </div>
-    );
+    )
   }
 }
 
-export default Graph;
+export default Graph
