@@ -9,6 +9,27 @@ import * as globals from "../components/globals";
 
 class Stonewall extends Component {
   componentDidMount() {
+    fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS_pSjFbLe53S0TbEI_7BL_X9TqdTTB2AHRib0pu1FzP20QG6J6D6jOevX7A0-uld9V62hdPEUU2E6J/pub?output=tsv")
+    .then(x => x.text())
+    .then(x => {
+      var array = x.split("\r\n");
+      let result = [];
+      let headers = array[0].split("\t");
+      // for (let str of array) {
+      //   console.log(str);
+      // } {}
+      // console.log(x.split("\r"));
+      for (let i = 1; i < array.length - 1; i++) {
+        let obj = {};
+        let str = array[i].split("\t");
+        // let s = '';
+        for (let j in headers) {
+          obj[headers[j]] = str[j].trim();
+        }
+        console.log(obj);
+        result.push(obj);
+      }
+    })
     jQuery(document).ready(function() {
       let position = ["top", "center", "bottom"];
 
