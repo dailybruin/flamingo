@@ -7,57 +7,28 @@ import { css, jsx } from "@emotion/core";
 
 import * as globals from "../components/globals";
 
+import stonewallData from "./stonewall_data.js";
+
 class Stonewall extends Component {
   componentDidMount() {
+
+
     jQuery(document).ready(function() {
       let position = ["top", "center", "bottom"];
-      let id = "1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4";
-      let gid = "0";
-      let stonewall_url =
-        "https://docs.google.com/spreadsheets/d/" +
-        id +
-        "/gviz/tq?tqx=out:json&tq&gid=" +
-        gid;
+      // let id = "1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4";
+      // let gid = "0";
+      // let stonewall_url =
+      //   "https://docs.google.com/spreadsheets/d/" +
+      //   id +
+      //   "/gviz/tq?tqx=out:json&tq&gid=" +
+      //   gid;
+      let stonewall_url = "https://spreadsheets.google.com/feeds/cells/1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4/1/public/full?alt=json"
       console.log(stonewall_url); // correct and downloads
 
       //source file is https://docs.google.com/spreadsheets/d/1e9Fi-WgpB-JVF0v7jepWvywZ1IW4gV9IS39n9JnqXO4/edit#gid=0
       //owner is online@media.ucla.edu
-      jQuery(function showstones() {
-        jQuery.getJSON(
-          stonewall_url,
+      //fetch(stonewall_url).then((spreadsheet) => spreadsheet.json()).then((data) => console.log(data));
 
-          function(data) {
-            jQuery("div#stonewall").append('<div class="stone"></div>');
-            jQuery.each(data.feed.entry.reverse(), function(i, entry) {
-              if (entry.gsx$date.$t && entry.gsx$copystatus.$t) {
-                let append =
-                  '<li class="accordion-navigation stone s' +
-                  ((i % 3) + 1) +
-                  '">';
-                append +=
-                  '<a href="#panel' +
-                  i +
-                  'a" class="stone-title" id="t' +
-                  i +
-                  '"></a>';
-                append +=
-                  '<div id="panel' +
-                  i +
-                  'a" class="content stone-desc" id="desc' +
-                  i +
-                  '"></div>';
-                append += "</li>";
-                jQuery("ul#stonewall").append(append);
-                let title =
-                  "<b>" + entry.gsx$date.$t + ":</b> " + entry.gsx$reason.$t;
-                let desc = entry.gsx$description.$t;
-                jQuery("#t" + i + "").append(title);
-                jQuery("#panel" + i + "a").append(desc);
-              }
-            });
-          }
-        );
-      });
     });
   }
 
@@ -275,7 +246,18 @@ class Stonewall extends Component {
                 there.
               </p>
             </div>
-            <ul id="stonewall" className="accordion" data-accordion></ul>
+            <ul id="stonewall" className="accordion" data-accordion>
+              {stonewallData() && stonewallData().map((data, i) => {
+                return <li class="accordion-navigation stone s">
+                  <a href={`#panel ${i}a`} class="stone-title" id={`t${i}`}>
+                    <b>{`${data.Date}: ${data.Reason}`}</b>
+                  </a>
+                  <div id={`panel ${i}a`} class="content stone-desc">
+                    {data.Description}
+                  </div>
+                </li>
+              })}
+            </ul>
             <div>Test. </div>
           </div>
         </div>
