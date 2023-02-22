@@ -18,7 +18,7 @@ const Stonewall = () => {
             var array = x.split("\r\n");
             let result = [];
             let headers = array[0].split("\t");
-            for (let i = 1; i < array.length - 1; i++) {
+            for (let i = 1; i < array.length; i++) {
                 let obj = {};
                 let str = array[i].split("\t");
                 for (let j in headers) {
@@ -28,7 +28,7 @@ const Stonewall = () => {
             }
             setStones(result);
         })
-    })
+    }, [])
     
     return (
         <>
