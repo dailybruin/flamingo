@@ -276,7 +276,7 @@ export default class CategoryLayout extends React.Component {
                   <div id="above-ad" className={css.card}>
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
-                  <div className={css.card}>
+                  {this.props.categoryID == 1460 && <div className={css.card}>
                       <Poll
                           poll={[
                             {
@@ -302,7 +302,7 @@ export default class CategoryLayout extends React.Component {
                           hasVoted={false}
                           legend={'Number of Students'}
                       />
-                  </div>
+                  </div>}
                   <div id="classifieds" className={css.card}>
                     <ClassifiedsCard
                       header="Featured Classifieds"
