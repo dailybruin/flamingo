@@ -23,8 +23,8 @@ export default class Desktop extends React.Component {
     this.state = {
       menuExpanded: true,
       searchExpanded: false,
-      // darkMode: false
     };
+    
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
     this.Logo = React.createRef();
@@ -161,7 +161,7 @@ export default class Desktop extends React.Component {
               #darkmode .label {
                 width: 48px;
                 height: 14px;
-                background-color:#111;
+                background-color: ${globals.DBblue};
                 display: inline;
                 border-radius:50px;
                 padding: 8px 6px 5px 6px;
@@ -186,7 +186,7 @@ export default class Desktop extends React.Component {
               }
               #darkmode .checkbox:checked + .label .ball{
                 transform: translateX(24px);
-                background-color:#111;
+                background-color: #111;
               }
               #darkmode .checkbox:checked + .label{
                 background-color: #ddd;
@@ -214,7 +214,7 @@ export default class Desktop extends React.Component {
               />
               <label htmlFor="checkbox" className="label">
                 <BsMoonStarsFill color="black" className="moon"/>
-                <BsFillSunFill color="yellow" className="sun"/>
+                <BsFillSunFill color="white" className="sun"/>
                 <div className="ball"></div>
               </label>
             </div>

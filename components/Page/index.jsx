@@ -21,7 +21,7 @@ export default class Page extends React.Component {
           padding: 10px 30px;
           box-shadow: ${globals.cardShadow};
           background-color: ${this.props.darkmode ? '#222' : '#fff'};
-          color: ${this.props.darkmode ? '#f11' : '#88f'};
+          color: ${this.props.darkmode ? '#fff' : '#000'};
           font-family: ${globals.bodyFont};
         `}
       >

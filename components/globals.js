@@ -1,6 +1,5 @@
 import { css } from "@emotion/core";
-
-export const darkMode = false;
+import * as React from "react";
 
 /** Reusable common CSS attributes */
 
@@ -58,3 +57,21 @@ export const thumbnailImgCSS = `
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;`;
+
+
+/** Dark Mode Variables */
+
+export const themes = {
+  light: {
+    foreground: 'white',
+    background: DBblue,
+  },
+  dark: {
+    foreground: 'green',
+    background: 'red',
+  },
+};
+
+export const ThemeContext = React.createContext(
+  themes.light // default value
+);

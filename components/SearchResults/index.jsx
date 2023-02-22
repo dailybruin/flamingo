@@ -28,8 +28,10 @@ export default class SearchResults extends React.Component {
         >
           search: {this.props.query}
         </div>
-
-        <div className="gcse-searchresults-only"></div>
+        {/* <div css={css`         
+          ${this.props.darkmode ? "filter: brightness(0.6);" : ""} `}>  */}
+          <div className="gcse-searchresults-only"></div>
+        {/* </div> */}
       </div>
     );
   }

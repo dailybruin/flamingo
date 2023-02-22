@@ -82,6 +82,7 @@ const PageWrapper = Comp =>
       this.setState({
         darkmode: JSON.parse(localStorage.getItem('darkmode'))
       })
+      
     }
 
     componentDidMount() {

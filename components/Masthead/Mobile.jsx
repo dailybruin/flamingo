@@ -11,6 +11,7 @@ import logo from "./dailybruin.svg";
 import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
 import minisearchIcon from "./minisearch.svg";
+import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
 export default class Mobile extends React.Component {
   constructor(props) {
@@ -112,7 +113,8 @@ export default class Mobile extends React.Component {
               src={menuIcon}
               css={css`
                 height: 100%;
-                background-color: white;
+                background-color: transparent;
+                ${this.props.darkmode ? "filter: invert(1);" : ""};
               `}
             ></img>
           </button>
@@ -281,6 +283,7 @@ export default class Mobile extends React.Component {
                       transition: all 200ms;
                       transition-delay: 100ms;
                       height: 100%;
+                      ${this. props.darkmode ? "filter: invert(1);" : ""};
                     `}
                     src={searchIcon}
                   ></img>
@@ -294,7 +297,7 @@ export default class Mobile extends React.Component {
           css={css`
             position: absolute;
             margin: 0px;
-            background-color: #fff;
+            background-color: ${this.props.darkmode ? "#222" : "#fff"};
             padding: 0 6px;
             height: 0;
             overflow-y: scroll;
@@ -317,9 +320,12 @@ export default class Mobile extends React.Component {
             css={css`
               vertical-align: top;
               display: inline-block;
+              flex: 1;
               width: 40%;
               padding: 6px;
               text-align: center;
+              align-items: center;
+              justify-content: center;
               font-family: ${globals.menuFont};
               font-size: 14px;
               font-weight: bold;
@@ -328,6 +334,52 @@ export default class Mobile extends React.Component {
               color: #000;
               a:hover {
                 text-decoration: underline;
+              }
+              #darkmode{
+                display: 'flexbox';
+                align-items: 'center';
+                margin-top: 20px;
+                margin-right: 2.3vw;
+
+
+              }
+              #darkmode .checkbox {
+                opacity: 0;
+                position: relative;
+                width: 0;
+              }
+              #darkmode .label {
+                width: 48px;
+                height: 14px;
+                background-color: ${globals.DBblue};
+                display: inline;
+                border-radius:50px;
+                padding: 8px 10px 5px 6px;
+                position: relative;
+                cursor: pointer;
+              }
+              #darkmode .moon {
+                margin-left: 0px;
+              }
+              #darkmode .sun {
+                margin-left: 10px;
+              }
+              #darkmode .ball {
+                width: 24px;
+                height: 24px;
+                background-color: white;
+                position: absolute;
+                top: 3.5px;
+                left: 3px;
+                border-radius: 50%;
+                transition: transform 0.2s linear;
+              }
+              #darkmode .checkbox:checked + .label .ball{
+                transform: translateX(24px);
+                background-color: #111;
+              }
+              #darkmode .checkbox:checked + .label{
+                background-color: #ddd;
               }
             `}
           >
@@ -406,6 +458,18 @@ export default class Mobile extends React.Component {
             >
               Submit
             </a>
+            {/* Darkmode toggle button */}
+            <div id="darkmode">
+              <input type="checkbox" className="checkbox" id="checkbox"
+               checked={this.props.darkmode}
+               onChange={(e)=>this.props.onToggle(e)}
+              />
+              <label htmlFor="checkbox" className="label">
+                <BsMoonStarsFill color="black" className="moon"/>
+                <BsFillSunFill color="white" className="sun"/>
+                <div className="ball"></div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
