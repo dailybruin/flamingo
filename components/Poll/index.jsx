@@ -38,7 +38,8 @@ async function grabPollResults(pollData) {
     return {
         'id': 293,
         'nonce': '91348f71e0',
-        'counts': [3, 2, 1, 0]
+        'counts': [3, 2, 1, 0],
+        'total': 6,
     }
 
     /*
@@ -140,10 +141,14 @@ const Poll = () => {
                                     margin: 0px 0px 10px;
                                 `} key={i}
                                 >
-                                <div onClick={() => voteForPoll(pollData, answer.number)}>
+                                <div>
                                     <input name="answer" type="hidden" value={answer}></input>
-                                    <a>{answer.text}</a>
-                                    {pollResults && <p>votes: {pollResults.counts[i]}</p>}
+                                    <a onClick={() => voteForPoll(pollData, answer.number)}>{answer.text}</a>
+                                    {pollResults && <div>
+                                                        <p>votes: {pollResults.counts[i]}</p>
+                                                        <div css={css`min-height: 10px; width: calc((${pollResults.counts[i] / pollResults.total} * (100% - 5px)) + 5px); background: ${MainSiteStyles.DBblue}`}></div>
+                                                    </div>
+                                    }
                                 </div>
                             </div>
                         )
