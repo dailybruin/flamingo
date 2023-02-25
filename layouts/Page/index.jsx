@@ -27,7 +27,7 @@ class PageLayout extends React.Component {
   }
 
   render() {
-    return (<div className={this.props.darkmode? css.card_dark : css.card}>
+    return (<div className={css.card}>
       {React.cloneElement(this.page, {darkmode: this.props.darkmode})}  
     </div>);
   }

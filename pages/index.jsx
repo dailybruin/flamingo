@@ -42,10 +42,8 @@ class Index extends Component {
     super(props);
 
     this.state = {
-      // showPopUp: false,
-      // showWelcome: false
-      showPopUp: true,
-      showWelcome: true
+      showPopUp: false,
+      showWelcome: false
     };
   }
   static async getInitialProps(context) {

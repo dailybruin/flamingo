@@ -179,7 +179,7 @@ export default class Desktop extends React.Component {
                 height: 24px;
                 background-color: white;
                 position: absolute;
-                top: 3.5px;
+                top: 3px;
                 left: 3px;
                 border-radius: 50%;
                 transition: transform 0.2s linear;
