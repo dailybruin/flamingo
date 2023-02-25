@@ -43,7 +43,7 @@ export default class WelcomePopUp extends React.Component {
             top: 29%;
             left: 0;
             right: 0;
-            background-color: #fff;
+            background-color: ${this.props.darkmode ? "#222" : "#fff"};
             box-shadow: ${globals.cardShadow};
             z-index: 3001;
           `}
@@ -58,7 +58,7 @@ export default class WelcomePopUp extends React.Component {
               border: none;
               font-family: Source Sans Pro;
               font-weight: bold;
-              color: #000;
+              color: ${this.props.darkmode ? "#ddd" : "#474747"};
               font-size: 18px;
               z-index: 3002;
               cursor: pointer;
@@ -113,7 +113,7 @@ export default class WelcomePopUp extends React.Component {
                 font-size: 16px;
                 font-family: "PT Serif";
                 font-weight: bold;
-                color: #474747;
+                color: ${this.props.darkmode ? "#ddd" : "#474747"};
                 z-index: 3001;
                 text-align: left;
                 margin: 20px;

@@ -42,8 +42,10 @@ class Index extends Component {
     super(props);
 
     this.state = {
-      showPopUp: false,
-      showWelcome: false
+      // showPopUp: false,
+      // showWelcome: false
+      showPopUp: true,
+      showWelcome: true
     };
   }
   static async getInitialProps(context) {
@@ -218,12 +220,14 @@ class Index extends Component {
         />
         {this.state.showPopUp && !this.state.showWelcome ? (
           <EmailPopUp
+            darkmode={this.props.darkmode}
             sub2Newsletter={this.subscribeToNewsletter}
             close={this.closeNewsletterPopup}
           />
         ) : null}
         {this.state.showWelcome ? (
           <WelcomePopUp
+            darkmode={this.props.darkmode}
             bodytext="You're looking at the new dailybruin.com! Feel free to leave us some feedback by clicking the blue button at the bottom right. We appreciate it!"
             close={this.closeWelcomePopup}
           />
