@@ -17,7 +17,7 @@ function Classified(props) {
         css={css`
           font-family: ${globals.menuFont};
           font-weight: 700;
-          color: #0080c6;
+          color: ${globals.DBblue};
           text-transform: uppercase;
           text-decoration: none;
 
@@ -111,7 +111,7 @@ export default class ClassifiedsCard extends React.Component {
               font-size: 12px;
               line-height: 15px;
               font-weight: bold;
-              color: #0080c6;
+              color: ${globals.DBblue};
               text-transform: uppercase;
               text-decoration: none;
 
