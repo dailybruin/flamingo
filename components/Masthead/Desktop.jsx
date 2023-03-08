@@ -87,7 +87,7 @@ export default class Desktop extends React.Component {
             key={i}
             href={this.props.categories[i].as}
             css={css`
-              display: table-cell;
+              display: flex;
               text-align: center;
               padding: 8px 4px;
               font-family: ${globals.menuFont};
@@ -129,19 +129,23 @@ export default class Desktop extends React.Component {
         <div
           css={css`
             padding: 6px 18px;
-            display: table;
-            table-layout: fixed;
+            padding-right: 6px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
             width: 100%;
             vertical-align: middle;
           `}
         >
           <div
             css={css`
-              display: table-cell;
+              display: flex;
+              width: 30%;
               text-align: left;
+              align-items: center;
               white-space: nowrap;
               vertical-align: middle;
-              @media (max-width: 1200px) {
+              @media (max-width: 1000px) {
                 display: none;
               }
             `}
@@ -162,7 +166,7 @@ export default class Desktop extends React.Component {
           </div>
           <div
             css={css`
-              display: table-cell;
+              display: flex;
               text-align: center;
               white-space: nowrap;
             `}
@@ -213,41 +217,32 @@ export default class Desktop extends React.Component {
           </div>
           <div
             css={css`
-              display: table-cell;
+              display: flex;
+              width: 30%;
+              align-items: center;
               text-align: right;
-              vertical-align: middle;
               white-space: nowrap;
             `}
           >
-            <div
-              css={css`
-                display: inline-block;
-                position: relative;
-                transition: all 500ms;
-                height: 36px;
-              `}
-            >
               <div
                 css={css`
-                  display: inline-block;
-                  vertical-align: middle;
-                  margin-top: 2px;
-                  margin-right: 10px;
-
-                  & > a {
+                display: flex;
+                flex-direction: row;
+                margin-left: auto;
+                align-items: center;
+                  a {
                     padding: 0 4px;
                     font-family: ${globals.menuFont};
                     font-weight: bold;
                     text-transform: uppercase;
-                    line-height: 34px;
                     font-size: 14px;
                     color: #000;
                     display: inline-block;
                     vertical-align: middle;
-                    height: 36px;
+                    padding-bottom: 8px;
                   }
 
-                  & > a:hover {
+                  a:hover {
                     text-decoration: underline;
                   }
 
@@ -256,76 +251,93 @@ export default class Desktop extends React.Component {
                   }
                 `}
               >
-                <div
-                  id="social-media"
-                  css={css`
-                    display: inline-block;
+                <div>
+                    <div
+                    id="social-media"
+                    css={css`
+                        display: inline-block;
 
-                    & a {
-                      margin: 0 6px;
-                      display: inline-block;
-                      vertical-align: middle;
-                    }
-                    & a img {
-                      display: block;
-                      height: 14px;
-                    }
+                        & a {
+                        margin: 0 6px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        }
+                        & a img {
+                        display: block;
+                        height: 14px;
+                        }
 
-                    & a:hover img {
-                      fill: ${globals.DBblue};
-                    }
-                  `}
-                >
-                  <a
-                    href="https://www.facebook.com/dailybruin"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./facebook.svg")} />
-                  </a>
-                  <a
-                    href="https://www.twitter.com/dailybruin"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./twitter.svg")} />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/dailybruin"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./instagram.svg")} />
-                  </a>
-                  <a
-                    href="http://eepurl.com/cFEiZX"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./mail.svg")} />
-                  </a>
-                  <a
-                    href="https://www.overlooked.com"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./overlooked.png")} />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/user/ucladailybruin"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./youtube.png")} />
-                  </a>
+                        & a:hover img {
+                        fill: ${globals.DBblue};
+                        }
+
+                        @media (max-width: 1150px) {
+                            display: none;
+                        }
+                    `}
+                    >
+                    <a
+                        href="https://www.facebook.com/dailybruin"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <img src={require("./facebook.svg")} />
+                    </a>
+                    <a
+                        href="https://www.twitter.com/dailybruin"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <img src={require("./twitter.svg")} />
+                    </a>
+                    <a
+                        href="https://www.instagram.com/dailybruin"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <img src={require("./instagram.svg")} />
+                    </a>
+                    <a
+                        href="http://eepurl.com/cFEiZX"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <img src={require("./mail.svg")} />
+                    </a>
+                    <a
+                        href="https://www.overlooked.com"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <img src={require("./overlooked.png")} />
+                    </a>
+                    <a
+                        href="https://www.youtube.com/user/ucladailybruin"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <img src={require("./youtube.png")} />
+                    </a>
+                    </div>
+                    <div css={css`
+                        @media (max-width: 1000px) {
+                            display: none;
+                        }
+                        display: flex;
+                        justify-content: center;
+                        a {
+                            padding-bottom: 0px;
+                        }
+                        `}>
+                        <a href="/advertise">Advertise</a>
+                        <a href="https://giving.ucla.edu/campaign/Donate.aspx?Fund=63255C&AutoFN=Y">
+                        Donate
+                        </a>
+                        <a href="/submit">Submit</a>
+                    </div>
                 </div>
-                <a href="/advertise">Advertise</a>
-                <a href="https://giving.ucla.edu/campaign/Donate.aspx?Fund=63255C&AutoFN=Y">
-                  Donate
-                </a>
-                <a href="/submit">Submit</a>
-              </div>
-              <div
+                
+            <div
                 css={css`
                   display: inline-block;
                   position: relative;
@@ -334,7 +346,7 @@ export default class Desktop extends React.Component {
                   width: 36px;
                   vertical-align: middle;
                 `}
-              >
+                > 
                 <form method="get" action="/search">
                   <input
                     ref={this.SearchBar}
@@ -441,7 +453,7 @@ export default class Desktop extends React.Component {
                   </div>
                 </form>
               </div>
-            </div>
+              </div>
           </div>
         </div>
         <div
