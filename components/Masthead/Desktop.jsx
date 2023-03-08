@@ -141,7 +141,7 @@ export default class Desktop extends React.Component {
               text-align: left;
               white-space: nowrap;
               vertical-align: middle;
-              @media (max-width: 900px) {
+              @media (max-width: 1200px) {
                 display: none;
               }
             `}
@@ -251,7 +251,7 @@ export default class Desktop extends React.Component {
                     text-decoration: underline;
                   }
 
-                  @media (max-width: 650px) {
+                  @media (max-width: 800px) {
                     display: none;
                   }
                 `}
