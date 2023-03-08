@@ -145,7 +145,7 @@ export default class Desktop extends React.Component {
               align-items: center;
               white-space: nowrap;
               vertical-align: middle;
-              @media (max-width: 1000px) {
+              @media (max-width: 900px) {
                 display: none;
               }
             `}
@@ -270,10 +270,6 @@ export default class Desktop extends React.Component {
                         & a:hover img {
                         fill: ${globals.DBblue};
                         }
-
-                        @media (max-width: 1150px) {
-                            display: none;
-                        }
                     `}
                     >
                     <a
@@ -320,12 +316,12 @@ export default class Desktop extends React.Component {
                     </a>
                     </div>
                     <div css={css`
-                        @media (max-width: 1000px) {
+                        @media (max-width: 900px) {
                             display: none;
                         }
                         display: flex;
                         justify-content: center;
-                        a {
+                        & > a {
                             padding-bottom: 0px;
                         }
                         `}>
