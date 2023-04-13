@@ -25,7 +25,8 @@ export default class Author extends React.Component {
         header="Featured Classifieds"
         classifieds={this.props.classifieds}
       />
-    )
+    );
+    
   }
 
   getPosts(page) {
