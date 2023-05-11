@@ -128,11 +128,15 @@ export default class Desktop extends React.Component {
       >
         <div
           css={css`
-            padding: 6px 18px;
-            display: table;
-            table-layout: fixed;
-            width: 100%;
-            vertical-align: middle;
+          padding: 6px 18px;
+          display: table;
+          table-layout: fixed;
+          width: 100%;
+         
+          @media (max-width: 1145px) {
+            table-layout: flex;
+            width: auto;
+          }
           `}
         >
           <div
