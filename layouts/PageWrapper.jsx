@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import { Config } from "../config.js";
 import Head from "next/head";
 
@@ -97,11 +97,6 @@ const PageWrapper = Comp =>
           </div>
         );
       }
-
-      this.componentDidMount = () => {
-        document.body.scrollTop = 0;
-      }
-
       return (
         <div style={wrapperStyle}>
           <div style={layoutStyle}>

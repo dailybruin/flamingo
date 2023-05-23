@@ -171,13 +171,6 @@ export default class HomeLayout extends React.Component {
                     <div id="en" className={css.card}>
                       {this.cards.enStoryList}
                     </div>
-                    <div
-                      id="above-ad"
-                      style={{ textAlign: "center" }}
-                      className={css.card}
-                    >
-                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                    </div>
                     <div id="op" className={css.card}>
                       {this.cards.opStoryList}
                     </div>
@@ -318,6 +311,8 @@ export default class HomeLayout extends React.Component {
                         <div id="sp" className={css.card}>
                           {this.cards.spStoryList}
                         </div>
+                      </div>
+                      <div className={css.column} style={{ width: "100%" }}>
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
                             <img
@@ -326,11 +321,11 @@ export default class HomeLayout extends React.Component {
                             />
                           </a>
                         </div>
+                        <div className={css.card}>
+                          <SponsoredLinks links={this.props.sponsoredLinks} />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className={css.card}>
-                    <SponsoredLinks links={this.props.sponsoredLinks} />
                   </div>
                 </div>
               )}
@@ -460,7 +455,17 @@ export default class HomeLayout extends React.Component {
                     </div>
                   </div>
                   <div>
-                    <div className={css.column} style={{ width: "100%" }}>
+                    {/* <div className={css.column} style={{ width: "50%" }}>
+                      <div className={css.card}>
+                        <a href="https://prime.dailybruin.com">
+                          <img
+                            src="https://dailybruin.com/images/2020/06/Image-from-iOS.jpg"
+                            style={{ width: "100%" }}
+                          />
+                        </a>
+                      </div>
+                    </div> */}
+                    <div className={css.column} style={{ width: "50%" }}>
                       <div className={css.card}>
                         <SponsoredLinks links={this.props.sponsoredLinks} />
                       </div>
