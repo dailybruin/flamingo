@@ -25,7 +25,6 @@ export default class Article extends React.Component {
         // quick patch to prevent attempting to load an author that was not properly fetched.
         continue;
       }
-      console.log(author);
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
           <img
