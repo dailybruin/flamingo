@@ -58,7 +58,6 @@ export default class FeatureArticle extends React.Component {
       );
     }
     let renderedRelatedPostsCards = [];
-    console.log(this.props.relatedPosts);
     for (let story of this.props.relatedPosts) {
       if (story == undefined || story.title == undefined) {
         //hotfix to prevent page from incurring "Internal Server Error." But we should investigate why we are fetching related posts with "rest_post_invalid_id" from Wordpress at a later time. Should also determine the algorithm for matching related posts.

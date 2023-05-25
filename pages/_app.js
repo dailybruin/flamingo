@@ -94,8 +94,6 @@ class MyApp extends App {
   }
 
   render() {
-    // console.log("hi in app");
-    console.log(this.props);
     const { Component, pageProps } = this.props;
     return <Component {...pageProps} />;
   }
