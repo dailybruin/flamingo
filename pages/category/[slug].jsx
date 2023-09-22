@@ -7,6 +7,13 @@ import Head from "next/head";
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
 
+const categoryDescriptions = {
+  quad:
+    "The Quad is the Daily Bruin's explanatory journalism section, which aims to break down salient topics \
+  to make them digestible for UCLA's student body and community at large. Our in-depth reporting incorporates the \
+  broader context of these topics to give a more comprehensive view on financial, lifestyle and academic discussions."
+};
+
 class Category extends Component {
   static async getInitialProps(context) {
     // slug is from url
@@ -67,6 +74,7 @@ class Category extends Component {
         <div style={{ padding: "6px" }}>
           <SectionHeader
             category={this.props.category[0].name}
+            description={categoryDescriptions[this.props.category[0].slug]}
             subcategories={sectionLinks}
           />
         </div>
