@@ -82,23 +82,42 @@ export default class SectionHeader extends React.Component {
           {renderTitle()}
         </div>
         {this.props.description != undefined && (
-          <div
-            css={css`
-              text-align: center;
-              list-style: none;
-              color: black;
-              font-family: ${globals.menuFont};
-              font-size: 16px;
-              padding-bottom: 8px;
-              margin-left: 32px;
-              margin-right: 32px;
-              @media (max-width: 600px) {
-                display: none;
-              }
-            `}
-          >
-            {this.props.description}
-          </div>
+          <>
+            <div // desktop description
+              css={css`
+                text-align: center;
+                list-style: none;
+                color: black;
+                font-family: ${globals.menuFont};
+                font-size: 16px;
+                padding-bottom: 8px;
+                margin-left: 32px;
+                margin-right: 32px;
+                @media (max-width: 600px) {
+                  display: none;
+                }
+              `}
+            >
+              {this.props.description.desktop}
+            </div>
+            <div // mobile description
+              css={css`
+                text-align: center;
+                list-style: none;
+                color: black;
+                font-family: ${globals.menuFont};
+                font-size: 16px;
+                padding-bottom: 8px;
+                margin-left: 32px;
+                margin-right: 32px;
+                @media (min-width: 601px) {
+                  display: none;
+                }
+              `}
+            >
+              {this.props.description.mobile}
+            </div>
+          </>
         )}
         <div
           css={css`

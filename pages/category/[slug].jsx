@@ -8,10 +8,15 @@ import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
 
 const categoryDescriptions = {
-  quad:
-    "The Quad is the Daily Bruin's explanatory journalism section, which aims to break down salient topics \
-  to make them digestible for UCLA's student body and community at large. Our in-depth reporting incorporates the \
-  broader context of these topics to give a more comprehensive view on financial, lifestyle and academic discussions."
+  quad: {
+    desktop:
+      "The Quad is the Daily Bruin's explanatory journalism section, which aims to break down salient topics \
+    to make them digestible for UCLA's student body and community at large. Our in-depth reporting incorporates the \
+    broader context of these topics to give a more comprehensive view on financial, lifestyle and academic discussions.",
+    mobile:
+      "The Quad is an explanatory journalism hub which contextualizes current events for readers, \
+    with stories ranging from cultural trends to the interrogation of sociopolitical issues."
+  }
 };
 
 class Category extends Component {
