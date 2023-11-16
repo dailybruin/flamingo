@@ -116,6 +116,10 @@ const Stonewall = () => {
                 margin-bottom: 1rem;
                 background-size: 50%;
                 padding: 10px;
+                background-color: #d9d9d9;
+                }
+                .stone:hover{
+                    background-color: #fafafa;
                 }
 
                 .s1 {
