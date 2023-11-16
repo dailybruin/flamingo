@@ -30,71 +30,7 @@ const Stonewall = () => {
         })
     }, [])
     
-        // return (
-        //   <>
-        //     <Head>
-        //       <title>{`Daily Bruin - Since 1919`}</title>
-        //       <meta
-        //         name="description"
-        //         content="UCLA's independent, student-run newspaper"
-        //       />
-        //       <link rel="canonical" href="https://dailybruin.com/" />
-        //       <meta
-        //         property="og:image"
-        //         content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
-        //       />
-        //       <meta
-        //         property="twitter:image"
-        //         content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
-        //       />
-        //       <meta property="og:url" content="https://dailybruin.com" />
-        //       <meta property="og:title" content="The Daily Bruin" />
-        //       <meta property="og:type" content="website" />
-        //       <meta property="og:site_name" content="Daily Bruin" />
-        //       <meta
-        //         property="og:description"
-        //         content="UCLA's independent, student-run newspaper"
-        //       />
-        //       <meta property="og:locale" content="en_US" />
-        //       <meta property="fb:pages" content="47311244274" />
-        //       <meta name="twitter:title" content="Daily Bruin - Since 2020" />
-        //       <meta name="twitter:card" content="summary_large_image" />
-        //       <meta name="twitter:site" content="@dailybruin" />
-        //       <meta name="twitter:creator" content="@dailybruin" />
-        //       <meta
-        //         name="twitter:description"
-        //         content="UCLA's independent, student-run newspaper"
-        //       />
-        //       <meta
-        //         name="robots"
-        //         content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-        //       /> 
-        //     </Head>
-        //     <HomeLayout
-        //       posts={this.props.posts}
-        //       media={this.props.multimediaPosts}
-        //       classifieds={this.props.classifieds.map(c => {
-        //         return {
-        //           category: {
-        //             name: c._embedded["wp:term"][1][0].name,
-        //             url: c._embedded["wp:term"][1][0].link
-        //           },
-        //           content: { name: c.content.rendered, url: c.link }
-        //         };
-        //       })}
-        //       sponsoredLinks={this.props.sponsored.replace("null", "")}
-        //     />
-        //     {this.state.showNewsletterPopUp ? (
-        //       <EmailPopUp
-        //         sub2Newsletter={this.subscribeToNewsletter}
-        //         close={this.closeNewsletterPopup}
-        //       />
-        //     ) : null}
-        //   </>
-        // );
-
     return (
-        
         <>
          <Head>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
@@ -253,7 +189,6 @@ const Stonewall = () => {
                     that here, stone by stone. No stonewalling that week, no new
                     stone. Below, you can click each stone to read about why it's
                     there.
-                    
                 </p>
                 </div>
                 <ul id="stonewall" className="accordion" data-accordion>
