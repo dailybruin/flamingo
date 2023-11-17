@@ -171,39 +171,41 @@ const Stonewall = () => {
                 }
             `}
             >
-            <div id="stonewall-wrap">
-                <div id="title">
-                    {"STONEWALL".split('').map((letter, i) => {
-                        return <h2 key={i} style={{opacity: 0, animation: 'fadeInDown 1s ease !important', animationDelay: `${(0.15 * (i + 1))}s !important`, animationFillMode: 'forwards !important'}}>{letter}</h2>
-                    })}
-                <h3>From the Daily Bruin</h3>
+            <div id="stonewall-wrap" style={{ fontFamily: 'Source Sans Pro', fontSize: '10', fontWeight: 400, lineHeight: '20px', letterSpacing: '0em', textAlign: 'center' }}>
+    <div id="title" style={{ fontFamily: 'Source Serif 4', fontSize: '10', fontWeight: 600, lineHeight: '49px', letterSpacing: '0em', textAlign: 'center', margin: '0', padding: '0' }}>
+        {"STONEWALL".split('').map((letter, i) => (
+            <h2 key={i} style={{ opacity: 0, animation: 'fadeInDown 1s ease !important', animationDelay: `${(0.15 * (i + 1))}s !important`, animationFillMode: 'forwards !important', margin: '0', padding: '0' }}>
+                {letter}
+            </h2>
+        ))}
+    </div>
+    <div id="blurb" style={{ textAlign: 'center', backgroundColor: 'transparent', color: '#000000', margin: '0', padding: '0' }}>
+        <p>
+            For <span>{new Date().getFullYear() - 1920}</span> years, the Daily Bruin
+            has strived to hold UCLA accountable to the community it serves.
+            We take that responsibility seriously. And when the Bruin is
+            unjustly thwarted in its efforts to inform students, we believe
+            you have a right to know. Each time our reporters are
+            stonewalled in their attempts to inform readers, we will record
+            that here, stone by stone. No stonewalling that week, no new
+            stone. Below, you can click each stone to read about why it's
+            there.
+        </p>
+    </div>
+    <ul id="stonewall" className="accordion" data-accordion style={{ margin: '0', padding: '0' }}>
+        {stones && stones.map((data, i) => (
+            <li className="accordion-navigation stone s" key={i} style={{ margin: '0', padding: '0' }}>
+                <div className="stone-title" id={`t${i}`} style={{ margin: '0', padding: '0' }}>
+                    <b>{`${data.Date}: ${data.Reason}`}</b>
                 </div>
-                <div id="blurb">
-                <p>
-                    For <span>{new Date().getFullYear() - 1920}</span> years, the Daily Bruin
-                    has strived to hold UCLA accountable to the community it serves.
-                    We take that responsibility seriously. And when the Bruin is
-                    unjustly thwarted in its efforts to inform students, we believe
-                    you have a right to know. Each time our reporters are
-                    stonewalled in their attempts to inform readers, we will record
-                    that here, stone by stone. No stonewalling that week, no new
-                    stone. Below, you can click each stone to read about why it's
-                    there.
-                </p>
+                <div id={`panel ${i}a`} className="content stone-desc" style={{ margin: '0', padding: '0' }}>
+                    {data.Description}
                 </div>
-                <ul id="stonewall" className="accordion" data-accordion>
-                {stones && stones.map((data, i) => {
-                    return <li className="accordion-navigation stone s" key={i}>
-                    <div className="stone-title" id={`t${i}`}>
-                        <b>{`${data.Date}: ${data.Reason}`}</b>
-                    </div>
-                    <div id={`panel ${i}a`} className="content stone-desc">
-                        {data.Description}
-                    </div>
-                    </li>
-                })}
-                </ul>
-            </div>
+            </li>
+        ))}
+    </ul>
+</div>
+
             </div>
         </>
     )
