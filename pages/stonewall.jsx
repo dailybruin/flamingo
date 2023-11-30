@@ -93,9 +93,9 @@ const Stonewall = () => {
                 #stonewall-wrap ul {
                 list-style-type: none;
                 font-size: 1rem;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 1rem;
                 }
 
                 .stone-title {
@@ -119,7 +119,6 @@ const Stonewall = () => {
                 margin-bottom: 1rem;
                 background-size: 50%;
                 padding: 10px;
-                width: 24%;
                 background-color: #D9D9D9;
                 }
 
