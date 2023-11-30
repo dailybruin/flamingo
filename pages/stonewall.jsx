@@ -213,5 +213,4 @@ const Stonewall = () => {
     )
 }
 
-export default Stonewall;
-
+export default PageWrapper(Stonewall);
