@@ -45,8 +45,8 @@ const Stonewall = () => {
                 margin: 6px;
 
                 .accordion {
-                margin: 0;
-                padding: 0;
+                margin: 100;
+                padding: 100;
                 }
 
                 .accordion .accordion-navigation > a {
@@ -68,6 +68,8 @@ const Stonewall = () => {
                 margin-bottom: 1rem !important;
                 }
                 #title {
+                margin-top: -75px;
+                margin-bottom: -75px; 
                 text-align: center;
                 font-family: ${globals.headlineFont};
                 }
@@ -78,16 +80,13 @@ const Stonewall = () => {
                 color: #333 !important;
                 display: inline-block;
                 font-family: ${globals.headlineFont};
-
-                /*text-transform: uppercase;*/
+                /*text-transform: capitalize !important;*/
                 }
                 #title h3 {
                 font-weight: 400;
                 color: #555 !important;
                 line-height: 2;
                 font-family: ${globals.headlineFont};
-
-                /*text-transform: uppercase;*/
                 }
 
                 #stonewall-wrap ul {
@@ -100,14 +99,13 @@ const Stonewall = () => {
                 }
 
                 #blurb {
-                text-indent: 70px;
-                background: #eee;
                 width: 100%;
 
-                margin-bottom: 2px;
+                margin-bottom: 50px;
                 }
                 #blurb p {
-                padding-left: 15px;
+                text-align: center;
+                padding-horizontal: 100px;
                 padding: 10px;
                 font-size: 1rem;
                 }
@@ -173,10 +171,9 @@ const Stonewall = () => {
             >
             <div id="stonewall-wrap">
                 <div id="title">
-                    {"STONEWALL".split('').map((letter, i) => {
+                    {"Stonewall".split('').map((letter, i) => {
                         return <h2 key={i} style={{opacity: 0, animation: 'fadeInDown 1s ease !important', animationDelay: `${(0.15 * (i + 1))}s !important`, animationFillMode: 'forwards !important'}}>{letter}</h2>
                     })}
-                <h3>From the Daily Bruin</h3>
                 </div>
                 <div id="blurb">
                 <p>
