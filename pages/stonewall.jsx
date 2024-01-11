@@ -98,6 +98,9 @@ const Stonewall = () => {
                 #stonewall-wrap ul {
                 list-style-type: none;
                 font-size: 1rem;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 1rem;
                 }
 
                 .stone-front {
@@ -235,5 +238,4 @@ const Stonewall = () => {
     )
 }
 
-export default Stonewall;
-
+export default PageWrapper(Stonewall);
