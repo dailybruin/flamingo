@@ -10,6 +10,7 @@ import * as globals from "../components/globals";
 const Stonewall = () => {
 
     const [stones, setStones] = useState([]);
+    const [activeStone, setActiveStone] = useState(null);
 
     useEffect(() => {
         fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS_pSjFbLe53S0TbEI_7BL_X9TqdTTB2AHRib0pu1FzP20QG6J6D6jOevX7A0-uld9V62hdPEUU2E6J/pub?output=tsv")
@@ -29,6 +30,10 @@ const Stonewall = () => {
             setStones(result);
         })
     }, [])
+
+    const handleStoneClick = (index) => {
+        setActiveStone(activeStone === index ? null : index);
+      };
     
     return (
         <>
@@ -95,8 +100,13 @@ const Stonewall = () => {
                 font-size: 1rem;
                 }
 
+                .stone-front {
+                font-size: 1.3rem;
+                padding-top: 8px;
+                }
+
                 .stone-title {
-                font-size: 1.5rem;
+                padding-top: 20px;
                 }
 
                 #blurb {
@@ -116,10 +126,14 @@ const Stonewall = () => {
                 margin-bottom: 1rem;
                 background-size: 50%;
                 padding: 10px;
+                text-align: center;
                 background-color: #d9d9d9;
+                height: 275px;
+                overflow: scroll;
                 }
+                
                 .stone:hover{
-                    background-color: #fafafa;
+                background-color: #fafafa;
                 }
 
                 .s1 {
@@ -196,16 +210,24 @@ const Stonewall = () => {
                 </p>
                 </div>
                 <ul id="stonewall" className="accordion" data-accordion>
-                {stones && stones.map((data, i) => {
-                    return <li className="accordion-navigation stone s" key={i}>
-                    <div className="stone-title" id={`t${i}`}>
-                        <b>{`${data.Date}: ${data.Reason}`}</b>
-                    </div>
-                    <div id={`panel ${i}a`} className="content stone-desc">
-                        {data.Description}
-                    </div>
+                {stones && stones.map((data, i) => (
+                    <li
+                        className={`accordion-navigation stone s`}
+                        key={i}
+                        onClick={() => handleStoneClick(i)}
+                    >
+                        {activeStone === i ? (
+                        <div id={`panel ${i}a`} className="content stone-desc">
+                            {data.Description}
+                        </div>
+                        ) : (
+                        <div className="stone-front" id={`t${i}`}>
+                            <b>{data.Date}</b>
+                            <div className="stone-title">{data.Reason}</div>
+                        </div>
+                        )}
                     </li>
-                })}
+                    ))}
                 </ul>
             </div>
             </div>
