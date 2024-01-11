@@ -183,7 +183,7 @@ const Stonewall = () => {
                 <p>
                     For <span>{new Date().getFullYear() - 1920}</span> years, the Daily Bruin
                     has strived to hold UCLA to the community it serves.
-                    We take that responsibility seriously. And when the Bruin is
+                    We take that seriously. And when the Bruin is
                     unjustly thwarted in its efforts to inform students, we believe
                     you have a right to know. Each time our reporters are
                     stonewalled in their attempts to inform readers, we will record
