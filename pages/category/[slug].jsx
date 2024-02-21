@@ -7,6 +7,8 @@ import Head from "next/head";
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
 
+const COLUMN_SERIES_FEATURE_FLAG = false;
+
 const categoryDescriptions = {
   quad: {
     desktop:
@@ -39,6 +41,24 @@ class Category extends Component {
         // subcategories[i].subsubcategories = await subsubcategoriesRes.json();
         subcategories[i].subsubcategories = [];
       }
+
+      // Put Opinion Column Series after Opinion Columns
+      if (slug == "opinion") {
+        const columnsIndex = subcategories.findIndex(
+          sub => sub.slug == "opinion-columns"
+        );
+        const columnSeriesIndex = subcategories.findIndex(
+          sub => sub.slug == "opinion-column-series"
+        );
+        const temp = subcategories[columnsIndex];
+        subcategories[columnsIndex] = subcategories[columnSeriesIndex];
+        subcategories[columnSeriesIndex] = temp;
+      }
+
+      if (!COLUMN_SERIES_FEATURE_FLAG) {
+        subcategories.pop();
+      }
+
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
       );
