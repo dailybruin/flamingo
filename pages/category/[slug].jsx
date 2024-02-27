@@ -53,10 +53,10 @@ class Category extends Component {
         const temp = subcategories[columnsIndex];
         subcategories[columnsIndex] = subcategories[columnSeriesIndex];
         subcategories[columnSeriesIndex] = temp;
-      }
 
-      if (!COLUMN_SERIES_FEATURE_FLAG) {
-        subcategories.pop();
+        if (!COLUMN_SERIES_FEATURE_FLAG) {
+          subcategories.pop();
+        }
       }
 
       const postsRes = await fetch(
