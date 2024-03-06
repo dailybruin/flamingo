@@ -93,6 +93,9 @@ const Stonewall = () => {
                 #stonewall-wrap ul {
                 list-style-type: none;
                 font-size: 1rem;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 1rem;
                 }
 
                 .stone-title {
@@ -116,6 +119,7 @@ const Stonewall = () => {
                 margin-bottom: 1rem;
                 background-size: 50%;
                 padding: 10px;
+                background-color: #D9D9D9;
                 }
 
                 .s1 {
@@ -209,5 +213,4 @@ const Stonewall = () => {
     )
 }
 
-export default Stonewall;
-
+export default PageWrapper(Stonewall);
