@@ -384,7 +384,7 @@ export default class Mobile extends React.Component {
               Advertise
             </a>
             <a
-              href="https://giving.ucla.edu/campaign/Donate.aspx?Fund=63255C&AutoFN=Y"
+              href="https://uclastudentmedia.com/donate/"
               target="_blank"
               rel="noopener"
               css={css`

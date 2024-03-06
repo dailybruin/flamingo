@@ -320,7 +320,7 @@ export default class Desktop extends React.Component {
                   </a>
                 </div>
                 <a href="/advertise">Advertise</a>
-                <a href="https://giving.ucla.edu/campaign/Donate.aspx?Fund=63255C&AutoFN=Y">
+                <a href="https://uclastudentmedia.com/donate/">
                   Donate
                 </a>
                 <a href="/submit">Submit</a>
