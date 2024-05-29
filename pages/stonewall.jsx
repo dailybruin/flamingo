@@ -184,7 +184,7 @@ const Stonewall = () => {
                 </div>
                 <div id="blurb">
                 <p>
-                    For <span>{new Date().getFullYear() - 1920}</span> years, the Daily Bruin
+                    Since 1919, the Daily Bruin
                     has strived to hold UCLA accountable to the community it serves.
                     We take that responsibility seriously. And when the Bruin is
                     unjustly thwarted in its efforts to inform students, we believe
