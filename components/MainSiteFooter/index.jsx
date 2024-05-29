@@ -40,6 +40,10 @@ export default function MainSiteFooter(props) {
         ${MainSiteStyles.phone} {
           flex-direction: column;
         }
+
+        ${MainSiteStyles.tablet} {
+          flex-direction: column;
+        }
       `}
     >
       <div
@@ -50,6 +54,19 @@ export default function MainSiteFooter(props) {
           ${MainSiteStyles.phone} {
             display: block;
             column-count: 2;
+            column-fill: auto;
+            padding-left: 20px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #000;
+            & a {
+              display: block;
+              padding: 0 4px;
+            }
+          }
+
+          ${MainSiteStyles.tablet} {
+            display: block;
+            column-count: 3;
             column-fill: auto;
             padding-left: 20px;
             padding-bottom: 4px;
@@ -70,6 +87,12 @@ export default function MainSiteFooter(props) {
           flex-grow: 1;
 
           ${MainSiteStyles.phone} {
+            text-align: center;
+            margin: auto;
+            padding-top: 4px;
+          }
+
+          ${MainSiteStyles.tablet} {
             text-align: center;
             margin: auto;
             padding-top: 4px;
