@@ -8,14 +8,14 @@ export default function MainSiteFooter(props) {
   const mainSiteFooterLinks = [
     { text: "About", url: "/about" },
     { text: "Contact", url: "/contact" },
+    { text: "Submit", url: "/submit" },
     { text: "Advertise", url: "/advertise" },
     { text: "Staff", url: "/staff" },
     { text: "Stonewall", url: "/stonewall" },
     { text: "Editorial Board", url: "/editorial-board" },
     { text: "Privacy", url: "/privacy" },
     { text: "Comment Policy", url: "/comment" },
-    { text: "Community Guide", url: "/the-daily-bruin-community-guide" },
-    { text: "Submit", url: "/submit" }
+    { text: "Community Guide", url: "/the-daily-bruin-community-guide" }
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (
