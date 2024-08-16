@@ -1,0 +1,30 @@
+# Test workflow on self-hosted runner for node version 16
+
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v2 # on the runner, check out this code on
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: touch test.txt
+      - run: echo hello > test.txt
+    #   - run: yarn
+    #   - run: yarn build
+    #   - run: pm2 reload flamingo # reloads on the DigitalOcean droplet
+        env:
+          CI: true
