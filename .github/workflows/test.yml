@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@v4 # on the runner, check out this code on
       - run: touch test.txt
       - run: echo hello > test.txt
+      - run: echo ${nvm --version} >> test.txt
     #   - run: yarn
     #   - run: yarn build
     #   - run: pm2 reload flamingo # reloads on the DigitalOcean droplet
