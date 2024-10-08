@@ -8,6 +8,7 @@ import Full from "./Full";
 import Mini from "./Mini";
 import Video from "./Video";
 import Podcast from "./Podcast";
+import Breaking from "./Breaking";
 
 export default class ArticleCard extends React.Component {
   constructor(props) {
@@ -37,6 +38,9 @@ export default class ArticleCard extends React.Component {
         break;
       case "podcast":
         card = <Podcast {...this.props} />;
+        break;
+      case "breaking":
+        card = <Breaking {...this.props} />;
         break;
       default:
         card = <Full {...this.props} />;
