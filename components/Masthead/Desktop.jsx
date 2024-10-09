@@ -112,6 +112,7 @@ export default class Desktop extends React.Component {
       }
     }
     return (
+      <React.Fragment>
       <div
         ref={this.MastheadCard}
         css={css`
@@ -305,13 +306,6 @@ export default class Desktop extends React.Component {
                     <img src={require("./mail.svg")} />
                   </a>
                   <a
-                    href="https://www.overlooked.com"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./overlooked.png")} />
-                  </a>
-                  <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
@@ -478,6 +472,7 @@ export default class Desktop extends React.Component {
           </div>
         </div>
       </div>
+      </React.Fragment>
     );
   }
 }
