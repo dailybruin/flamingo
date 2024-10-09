@@ -6,6 +6,7 @@ name: Deploy
 on:
   push:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,3 +27,4 @@ jobs:
       - run: pm2 reload flamingo # reloads on the DigitalOcean droplet
         env:
           CI: true
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
