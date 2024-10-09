@@ -8,6 +8,23 @@ import * as utilities from "./utilities";
 import * as moment from "moment";
 
 export default function Breaking(props) {
+    var CurrentTime = new Date();
+    var PostTime = new Date(props.date);
+    var DiffInMinutes = Math.round(((CurrentTime - PostTime) / 1000) / 60);
+    var DiffInHours = Math.round(DiffInMinutes / 60);
+    var DiffInDays = Math.round(DiffInHours / 24);
+    DiffInMinutes %= 60;
+    DiffInHours %= 24;
+    var TimeDiff = "";
+
+    if (DiffInDays != 0) {
+        TimeDiff += DiffInDays + " Days, "
+    }
+    if (DiffInHours != 0) {
+        TimeDiff += DiffInHours + " Hours, "
+    }
+    TimeDiff += DiffInMinutes + " Minutes Ago"
+
     return (
         <div
             css={css`
@@ -109,7 +126,7 @@ export default function Breaking(props) {
               line-height: 14px;
             `}
                     >
-                        {moment(props.date).format("MMM D, YYYY h:mm a")}
+                        {TimeDiff}
                     </span>
                 </span>
                 <a href={props.as} style={{ textDecoration: "none" }}>
@@ -127,7 +144,7 @@ export default function Breaking(props) {
                     <div
                         css={css`
               margin: 0 0 5px;
-              font-family: 'Roboto', serif;\n font-style: normal;\n font-weight: normal;\n  font-size: 20px;\n  color: #000000;\n\n  p {\n    margin: 0;\n  }\n  \n  br {\n    display: none;\n  }\n
+              font-family: 'Roboto', serif;\n font-style: normal;\n font-weight: normal;\n  font-size: 18px;\n  color: #000000;\n\n  p {\n    margin: 0;\n  }\n  \n  br {\n    display: none;\n  }\n
             `}
                         dangerouslySetInnerHTML={{ __html: props.excerpt }}
                     />
