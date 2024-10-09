@@ -1,11 +1,11 @@
-import PageWrapper from "../../layouts/PageWrapper";
+import PageWrapper from "../../../layouts/PageWrapper.jsx";
 import React, { Component } from "react";
 import Error from "next/error";
-import { Config } from "../../config.js";
+import { Config } from "../../../config.js";
 import Head from "next/head";
 
-import SectionHeader from "../../components/SectionHeader";
-import BreakingLayout from "../../layouts/Breaking";
+import SectionHeader from "../../../components/SectionHeader/index.jsx";
+import BreakingLayout from "../../../layouts/Breaking/index.jsx";
 
 const COLUMN_SERIES_FEATURE_FLAG = false;
 

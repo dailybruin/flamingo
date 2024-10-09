@@ -20,7 +20,7 @@ export default class BreakingLayout extends React.Component {
 
     getPosts(page) {
         fetch(
-            `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
+            `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&tag=${this.props.tagID}&page=${page}`
         )
             .then(response => response.json())
             .then(
@@ -178,7 +178,7 @@ export default class BreakingLayout extends React.Component {
                                                     textAlign: "center"
                                                 }}
                                             >
-                                                End of Breaking Feed!
+                                                {/* Could have text here to display when breaking feed is done */}
                                             </p>
                                         ) : (
                                             <span></span>

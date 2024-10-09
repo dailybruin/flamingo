@@ -10,114 +10,76 @@ import * as moment from "moment";
 export default function Breaking(props) {
     var CurrentTime = new Date();
     var PostTime = new Date(props.date);
-    var DiffInMinutes = Math.round(((CurrentTime - PostTime) / 1000) / 60);
-    var DiffInHours = Math.round(DiffInMinutes / 60);
-    var DiffInDays = Math.round(DiffInHours / 24);
-    DiffInMinutes %= 60;
-    DiffInHours %= 24;
-    var TimeDiff = "";
+    var DiffInMilliseconds = CurrentTime - PostTime;
+    var TotalMinutes = Math.floor(DiffInMilliseconds / (1000 * 60));
+    var DiffInDays = Math.floor(TotalMinutes / (60 * 24));
+    var DiffInHours = Math.floor((TotalMinutes % (60 * 24)) / 60);
+    var DiffInMinutes = TotalMinutes % 60;
 
+    var TimeDiff = "";
     if (DiffInDays != 0) {
-        TimeDiff += DiffInDays + " Days, "
+        TimeDiff += DiffInDays + " Day" + (DiffInDays != 1 ? "s" : "") + ", ";
     }
     if (DiffInHours != 0) {
-        TimeDiff += DiffInHours + " Hours, "
+        TimeDiff += DiffInHours + " Hour" + (DiffInHours != 1 ? "s" : "") + ", ";
     }
-    TimeDiff += DiffInMinutes + " Minutes Ago"
+    TimeDiff += DiffInMinutes + " Minute" + (DiffInMinutes != 1 ? "s" : "") + " Ago";
 
     return (
         <div
             css={css`
         display: flex;
+        flex-wrap: wrap;
         box-shadow: ${globals.cardShadow};
         padding: 0px;
         background-color: #ffffff;
+        /*border: 10px solid #d12008;*/
+        border-radius: 20px;
+        width: 50%;
+        margin-left: 25%;
       `}
         >
-             <div
-                css={css`
-          padding: ${globals.cardPadding};
-          width: 50%;
-        `}
-            >
-                 <a href={props.as} style={{ textDecoration: "none" }}>
-                    <div
-                        css={css`
-              height: 100%;
-              width: 100%;
-              padding-top: 66.66%;
-              overflow: hidden;
-              position: relative;
-            `}
-                    >
-                        <img
-                            css={css`
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                object-fit: cover;
-              `}
-                            src={props.imageurl}
-                        />
-                    </div>
-                </a>
-                <h4
-                    css={css`
-            display: block;
-            margin: 2px 0 0;
-
-            font-family: Arimo;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 8px;
-            text-align: right;
-
-            color: #000000;
-          `}
-                >
-                    {props.photographer}
-                </h4>
-            </div>
             <div
                 css={css`
-          padding: ${globals.cardPadding};
-          padding-left: 0;
+          padding: 20px;
+          padding-bottom: 5px;
           width: 100%;
         `}
             >
                 <span>
-                    <a
-                        href={props.category.as}
-                        css={css`
-              text-decoration: none;
-              color: ${globals.DBblue};
-              vertical-align: middle;
+                        <span>
+                            <h3
+                            css={css`
+                            margin: 0;
 
-              &:hover {
-                text-decoration: underline;
-              }
+                            font-family: ${globals.bodyFont};
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 11px;
+                            display: inline;
+                            margin-right: 4px;
+                            color: #000000;`}
+                        >
+                            {utilities.renderAuthors(props.authors)}
+                        </h3>
+                    </span>
+                
+                    <span
+                        css={css`
+                margin: 0 5px 0 0;
+                font-family: ${globals.bodyFont};
+                font-style: normal;
+                font-weight: 300;
+                font-size: 11px;
+                line-height: 14px;
+                display: inline;
             `}
                     >
-                        <h2
-                            css={css`
-                margin: 0 4px 0 0;
-                font-family: Source Sans Pro;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 14px;
-                text-transform: uppercase;
-                display: inline;
-              `}
-                            dangerouslySetInnerHTML={{ __html: props.category.name }}
-                        />
-                    </a>
+                        {PostTime.toLocaleString()}
+                    </span>
                     <span
                         css={css`
               border-left: 1px solid #000;
-              margin: 0;
               padding-left: 4px;
               font-family: ${globals.bodyFont};
               font-style: normal;
@@ -129,7 +91,6 @@ export default function Breaking(props) {
                         {TimeDiff}
                     </span>
                 </span>
-                <a href={props.as} style={{ textDecoration: "none" }}>
                     <div
                         css={css`
               margin: 2px 0 4px;
@@ -148,22 +109,51 @@ export default function Breaking(props) {
             `}
                         dangerouslySetInnerHTML={{ __html: props.excerpt }}
                     />
-                </a>
-                <h3
-                    css={css`
-            margin: 0;
+            </div>
+            {props.imageurl != "http://wp.dailybruin.com/images/2017/03/db-logo.png" &&
 
-            font-family: ${globals.bodyFont};
+                <div
+                    css={css`
+              height: 100%;
+              width: 100%;
+              padding-top: 66.66%;
+              overflow: hidden;
+              position: relative;
+            `}
+                >
+                    <img
+                        css={css`
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                object-fit: cover;
+                padding: 20px;
+                padding-top: 0px;
+              `}
+                        src={props.imageurl}
+                    />
+                </div>
+                /* <h4
+                    css={css`
+            display: block;
+            margin: 2px 0 0;
+
+            font-family: Arimo;
             font-style: normal;
-            font-weight: bold;
-            font-size: 11px;
+            font-weight: normal;
+            font-size: 8px;
+            text-align: right;
 
             color: #000000;
           `}
                 >
-                    By {utilities.renderAuthors(props.authors)}
-                </h3>
-            </div>
+                    {props.photographer}
+                </h4> */
+            }
+
         </div>
     );
 }
