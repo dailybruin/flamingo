@@ -27,10 +27,14 @@ class Tag extends Component {
                 `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27093&tags=${tag[0].id}`
             );
             const posts = await postsRes.json();
+            const eventSummaryRes = await fetch(
+                `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27127&tags=${tag[0].id}`
+            )
+            const eventSummaries = await eventSummaryRes.json();
             /*
             This is temporary for the event summary, we will have to make a new tag / category for event Summary then pluck that 
             */
-            const eventSummary = posts[0];
+            const eventSummary = eventSummaries[0];
             posts.push(posts[1]);
             posts.push(posts[0]);
             posts.push(posts[1]);

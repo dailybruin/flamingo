@@ -35,11 +35,8 @@ export default function BreakingOverview(props) {
                         <h3
                             css={css`
                             margin: 0;
-                            font-family: ${globals.bodyFont};
-                            font-style: normal;
-                            font-weight: bold;
-                            font-size: 20px;
-                            font-color: black;
+                            ${locals.headline};
+                            font-size: 1.3rem;
                             display: inline;
                             `}
                         >
@@ -47,17 +44,6 @@ export default function BreakingOverview(props) {
                         </h3>
                     </span>
                 </span>
-                <div
-                    css={css`
-              margin: 2px 0 4px;
-              ${locals.headline};
-            `}
-                    style={{
-                        fontStyle:
-                            props.acf.db_article_format == "column" ? "italic" : "normal"
-                    }}
-                    dangerouslySetInnerHTML={{ __html: props.headline }}
-                />
                 <div
                     css={css`
               margin: 10px 0 5px;
