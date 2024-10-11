@@ -27,7 +27,15 @@ class Tag extends Component {
                 `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27093&tags=${tag[0].id}`
             );
             const posts = await postsRes.json();
-            return { tag, posts };
+            /*
+            This is temporary for the event summary, we will have to make a new tag / category for event Summary then pluck that 
+            */
+            const eventSummary = posts[0];
+            posts.push(posts[1]);
+            posts.push(posts[0]);
+            posts.push(posts[1]);
+            posts.push(posts[0]);
+            return { tag, posts, eventSummary };
         }
         return { tag };
     }
@@ -49,6 +57,7 @@ class Tag extends Component {
                     <BreakingLayout
                         tagID={this.props.tag[0].id}
                         posts={this.props.posts}
+                        eventSummary={this.props.eventSummary}
                     />
                 </div>
             </>

@@ -15,7 +15,7 @@ export function buildArticleCard(story, type = "") {
         as={story.link}
         link={story.link}
         key={story.id.toString()}
-        date={moment.utc(story.date)}
+        date={story.date}
         authors={story.coauthors != undefined ? story.coauthors : []}
         category={{
           name: story._embedded["wp:term"][0][0].name,

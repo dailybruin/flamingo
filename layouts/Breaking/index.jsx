@@ -2,20 +2,51 @@ import React, { Component } from "react";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import css from "../style.module.css";
+/** @jsx jsx */
+import {css as cssEmotion, jsx} from "@emotion/core";
 import * as utilities from "../utilities";
 import InfiniteScroll from "react-infinite-scroller";
 import Media from "react-media";
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
+import ArticleCard from "components/ArticleCard/index.jsx";
 
 export default class BreakingLayout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             otherArticleCards: utilities.buildArticleList(this.props.posts),
-            more: true
+            more: true,
+            isFixed: false
         };
         this.getPosts = this.getPosts.bind(this);
+        this.stickyRef = React.createRef(); // Reference to the sticky element
+        this.handleScroll = this.handleScroll.bind(this); // Binding the scroll handler
+    }
+
+    componentDidMount() {
+        window.addEventListener("scroll", this.handleScroll); // Attach scroll listener
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleScroll); // Clean up listener
+    }
+
+    handleScroll() {
+        const element = this.stickyRef.current;
+        if (element == null){
+            return; // this line is for mobile
+        }
+        const parent = element.parentElement;
+        const parentRect = parent.getBoundingClientRect();
+        const stickyTop = 70; // Matches the top value of sticky
+
+        // Switch to fixed when the parent container's bottom goes above the stickyTop
+        if (parentRect.bottom <= stickyTop) {
+            this.setState({ isFixed: true });
+        } else {
+            this.setState({ isFixed: false });
+        }
     }
 
     getPosts(page) {
@@ -26,7 +57,6 @@ export default class BreakingLayout extends React.Component {
             .then(
                 json => {
                     if (json.data == undefined && json.length != 0) {
-                        console.log(json.length())
                         this.setState({
                             otherArticleCards: this.state.otherArticleCards.concat(
                                 utilities.buildArticleList(json)
@@ -52,6 +82,7 @@ export default class BreakingLayout extends React.Component {
     }
 
     render() {
+        const { isFixed } = this.state;
         return (
             <Media
                 queries={{
@@ -77,6 +108,9 @@ export default class BreakingLayout extends React.Component {
                                         width: "100%"
                                     }}
                                 >
+                                    <div id="one">
+                                        {utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")}
+                                    </div>
                                     <InfiniteScroll
                                         pageStart={1}
                                         loadMore={this.getPosts}
@@ -88,7 +122,7 @@ export default class BreakingLayout extends React.Component {
                                     >
                                         {utilities.renderPostArray(
                                             this.state.otherArticleCards,
-                                            "full"
+                                            "breaking"
                                         )}
                                     </InfiniteScroll>
                                     {!this.state.more ? (
@@ -99,7 +133,7 @@ export default class BreakingLayout extends React.Component {
                                                 textAlign: "center"
                                             }}
                                         >
-                                            no more articles!
+                                            End of news feed
                                         </p>
                                     ) : (
                                         <span></span>
@@ -117,6 +151,9 @@ export default class BreakingLayout extends React.Component {
                                     }}
                                 >
                                     <div>
+                                        <div id="one">
+                                            {utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")}
+                                        </div>
                                         <InfiniteScroll
                                             pageStart={1}
                                             loadMore={this.getPosts}
@@ -124,45 +161,6 @@ export default class BreakingLayout extends React.Component {
                                             threshold={3000}
                                             loader={
                                                 <LoadingBear text={"searching for more articles..."} />
-                                            }
-                                        >
-                                            {utilities.renderPostArray(
-                                                this.state.otherArticleCards,
-                                                "horz"
-                                            )}
-                                        </InfiniteScroll>
-                                        {!this.state.more ? (
-                                            <p
-                                                style={{
-                                                    color: "#404040",
-                                                    fontFamily: "'Source Sans Pro', sans-serif",
-                                                    textAlign: "center"
-                                                }}
-                                            >
-                                                no more articles!
-                                            </p>
-                                        ) : (
-                                            <span></span>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                        {matches.desktop && (
-                            <div id="ArticleGrid" style={{ width: "100%" }}>
-                                <div
-                                    id="Articles"
-                                    className={css.column}
-                                    style={{ width: "100%" }}
-                                >
-                                    <div>
-                                        <InfiniteScroll
-                                            pageStart={1}
-                                            loadMore={this.getPosts}
-                                            hasMore={this.state.more}
-                                            threshold={3000}
-                                            loader={
-                                                <LoadingBear text={"searching for more posts..."} />
                                             }
                                         >
                                             {utilities.renderPostArray(
@@ -178,11 +176,88 @@ export default class BreakingLayout extends React.Component {
                                                     textAlign: "center"
                                                 }}
                                             >
-                                                {/* Could have text here to display when breaking feed is done */}
+                                                End of news feed
                                             </p>
                                         ) : (
                                             <span></span>
                                         )}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {matches.desktop && (
+                            <div id="ArticleGrid" style={{ width: "100%"}}>
+                                <div>
+                                    <div
+                                        id="left"
+                                        className={css.column}
+                                        ref={this.stickyRef}
+                                        style={{
+                                            width: "25%",
+                                            position: isFixed ? "fixed" : "sticky",
+                                            top: isFixed ? "0px" : "70px",
+                                            "margin-top": "7px"
+                                        }}>
+                                            {/*
+                                            Normally you might just be able to do position: sticky to get the card to stick to the top of the 
+                                            screen, but the stick only applies for the height of the div.
+                                            Instead of calculating the height of the screen to make the height of the div, we can instead
+                                            just put the position to fixed when the top of the div (from getBoundingClientRect)
+                                            
+                                            */}
+                                        <div id="one" style={{position: "sticky", top: "70px"}}>
+                                            {utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")} 
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="center"
+                                        className={css.column}
+                                        style={{
+                                            width: "50%"
+                                        }}
+                                    >
+                                        <div>
+                                            <InfiniteScroll
+                                                pageStart={1}
+                                                loadMore={this.getPosts}
+                                                hasMore={this.state.more}
+                                                threshold={3000}
+                                                loader={
+                                                    <LoadingBear text={"searching for more posts..."} />
+                                                }
+                                            >
+                                                {utilities.renderPostArray(
+                                                    this.state.otherArticleCards,
+                                                    "breaking"
+                                                )}
+                                            </InfiniteScroll>
+                                            {!this.state.more ? (
+                                                <p
+                                                    style={{
+                                                        color: "#404040",
+                                                        fontFamily: "'Source Sans Pro', sans-serif",
+                                                        textAlign: "center"
+                                                    }}
+                                                >
+                                                    End of news feed
+                                                </p>
+                                            ) : (
+                                                <span></span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="right"
+                                        className={css.column}
+                                        style={{ width: "25%" }}
+                                    >
+                                        <div
+                                            id="above-ad"
+                                            className={css.card}
+                                            style={{ textAlign: "center" }}
+                                        >
+                                            <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

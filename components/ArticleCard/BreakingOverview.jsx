@@ -7,24 +7,7 @@ import * as locals from "./locals";
 import * as utilities from "./utilities";
 import * as moment from "moment";
 
-export default function Breaking(props) {
-    var CurrentTime = new Date();
-    var PostTime = new Date(props.date);
-    var DiffInMilliseconds = CurrentTime - PostTime;
-    var TotalMinutes = Math.floor(DiffInMilliseconds / (1000 * 60));
-    var DiffInDays = Math.floor(TotalMinutes / (60 * 24));
-    var DiffInHours = Math.floor((TotalMinutes % (60 * 24)) / 60);
-    var DiffInMinutes = TotalMinutes % 60;
-
-    var TimeDiff = "";
-    if (DiffInDays != 0) {
-        TimeDiff += DiffInDays + " Day" + (DiffInDays != 1 ? "s" : "") + ", ";
-    }
-    if (DiffInHours != 0) {
-        TimeDiff += DiffInHours + " Hour" + (DiffInHours != 1 ? "s" : "") + ", ";
-    }
-    TimeDiff += DiffInMinutes + " Minute" + (DiffInMinutes != 1 ? "s" : "") + " Ago";
-
+export default function BreakingOverview(props) {
     return (
         <div
             css={css`
@@ -33,9 +16,10 @@ export default function Breaking(props) {
         box-shadow: ${globals.cardShadow};
         padding: 0px;
         background-color: #ffffff;
-        /*border: 10px solid #d12008;*/
+        border: 5px solid black;
         border-radius: 20px;
         width: 100%;
+        position: sticky;
       `}
         >
             <div
@@ -47,68 +31,40 @@ export default function Breaking(props) {
         `}
             >
                 <span>
-                        <span>
-                            <h3
+                    <span>
+                        <h3
                             css={css`
                             margin: 0;
-
                             font-family: ${globals.bodyFont};
                             font-style: normal;
                             font-weight: bold;
-                            font-size: 11px;
+                            font-size: 20px;
+                            font-color: black;
                             display: inline;
-                            margin-right: 4px;
-                            color: #000000;`}
+                            `}
                         >
-                            {utilities.renderAuthors(props.authors)}
+                            {"What we're covering here"}
                         </h3>
                     </span>
-                
-                    <span
-                        css={css`
-                margin: 0 5px 0 0;
-                font-family: ${globals.bodyFont};
-                font-style: normal;
-                font-weight: 300;
-                font-size: 11px;
-                line-height: 14px;
-                display: inline;
-            `}
-                    >
-                        {PostTime.toLocaleString()}
-                    </span>
-                    <span
-                        css={css`
-              border-left: 1px solid #000;
-              padding-left: 4px;
-              font-family: ${globals.bodyFont};
-              font-style: normal;
-              font-weight: 300;
-              font-size: 11px;
-              line-height: 14px;
-            `}
-                    >
-                        {TimeDiff}
-                    </span>
                 </span>
-                    <div
-                        css={css`
+                <div
+                    css={css`
               margin: 2px 0 4px;
               ${locals.headline};
             `}
-                        style={{
-                            fontStyle:
-                                props.acf.db_article_format == "column" ? "italic" : "normal"
-                        }}
-                        dangerouslySetInnerHTML={{ __html: props.headline }}
-                    />
-                    <div
-                        css={css`
-              margin: 0 0 5px;
+                    style={{
+                        fontStyle:
+                            props.acf.db_article_format == "column" ? "italic" : "normal"
+                    }}
+                    dangerouslySetInnerHTML={{ __html: props.headline }}
+                />
+                <div
+                    css={css`
+              margin: 10px 0 5px;
               font-family: 'Roboto', serif;\n font-style: normal;\n font-weight: normal;\n  font-size: 18px;\n  color: #000000;\n\n  p {\n    margin: 0;\n  }\n  \n  br {\n    display: none;\n  }\n
             `}
-                        dangerouslySetInnerHTML={{ __html: props.excerpt }}
-                    />
+                    dangerouslySetInnerHTML={{ __html: props.excerpt }}
+                />
             </div>
             {props.imageurl != "http://wp.dailybruin.com/images/2017/03/db-logo.png" &&
 

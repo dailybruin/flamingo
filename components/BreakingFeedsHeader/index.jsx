@@ -4,7 +4,7 @@ import Link from "next/link";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 
-export default function TagHeader(props) {
+export default function BreakingFeedsHeader(props) {
     return (
         <div
             css={css`
@@ -12,6 +12,7 @@ export default function TagHeader(props) {
     background-color: white;
     display: block;
     padding: 0 10px 10px;
+    border-radius: 20px;
   `}
         >
             <div
