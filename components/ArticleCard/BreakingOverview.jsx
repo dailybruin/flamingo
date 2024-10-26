@@ -16,7 +16,7 @@ export default function BreakingOverview(props) {
         box-shadow: ${globals.cardShadow};
         padding: 0px;
         background-color: #ffffff;
-        border: 5px solid black;
+        border: 2px solid #d12008;
         border-radius: 20px;
         width: 100%;
         position: sticky;
@@ -35,7 +35,7 @@ export default function BreakingOverview(props) {
                         <h3
                             css={css`
                             margin: 0;
-                            ${locals.headline};
+                            font-family: 'DM Serif Text', serif;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 1.5rem;\n  line-height: 1.25;\n  color: #000000;\n
                             font-size: 1.3rem;
                             display: inline;
                             `}

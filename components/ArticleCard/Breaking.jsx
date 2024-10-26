@@ -94,7 +94,7 @@ export default function Breaking(props) {
                     <div
                         css={css`
               margin: 2px 0 4px;
-              ${locals.headline};
+              font-family: 'DM Serif Text', serif;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 1.5rem;\n  line-height: 1.25;\n  color: #000000;\n
             `}
                         style={{
                             fontStyle:
