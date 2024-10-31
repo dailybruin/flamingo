@@ -11,6 +11,8 @@ import Poll from "../../components/Poll";
 import StoryList from "../../components/StoryList";
 import SponsoredLinks from "../../components/SponsoredLinks";
 import TwitterFeed from "../../components/TwitterFeed";
+import GamesCard from "components/GamesCard/GamesCard";
+import Link from "next/link";
 
 const ArticleAdStyle = {
   width: "100%",
@@ -57,7 +59,7 @@ export default class HomeLayout extends React.Component {
         "/category/opinion"
       ),
       aeStoryList: utilities.buildStoryList(
-        "A&E",
+        "ARTS",
         this.props.posts.artsList,
         "/category/arts-entertainment"
       ),
@@ -111,6 +113,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
+                        <img />
                         <TwitterFeed />
                       </div>
                     )}
@@ -369,6 +372,12 @@ export default class HomeLayout extends React.Component {
                       <div id="en" className={css.card}>
                         {this.cards.enStoryList}
                       </div>
+                      {/*
+                        Put twitter feed here
+                      */}
+                      <div className={css.card}>
+                        <TwitterFeed />
+                      </div>
                     </div>
                     <div
                       id="center"
@@ -417,6 +426,8 @@ export default class HomeLayout extends React.Component {
                       style={{ width: "25%" }}
                     >
                       {this.props.mappedBreaking != null && (
+                        /* put westwordle here
+                           */
                         <div className={css.card}>
                           <TwitterFeed />
                         </div>
@@ -441,11 +452,13 @@ export default class HomeLayout extends React.Component {
                           displayType: "mini"
                         })}
                       </div>
-                      {this.props.mappedBreaking == null && (
+                      <div>
+                        <a href="/category/games">
                         <div className={css.card}>
-                          <TwitterFeed />
+                          <GamesCard></GamesCard>
                         </div>
-                      )}
+                        </a>
+                      </div>
                       <div id="sp" className={css.card}>
                         {this.cards.spStoryList}
                       </div>
