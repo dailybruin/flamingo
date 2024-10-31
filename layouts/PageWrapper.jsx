@@ -44,6 +44,7 @@ const PageWrapper = Comp =>
           return { name: index.title, href: index.url, as: index.url };
         });
       }
+      mappedCategories.splice(15, 0, {name: "Games", href: "/category/games", as: "/category/games"})
 
       // BreakingCard
       const breakingRes = await fetch(

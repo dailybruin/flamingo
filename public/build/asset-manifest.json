@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "./static/css/main.5bec0235.css",
+    "main.js": "./static/js/main.3e6b883a.js",
+    "static/js/453.77bdf135.chunk.js": "./static/js/453.77bdf135.chunk.js",
+    "index.html": "./index.html",
+    "static/media/Wordbank.txt": "./static/media/Wordbank.ad15b17c5f5a3ab97141.txt",
+    "main.5bec0235.css.map": "./static/css/main.5bec0235.css.map",
+    "main.3e6b883a.js.map": "./static/js/main.3e6b883a.js.map",
+    "453.77bdf135.chunk.js.map": "./static/js/453.77bdf135.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5bec0235.css",
+    "static/js/main.3e6b883a.js"
+  ]
+}
