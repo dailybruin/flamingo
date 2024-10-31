@@ -57,7 +57,7 @@ export default class HomeLayout extends React.Component {
         "/category/opinion"
       ),
       aeStoryList: utilities.buildStoryList(
-        "A&E",
+        "ARTS",
         this.props.posts.artsList,
         "/category/arts-entertainment"
       ),
