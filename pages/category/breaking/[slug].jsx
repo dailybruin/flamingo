@@ -24,12 +24,12 @@ class Tag extends Component {
         const tag = await tagRes.json();
         if (tag.length > 0) {
             const postsRes = await fetch(
-                `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27093&tags=${tag[0].id}`
-            );
+                `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27179&tags=${tag[0].id}`
+            ); //27179 is the id the category of breaking feed posts
             const posts = await postsRes.json();
             const eventSummaryRes = await fetch(
                 `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27127&tags=${tag[0].id}`
-            )
+            ); //27127 is the id of the category of breaking feed overview
             const eventSummaries = await eventSummaryRes.json();
             /*
             This is temporary for the event summary, we will have to make a new tag / category for event Summary then pluck that 
