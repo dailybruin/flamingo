@@ -26,7 +26,11 @@ export default class SectionHeader extends React.Component {
             `}
           ></img>
         );
-      } else {
+      // } else if (this.props.category == "Breaking News") {
+        
+      // } 
+      }
+      else {
         return (
           <div dangerouslySetInnerHTML={{ __html: this.props.category }}></div>
         );
