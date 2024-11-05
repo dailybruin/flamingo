@@ -51,12 +51,13 @@ export default class BreakingLayout extends React.Component {
 
     getPosts(page) {
         fetch(
-            `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&tag=${this.props.tagID}&page=${page}`
+            `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27179&tags=${this.props.tagID}&page=${page}` //27179 is the category ID of breaking feed posts
         )
             .then(response => response.json())
             .then(
                 json => {
                     if (json.data == undefined && json.length != 0) {
+                        console.log(`${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27179&tags=${this.props.tagID}&page=${page}`);
                         this.setState({
                             otherArticleCards: this.state.otherArticleCards.concat(
                                 utilities.buildArticleList(json, "breaking")
