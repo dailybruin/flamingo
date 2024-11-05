@@ -35,7 +35,9 @@ class Tag extends Component {
             This is temporary for the event summary, we will have to make a new tag / category for event Summary then pluck that 
             */
             const eventSummary = eventSummaries[0];
-            eventSummary.excerpt.rendered = eventSummary.content.rendered; // Currently making the post content the excerpt in order to keep old card skeleton
+            if (eventSummary) {
+                eventSummary.excerpt.rendered = eventSummary.content.rendered; // Currently making the post content the excerpt in order to keep old card skeleton
+            }
             return { tag, posts, eventSummary };
         }
         return { tag };

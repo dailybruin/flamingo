@@ -109,7 +109,7 @@ export default class BreakingLayout extends React.Component {
                                     }}
                                 >
                                     <div id="one">
-                                        {utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")}
+                                        {this.props.eventSummary && utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")}
                                     </div>
                                     <InfiniteScroll
                                         pageStart={1}
@@ -152,7 +152,7 @@ export default class BreakingLayout extends React.Component {
                                 >
                                     <div>
                                         <div id="one">
-                                            {utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")}
+                                            {this.props.eventSummary && utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")}
                                         </div>
                                         <InfiniteScroll
                                             pageStart={1}
@@ -206,7 +206,7 @@ export default class BreakingLayout extends React.Component {
                                             
                                             */}
                                         <div id="one" style={{position: "sticky", top: "70px"}}>
-                                            {utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")} 
+                                            {this.props.eventSummary && utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")} 
                                         </div>
                                     </div>
                                     <div
