@@ -11,6 +11,7 @@ export function buildArticleCard(story, type = "") {
         displayType={type}
         headline={story.title != undefined ? story.title.rendered : ""}
         excerpt={story.excerpt != undefined ? story.excerpt.rendered : ""}
+        content={ story.content != undefined ? story.content.rendered : ""} //currently sending all story content as a prop to all cards
         href={`/post/[slug]`}
         as={story.link}
         link={story.link}

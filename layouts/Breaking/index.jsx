@@ -59,7 +59,7 @@ export default class BreakingLayout extends React.Component {
                     if (json.data == undefined && json.length != 0) {
                         this.setState({
                             otherArticleCards: this.state.otherArticleCards.concat(
-                                utilities.buildArticleList(json)
+                                utilities.buildArticleList(json, "breaking")
                             )
                         });
                     } else {
