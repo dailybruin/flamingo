@@ -47,7 +47,7 @@ export default function BreakingOverview(props) {
                 <div
                     css={css`
               margin: 10px 0 5px;
-              font-family: 'Roboto', serif;\n font-style: normal;\n font-weight: normal;\n  font-size: 18px;\n  color: #000000;\n\n  p {\n    margin: 0;\n  }\n  \n  br {\n    display: none;\n  }\n
+              font-family: 'Roboto', serif;\n font-style: normal;\n font-weight: normal;\n  font-size: 18px;\n  color: #000000;\n\n
             `}
                     dangerouslySetInnerHTML={{ __html: props.excerpt }}
                 />
