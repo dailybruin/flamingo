@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import css from "../style.module.css";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import {css as cssEmotion, jsx} from "@emotion/core";
 import * as utilities from "../utilities";
 import InfiniteScroll from "react-infinite-scroller";

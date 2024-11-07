@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";

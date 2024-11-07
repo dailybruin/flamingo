@@ -1,7 +1,7 @@
 // import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from '@emotion/core'
 import * as MainSiteStyles from '../globals'
 

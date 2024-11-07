@@ -1,5 +1,5 @@
 import React from "react";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 
 export function UCFundingModel() {

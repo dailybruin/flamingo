@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import { Config } from "../config.js";
 import PageWrapper from "../layouts/PageWrapper";
 import Head from "next/head";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 
 import * as globals from "../components/globals";

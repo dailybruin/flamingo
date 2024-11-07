@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Error from "next/error";
 import { Config } from "../../config.js";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as utilities from "./utilities";
 import Masonry from "react-masonry-component";
