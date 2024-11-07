@@ -1,5 +1,5 @@
 import React from 'react'
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from '@emotion/core'
 import * as MainSiteStyles from '../globals'
 import * as d3 from 'd3'

@@ -1,5 +1,5 @@
 import * as React from "react";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import logo from "./db.png";
 // import minilogo from "../../public/favicons/favicon-194x194.png";

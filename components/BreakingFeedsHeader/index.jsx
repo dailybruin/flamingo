@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 
@@ -79,7 +79,7 @@ export default function BreakingFeedsHeader(props) {
           }
         }
       `}>
-                    <svg height="20" width="20" class="blinking"> {/* Adjust the size as needed */}
+                    <svg height="20" width="20" className="blinking"> {/* Adjust the size as needed */}
                         <circle cx="10" cy="10" r="10" fill="#d12008" />
                     </svg>
                 </div>

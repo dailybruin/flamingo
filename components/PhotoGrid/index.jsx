@@ -1,6 +1,6 @@
 import * as React from "react";
 import Head from "next/head";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import Masonry from "react-masonry-component";
