@@ -17,7 +17,7 @@
     "he": "^1.2.0",
     "js-cookie": "^2.2.1",
     "moment": "^2.24.0",
-    "next": "9.4.4",
+    "next": "^10.2.3",
     "next-images": "^1.2.0",
     "next-plugin-transpile-modules": "^2.0.0",
     "react": "16.13.1",
