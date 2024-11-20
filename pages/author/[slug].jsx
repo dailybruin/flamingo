@@ -14,7 +14,7 @@ class Author extends Component {
     );
     const author = await authorRes.json();
     const postsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${slug}&categories_exclude=27179` // 27179 is the category id of breaking feed posts
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${slug}&categories_exclude=27179,27127` // 27179 is the category id of breaking feed posts
     );
     const posts = await postsRes.json();
     const classifiedsRes = await fetch(
