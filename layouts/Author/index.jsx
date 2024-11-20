@@ -23,7 +23,7 @@ export default class Author extends React.Component {
 
   getPosts(page) {
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${this.props.author.slug}&page=${page}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${this.props.author.slug}&page=${page}&categories_exclude=27179,27127`
     )
       .then(response => response.json())
       .then(
