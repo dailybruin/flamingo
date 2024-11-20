@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";
@@ -26,7 +26,11 @@ export default class SectionHeader extends React.Component {
             `}
           ></img>
         );
-      } else {
+      // } else if (this.props.category == "Breaking News") {
+        
+      // } 
+      }
+      else {
         return (
           <div dangerouslySetInnerHTML={{ __html: this.props.category }}></div>
         );

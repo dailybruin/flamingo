@@ -25,6 +25,10 @@ class Category extends Component {
   static async getInitialProps(context) {
     // slug is from url
     const { slug } = context.query;
+    if (slug == 'breaking') {
+      const category = undefined
+      return { category }
+    }
     const categoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`
     );
@@ -77,7 +81,8 @@ class Category extends Component {
     if (
       this.props.category == undefined ||
       this.props.category.data != undefined ||
-      this.props.category.length == 0
+      this.props.category.length == 0 ||
+      this.slug == 'breaking'
     ) {
       return <Error statusCode={404} />;
     }
