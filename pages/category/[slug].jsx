@@ -7,10 +7,28 @@ import Head from "next/head";
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
 
+const COLUMN_SERIES_FEATURE_FLAG = false;
+
+const categoryDescriptions = {
+  quad: {
+    desktop:
+      "The Quad is the Daily Bruin's explanatory journalism section, which aims to break down salient topics \
+    to make them digestible for UCLA's student body and community at large. Our in-depth reporting incorporates the \
+    broader context of these topics to give a more comprehensive view on financial, lifestyle and academic discussions.",
+    mobile:
+      "The Quad is an explanatory journalism hub which contextualizes current events for readers, \
+    with stories ranging from cultural trends to the interrogation of sociopolitical issues."
+  }
+};
+
 class Category extends Component {
   static async getInitialProps(context) {
     // slug is from url
     const { slug } = context.query;
+    if (slug == 'breaking') {
+      const category = undefined
+      return { category }
+    }
     const categoryRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`
     );
@@ -27,6 +45,24 @@ class Category extends Component {
         // subcategories[i].subsubcategories = await subsubcategoriesRes.json();
         subcategories[i].subsubcategories = [];
       }
+
+      // Put Opinion Column Series after Opinion Columns
+      if (slug == "opinion") {
+        const columnsIndex = subcategories.findIndex(
+          sub => sub.slug == "opinion-columns"
+        );
+        const columnSeriesIndex = subcategories.findIndex(
+          sub => sub.slug == "opinion-column-series"
+        );
+        const temp = subcategories[columnsIndex];
+        subcategories[columnsIndex] = subcategories[columnSeriesIndex];
+        subcategories[columnSeriesIndex] = temp;
+
+        if (!COLUMN_SERIES_FEATURE_FLAG) {
+          subcategories.pop();
+        }
+      }
+
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
       );
@@ -45,7 +81,8 @@ class Category extends Component {
     if (
       this.props.category == undefined ||
       this.props.category.data != undefined ||
-      this.props.category.length == 0
+      this.props.category.length == 0 ||
+      this.slug == 'breaking'
     ) {
       return <Error statusCode={404} />;
     }
@@ -67,6 +104,7 @@ class Category extends Component {
         <div style={{ padding: "6px" }}>
           <SectionHeader
             category={this.props.category[0].name}
+            description={categoryDescriptions[this.props.category[0].slug]}
             subcategories={sectionLinks}
           />
         </div>
