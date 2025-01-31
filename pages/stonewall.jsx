@@ -4,6 +4,7 @@ import PageWrapper from "../layouts/PageWrapper";
 import Head from "next/head";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
+import Script from "next/script.js";
 
 import * as globals from "../components/globals";
 
@@ -33,7 +34,7 @@ const Stonewall = () => {
     return (
         <>
          <Head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
+            <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
          </Head>
          <div
             css={css`
