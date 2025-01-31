@@ -1,5 +1,5 @@
 import * as React from "react";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { Global, css, jsx } from "@emotion/core";
 import moment from "moment";
 import Head from "next/head";
@@ -112,6 +112,7 @@ export default class Desktop extends React.Component {
       }
     }
     return (
+      <React.Fragment>
       <div
         ref={this.MastheadCard}
         css={css`
@@ -309,13 +310,6 @@ export default class Desktop extends React.Component {
                     <img src={require("./mail.svg")} />
                   </a>
                   <a
-                    href="https://www.overlooked.com"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./overlooked.png")} />
-                  </a>
-                  <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
@@ -324,7 +318,7 @@ export default class Desktop extends React.Component {
                   </a>
                 </div>
                 <a href="/advertise">Advertise</a>
-                <a href="https://giving.ucla.edu/campaign/Donate.aspx?Fund=63255C&AutoFN=Y">
+                <a href="https://uclastudentmedia.com/donate/">
                   Donate
                 </a>
                 <a href="/submit">Submit</a>
@@ -482,6 +476,7 @@ export default class Desktop extends React.Component {
           </div>
         </div>
       </div>
+      </React.Fragment>
     );
   }
 }

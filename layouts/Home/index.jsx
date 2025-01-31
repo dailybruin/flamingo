@@ -11,6 +11,8 @@ import Poll from "../../components/Poll";
 import StoryList from "../../components/StoryList";
 import SponsoredLinks from "../../components/SponsoredLinks";
 import TwitterFeed from "../../components/TwitterFeed";
+import GamesCard from "components/GamesCard/GamesCard";
+import Link from "next/link";
 
 const ArticleAdStyle = {
   width: "100%",
@@ -57,7 +59,7 @@ export default class HomeLayout extends React.Component {
         "/category/opinion"
       ),
       aeStoryList: utilities.buildStoryList(
-        "A&E",
+        "ARTS",
         this.props.posts.artsList,
         "/category/arts-entertainment"
       ),
@@ -111,6 +113,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
+                        <img />
                         <TwitterFeed />
                       </div>
                     )}
@@ -170,6 +173,13 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="en" className={css.card}>
                       {this.cards.enStoryList}
+                    </div>
+                    <div
+                      id="above-ad"
+                      style={{ textAlign: "center" }}
+                      className={css.card}
+                    >
+                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="op" className={css.card}>
                       {this.cards.opStoryList}
@@ -311,8 +321,6 @@ export default class HomeLayout extends React.Component {
                         <div id="sp" className={css.card}>
                           {this.cards.spStoryList}
                         </div>
-                      </div>
-                      <div className={css.column} style={{ width: "100%" }}>
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
                             <img
@@ -321,11 +329,11 @@ export default class HomeLayout extends React.Component {
                             />
                           </a>
                         </div>
-                        <div className={css.card}>
-                          <SponsoredLinks links={this.props.sponsoredLinks} />
-                        </div>
                       </div>
                     </div>
+                  </div>
+                  <div className={css.card}>
+                    <SponsoredLinks links={this.props.sponsoredLinks} />
                   </div>
                 </div>
               )}
@@ -363,6 +371,12 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div id="en" className={css.card}>
                         {this.cards.enStoryList}
+                      </div>
+                      {/*
+                        Put twitter feed here
+                      */}
+                      <div className={css.card}>
+                        <TwitterFeed />
                       </div>
                     </div>
                     <div
@@ -412,6 +426,8 @@ export default class HomeLayout extends React.Component {
                       style={{ width: "25%" }}
                     >
                       {this.props.mappedBreaking != null && (
+                        /* put westwordle here
+                           */
                         <div className={css.card}>
                           <TwitterFeed />
                         </div>
@@ -436,11 +452,13 @@ export default class HomeLayout extends React.Component {
                           displayType: "mini"
                         })}
                       </div>
-                      {this.props.mappedBreaking == null && (
+                      <div>
+                        <a href="/category/games">
                         <div className={css.card}>
-                          <TwitterFeed />
+                          <GamesCard></GamesCard>
                         </div>
-                      )}
+                        </a>
+                      </div>
                       <div id="sp" className={css.card}>
                         {this.cards.spStoryList}
                       </div>
@@ -455,17 +473,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                   </div>
                   <div>
-                    {/* <div className={css.column} style={{ width: "50%" }}>
-                      <div className={css.card}>
-                        <a href="https://prime.dailybruin.com">
-                          <img
-                            src="https://dailybruin.com/images/2020/06/Image-from-iOS.jpg"
-                            style={{ width: "100%" }}
-                          />
-                        </a>
-                      </div>
-                    </div> */}
-                    <div className={css.column} style={{ width: "50%" }}>
+                    <div className={css.column} style={{ width: "100%" }}>
                       <div className={css.card}>
                         <SponsoredLinks links={this.props.sponsoredLinks} />
                       </div>
