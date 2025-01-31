@@ -10,28 +10,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository
       - name: Check out code
         uses: actions/checkout@v3
 
-      # Set up Docker
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn build
+
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
 
-      # Log in to DigitalOcean Container Registry
       - name: Log in to DigitalOcean
         run: echo "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" | docker login -u "doctl" --password-stdin registry.digitalocean.com
 
-      # Build and push Docker image
       - name: Build and push Docker image
         run: |
           docker buildx build --platform linux/amd64,linux/arm64 \
           --tag registry.digitalocean.com/dailybruin/dbonline:latest \
           --push .
-       # Update Kubernetes deployment
+
+      - name: Install doctl
+        run: |
+          curl -sL https://github.com/digitalocean/doctl/releases/download/v1.99.0/doctl-1.99.0-linux-amd64.tar.gz | tar -xzv
+          sudo mv doctl /usr/local/bin/
+          
+      - name: Authenticate doctl
+        run: |
+            doctl auth init --access-token ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Write kubeconfig to file
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
+
       - name: Update Kubernetes deployment
         env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+          KUBECONFIG: kubeconfig.yaml
         run: |
-          kubectl set image deployment/<flamingo> <container-name>=registry.digitalocean.com/dailybruin/dbonline:latest
-          kubectl rollout status deployment/<flamingo>
+          kubectl set image deployment/flamingo flamingo=registry.digitalocean.com/dailybruin/dbonline:latest
+          kubectl rollout status deployment/flamingo
+  
