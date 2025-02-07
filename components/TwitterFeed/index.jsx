@@ -2,12 +2,13 @@
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import Head from "next/head";
+import Script from "next/script";
 
 export default function TwitterFeed(props) {
   return (
     <>
       <Head>
-        <script async src="https://platform.twitter.com/widgets.js" />
+        <Script async src="https://platform.twitter.com/widgets.js" />
       </Head>
       <div
         css={css`
