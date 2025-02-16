@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 
@@ -15,7 +15,7 @@ export default class SponsoredLinks extends React.Component {
           background: #fff;
           box-shadow: ${globals.cardShadow};
           padding: 10px;
-          width: 202%;
+          width: 100%;
         `}
       >
         <h1
@@ -40,10 +40,7 @@ export default class SponsoredLinks extends React.Component {
             a:hover {
               text-decoration: underline;
             }
-            @media (max-width: 768px) {
-              column-count: 2;
-            }
-            @media (max-width: 600px) {
+            @media (max-width: 900px) {
               column-count: 2;
             }
           `}
