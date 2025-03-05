@@ -40,12 +40,12 @@ export default class Desktop extends React.Component {
   }
 
   isScrolled() {
-    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+    if ((document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) && !(window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight)) {
       this.collapseMenu();
     } else if (
       (document.body.scrollTop <= 0 ||
         document.documentElement.scrollTop <= 0) &&
-      !this.state.menuExpanded
+      !this.state.menuExpanded && !(window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight)
     ) {
       this.expandMenu();
     }
