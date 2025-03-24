@@ -1,19 +1,8 @@
 const withImages = require("next-images");
 
-module.exports = withImages();
-
-module.exports = {
+module.exports = withImages({
+  swcMinify: true, // Enable SWC-based minification
   images: {
-    disableStaticImages: true
-  }
-}
-
-module.exports = {
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"],
-    });
-    return config;
+    disableStaticImages: true,
   },
-};
+});
