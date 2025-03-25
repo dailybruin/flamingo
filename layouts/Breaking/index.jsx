@@ -206,7 +206,14 @@ export default class BreakingLayout extends React.Component {
                                             just put the position to fixed when the top of the div (from getBoundingClientRect)
                                             
                                             */}
-                                        <div id="one" style={{position: "sticky", top: "70px"}}>
+                                        <div id="one" style={{
+                                            position: "sticky", 
+                                            top: "70px",
+                                            maxHeight: "calc(100vh - 70px)", 
+                                            overflowY: "scroll", 
+                                            scrollbarWidth: "none",  
+                                            msOverflowStyle: "none"
+                                        }}>
                                             {this.props.eventSummary && utilities.buildArticleCard(this.props.eventSummary, "breakingOverview")} 
                                         </div>
                                     </div>
