@@ -2,8 +2,9 @@ import React, { Component, useEffect, useState } from "react";
 import { Config } from "../config.js";
 import PageWrapper from "../layouts/PageWrapper";
 import Head from "next/head";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
+import Script from "next/script.js";
 
 import * as globals from "../components/globals";
 
@@ -33,7 +34,7 @@ const Stonewall = () => {
     return (
         <>
          <Head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
+            <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
          </Head>
          <div
             css={css`
@@ -93,6 +94,9 @@ const Stonewall = () => {
                 #stonewall-wrap ul {
                 list-style-type: none;
                 font-size: 1rem;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 1rem;
                 }
 
                 .stone-title {
@@ -116,6 +120,7 @@ const Stonewall = () => {
                 margin-bottom: 1rem;
                 background-size: 50%;
                 padding: 10px;
+                background-color: #D9D9D9;
                 }
 
                 .s1 {
@@ -180,7 +185,7 @@ const Stonewall = () => {
                 </div>
                 <div id="blurb">
                 <p>
-                    For <span>{new Date().getFullYear() - 1920}</span> years, the Daily Bruin
+                    Since 1919, the Daily Bruin
                     has strived to hold UCLA accountable to the community it serves.
                     We take that responsibility seriously. And when the Bruin is
                     unjustly thwarted in its efforts to inform students, we believe
@@ -209,5 +214,4 @@ const Stonewall = () => {
     )
 }
 
-export default Stonewall;
-
+export default PageWrapper(Stonewall);
