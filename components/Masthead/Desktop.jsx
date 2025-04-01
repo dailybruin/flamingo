@@ -11,6 +11,14 @@ import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
 import minisearchIcon from "./minisearch.svg";
 
+import Link from "next/link";
+import Image from "next/image";
+import youtubeIcon from "./youtube.png";
+import instagramIcon from "./instagram.svg";
+import mailIcon from "./mail.svg";
+import twitterIcon from "./twitter.svg";
+import facebookIcon from "./facebook.svg";
+
 let expandedHeight = "106px";
 let collapsedHeight = "60px";
 
@@ -282,42 +290,42 @@ export default class Desktop extends React.Component {
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./facebook.svg")} />
+                    <Image src={facebookIcon} width={14} height={14} alt="" />
                   </a>
                   <a
                     href="https://www.twitter.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./twitter.svg")} />
+                    <Image src={twitterIcon} width={14} height={14} alt="" />
                   </a>
                   <a
                     href="https://www.instagram.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./instagram.svg")} />
+                    <Image src={instagramIcon} width={14} height={14} alt="" />
                   </a>
                   <a
                     href="http://eepurl.com/cFEiZX"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./mail.svg")} />
+                    <Image src={mailIcon} width={14} height={14} alt="" />
                   </a>
                   <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./youtube.png")} />
+                    <Image src={youtubeIcon} width={14} height={14} alt="" />
                   </a>
                 </div>
-                <a href="/advertise">Advertise</a>
+                <Link href="/advertise">Advertise</Link>
                 <a href="https://uclastudentmedia.com/donate/">
                   Donate
                 </a>
-                <a href="/submit">Submit</a>
+                <Link href="/submit">Submit</Link>
               </div>
               <div
                 css={css`

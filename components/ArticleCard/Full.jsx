@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
@@ -70,12 +71,13 @@ export default function Full(props) {
           }}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
-        <img
-          css={css`
-            width: 100%;
-            margin: auto;
-          `}
-          src={props.imageurl}
+        <Image 
+          src={props.imageurl} 
+          width={0} 
+          height={0} 
+          sizes="100vw"
+          style={{ width: '100%', height: 'auto' }} 
+          alt=""
         />
         <div
           css={css`

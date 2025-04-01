@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
@@ -118,17 +119,20 @@ export default function Long(props) {
               min-height: 200px;
             `}
           >
-            <img
-              css={css`
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                object-fit: cover;
-              `}
+            <Image
               src={props.imageurl}
+              fill
+              sizes="100vw"
+              style={{
+                height: "100%",
+                width: "100%",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                objectFit: "cover"
+              }}
+              alt=""
             />
           </div>
           {/* <div
