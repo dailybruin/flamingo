@@ -17,7 +17,8 @@ class MyApp extends App {
   //   return { ...appProps }
   // }
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     // Custom Date Formats
     moment.updateLocale("en", {
       monthsShort: [
