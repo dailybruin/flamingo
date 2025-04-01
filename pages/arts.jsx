@@ -10,7 +10,7 @@ class Page extends Component {
       </p>;
     } else {
       // Redirect
-      window.location.href = "https://dailybruin.com/category/arts";
+      window.location.href = "https://dailybruin.com/category/arts-entertainment";
     }
     return null;
   }
