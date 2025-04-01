@@ -183,33 +183,12 @@ export default class Desktop extends React.Component {
               `}
             >
               <img
-                src={
-                  date.date() == 1 && date.month() == 3
-                    ? require("./prankd.svg")
-                    : logo
-                }
+                src={logo}
                 css={css`
                   display: inline-block;
                   height: 100%;
                 `}
               ></img>
-              {date.date() == 1 && date.month() == 3 && (
-                <>
-                  <Head>
-                    <link
-                      href="https://wp.dailybruin.com/wp-content/themes/caeruleum/css/dbcomic.ttf"
-                      rel="stylesheet"
-                    />
-                  </Head>
-                  <Global
-                    styles={css`
-                      * {
-                        font-family: "Comic Sans MS", sans-serif !important;
-                      }
-                    `}
-                  ></Global>
-                </>
-              )}
             </a>
           </div>
           <div
