@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -112,19 +111,19 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-          <Script
+          <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-28"
-          ></Script>
+          ></script>
 
           {/* Chartbeat */}
-          <Script
+          <script
             async
             src="//static.chartbeat.com/js/chartbeat_mab.js"
-          ></Script>
+          ></script>
 
           {/* Broadstreet Ads */}
-          <Script src="https://cdn.broadstreetads.com/init-2.min.js"></Script>
+          <script src="https://cdn.broadstreetads.com/init-2.min.js"></script>
         </Head>
         <body>
           <Main />

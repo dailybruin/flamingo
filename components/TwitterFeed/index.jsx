@@ -1,16 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
-import Script from "next/script";
+import Head from "next/head";
 
 export default function TwitterFeed(props) {
   return (
     <>
-       <Script
-        strategy="afterInteractive"
-        src="https://platform.twitter.com/widgets.js"
-        async
-        />
+      <Head>
+        <script async src="https://platform.twitter.com/widgets.js" />
+      </Head>
       <div
         css={css`
           ${globals.cardStyles}
