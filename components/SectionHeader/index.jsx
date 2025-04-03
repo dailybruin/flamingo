@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";
@@ -26,7 +26,11 @@ export default class SectionHeader extends React.Component {
             `}
           ></img>
         );
-      } else {
+      // } else if (this.props.category == "Breaking News") {
+        
+      // } 
+      }
+      else {
         return (
           <div dangerouslySetInnerHTML={{ __html: this.props.category }}></div>
         );
@@ -81,6 +85,44 @@ export default class SectionHeader extends React.Component {
         >
           {renderTitle()}
         </div>
+        {this.props.description != undefined && (
+          <>
+            <div // desktop description
+              css={css`
+                text-align: center;
+                list-style: none;
+                color: black;
+                font-family: ${globals.menuFont};
+                font-size: 16px;
+                padding-bottom: 8px;
+                margin-left: 32px;
+                margin-right: 32px;
+                @media (max-width: 600px) {
+                  display: none;
+                }
+              `}
+            >
+              {this.props.description.desktop}
+            </div>
+            <div // mobile description
+              css={css`
+                text-align: center;
+                list-style: none;
+                color: black;
+                font-family: ${globals.menuFont};
+                font-size: 16px;
+                padding-bottom: 8px;
+                margin-left: 32px;
+                margin-right: 32px;
+                @media (min-width: 601px) {
+                  display: none;
+                }
+              `}
+            >
+              {this.props.description.mobile}
+            </div>
+          </>
+        )}
         <div
           css={css`
             width: 100%;
