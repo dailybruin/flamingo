@@ -111,19 +111,22 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-          <script
-            async
+          <Script
             src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-28"
-          ></script>
+            strategy="afterInteractive"
+          />
 
           {/* Chartbeat */}
-          <script
-            async
+          <Script
             src="//static.chartbeat.com/js/chartbeat_mab.js"
-          ></script>
+            strategy="afterInteractive"
+          />
 
           {/* Broadstreet Ads */}
-          <script src="https://cdn.broadstreetads.com/init-2.min.js"></script>
+          <Script
+            src="https://cdn.broadstreetads.com/init-2.min.js"
+            strategy="beforeInteractive"
+           />
         </Head>
         <body>
           <Main />

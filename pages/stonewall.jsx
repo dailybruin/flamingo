@@ -33,7 +33,10 @@ const Stonewall = () => {
     return (
         <>
          <Head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
+            <Script
+                src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                strategy="beforeInteractive"
+            />
          </Head>
          <div
             css={css`
