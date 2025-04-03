@@ -4,6 +4,7 @@ import PageWrapper from "../layouts/PageWrapper";
 import Head from "next/head";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
+import Script from "next/script.js";
 
 import * as globals from "../components/globals";
 
