@@ -5,4 +5,5 @@ module.exports = withImages({
   images: {
     disableStaticImages: true,
   },
+  webpack5: true  // Enable webpack 5
 });

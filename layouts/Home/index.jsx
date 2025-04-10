@@ -41,32 +41,38 @@ export default class HomeLayout extends React.Component {
       qdStoryList: utilities.buildStoryList(
         "THE QUAD",
         this.props.posts.quadList,
-        "/category/quad"
+        "/category/quad",
+        false
       ),
       nsStoryList: utilities.buildStoryList(
         "NEWS",
         this.props.posts.newsList,
-        "/category/news"
+        "/category/news",
+        false
       ),
       enStoryList: utilities.buildStoryList(
         "ENTERPRISE",
         this.props.posts.enterpriseList,
-        "/category/enterprise"
+        "/category/enterprise",
+        false
       ),
       opStoryList: utilities.buildStoryList(
         "OPINION",
         this.props.posts.opinionList,
-        "/category/opinion"
+        "/category/opinion",
+        false
       ),
       aeStoryList: utilities.buildStoryList(
         "ARTS",
         this.props.posts.artsList,
-        "/category/arts-entertainment"
+        "/category/arts-entertainment",
+        false
       ),
       spStoryList: utilities.buildStoryList(
         "SPORTS",
         this.props.posts.sportsList,
-        "/category/sports"
+        "/category/sports",
+        false
       )
     };
   }
