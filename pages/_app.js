@@ -95,12 +95,7 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
-    return (
-      <>
-        {/* Scripts are already being handled in componentDidMount */}
-        <Component {...pageProps} />
-      </>
-    );
+    return <Component {...pageProps} />;
   }
 }
 

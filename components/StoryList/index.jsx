@@ -26,12 +26,17 @@ class StoryList extends React.Component {
           margin: auto;
         `}
       >
-        {this.props.showHeader !== false && (
-          <TopBar
-            title={this.props.type}
-            link={this.props.link || ""}
-          />
-        )}
+        <TopBar
+          title={
+            /* !!this.props.image
+              ? 'IN THE NEWS'
+              : this.props.type === StoryListType.Popular
+              ? 'POPULAR'
+              : 'IN THE PRINT' */
+            this.props.type
+          }
+          link={this.props.link || ""}
+        />
         <div
           css={css`
             padding: ${globals.cardPadding};

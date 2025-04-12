@@ -47,7 +47,7 @@ export function buildArticleCard(story, type = "") {
   }
 }
 
-export function buildStoryList(type, list, link, showHeader = true) {
+export function buildStoryList(type, list, link) {
   const mappedList = list.map(index => {
     return {
       title: index.title.rendered,
@@ -63,7 +63,6 @@ export function buildStoryList(type, list, link, showHeader = true) {
       type={type}
       link={link}
       story={mappedList}
-      showHeader={showHeader}
       image={{
         src:
           list[0]._embedded["wp:featuredmedia"] != undefined
