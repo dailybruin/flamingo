@@ -16,6 +16,8 @@ export default function Breaking(props) {
     var DiffInHours = Math.floor((TotalMinutes % (60 * 24)) / 60);
     var DiffInMinutes = TotalMinutes % 60;
 
+    console.log(props)
+
     var TimeDiff = "";
     if (DiffInDays != 0) {
         TimeDiff += DiffInDays + " Day" + (DiffInDays != 1 ? "s" : "") + ", ";
@@ -112,6 +114,7 @@ export default function Breaking(props) {
             </div>
             {props.imageurl != "http://wp.dailybruin.com/images/2017/03/db-logo.png" &&
 
+                <>
                 <div
                     css={css`
               height: 100%;
@@ -132,11 +135,24 @@ export default function Breaking(props) {
                 object-fit: cover;
                 padding: 20px;
                 padding-top: 0px;
-                padding-bottom: 10px;
+                padding-bottom: ${props.caption ? '0px' : '10px'};
               `}
                         src={props.imageurl}
                     />
                 </div>
+                <div
+                    dangerouslySetInnerHTML={{ __html: props.caption }}
+                    css={css`
+            text-align: right;
+            p {
+              margin: 10px 20px;
+              font-family: ${globals.bodyFont};
+              font-size: 12px;
+              color: ${globals.darkGray};
+            }
+          `}
+                ></div>
+                </>
                 /* <h4
                     css={css`
             display: block;
