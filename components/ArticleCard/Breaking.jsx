@@ -16,8 +16,6 @@ export default function Breaking(props) {
     var DiffInHours = Math.floor((TotalMinutes % (60 * 24)) / 60);
     var DiffInMinutes = TotalMinutes % 60;
 
-    console.log(props)
-
     var TimeDiff = "";
     if (DiffInDays != 0) {
         TimeDiff += DiffInDays + " Day" + (DiffInDays != 1 ? "s" : "") + ", ";

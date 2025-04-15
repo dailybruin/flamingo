@@ -10,6 +10,7 @@ import Media from "react-media";
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 import ArticleCard from "components/ArticleCard/index.jsx";
+import Head from 'next/head';
 
 export default class BreakingLayout extends React.Component {
     constructor(props) {
@@ -84,7 +85,7 @@ export default class BreakingLayout extends React.Component {
 
     render() {
         const { isFixed } = this.state;
-        return (
+        return (            
             <Media
                 queries={{
                     phone: "(max-width: 600px)",
