@@ -11,40 +11,37 @@ import Article from "components/Article";
 import ClassifiedsCard from "components/ClassifiedsCard";
 import CommentsCard from "components/CommentsCard";
 
-class ArticleLayout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.article = (
-      <Article
-        headline={this.props.article.title.rendered}
-        link={this.props.article.link}
-        date={moment.utc(this.props.article.date)}
-        authors={this.props.authors}
-        categories={this.props.article["_embedded"]["wp:term"][0]}
-        featureimg={
-          this.props.article._embedded["wp:featuredmedia"] != undefined &&
-          !this.props.article._embedded["wp:featuredmedia"].empty &&
-          this.props.article._embedded["wp:featuredmedia"][0].data == undefined
-            ? this.props.article._embedded["wp:featuredmedia"][0].source_url
-            : ""
-        }
-        caption={
-          this.props.article._embedded["wp:featuredmedia"] != undefined &&
-          !this.props.article._embedded["wp:featuredmedia"].empty &&
-          this.props.article._embedded["wp:featuredmedia"][0].data == undefined
-            ? this.props.article._embedded["wp:featuredmedia"][0].caption
-                .rendered
-            : ""
-        }
-        content={this.props.article.content.rendered}
-        acf={this.props.article.acf}
-      />
-    );
-  }
+function ArticleLayout({article, authors, relatedPosts, classifieds})
+{
+  let articleBuild = (
+    <Article
+      headline={article.title.rendered}
+      link={article.link}
+      date={moment.utc(article.date)}
+      authors={authors}
+      categories={article["_embedded"]["wp:term"][0]}
+      featureimg={
+        article._embedded["wp:featuredmedia"] != undefined &&
+        !article._embedded["wp:featuredmedia"].empty &&
+        article._embedded["wp:featuredmedia"][0].data == undefined
+          ? article._embedded["wp:featuredmedia"][0].source_url
+          : ""
+      }
+      caption={
+        article._embedded["wp:featuredmedia"] != undefined &&
+        !article._embedded["wp:featuredmedia"].empty &&
+        article._embedded["wp:featuredmedia"][0].data == undefined
+          ? article._embedded["wp:featuredmedia"][0].caption
+              .rendered
+          : ""
+      }
+      content={article.content.rendered}
+      acf={article.acf}
+    />
+  );
 
-  render() {
-    let renderedRelatedPosts = [];
-    for (let relatedPost of this.props.relatedPosts) {
+  let renderedRelatedPosts = [];
+    for (let relatedPost of relatedPosts) {
       renderedRelatedPosts.push(
         <div key={relatedPost.id} className={css.card}>
           {buildArticleCard(relatedPost, "mini")}
@@ -72,7 +69,7 @@ class ArticleLayout extends React.Component {
                       width: "100%"
                     }}
                   >
-                    <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>{articleBuild}</div>
                     <div>
                       <div className={css.card}>
                         <div
@@ -97,8 +94,8 @@ class ArticleLayout extends React.Component {
                     </div>
                     <div className={css.card}>
                       <CommentsCard
-                        id={this.props.article.id}
-                        link={this.props.article.link}
+                        id={article.id}
+                        link={article.link}
                       ></CommentsCard>
                     </div>
                     <div className={css.card}>
@@ -107,7 +104,7 @@ class ArticleLayout extends React.Component {
                     <div className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
+                        classifieds={classifieds}
                       />
                     </div>
                   </div>
@@ -122,11 +119,11 @@ class ArticleLayout extends React.Component {
                       width: "100%"
                     }}
                   >
-                    <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>{article}</div>
                     <div className={css.card}>
                       <CommentsCard
-                        id={this.props.article.id}
-                        link={this.props.article.link}
+                        id={article.id}
+                        link={article.link}
                       ></CommentsCard>
                     </div>
                   </div>
@@ -168,7 +165,7 @@ class ArticleLayout extends React.Component {
                     <div className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
+                        classifieds={classifieds}
                       />
                     </div>
                   </div>
@@ -193,11 +190,11 @@ class ArticleLayout extends React.Component {
                       width: "75%"
                     }}
                   >
-                    <div className={css.card}>{this.article}</div>
+                    <div className={css.card}>{articleBuild}</div>
                     <div className={css.card}>
                       <CommentsCard
-                        id={this.props.article.id}
-                        link={this.props.article.link}
+                        id={article.id}
+                        link={article.link}
                       ></CommentsCard>
                     </div>
                   </div>
@@ -214,7 +211,7 @@ class ArticleLayout extends React.Component {
                     <div className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
+                        classifieds={classifieds}
                       />
                     </div>
                     <div>
@@ -247,7 +244,6 @@ class ArticleLayout extends React.Component {
         </Media>
       </div>
     );
-  }
 }
 
 export default ArticleLayout;
