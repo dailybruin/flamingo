@@ -119,7 +119,7 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                       width: "100%"
                     }}
                   >
-                    <div className={css.card}>{article}</div>
+                    <div className={css.card}>{articleBuild}</div>
                     <div className={css.card}>
                       <CommentsCard
                         id={article.id}
