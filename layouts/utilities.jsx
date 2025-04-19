@@ -1,3 +1,4 @@
+import React from 'react';
 import ArticleCard from "../components/ArticleCard";
 import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
@@ -11,11 +12,12 @@ export function buildArticleCard(story, type = "") {
         displayType={type}
         headline={story.title != undefined ? story.title.rendered : ""}
         excerpt={story.excerpt != undefined ? story.excerpt.rendered : ""}
+        content={ story.content != undefined ? story.content.rendered : ""} //currently sending all story content as a prop to all cards
         href={`/post/[slug]`}
         as={story.link}
         link={story.link}
         key={story.id.toString()}
-        date={moment.utc(story.date)}
+        date={story.date}
         authors={story.coauthors != undefined ? story.coauthors : []}
         category={{
           name: story._embedded["wp:term"][0][0].name,
