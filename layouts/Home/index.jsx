@@ -114,7 +114,6 @@ export default class HomeLayout extends React.Component {
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
                         <img />
-                        <TwitterFeed />
                       </div>
                     )}
                     <div
@@ -142,7 +141,6 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking == null && (
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     )}
                     <div id="classifieds" className={css.card}>
@@ -235,7 +233,6 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     )}
                     <div
@@ -252,7 +249,6 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking == null && (
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     )}
                   </div>
@@ -376,7 +372,6 @@ export default class HomeLayout extends React.Component {
                         Put twitter feed here
                       */}
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     </div>
                     <div
@@ -429,7 +424,6 @@ export default class HomeLayout extends React.Component {
                         /* put westwordle here
                            */
                         <div className={css.card}>
-                          <TwitterFeed />
                         </div>
                       )}
                       <div
