@@ -1,18 +1,17 @@
 import PageWrapper from "../layouts/PageWrapper";
 import React from "react";
-import { Config } from "../config.js";
-
+import useSWR from 'swr';
 import PageLayout from "../layouts/Page";
 
-function Page({ page }) {
-  return <PageLayout page={page} />;
-}
+const fetcher = (url) => fetch(url).then(res => res.json());
 
-Page.getInitialProps = async (context) => {
-  const { slug } = context.query;
-    const pageRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/pages/14`);
-    const page = await pageRes.json();
-    return { page };
+function Page() {
+  const { data, error, isLoading } = useSWR(`/api/14`, fetcher);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading page</div>;
+
+  return <PageLayout page={data} />;
 }
 
 export default PageWrapper(Page);
