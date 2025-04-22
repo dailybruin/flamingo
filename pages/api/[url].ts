@@ -1,25 +1,26 @@
 // pages/api/[id].ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Redis from 'ioredis';
-import { Config } from '../../config.js';
+
+const redis = new Redis("localhost:6379")
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { id, ttl } = req.query;
+    const { url, ttl } = req.query;
     const TTL = parseInt(ttl as string);
-    const CACHE_KEY = `wp_page_${id}`;
-    const redis = new Redis("localhost:6379")
-
+    const URL = url as string;
+    
     try {
-        const cached = await redis.get(CACHE_KEY);
+        const cached = await redis.get(URL);
         if (cached) {
             return res.status(200).json(JSON.parse(cached));
         }
 
-        const pageRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/pages/${id}`);
+        // const pageRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/pages/${id}`);
+        const pageRes = await fetch(URL);
         if (!pageRes.ok) throw new Error('Failed to fetch from WP');
 
         const page = await pageRes.json();
-        await redis.set(CACHE_KEY, JSON.stringify(page), "EX", TTL);
+        await redis.set(URL, JSON.stringify(page), "EX", TTL);
 
         return res.status(200).json(page);
     } catch (err) {
