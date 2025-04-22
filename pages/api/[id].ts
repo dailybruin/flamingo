@@ -4,9 +4,9 @@ import Redis from 'ioredis';
 import { Config } from '../../config.js';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { id } = req.query;
+    const { id, ttl } = req.query;
+    const TTL = parseInt(ttl as string);
     const CACHE_KEY = `wp_page_${id}`;
-    const TTL = 60; // cache for 60 seconds
     const redis = new Redis("localhost:6379")
 
     try {
@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (!pageRes.ok) throw new Error('Failed to fetch from WP');
 
         const page = await pageRes.json();
-        await redis.set(CACHE_KEY, JSON.stringify(page));
+        await redis.set(CACHE_KEY, JSON.stringify(page), "EX", TTL);
 
         return res.status(200).json(page);
     } catch (err) {
