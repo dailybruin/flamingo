@@ -9,7 +9,8 @@ const fetcher = (url) => fetch(url).then(res => res.json());
 
 function Page() {
   const TTL = 432000  // Update once every 5 days
-  const { data, error, isLoading } = useSWR(`/api/10?ttl=${TTL}`, fetcher);
+  const url = encodeURIComponent(`${Config.apiUrl}/wp-json/wp/v2/pages/10`);
+  const { data, error, isLoading } = useSWR(`/api/${url}?ttl=${TTL}`, fetcher);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading page</div>;
