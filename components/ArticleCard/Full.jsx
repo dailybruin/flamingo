@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import * as moment from "moment";
+import Image from "next/image";
 
 export default function Full(props) {
   return (
@@ -70,12 +71,13 @@ export default function Full(props) {
           }}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
-        <img
-          css={css`
-            width: 100%;
-            margin: auto;
-          `}
+        <Image
           src={props.imageurl}
+          alt="Image"
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: '100%', height: 'auto', margin: 'auto' }}
         />
         <div
           css={css`
