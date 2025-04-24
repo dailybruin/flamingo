@@ -29,10 +29,30 @@ export default class SectionHeader extends React.Component {
 
     // Check if this is a category that should show the hamburger toggle
     const isNewsOrSports = this.props.category === "News" || this.props.category === "Sports";
-    const isOpinion = this.props.category === "Opinion";
 
     let renderedSubcategories = [];
-    if (this.props.subcategories) {
+    const renderTitle = () => {
+      if (this.props.category === "Daily Bruin: In Focus") {
+        return (
+          <img
+            src={InFocusLogo}
+            css={css`
+              display: inline-block;
+              height: 100%;
+              max-height: 64px;
+              margin: 0px;
+              padding: 0px;
+            `}
+          ></img>
+        );
+      } else {
+        return (
+          <div dangerouslySetInnerHTML={{ __html: this.props.category }}></div>
+        );
+      }
+    };
+
+    if (this.props.subcategories != undefined) {
       for (let i = 0; i < this.props.subcategories.length; i++) {
         renderedSubcategories.push(
           <a
@@ -58,34 +78,6 @@ export default class SectionHeader extends React.Component {
       }
     }
 
-    // Function to render category or subcategory title (center-aligned)
-    const renderTitle = () => {
-      if (this.props.category === "Daily Bruin: In Focus") {
-        return (
-          <img
-            src={InFocusLogo}
-            css={css`
-              display: inline-block;
-              height: 100%;
-              max-height: 64px;
-              margin: 0 auto;
-              padding: 0px;
-            `}
-          />
-        );
-      } else {
-        return (
-          <div
-            css={css`
-              text-align: center;
-              flex-grow: 1;
-            `}
-            dangerouslySetInnerHTML={{ __html: this.props.category }}
-          ></div>
-        );
-      }
-    };
-
     return (
       <div
         css={css`
@@ -100,7 +92,8 @@ export default class SectionHeader extends React.Component {
           css={css`
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
             text-align: center;
             list-style: none;
             color: black;
@@ -111,12 +104,12 @@ export default class SectionHeader extends React.Component {
             padding-top: 8px;
           `}
         >
-          {renderTitle()}
-
           {/* Show Hamburger Toggle ONLY for News and Sports */}
           {!isSubcategoryPage && this.props.subcategories.length > 0 && isNewsOrSports && (
             <div
               css={css`
+                position: absolute;
+                right: 0;
                 cursor: pointer;
                 display: flex;
                 flex-direction: column;
@@ -149,49 +142,80 @@ export default class SectionHeader extends React.Component {
               />
             </div>
           )}
+          {renderTitle()}
         </div>
 
-        {/* Decorative Line */}
-        {(isSubcategoryPage || (!isNewsOrSports && !isSubcategoryPage) || (isNewsOrSports && this.state.isOpen)) && (
-          <div
-            css={css`
-              width: 100%;
-              background-color: black;
-              height: 1px;
-              margin-top: 5px;
-              margin-bottom: 5px;
-            `}
-          ></div>
+        {this.props.description != undefined && (
+          <>
+            <div // desktop description
+              css={css`
+                text-align: center;
+                list-style: none;
+                color: black;
+                font-family: ${globals.menuFont};
+                font-size: 16px;
+                padding-bottom: 8px;
+                margin-left: 32px;
+                margin-right: 32px;
+                @media (max-width: 600px) {
+                  display: none;
+                }
+              `}
+            >
+              {this.props.description.desktop}
+            </div>
+            <div // mobile description
+              css={css`
+                text-align: center;
+                list-style: none;
+                color: black;
+                font-family: ${globals.menuFont};
+                font-size: 16px;
+                padding-bottom: 8px;
+                margin-left: 32px;
+                margin-right: 32px;
+                @media (min-width: 601px) {
+                  display: none;
+                }
+              `}
+            >
+              {this.props.description.mobile}
+            </div>
+          </>
         )}
+
+        {/* Decorative Line */}
+        <div
+          css={css`
+            width: 100%;
+            background-color: black;
+            height: 1px;
+            margin-bottom: 5px;
+          `}
+        ></div>
 
         {/* Show Subcategories based on category type */}
         {(!isSubcategoryPage && !isNewsOrSports) || (isNewsOrSports && this.state.isOpen) ? (
           <div
             css={css`
-              margin: auto;
-              text-align: ${isOpinion ? 'center' : 'left'};
-              ${isOpinion ? `
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-                flex-wrap: wrap;
-              ` : `
+              ${renderedSubcategories.length > 8
+                ? `
+                margin: auto;
+                text-align: left;
                 column-count: 6;
                 column-width: 150px;
                 a {
                   display: block;
                   margin-left: 40px;
-                }
-              `}
-
-              @media (max-width: 600px) {
-                display: block;
+                }`
+                : `
                 text-align: center;
-                column-count: 1;
                 a {
                   display: inline-block;
-                  margin: 5px;
                 }
+                `}
+              @media (max-width: 600px) {
+                display: none;
               }
             `}
           >
