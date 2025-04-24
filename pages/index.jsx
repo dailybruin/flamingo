@@ -19,6 +19,19 @@ const m1TAGID = 4854;
 const f1TAGID = 22896;
 const f2TAGID = 22897;
 
+// db story tagged with "db-story-g" will appear at the top of the rightmost column of the paper
+const gTAGID = 27530;
+// The fourth story that appears in the rightmost column of the website, below the "full" card and the two "mini" cards.
+const hTAGID = 27531
+// Story appears in leftmost column under featured classifieds.
+const iTAGID = 27532;
+// Last story in the leftmost column
+const jTAGID = 27533;
+// Last story on the left side of the middle column
+const kTAGID = 27534;
+// Last story on the right side of the middle column
+const lTAGID = 27535;
+
 const quadCATID = 12848;
 const newsCATID = 1424;
 const enterpriseCATID = 21602;
@@ -68,7 +81,7 @@ class Index extends Component {
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${eTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${quadCATID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${gTAGID}&${Config.articleCardFields}`
       ),
       fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}&${Config.articleCardFields}`
@@ -80,19 +93,19 @@ class Index extends Component {
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${newsCATID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${iTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${enterpriseCATID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${jTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${opinionCATID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${kTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${artsCATID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${lTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&categories=${sportsCATID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${hTAGID}&${Config.articleCardFields}`
       ),
       fetch(`${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`),
       fetch(`${Config.apiUrl}/wp-json/db/v1/links`)
@@ -105,15 +118,15 @@ class Index extends Component {
       c2StoryRes,
       dStoryRes,
       eStoryRes,
-      qdStoryRes,
+      gStoryRes,
       mmStoryRes,
       f1StoryRes,
       f2StoryRes,
-      nsStoryRes,
-      enStoryRes,
-      opStoryRes,
-      aeStoryRes,
-      spStoryRes,
+      iStoryRes,
+      jStoryRes,
+      kStoryRes,
+      lStoryRes,
+      hStoryRes,
       classifiedsRes,
       sponsoredRes
     ] = fetchResults.map(res => res.value);
@@ -124,15 +137,15 @@ class Index extends Component {
     posts.c2Story = await c2StoryRes.json();
     posts.dStory = await dStoryRes.json();
     posts.eStory = await eStoryRes.json();
-    posts.quadList = await qdStoryRes.json();
+    posts.gStory = await gStoryRes.json();
     const multimediaPosts = await mmStoryRes.json();
     posts.f1Story = await f1StoryRes.json();
     posts.f2Story = await f2StoryRes.json();
-    posts.newsList = await nsStoryRes.json();
-    posts.enterpriseList = await enStoryRes.json();
-    posts.opinionList = await opStoryRes.json();
-    posts.artsList = await aeStoryRes.json();
-    posts.sportsList = await spStoryRes.json();
+    posts.iStory = await iStoryRes.json();
+    posts.jStory = await jStoryRes.json();
+    posts.kStory = await kStoryRes.json();
+    posts.lStory = await lStoryRes.json();
+    posts.hStory = await hStoryRes.json();
     const classifieds = await classifiedsRes.json();
     const sponsored = await sponsoredRes.text();
     return { posts, multimediaPosts, classifieds, sponsored };
