@@ -1,9 +1,9 @@
-import PageWrapper from "../../layouts/PageWrapper";
+import PageWrapper from "../../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Error from "next/error";
-import { Config } from "../../config.js";
+import { Config } from "../../../config.js";
 import Head from "next/head";
-import SectionHeader from "../../components/SectionHeader";
+import SectionHeader from "../../../components/SectionHeader";
 
 // function resizeIFrameToFitContent(iFrame) {
 
@@ -44,7 +44,7 @@ class Games extends Component {
                     />
                 </div>
                 <iframe
-                    src="/build/index.html"
+                    src="/whackabruin_build/index.html" // this needs to be updated
                     style={{ width: '100%', height: '1050px', border: 'none', overflow: 'hidden' }}
                     title="React App"
                     id='iFrame1'
