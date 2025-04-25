@@ -56,14 +56,16 @@ export function buildStoryList(type, list, link) {
       column: index.acf.db_article_format == "column"
     };
   });
-  mappedList[1] = mappedList[0];
-  mappedList[2] = mappedList[0];
-  if (mappedList.length >= 1) {
-    console.log(mappedList)
+
+  if (mappedList.length == 0) {
+    return;
+  }
+
+  if (mappedList.length > 1) {
     mappedList[1].text = "";
-    if (mappedList.length >= 2) {
-      mappedList[2].text = "";
-    }
+  }
+  if (mappedList.length > 2) {
+    mappedList[2].text = "";
   }
 
   return (

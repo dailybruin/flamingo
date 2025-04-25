@@ -35,19 +35,39 @@ export default class HomeLayout extends React.Component {
       eArticleCard: utilities.buildArticleCard(this.props.posts.eStory[0]),
       f1ArticleCard: utilities.buildArticleCard(this.props.posts.f1Story[0]),
       f2ArticleCard: utilities.buildArticleCard(this.props.posts.f2Story[0]),
-      hArticleCard: utilities.buildArticleCard(this.props.posts.hStory[0]),
-      iArticleCard: utilities.buildArticleCard(this.props.posts.iStory[0]),
-      jArticleCard: utilities.buildArticleCard(this.props.posts.jStory[0]),
-      kArticleCard: utilities.buildArticleCard(this.props.posts.kStory[0]),
-      lArticleCard: utilities.buildArticleCard(this.props.posts.lStory[0]),
 
       m1MultimediaScroller: utilities.buildMultimediaScroller(this.props.media),
 
       gArticleCard: utilities.buildStoryList(
-                "THE G STORIES",
+                "",
         this.props.posts.gStory,
-        "/category/sports"
+        ""
       ),
+      hArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.hStory,
+        ""
+      ),
+      iArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.iStory,
+        ""
+      ),
+      jArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.jStory,
+        ""
+      ),
+      kArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.kStory,
+        ""
+      ),
+      lArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.lStory,
+        ""
+      )
     };
   }
 
@@ -147,14 +167,10 @@ export default class HomeLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="i" className={css.card}>
-                      {React.cloneElement(this.cards.iArticleCard, {
-                        displayType: "full"
-                      })}
+                        {this.cards.iArticleCard}
                     </div>
                     <div id="j" className={css.card}>
-                      {React.cloneElement(this.cards.jArticleCard, {
-                        displayType: "full"
-                      })}
+                      {this.cards.jArticleCard}
                     </div>
                     <div
                       id="above-ad"
@@ -164,19 +180,13 @@ export default class HomeLayout extends React.Component {
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="k" className={css.card}>
-                      {React.cloneElement(this.cards.kArticleCard, {
-                        displayType: "mini"
-                      })}
+                        {this.cards.kArticleCard}
                     </div>
                     <div id="l" className={css.card}>
-                      {React.cloneElement(this.cards.lArticleCard, {
-                        displayType: "mini"
-                      })}
+                          {this.cards.lArticleCard}
                     </div>
                     <div id="h" className={css.card}>
-                      {React.cloneElement(this.cards.hArticleCard, {
-                        displayType: "mini"
-                      })}
+                      {this.cards.hArticleCard}
                     </div>
                   </div>
                 </div>
@@ -291,31 +301,21 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="i" className={css.card}>
-                          {React.cloneElement(this.cards.iArticleCard, {
-                            displayType: "vert"
-                          })}
+                          {this.cards.iArticleCard}
                         </div>
                         <div id="j" className={css.card}>
-                          {React.cloneElement(this.cards.jArticleCard, {
-                            displayType: "vert"
-                          })}
+                          {this.cards.jArticleCard}
                         </div>
                         <div id="l" className={css.card}>
-                          {React.cloneElement(this.cards.lArticleCard, {
-                            displayType: "vert"
-                          })}
+                          {this.cards.lArticleCard}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="k" className={css.card}>
-                          {React.cloneElement(this.cards.kArticleCard, {
-                            displayType: "vert"
-                          })}
+                          {this.cards.kArticleCard}
                         </div>
                         <div id="h" className={css.card}>
-                          {React.cloneElement(this.cards.hArticleCard, {
-                            displayType: "vert"
-                          })}
+                          {this.cards.hArticleCard}
                         </div>
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
@@ -363,14 +363,10 @@ export default class HomeLayout extends React.Component {
                         <broadstreet-zone zone-id="69405"></broadstreet-zone>
                       </div>
                       <div id="i" className={css.card}>
-                        {React.cloneElement(this.cards.iArticleCard, {
-                          displayType: "vert"
-                        })}
+                        {this.cards.iArticleCard}
                       </div>
                       <div id="j" className={css.card}>
-                        {React.cloneElement(this.cards.jArticleCard, {
-                          displayType: "vert"
-                        })}
+                        {this.cards.jArticleCard}
                       </div>
                       {/*
                         Put twitter feed here
@@ -410,16 +406,13 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="k" className={css.card}>
-                          {React.cloneElement(this.cards.kArticleCard, {
-                            displayType: "vert"
-                          })}
+                          {this.cards.kArticleCard}
+
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
                         <div id="l" className={css.card}>
-                          {React.cloneElement(this.cards.lArticleCard, {
-                            displayType: "vert"
-                          })}
+                          {this.cards.lArticleCard}
                         </div>
                       </div>
                     </div>
@@ -462,9 +455,7 @@ export default class HomeLayout extends React.Component {
                         </a>
                       </div>
                       <div id="h" className={css.card}>
-                        {React.cloneElement(this.cards.hArticleCard, {
-                          displayType: "vert"
-                        })}
+                        {this.cards.hArticleCard}
                       </div>
                       <div className={css.card}>
                         <a href="https://prime.dailybruin.com">
