@@ -19,17 +19,17 @@ const m1TAGID = 4854;
 const f1TAGID = 22896;
 const f2TAGID = 22897;
 
-// db story tagged with "db-story-g" will appear at the top of the rightmost column of the paper
+// db story tagged with "db-story-g" will appear at the top of the rightmost column of the paper (where quad was)
 const gTAGID = 27530;
-// The fourth story that appears in the rightmost column of the website, below the "full" card and the two "mini" cards.
+// The fourth story that appears in the rightmost column of the website, below the "full" card and the two "mini" cards. (where sports was)
 const hTAGID = 27531
-// Story appears in leftmost column under featured classifieds.
+// Story appears in leftmost column under featured classifieds. (where news was)
 const iTAGID = 27532;
-// Last story in the leftmost column
+// Last story in the leftmost column (where enterprise was)
 const jTAGID = 27533;
-// Last story on the left side of the middle column
+// Last story on the left side of the middle column (where opinion was)
 const kTAGID = 27534;
-// Last story on the right side of the middle column
+// Last story on the right side of the middle column (where arts was)
 const lTAGID = 27535;
 
 const quadCATID = 12848;
@@ -81,7 +81,7 @@ class Index extends Component {
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${eTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${gTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${gTAGID}&${Config.articleCardFields}`
       ),
       fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}&${Config.articleCardFields}`
@@ -93,19 +93,19 @@ class Index extends Component {
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${iTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${iTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${jTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${jTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${kTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${kTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${lTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${lTAGID}&${Config.articleCardFields}`
       ),
       fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${hTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${hTAGID}&${Config.articleCardFields}`
       ),
       fetch(`${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`),
       fetch(`${Config.apiUrl}/wp-json/db/v1/links`)

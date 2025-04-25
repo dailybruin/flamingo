@@ -56,8 +56,16 @@ export function buildStoryList(type, list, link) {
       column: index.acf.db_article_format == "column"
     };
   });
-  mappedList[1].text = "";
-  mappedList[2].text = "";
+  mappedList[1] = mappedList[0];
+  mappedList[2] = mappedList[0];
+  if (mappedList.length >= 1) {
+    console.log(mappedList)
+    mappedList[1].text = "";
+    if (mappedList.length >= 2) {
+      mappedList[2].text = "";
+    }
+  }
+
   return (
     <StoryList
       type={type}
