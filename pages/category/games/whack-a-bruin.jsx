@@ -44,7 +44,7 @@ class Games extends Component {
                     />
                 </div>
                 <iframe
-                    src="/whackabruin_build/index.html" // this needs to be updated
+                    src="https://whack-a-bruin.dailybruin.com" // this needs to be updated
                     style={{ width: '100%', height: '1050px', border: 'none', overflow: 'hidden' }}
                     title="React App"
                     id='iFrame1'
