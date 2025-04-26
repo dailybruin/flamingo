@@ -56,8 +56,18 @@ export function buildStoryList(type, list, link) {
       column: index.acf.db_article_format == "column"
     };
   });
-  mappedList[1].text = "";
-  mappedList[2].text = "";
+
+  if (mappedList.length == 0) {
+    return;
+  }
+
+  if (mappedList.length > 1) {
+    mappedList[1].text = "";
+  }
+  if (mappedList.length > 2) {
+    mappedList[2].text = "";
+  }
+
   return (
     <StoryList
       type={type}
@@ -70,6 +80,10 @@ export function buildStoryList(type, list, link) {
             : "http://wp.dailybruin.com/images/2017/03/db-logo.png",
         alt: "N/A"
       }}
+      category={{
+        name: list[0]._embedded["wp:term"][0][0].name
+      }}
+      date={list[0].date}
     />
   );
 }
