@@ -26,11 +26,11 @@ const hTAGID = 27531
 // Story appears in leftmost column under featured classifieds. (where news was)
 const iTAGID = 27532;
 // Last story in the leftmost column (where enterprise was)
-const jTAGID = 27533;
+const jTAGID = 27534;
 // Last story on the left side of the middle column (where opinion was)
-const kTAGID = 27534;
+const kTAGID = 27535;
 // Last story on the right side of the middle column (where arts was)
-const lTAGID = 27535;
+const lTAGID = 27536;
 
 const quadCATID = 12848;
 const newsCATID = 1424;
