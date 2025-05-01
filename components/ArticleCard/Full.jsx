@@ -76,6 +76,7 @@ export default function Full(props) {
           height: 100%;
           width: 100%;
           padding-top: 66.66%;
+          padding-bottom: 1%;
           overflow: hidden;
           position: relative;
         `}
@@ -84,7 +85,7 @@ export default function Full(props) {
             src={props.imageurl}
             alt="Image"
             layout='fill'
-            objectFit={'cover'}
+            objectFit={'contain'}
           />
         </div>
         <div
@@ -94,6 +95,7 @@ export default function Full(props) {
             font-weight: normal;
             font-size: 9px;
             text-align: justify;
+            padding-top: 1%;
 
             p {
               margin: 4px 0;
