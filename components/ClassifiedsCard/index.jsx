@@ -78,50 +78,46 @@ export default class ClassifiedsCard extends React.Component {
           background-color: #ffffff;
         `}
       >
-        <div
+        <a
+          href="https://wp.dailybruin.com/classifieds"
           css={css`
-            background-color: #000000;
-            height: 27px;
-            padding: 2px 10px 0;
-
-            font-family: ${globals.menuFont};
-            font-style: normal;
-            font-weight: 900;
-            font-size: 18px;
-            line-height: 24px;
-            text-transform: uppercase;
-
-            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            &:hover {
+              text-decoration: none;
+            }
           `}
         >
-          {this.props.header}
-        </div>
+          <div
+            css={css`
+              background-color: #000000;
+              height: 27px;
+              padding: 2px 10px 0;
+              display: flex;
+              align-items: center;
+            `}
+          >
+            <div
+              css={css`
+                font-family: ${globals.menuFont};
+                font-style: normal;
+                font-weight: 900;
+                font-size: 18px;
+                line-height: 24px;
+                text-transform: uppercase;
+                color: #ffffff;
+              `}
+            >
+              {this.props.header}
+            </div>
+          </div>
+        </a>
         <div
           css={css`
             padding: 0 12px;
           `}
         >
           {renderedClassifieds}
-        </div>
-        <div style={{ textAlign: "right", padding: "12px 12px 6px" }}>
-          <a
-            href="https://wp.dailybruin.com/classifieds"
-            css={css`
-              font-family: ${globals.menuFont};
-              font-size: 12px;
-              line-height: 15px;
-              font-weight: bold;
-              color: ${globals.DBblue};
-              text-transform: uppercase;
-              text-decoration: none;
-
-              &:hover {
-                text-decoration: underline;
-              }
-            `}
-          >
-            More classifieds »
-          </a>
         </div>
       </div>
     );
