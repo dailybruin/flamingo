@@ -25,7 +25,13 @@ export default class SectionHeader extends React.Component {
     const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
 
     // Check if the current page is a subcategory by comparing with subcategory links
-    const isSubcategoryPage = this.props.subcategories.some(sub => currentPath.includes(sub.link));
+
+    // this line sets the default of isSubcategory to true if this prop doesn't exist
+    // this is relevant for the games page (where no subcategories are passed)
+    let isSubcategoryPage = true;
+    if (this.props.subcategories != undefined) {
+      isSubcategoryPage = this.props.subcategories.some(sub => currentPath.includes(sub.link));
+    }
 
     // Check if this is a category that should show the hamburger toggle
     const isNewsOrSports = this.props.category === "News" || this.props.category === "Sports";
