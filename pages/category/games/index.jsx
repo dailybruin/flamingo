@@ -4,6 +4,7 @@ import Link from "next/link";
 import Head from "next/head";
 import SectionHeader from "../../../components/SectionHeader";
 import WestwordleLogo from "../../../components/GamesCard/WestWordLogoCropped.png"; 
+import WhackaBruinLogo from "../../../components/GamesCard/WhackABruinLogo.png"; 
 import PhotoCard from "../../../components/PhotoCard"; 
 // import * as utilities from "../../../components/PhotoCard/utilities";
 
@@ -30,12 +31,12 @@ const GamesIndex = () => {
         />
 
         <PhotoCard
-          headline="Westwordle"
-          href="/category/games/westwordle"
-          as="/category/games/westwordle"
-          link="/category/games/westwordle"
-          image={WestwordleLogo} 
-          excerpt="Guess the Daily Bruin-themed word in 6 tries."
+          headline="Whack-a-Mole"
+          href="/category/games/whack-a-bruin"
+          as="/category/games/whack-a-bruin"
+          link="/category/games/whack-a-bruin"
+          image={WhackaBruinLogo} 
+          excerpt="Whack the Bruins and beat your high score!"
           authors={[{ name: "Daily Bruin Games Team" }]}
         />
       </div>
