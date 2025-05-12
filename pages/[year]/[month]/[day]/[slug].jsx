@@ -5,6 +5,7 @@ import { Config } from "config.js";
 import Head from "next/head";
 import he from "he";
 import useSWR from 'swr';
+import moment from 'moment';
 
 import ArticleLayout from "layouts/Article";
 import PhotoGalleryLayout from "layouts/PhotoGallery/index_old"; //old photo gallery layout
@@ -17,32 +18,51 @@ import FeatureLayout from "layouts/Feature";
 
 const fetcher = (url) => fetch(url).then(res => res.json());
 
-function Post({ post: initialPost, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds, slug, date }) {
+function Post({ post: initialPost, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds, slug }) {
+  const date = initialPost[0].date_gmt;
+
   const TTL = useMemo(() => {
-    const publishedDate = new Date(date);
-    const now = new Date();
-    const diffInMs = now - publishedDate;
+    if (!date) return 86400; // fallback TTL if date is missing
+
+    // diffInDays calculated with respect to GMT
+    const publishedDate = moment.utc(date); // parses as UTC
+    const now = moment.utc();               // current time in UTC
+    const diffInMs = now.diff(publishedDate, 'ms');
     const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-    // If within ~7 days (might be a little more or less because a difference in timezones), set TTL to 1 hour (3600 seconds), else 24 hours (86400 seconds)
-    return diffInDays <= 7 ? 3600 : 86400;
+    // TTL (hour) = diffInDays / 2
+    //   with a max TTL of 1 day
+    // Ex: 1 day => 0.5 hr ; 3 days => 1.5 hr
+
+    // Set TTL
+    if (diffInDays >= 7) {
+      return 86400; // 1 day
+    }
+    else {
+      return Math.floor((diffInDays / 2) * 3600);
+    }
   }, [date]);
-
+  
   const url = encodeURIComponent(`${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`);
-
   const { data: swrPost, error, isLoading } = useSWR(`/api/${url}?ttl=${TTL}`, fetcher, {
     fallbackData: initialPost
   });
 
-  // TODO: LOADING / ERROR HANDLING?
-
   const post = swrPost;
-
+  
   useEffect(() => {
-    if (post[0].categories.includes(23087)) {
+    if (post && post[0].categories.includes(23087)) {
       window.location.replace(`/sponsored/${post[0].slug}`);
     }
-  }, [])
+  }, [post])
+
+  if (isLoading && !swrPost) {
+    return <p style={{ textAlign: 'center' }}>Loading article...</p>;
+  }
+
+  if (error && !swrPost) {
+    return <p style={{ textAlign: 'center' }}>Failed to load post. Please try again later.</p>;
+  }
 
   if (
     post == undefined ||
@@ -185,11 +205,10 @@ const fetchPostData = async (slug) => {
 };
 
 Post.getInitialProps = async (context) => {
-  const { slug, year, month, day } = context.query;
+  const { slug } = context.query;
   const initialData = await fetchPostData(slug);
 
-  const date = year + "-" + month + "-" + day;
-  return { ...initialData, slug, date }; // include slug so SWR knows what to refetch
+  return { ...initialData, slug }; // include slug so SWR knows what to refetch
 };
   
 export default PageWrapper(Post);
