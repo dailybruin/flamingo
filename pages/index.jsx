@@ -149,7 +149,7 @@ class Index extends Component {
     const classifieds = await classifiedsRes.json();
     const sponsored = await sponsoredRes.text();
 
-    // Filter to necessary keys (reduces data sent to user's browser)
+    // Filter posts necessary keys (reduces data sent to user's browser)
     for (let [key, value] of Object.entries(posts)) {
       
       for (var i=0; i<value.length; i++)
@@ -168,6 +168,17 @@ class Index extends Component {
           acf: value[i].acf,
           _embedded: value[i]._embedded
         };
+      }
+    }
+
+    // Filter multimediaPosts to necessary keys
+    // Assumes that this is a 1D array of multimediaPosts
+    for (var i=0; i<multimediaPosts.length; i++) {
+      multimediaPosts[i] = {
+        id: multimediaPosts[i].id,
+        title: multimediaPosts[i].title,
+        link: multimediaPosts[i].link,
+        _embedded: multimediaPosts[i]._embedded,
       }
     }
 
