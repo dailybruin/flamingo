@@ -148,6 +148,29 @@ class Index extends Component {
     posts.hStory = await hStoryRes.json();
     const classifieds = await classifiedsRes.json();
     const sponsored = await sponsoredRes.text();
+
+    // Filter to necessary keys (reduces data sent to user's browser)
+    for (let [key, value] of Object.entries(posts)) {
+      
+      for (var i=0; i<value.length; i++)
+      {
+        value[i] = {
+          id: value[i].id,
+          date: value[i].date,
+          link: value[i].link,
+          slug: value[i].slug,
+          title: value[i].title,
+          coauthors: value[i].coauthors,
+          categories: value[i].categories,
+          excerpt: value[i].excerpt,
+          _links: value[i]._links,
+          tags: value[i].tags,
+          acf: value[i].acf,
+          _embedded: value[i]._embedded
+        };
+      }
+    }
+
     return { posts, multimediaPosts, classifieds, sponsored };
   }
 
