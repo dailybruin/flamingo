@@ -43,13 +43,19 @@ class Games extends Component {
                         category={"Games"}
                     />
                 </div>
+                <div style={{ padding: "6px" }}>
+                    <div style={{
+                        "background-color": "white", "box-shadow": "0px 1px 2px 0px rgba(0,0,0,0.25)",
+                        "display": "block"
+                    }}>
                 <iframe
                     src="/westwordle_build/index.html"
                     style={{ width: '100%', height: '1050px', border: 'none', overflow: 'hidden' }}
                     title="React App"
                     id='iFrame1'
                 />
-                
+                </div>
+                </div>
 
             </>
         );

@@ -5,6 +5,7 @@ import { Config } from "../../../config.js";
 import Head from "next/head";
 import SectionHeader from "../../../components/SectionHeader";
 
+
 // function resizeIFrameToFitContent(iFrame) {
 
 //     iFrame.width = iFrame.contentWindow.document.body.scrollWidth;
@@ -43,13 +44,19 @@ class Games extends Component {
                         category={"Games"}
                     />
                 </div>
+                <div style={{ padding: "6px" }}>
+                <div style={{ "background-color": "white", "box-shadow": "0px 1px 2px 0px rgba(0,0,0,0.25)",
+                    "display": "block"
+                    }}>
                 <iframe
                     src="https://whack-a-bruin.dailybruin.com"
                     style={{ width: '100%', height: '1050px', border: 'none', overflow: 'hidden' }}
                     title="React App"
                     id='iFrame1'
                 />
-                
+
+                </div>
+                </div>
 
             </>
         );
