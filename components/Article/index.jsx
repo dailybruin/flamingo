@@ -3,6 +3,7 @@ import Link from "next/link";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import moment from "moment";
+import Image from "next/image";
 
 import { renderCategories, renderAuthors } from "./utilities";
 import * as globals from "../globals";
@@ -131,13 +132,15 @@ export default class Article extends React.Component {
           }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
-        <img
-          src={this.props.featureimg} // margin -10px to undo the padding 10px
-          css={css`
-            width: calc(100% + 20px);
-            margin: 10px -10px;
-          `}
-        />
+        {/* margin -10px to undo the padding 10px */}
+        <div style={{margin: "10px -10px"}}>
+          <Image
+            src={this.props.featureimg}
+            width={this.props.image_width + 20}
+            height={this.props.image_height}
+          />
+        </div>
+        
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
           css={css`

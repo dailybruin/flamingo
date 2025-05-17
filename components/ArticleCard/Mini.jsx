@@ -4,6 +4,7 @@ import Link from "next/link";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
+import Image from "next/image";
 import * as utilities from "./utilities";
 import * as moment from "moment";
 
@@ -33,18 +34,23 @@ export default function Mini(props) {
               position: relative;
             `}
           >
-            <img
-              css={css`
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                object-fit: cover;
-              `}
-              src={props.imageurl}
-            />
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden'
+              }}
+            >
+              <Image 
+                src={props.imageurl}
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
           </div>
         </a>
       </div>

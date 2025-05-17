@@ -72,20 +72,18 @@ export default function Full(props) {
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
         <div
-        css={css`
-          height: 100%;
-          width: 100%;
-          padding-top: 66.66%;
-          padding-bottom: 1%;
-          overflow: hidden;
-          position: relative;
-        `}
+          css={css`
+            width: 100%;
+            height: auto;
+            position: relative;
+          `}
         >
           <Image
             src={props.imageurl}
-            alt="Image"
-            layout='fill'
-            objectFit={'contain'}
+            width={props.image_width}
+            height={props.image_height}
+            style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+            sizes="100vw"
           />
         </div>
         <div
