@@ -27,7 +27,7 @@ const GamesIndex = () => {
           link="/category/games/westwordle"
           image={WestwordleLogo} 
           excerpt="Guess the Daily Bruin-themed word in 6 tries."
-          authors={[{ name: "Daily Bruin Games Team" }]}
+          authors={[{ "display_name": "Daily Bruin Games Team" }]}
         />
 
         <PhotoCard
@@ -37,7 +37,7 @@ const GamesIndex = () => {
           link="/category/games/whack-a-bruin"
           image={WhackaBruinLogo} 
           excerpt="Whack the Bruins and beat your high score!"
-          authors={[{ name: "Daily Bruin Games Team" }]}
+          authors={[{ "display_name": "Daily Bruin Games Team" }]}
         />
       </div>
     </>
