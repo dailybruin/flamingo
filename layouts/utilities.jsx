@@ -81,7 +81,9 @@ export function buildStoryList(type, list, link) {
         alt: "N/A"
       }}
       category={{
-        name: list[0]._embedded["wp:term"][0][0].name
+        name: list[0]._embedded["wp:term"][0][0].name,
+        href: `/category/[slug]`,
+        as: `/category/${list[0]._embedded["wp:term"][0][0].slug}`
       }}
       date={list[0].date}
     />

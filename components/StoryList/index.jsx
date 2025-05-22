@@ -51,7 +51,7 @@ class StoryList extends React.Component {
             </a>
             <span>
           <a
-            href={this.props.story[0].link} // this is going to be broken
+            href={this.props.category.as}
             css={css`
               text-decoration: none;
               color: ${globals.DBblue};
