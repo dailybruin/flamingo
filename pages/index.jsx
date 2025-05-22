@@ -150,10 +150,42 @@ class Index extends Component {
     const sponsored = await sponsoredRes.text();
 
     // Filter posts necessary keys (reduces data sent to user's browser)
+
+    // ** Note to future devs: trying to filter using the wp fetch _fields="..." causes
+    // stale data to be displayed, likely due to caching, so post-processing is required
     for (let [key, value] of Object.entries(posts)) {
-      
       for (var i=0; i<value.length; i++)
       {
+        // Reduce _embedded to necessary data
+        let filtered_embedded = {
+          'wp:featuredmedia': value[i]._embedded['wp:featuredmedia'],
+          'wp:term': value[i]._embedded['wp:term']
+        }
+
+        // Filter featured media
+        for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
+        {
+          filtered_embedded["wp:featuredmedia"][j] = { 
+            data: filtered_embedded["wp:featuredmedia"][j].data,
+            source_url: filtered_embedded["wp:featuredmedia"][j].source_url,
+            caption: filtered_embedded["wp:featuredmedia"][j].caption
+          };
+        }
+
+        // Filter wp:term (2D array)
+        for (var t=0; t<filtered_embedded["wp:term"].length; t++)
+        {
+          for (var cat=0; cat<filtered_embedded["wp:term"][t].length; cat++) 
+          {
+            filtered_embedded["wp:term"][t][cat] = {
+              id: filtered_embedded["wp:term"][t][cat].id,
+              link: filtered_embedded["wp:term"][t][cat].link,
+              name: filtered_embedded["wp:term"][t][cat].name,
+              slug: filtered_embedded["wp:term"][t][cat].slug,
+            }
+          }
+        }
+
         value[i] = {
           id: value[i].id,
           date: value[i].date,
@@ -166,19 +198,30 @@ class Index extends Component {
           _links: value[i]._links,
           tags: value[i].tags,
           acf: value[i].acf,
-          _embedded: value[i]._embedded
+          _embedded: filtered_embedded
         };
       }
     }
 
-    // Filter multimediaPosts to necessary keys
-    // Assumes that this is a 1D array of multimediaPosts
+    // Filter multimediaPosts to necessary data
     for (var i=0; i<multimediaPosts.length; i++) {
+      let filtered_embedded = {
+        'wp:featuredmedia': multimediaPosts[i]._embedded["wp:featuredmedia"]
+      }
+      
+      // Filter featured media
+      for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
+      {
+        filtered_embedded["wp:featuredmedia"][j] = { 
+          source_url: filtered_embedded["wp:featuredmedia"][j].source_url
+        };
+      }
+      
       multimediaPosts[i] = {
         id: multimediaPosts[i].id,
         title: multimediaPosts[i].title,
         link: multimediaPosts[i].link,
-        _embedded: multimediaPosts[i]._embedded,
+        _embedded: filtered_embedded
       }
     }
 
