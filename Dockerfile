@@ -7,6 +7,8 @@ WORKDIR /usr/src/flamingo
 
 COPY .next ./.next
 
+COPY public ./public
+
 COPY node_modules ./node_modules
 
 COPY package.json .

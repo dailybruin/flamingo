@@ -1,5 +1,5 @@
 #!/bin/bash
 
 yarn build
-docker build --platform="linux/amd64" -t registry.digitalocean.com/dailybruin/flamingotestedamd64:latest .
-docker push registry.digitalocean.com/dailybruin/flamingotestedamd64:latest
+docker build --platform="linux/amd64" -t dailybruin/flamingo:latest .
+docker push dailybruin/flamingo:latest
