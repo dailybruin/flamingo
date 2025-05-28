@@ -6,7 +6,6 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import * as moment from "moment";
-import Image from "next/image";
 
 export default function Full(props) {
   return (
@@ -71,21 +70,13 @@ export default function Full(props) {
           }}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />
-        <div
+        <img
           css={css`
             width: 100%;
-            height: auto;
-            position: relative;
+            margin: auto;
           `}
-        >
-          <Image
-            src={props.imageurl}
-            width={props.image_width}
-            height={props.image_height}
-            style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
-            sizes="100vw"
-          />
-        </div>
+          src={props.imageurl}
+        />
         <div
           css={css`
             font-family: ${globals.bodyFont};
@@ -93,7 +84,6 @@ export default function Full(props) {
             font-weight: normal;
             font-size: 9px;
             text-align: justify;
-            padding-top: 1%;
 
             p {
               margin: 4px 0;
