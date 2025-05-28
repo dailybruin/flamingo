@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
-import Link from "next/link"
+import { useState, useEffect } from "react";
 
 import Westwordle from "./WestWordLogoCropped.png"
 import WhackABruinLogo from "./WhackABruinLogo.png";
@@ -9,10 +9,17 @@ import WhackABruinLogo from "./WhackABruinLogo.png";
 export default function GamesCard(props) {
     // Alternate between westworldle and whack-a-bruin logos every day
     // For future devs (if we have more than 2 games), maybe make cycling automatic
-    const today = new Date();
-    const isEvenDay = today.getDate() % 2 === 0;
+    const [selectedLogo, setSelectedLogo] = useState(null);
 
-    const selectedLogo = isEvenDay ? Westwordle : WhackABruinLogo;
+    useEffect(() => {
+        const today = new Date();
+        const isEvenDay = today.getDate() % 2 === 0;
+        const logo = isEvenDay ? Westwordle : WhackABruinLogo;
+
+        setSelectedLogo(logo);
+    }, []);
+
+    if (!selectedLogo) return null;
 
     return (
         <>
