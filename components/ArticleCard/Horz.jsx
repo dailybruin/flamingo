@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import * as moment from "moment";
+import Image from "next/image";
 
 export default function Horz(props) {
   return (
@@ -33,17 +34,11 @@ export default function Horz(props) {
               position: relative;
             `}
           >
-            <img
-              css={css`
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                object-fit: cover;
-              `}
+            <Image
               src={props.imageurl}
+              alt="Image"
+              layout='fill'
+              objectFit={'cover'}
             />
           </div>
         </a>

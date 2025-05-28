@@ -31,6 +31,22 @@ export function buildArticleCard(story, type = "") {
             ? story._embedded["wp:featuredmedia"][0].source_url
             : "http://wp.dailybruin.com/images/2017/03/db-logo.png"
         }
+        image_width={
+          story._embedded["wp:featuredmedia"] != undefined &&
+          !story._embedded["wp:featuredmedia"].empty &&
+          story._embedded["wp:featuredmedia"][0].data == undefined &&
+          story._embedded["wp:featuredmedia"][0].media_details != undefined
+            ? story._embedded["wp:featuredmedia"][0].media_details.width
+            : 0
+        }
+        image_height={
+          story._embedded["wp:featuredmedia"] != undefined &&
+          !story._embedded["wp:featuredmedia"].empty &&
+          story._embedded["wp:featuredmedia"][0].data == undefined &&
+          story._embedded["wp:featuredmedia"][0].media_details != undefined
+            ? story._embedded["wp:featuredmedia"][0].media_details.height
+            : 0
+        }
         caption={
           story._embedded["wp:featuredmedia"] != undefined &&
           !story._embedded["wp:featuredmedia"].empty &&

@@ -27,6 +27,22 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
           ? article._embedded["wp:featuredmedia"][0].source_url
           : ""
       }
+      image_width={
+        article._embedded["wp:featuredmedia"] != undefined &&
+        !article._embedded["wp:featuredmedia"].empty &&
+        article._embedded["wp:featuredmedia"][0].data == undefined &&
+        article._embedded["wp:featuredmedia"][0].media_details != undefined
+          ? article._embedded["wp:featuredmedia"][0].media_details.width
+          : 0
+      }
+      image_height={
+        article._embedded["wp:featuredmedia"] != undefined &&
+        !article._embedded["wp:featuredmedia"].empty &&
+        article._embedded["wp:featuredmedia"][0].data == undefined &&
+        article._embedded["wp:featuredmedia"][0].media_details != undefined
+          ? article._embedded["wp:featuredmedia"][0].media_details.height
+          : 0
+      }
       caption={
         article._embedded["wp:featuredmedia"] != undefined &&
         !article._embedded["wp:featuredmedia"].empty &&
