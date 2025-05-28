@@ -6,7 +6,6 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import * as moment from "moment";
-import Image from 'next/image';
 
 export default function Vert(props) {
   return (
@@ -19,9 +18,11 @@ export default function Vert(props) {
       `}
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
-        <Image
-          width={props.image_width}
-          height={props.image_height}
+        <img
+          css={css`
+            width: 100%;
+            margin: auto;
+          `}
           src={props.imageurl}
         />
       </a>
