@@ -1,9 +1,10 @@
-import PageWrapper from "../../layouts/PageWrapper";
+import PageWrapper from "../../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Error from "next/error";
-import { Config } from "../../config.js";
+import { Config } from "../../../config.js";
 import Head from "next/head";
-import SectionHeader from "../../components/SectionHeader";
+import SectionHeader from "../../../components/SectionHeader";
+
 
 // function resizeIFrameToFitContent(iFrame) {
 
@@ -43,13 +44,19 @@ class Games extends Component {
                         category={"Games"}
                     />
                 </div>
+                <div style={{ padding: "6px" }}>
+                <div style={{ "background-color": "white", "box-shadow": "0px 1px 2px 0px rgba(0,0,0,0.25)",
+                    "display": "block"
+                    }}>
                 <iframe
-                    src="/build/index.html"
+                    src="https://whack-a-bruin.dailybruin.com"
                     style={{ width: '100%', height: '1050px', border: 'none', overflow: 'hidden' }}
                     title="React App"
                     id='iFrame1'
                 />
-                
+
+                </div>
+                </div>
 
             </>
         );

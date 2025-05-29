@@ -38,35 +38,35 @@ export default class HomeLayout extends React.Component {
 
       m1MultimediaScroller: utilities.buildMultimediaScroller(this.props.media),
 
-      qdStoryList: utilities.buildStoryList(
-        "THE QUAD",
-        this.props.posts.quadList,
-        "/category/quad"
+      gArticleCard: utilities.buildStoryList(
+                "",
+        this.props.posts.gStory,
+        ""
       ),
-      nsStoryList: utilities.buildStoryList(
-        "NEWS",
-        this.props.posts.newsList,
-        "/category/news"
+      hArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.hStory,
+        ""
       ),
-      enStoryList: utilities.buildStoryList(
-        "ENTERPRISE",
-        this.props.posts.enterpriseList,
-        "/category/enterprise"
+      iArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.iStory,
+        ""
       ),
-      opStoryList: utilities.buildStoryList(
-        "OPINION",
-        this.props.posts.opinionList,
-        "/category/opinion"
+      jArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.jStory,
+        ""
       ),
-      aeStoryList: utilities.buildStoryList(
-        "ARTS",
-        this.props.posts.artsList,
-        "/category/arts-entertainment"
+      kArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.kStory,
+        ""
       ),
-      spStoryList: utilities.buildStoryList(
-        "SPORTS",
-        this.props.posts.sportsList,
-        "/category/sports"
+      lArticleCard: utilities.buildStoryList(
+        "",
+        this.props.posts.lStory,
+        ""
       )
     };
   }
@@ -114,7 +114,6 @@ export default class HomeLayout extends React.Component {
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
                         <img />
-                        <TwitterFeed />
                       </div>
                     )}
                     <div
@@ -124,8 +123,8 @@ export default class HomeLayout extends React.Component {
                     >
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
-                    <div id="qd" className={css.card}>
-                      {this.cards.qdStoryList}
+                    <div id="g" className={css.card}>
+                      {this.cards.gArticleCard}
                     </div>
                     <div id="d" className={css.card}>
                       {React.cloneElement(this.cards.dArticleCard, {
@@ -142,7 +141,6 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking == null && (
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     )}
                     <div id="classifieds" className={css.card}>
@@ -168,11 +166,11 @@ export default class HomeLayout extends React.Component {
                     >
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
-                    <div id="ns" className={css.card}>
-                      {this.cards.nsStoryList}
+                    <div id="i" className={css.card}>
+                        {this.cards.iArticleCard}
                     </div>
-                    <div id="en" className={css.card}>
-                      {this.cards.enStoryList}
+                    <div id="j" className={css.card}>
+                      {this.cards.jArticleCard}
                     </div>
                     <div
                       id="above-ad"
@@ -181,14 +179,14 @@ export default class HomeLayout extends React.Component {
                     >
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
-                    <div id="op" className={css.card}>
-                      {this.cards.opStoryList}
+                    <div id="k" className={css.card}>
+                        {this.cards.kArticleCard}
                     </div>
-                    <div id="ae" className={css.card}>
-                      {this.cards.aeStoryList}
+                    <div id="l" className={css.card}>
+                          {this.cards.lArticleCard}
                     </div>
-                    <div id="sp" className={css.card}>
-                      {this.cards.spStoryList}
+                    <div id="h" className={css.card}>
+                      {this.cards.hArticleCard}
                     </div>
                   </div>
                 </div>
@@ -219,8 +217,8 @@ export default class HomeLayout extends React.Component {
                         displayType: "vert"
                       })}
                     </div>
-                    <div id="qd" className={css.card}>
-                      {this.cards.qdStoryList}
+                    <div id="g" className={css.card}>
+                      {this.cards.gArticleCard}
                     </div>
                     <div id="classifieds" className={css.card}>
                       <ClassifiedsCard
@@ -235,7 +233,6 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     )}
                     <div
@@ -252,7 +249,6 @@ export default class HomeLayout extends React.Component {
                     </div>
                     {this.props.mappedBreaking == null && (
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     )}
                   </div>
@@ -274,12 +270,12 @@ export default class HomeLayout extends React.Component {
                       })}
                     </div>
                     <div
-                      id="qd-d-e"
+                      id="g-d-e"
                       className={css.column}
                       style={{ width: "100%" }}
                     >
                       <div
-                        id="qd-d-e"
+                        id="g-d-e"
                         className={css.column}
                         style={{ width: "50%" }}
                       >
@@ -290,7 +286,7 @@ export default class HomeLayout extends React.Component {
                         </div>
                       </div>
                       <div
-                        id="qd-d-e"
+                        id="g-d-e"
                         className={css.column}
                         style={{ width: "50%" }}
                       >
@@ -304,22 +300,22 @@ export default class HomeLayout extends React.Component {
                         {this.cards.m1MultimediaScroller}
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
-                        <div id="ns" className={css.card}>
-                          {this.cards.nsStoryList}
+                        <div id="i" className={css.card}>
+                          {this.cards.iArticleCard}
                         </div>
-                        <div id="en" className={css.card}>
-                          {this.cards.enStoryList}
+                        <div id="j" className={css.card}>
+                          {this.cards.jArticleCard}
                         </div>
-                        <div id="ae" className={css.card}>
-                          {this.cards.aeStoryList}
+                        <div id="l" className={css.card}>
+                          {this.cards.lArticleCard}
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
-                        <div id="op" className={css.card}>
-                          {this.cards.opStoryList}
+                        <div id="k" className={css.card}>
+                          {this.cards.kArticleCard}
                         </div>
-                        <div id="sp" className={css.card}>
-                          {this.cards.spStoryList}
+                        <div id="h" className={css.card}>
+                          {this.cards.hArticleCard}
                         </div>
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
@@ -366,17 +362,16 @@ export default class HomeLayout extends React.Component {
                       <div style={{ textAlign: "center" }} className={css.card}>
                         <broadstreet-zone zone-id="69405"></broadstreet-zone>
                       </div>
-                      <div id="ns" className={css.card}>
-                        {this.cards.nsStoryList}
+                      <div id="i" className={css.card}>
+                        {this.cards.iArticleCard}
                       </div>
-                      <div id="en" className={css.card}>
-                        {this.cards.enStoryList}
+                      <div id="j" className={css.card}>
+                        {this.cards.jArticleCard}
                       </div>
                       {/*
                         Put twitter feed here
                       */}
                       <div className={css.card}>
-                        <TwitterFeed />
                       </div>
                     </div>
                     <div
@@ -410,13 +405,14 @@ export default class HomeLayout extends React.Component {
                         })}
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
-                        <div id="op" className={css.card}>
-                          {this.cards.opStoryList}
+                        <div id="k" className={css.card}>
+                          {this.cards.kArticleCard}
+
                         </div>
                       </div>
                       <div className={css.column} style={{ width: "50%" }}>
-                        <div id="ae" className={css.card}>
-                          {this.cards.aeStoryList}
+                        <div id="l" className={css.card}>
+                          {this.cards.lArticleCard}
                         </div>
                       </div>
                     </div>
@@ -429,7 +425,6 @@ export default class HomeLayout extends React.Component {
                         /* put westwordle here
                            */
                         <div className={css.card}>
-                          <TwitterFeed />
                         </div>
                       )}
                       <div
@@ -439,8 +434,8 @@ export default class HomeLayout extends React.Component {
                       >
                         <broadstreet-zone zone-id="69405"></broadstreet-zone>
                       </div>
-                      <div id="qd" className={css.card}>
-                        {this.cards.qdStoryList}
+                      <div id="g" className={css.card}>
+                        {this.cards.gArticleCard}
                       </div>
                       <div id="d" className={css.card}>
                         {React.cloneElement(this.cards.dArticleCard, {
@@ -459,8 +454,8 @@ export default class HomeLayout extends React.Component {
                         </div>
                         </a>
                       </div>
-                      <div id="sp" className={css.card}>
-                        {this.cards.spStoryList}
+                      <div id="h" className={css.card}>
+                        {this.cards.hArticleCard}
                       </div>
                       <div className={css.card}>
                         <a href="https://prime.dailybruin.com">
