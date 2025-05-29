@@ -3,8 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import Redis from 'ioredis';
 
 const redis = new Redis({
-    host: 'localhost',
-    port: 6379,
+    host: process.env.REDIS_HOST || 'localhost',
+    port: parseInt(process.env.REDIS_PORT) || 6379,
     connectTimeout: 500,       // fail faster
     retryStrategy: (times) => {
       if (times >= 3) return null; // stop retrying after 3 attempts
@@ -32,11 +32,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Cache hit
     if (cached) {
+        console.log(`Cache hit ${url}`);
         return res.status(200).json(JSON.parse(cached));
     }
 
     // If no cache, then fetch from WP and try to set cache
     try {
+        console.log(`Cache miss ${url}`);
         // Fetch from WP
         const pageRes = await fetch(URL);
         if (!pageRes.ok) throw new Error('Failed to fetch from WP');
