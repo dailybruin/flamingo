@@ -22,8 +22,10 @@ export default class Author extends React.Component {
   }
 
   getPosts(page) {
+     // To fetch posts where they are a coauthor (removed for performance reasons):
+    // `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${slug}&categories_exclude=27179,27127`
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${this.props.author.slug}&page=${page}&categories_exclude=27179,27127`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&author=${this.props.author.id}&page=${page}&categories_exclude=27179,27127`
     )
       .then(response => response.json())
       .then(
