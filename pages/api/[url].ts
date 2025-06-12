@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     
     let cached: string | null = null;
-
+    /*
     // Try to get cache
     try {
         cached = await redis.get(URL);
@@ -57,4 +57,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.error(err);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
+        */
+       
+    // Fetch from WP
+    const pageRes = await fetch(URL);
+    if (!pageRes.ok) throw new Error('Failed to fetch from WP');
+
+    const page = await pageRes.json();
+    return res.status(200).json(page);
 }
