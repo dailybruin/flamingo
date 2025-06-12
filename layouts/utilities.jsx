@@ -1,3 +1,4 @@
+import React from 'react';
 import ArticleCard from "../components/ArticleCard";
 import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
@@ -11,11 +12,12 @@ export function buildArticleCard(story, type = "") {
         displayType={type}
         headline={story.title != undefined ? story.title.rendered : ""}
         excerpt={story.excerpt != undefined ? story.excerpt.rendered : ""}
+        content={ story.content != undefined ? story.content.rendered : ""} //currently sending all story content as a prop to all cards
         href={`/post/[slug]`}
         as={story.link}
         link={story.link}
         key={story.id.toString()}
-        date={moment.utc(story.date)}
+        date={story.date}
         authors={story.coauthors != undefined ? story.coauthors : []}
         category={{
           name: story._embedded["wp:term"][0][0].name,
@@ -54,8 +56,18 @@ export function buildStoryList(type, list, link) {
       column: index.acf.db_article_format == "column"
     };
   });
-  mappedList[1].text = "";
-  mappedList[2].text = "";
+
+  if (mappedList.length == 0) {
+    return;
+  }
+
+  if (mappedList.length > 1) {
+    mappedList[1].text = "";
+  }
+  if (mappedList.length > 2) {
+    mappedList[2].text = "";
+  }
+
   return (
     <StoryList
       type={type}
@@ -68,6 +80,12 @@ export function buildStoryList(type, list, link) {
             : "http://wp.dailybruin.com/images/2017/03/db-logo.png",
         alt: "N/A"
       }}
+      category={{
+        name: list[0]._embedded["wp:term"][0][0].name,
+        href: `/category/[slug]`,
+        as: `/category/${list[0]._embedded["wp:term"][0][0].slug}`
+      }}
+      date={list[0].date}
     />
   );
 }
