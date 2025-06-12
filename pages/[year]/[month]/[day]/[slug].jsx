@@ -1,11 +1,9 @@
 import PageWrapper from "layouts/PageWrapper";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import Error from "next/error";
 import { Config } from "config.js";
 import Head from "next/head";
 import he from "he";
-import useSWR from 'swr';
-import moment from 'moment';
 
 import ArticleLayout from "layouts/Article";
 import PhotoGalleryLayout from "layouts/PhotoGallery/index_old"; //old photo gallery layout
@@ -14,56 +12,7 @@ import FeatureLayout from "layouts/Feature";
 
 /* TODO: note to future devs: old gallery layout seeks acf field "gallery" that has an int. new gallery layout seeks acf field "db_gallery_id" that has an int. */
 
-// Note: data fetched once in getInitialProps for SEO, then only cached when mounted
-
-const fetcher = (url) => fetch(url).then(res => res.json());
-
-function Post({ post: initialPost, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds, slug }) {
-  const date = initialPost[0].date_gmt;
-
-  const TTL = useMemo(() => {
-    if (!date) return 86400; // fallback TTL if date is missing
-
-    // diffInDays calculated with respect to GMT
-    const publishedDate = moment.utc(date); // parses as UTC
-    const now = moment.utc();               // current time in UTC
-    const diffInMs = now.diff(publishedDate, 'ms');
-    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
-
-    // TTL (hour) = diffInDays / 2
-    //   with a max TTL of 1 day
-    // Ex: 1 day => 0.5 hr ; 3 days => 1.5 hr
-
-    // Set TTL
-    if (diffInDays >= 7) {
-      return 86400; // 1 day
-    }
-    else {
-      return Math.floor((diffInDays / 2) * 3600);
-    }
-  }, [date]);
-  
-  const url = encodeURIComponent(`${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`);
-  const { data: swrPost, error, isLoading } = useSWR(`/api/${url}?ttl=${TTL}`, fetcher, {
-    fallbackData: initialPost
-  });
-
-  const post = swrPost;
-  
-  useEffect(() => {
-    if (post && post[0].categories.includes(23087)) {
-      window.location.replace(`/sponsored/${post[0].slug}`);
-    }
-  }, [post])
-
-  if (isLoading && !swrPost) {
-    return <p style={{ textAlign: 'center' }}>Loading article...</p>;
-  }
-
-  if (error && !swrPost) {
-    return <p style={{ textAlign: 'center' }}>Failed to load post. Please try again later.</p>;
-  }
-
+function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds }) {
   if (
     post == undefined ||
     post == null ||
@@ -76,6 +25,12 @@ function Post({ post: initialPost, id, feature, authors, tagged, relatedPosts, g
   for (let meta of post[0].yoast_meta) {
     renderedMeta.push(React.createElement("meta", meta));
   }
+
+  useEffect(() => {
+    if (post[0].categories.includes(23087)) {
+      window.location.replace(`/sponsored/${post[0].slug}`);
+    }
+  }, [])
 
   return (
     <>
@@ -130,7 +85,8 @@ function Post({ post: initialPost, id, feature, authors, tagged, relatedPosts, g
   );
 }
 
-const fetchPostData = async (slug) => {
+Post.getInitialProps = async (context) => {
+  const { slug } = context.query;
   const postRes = await fetch(
     `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`
   );
@@ -202,13 +158,6 @@ const fetchPostData = async (slug) => {
   );
   const classifieds = await classifiedsRes.json();
   return { post, classifieds, authors, relatedPosts };
-};
+}
 
-Post.getInitialProps = async (context) => {
-  const { slug } = context.query;
-  const initialData = await fetchPostData(slug);
-
-  return { ...initialData, slug }; // include slug so SWR knows what to refetch
-};
-  
 export default PageWrapper(Post);
