@@ -117,6 +117,12 @@ class MyDocument extends Document {
             strategy="afterInteractive"
           />
 
+          {/* Chartbeat */}
+          <Script
+            src="//static.chartbeat.com/js/chartbeat_mab.js"
+            strategy="afterInteractive"
+          />
+
           {/* Broadstreet Ads */}
           <Script
             src="https://cdn.broadstreetads.com/init-2.min.js"
