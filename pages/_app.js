@@ -53,7 +53,7 @@ class MyApp extends App {
     gtag("js", new Date());
     gtag("config", "UA-28181852-28");
 
-    /*
+    
     // Chartbeat
     function ctag() {
       var _sf_async_config = (window._sf_async_config =
@@ -87,7 +87,7 @@ class MyApp extends App {
       flyteDeskSetup('script', '8b8311d2-981d-458c-8590-a1f98bff09cf');
     }
     ctag();
-    */
+    
 
     // Broadstreet Ads
     window.broadstreet = window.broadstreet || { watch: function() {} };
