@@ -18,6 +18,14 @@ const categoryDescriptions = {
     mobile:
       "The Quad is an explanatory journalism hub which contextualizes current events for readers, \
     with stories ranging from cultural trends to the interrogation of sociopolitical issues."
+  },
+  "press-release": {
+    desktop:
+      "The Daily Bruin announces news relevant to the organization as press releases. \
+      For more information about The Bruin, contact <a href='mailto:outreach@dailybruin.com'>outreach@dailybruin.com</a>",
+    mobile:
+      "The Daily Bruin announces news relevant to the organization as press releases. \
+      For more information about The Bruin, contact <a href='mailto:outreach@dailybruin.com'>outreach@dailybruin.com</a>"
   }
 };
 
