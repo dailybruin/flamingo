@@ -167,8 +167,8 @@ export default class SectionHeader extends React.Component {
                   display: none;
                 }
               `}
+              dangerouslySetInnerHTML={{ __html: this.props.description.desktop }}
             >
-              {this.props.description.desktop}
             </div>
             <div // mobile description
               css={css`
@@ -184,8 +184,8 @@ export default class SectionHeader extends React.Component {
                   display: none;
                 }
               `}
+              dangerouslySetInnerHTML={{ __html: this.props.description.mobile }}
             >
-              {this.props.description.mobile}
             </div>
           </>
         )}
