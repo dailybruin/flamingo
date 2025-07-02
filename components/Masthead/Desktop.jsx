@@ -1,5 +1,5 @@
 import * as React from "react";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { Global, css, jsx } from "@emotion/core";
 import moment from "moment";
 import Head from "next/head";
@@ -112,6 +112,7 @@ export default class Desktop extends React.Component {
       }
     }
     return (
+      <React.Fragment>
       <div
         ref={this.MastheadCard}
         css={css`
@@ -186,33 +187,12 @@ export default class Desktop extends React.Component {
               `}
             >
               <img
-                src={
-                  date.date() == 1 && date.month() == 3
-                    ? require("./prankd.svg")
-                    : logo
-                }
+                src={logo}
                 css={css`
                   display: inline-block;
                   height: 100%;
                 `}
               ></img>
-              {date.date() == 1 && date.month() == 3 && (
-                <>
-                  <Head>
-                    <link
-                      href="https://wp.dailybruin.com/wp-content/themes/caeruleum/css/dbcomic.ttf"
-                      rel="stylesheet"
-                    />
-                  </Head>
-                  <Global
-                    styles={css`
-                      * {
-                        font-family: "Comic Sans MS", sans-serif !important;
-                      }
-                    `}
-                  ></Global>
-                </>
-              )}
             </a>
           </div>
           <div
@@ -309,13 +289,6 @@ export default class Desktop extends React.Component {
                     <img src={require("./mail.svg")} />
                   </a>
                   <a
-                    href="https://www.overlooked.com"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src={require("./overlooked.png")} />
-                  </a>
-                  <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
@@ -324,7 +297,7 @@ export default class Desktop extends React.Component {
                   </a>
                 </div>
                 <a href="/advertise">Advertise</a>
-                <a href="https://giving.ucla.edu/campaign/Donate.aspx?Fund=63255C&AutoFN=Y">
+                <a href="https://uclastudentmedia.com/donate/">
                   Donate
                 </a>
                 <a href="/submit">Submit</a>
@@ -482,6 +455,7 @@ export default class Desktop extends React.Component {
           </div>
         </div>
       </div>
+      </React.Fragment>
     );
   }
 }

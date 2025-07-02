@@ -1,5 +1,5 @@
 import * as React from "react";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { Global, css, jsx } from "@emotion/core";
 import Head from "next/head";
 
@@ -384,7 +384,7 @@ export default class Mobile extends React.Component {
               Advertise
             </a>
             <a
-              href="https://giving.ucla.edu/campaign/Donate.aspx?Fund=63255C&AutoFN=Y"
+              href="https://uclastudentmedia.com/donate/"
               target="_blank"
               rel="noopener"
               css={css`
