@@ -22,10 +22,10 @@ const categoryDescriptions = {
   "press-release": {
     desktop:
       "The Daily Bruin announces news relevant to the organization as press releases. \
-      For more information about The Bruin, contact <a href='mailto:outreach@dailybruin.com'>outreach@dailybruin.com</a>",
+      For more information about The Bruin, contact <a href='mailto:dboutreach@dailybruin.com'>dboutreach@dailybruin.com</a>",
     mobile:
       "The Daily Bruin announces news relevant to the organization as press releases. \
-      For more information about The Bruin, contact <a href='mailto:outreach@dailybruin.com'>outreach@dailybruin.com</a>"
+      For more information about The Bruin, contact <a href='mailto:dboutreach@dailybruin.com'>dboutreach@dailybruin.com</a>"
   }
 };
 
