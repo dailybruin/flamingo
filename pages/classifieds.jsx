@@ -1,5 +1,4 @@
 import PageWrapper from "../layouts/PageWrapper";
-import cssStyles from "../layouts/style.module.css";
 import { useEffect, useState } from "react";
 import { Config } from "../config.js";
 import Link from "next/link";
@@ -13,6 +12,10 @@ function ClassifiedsPage() {
   const [featuredAds, setFeaturedAds] = useState([]);
   const [isTaxonomyPage, setIsTaxonomyPage] = useState(false);
 
+  const [catClickedID, setCatClickedID] = useState(null);
+  const [catName, setCatName] = useState("");
+  const [catDesc, setCatDesc] = useState([]);
+
   useEffect(() => {
     fetch(`${Config.apiUrl}/wp-json/wp/v2/classification`)
       .then(res => res.json())
@@ -22,6 +25,19 @@ function ClassifiedsPage() {
       .then(res => res.json())
       .then(data => setFeaturedAds(data));
   }, []);
+
+  // Fetch new classification description everytime it's changed
+  useEffect(() => {
+    if (catClickedID !== null) {
+      setCatDesc("Loading...");
+
+      fetch(`${Config.apiUrl}/wp-json/wp/v2/classifieds?classification=${catClickedID}`)
+        .then(res => res.json())
+        .then(data => {
+          setCatDesc(data);
+        });
+    }
+  }, [catClickedID]);
 
   return (
     <>
@@ -42,7 +58,7 @@ function ClassifiedsPage() {
           margin-top: 6px;
 
           .left-sidebar {
-            width: 240px;
+            width: 300px;
             background: #fff;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             padding: 16px 16px;
@@ -74,6 +90,7 @@ function ClassifiedsPage() {
             color: #0056b3;
             text-decoration: underline;
             marginTop: 3px;
+            cursor: pointer;
           }
           .main-content {
             background: #fff;
@@ -108,18 +125,24 @@ function ClassifiedsPage() {
         `}
       >
         <div className="left-sidebar">
-          <h2>Categories</h2>
+          <h2>Ads By Classification</h2>
           {categories.length === 0 ? (
             <p>Loading...</p>
           ) : (
             <ul>
               {categories.map(cat => (
-                <li key={cat.id} className="category-link">
-                  <Link
-                    href={`${Config.apiUrl}/classification/${cat.slug}`}
+                <li key={cat.id}>
+                  <div
+                    className="category-link"
+                    onClick={() => 
+                      {
+                        setCatClickedID(cat.id);
+                        setCatName(cat.name);
+                      }
+                    }
                   >
                     {cat.name}
-                  </Link>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -163,9 +186,30 @@ function ClassifiedsPage() {
               </button>
             </a>
           </div>
+
+          <br />
+          {catClickedID ?
+            <div>
+              <h2>
+                Ads By Classification - {catName}
+              </h2>
+              {Array.isArray(catDesc) ? (
+                catDesc.map((ad) => (
+                  <div>
+                    <div dangerouslySetInnerHTML={{ __html: ad.content?.rendered }} />
+                    <hr />
+                  </div>
+                ))
+              ) : (
+                <div>{catDesc}</div>
+              )}
+            </div>
+            :
+            <></>
+          }
         </div>
 
-        <div className={cssStyles.card}>
+        <div>
             <broadstreet-zone zone-id="69405"></broadstreet-zone>
         </div>
       </div>
