@@ -47,7 +47,7 @@ const PageWrapper = Comp =>
 
       /*
        * Categories to add besides those from WP API
-       * Must have the following keys: name, href, & as
+       * Must have keys name, href, & as
        */
       const customCategories = {
         games: {
@@ -119,7 +119,7 @@ const PageWrapper = Comp =>
 
       this.componentDidMount = () => {
         document.body.scrollTop = 0;
-      }
+      };
 
       return (
         <div style={wrapperStyle}>
