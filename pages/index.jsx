@@ -333,4 +333,4 @@ class Index extends Component {
   }
 }
 
-export default PageWrapper(Index);
+export default PageWrapper(Index, { isFrontPage: true });

@@ -99,9 +99,6 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                       ></CommentsCard>
                     </div>
                     <div className={css.card}>
-                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                    </div>
-                    <div className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
                         classifieds={classifieds}

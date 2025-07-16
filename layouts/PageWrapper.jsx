@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from "react";
 import { Config } from "../config.js";
 import Head from "next/head";
+import Media from "react-media";
 
 import MainSiteFooter from "components/MainSiteFooter";
 import BreakingCard from "components/BreakingBanner";
@@ -22,7 +23,7 @@ const layoutStyle = {
   margin: "auto"
 };
 
-const PageWrapper = Comp =>
+const PageWrapper = (Comp, wrapperProps = {}) =>
   class extends Component {
     static async getInitialProps(ctx) {
       // Load the categories for the header
@@ -90,6 +91,29 @@ const PageWrapper = Comp =>
           </div>
         );
       }
+
+      let mobileAdPlacement = null;
+      if (!wrapperProps.isFrontPage) {
+        mobileAdPlacement = <Media
+          queries={{
+            phone: "(max-width: 600px)",
+            tablet: "(min-width: 601px) and (max-width: 900px)",
+            desktop: "(min-width: 901px)"
+          }}
+          defaultMatches={{ desktop: true }}
+        >
+          {matches => (
+            <div>
+              {matches.phone && (
+                <div className={css["card-mobile"]}>
+                  <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                </div>
+              )}
+            </div>
+          )}
+        </Media>;
+      }
+
       let renderedInTheNews;
       if (this.props.mappedITN != null && this.props.mappedBreaking == null) {
         renderedInTheNews = (
@@ -112,6 +136,7 @@ const PageWrapper = Comp =>
             </div>
             <Masthead categories={this.props.mappedCategories}></Masthead>
             {renderedBreakingCard}
+            {mobileAdPlacement}
             {renderedInTheNews}
             <Comp {...this.props} />
             <div style={{ padding: "6px" }}>
