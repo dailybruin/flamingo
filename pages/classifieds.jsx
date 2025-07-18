@@ -2,6 +2,7 @@ import PageWrapper from "../layouts/PageWrapper";
 import { useEffect, useState } from "react";
 import { Config } from "../config.js";
 import Link from "next/link";
+import Media from "react-media";
 import Head from "next/head";
 
 /** @jsxImportSource @emotion/react */
@@ -207,10 +208,24 @@ function ClassifiedsPage() {
             </div>
           ))}
         </div>
-
-        <div>
-          <broadstreet-zone zone-id="69405"></broadstreet-zone>
-        </div>
+        <Media
+          queries={{
+            phone: "(max-width: 600px)",
+            tablet: "(min-width: 601px) and (max-width: 900px)",
+            desktop: "(min-width: 901px)"
+          }}
+          defaultMatches={{ desktop: true }}
+        >
+          {matches => (
+            <div>
+              {matches.tablet || matches.desktop && (
+                <div className={css["card-mobile"]}>
+                  <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                </div>
+              )}
+            </div>
+          )}
+        </Media>
       </div>
     </>
   );
