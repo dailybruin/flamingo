@@ -10,34 +10,51 @@ import { css, jsx } from "@emotion/core";
 function ClassifiedsPage() {
   const [categories, setCategories] = useState([]);
   const [featuredAds, setFeaturedAds] = useState([]);
-  const [isTaxonomyPage, setIsTaxonomyPage] = useState(false);
-
-  const [catClickedID, setCatClickedID] = useState(null);
-  const [catName, setCatName] = useState("");
-  const [catDesc, setCatDesc] = useState([]);
+  const [adsByCategory, setAdsByCategory] = useState({});
 
   useEffect(() => {
+    // Fetch all categories first
     fetch(`${Config.apiUrl}/wp-json/wp/v2/classification`)
       .then(res => res.json())
-      .then(data => setCategories(data));
+      .then(data => {
+        setCategories(data);
 
-    fetch(`${Config.apiUrl}/wp-json/wp/v2/featured`)
+        // Then, fetch ads by category using the returned category IDs
+        const fetchAdsForCategories = async () => {
+          const adsMap = {};
+
+          for (const cat of data) {
+            try {
+              const res = await fetch(
+                `${Config.apiUrl}/wp-json/wp/v2/classifieds?classification=${cat.id}`
+              );
+              const ads = await res.json();
+              adsMap[cat.id] = ads;
+            } catch (err) {
+              console.error(
+                `Error fetching ads for category ${cat.name}:`,
+                err
+              );
+            }
+          }
+
+          setAdsByCategory(adsMap);
+        };
+
+        fetchAdsForCategories();
+      });
+
+    // Fetch featured ads
+    fetch(`${Config.apiUrl}/wp-json/wp/v2/classifieds?per_page=100`)
       .then(res => res.json())
-      .then(data => setFeaturedAds(data));
+      .then(data => {
+        const featuredAds = data.filter(
+          ad => Array.isArray(ad.Featured) && ad.Featured.length > 0
+        );
+        setFeaturedAds(featuredAds);
+      })
+      .catch(error => console.error("Error fetching featured ads:", error));
   }, []);
-
-  // Fetch new classification description everytime it's changed
-  useEffect(() => {
-    if (catClickedID !== null) {
-      setCatDesc("Loading...");
-
-      fetch(`${Config.apiUrl}/wp-json/wp/v2/classifieds?classification=${catClickedID}`)
-        .then(res => res.json())
-        .then(data => {
-          setCatDesc(data);
-        });
-    }
-  }, [catClickedID]);
 
   return (
     <>
@@ -57,23 +74,10 @@ function ClassifiedsPage() {
           margin-right: 6px;
           margin-top: 6px;
 
-          .left-sidebar {
-            width: 300px;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            padding: 16px 16px;
-            height: fit-content;
-          }
-          .left-sidebar li {
-            color: black;  /* bullet point color */
-          }
-          .left-sidebar ul {
-            padding-left: 24px;
-          }
           .right-sidebar {
             width: 260px;
             background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             padding: 16px 16px;
             height: fit-content;
             display: flex;
@@ -89,7 +93,7 @@ function ClassifiedsPage() {
           .category-link:hover {
             color: #0056b3;
             text-decoration: underline;
-            marginTop: 3px;
+            margintop: 3px;
             cursor: pointer;
           }
           .main-content {
@@ -122,32 +126,14 @@ function ClassifiedsPage() {
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
           }
+
+          .hr-thick {
+            height: 5px;
+            background-color: black;
+            border: none;
+          }
         `}
       >
-        <div className="left-sidebar">
-          <h2>Ads By Classification</h2>
-          {categories.length === 0 ? (
-            <p>Loading...</p>
-          ) : (
-            <ul>
-              {categories.map(cat => (
-                <li key={cat.id}>
-                  <div
-                    className="category-link"
-                    onClick={() => 
-                      {
-                        setCatClickedID(cat.id);
-                        setCatName(cat.name);
-                      }
-                    }
-                  >
-                    {cat.name}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
         <div className="main-content small-9 columns" id="classified-ads">
           <h1>Daily Bruin Classified Ads</h1>
           <hr />
@@ -188,29 +174,42 @@ function ClassifiedsPage() {
           </div>
 
           <br />
-          {catClickedID ?
-            <div>
-              <h2>
-                Ads By Classification - {catName}
-              </h2>
-              {Array.isArray(catDesc) ? (
-                catDesc.map((ad) => (
-                  <div>
-                    <div dangerouslySetInnerHTML={{ __html: ad.content?.rendered }} />
-                    <hr />
+          <hr className="hr-thick" />
+
+          <h1>Featured Ads</h1>
+          {featuredAds.length !== 0 ? (
+            featuredAds.map(ad => (
+              <div dangerouslySetInnerHTML={{ __html: ad.content.rendered }} />
+            ))
+          ) : (
+            <p>No featured ads.</p>
+          )}
+
+          <br />
+
+          {categories.map(cat => (
+            <div key={cat.id}>
+              <hr className="hr-thick" />
+              <h1>Ads By Classification - <span style={{fontStyle: "italic"}}>{cat.name}</span></h1>
+
+              {adsByCategory[cat.id] && adsByCategory[cat.id].length > 0 ? (
+                adsByCategory[cat.id].map((ad, index) => (
+                  <div key={ad.id}>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: ad.content.rendered }}
+                    ></div>
+                    {index !== adsByCategory[cat.id].length - 1 && <hr />}
                   </div>
                 ))
               ) : (
-                <div>{catDesc}</div>
+                <p>No ads in this classification.</p>
               )}
             </div>
-            :
-            <></>
-          }
+          ))}
         </div>
 
         <div>
-            <broadstreet-zone zone-id="69405"></broadstreet-zone>
+          <broadstreet-zone zone-id="69405"></broadstreet-zone>
         </div>
       </div>
     </>
