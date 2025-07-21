@@ -53,7 +53,8 @@ export function buildStoryList(type, list, link) {
       title: index.title.rendered,
       text: index.excerpt.rendered,
       link: index.link,
-      column: index.acf.db_article_format == "column"
+      column: index.acf.db_article_format == "column",
+      db_display_options: index.acf.db_display_options
     };
   });
 

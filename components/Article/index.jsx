@@ -127,7 +127,11 @@ export default class Article extends React.Component {
           `}
           style={{
             fontStyle:
-              this.props.acf.db_article_format == "column" ? "italic" : "normal"
+              this.props.acf.db_article_format === "column" ||
+              (this.props.acf.db_display_options &&
+                this.props.acf.db_display_options[0] === "italic_headline")
+                ? "italic"
+                : "normal"
           }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />

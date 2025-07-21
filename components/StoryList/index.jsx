@@ -16,6 +16,7 @@ class StoryList extends React.Component {
         link={story.link}
         key={index}
         column={story.column}
+        db_display_options={story.db_display_options}
       />
     ));
 

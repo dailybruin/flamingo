@@ -90,7 +90,11 @@ export default function Vert(props) {
           `}
           style={{
             fontStyle:
-              props.acf.db_article_format == "column" ? "italic" : "normal"
+              props.acf.db_article_format === "column" ||
+              (props.acf.db_display_options &&
+                props.acf.db_display_options[0] === "italic_headline")
+                ? "italic"
+                : "normal"
           }}
           dangerouslySetInnerHTML={{ __html: props.headline }}
         />

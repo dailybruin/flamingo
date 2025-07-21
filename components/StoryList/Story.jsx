@@ -38,8 +38,11 @@ export default function Story(props) {
             overflow-wrap: break-word;
             text-align: left;
             color: #000000;
-            font-style: ${props.column ? "italic" : "normal"};
-
+            font-style: ${props.column ||
+            (props.db_display_options &&
+              props.db_display_options[0] === "italic_headline")
+              ? "italic"
+              : "normal"};
             &:hover {
               color: ${globals.DBblue};
             }
