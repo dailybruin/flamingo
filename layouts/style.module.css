@@ -3,6 +3,13 @@
   padding: 6px;
 }
 
+.card-mobile {
+  display: block;
+  padding: 6px;
+  width: 200px;
+  margin: auto;
+}
+
 .video-card {
   display: inline-block;
   padding: 6px;
