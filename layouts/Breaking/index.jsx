@@ -267,6 +267,20 @@ export default class BreakingLayout extends React.Component {
                                         >
                                             <broadstreet-zone zone-id="69405"></broadstreet-zone>
                                         </div>
+                                        {typeof window !== "undefined" &&
+                                        document.body.scrollHeight > (3*window.innerHeight) && (
+                                            <div
+                                            id="midway-ad"
+                                            className={css.card}
+                                            style={{
+                                                textAlign: "center",
+                                                marginTop: `${document.getElementById("center")
+                                                .offsetHeight / 2}px` // Pushes the ad halfway down the center column's height
+                                            }}
+                                            >
+                                                <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
