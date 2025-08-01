@@ -1,5 +1,5 @@
 import * as React from 'react'
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 
 export default class Scoreboard extends React.Component {
