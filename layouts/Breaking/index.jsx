@@ -198,7 +198,7 @@ export default class BreakingLayout extends React.Component {
                                             width: "25%",
                                             position: isFixed ? "fixed" : "sticky",
                                             top: isFixed ? "0px" : "70px",
-                                            "margin-top": "7px"
+                                            marginTop: "7px"
                                         }}>
                                             {/*
                                             Normally you might just be able to do position: sticky to get the card to stick to the top of the 
@@ -267,20 +267,13 @@ export default class BreakingLayout extends React.Component {
                                         >
                                             <broadstreet-zone zone-id="69405"></broadstreet-zone>
                                         </div>
-                                        {typeof window !== "undefined" &&
-                                        document.body.scrollHeight > (3*window.innerHeight) && (
-                                            <div
-                                            id="midway-ad"
+                                        <div
+                                            id="above-ad2"
                                             className={css.card}
-                                            style={{
-                                                textAlign: "center",
-                                                marginTop: `${document.getElementById("center")
-                                                .offsetHeight / 2}px` // Pushes the ad halfway down the center column's height
-                                            }}
-                                            >
-                                                <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                                            </div>
-                                        )}
+                                            style={{ textAlign: "center", marginTop: "10px"}}
+                                        >
+                                            <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
