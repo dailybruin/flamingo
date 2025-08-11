@@ -21,6 +21,7 @@ export default function BreakingOverview(props) {
         width: 100%;
         position: sticky;
       `}
+            className="breakingOverview"
         >
             <div
                 css={css`

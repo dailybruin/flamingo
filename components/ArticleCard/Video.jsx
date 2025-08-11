@@ -17,6 +17,7 @@ export default function Video(props) {
         background-color: #ffffff;
         height: 100%;
       `}
+      className="video"
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
         <div

@@ -16,6 +16,7 @@ export default function Long(props) {
         padding: 0px;
         background-color: #ffffff;
       `}
+      className="long"
     >
       <div
         css={css`

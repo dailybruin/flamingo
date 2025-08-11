@@ -114,6 +114,7 @@ export default class Desktop extends React.Component {
     return (
       <React.Fragment>
       <div
+        id="masthead" 
         ref={this.MastheadCard}
         css={css`
           background: #ffffff;

@@ -16,6 +16,7 @@ export default function Mini(props) {
         padding: 0px;
         background-color: #ffffff;
       `}
+      className="mini"
     >
       <div
         css={css`

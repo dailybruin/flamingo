@@ -17,6 +17,7 @@ export default function Podcast(props) {
         background-color: #ffffff;
         height: 100%;
       `}
+      className="podcast"
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
         <div

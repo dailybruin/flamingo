@@ -16,6 +16,7 @@ export default function Vert(props) {
         box-shadow: ${globals.cardShadow};
         background-color: #ffffff;
       `}
+      className="vert"
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
         <img

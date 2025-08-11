@@ -16,6 +16,7 @@ export default function Horz(props) {
         padding: 0px;
         background-color: #ffffff;
       `}
+      className="horz"
     >
       <div
         css={css`
