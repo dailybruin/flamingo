@@ -28,7 +28,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install: false
-          start: next start
+          start: yarn next start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 15000
 
