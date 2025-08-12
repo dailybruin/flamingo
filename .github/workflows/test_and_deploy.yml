@@ -1,0 +1,42 @@
+name: Test, Build, and Deploy
+
+on:
+  push:
+    branches: [ testing ]
+  workflow_dispatch:
+
+jobs:
+  # Run Cypress tests
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build Next.js app
+        run: yarn build
+
+      - name: Start server and run Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          start: yarn start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 15000
+
+  # Build and deploy (only runs if tests pass)
+  # For now, this is a dummy for testing that always passes
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Simulate deploy
+        run: echo "✅ Simulated deploy — no real deployment happened."
