@@ -1,5 +1,5 @@
 import * as React from "react";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
@@ -16,6 +16,7 @@ export default function Long(props) {
         padding: 0px;
         background-color: #ffffff;
       `}
+      className="long"
     >
       <div
         css={css`
@@ -72,7 +73,11 @@ export default function Long(props) {
             `}
             style={{
               fontStyle:
-                props.acf.db_article_format == "column" ? "italic" : "normal"
+                props.acf.db_article_format === "column" ||
+                (props.acf.db_display_options &&
+                  props.acf.db_display_options[0] === "italic_headline")
+                  ? "italic"
+                  : "normal"
             }}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />

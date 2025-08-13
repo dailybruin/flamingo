@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import moment from "moment";
 
@@ -25,7 +25,6 @@ export default class Article extends React.Component {
         // quick patch to prevent attempting to load an author that was not properly fetched.
         continue;
       }
-      console.log(author);
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
           <img
@@ -128,7 +127,11 @@ export default class Article extends React.Component {
           `}
           style={{
             fontStyle:
-              this.props.acf.db_article_format == "column" ? "italic" : "normal"
+              this.props.acf.db_article_format === "column" ||
+              (this.props.acf.db_display_options &&
+                this.props.acf.db_display_options[0] === "italic_headline")
+                ? "italic"
+                : "normal"
           }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />

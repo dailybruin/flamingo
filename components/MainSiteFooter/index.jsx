@@ -1,5 +1,5 @@
 import * as React from "react";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as MainSiteStyles from "../globals";
 import FooterLink from "../Footer/FooterLink";
@@ -8,14 +8,14 @@ export default function MainSiteFooter(props) {
   const mainSiteFooterLinks = [
     { text: "About", url: "/about" },
     { text: "Contact", url: "/contact" },
+    { text: "Submit", url: "/submit" },
     { text: "Advertise", url: "/advertise" },
     { text: "Staff", url: "/staff" },
     { text: "Stonewall", url: "/stonewall" },
     { text: "Editorial Board", url: "/editorial-board" },
     { text: "Privacy", url: "/privacy" },
     { text: "Comment Policy", url: "/comment" },
-    { text: "Community Guide", url: "/the-daily-bruin-community-guide" },
-    { text: "Submit", url: "/submit" }
+    { text: "Community Guide", url: "/the-daily-bruin-community-guide" }
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (
@@ -40,7 +40,12 @@ export default function MainSiteFooter(props) {
         ${MainSiteStyles.phone} {
           flex-direction: column;
         }
+
+        ${MainSiteStyles.tablet} {
+          flex-direction: column;
+        }
       `}
+      id="footer"
     >
       <div
         css={css`
@@ -50,6 +55,19 @@ export default function MainSiteFooter(props) {
           ${MainSiteStyles.phone} {
             display: block;
             column-count: 2;
+            column-fill: auto;
+            padding-left: 20px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #000;
+            & a {
+              display: block;
+              padding: 0 4px;
+            }
+          }
+
+          ${MainSiteStyles.tablet} {
+            display: block;
+            column-count: 3;
             column-fill: auto;
             padding-left: 20px;
             padding-bottom: 4px;
@@ -70,6 +88,12 @@ export default function MainSiteFooter(props) {
           flex-grow: 1;
 
           ${MainSiteStyles.phone} {
+            text-align: center;
+            margin: auto;
+            padding-top: 4px;
+          }
+
+          ${MainSiteStyles.tablet} {
             text-align: center;
             margin: auto;
             padding-top: 4px;

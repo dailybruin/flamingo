@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
@@ -17,6 +17,7 @@ export default function Podcast(props) {
         background-color: #ffffff;
         height: 100%;
       `}
+      className="podcast"
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
         <div
