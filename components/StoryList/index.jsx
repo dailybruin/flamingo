@@ -28,6 +28,7 @@ class StoryList extends React.Component {
           justify-content: center;
           margin: auto;
         `}
+        className="storyList"
       > 
         <div
           css={css`

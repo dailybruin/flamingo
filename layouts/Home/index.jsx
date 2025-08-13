@@ -447,7 +447,9 @@ export default class HomeLayout extends React.Component {
                           displayType: "mini"
                         })}
                       </div>
-                      <div>
+                      <div
+                        id="game"
+                      >
                         <a href="/category/games">
                         <div className={css.card}>
                           <GamesCard></GamesCard>

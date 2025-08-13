@@ -45,6 +45,7 @@ export default function MainSiteFooter(props) {
           flex-direction: column;
         }
       `}
+      id="footer"
     >
       <div
         css={css`

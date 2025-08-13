@@ -37,6 +37,7 @@ export default function Breaking(props) {
         border-radius: 20px;
         width: 100%;
       `}
+            className="breaking"
         >
             <div
                 css={css`

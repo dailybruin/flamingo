@@ -16,6 +16,7 @@ export default function Full(props) {
         box-shadow: ${globals.cardShadow};
         background-color: #ffffff;
       `}
+      className="full"
     >
       <span>
         <a
