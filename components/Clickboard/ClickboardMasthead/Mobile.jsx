@@ -3,7 +3,7 @@ import * as React from "react";
 import { Global, css, jsx } from "@emotion/core";
 import Head from "next/head";
 
-import * as globals from "../../globals";
+import * as globals from "../../clickboard_globals";
 
 import moment from "moment";
 

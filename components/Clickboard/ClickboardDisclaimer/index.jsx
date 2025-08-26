@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
-import * as globals from "../../globals";
+import * as globals from "../../clickboard_globals";
 
 export default class ClickboardDisclaimer extends React.Component {
   constructor(props) {

@@ -1,0 +1,61 @@
+---
+name: Story List
+route: /story-list
+---
+
+import { Playground, Props } from 'docz'
+import StoryList from '.'
+
+# Story List
+
+A list of the most popular stories.
+
+<Props of={StoryList} />
+
+<Playground>
+    <StoryList
+      story={[
+        {
+          title: "Avengers: Infinity War",
+          text: "This movie was bonker but #nospoilers because of character limit alright pals",
+          link: "https://www.youtube.com/watch?v=bleoywz0oeg"
+        },
+        {
+          title: "Bruins in the Draft",
+          text: "This movie was bonker but #nospoilers because of character limit alright pals",
+          link: "#"
+        },
+        {
+          title: "#USACVote18Elections",
+          text: "This movie was bonker but #nospoilers because of character limit alright pals",
+          link: "https://usac.ucla.edu/"
+        }
+      ]}
+      image={
+        {
+          src: "https://img.etimg.com/thumb/msid-64089970,width-643,imgsize-415308,resizemode-4/avengers-infinity-war-becomes-indias-highest-grossing-hollywood-film.jpg",
+          alt: "N/A"
+        }
+      }
+    />
+    <StoryList
+      story={[
+        {
+          title: "Most popular story",
+          text: "This movie was bonker but #nospoilers because of character limit alright pals",
+          link: "#"
+        },
+        {
+          title: "Second most popular",
+          text: "This movie was bonker but #nospoilers because of character limit alright pals",
+          link: "#"
+        },
+        {
+          title: "Third most popular",
+          text: "This movie was bonker but #nospoilers because of character limit alright pals",
+          link: "#"
+        }
+      ]}
+      type="popular"
+    />
+</Playground>

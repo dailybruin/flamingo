@@ -4,7 +4,7 @@ import { Global, css, jsx } from "@emotion/core";
 import moment from "moment";
 import Head from "next/head";
 
-import * as globals from "../../globals";
+import * as globals from "../../clickboard_globals";
 
 import logo from "./clickboard.svg";
 import menuIcon from "./menu.svg";

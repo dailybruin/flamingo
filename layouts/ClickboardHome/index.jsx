@@ -3,12 +3,11 @@ import PageWrapper from "../PageWrapper";
 import Error from "next/error";
 
 import css from "../style.module.css";
-import * as utilities from "../utilities";
+import * as utilities from "../clickboard_utilities";
 import Media from "react-media";
 
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 import Poll from "../../components/Poll";
-import StoryList from "../../components/StoryList";
 import SponsoredLinks from "../../components/SponsoredLinks";
 import TwitterFeed from "../../components/TwitterFeed";
 import GamesCard from "components/GamesCard/GamesCard";
@@ -21,6 +20,12 @@ const ArticleAdStyle = {
   textAlign: "center",
   fontWeight: "bold",
   fontFamily: "sans-serif"
+};
+
+const sectionNameStyle = {
+  fontFamily: "'Helvetica Neue', Arial, sans-serif",
+  textAlign: "center",
+  marginTop: "4px"
 };
 
 export default class HomeLayout extends React.Component {
@@ -105,12 +110,6 @@ export default class HomeLayout extends React.Component {
                     {this.props.mappedBreaking == null && (
                       <div className={css.card}></div>
                     )}
-                    <div id="classifieds" className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
-                    </div>
                     <div id="f1" className={css.card}>
                       {React.cloneElement(this.cards.f1ArticleCard, {
                         displayType: "mini"
@@ -121,25 +120,11 @@ export default class HomeLayout extends React.Component {
                         displayType: "mini"
                       })}
                     </div>
-                    <div
-                      id="above-ad"
-                      style={{ textAlign: "center" }}
-                      className={css.card}
-                    >
-                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                    </div>
                     <div id="i" className={css.card}>
                       {this.cards.iArticleCard}
                     </div>
                     <div id="j" className={css.card}>
                       {this.cards.jArticleCard}
-                    </div>
-                    <div
-                      id="above-ad"
-                      style={{ textAlign: "center" }}
-                      className={css.card}
-                    >
-                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
                     <div id="k" className={css.card}>
                       {this.cards.kArticleCard}
@@ -167,13 +152,6 @@ export default class HomeLayout extends React.Component {
                         displayType: "vert"
                       })}
                     </div>
-                    <div
-                      id="above-ad"
-                      className={css.card}
-                      style={{ textAlign: "center" }}
-                    >
-                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                    </div>
                     <div id="b" className={css.card}>
                       {React.cloneElement(this.cards.bArticleCard, {
                         displayType: "vert"
@@ -181,12 +159,6 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="g" className={css.card}>
                       {this.cards.gArticleCard}
-                    </div>
-                    <div id="classifieds" className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
                     </div>
                     <div id="f1" className={css.card}>
                       {React.cloneElement(this.cards.f1ArticleCard, {
@@ -196,13 +168,6 @@ export default class HomeLayout extends React.Component {
                     {this.props.mappedBreaking != null && (
                       <div className={css.card}></div>
                     )}
-                    <div
-                      id="above-ad"
-                      style={{ textAlign: "center" }}
-                      className={css.card}
-                    >
-                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                    </div>
                     <div id="f2" className={css.card}>
                       {React.cloneElement(this.cards.f2ArticleCard, {
                         displayType: "mini"
@@ -274,14 +239,6 @@ export default class HomeLayout extends React.Component {
                         <div id="h" className={css.card}>
                           {this.cards.hArticleCard}
                         </div>
-                        <div className={css.card}>
-                          <a href="https://prime.dailybruin.com">
-                            <img
-                              src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
-                              style={{ width: "100%" }}
-                            />
-                          </a>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -291,107 +248,91 @@ export default class HomeLayout extends React.Component {
                 </div>
               )}
               {matches.desktop && (
-                <div
-                  id="ArticleGrid"
-                  style={{ display: "flex", width: "100%" }}
-                >
-                  {/* LEFT SIDE (70%) */}
-                  <div
-                    id="left"
-                    className={css.column}
-                    style={{ width: "60%" }}
-                  >
-                    <div id="c1" className={css.card}>
-                      {React.cloneElement(this.cards.c1ArticleCard, {
-                        displayType: "full"
-                      })}
-                    </div>
-                    <div id="c2" className={css.card}>
-                      {React.cloneElement(this.cards.c2ArticleCard, {
-                        displayType: "horz"
-                      })}
-                    </div>
-                    <div id="f1" className={css.card}>
-                      {React.cloneElement(this.cards.f1ArticleCard, {
-                        displayType: "horz"
-                      })}
-                    </div>
-                    <div id="f2" className={css.card}>
-                      {React.cloneElement(this.cards.f2ArticleCard, {
-                        displayType: "horz"
-                      })}
-                    </div>
-                    <div style={{ display: "flex" }}>
-                      <div style={{ width: "50%" }}>
-                        <div id="k" className={css.card}>
-                          {this.cards.kArticleCard}
-                        </div>
+                <div style={{ width: "100%" }}>
+                  <div id="ads-grid" style={{ display: "flex", width: "100%" }}>
+                    {/* LEFT */}
+                    <div
+                      id="left"
+                      className={css.column}
+                      style={{ width: "20%" }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          borderBottom: "3px solid black"
+                        }}
+                      />
+                      <h1 style={sectionNameStyle}>What's New?</h1>
+                      <div id="a" className={css.card}>
+                        {React.cloneElement(this.cards.aArticleCard, {
+                          displayType: "vert"
+                        })}
                       </div>
-                      <div style={{ width: "50%" }}>
-                        <div id="l" className={css.card}>
-                          {this.cards.lArticleCard}
-                        </div>
+                      <div id="e" className={css.card}>
+                        {React.cloneElement(this.cards.eArticleCard, {
+                          displayType: "mini"
+                        })}
+                      </div>
+                    </div>
+
+                    {/* MIDDLE */}
+                    <div
+                      id="middle"
+                      className={css.column}
+                      style={{ width: "60%" }}
+                    >
+                      <div id="a" className={css.card}>
+                        {React.cloneElement(this.cards.aArticleCard, {
+                          displayType: "vert"
+                        })}
+                      </div>
+                    </div>
+
+                    {/* RIGHT */}
+                    <div
+                      id="right"
+                      className={css.column}
+                      style={{ width: "20%" }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          borderBottom: "3px solid black"
+                        }}
+                      />
+                      <h1 style={sectionNameStyle}>Reviews</h1>
+                      <div id="a" className={css.card}>
+                        {React.cloneElement(this.cards.aArticleCard, {
+                          displayType: "vert"
+                        })}
+                      </div>
+                      <div id="e" className={css.card}>
+                        {React.cloneElement(this.cards.eArticleCard, {
+                          displayType: "mini"
+                        })}
                       </div>
                     </div>
                   </div>
 
-                  {/* RIGHT SIDE (30%) */}
+                  {/* Section Break - Thick Black Line */}
                   <div
-                    id="right"
-                    className={css.column}
-                    style={{ width: "40%" }}
-                  >
-                    <div id="a" className={css.card}>
-                      {React.cloneElement(this.cards.aArticleCard, {
-                        displayType: "vert"
-                      })}
-                    </div>
-                    <div id="b" className={css.card}>
-                      {React.cloneElement(this.cards.bArticleCard, {
-                        displayType: "vert"
-                      })}
-                    </div>
-                    <div id="classifieds" className={css.card}>
-                      <ClassifiedsCard
-                        header="Featured Classifieds"
-                        classifieds={this.props.classifieds}
-                      />
-                    </div>
-                    <div style={{ textAlign: "center" }} className={css.card}>
-                      <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                    </div>
-                    <div id="g" className={css.card}>
-                      {this.cards.gArticleCard}
-                    </div>
-                    <div id="d" className={css.card}>
-                      {React.cloneElement(this.cards.dArticleCard, {
-                        displayType: "mini"
-                      })}
-                    </div>
-                    <div id="e" className={css.card}>
-                      {React.cloneElement(this.cards.eArticleCard, {
-                        displayType: "mini"
-                      })}
-                    </div>
-                    <div>
-                      <a href="/category/games">
-                        <div className={css.card}>
-                          <GamesCard />
-                        </div>
-                      </a>
-                    </div>
-                    <div id="h" className={css.card}>
-                      {this.cards.hArticleCard}
-                    </div>
-                    <div className={css.card}>
-                      <a href="https://prime.dailybruin.com">
-                        <img
-                          src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
-                          style={{ width: "100%", height: "auto" }}
-                        />
-                      </a>
-                    </div>
-                  </div>
+                    style={{
+                      width: "100%",
+                      borderBottom: "6px solid black"
+                    }}
+                  />
+                  {/* For loop through each category and display */}
+                  <h1 style={sectionNameStyle}>Category 1</h1>
+
+                  {/* Section Break - Thick Black Line */}
+                  <div
+                    style={{
+                      width: "100%",
+                      borderBottom: "6px solid black"
+                    }}
+                  />
+                  {/* For loop through each category and display */}
+                  <h1 style={sectionNameStyle}>Category 2</h1>
                 </div>
               )}
             </div>

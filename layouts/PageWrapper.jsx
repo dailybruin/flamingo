@@ -18,7 +18,7 @@ const wrapperStyle = {
 };
 
 const layoutStyle = {
-  maxWidth: 1336,
+  maxWidth: 1248,
   margin: "auto"
 };
 

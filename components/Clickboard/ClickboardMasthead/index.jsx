@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import Link from "next/link";
 
 import Media from "react-media";
-import * as globals from "../../globals";
+import * as globals from "../../clickboard_globals";
 
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";

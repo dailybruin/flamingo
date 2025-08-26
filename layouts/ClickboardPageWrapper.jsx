@@ -11,13 +11,13 @@ import css from "./style.module.css";
 
 const wrapperStyle = {
   padding: "6px",
-  backgroundColor: "#f1f1f1",
+  backgroundColor: "#ffffffff",
   width: "100%",
   height: "100%"
 };
 
 const layoutStyle = {
-  maxWidth: 1336,
+  maxWidth: 1248,
   margin: "auto"
 };
 
@@ -82,10 +82,6 @@ const PageWrapper = Comp =>
         <div style={wrapperStyle}>
           <div style={layoutStyle}>
             <CommentFAB></CommentFAB>
-            
-            <div className={css["banner-ad"]}>
-              <broadstreet-zone zone-id="69404"></broadstreet-zone>
-            </div>
 
             <ClickboardMasthead
               categories={this.props.mappedCategories}
