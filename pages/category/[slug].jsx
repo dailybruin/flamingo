@@ -26,6 +26,14 @@ const categoryDescriptions = {
     mobile:
       "The Daily Bruin announces news relevant to the organization as press releases. \
       For more information about The Bruin, contact <a href='mailto:dboutreach@dailybruin.com'>dboutreach@dailybruin.com</a>"
+  },
+  "the-stack": {
+    desktop:
+      "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
+      engaging visualizations and \apply quantitative insights to topics relevant to our UCLA community.",
+    mobile:
+      "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
+      engaging visualizations and apply quantitative insights to topics relevant to our UCLA community."
   }
 };
 
