@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../../layouts/style.module.css';
 import ReactMarkdown from 'react-markdown';
+import Media from 'react-media';
 
 
 function ContainerItem(props) {
@@ -42,15 +43,35 @@ function ContainerItem(props) {
                     </p>
                 </div>
             );
-        } else {
+    } else {
 
-            return <div>
-                <p className={css['article-text-large']}>
+      return (
+        <div>
+          <Media
+            queries={{
+              phone: "(max-width: 600px)",
+              desktop: "(min-width: 601px)"
+            }}
+            defaultMatches={{ desktop: true }}
+          >
+            {matches => (
+              <>
+                {matches.phone && (
+                  <p className={css["article-text-gallery-mobile"]}>
                     <ReactMarkdown children={props.description} />
-                </p>
-            </div>
-
-        }
+                  </p>
+                )}
+                {matches.desktop && (
+                  <p className={css["article-text-large-gallery"]}>
+                    <ReactMarkdown children={props.description} />
+                  </p>
+                )}
+              </>
+            )}
+          </Media>
+        </div>
+      );
+    }
 
     } else if (props.type == 'alt-photo') {
         if (props.first == 0) {

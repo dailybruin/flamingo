@@ -50,7 +50,7 @@ export default function Header(props) {
         `}
       >
         <a
-          href="/category/spectrum"
+          href="/category/infocus"
           css={css`
             display: table-cell;
             vertical-align: middle;
