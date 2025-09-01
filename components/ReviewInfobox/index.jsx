@@ -17,20 +17,21 @@ export default class ReviewInfobox extends React.Component {
     if (this.props.rating != null) {
       let i = 0;
       for (; i < Math.floor(this.props.rating); i++) {
-        stars.push(<img src={fullStar} />);
+        stars.push(<img key={`full-${i}`} src={fullStar} />);
       }
       if (this.props.rating % 1 === 0.5) {
-        stars.push(<img src={halfStar} />);
+        stars.push(<img key="half" src={halfStar} />);
         i += 1.5;
       }
       for (; i < 5; i++) {
-        stars.push(<img src={emptyStar} />);
+        stars.push(<img key={`empty-${i}`} src={emptyStar} />);
       }
     }
     return (
       <div
         css={css`
           padding: 10px;
+          padding-top: 0px;
           width: 100%;
           background: #ffffff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
@@ -72,23 +73,49 @@ export default class ReviewInfobox extends React.Component {
               font-family: ${globals.menuFont};
               text-transform: uppercase;
               margin-bottom: 8px;
+              margin-top: 8px;
             }
 
-            & hr:first-of-type {
+            & h4:first-of-type {
+              margin-top: 0px;
+            }
+
+            /* don't display hr's right after an h4 */
+            & h4 + hr {
               display: none;
             }
 
             & p:nth-of-type(2) {
               font-weight: bold;
             }
+
+            & hr {
+              border: none;
+              border-top: 1px solid #a1a1a1ff;
+              margin: 8px 0;
+            }
+
+            & table {
+              width: 100%;
+              border-collapse: collapse;
+            }
+
+            & td {
+              padding: 6px 8px;
+              vertical-align: middle;
+            }
+
+            & td:first-of-type {
+              width: auto;
+            }
           `}
+          /* this.props.title contains the info box HTML */
           dangerouslySetInnerHTML={{ __html: this.props.title }}
-        ></div>
+        />
         {this.props.rating == 0 || (
           <div
             css={css`
               text-align: center;
-              padding-top: 2px;
               padding: 2px 10px 0;
               margin-bottom: -10px;
             `}
