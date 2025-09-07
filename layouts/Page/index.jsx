@@ -21,8 +21,10 @@ class PageLayout extends React.Component {
     this.state = {
       page: (
         <Page
+          title={this.props.page.title.rendered}
           content={this.props.page.content.rendered}
           date={new Date(this.props.page.modified)}
+          yoast_meta={this.props.page.yoast_meta}
         />
       )
     };
