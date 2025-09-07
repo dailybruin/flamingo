@@ -16,7 +16,7 @@ export default function MainSiteFooter(props) {
     { text: "Privacy", url: "/privacy" },
     { text: "Comment Policy", url: "/comment" },
     { text: "Community Guide", url: "/the-daily-bruin-community-guide" },
-    { text: "Join The Daily Bruin", url: "/join-the-daily-bruin" }
+    { text: "Join", url: "/join-the-daily-bruin" }
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (
