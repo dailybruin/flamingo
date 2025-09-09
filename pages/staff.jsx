@@ -4,8 +4,23 @@ import PageLayout from "../layouts/Page";
 import { Config } from "../config.js";
 
 const Page = ({ page }) => {
-  return <PageLayout page={page} />;
-};
+  return (
+    <div className="staff-wrapper">
+      <PageLayout page={page} />
+      <style jsx>{`
+        /* Scoped to this page: target any .text inside PageLayout */
+        .staff-wrapper :global(.text) {
+          margin: 0px !important;
+        }
+
+        .staff-wrapper :global(img) {
+          margin-top: 10px !important;
+          margin-bottom: 10px !important;
+        }
+      `}</style>
+    </div>
+  );
+}
 
 Page.getInitialProps = async (context) => {
   const { slug } = context.query;
