@@ -10,6 +10,7 @@ export default function MainSiteFooter(props) {
     { text: "Contact", url: "/contact" },
     { text: "Submit", url: "/submit" },
     { text: "Advertise", url: "/advertise" },
+    { text: "Sponsored", url: "/category/sponsored" },
     { text: "Staff", url: "/staff" },
     { text: "Stonewall", url: "/stonewall" },
     { text: "Editorial Board", url: "/editorial-board" },
