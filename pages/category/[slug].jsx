@@ -34,6 +34,14 @@ const categoryDescriptions = {
     mobile:
       "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
       engaging visualizations and apply quantitative insights to topics relevant to our UCLA community."
+  },
+  "sponsored": {
+    desktop:
+      "Sponsored is an advertisement page from the Bruin Media Group. Increase visibility and traffic to your company's \
+      brand or products through the Daily Bruin website. Grow your business online with Sponsored to bring in new customers.",
+    mobile:
+      "Sponsored is an advertisement page from the Bruin Media Group. Increase visibility and traffic to your company's \
+      brand or products through the Daily Bruin website. Grow your business online with Sponsored to bring in new customers."
   }
 };
 

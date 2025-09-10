@@ -4,6 +4,7 @@ import Link from "next/link";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";
+import SponsoredTitle from "./sponsoredTitle.svg";
 
 export default class SectionHeader extends React.Component {
   constructor(props) {
@@ -51,7 +52,22 @@ export default class SectionHeader extends React.Component {
             `}
           ></img>
         );
-      } else {
+      } 
+      else if (this.props.category === "Sponsored") {
+        return (
+          <img
+            src={SponsoredTitle}
+            css={css`
+              display: inline-block;
+              height: 100%;
+              max-height: 64px;
+              margin: 0px;
+              padding: 0px;
+            `}
+          />
+        )
+      }
+      else {
         return (
           <div dangerouslySetInnerHTML={{ __html: this.props.category }}></div>
         );
