@@ -34,15 +34,16 @@ const categoryDescriptions = {
     mobile:
       "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
       engaging visualizations and apply quantitative insights to topics relevant to our UCLA community."
-  },
-  "sponsored": {
-    desktop:
-      "Sponsored is an advertisement page from the Bruin Media Group. Increase visibility and traffic to your company's \
-      brand or products through the Daily Bruin website. Grow your business online with Sponsored to bring in new customers.",
-    mobile:
-      "Sponsored is an advertisement page from the Bruin Media Group. Increase visibility and traffic to your company's \
-      brand or products through the Daily Bruin website. Grow your business online with Sponsored to bring in new customers."
   }
+};
+
+/* 
+ * These descriptions don't show up on the page;
+ * Only for the descriptions that show up on Google searches. 
+ */
+const categoryMetaDescriptions = {
+  "sponsored":
+      "Sponsored is an advertisement page managed by the Bruin Media Group. Increase visibility and traffic to your company's brand or products through the Daily Bruin website. Grow your business online with Sponsored to bring in new customers."
 };
 
 class Category extends Component {
@@ -120,10 +121,37 @@ class Category extends Component {
         subsubcategories: subsubcategoriesSimple
       };
     });
+
+    // Fetch meta description from categoryMetaDescriptions
+    let metaDescription = null;
+    try {
+      const slug = this.props.category[0].slug;
+      if (categoryMetaDescriptions && categoryMetaDescriptions[slug]) {
+        metaDescription = categoryMetaDescriptions[slug];
+      }
+    } catch (e) {
+      metaDescription = null;
+    }
+
+    let pageTitle = this.props.category[0].name + " - Daily Bruin"
     return (
       <>
         <Head>
-          <title>{this.props.category[0].name + " - Daily Bruin"}</title>
+          <title>{pageTitle}</title>
+
+          <meta itemprop="name" content={pageTitle}></meta>
+          <meta property="og:type" content="website"></meta>
+          <meta property="og:title" content={pageTitle}></meta>
+          <meta name="twitter:title" content={pageTitle}></meta>
+
+          {metaDescription && (
+            <>
+              <meta name="description" content={metaDescription} />
+              <meta itemprop="description" content={metaDescription} />
+              <meta property="og:description" content={metaDescription} />
+              <meta name="twitter:description" content={metaDescription} />
+            </>
+          )}
         </Head>
         <div style={{ padding: "6px" }}>
           <SectionHeader
