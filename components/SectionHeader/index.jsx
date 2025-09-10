@@ -101,6 +101,7 @@ export default class SectionHeader extends React.Component {
     }
 
     return (
+      <>
       <div
         css={css`
           box-shadow: ${globals.cardShadow};
@@ -245,6 +246,33 @@ export default class SectionHeader extends React.Component {
           </div>
         ) : null}
       </div>
+      {/* Add a disclaimer at the end if category is sponsored */}
+      {this.props.category === "Sponsored" && 
+        <div
+          css={css`
+            box-shadow: ${globals.cardShadow};
+            background-color: white;
+            display: block;
+            padding: 0 10px 10px;
+          `}
+        >
+          <div
+                css={css`
+                  text-align: center;
+                  list-style: none;
+                  color: black;
+                  font-family: ${globals.menuFont};
+                  font-size: 16px;
+                  padding-bottom: 8px;
+                  margin-left: 32px;
+                  margin-right: 32px;
+                `}
+            >
+            <i>This is sponsored content independent of the Daily Bruin editorial staff.</i>
+          </div>
+        </div>
+      }
+    </>
     );
   }
 }
