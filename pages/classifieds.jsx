@@ -75,16 +75,6 @@ function ClassifiedsPage() {
           margin-right: 6px;
           margin-top: 6px;
 
-          .right-sidebar {
-            width: 260px;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            padding: 16px 16px;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
           .category-link {
             color: #0070f3;
             text-decoration: none;
@@ -135,97 +125,112 @@ function ClassifiedsPage() {
           }
         `}
       >
-        <div className="main-content small-9 columns" id="classified-ads">
-          <h1>Daily Bruin Classified Ads</h1>
-          <hr />
-          <p>
-            Daily Bruin classifieds are the best way to find qualified
-            applicants for your job openings or rental vacancies. Your
-            classified ad appears every day in the Daily Bruin, Daily Bruin
-            online, and certain UCLA related Facebook groups when applicable.
-          </p>
-          <p>
-            The deadline for placing an ad is 12 noon, one business day before
-            publication. Payment must be received before deadline. In order to
-            receive the flat rate, the ad must be 20 words or fewer. Anything
-            with a space before and after is counted as one word. We reserve the
-            right to edit ads.
-          </p>
-          <p>
-            The best way to reach us is at the email{" "}
-            <a href="mailto:classifieds@media.ucla.edu">
-              classifieds@media.ucla.edu
-            </a>
-          </p>
-          <p>
-            You can also order over the phone by calling{" "}
-            <a href="tel:3108252221">310-825-2221</a>.
-          </p>
-          <br />
-          <div className="side-head">
-            <a
-              href="https://ucla.eclipseservices.com/online"
-              className="text-center"
-              target="_blank"
-            >
-              <button className="big-green-button">
-                Place a Classified Ad
-              </button>
-            </a>
-          </div>
-
-          <br />
-          <hr className="hr-thick" />
-
-          <h1>Featured Ads</h1>
-          {featuredAds.length !== 0 ? (
-            featuredAds.map(ad => (
-              <div dangerouslySetInnerHTML={{ __html: ad.content.rendered }} />
-            ))
-          ) : (
-            <p>No featured ads.</p>
-          )}
-
-          <br />
-
-          {categories.map(cat => (
-            <div key={cat.id}>
-              <hr className="hr-thick" />
-              <h1>Ads By Classification - <span style={{fontStyle: "italic"}}>{cat.name}</span></h1>
-
-              {adsByCategory[cat.id] && adsByCategory[cat.id].length > 0 ? (
-                adsByCategory[cat.id].map((ad, index) => (
-                  <div key={ad.id}>
-                    <div
-                      dangerouslySetInnerHTML={{ __html: ad.content.rendered }}
-                    ></div>
-                    {index !== adsByCategory[cat.id].length - 1 && <hr />}
-                  </div>
-                ))
-              ) : (
-                <p>No ads in this classification.</p>
-              )}
-            </div>
-          ))}
-        </div>
-        <Media
-          queries={{
-            phone: "(max-width: 600px)",
-            tablet: "(min-width: 601px) and (max-width: 900px)",
-            desktop: "(min-width: 901px)"
-          }}
-          defaultMatches={{ desktop: true }}
+        <div
+          className="main-content"
+          id="classified-ads"
+          style={{ width: "100%" }}
         >
-          {matches => (
-            <div>
-              {matches.tablet || matches.desktop && (
-                <div className={css["card-mobile"]}>
-                  <broadstreet-zone zone-id="69405"></broadstreet-zone>
-                </div>
-              )}
+          <div id="left-column">
+            <h1>Daily Bruin Classified Ads</h1>
+            <hr />
+            <p>
+              Daily Bruin classifieds are the best way to find qualified
+              applicants for your job openings or rental vacancies. Your
+              classified ad appears every day in the Daily Bruin, Daily Bruin
+              online, and certain UCLA related Facebook groups when applicable.
+            </p>
+            <p>
+              The deadline for placing an ad is 12 noon, one business day before
+              publication. Payment must be received before deadline. In order to
+              receive the flat rate, the ad must be 20 words or fewer. Anything
+              with a space before and after is counted as one word. We reserve
+              the right to edit ads.
+            </p>
+            <p>
+              The best way to reach us is at the email{" "}
+              <a href="mailto:classifieds@media.ucla.edu">
+                classifieds@media.ucla.edu
+              </a>
+            </p>
+            <p>
+              You can also order over the phone by calling{" "}
+              <a href="tel:3108252221">310-825-2221</a>.
+            </p>
+            <br />
+            <div className="side-head">
+              <a
+                href="https://ucla.eclipseservices.com/online"
+                className="text-center"
+                target="_blank"
+              >
+                <button className="big-green-button">
+                  Place a Classified Ad
+                </button>
+              </a>
             </div>
-          )}
-        </Media>
+
+            <br />
+            <hr className="hr-thick" />
+
+            <h1>Featured Ads</h1>
+            {featuredAds.length !== 0 ? (
+              featuredAds.map(ad => (
+                <div
+                  dangerouslySetInnerHTML={{ __html: ad.content.rendered }}
+                />
+              ))
+            ) : (
+              <p>No featured ads.</p>
+            )}
+
+            <br />
+
+            {categories.map(cat => (
+              <div key={cat.id}>
+                <hr className="hr-thick" />
+                <h1>
+                  Ads By Classification -{" "}
+                  <span style={{ fontStyle: "italic" }}>{cat.name}</span>
+                </h1>
+
+                {adsByCategory[cat.id] && adsByCategory[cat.id].length > 0 ? (
+                  adsByCategory[cat.id].map((ad, index) => (
+                    <div key={ad.id}>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: ad.content.rendered
+                        }}
+                      ></div>
+                      {index !== adsByCategory[cat.id].length - 1 && <hr />}
+                    </div>
+                  ))
+                ) : (
+                  <p>No ads in this classification.</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div id="right-column" style={{ width: "25%" }}>
+          <Media
+            queries={{
+              phone: "(max-width: 600px)",
+              tablet: "(min-width: 601px) and (max-width: 900px)",
+              desktop: "(min-width: 901px)"
+            }}
+            defaultMatches={{ desktop: true }}
+          >
+            {matches => (
+              <div>
+                {matches.tablet || matches.desktop && (
+                  <div className={css["card"]}>
+                    <broadstreet-zone zone-id="69405"></broadstreet-zone>
+                  </div>
+                )}
+              </div>
+            )}
+          </Media>
+        </div>
       </div>
     </>
   );
