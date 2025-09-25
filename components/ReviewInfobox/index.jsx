@@ -110,7 +110,7 @@ export default class ReviewInfobox extends React.Component {
             }
           `}
           /* this.props.title contains the info box HTML */
-          dangerouslySetInnerHTML={{ __html: this.props.title }}
+          dangerouslySetInnerHTML={{ __html: cleanTableHTML(this.props.title) }}
         />
         {this.props.rating == 0 || (
           <div
@@ -127,3 +127,32 @@ export default class ReviewInfobox extends React.Component {
     );
   }
 }
+
+function cleanTableHTML(htmlString) {
+  // Split the HTML by <h4> headings
+  const sections = htmlString.split(/(<h4[^>]*>.*?<\/h4>)/gi);
+  
+  let result = "";
+
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i].trim();
+    
+    // If this is an <h4>, append it to the result
+    if (/^<h4/i.test(section)) {
+      result += section; // include the heading
+      // Check if next section exists and wrap it in a table
+      if (i + 1 < sections.length) {
+        const nextSection = sections[i + 1]
+          .replace(/<\/?table[^>]*>/gi, "") // remove all tables
+          .trim();
+        if (nextSection) {
+          result += `<table><tbody>${nextSection}</tbody></table>`;
+        }
+        i++; // skip the next section since we already processed it
+      }
+    }
+  }
+
+  return result;
+}
+
