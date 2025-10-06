@@ -37,7 +37,12 @@ const GamesIndex = () => {
           link="/category/games/whack-a-bruin"
           image={WhackaBruinLogo} 
           excerpt="Whack the Bruins and beat your high score!"
-          authors={[{ "display_name": "Daily Bruin Games Team" }]}
+          authors={[{ "display_name": "Johnny Zheng",
+                      "user_nicename": "JohnnyZheng"
+                  },
+                  { "display_name": "Hillary Nguyen",
+                      "user_nicename": "HNguyen"
+                  }]}
         />
       </div>
     </>
