@@ -336,6 +336,37 @@ export default class Article extends React.Component {
                   margin: auto;
                 }
               }
+
+              /* For in-content ads */
+              & .flytead {
+                position: relative;
+                width: 100%;
+                background-color: #e8e8e8ff; /* subtle gray background */
+                border-top: 1px solid #e0e0e0;
+                border-bottom: 1px solid #e0e0e0;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+                padding: 15px 15px 15px;
+
+                /* make sure children are stacked vertically */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 10px;
+              }
+
+              /* "ADVERTISEMENT" label above the ad, centered */
+              & .flytead::before {
+                content: "ADVERTISEMENT";
+                width: 100%; /* span full width */
+                text-align: center; /* center text horizontally */
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: #888;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                position: relative; /* avoid interference with flex or floats */
+                top: 0;
+              }
             `}
             dangerouslySetInnerHTML={{ __html: this.props.content }}
           />
