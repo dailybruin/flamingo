@@ -129,9 +129,26 @@ export default class ReviewInfobox extends React.Component {
 }
 
 function cleanTableHTML(htmlString) {
-  // Split the HTML by <h4> headings
+  // Handle special golf case (no <h4> but contains "golf")
+  /* 
+   * Golf infoboxes were previously broken, so this is a fix 
+   * for infoboxes on those old golf articles.
+   */
+  if (!/<h4/i.test(htmlString) && /golf/i.test(htmlString)) {
+    // Extract <p> contents
+    const paragraphs = Array.from(htmlString.matchAll(/<p[^>]*>(.*?)<\/p>/gi))
+      .map(match => match[1].trim());
+
+    if (paragraphs.length > 0) {
+      const title = paragraphs[0].replace(/<[^>]*>/g, ''); // strip inner tags
+      const rest = paragraphs.slice(1).map(p => p.replace(/<[^>]*>/g, '')).join('<br/><br/>');
+      
+      return `<h4>${title}</h4><hr/>${rest}`;
+    }
+  }
+
+  // Default behavior
   const sections = htmlString.split(/(<h4[^>]*>.*?<\/h4>)/gi);
-  
   let result = "";
 
   for (let i = 0; i < sections.length; i++) {
