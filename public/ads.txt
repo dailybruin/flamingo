@@ -143,4 +143,5 @@ appnexus.com,1356,reseller,f5ab79cb980f11d1
 lockerdome.com, 12221069964856064, DIRECT
 #Media.net(EB)
 media.net, 8CUPEPKI9, DIRECT
+google.com, pub-8327564465991193, DIRECT, f08c47fec0942fa0
 
