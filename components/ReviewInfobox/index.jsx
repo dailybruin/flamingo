@@ -129,25 +129,25 @@ export default class ReviewInfobox extends React.Component {
 }
 
 function cleanTableHTML(htmlString) {
-  // Handle special golf case (no <h4> but contains "golf")
-  /* 
-   * Golf infoboxes were previously broken, so this is a fix 
-   * for infoboxes on those old golf articles.
-   */
-  if (!/<h4/i.test(htmlString) && /golf/i.test(htmlString)) {
+  // If no <h4> headers exist, fall back to paragraph-based layout
+  if (!/<h4/i.test(htmlString)) {
     // Extract <p> contents
     const paragraphs = Array.from(htmlString.matchAll(/<p[^>]*>(.*?)<\/p>/gi))
       .map(match => match[1].trim());
 
     if (paragraphs.length > 0) {
-      const title = paragraphs[0].replace(/<[^>]*>/g, ''); // strip inner tags
-      const rest = paragraphs.slice(1).map(p => p.replace(/<[^>]*>/g, '')).join('<br/><br/>');
-      
+      const title = paragraphs[0].replace(/<[^>]*>/g, ''); // strip tags for title text
+      const rest = paragraphs.slice(1).join('<br/>');
+
+      // Build a simple formatted box
       return `<h4>${title}</h4><hr/>${rest}`;
     }
+
+    // If no paragraphs found at all, just return the input unchanged
+    return htmlString;
   }
 
-  // Default behavior
+  // Default behavior for sectioned <h4>-based infoboxes
   const sections = htmlString.split(/(<h4[^>]*>.*?<\/h4>)/gi);
   let result = "";
 
@@ -159,17 +159,19 @@ function cleanTableHTML(htmlString) {
       result += section; // include the heading
       // Check if next section exists and wrap it in a table
       if (i + 1 < sections.length) {
-        const nextSection = sections[i + 1]
-          .replace(/<\/?table[^>]*>/gi, "") // remove all tables
-          .trim();
-        if (nextSection) {
-          result += `<table><tbody>${nextSection}</tbody></table>`;
+        let nextSection = sections[i + 1].trim();
+
+        // Only wrap in table if no table already exists
+        if (!/<table/i.test(nextSection)) {
+          nextSection = `<table><tbody>${nextSection}</tbody></table>`;
         }
-        i++; // skip the next section since we already processed it
+
+        result += nextSection;
+        i++;
       }
     }
   }
 
-  return result;
+  // If nothing matched, just return original HTML
+  return result || htmlString;
 }
-
