@@ -5,7 +5,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
-import * as moment from "moment";
+import dayjs from "dayjs";
 
 export default function VideoCard(props) {
   return (
@@ -56,7 +56,7 @@ export default function VideoCard(props) {
             line-height: 14px;
           `}
         >
-          {moment(props.date).format("MMM Do, h:mma")}
+          {dayjs(props.date).format("MMM Do, h:mma")}
         </span>
       </span>
       <a href={props.as} style={{ textDecoration: "none" }}>
