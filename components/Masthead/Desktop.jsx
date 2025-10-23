@@ -1,7 +1,7 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { Global, css, jsx } from "@emotion/core";
-import moment from "moment";
+import dayjs from "dayjs";
 import Head from "next/head";
 
 import * as globals from "../globals";
@@ -77,7 +77,7 @@ export default class Desktop extends React.Component {
   }
 
   render() {
-    let date = moment();
+    let date = dayjs();
     let today = date.format("dddd, MMM D, YYYY");
     let renderedCategories = [];
     if (this.props.categories != null) {

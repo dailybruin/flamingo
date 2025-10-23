@@ -3,7 +3,9 @@ import css from "../style.module.css";
 import Media from "react-media";
 
 import { buildArticleCard } from "../utilities";
-import moment from "moment";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 import * as globals from "components/globals";
 
@@ -17,7 +19,7 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
     <Article
       headline={article.title.rendered}
       link={article.link}
-      date={moment.utc(article.date)}
+      date={dayjs.utc(article.date)}
       authors={authors}
       categories={article["_embedded"]["wp:term"][0]}
       featureimg={

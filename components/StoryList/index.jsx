@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import Story from "./Story";
 import TopBar from "./TopBar";
-import * as moment from "moment";
+import dayjs from "dayjs";
 
 
 class StoryList extends React.Component {
@@ -89,7 +89,7 @@ class StoryList extends React.Component {
               line-height: 14px;
             `}
           >
-            {moment(this.props.date).format("MMM D, YYYY h:mm a")}
+            {dayjs(this.props.date).format("MMM D, YYYY h:mm a")}
           </span>
         </span>
         </>

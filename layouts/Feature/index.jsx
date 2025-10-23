@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PageWrapper from "../PageWrapper";
 import css from "../style.module.css";
 import Media from "react-media";
-import moment from "moment"
+import dayjs from "dayjs"
 
 import FeatureArticle from "../../components/FeatureArticle";
 
@@ -16,7 +16,7 @@ class FeatureLayout extends React.Component {
       <>
         <FeatureArticle
           headline={this.props.article.title.rendered}
-          date={moment.utc(this.props.article.date)}
+          date={dayjs.utc(this.props.article.date)}
           authors={this.props.authors}
           categories={this.props.article["_embedded"]["wp:term"][0]}
           featureimg={
