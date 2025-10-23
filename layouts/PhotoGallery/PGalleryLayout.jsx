@@ -2,7 +2,7 @@ import React from "react";
 import css from "../style.module.css";
 import Media from "react-media";
 
-import moment from "moment";
+import dayjs from "dayjs";
 
 import * as globals from "components/globals";
 
