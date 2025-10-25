@@ -211,7 +211,7 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                         classifieds={classifieds}
                       />
                     </div>
-                    <div>
+                    <div id='related-posts'>
                       <div className={css.card}>
                         <div
                           style={{

@@ -115,6 +115,7 @@ export default class Article extends React.Component {
           {renderCategories(this.props.categories)}
         </div>
         <h1
+          id="headline"
           css={css`
             margin: 2px 0;
 
@@ -136,6 +137,7 @@ export default class Article extends React.Component {
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
         <img
+          id="feature-img"
           src={this.props.featureimg} // margin -10px to undo the padding 10px
           css={css`
             width: calc(100% + 20px);
@@ -186,6 +188,7 @@ export default class Article extends React.Component {
             {authorPictures}
             <div style={{ display: "inline-block", verticalAlign: "middle" }}>
               <h3
+                id='authors'
                 css={css`
                   margin: 0;
                   display: inline-block;
@@ -212,6 +215,7 @@ export default class Article extends React.Component {
                 By {renderAuthors(this.props.authors)}
               </h3>
               <h4
+                id='date'
                 css={css`
                   margin: 0;
                   font-family: ${globals.bodyFont};

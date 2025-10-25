@@ -73,6 +73,7 @@ export default class ClassifiedsCard extends React.Component {
 
     return (
       <div
+        id='classifieds-card'
         css={css`
           box-shadow: ${globals.cardShadow};
           background-color: #ffffff;
