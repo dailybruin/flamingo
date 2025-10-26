@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";
 import * as utilities from "./utilities";
-import moment from "moment";
+import dayjs from "dayjs";
 
 export default function Header(props) {
   let authorPictures = [];
@@ -129,7 +129,7 @@ export default function Header(props) {
               line-height: 15px;
             `}
           >
-            {moment(props.date).format("MMM D, YYYY h:mm a")}
+            {dayjs(props.date).format("MMM D, YYYY h:mm a")}
           </h4>
         </div>
       </div>

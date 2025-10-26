@@ -3,7 +3,7 @@ import ArticleCard from "../components/ArticleCard";
 import StoryList from "../components/StoryList";
 import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.module.css";
-import moment from "moment";
+import dayjs from "dayjs";
 
 export function buildArticleCard(story, type = "") {
   if (story != null && story != undefined && story.data == undefined) {

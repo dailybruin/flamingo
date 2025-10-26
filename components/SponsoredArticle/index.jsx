@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
-import moment from "moment";
+import dayjs from "dayjs";
 
 import { renderCategories, renderAuthors } from "./utilities";
 import * as globals from "../globals";
@@ -193,7 +193,7 @@ export default class FeatureArticle extends React.Component {
                     line-height: 15px;
                   `}
                 >
-                  {moment(this.props.date).format("MMM Do, YYYY, h:mma")}
+                  {dayjs(this.props.date).format("MMM Do, YYYY, h:mma")}
                 </h4>
               </div>
             </div>

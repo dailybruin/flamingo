@@ -1,8 +1,14 @@
 import React from "react";
 import App from "next/app";
-import * as moment from "moment";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import updateLocale from "dayjs/plugin/updateLocale";
 
 import style from "style.css";
+dayjs.extend(utc);
+dayjs.extend(localizedFormat);
+dayjs.extend(updateLocale);
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -19,7 +25,7 @@ class MyApp extends App {
 
   componentWillMount() {
     // Custom Date Formats
-    moment.updateLocale("en", {
+    dayjs.updateLocale("en", {
       monthsShort: [
         "Jan.",
         "Feb.",
