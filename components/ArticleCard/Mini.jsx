@@ -5,7 +5,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
-import * as moment from "moment";
+import dayjs from "dayjs";
 
 export default function Mini(props) {
   return (

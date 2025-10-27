@@ -2,7 +2,9 @@ import * as React from "react";
 import Link from "next/link";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
-import moment from "moment";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 import { renderCategories, renderAuthors } from "./utilities";
 import * as globals from "../globals";
@@ -225,7 +227,7 @@ export default class Article extends React.Component {
                   line-height: 15px;
                 `}
               >
-                {moment.utc(this.props.date).format("MMM D, YYYY h:mm a")}
+                {dayjs.utc(this.props.date).format("MMM D, YYYY h:mm a")}
               </h4>
             </div>
           </div>

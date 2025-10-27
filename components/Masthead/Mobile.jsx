@@ -5,7 +5,7 @@ import Head from "next/head";
 
 import * as globals from "../globals";
 
-import moment from "moment";
+import dayjs from "dayjs";
 
 import logo from "./dailybruin.svg";
 import menuIcon from "./menu.svg";
@@ -40,7 +40,7 @@ export default class Mobile extends React.Component {
   }
 
   render() {
-    let date = moment();
+    let date = dayjs();
     let renderedCategories = [];
     if (this.props.categories != null) {
       for (let i = 0; i < this.props.categories.length; i++) {
