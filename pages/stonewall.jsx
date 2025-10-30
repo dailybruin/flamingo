@@ -12,30 +12,53 @@ const Stonewall = () => {
   const [stones, setStones] = useState([]);
   /* openStone stores the index of the open stone, null if none is open */
   const [openStone, setOpenStone] = useState(null);
+  const [counts, setCounts] = useState([]);
 
   const toggleStone = i => {
     setOpenStone(openStone === i ? null : i);
   };
 
   useEffect(() => {
-    fetch(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_pSjFbLe53S0TbEI_7BL_X9TqdTTB2AHRib0pu1FzP20QG6J6D6jOevX7A0-uld9V62hdPEUU2E6J/pub?output=tsv"
-    )
-      .then(x => x.text())
-      .then(x => {
-        var array = x.split("\r\n");
-        let result = [];
-        let headers = array[0].split("\t");
-        for (let i = 1; i < array.length; i++) {
+    const cardsUrl =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-l0-cWZUa-FSwFddk-gn0mDEa1J07K3AOwmRXeSjP-fxVDgLJV1iAPwXtC4DHyPomaBGRHMP6MRaU/pub?gid=0&single=true&output=tsv";
+    const countsUrl =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-l0-cWZUa-FSwFddk-gn0mDEa1J07K3AOwmRXeSjP-fxVDgLJV1iAPwXtC4DHyPomaBGRHMP6MRaU/pub?gid=1601951465&single=true&output=tsv";
+
+    Promise.all([
+      fetch(cardsUrl).then(res => res.text()),
+      fetch(countsUrl).then(res => res.text())
+    ])
+      .then(([cardsText, countsText]) => {
+        // Parse card data
+        const cardsArray = cardsText.split("\r\n");
+        const headers = cardsArray[0].split("\t");
+        const stonesResult = cardsArray.slice(1).map(line => {
+          const str = line.split("\t");
           let obj = {};
-          let str = array[i].split("\t");
-          for (let j in headers) {
-            obj[headers[j]] = str[j].trim();
-          }
-          result.push(obj);
-        }
-        setStones(result);
-      });
+          headers.forEach((header, i) => {
+            obj[header] = str[i]?.trim();
+          });
+          return obj;
+        });
+
+        setStones(stonesResult);
+
+        // Parse counts
+        const countsArray = countsText.split("\r\n");
+        const countHeaders = countsArray[0].split("\t");
+        const countsResult = countsArray.slice(1).map(line => {
+          const str = line.split("\t");
+          let obj = {};
+          countHeaders.forEach((header, i) => {
+            obj[header] = str[i]?.trim();
+          });
+          return obj;
+        });
+
+        setCounts(countsResult);
+        console.log(countsResult);
+      })
+      .catch(err => console.error("Error fetching sheets:", err));
   }, []);
 
   return (
@@ -292,9 +315,7 @@ const Stonewall = () => {
           </div>
 
           <div id="note">
-            <p>
-              Click on a stone below to expand and read the full details.
-            </p>
+            <p>Click on a stone below to expand and read the full details.</p>
           </div>
 
           <ul id="stonewall" className="accordion" data-accordion>
@@ -316,7 +337,9 @@ const Stonewall = () => {
                     </div>
 
                     <div id={`panel${i}a`} className="content stone-desc">
-                      {data.Description != "" ? data.Description : "No description."}
+                      {data.Description != ""
+                        ? data.Description
+                        : "No description."}
                     </div>
                   </li>
                 );
