@@ -1,8 +1,9 @@
-const withImages = require("next-images");
-
-module.exports = withImages({
-  swcMinify: true, // Enable SWC-based minification
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  swcMinify: true, // keep minification
   images: {
-    disableStaticImages: true,
+    domains: ["wp.dailybruin.com"], // whitelist your WordPress CDN
   },
-});
+};
+
+module.exports = nextConfig;

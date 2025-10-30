@@ -2,6 +2,7 @@ import React from 'react';
 import css from '../../layouts/style.module.css';
 import ReactMarkdown from 'react-markdown';
 import Media from 'react-media';
+import Image from "next/image";
 
 
 function ContainerItem(props) {
@@ -27,7 +28,15 @@ function ContainerItem(props) {
         return (
             <div className={css['row']}>
                 <div className={css['center-img-col']}>
-                    <img className={css['center-photo']} src={props.img_url} alt='gallery-image'></img>
+                    <div className={css["center-photo-wrapper"]}>
+                       <Image
+                           src={props.img_url}
+                           alt="gallery-image"
+                           fill
+                           sizes="(max-width: 768px) 100vw, 800px"
+                           loading="lazy"
+                       />
+                   </div>
                     {/* <div className={css['caption']}> {props.description}</div> 
                 we elect not to have a caption if it's center photo */}
                     <p className={css['credits']}> {props.credits} </p>
@@ -81,17 +90,34 @@ function ContainerItem(props) {
             return (
                 <div className={css['row']}>
                     <div className={css['caption']}> <ReactMarkdown children={props.description} /> </div>
-                    <div className={css['img-col']}>
-                        <img className={css['image']} src={props.img_url} alt='gallery-image'></img>
+                        <div className={css['img-col']}>
+                        <div className={css['image-wrapper']}>
+                            <Image
+                            src={props.img_url}
+                            alt="gallery-image"
+                            fill
+                            sizes="(max-width: 768px) 50vw, 400px"
+                            loading="lazy"
+                            />
+                        </div>
+                        </div>
                         <p className={css['credits']} style={cred_style}> {props.credits} </p>
                     </div>
-                </div>
             );
         } else {
             return (
                 <div className={css['row']}>
                     <div className={css['img-col']}>
-                        <img className={css['image']} src={props.img_url} alt='gallery-image'></img>
+                        <div className={css['image-wrapper']}>
+                            <Image
+                                src={props.img_url}
+                                alt="gallery-image"
+                                fill
+                                sizes="(max-width: 768px) 50vw, 400px"
+                                loading="lazy"
+                            />
+                            </div>
+
                         <p className={css['credits']}> {props.credits} </p>
                     </div>
                     <div className={css['caption']}> <ReactMarkdown children={props.description} /> </div>
@@ -102,7 +128,16 @@ function ContainerItem(props) {
     } else if (props.type == 'big-center-photo') {
         return (
             <div>
-                <img className={css['big-center-photo']} src={props.img_url} alt='big-center-photo'></img>
+                <div className={css["big-center-photo-wrapper"]}>
+               <Image
+                   src={props.img_url}
+                   alt="big-center-photo"
+                   fill
+                   sizes="(max-width: 768px) 100vw, 1000px"
+                   loading="lazy"
+                   priority={props.index === 0}   // optional: hero image
+               />
+           </div>
                 <p className={css['credits']}> {props.credits} </p>
             </div>
         )
