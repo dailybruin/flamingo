@@ -240,8 +240,9 @@ export default class SectionHeader extends React.Component {
               @media (max-width: 600px) {
                 text-align: center;
                 a { 
-                  display: block;
-                  margin: 4px 0;
+                  display: inline-block;
+                  margin: 4px 8px;
+                  white-space: normal;
                 } 
               }
             `}
