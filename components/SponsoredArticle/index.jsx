@@ -10,6 +10,7 @@ import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
 import Logo from "./dailybruin.svg";
+import Image from "next/image";
 
 export default class FeatureArticle extends React.Component {
   constructor(props) {
@@ -42,16 +43,18 @@ export default class FeatureArticle extends React.Component {
     for (let author of this.props.authors) {
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
-          <img
+          <Image
             src={author.avatar_urls[96]}
-            css={css`
-              height: 48px;
-              width: 48px;
-              border-radius: 50%;
-              display: inline-block;
-              margin-right: 10px;
-              vertical-align: middle;
-            `}
+            alt={author.name || "Author"}
+            width={48}
+            height={48}
+            style={{
+              borderRadius: "50%",
+              display: "inline-block",
+              marginRight: "10px",
+              verticalAlign: "middle",
+            }}
+            loading="lazy"
           />
         </a>
       );
@@ -65,15 +68,20 @@ export default class FeatureArticle extends React.Component {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         `}
       >
-        <img
-          css={css`
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-            padding: 15px;
-            height: 68px;
-          `}
+        <Image
           src={Logo}
+          alt="Daily Bruin"
+          width={200}
+          height={68}
+          style={{
+            marginLeft: "auto",
+            marginRight: "auto",
+            display: "block",
+            padding: "15px",
+            height: "68px",
+            width: "auto",
+          }}
+          priority
         />
         <div
           css={css`

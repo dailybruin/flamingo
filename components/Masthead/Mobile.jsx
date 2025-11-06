@@ -41,6 +41,9 @@ export default class Mobile extends React.Component {
 
   render() {
     let date = dayjs();
+    const prankdIcon = require("./prankd.svg");
+    const logoSrc =
+      date.date() == 1 && date.month() == 3 ? prankdIcon : logo;
     let renderedCategories = [];
     if (this.props.categories != null) {
       for (let i = 0; i < this.props.categories.length; i++) {
@@ -108,7 +111,7 @@ export default class Mobile extends React.Component {
             onClick={this.toggleMenu}
           >
             <img
-              src={menuIcon}
+            src={(menuIcon && menuIcon.src) || menuIcon}
               css={css`
                 height: 100%;
                 background-color: white;
@@ -133,11 +136,7 @@ export default class Mobile extends React.Component {
               `}
             >
               <img
-                src={
-                  date.date() == 1 && date.month() == 3
-                    ? require("./prankd.svg")
-                    : logo
-                }
+                src={(logoSrc && logoSrc.src) || logoSrc}
                 css={css`
                   display: inline-block;
                   height: 100%;
@@ -235,7 +234,7 @@ export default class Mobile extends React.Component {
                     outline: none;
                     display: none;
                     background-color: #000;
-                    background-image: url(${minisearchIcon});
+                  background-image: url(${(minisearchIcon && minisearchIcon.src) || minisearchIcon});
                     background-repeat: no-repeat;
                     background-size: 24px;
                     background-position: 6px;
@@ -281,7 +280,7 @@ export default class Mobile extends React.Component {
                       transition-delay: 100ms;
                       height: 100%;
                     `}
-                    src={searchIcon}
+                    src={(searchIcon && searchIcon.src) || searchIcon}
                   ></img>
                 </div>
               </form>

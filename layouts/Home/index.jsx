@@ -93,7 +93,8 @@ export default class HomeLayout extends React.Component {
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.cards.c1ArticleCard, {
-                        displayType: "full"
+                        displayType: "full",
+                        priority: true
                       })}
                     </div>
                     <div id="c2" className={css.card}>
@@ -261,7 +262,8 @@ export default class HomeLayout extends React.Component {
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.cards.c1ArticleCard, {
-                        displayType: "full"
+                        displayType: "full",
+                        priority: true
                       })}
                     </div>
                     <div id="c2" className={css.card}>
@@ -383,7 +385,8 @@ export default class HomeLayout extends React.Component {
                     >
                       <div id="c1" className={css.card}>
                         {React.cloneElement(this.cards.c1ArticleCard, {
-                          displayType: "full"
+                          displayType: "full",
+                          priority: true
                         })}
                       </div>
                       <div id="c2" className={css.card}>

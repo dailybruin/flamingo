@@ -2,6 +2,7 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
+import Image from "next/image";
 
 export default class Photo extends React.Component {
   constructor(props) {
@@ -38,19 +39,16 @@ export default class Photo extends React.Component {
               }
             `}
           >
-            <img
+            <Image
               src={this.props.image}
-              css={css`
-                max-width: 100%;
-                display: block;
-                max-height: 80vh;
-                min-height: 200px;
-                @media (max-width: 800px) {
-                  max-height: initial;
-                  min-height: initial;
-                }
-              `}
-            ></img>
+              alt={this.props.caption || "Gallery photo"}
+              width={1200}
+              height={800}
+              layout="intrinsic"
+              sizes="(max-width: 800px) 100vw, 80vw"
+              loading="lazy"
+              style={{ maxWidth: "100%", display: "block", maxHeight: "80vh", minHeight: "200px", height: "auto" }}
+            />
           </div>
         </div>
         <div

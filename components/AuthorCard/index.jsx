@@ -4,6 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import emailImage from "./mail.svg";
 import twitterImage from "./twitter.svg";
+import Image from "next/image";
 
 function SocialCircle(props) {
   return (
@@ -23,18 +24,12 @@ function SocialCircle(props) {
           }
         `}
       >
-        <img
-          css={css`
-            width: 36px;
-            padding: 8px;
-            height: auto;
-            @media (max-width: 600px) {
-              width: 24px;
-              height: 24px;
-              padding: 6px;
-            }
-          `}
+        <Image
           src={props.image}
+          alt="Social icon"
+          width={36}
+          height={36}
+          style={{ padding: 8 }}
         />
       </div>
     </a>
@@ -65,15 +60,13 @@ export default class AuthorCard extends React.Component {
               margin: 5px 15px;
             `}
           >
-            <img
-              css={css`
-                border-radius: 50%;
-                max-width: 120px;
-                @media (max-width: 600px) {
-                  max-width: 60px;
-                }
-              `}
+            <Image
               src={this.props.image}
+              alt={this.props.name || "Author"}
+              width={120}
+              height={120}
+              style={{ borderRadius: "50%", maxWidth: "120px", height: "auto" }}
+              loading="lazy"
             />
             <div
               css={css`

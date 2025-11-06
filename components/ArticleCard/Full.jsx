@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 export default function Full(props) {
   return (
@@ -74,13 +75,16 @@ export default function Full(props) {
                 : "normal"
           }}
           dangerouslySetInnerHTML={{ __html: props.headline }}
-        />
-        <img
-          css={css`
-            width: 100%;
-            margin: auto;
-          `}
+        /> 
+        <Image
           src={props.imageurl}
+          alt={props.title || "Article image"}
+          width={1200}
+          height={675}
+          layout="responsive"
+          sizes="100vw"
+          priority={props.priority}
+          style={{ width: "100%", height: "auto" }}
         />
         <div
           css={css`

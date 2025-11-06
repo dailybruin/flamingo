@@ -4,6 +4,7 @@ import Link from "next/link";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as utilities from "./utilities";
+import Image from "next/image";
 
 export default function PhotoCard(props) {
   return (
@@ -30,14 +31,16 @@ export default function PhotoCard(props) {
               }
             `}
           >
-            <img
+            <Image
               src={props.image}
-              css={css`
-                display: block;
-                width: 100%;
-                border: 15px solid #ffffff;
-              `}
-            ></img>
+              alt={props.headline || "Photo"}
+              width={1200}
+              height={800}
+              layout="intrinsic"
+              sizes="100vw"
+              loading="lazy"
+              style={{ display: "block", width: "100%", border: "15px solid #ffffff" }}
+            />
             <div
               id="overlay"
               css={css`
@@ -145,15 +148,16 @@ export default function PhotoCard(props) {
               box-shadow: ${globals.cardShadow};
             `}
           >
-            <img
+            <Image
               src={props.image}
-              css={css`
-                box-sizing: border-box;
-                display: block;
-                width: 100%;
-                padding: 15px 15px 0;
-              `}
-            ></img>
+              alt={props.headline || "Photo"}
+              width={1200}
+              height={800}
+              layout="intrinsic"
+              sizes="100vw"
+              loading="lazy"
+              style={{ boxSizing: "border-box", display: "block", width: "100%", padding: "15px 15px 0" }}
+            />
             <div
               id="text"
               css={css`

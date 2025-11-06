@@ -3,6 +3,7 @@ import Link from "next/link";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
+import Image from "next/image";
 
 export default class Photo extends React.Component {
   constructor(props) {
@@ -36,14 +37,16 @@ export default class Photo extends React.Component {
                   }
                 `}
               >
-                <img
+                <Image
                   src={this.props.image}
-                  css={css`
-                    display: block;
-                    width: 100%;
-                    border: 15px solid #ffffff;
-                  `}
-                ></img>
+                  alt={this.props.headline || "Photo"}
+                  width={1200}
+                  height={800}
+                  layout="intrinsic"
+                  sizes="100vw"
+                  loading="lazy"
+                  style={{ display: "block", width: "100%", border: "15px solid #ffffff" }}
+                />
                 <div
                   id="overlay"
                   css={css`
@@ -147,15 +150,16 @@ export default class Photo extends React.Component {
                   box-shadow: ${globals.cardShadow};
                 `}
               >
-                <img
+                <Image
                   src={this.props.image}
-                  css={css`
-                    box-sizing: border-box;
-                    display: block;
-                    width: 100%;
-                    padding: 15px 15px 0;
-                  `}
-                ></img>
+                  alt={this.props.headline || "Photo"}
+                  width={1200}
+                  height={800}
+                  layout="intrinsic"
+                  sizes="100vw"
+                  loading="lazy"
+                  style={{ boxSizing: "border-box", display: "block", width: "100%", padding: "15px 15px 0" }}
+                />
                 <div
                   id="text"
                   css={css`

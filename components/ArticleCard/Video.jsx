@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 export default function Video(props) {
   return (
@@ -28,16 +29,12 @@ export default function Video(props) {
             position: relative;
           `}
         >
-          <img
+          <Image
             src={props.imageurl}
-            css={css`
-              object-fit: cover;
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            `}
+            alt={props.title || "Video thumbnail"}
+            layout="fill"
+            objectFit="cover"
+            loading="lazy"
           />
         </div>
       </a>

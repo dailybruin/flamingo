@@ -67,7 +67,7 @@ export default function ShareButtons(props) {
           background-color: #3b5998;
         `}
       >
-        <img src={facebook} />
+        <img src={(facebook && facebook.src) || facebook} width={16} height={16} loading="lazy" />
         <span>Facebook</span>
       </a>
       <a
@@ -80,7 +80,7 @@ export default function ShareButtons(props) {
           background-color: #1da1f2;
         `}
       >
-        <img src={twitter} />
+        <img src={(twitter && twitter.src) || twitter} width={16} height={16} loading="lazy" />
         <span>Twitter</span>
       </a>
       <a
@@ -93,7 +93,7 @@ export default function ShareButtons(props) {
           background-color: #ff5700;
         `}
       >
-        <img src={reddit} />
+        <img src={(reddit && reddit.src) || reddit} width={16} height={16} loading="lazy" />
         <span>Reddit</span>
       </a>
       <a
@@ -106,7 +106,7 @@ export default function ShareButtons(props) {
           background-color: #b23121;
         `}
       >
-        <img src={mail} />
+        <img src={(mail && mail.src) || mail} width={16} height={16} loading="lazy" />
         <span>Email</span>
       </a>
     </div>

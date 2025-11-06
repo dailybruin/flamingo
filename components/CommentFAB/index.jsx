@@ -52,7 +52,7 @@ export default class CommentFAB extends React.Component {
         `}
       >
         <img
-          src={comment}
+          src={(comment && comment.src) || comment}
           css={css`
             display: block;
             width: 24px;

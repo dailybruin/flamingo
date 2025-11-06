@@ -10,6 +10,12 @@ import logo from "./dailybruin.svg";
 import menuIcon from "./menu.svg";
 import searchIcon from "./search.svg";
 import minisearchIcon from "./minisearch.svg";
+import facebookIcon from "./facebook.svg";
+import twitterIcon from "./twitter.svg";
+import instagramIcon from "./instagram.svg";
+import mailIcon from "./mail.svg";
+import youtubeIcon from "./youtube.png";
+import Image from "next/image";
 
 let expandedHeight = "106px";
 let collapsedHeight = "60px";
@@ -183,13 +189,16 @@ export default class Desktop extends React.Component {
                 }
               `}
             >
-              <img
-                src={logo}
-                css={css`
-                  display: inline-block;
-                  height: 100%;
-                `}
-              ></img>
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  style={{
+                    display: "inline-block",
+                    height: "100%",
+                    width: "auto",  
+                  }}
+                  priority
+                />
             </a>
           </div>
           <div
@@ -262,35 +271,35 @@ export default class Desktop extends React.Component {
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./facebook.svg")} />
+                    <img src={(facebookIcon && facebookIcon.src) || facebookIcon} />
                   </a>
                   <a
                     href="https://www.twitter.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./twitter.svg")} />
+                    <img src={(twitterIcon && twitterIcon.src) || twitterIcon} />
                   </a>
                   <a
                     href="https://www.instagram.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./instagram.svg")} />
+                    <img src={(instagramIcon && instagramIcon.src) || instagramIcon} />
                   </a>
                   <a
                     href="http://eepurl.com/cFEiZX"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./mail.svg")} />
+                    <img src={(mailIcon && mailIcon.src) || mailIcon} />
                   </a>
                   <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={require("./youtube.png")} />
+                    <img src={(youtubeIcon && youtubeIcon.src) || youtubeIcon} />
                   </a>
                 </div>
                 <a href="/advertise">Advertise</a>
@@ -365,7 +374,7 @@ export default class Desktop extends React.Component {
                       outline: none;
                       display: none;
                       background-color: #000;
-                      background-image: url(${minisearchIcon});
+                      background-image: url(${(minisearchIcon && minisearchIcon.src) || minisearchIcon});
                       background-repeat: no-repeat;
                       background-size: 24px;
                       background-position: 6px;
@@ -410,7 +419,7 @@ export default class Desktop extends React.Component {
                         width: 36px;
                         height: 36px;
                       `}
-                      src={searchIcon}
+                      src={(searchIcon && searchIcon.src) || searchIcon}
                     ></img>
                   </div>
                 </form>

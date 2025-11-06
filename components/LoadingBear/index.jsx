@@ -2,6 +2,7 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
+import Image from "next/image";
 
 import loadingbear from "./loadingbear.png";
 
@@ -14,11 +15,12 @@ export default function LoadingBear(props) {
         margin: 10px auto;
       `}
     >
-      <img
-        css={css`
-          width: 200px;
-        `}
+      <Image
         src={loadingbear}
+        alt="Loading"
+        width={200}
+        height={200}
+        style={{ width: "200px", height: "auto" }}
       />
       <p
         css={css`

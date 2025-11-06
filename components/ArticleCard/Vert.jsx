@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 export default function Vert(props) {
   return (
@@ -19,12 +20,14 @@ export default function Vert(props) {
       className="vert"
     >
       <a href={props.as} style={{ textDecoration: "none" }}>
-        <img
-          css={css`
-            width: 100%;
-            margin: auto;
-          `}
+        <Image
           src={props.imageurl}
+          alt={props.title || "Article image"}
+          width={1200}
+          height={675}
+          layout="intrinsic"
+          sizes="100vw"
+          loading="lazy"
         />
       </a>
       <h4

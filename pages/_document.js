@@ -11,6 +11,16 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* Preconnect critical origins for faster LCP */}
+          <link rel="preconnect" href="https://wp.dailybruin.com" crossOrigin="" />
+          <link rel="preconnect" href="https://dailybruin.com" crossOrigin="" />
+          <link rel="preconnect" href="https://secure.gravatar.com" crossOrigin="" />
+          <link rel="preconnect" href="https://gravatar.com" crossOrigin="" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+          <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
+          <link rel="preconnect" href="https://static.chartbeat.com" crossOrigin="" />
+          <link rel="preconnect" href="https://cdn.broadstreetads.com" crossOrigin="" />
           <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -123,10 +133,10 @@ class MyDocument extends Document {
             strategy="afterInteractive"
           />
 
-          {/* Broadstreet Ads */}
+          {/* Broadstreet Ads - defer to avoid blocking LCP */}
           <Script
             src="https://cdn.broadstreetads.com/init-2.min.js"
-            strategy="beforeInteractive"
+            strategy="afterInteractive"
           />
         </Head>
         <body>
