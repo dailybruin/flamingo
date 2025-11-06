@@ -5,6 +5,7 @@ import Head from "next/head";
 import SectionHeader from "../../../components/SectionHeader";
 import WestwordleLogo from "../../../components/GamesCard/WestWordLogoCropped.png"; 
 import WhackaBruinLogo from "../../../components/GamesCard/WhackABruinLogo.png"; 
+import CrosswordLogo from "../../../components/GamesCard/CrosswordLogo.png"
 import PhotoCard from "../../../components/PhotoCard"; 
 
 const GamesIndex = () => {
@@ -17,17 +18,25 @@ const GamesIndex = () => {
         <SectionHeader category={"Games"} />
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", gap: "40px", marginTop: "50px" }}>
-        
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: "40px",
+        marginTop: "50px",
+        padding: "0 20px",
+        maxWidth: "1200px",
+        margin: "50px auto 0"
+      }}>
         <PhotoCard
-          headline="Westwordle"
-          href="/category/games/westwordle"
-          as="/category/games/westwordle"
-          link="/category/games/westwordle"
-          image={WestwordleLogo} 
-
-          excerpt="Guess the Daily Bruin-themed word in 6 tries."
-          authors={[{ "display_name": "Daily Bruin Games Team" }]}
+          headline="Crossword"
+          href="/category/games/crossword"
+          as="/category/games/crossword"
+          link="/category/games/crossword"
+          image={CrosswordLogo} 
+          excerpt="Solve today's crossword puzzle!"
+          authors={[
+            { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
+          ]}
         />
 
         <PhotoCard
@@ -37,13 +46,21 @@ const GamesIndex = () => {
           link="/category/games/whack-a-bruin"
           image={WhackaBruinLogo} 
           excerpt="Whack the Bruins and beat your high score!"
-
           authors={[
             { "display_name": "Johnny Zheng", "user_nicename": "JohnnyZheng" },
             { "display_name": "Hillary Nguyen", "user_nicename": "HNguyen" },
             { "display_name": "Aileen Chen", "user_nicename": "AChen" }
           ]}
+        />
 
+        <PhotoCard
+          headline="Westwordle"
+          href="/category/games/westwordle"
+          as="/category/games/westwordle"
+          link="/category/games/westwordle"
+          image={WestwordleLogo} 
+          excerpt="Guess the Daily Bruin-themed word in 6 tries."
+          authors={[{ "display_name": "Daily Bruin Games Team" }]}
         />
       </div>
     </>

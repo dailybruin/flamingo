@@ -5,18 +5,24 @@ import { useState, useEffect } from "react";
 
 import Westwordle from "./WestWordLogoCropped.png"
 import WhackABruinLogo from "./WhackABruinLogo.png";
+import CrosswordLogo from "./CrosswordLogo.png"
 
 export default function GamesCard(props) {
-    // Alternate between westworldle and whack-a-bruin logos every day
-    // For future devs (if we have more than 2 games), maybe make cycling automatic
     const [selectedLogo, setSelectedLogo] = useState(null);
 
     useEffect(() => {
+        // Array of all game logos
+        const logos = [Westwordle, WhackABruinLogo, CrosswordLogo];
+        
+        // Get the day of the year (1-366)
         const today = new Date();
-        const isEvenDay = today.getDate() % 2 === 0;
-        const logo = isEvenDay ? Westwordle : WhackABruinLogo;
-
-        setSelectedLogo(logo);
+        const start = new Date(today.getFullYear(), 0, 0);
+        const diff = today - start;
+        const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+        
+        // Use modulo to cycle through logos array
+        const logoIndex = dayOfYear % logos.length;
+        setSelectedLogo(logos[logoIndex]);
     }, []);
 
     if (!selectedLogo) return null;
