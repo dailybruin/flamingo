@@ -32,14 +32,24 @@ describe('Daily Bruin Homepage', () => {
 
   /* check if page has correct title */
   it('should have correct title', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, {
+      headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        }
+    });
     cy.title()
       .should('include', 'Daily Bruin');
   });
 
   /* check masthead and all categories */
   it('Should have a masthead', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, {
+      headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        }
+    });
 
     /* check if masthead exists */
     cy.get('#masthead')
@@ -69,7 +79,12 @@ describe('Daily Bruin Homepage', () => {
 
   /* check that all articles show up, & sponsored links */
   it('should have the ArticleGrid show up correctly', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, {
+      headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        }
+    });
 
     /* check that the ArticleGrid exists */
     cy.get('#ArticleGrid')
@@ -200,7 +215,12 @@ describe('Daily Bruin Homepage', () => {
 
   /* check that footer exists */
   it('should show the footer', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, {
+      headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        }
+    });
     
     cy.get('#footer')
       .should('exist')
