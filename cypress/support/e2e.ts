@@ -16,6 +16,11 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-Cypress.on('request:before', (req) => {
-  req.headers['User-Agent'] = 'DailyBruin-Cypress/1.0';
+const customUserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36';
+
+// Intercept all outgoing requests matching your API and add custom User-Agent
+beforeEach(() => {
+  cy.intercept('**/wp-json/**', (req) => {
+    req.headers['User-Agent'] = customUserAgent;
+  });
 });
