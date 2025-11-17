@@ -15,3 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+Cypress.on('request:before', (req) => {
+  req.headers['User-Agent'] = 'DailyBruin-Cypress/1.0';
+});
