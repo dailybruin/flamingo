@@ -131,23 +131,65 @@ class Index extends Component {
       sponsoredRes
     ] = fetchResults.map(res => res.value);
 
-    posts.aStory = await aStoryRes.json();
-    posts.bStory = await bStoryRes.json();
-    posts.c1Story = await c1StoryRes.json();
-    posts.c2Story = await c2StoryRes.json();
-    posts.dStory = await dStoryRes.json();
-    posts.eStory = await eStoryRes.json();
-    posts.gStory = await gStoryRes.json();
-    const multimediaPosts = await mmStoryRes.json();
-    posts.f1Story = await f1StoryRes.json();
-    posts.f2Story = await f2StoryRes.json();
-    posts.iStory = await iStoryRes.json();
-    posts.jStory = await jStoryRes.json();
-    posts.kStory = await kStoryRes.json();
-    posts.lStory = await lStoryRes.json();
-    posts.hStory = await hStoryRes.json();
-    const classifieds = await classifiedsRes.json();
-    const sponsored = await sponsoredRes.text();
+    // ---- SIMPLE LOGGER ----
+    const log = (label, res) => {
+      console.error(
+        `[ERROR] ${label} — status: ${res?.status}, url: ${res?.url}`
+      );
+    };
+
+    // ---- SAFE PARSERS ----
+    const safeJson = async (res, label) => {
+      try {
+        if (!res || !res.ok) {
+          log(label, res);
+          return [];
+        }
+        const type = res.headers.get("content-type") || "";
+        if (!type.includes("application/json")) {
+          log(`${label} (invalid content-type)`, res);
+          return [];
+        }
+        return await res.json();
+      } catch (err) {
+        log(`${label} (json parse error)`, res);
+        return [];
+      }
+    };
+
+    const safeText = async (res, label) => {
+      try {
+        if (!res || !res.ok) {
+          log(label, res);
+          return "";
+        }
+        return await res.text();
+      } catch (err) {
+        log(`${label} (text parse error)`, res);
+        return "";
+      }
+    };
+
+    posts.aStory = await safeJson(aStoryRes, "aStory");
+    posts.bStory = await safeJson(bStoryRes, "bStory");
+    posts.c1Story = await safeJson(c1StoryRes, "c1Story");
+    posts.c2Story = await safeJson(c2StoryRes, "c2Story");
+    posts.dStory = await safeJson(dStoryRes, "dStory");
+    posts.eStory = await safeJson(eStoryRes, "eStory");
+    posts.gStory = await safeJson(gStoryRes, "gStory");
+
+    const multimediaPosts = await safeJson(mmStoryRes, "multimedia");
+
+    posts.f1Story = await safeJson(f1StoryRes, "f1Story");
+    posts.f2Story = await safeJson(f2StoryRes, "f2Story");
+    posts.iStory = await safeJson(iStoryRes, "iStory");
+    posts.jStory = await safeJson(jStoryRes, "jStory");
+    posts.kStory = await safeJson(kStoryRes, "kStory");
+    posts.lStory = await safeJson(lStoryRes, "lStory");
+    posts.hStory = await safeJson(hStoryRes, "hStory");
+
+    const classifieds = await safeJson(classifiedsRes, "classifieds");
+    const sponsored = await safeText(sponsoredRes, "sponsored");
 
     // Filter posts necessary keys (reduces data sent to user's browser)
 
