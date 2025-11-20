@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PageWrapper from "../layouts/PageWrapper";
 import Error from "next/error";
 import { Config } from "../config.js";
@@ -50,16 +50,114 @@ const ArticleAdStyle = {
   textTransform: "uppercase"
 };
 
-class Index extends Component {
-  constructor(props) {
-    super(props);
+function Index({ posts, multimediaPosts, classifieds, sponsored }) {
+  const [showNewsletterPopUp, setShowNewsletterPopUp] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
 
-    this.state = {
-      showNewsletterPopUp: false,
-      showWelcome: false
-    };
-  }
-  static async getInitialProps(context) {
+  useEffect(() => {
+    if (Cookies.get("subscribed2newsletter") === undefined) {
+      let visits = Cookies.get("newsletterVisits");
+      if (visits === undefined) {
+        Cookies.set("newsletterVisits", "0", { expires: 365 });
+      } else {
+        visits = parseInt(visits) + 1;
+        if (visits >= 5) {
+          displayNewsletterPopup();
+          Cookies.set("newsletterVisits", "0", { expires: 365 });
+        } else {
+          Cookies.set("newsletterVisits", visits.toString(), { expires: 365 });
+        }
+      }
+    }
+    if (Cookies.get("visited") === undefined) {
+      setShowNewsletterPopUp(true);
+      Cookies.set("visited", "true", { expires: 365 });
+    }
+  }, []);
+
+  const subscribeToNewsletter = () => {
+    Cookies.set("subscribed2newsletter", "true", { expires: 365 });
+  };
+
+  const displayNewsletterPopup = () => {
+    setShowNewsletterPopUp(true);
+  };
+
+  const closeNewsletterPopup = () => {
+    setShowNewsletterPopUp(false);
+  };
+
+  const removeCookies = () => {
+    Cookies.remove("subscribed2newsletter");
+    Cookies.remove("newsletterVisits");
+    Cookies.remove("visited");
+  };
+
+  return (
+    <>
+      <Head>
+        <title>{`Daily Bruin - Since 1919`}</title>
+        <meta
+          name="description"
+          content="UCLA's independent, student-run newspaper"
+        />
+        <link rel="canonical" href="https://dailybruin.com/" />
+        <meta
+          property="og:image"
+          content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
+        />
+        <meta
+          property="twitter:image"
+          content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
+        />
+        <meta property="og:url" content="https://dailybruin.com" />
+        <meta property="og:title" content="The Daily Bruin" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Daily Bruin" />
+        <meta
+          property="og:description"
+          content="UCLA's independent, student-run newspaper"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="fb:pages" content="47311244274" />
+        <meta name="twitter:title" content="Daily Bruin - Since 2020" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@dailybruin" />
+        <meta name="twitter:creator" content="@dailybruin" />
+        <meta
+          name="twitter:description"
+          content="UCLA's independent, student-run newspaper"
+        />
+        <meta
+          name="robots"
+          content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
+      </Head>
+      <HomeLayout
+        posts={posts}
+        media={multimediaPosts}
+        classifieds={classifieds.map(c => {
+          return {
+            category: {
+              name: c._embedded["wp:term"][1][0].name,
+              url: c._embedded["wp:term"][1][0].link
+            },
+            content: { name: c.content.rendered, url: c.link }
+          };
+        })}
+        sponsoredLinks={sponsored.replace("null", "")}
+      />
+      {showNewsletterPopUp ? (
+        <EmailPopUp
+          sub2Newsletter={subscribeToNewsletter}
+          close={closeNewsletterPopup}
+        />
+      ) : null}
+    </>
+  );
+}
+
+Index.getInitialProps = async (context) => {
     const posts = {};
     const fetchPromises = [
       fetch(
@@ -226,111 +324,6 @@ class Index extends Component {
     }
 
     return { posts, multimediaPosts, classifieds, sponsored };
-  }
-
-  componentDidMount() {
-    if (Cookies.get("subscribed2newsletter") === undefined) {
-      let visits = Cookies.get("newsletterVisits");
-      if (visits === undefined) {
-        Cookies.set("newsletterVisits", "0", { expires: 365 });
-      } else {
-        visits = parseInt(visits) + 1;
-        if (visits >= 5) {
-          this.displayNewsletterPopup();
-          Cookies.set("newsletterVisits", "0", { expires: 365 });
-        } else {
-          Cookies.set("newsletterVisits", visits.toString(), { expires: 365 });
-        }
-      }
-    }
-    if (Cookies.get("visited") === undefined) {
-      this.setState({ showNewsletterPopUp: true });
-      Cookies.set("visited", "true", { expires: 365 });
-    }
-  }
-
-  subscribeToNewsletter = () => {
-    Cookies.set("subscribed2newsletter", "true", { expires: 365 });
-  };
-
-  displayNewsletterPopup = () => {
-    this.setState({ showNewsletterPopUp: true });
-  };
-
-  closeNewsletterPopup = () => {
-    this.setState({ showNewsletterPopUp: false });
-  };
-
-  removeCookies = () => {
-    Cookies.remove("subscribed2newsletter");
-    Cookies.remove("newsletterVisits");
-    Cookies.remove("visited");
-  };
-
-  render() {
-    return (
-      <>
-        <Head>
-          <title>{`Daily Bruin - Since 1919`}</title>
-          <meta
-            name="description"
-            content="UCLA's independent, student-run newspaper"
-          />
-          <link rel="canonical" href="https://dailybruin.com/" />
-          <meta
-            property="og:image"
-            content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
-          />
-          <meta
-            property="twitter:image"
-            content="https://wp.dailybruin.com/images/2017/03/db-logo.png"
-          />
-          <meta property="og:url" content="https://dailybruin.com" />
-          <meta property="og:title" content="The Daily Bruin" />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="Daily Bruin" />
-          <meta
-            property="og:description"
-            content="UCLA's independent, student-run newspaper"
-          />
-          <meta property="og:locale" content="en_US" />
-          <meta property="fb:pages" content="47311244274" />
-          <meta name="twitter:title" content="Daily Bruin - Since 2020" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@dailybruin" />
-          <meta name="twitter:creator" content="@dailybruin" />
-          <meta
-            name="twitter:description"
-            content="UCLA's independent, student-run newspaper"
-          />
-          <meta
-            name="robots"
-            content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-          />
-        </Head>
-        <HomeLayout
-          posts={this.props.posts}
-          media={this.props.multimediaPosts}
-          classifieds={this.props.classifieds.map(c => {
-            return {
-              category: {
-                name: c._embedded["wp:term"][1][0].name,
-                url: c._embedded["wp:term"][1][0].link
-              },
-              content: { name: c.content.rendered, url: c.link }
-            };
-          })}
-          sponsoredLinks={this.props.sponsored.replace("null", "")}
-        />
-        {this.state.showNewsletterPopUp ? (
-          <EmailPopUp
-            sub2Newsletter={this.subscribeToNewsletter}
-            close={this.closeNewsletterPopup}
-          />
-        ) : null}
-      </>
-    );
-  }
-}
+};
 
 export default PageWrapper(Index, { isFrontPage: true });
