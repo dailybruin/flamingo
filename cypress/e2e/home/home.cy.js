@@ -25,24 +25,24 @@ describe('Daily Bruin Homepage', () => {
 
   /* check if page loads */
   it('should return 200 and load without 404', () => {
-    cy.request(homepagePath).then((response) => {
+    cy.request({ url: homepagePath, timeout: 60000, failOnStatusCode: false }).then((response) => {
       expect(response.status).to.eq(200);
     });
   });
 
   /* check if page has correct title */
   it('should have correct title', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, { timeout: 60000 });
     cy.title()
       .should('include', 'Daily Bruin');
   });
 
   /* check masthead and all categories */
   it('Should have a masthead', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, { timeout: 60000 });
 
     /* check if masthead exists */
-    cy.get('#masthead')
+    cy.get('#masthead', { timeout: 30000 })
       .should('exist')
       .within(() => {
         /* check if all categories show up */
@@ -69,10 +69,10 @@ describe('Daily Bruin Homepage', () => {
 
   /* check that all articles show up, & sponsored links */
   it('should have the ArticleGrid show up correctly', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, { timeout: 60000 });
 
     /* check that the ArticleGrid exists */
-    cy.get('#ArticleGrid')
+    cy.get('#ArticleGrid', { timeout: 30000 })
       .should('exist')
       .within(() => {
         /* check that the left, center, and right columns all exist */
@@ -200,9 +200,9 @@ describe('Daily Bruin Homepage', () => {
 
   /* check that footer exists */
   it('should show the footer', () => {
-    cy.visit(homepagePath);
+    cy.visit(homepagePath, { timeout: 60000 });
     
-    cy.get('#footer')
+    cy.get('#footer', { timeout: 30000 })
       .should('exist')
       .and('be.visible');
   });

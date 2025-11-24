@@ -136,16 +136,21 @@ function Index({ posts, multimediaPosts, classifieds, sponsored }) {
       <HomeLayout
         posts={posts}
         media={multimediaPosts}
-        classifieds={classifieds.map(c => {
-          return {
-            category: {
-              name: c._embedded["wp:term"][1][0].name,
-              url: c._embedded["wp:term"][1][0].link
-            },
-            content: { name: c.content.rendered, url: c.link }
-          };
-        })}
-        sponsoredLinks={sponsored.replace("null", "")}
+        classifieds={(classifieds || []).map(c => {
+          try {
+            return {
+              category: {
+                name: c._embedded?.["wp:term"]?.[1]?.[0]?.name || "Classified",
+                url: c._embedded?.["wp:term"]?.[1]?.[0]?.link || "#"
+              },
+              content: { name: c.content?.rendered || "", url: c.link || "#" }
+            };
+          } catch (error) {
+            console.error('Error processing classified:', error);
+            return null;
+          }
+        }).filter(Boolean)}
+        sponsoredLinks={typeof sponsored === 'string' ? sponsored.replace("null", "") : ""}
       />
       {showNewsletterPopUp ? (
         <EmailPopUp
@@ -157,57 +162,88 @@ function Index({ posts, multimediaPosts, classifieds, sponsored }) {
   );
 }
 
+// Helper function to safely parse JSON responses
+const safeJsonParse = async (response) => {
+  if (!response || !response.ok) {
+    console.error(`API Error: ${response?.status} ${response?.statusText}`);
+    return [];
+  }
+  try {
+    const text = await response.text();
+    // Check if response is HTML instead of JSON 
+      console.error('Received HTML instead of JSON from API');
+      return [];
+    }
+    return JSON.parse(text);
+  } catch (error) {
+    console.error('Failed to parse API response:', error);
+    return [];
+  }
+};
+
 Index.getInitialProps = async (context) => {
     const posts = {};
+    
+    // Add timeout to fetch requests to prevent hanging
+    const fetchWithTimeout = (url, timeout = 10000) => {
+      return Promise.race([
+        fetch(url),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Request timeout')), timeout)
+        )
+      ]);
+    };
+
     const fetchPromises = [
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${aTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${bTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${c1TAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${c2TAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${dTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${eTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${gTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=6&tags=${m1TAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f1TAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${f2TAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${iTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${jTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${kTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${lTAGID}&${Config.articleCardFields}`
       ),
-      fetch(
+      fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${hTAGID}&${Config.articleCardFields}`
       ),
-      fetch(`${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`),
-      fetch(`${Config.apiUrl}/wp-json/db/v1/links`)
+      fetchWithTimeout(`${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`),
+      fetchWithTimeout(`${Config.apiUrl}/wp-json/db/v1/links`)
     ];
+    
     const fetchResults = await Promise.allSettled(fetchPromises);
     const [
       aStoryRes,
@@ -227,99 +263,131 @@ Index.getInitialProps = async (context) => {
       hStoryRes,
       classifiedsRes,
       sponsoredRes
-    ] = fetchResults.map(res => res.value);
+    ] = fetchResults.map(res => res.status === 'fulfilled' ? res.value : null);
 
-    posts.aStory = await aStoryRes.json();
-    posts.bStory = await bStoryRes.json();
-    posts.c1Story = await c1StoryRes.json();
-    posts.c2Story = await c2StoryRes.json();
-    posts.dStory = await dStoryRes.json();
-    posts.eStory = await eStoryRes.json();
-    posts.gStory = await gStoryRes.json();
-    const multimediaPosts = await mmStoryRes.json();
-    posts.f1Story = await f1StoryRes.json();
-    posts.f2Story = await f2StoryRes.json();
-    posts.iStory = await iStoryRes.json();
-    posts.jStory = await jStoryRes.json();
-    posts.kStory = await kStoryRes.json();
-    posts.lStory = await lStoryRes.json();
-    posts.hStory = await hStoryRes.json();
-    const classifieds = await classifiedsRes.json();
-    const sponsored = await sponsoredRes.text();
+    // Safely parse each response with fallback to empty array
+    posts.aStory = await safeJsonParse(aStoryRes);
+    posts.bStory = await safeJsonParse(bStoryRes);
+    posts.c1Story = await safeJsonParse(c1StoryRes);
+    posts.c2Story = await safeJsonParse(c2StoryRes);
+    posts.dStory = await safeJsonParse(dStoryRes);
+    posts.eStory = await safeJsonParse(eStoryRes);
+    posts.gStory = await safeJsonParse(gStoryRes);
+    const multimediaPosts = await safeJsonParse(mmStoryRes);
+    posts.f1Story = await safeJsonParse(f1StoryRes);
+    posts.f2Story = await safeJsonParse(f2StoryRes);
+    posts.iStory = await safeJsonParse(iStoryRes);
+    posts.jStory = await safeJsonParse(jStoryRes);
+    posts.kStory = await safeJsonParse(kStoryRes);
+    posts.lStory = await safeJsonParse(lStoryRes);
+    posts.hStory = await safeJsonParse(hStoryRes);
+    const classifieds = await safeJsonParse(classifiedsRes);
+    
+    let sponsored = '';
+    try {
+      if (sponsoredRes && sponsoredRes.ok) {
+        sponsored = await sponsoredRes.text();
+      }
+    } catch (error) {
+      console.error('Failed to fetch sponsored links:', error);
+    }
 
     // Filter posts necessary keys (reduces data sent to user's browser)
 
     // ** Note to future devs: trying to filter using the wp fetch _fields="..." causes
     // stale data to be displayed, likely due to caching, so post-processing is required
     for (let [key, value] of Object.entries(posts)) {
+      if (!Array.isArray(value) || value.length === 0) {
+        posts[key] = [];
+        continue;
+      }
+
       for (var i=0; i<value.length; i++)
       {
-        // Reduce _embedded to necessary data
-        let filtered_embedded = {
-          'wp:featuredmedia': value[i]._embedded['wp:featuredmedia'],
-          'wp:term': value[i]._embedded['wp:term']
-        }
+        try {
+          // Reduce _embedded to necessary data
+          let filtered_embedded = {
+            'wp:featuredmedia': value[i]._embedded?.['wp:featuredmedia'] || [],
+            'wp:term': value[i]._embedded?.['wp:term'] || []
+          }
 
-        // Filter featured media
-        for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
-        {
-          filtered_embedded["wp:featuredmedia"][j] = { 
-            data: filtered_embedded["wp:featuredmedia"][j].data,
-            source_url: filtered_embedded["wp:featuredmedia"][j].source_url,
-            caption: filtered_embedded["wp:featuredmedia"][j].caption
-          };
-        }
-
-        // Filter wp:term (2D array)
-        for (var t=0; t<filtered_embedded["wp:term"].length; t++)
-        {
-          for (var cat=0; cat<filtered_embedded["wp:term"][t].length; cat++) 
-          {
-            filtered_embedded["wp:term"][t][cat] = {
-              id: filtered_embedded["wp:term"][t][cat].id,
-              link: filtered_embedded["wp:term"][t][cat].link,
-              name: filtered_embedded["wp:term"][t][cat].name,
-              slug: filtered_embedded["wp:term"][t][cat].slug,
+          // Filter featured media
+          if (Array.isArray(filtered_embedded["wp:featuredmedia"])) {
+            for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
+            {
+              filtered_embedded["wp:featuredmedia"][j] = { 
+                data: filtered_embedded["wp:featuredmedia"][j]?.data,
+                source_url: filtered_embedded["wp:featuredmedia"][j]?.source_url,
+                caption: filtered_embedded["wp:featuredmedia"][j]?.caption
+              };
             }
           }
-        }
 
-        value[i] = {
-          id: value[i].id,
-          date: value[i].date,
-          link: value[i].link,
-          slug: value[i].slug,
-          title: value[i].title,
-          coauthors: value[i].coauthors,
-          categories: value[i].categories,
-          excerpt: value[i].excerpt,
-          _links: value[i]._links,
-          tags: value[i].tags,
-          acf: value[i].acf,
-          _embedded: filtered_embedded
-        };
+          // Filter wp:term (2D array)
+          if (Array.isArray(filtered_embedded["wp:term"])) {
+            for (var t=0; t<filtered_embedded["wp:term"].length; t++)
+            {
+              if (Array.isArray(filtered_embedded["wp:term"][t])) {
+                for (var cat=0; cat<filtered_embedded["wp:term"][t].length; cat++) 
+                {
+                  filtered_embedded["wp:term"][t][cat] = {
+                    id: filtered_embedded["wp:term"][t][cat]?.id,
+                    link: filtered_embedded["wp:term"][t][cat]?.link,
+                    name: filtered_embedded["wp:term"][t][cat]?.name,
+                    slug: filtered_embedded["wp:term"][t][cat]?.slug,
+                  }
+                }
+              }
+            }
+          }
+
+          value[i] = {
+            id: value[i].id,
+            date: value[i].date,
+            link: value[i].link,
+            slug: value[i].slug,
+            title: value[i].title,
+            coauthors: value[i].coauthors,
+            categories: value[i].categories,
+            excerpt: value[i].excerpt,
+            _links: value[i]._links,
+            tags: value[i].tags,
+            acf: value[i].acf,
+            _embedded: filtered_embedded
+          };
+        } catch (error) {
+          console.error(`Error filtering post ${i} in ${key}:`, error);
+        }
       }
     }
 
     // Filter multimediaPosts to necessary data
-    for (var i=0; i<multimediaPosts.length; i++) {
-      let filtered_embedded = {
-        'wp:featuredmedia': multimediaPosts[i]._embedded["wp:featuredmedia"]
-      }
-      
-      // Filter featured media
-      for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
-      {
-        filtered_embedded["wp:featuredmedia"][j] = { 
-          source_url: filtered_embedded["wp:featuredmedia"][j].source_url
-        };
-      }
-      
-      multimediaPosts[i] = {
-        id: multimediaPosts[i].id,
-        title: multimediaPosts[i].title,
-        link: multimediaPosts[i].link,
-        _embedded: filtered_embedded
+    if (Array.isArray(multimediaPosts)) {
+      for (var i=0; i<multimediaPosts.length; i++) {
+        try {
+          let filtered_embedded = {
+            'wp:featuredmedia': multimediaPosts[i]._embedded?.["wp:featuredmedia"] || []
+          }
+          
+          // Filter featured media
+          if (Array.isArray(filtered_embedded["wp:featuredmedia"])) {
+            for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
+            {
+              filtered_embedded["wp:featuredmedia"][j] = { 
+                source_url: filtered_embedded["wp:featuredmedia"][j]?.source_url
+              };
+            }
+          }
+          
+          multimediaPosts[i] = {
+            id: multimediaPosts[i].id,
+            title: multimediaPosts[i].title,
+            link: multimediaPosts[i].link,
+            _embedded: filtered_embedded
+          }
+        } catch (error) {
+          console.error(`Error filtering multimedia post ${i}:`, error);
+        }
       }
     }
 

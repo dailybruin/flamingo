@@ -9,6 +9,9 @@ jobs:
   # Run Cypress tests
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_ENV: test
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,14 +26,22 @@ jobs:
 
       - name: Build Next.js app
         run: yarn build
+        env:
+          NODE_ENV: production
 
       - name: Start server and run Cypress
         uses: cypress-io/github-action@v6
         with:
           install: false
           start: yarn next start
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 15000
+          # Use health check endpoint instead of homepage to avoid WordPress API dependency
+          wait-on: 'http://localhost:3000/api/healthy'
+          wait-on-timeout: 120000
+          browser: chrome
+          config: pageLoadTimeout=120000,defaultCommandTimeout=20000
+        env:
+          CYPRESS_PAGE_LOAD_TIMEOUT: 120000
+          CYPRESS_DEFAULT_COMMAND_TIMEOUT: 20000
 
   # Build and deploy (only runs if tests pass)
   build-and-deploy:
