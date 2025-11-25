@@ -79,9 +79,8 @@ export default class FeatureArticle extends React.Component {
             display: "block",
             padding: "15px",
             height: "68px",
-            width: "auto",
+            width: "auto"
           }}
-          priority
         />
         <div
           css={css`

@@ -146,7 +146,7 @@ class Index extends Component {
     posts.kStory = await kStoryRes.json();
     posts.lStory = await lStoryRes.json();
     posts.hStory = await hStoryRes.json();
-    const classifieds = await classifiedsRes.json();
+    const classifiedsRaw = await classifiedsRes.json();
     const sponsored = await sponsoredRes.text();
 
     // Filter posts necessary keys (reduces data sent to user's browser)
@@ -154,27 +154,44 @@ class Index extends Component {
     // ** Note to future devs: trying to filter using the wp fetch _fields="..." causes
     // stale data to be displayed, likely due to caching, so post-processing is required
     for (let [key, value] of Object.entries(posts)) {
-      for (var i=0; i<value.length; i++)
-      {
+      for (var i = 0; i < value.length; i++) {
+        // Safely trim featured media down to only what we need for layout:
+        // source_url, caption, and media_details.width/height.
+        const rawFeatured =
+          value[i]._embedded && value[i]._embedded["wp:featuredmedia"]
+            ? value[i]._embedded["wp:featuredmedia"]
+            : [];
+
+        const trimmedFeatured = rawFeatured.map(media => ({
+          source_url: media.source_url,
+          caption: media.caption,
+          media_details:
+            media.media_details && media.media_details.width && media.media_details.height
+              ? {
+                  width: media.media_details.width,
+                  height: media.media_details.height
+                }
+              : undefined
+        }));
+
         let filtered_embedded = {
-          'wp:featuredmedia': value[i]._embedded['wp:featuredmedia'],
-          'wp:term': value[i]._embedded['wp:term']
-        }
+          "wp:featuredmedia": trimmedFeatured,
+          "wp:term": value[i]._embedded["wp:term"]
+        };
 
         // Filter wp:term (2D array)
-        for (var t=0; t<filtered_embedded["wp:term"].length; t++)
-        {
-          for (var cat=0; cat<filtered_embedded["wp:term"][t].length; cat++) 
-          {
+        for (var t = 0; t < filtered_embedded["wp:term"].length; t++) {
+          for (var cat = 0; cat < filtered_embedded["wp:term"][t].length; cat++) {
             filtered_embedded["wp:term"][t][cat] = {
               id: filtered_embedded["wp:term"][t][cat].id,
               link: filtered_embedded["wp:term"][t][cat].link,
               name: filtered_embedded["wp:term"][t][cat].name,
-              slug: filtered_embedded["wp:term"][t][cat].slug,
-            }
+              slug: filtered_embedded["wp:term"][t][cat].slug
+            };
           }
         }
 
+        // Trim each post object to only fields the frontend actually uses.
         value[i] = {
           id: value[i].id,
           date: value[i].date,
@@ -182,10 +199,7 @@ class Index extends Component {
           slug: value[i].slug,
           title: value[i].title,
           coauthors: value[i].coauthors,
-          categories: value[i].categories,
           excerpt: value[i].excerpt,
-          _links: value[i]._links,
-          tags: value[i].tags,
           acf: value[i].acf,
           _embedded: filtered_embedded
         };
@@ -193,20 +207,43 @@ class Index extends Component {
     }
 
     // Filter multimediaPosts to necessary data
-    for (var i=0; i<multimediaPosts.length; i++) {
-      // For multimedia posts, keep the full featuredmedia objects as well
-      // so we retain width/height information.
+    for (var i = 0; i < multimediaPosts.length; i++) {
+      const rawFeatured =
+        multimediaPosts[i]._embedded && multimediaPosts[i]._embedded["wp:featuredmedia"]
+          ? multimediaPosts[i]._embedded["wp:featuredmedia"]
+          : [];
+
+      const trimmedFeatured = rawFeatured.map(media => ({
+        source_url: media.source_url,
+        media_details:
+          media.media_details && media.media_details.width && media.media_details.height
+            ? {
+                width: media.media_details.width,
+                height: media.media_details.height
+              }
+            : undefined
+      }));
+
       let filtered_embedded = {
-        'wp:featuredmedia': multimediaPosts[i]._embedded["wp:featuredmedia"]
-      }
+        "wp:featuredmedia": trimmedFeatured
+      };
 
       multimediaPosts[i] = {
         id: multimediaPosts[i].id,
         title: multimediaPosts[i].title,
         link: multimediaPosts[i].link,
         _embedded: filtered_embedded
-      }
+      };
     }
+
+    // Trim classifieds data down to only what ClassifiedsCard needs
+    const classifieds = classifiedsRaw.map(c => ({
+      category: {
+        name: c._embedded["wp:term"][1][0].name,
+        url: c._embedded["wp:term"][1][0].link
+      },
+      content: { name: c.content.rendered, url: c.link }
+    }));
 
     return { posts, multimediaPosts, classifieds, sponsored };
   }
@@ -294,15 +331,7 @@ class Index extends Component {
         <HomeLayout
           posts={this.props.posts}
           media={this.props.multimediaPosts}
-          classifieds={this.props.classifieds.map(c => {
-            return {
-              category: {
-                name: c._embedded["wp:term"][1][0].name,
-                url: c._embedded["wp:term"][1][0].link
-              },
-              content: { name: c.content.rendered, url: c.link }
-            };
-          })}
+          classifieds={this.props.classifieds}
           sponsoredLinks={this.props.sponsored.replace("null", "")}
         />
         {this.state.showNewsletterPopUp ? (

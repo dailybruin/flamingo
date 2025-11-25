@@ -195,9 +195,8 @@ export default class Desktop extends React.Component {
                   style={{
                     display: "inline-block",
                     height: "100%",
-                    width: "auto",  
+                    width: "auto"
                   }}
-                  priority
                 />
             </a>
           </div>
