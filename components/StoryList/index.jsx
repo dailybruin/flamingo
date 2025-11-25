@@ -48,9 +48,9 @@ class StoryList extends React.Component {
               <Image
                 src={this.props.image.src}
                 alt={this.props.story[0]?.title || "Story image"}
-                width={1200}
-                height={675}
-                layout="intrinsic"
+                width={this.props.image.width || 1200}
+                height={this.props.image.height || 675}
+                layout="responsive"
                 sizes="100vw"
                 loading="lazy"
               />

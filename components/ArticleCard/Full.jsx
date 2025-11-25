@@ -79,12 +79,11 @@ export default function Full(props) {
         <Image
           src={props.imageurl}
           alt={props.title || "Article image"}
-          width={1200}
-          height={675}
+          width={props.imageWidth || 1200}
+          height={props.imageHeight || 675}
           layout="responsive"
           sizes="100vw"
           priority={props.priority}
-          style={{ width: "100%", height: "auto" }}
         />
         <div
           css={css`

@@ -7,6 +7,26 @@ import dayjs from "dayjs";
 
 export function buildArticleCard(story, type = "") {
   if (story != null && story != undefined && story.data == undefined) {
+    const featured =
+      story._embedded &&
+      story._embedded["wp:featuredmedia"] &&
+      !story._embedded["wp:featuredmedia"].empty
+        ? story._embedded["wp:featuredmedia"][0]
+        : null;
+
+    const imageWidth =
+      featured &&
+      featured.media_details &&
+      featured.media_details.width
+        ? featured.media_details.width
+        : 1200;
+    const imageHeight =
+      featured &&
+      featured.media_details &&
+      featured.media_details.height
+        ? featured.media_details.height
+        : 675;
+
     return (
       <ArticleCard
         displayType={type}
@@ -25,18 +45,17 @@ export function buildArticleCard(story, type = "") {
           as: `/category/${story._embedded["wp:term"][0][0].slug}`
         }}
         imageurl={
-          story._embedded["wp:featuredmedia"] != undefined &&
-          !story._embedded["wp:featuredmedia"].empty &&
-          story._embedded["wp:featuredmedia"][0].data == undefined
-            ? story._embedded["wp:featuredmedia"][0].source_url
+          featured && featured.source_url
+            ? featured.source_url
             : "http://wp.dailybruin.com/images/2017/03/db-logo.png"
         }
+        imageWidth={imageWidth}
+        imageHeight={imageHeight}
         caption={
-          story._embedded["wp:featuredmedia"] != undefined &&
-          !story._embedded["wp:featuredmedia"].empty &&
-          story._embedded["wp:featuredmedia"][0].data == undefined &&
-          story._embedded["wp:featuredmedia"][0].caption != undefined
-            ? story._embedded["wp:featuredmedia"][0].caption.rendered
+          featured &&
+          featured.caption &&
+          featured.caption.rendered != undefined
+            ? featured.caption.rendered
             : ""
         }
         acf={story.acf}
@@ -62,6 +81,27 @@ export function buildStoryList(type, list, link) {
     return;
   }
 
+  const first = list[0];
+  const featured =
+    first._embedded &&
+    first._embedded["wp:featuredmedia"] &&
+    !first._embedded["wp:featuredmedia"].empty
+      ? first._embedded["wp:featuredmedia"][0]
+      : null;
+
+  const imageWidth =
+    featured &&
+    featured.media_details &&
+    featured.media_details.width
+      ? featured.media_details.width
+      : 1200;
+  const imageHeight =
+    featured &&
+    featured.media_details &&
+    featured.media_details.height
+      ? featured.media_details.height
+      : 675;
+
   if (mappedList.length > 1) {
     mappedList[1].text = "";
   }
@@ -76,10 +116,12 @@ export function buildStoryList(type, list, link) {
       story={mappedList}
       image={{
         src:
-          list[0]._embedded["wp:featuredmedia"] != undefined
-            ? list[0]._embedded["wp:featuredmedia"][0].source_url
+          featured && featured.source_url
+            ? featured.source_url
             : "http://wp.dailybruin.com/images/2017/03/db-logo.png",
-        alt: "N/A"
+        alt: "N/A",
+        width: imageWidth,
+        height: imageHeight
       }}
       category={{
         name: list[0]._embedded["wp:term"][0][0].name,

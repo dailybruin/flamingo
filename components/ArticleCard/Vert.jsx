@@ -23,9 +23,9 @@ export default function Vert(props) {
         <Image
           src={props.imageurl}
           alt={props.title || "Article image"}
-          width={1200}
-          height={675}
-          layout="intrinsic"
+          width={props.imageWidth || 1200}
+          height={props.imageHeight || 675}
+          layout="responsive"
           sizes="100vw"
           loading="lazy"
         />

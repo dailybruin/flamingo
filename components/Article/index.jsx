@@ -143,15 +143,16 @@ export default class Article extends React.Component {
         <Image
           src={this.props.featureimg}
           alt="Feature image"
-          width={1200}
-          height={675}
+          width={this.props.featureimgWidth || 1200}
+          height={this.props.featureimgHeight || 675}
+          layout="responsive"
+          sizes="(max-width: 768px) 100vw, 1200px"
+          priority
           style={{
             width: "calc(100% + 20px)",
             margin: "10px -10px",
             objectFit: "cover",
           }}
-          sizes="(max-width: 768px) 100vw, 1200px"
-          priority
         />
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}

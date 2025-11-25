@@ -156,20 +156,9 @@ class Index extends Component {
     for (let [key, value] of Object.entries(posts)) {
       for (var i=0; i<value.length; i++)
       {
-        // Reduce _embedded to necessary data
         let filtered_embedded = {
           'wp:featuredmedia': value[i]._embedded['wp:featuredmedia'],
           'wp:term': value[i]._embedded['wp:term']
-        }
-
-        // Filter featured media
-        for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
-        {
-          filtered_embedded["wp:featuredmedia"][j] = { 
-            data: filtered_embedded["wp:featuredmedia"][j].data,
-            source_url: filtered_embedded["wp:featuredmedia"][j].source_url,
-            caption: filtered_embedded["wp:featuredmedia"][j].caption
-          };
         }
 
         // Filter wp:term (2D array)
@@ -205,18 +194,12 @@ class Index extends Component {
 
     // Filter multimediaPosts to necessary data
     for (var i=0; i<multimediaPosts.length; i++) {
+      // For multimedia posts, keep the full featuredmedia objects as well
+      // so we retain width/height information.
       let filtered_embedded = {
         'wp:featuredmedia': multimediaPosts[i]._embedded["wp:featuredmedia"]
       }
-      
-      // Filter featured media
-      for (var j=0; j<filtered_embedded["wp:featuredmedia"].length; j++)
-      {
-        filtered_embedded["wp:featuredmedia"][j] = { 
-          source_url: filtered_embedded["wp:featuredmedia"][j].source_url
-        };
-      }
-      
+
       multimediaPosts[i] = {
         id: multimediaPosts[i].id,
         title: multimediaPosts[i].title,
