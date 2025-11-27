@@ -178,26 +178,26 @@ export default class Desktop extends React.Component {
             <a
               ref={this.Logo}
               href="/"
+              style={{ position: "relative" }}
               css={css`
                 display: inline-block;
                 vertical-align: middle;
                 height: 60px;
+                width: auto;
                 padding: 8px 0;
                 transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+                aspect-ratio: 6 / 1;
                 @media (max-width: 600px) {
                   height: 24px;
                 }
               `}
             >
-                <Image
-                  src={logo}
-                  alt="Logo"
-                  style={{
-                    display: "inline-block",
-                    height: "100%",
-                    width: "auto"
-                  }}
-                />
+              <Image
+                src={logo}
+                alt="Daily Bruin Logo"
+                layout="fill"
+                style={{ objectFit: "contain" }}
+              />
             </a>
           </div>
           <div
