@@ -68,20 +68,23 @@ export default class FeatureArticle extends React.Component {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         `}
       >
-        <Image
-          src={Logo}
-          alt="Daily Bruin"
-          width={200}
-          height={68}
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            display: "block",
-            padding: "15px",
-            height: "68px",
-            width: "auto"
-          }}
-        />
+        <div
+          css={css`
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+          `}
+        >
+          {/* Image handles the content and dimensions */}
+          <Image
+            src={Logo}
+            alt="Daily Bruin"
+            width={586/2}  /* Half the svg's width */
+            height={70/2}  /* Half the svg's height */
+            layout="fixed"
+            priority 
+          />
+        </div>
         <div
           css={css`
             position: sticky;
