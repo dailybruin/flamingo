@@ -42,7 +42,7 @@ export default class SectionHeader extends React.Component {
       if (this.props.category === "Daily Bruin: In Focus") {
         return (
           <img
-            src={InFocusLogo}
+            src={InFocusLogo.src}
             css={css`
               display: inline-block;
               height: 100%;
@@ -56,7 +56,7 @@ export default class SectionHeader extends React.Component {
       else if (this.props.category === "Sponsored") {
         return (
           <img
-            src={SponsoredTitle}
+            src={SponsoredTitle.src}
             css={css`
               display: inline-block;
               height: 100%;

@@ -200,7 +200,7 @@ export default class AAPILayout extends React.Component {
           
 
           <img
-            src={DesktopLanding}
+            src={DesktopLanding.src}
             css={css`
               /* padding-top: 7%; */
               margin: auto;
@@ -211,7 +211,7 @@ export default class AAPILayout extends React.Component {
             `}
           />
           <img
-            src={MobileLanding}
+            src={MobileLanding.src}
             css={css`
               width: 100vw;
               display: none;
@@ -222,7 +222,7 @@ export default class AAPILayout extends React.Component {
           />
 
           <img
-            src={description}
+            src={description.src}
             css={css`
               //padding-top: 7%;
               margin: auto;
@@ -233,7 +233,7 @@ export default class AAPILayout extends React.Component {
             `}
           />
           <img
-            src={descriptionmobile}
+            src={descriptionmobile.src}
             css={css`
               width: 100vw;
               display: none;
@@ -291,7 +291,7 @@ export default class AAPILayout extends React.Component {
           `}
         >
           <img
-            src={storiesheader}
+            src={storiesheader.src}
             css={css`
               width: 100vw;
               @media all and (max-width: 800px) {
@@ -300,7 +300,7 @@ export default class AAPILayout extends React.Component {
             `}
           />
           <img
-            src={storiesheadermobile}
+            src={storiesheadermobile.src}
             css={css`
               width: 100vw;
               display: none;
@@ -311,10 +311,10 @@ export default class AAPILayout extends React.Component {
           />
           <div
             css={css`
-              background-image: url(${storiesbg});
+              background-image: url(${storiesbg.src});
               background-size: cover;
               @media all and (max-width: 800px) {
-                background-image: url(${storiesbgmobile});
+                background-image: url(${storiesbgmobile.src});
               }
             `}
           >
@@ -336,7 +336,7 @@ export default class AAPILayout extends React.Component {
             </div>
           </div>
           <img
-            src={relatedheader}
+            src={relatedheader.src}
             css={css`
               padding-top: 7%;
               margin: auto;
@@ -347,7 +347,7 @@ export default class AAPILayout extends React.Component {
             `}
           />
           <img
-            src={relatedheadermobile}
+            src={relatedheadermobile.src}
             css={css`
               width: 100vw;
               display: none;
@@ -358,10 +358,10 @@ export default class AAPILayout extends React.Component {
           />
           <div
             css={css`
-              background-image: url(${relatedbg});
+              background-image: url(${relatedbg.src});
               background-size: cover;
               @media all and (max-width: 800px) {
-                background-image: url(${relatedbgmobile});
+                background-image: url(${relatedbgmobile.src});
               }
             `}
           >

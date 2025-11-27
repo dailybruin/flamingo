@@ -106,7 +106,7 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
             href="/"
           >
             <img
-              src={header}
+              src={header.src}
               css={css`
                 width: 100%;
               `}
