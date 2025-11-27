@@ -41,6 +41,7 @@ export default function Mini(props) {
               layout="fill"
               objectFit="cover"
               loading="lazy"
+              sizes="30vw"
             />
           </div>
         </a>

@@ -82,7 +82,10 @@ export default function Full(props) {
           width={props.imageWidth || 1200}
           height={props.imageHeight || 675}
           layout="responsive"
-          sizes="100vw"
+          /* 
+           * Full images take up about 50% of the screen on desktop, and most of the screen on mobile.
+           */
+          sizes="(max-width: 768px) 85vw, 50vw"
           priority={props.priority}
         />
         <div

@@ -26,8 +26,8 @@ export default function Vert(props) {
           width={props.imageWidth || 1200}
           height={props.imageHeight || 675}
           layout="responsive"
-          sizes="100vw"
-          loading="lazy"
+          sizes="20vw"
+          // TODO: Make lazy loading a prop of Vert & other ArticleCards
         />
       </a>
       <h4

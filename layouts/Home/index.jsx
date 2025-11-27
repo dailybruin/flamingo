@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PageWrapper from "../PageWrapper";
-import Error from "next/error";
+import Image from "next/image";
 
 import css from "../style.module.css";
 import * as utilities from "../utilities";
@@ -104,7 +104,8 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="a" className={css.card}>
                       {React.cloneElement(this.cards.aArticleCard, {
-                        displayType: "full"
+                        displayType: "full",
+                        priority: true
                       })}
                     </div>
                     <div id="b" className={css.card}>
@@ -321,9 +322,12 @@ export default class HomeLayout extends React.Component {
                         </div>
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
-                            <img
+                            <Image
                               src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
-                              style={{ width: "100%" }}
+                              alt="Prime Magazine"
+                              width={828}
+                              height={1375}
+                              sizes="20vw"
                             />
                           </a>
                         </div>
@@ -464,9 +468,12 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div className={css.card}>
                         <a href="https://prime.dailybruin.com">
-                          <img
+                          <Image
                             src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
-                            style={{ width: "100%", height: "auto" }}
+                            alt="Prime Magazine"
+                            width={828}
+                            height={1375}
+                            sizes="20vw"
                           />
                         </a>
                       </div>

@@ -33,10 +33,10 @@ export default function GamesCard(props) {
                 <Image
                     src={selectedLogo}
                     alt="Daily Bruin Game"
-                    width={600}
-                    height={300}
+                    width={848}
+                    height={1144}
                     layout="intrinsic"
-                    sizes="100vw"
+                    sizes="20vw"
                     style={{ maxWidth: "100%", height: "auto" }}
                 />
             </div>

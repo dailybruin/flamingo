@@ -51,7 +51,10 @@ class StoryList extends React.Component {
                 width={this.props.image.width || 1200}
                 height={this.props.image.height || 675}
                 layout="responsive"
-                sizes="100vw"
+                /* 
+                * storyLists take up about 20% of the screen on desktop, and most of the screen on mobile.
+                */
+                sizes="(max-width: 768px) 85vw, 20vw"
                 loading="lazy"
               />
             </a>
