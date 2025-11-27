@@ -260,8 +260,9 @@ export default class Desktop extends React.Component {
                       height: 14px;
                     }
 
-                    & a:hover img {
-                      fill: ${globals.DBblue};
+                    /* Universal hover effect */
+                    & a:hover {
+                      opacity: 0.7;
                     }
                   `}
                 >
@@ -270,35 +271,65 @@ export default class Desktop extends React.Component {
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={(facebookIcon && facebookIcon.src) || facebookIcon} />
+                    <Image
+                      src={(facebookIcon && facebookIcon.src) || facebookIcon}
+                      alt="Facebook"
+                      width={14}
+                      height={14}
+                      layout="fixed"
+                    />
                   </a>
                   <a
                     href="https://www.twitter.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={(twitterIcon && twitterIcon.src) || twitterIcon} />
+                    <Image
+                      src={(twitterIcon && twitterIcon.src) || twitterIcon}
+                      alt="Twitter"
+                      width={14}
+                      height={14}
+                      layout="fixed"
+                    />
                   </a>
                   <a
                     href="https://www.instagram.com/dailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={(instagramIcon && instagramIcon.src) || instagramIcon} />
+                    <Image
+                      src={(instagramIcon && instagramIcon.src) || instagramIcon}
+                      alt="Instagram"
+                      width={14}
+                      height={14}
+                      layout="fixed"
+                    />
                   </a>
                   <a
                     href="http://eepurl.com/cFEiZX"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={(mailIcon && mailIcon.src) || mailIcon} />
+                    <Image
+                      src={(mailIcon && mailIcon.src) || mailIcon}
+                      alt="Newsletter"
+                      width={14}
+                      height={14}
+                      layout="fixed"
+                    />
                   </a>
                   <a
                     href="https://www.youtube.com/user/ucladailybruin"
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src={(youtubeIcon && youtubeIcon.src) || youtubeIcon} />
+                    <Image
+                      src={youtubeIcon}
+                      alt="YouTube"
+                      width={14}
+                      height={14}
+                      layout="fixed"
+                    />
                   </a>
                 </div>
                 <a href="/advertise">Advertise</a>
@@ -348,17 +379,17 @@ export default class Desktop extends React.Component {
                         padding: 0 36px 0 6px;
                         color: #fff;
                       }
-                      &:focus + input {
+                      &:focus + button {
                         display: block;
                       }
-                      &:focus + input + #Masthead__SearchIconBox {
+                      &:focus + button + #Masthead__SearchIconBox {
                         background-color: #000;
                       }
                     `}
-                  ></input>
-                  <input
+                  />
+
+                  <button
                     type="submit"
-                    value=""
                     css={css`
                       position: absolute;
                       z-index: 12;
@@ -373,13 +404,11 @@ export default class Desktop extends React.Component {
                       outline: none;
                       display: none;
                       background-color: #000;
-                      background-image: url(${(minisearchIcon && minisearchIcon.src) || minisearchIcon});
-                      background-repeat: no-repeat;
-                      background-size: 24px;
-                      background-position: 6px;
+                      
                       &:hover {
                         display: block;
                       }
+                      /* This allows the input to stay open when hovering the button */
                       &:hover ~ input {
                         width: 250px;
                         padding: 0 36px 0 6px;
@@ -390,7 +419,18 @@ export default class Desktop extends React.Component {
                         display: block;
                       }
                     `}
-                  />
+                  >
+                    {/* Placed the image INSIDE the button */}
+                    <Image
+                      src={(minisearchIcon && minisearchIcon.src) || minisearchIcon}
+                      alt="Search"
+                      width={24}
+                      height={24}
+                      layout="fixed"
+                    />
+                  </button>
+
+                  {/* 3. SEARCH TRIGGER ICON (The magnifying glass) */}
                   <div
                     css={css`
                       position: absolute;
@@ -408,7 +448,7 @@ export default class Desktop extends React.Component {
                     `}
                     onClick={this.expandSearch}
                   >
-                    <img
+                    <div 
                       id="Masthead__SearchIconBox"
                       css={css`
                         display: inline-block;
@@ -417,9 +457,20 @@ export default class Desktop extends React.Component {
                         transition-delay: 100ms;
                         width: 36px;
                         height: 36px;
+                        /* Flexbox helps center the Next Image perfectly */
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center;
                       `}
-                      src={(searchIcon && searchIcon.src) || searchIcon}
-                    ></img>
+                    >
+                      <Image
+                        src={(searchIcon && searchIcon.src) || searchIcon}
+                        alt="Expand Search"
+                        width={36}
+                        height={36}
+                        layout="fixed"
+                      />
+                    </div>
                   </div>
                 </form>
               </div>
