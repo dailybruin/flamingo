@@ -1,6 +1,7 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
+import Image from "next/image"; // 1. Import the component
 
 import * as globals from "../globals";
 
@@ -28,13 +29,21 @@ export default function Media(props) {
       >
         <div
           css={css`
-            height: 144px;
-            background: url(${props.preview});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            position: relative; /* REQUIRED for layout='fill' */
+            height: 144px;      /* Keep your fixed height */
+            width: 100%;        /* Ensure it fills the card width */
+            overflow: hidden;   /* Keeps the image contained if it zooms/moves */
           `}
-        />
+        >
+          <Image
+            src={props.preview}
+            alt="Multimedia Photo/Artwork"
+            sizes="20vw"
+            width={props.preview_width}
+            height={props.preview_height}
+          />
+        </div>
+
         <h1
           css={css`
             margin: 10px 0;

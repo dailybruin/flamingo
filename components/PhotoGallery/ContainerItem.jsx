@@ -32,7 +32,7 @@ function ContainerItem(props) {
                        <Image
                            src={props.img_url}
                            alt="gallery-image"
-                           fill
+                           layout="fill"
                            sizes="(max-width: 768px) 100vw, 800px"
                            loading="lazy"
                        />
@@ -95,7 +95,7 @@ function ContainerItem(props) {
                             <Image
                             src={props.img_url}
                             alt="gallery-image"
-                            fill
+                            layout="fill"
                             sizes="(max-width: 768px) 50vw, 400px"
                             loading="lazy"
                             />
@@ -112,7 +112,7 @@ function ContainerItem(props) {
                             <Image
                                 src={props.img_url}
                                 alt="gallery-image"
-                                fill
+                                layout="fill"
                                 sizes="(max-width: 768px) 50vw, 400px"
                                 loading="lazy"
                             />
@@ -132,7 +132,7 @@ function ContainerItem(props) {
                <Image
                    src={props.img_url}
                    alt="big-center-photo"
-                   fill
+                   layout="fill"
                    sizes="(max-width: 768px) 100vw, 1000px"
                    loading="lazy"
                    priority={props.index === 0}   // optional: hero image

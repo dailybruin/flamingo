@@ -134,17 +134,34 @@ export function buildStoryList(type, list, link) {
 }
 
 export function buildMultimediaScroller(media) {
-  const mappedMedia = media.map(index => {
+  // Safe mapping that handles missing data gracefully
+  const mappedMedia = media.map((post) => {
+    // 1. Safely access the featured media object
+    const featuredMedia = post._embedded?.["wp:featuredmedia"]?.[0];
+
+    // 2. Safely access dimensions, defaulting to 0 if missing
+    // We check both the media object AND the details object
+    const width = featuredMedia?.media_details?.width ?? 0;
+    const height = featuredMedia?.media_details?.height ?? 0;
+
+    // 3. Safely access the URL
+    const sourceUrl = featuredMedia?.source_url ?? null;
+
     return {
-      title: index.title.rendered,
-      link: index.link,
-      preview:
-        index._embedded["wp:featuredmedia"] != undefined
-          ? index._embedded["wp:featuredmedia"][0].source_url
-          : null
+      title: post.title?.rendered ?? "Untitled Artwork", // Fallback for title
+      link: post.link ?? "#",
+      image: {
+        preview: sourceUrl,
+        width: width,
+        height: height,
+      },
     };
   });
-  return <MultimediaScroller media={mappedMedia} />;
+
+  // Filter out items that have no image so the scroller doesn't show broken cards
+  const validMedia = mappedMedia.filter(item => item.image.preview !== null);
+
+  return <MultimediaScroller media={validMedia} />;
 }
 
 export function buildArticleList(stories) {
