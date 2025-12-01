@@ -1,17 +1,16 @@
 import PageWrapper from "../layouts/PageWrapper";
-import React from "react";
+import React, { useEffect } from "react";
 
 function Page() {
-    // If the window isn't loaded yet, don't let it throw an error
-    if (typeof window === "undefined") {
+    useEffect(() => {
+        window.location.href = "https://dailybruin.com/category/quad";
+    }, []);
+
+    return (
         <p>
             Oops! We meant to redirect you to https://dailybruin.com/category/quad
-        </p>;
-    } else {
-        // Redirect
-        window.location.href = "https://dailybruin.com/category/quad";
-    }
-    return null;
+        </p>
+    );
 }
 
 export default PageWrapper(Page);

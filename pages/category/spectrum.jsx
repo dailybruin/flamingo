@@ -11,20 +11,6 @@ import MultimediaLayout from "../../layouts/Multimedia";
 function Spectrum({ category, subcategories, posts }) {
   if (category.length == 0) return <Error statusCode={404} />;
 
-  const postsLinks = posts.map((category, index) => {
-    return (
-      <ul key={index}>
-        <li>
-          <Link
-            as={`/category/${category.slug}`}
-            href={`/category?slug=${category.slug}&apiRoute=category`}
-          >
-            <a>{category.title.rendered}</a>
-          </Link>
-        </li>
-      </ul>
-    );
-  });
   const sectionLinks = subcategories.map(index => {
     const subsubcategoriesSimple = index.subsubcategories.map(index => {
       return { name: index.name, link: `/category/${index.slug}` };
@@ -54,24 +40,13 @@ function Spectrum({ category, subcategories, posts }) {
   );
 }
 
-Spectrum.getInitialProps = async (context) => {
-  const { slug } = context.query;
+Spectrum.getInitialProps = async () => {
   const categoryRes = await fetch(
     `${Config.apiUrl}/wp-json/wp/v2/categories?slug=spectrum`
   );
   const category = await categoryRes.json();
   if (category.length > 0) {
     const subcategories = [];
-    // const subcategoriesRes = await fetch(
-    //   `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}`
-    // );
-    // const subcategories = [await subcategoriesRes.json()];
-    // for (let i = 0; i < subcategories.length; i++) {
-    //   const subsubcategoriesRes = await fetch(
-    //     `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
-    //   );
-    //   subcategories[i].subsubcategories = await subsubcategoriesRes.json();
-    // }
     const postsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
     );

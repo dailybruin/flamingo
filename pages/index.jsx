@@ -7,7 +7,6 @@ import Head from "next/head";
 import HomeLayout from "../layouts/Home";
 import Cookies from "js-cookie";
 import EmailPopUp from "../components/EmailSignUp";
-import WelcomePopUp from "../components/WelcomePopUp";
 
 const aTAGID = 4847;
 const bTAGID = 4850;
@@ -52,7 +51,6 @@ const ArticleAdStyle = {
 
 function Index({ posts, multimediaPosts, classifieds, sponsored }) {
   const [showNewsletterPopUp, setShowNewsletterPopUp] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(false);
 
   useEffect(() => {
     if (Cookies.get("subscribed2newsletter") === undefined) {

@@ -48,26 +48,13 @@ function Category({ category, subcategories, posts, classifieds }) {
   );
 }
 
-Category.getInitialProps = async (context) => {
-  // slug is from url
-  const { slug } = context.query;
+Category.getInitialProps = async () => {
   const categoryRes = await fetch(
     `${Config.apiUrl}/wp-json/wp/v2/categories?slug=video`
   );
   const category = await categoryRes.json();
   if (category.length > 0) {
     const subcategories = [];
-    // const subcategoriesRes = await fetch(
-    //   `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}&per_page=100`
-    // );
-    // const subcategories = await subcategoriesRes.json();
-    // for (let i = 0; i < subcategories.length; i++) {
-    //   const subsubcategoriesRes = await fetch(
-    //     `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
-    //   );
-    //   subcategories[i].subsubcategories = await subsubcategoriesRes.json();
-    //   subcategories[i].subsubcategories = [];
-    // }
     const postsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
     );

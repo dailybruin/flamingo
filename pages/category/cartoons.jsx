@@ -54,24 +54,13 @@ function Cartoons({ category, subcategories, posts }) {
   );
 }
 
-Cartoons.getInitialProps = async (context) => {
-  const { slug } = context.query;
+Cartoons.getInitialProps = async () => {
   const categoryRes = await fetch(
     `${Config.apiUrl}/wp-json/wp/v2/categories?slug=cartoons`
   );
   const category = await categoryRes.json();
   if (category.length > 0) {
     const subcategories = [];
-    // const subcategoriesRes = await fetch(
-    //   `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}`
-    // );
-    // const subcategories = await subcategoriesRes.json();
-    // for (let i = 0; i < subcategories.length; i++) {
-    //   const subsubcategoriesRes = await fetch(
-    //     `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
-    //   );
-    //   subcategories[i].subsubcategories = await subsubcategoriesRes.json();
-    // }
     const postsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
     );
