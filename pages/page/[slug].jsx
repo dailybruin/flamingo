@@ -6,24 +6,26 @@ import { Config } from "../../config.js";
 
 import PageLayout from "../../layouts/Page";
 
-function Page({ page, post }) {
+function Page({ page }) {
   if (
     page == undefined ||
-    post.page != undefined ||
+    page.data != undefined ||
     page.length == 0
-  )
-    return (
-      <div>
-        <Head>
-          <title
-            dangerouslySetInnerHTML={{
-              __html: page[0].title.rendered + " - Daily Bruin"
-            }}
-          />
-        </Head>
-        <PageLayout page={page[0]} />
-      </div>
-    );
+  ) {
+    return <Error statusCode={404} />;
+  }
+  return (
+    <div>
+      <Head>
+        <title
+          dangerouslySetInnerHTML={{
+            __html: page[0].title.rendered + " - Daily Bruin"
+          }}
+        />
+      </Head>
+      <PageLayout page={page[0]} />
+    </div>
+  );
 }
 
 Page.getInitialProps = async (context) => {
