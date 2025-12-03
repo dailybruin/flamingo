@@ -68,12 +68,17 @@ export default class AuthorCard extends React.Component {
             <img
               css={css`
                 border-radius: 50%;
-                max-width: 120px;
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                display: block;
                 @media (max-width: 600px) {
-                  max-width: 60px;
+                  width: 60px;
+                  height: 60px;
                 }
               `}
               src={this.props.image}
+              alt={this.props.name || "author image"}
             />
             <div
               css={css`
