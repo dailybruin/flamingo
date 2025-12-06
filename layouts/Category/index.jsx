@@ -275,6 +275,38 @@ export default class CategoryLayout extends React.Component {
                   <div id="above-ad" className={css.card}>
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
+                  {/* Show graphic for men's and women's basketball category pages */}
+                  {/* TODO: Make this more customizable, not hard coded. */}
+                  {this.props.categoryID &&
+                    (this.props.categoryID == 1437 ||
+                      this.props.categoryID == 1447) && (
+                      <a
+                        href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT5wKo3pYx1tOLT3bCv5ayFTunUjV4uLo3y1j2917FubRVxdR3W-iIS5pidFG5zn10yswHRTcUgkszy/pubchart?oid=886287258&format=interactive"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "block",
+                          textDecoration: "none",
+                          paddingLeft: "5px",
+                          paddingRight: "5px",
+                          marginBottom: "5px"
+                        }}
+                      >
+                        <img
+                          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT5wKo3pYx1tOLT3bCv5ayFTunUjV4uLo3y1j2917FubRVxdR3W-iIS5pidFG5zn10yswHRTcUgkszy/pubchart?oid=886287258&format=image"
+                          alt="Click to view full chart"
+                          title="Click to view full chart"
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            display: "block",
+                            border: "none",
+                            cursor: "pointer",
+                            boxShadow: "0 2px 4px rgba(0,0,0,0.15)"
+                          }}
+                        />
+                      </a>
+                    )}
                   <div id="classifieds" className={css.card}>
                     <ClassifiedsCard
                       header="Featured Classifieds"
