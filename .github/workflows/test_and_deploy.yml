@@ -30,6 +30,18 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Debug - Test WordPress API Access
+        run: |
+          echo "Testing WordPress API from GitHub Actions..."
+          echo "--- Response Headers ---"
+          curl -I -s "https://wp.dailybruin.com/wp-json/wp/v2/posts?per_page=1" || true
+          echo ""
+          echo "--- Response Body (first 500 chars) ---"
+          curl -s "https://wp.dailybruin.com/wp-json/wp/v2/posts?per_page=1" | head -c 500 || true
+          echo ""
+          echo "--- With User-Agent header ---"
+          curl -s -H "User-Agent: Mozilla/5.0 (compatible; DailyBruin/1.0)" "https://wp.dailybruin.com/wp-json/wp/v2/posts?per_page=1" | head -c 500 || true
+
       - name: Start server and run Cypress
         uses: cypress-io/github-action@v6
         with:
