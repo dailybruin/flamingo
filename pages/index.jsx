@@ -164,21 +164,49 @@ function Index({ posts, multimediaPosts, classifieds, sponsored }) {
 
 // Helper function to safely parse JSON responses
 const safeJsonParse = async (response) => {
-  if (!response || !response.ok) {
-    console.error(`API Error: ${response?.status} ${response?.statusText}`);
+  // 1. If response is null, the fetch failed entirely (e.g. timeout)
+  // The error was already logged in the map function below, so we return empty safely.
+  if (!response) {
     return [];
   }
+
+  // 2. If response exists but is an HTTP error (e.g. 404, 500)
+  if (!response.ok) {
+    // We can now access response.url because response is not null
+    console.error(`API Error: ${response.status} ${response.statusText} at ${response.url}`);
+    return [];
+  }
+
   try {
     const text = await response.text();
     // Check if response is HTML instead of JSON
     if (text.trim().startsWith('<')) {
-      console.error('Received HTML instead of JSON from API');
+      console.error(`Received HTML instead of JSON from ${response.url}`);
       return [];
     }
     return JSON.parse(text);
   } catch (error) {
-    console.error('Failed to parse API response:', error);
+    console.error(`Failed to parse API response from ${response.url}:`, error);
     return [];
+  }
+};
+
+// Add timeout to fetch requests to prevent hanging
+const fetchWithTimeout = async (url, timeout = 10000) => {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  try {
+    return await fetch(url, { signal: controller.signal });
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      const err = new Error(`Fetch timed out after ${timeout}ms: ${url}`);
+      err.cause = error;
+      throw err;
+    }
+    throw error;
+  } finally {
+    clearTimeout(id);
   }
 };
 
@@ -187,16 +215,6 @@ Index.getInitialProps = async (context) => {
   try {
     const posts = {};
     
-    // Add timeout to fetch requests to prevent hanging
-    const fetchWithTimeout = (url, timeout = 10000) => {
-      return Promise.race([
-        fetch(url),
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Request timeout')), timeout)
-        )
-      ]);
-    };
-
     const fetchPromises = [
       fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${aTAGID}&${Config.articleCardFields}`
@@ -266,7 +284,15 @@ Index.getInitialProps = async (context) => {
       hStoryRes,
       classifiedsRes,
       sponsoredRes
-    ] = fetchResults.map(res => res.status === 'fulfilled' ? res.value : null);
+    ] = fetchResults.map((res, index) => {
+      if (res.status === 'fulfilled') {
+        return res.value;
+      } else {
+        // Log the descriptive error (which includes the URL) from fetchWithTimeout
+        console.error(`Request #${index} failed:`, res.reason);
+        return null;
+      }
+    });
 
     // Safely parse each response with fallback to empty array
     posts.aStory = await safeJsonParse(aStoryRes);
