@@ -42,6 +42,8 @@ export default class Article extends React.Component {
               display: inline-block;
               margin-right: 10px;
               vertical-align: middle;
+              object-fit: cover;
+              object-position: center;
             `}
           />
         </a>

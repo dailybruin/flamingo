@@ -135,6 +135,8 @@ export default class FeatureArticle extends React.Component {
               display: inline-block;
               margin-right: 10px;
               vertical-align: middle;
+              object-fit: cover;
+              object-position: center;
             `}
           />
         </a>
@@ -325,6 +327,27 @@ export default class FeatureArticle extends React.Component {
                   line-height: 80%;
                   color: #000;
                   margin-right: 2px;
+                }
+
+                /* Custom styling for asides with class="asideStyle2":
+                   - keep a border
+                   - use a dull yellow background
+                   - don't emphasize / capitalize the first letter
+                */
+                aside.asideStyle2 p {
+                  color: black !important;
+                  font-size: 1.2rem !important;
+                  text-align: center;
+
+                  padding: 5px;
+                  border: 2px solid black;
+                  border-radius: 4px;
+
+                  background-color: #f7f3c0;
+                }
+                /* Don't capitalize first letter */
+                aside.asideStyle2:first-letter {
+                  all: unset;
                 }
 
                 figure.alignright {
