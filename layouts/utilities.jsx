@@ -75,10 +75,7 @@ export function buildStoryList(type, list, link) {
       link={link}
       story={mappedList}
       image={{
-        src:
-          list[0]._embedded["wp:featuredmedia"] != undefined
-            ? list[0]._embedded["wp:featuredmedia"][0].source_url
-            : "http://wp.dailybruin.com/images/2017/03/db-logo.png",
+        src: list[0]._embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? "http://wp.dailybruin.com/images/2017/03/db-logo.png",
         alt: "N/A"
       }}
       category={{
