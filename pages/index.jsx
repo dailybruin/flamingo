@@ -8,15 +8,15 @@ import HomeLayout from "../layouts/Home";
 import Cookies from "js-cookie";
 import EmailPopUp from "../components/EmailSignUp";
 
-const aTAGID = 4847;
-const bTAGID = 4850;
-const c1TAGID = 4849;
-const c2TAGID = 4851;
-const dTAGID = 4862;
-const eTAGID = 4863;
-const m1TAGID = 4854;
-const f1TAGID = 22896;
-const f2TAGID = 22897;
+const aTAGID = 4847;    // Db-story-a
+const bTAGID = 4850;    // Db-story-b
+const c1TAGID = 4849;   // Db-story-c1
+const c2TAGID = 4851;   // Db-story-c2
+const d1TAGID = 4862;   // Db-story-d1
+const d2TAGID = 4863;   // Db-story-d2
+const m1TAGID = 4854;   // Db-story-m1
+const f1TAGID = 22896;  // Db-story-f1
+const f2TAGID = 22897;  // Db-story-f2
 
 // db story tagged with "db-story-g" will appear at the top of the rightmost column of the paper (where quad was)
 const gTAGID = 27530;
@@ -227,10 +227,10 @@ Index.getInitialProps = async (context) => {
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${c2TAGID}&${Config.articleCardFields}`
       ),
       fetchWithTimeout(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${dTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${d1TAGID}&${Config.articleCardFields}`
       ),
       fetchWithTimeout(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${eTAGID}&${Config.articleCardFields}`
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=1&tags=${d2TAGID}&${Config.articleCardFields}`
       ),
       fetchWithTimeout(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&per_page=3&tags=${gTAGID}&${Config.articleCardFields}`
@@ -269,8 +269,8 @@ Index.getInitialProps = async (context) => {
       bStoryRes,
       c1StoryRes,
       c2StoryRes,
-      dStoryRes,
-      eStoryRes,
+      d1StoryRes,
+      d2StoryRes,
       gStoryRes,
       mmStoryRes,
       f1StoryRes,
@@ -297,8 +297,8 @@ Index.getInitialProps = async (context) => {
     posts.bStory = await safeJsonParse(bStoryRes);
     posts.c1Story = await safeJsonParse(c1StoryRes);
     posts.c2Story = await safeJsonParse(c2StoryRes);
-    posts.dStory = await safeJsonParse(dStoryRes);
-    posts.eStory = await safeJsonParse(eStoryRes);
+    posts.d1Story = await safeJsonParse(d1StoryRes);
+    posts.d2Story = await safeJsonParse(d2StoryRes);
     posts.gStory = await safeJsonParse(gStoryRes);
     const multimediaPosts = await safeJsonParse(mmStoryRes);
     posts.f1Story = await safeJsonParse(f1StoryRes);
@@ -428,8 +428,8 @@ Index.getInitialProps = async (context) => {
         bStory: [],
         c1Story: [],
         c2Story: [],
-        dStory: [],
-        eStory: [],
+        d1Story: [],
+        d2Story: [],
         gStory: [],
         f1Story: [],
         f2Story: [],

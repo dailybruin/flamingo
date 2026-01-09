@@ -171,13 +171,13 @@ describe('Daily Bruin Homepage', () => {
               .children().first()
               .should('have.class', 'storyList');
 
-            cy.get('#d')
+            cy.get('#d1')
               .should('exist')
               .and('be.visible')
               .children().first()
               .should('have.class', 'mini');
 
-            cy.get('#e')
+            cy.get('#d2')
               .should('exist')
               .and('be.visible')
               .children().first()
