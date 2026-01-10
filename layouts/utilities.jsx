@@ -6,39 +6,32 @@ import css from "./style.module.css";
 import dayjs from "dayjs";
 
 export function buildArticleCard(story, type = "") {
-  if (story != null && story != undefined && story.data == undefined) {
+  // Check if story exists and isn't an error object
+  if (story && story.data === undefined) {
+    
+    // Pre-calculate these to keep the JSX clean
+    const featuredMedia = story._embedded?.["wp:featuredmedia"]?.[0];
+    const category = story._embedded?.["wp:term"]?.[0]?.[0];
+
     return (
       <ArticleCard
         displayType={type}
-        headline={story.title != undefined ? story.title.rendered : ""}
-        excerpt={story.excerpt != undefined ? story.excerpt.rendered : ""}
-        content={ story.content != undefined ? story.content.rendered : ""} //currently sending all story content as a prop to all cards
+        headline={story.title?.rendered ?? ""}
+        excerpt={story.excerpt?.rendered ?? ""}
+        content={story.content?.rendered ?? ""}
         href={`/post/[slug]`}
         as={story.link}
         link={story.link}
         key={story.id.toString()}
         date={story.date}
-        authors={story.coauthors != undefined ? story.coauthors : []}
+        authors={story.coauthors ?? []}
         category={{
-          name: story._embedded["wp:term"][0][0].name,
+          name: category?.name ?? "Uncategorized",
           href: `/category/[slug]`,
-          as: `/category/${story._embedded["wp:term"][0][0].slug}`
+          as: `/category/${category?.slug ?? ""}`
         }}
-        imageurl={
-          story._embedded["wp:featuredmedia"] != undefined &&
-          !story._embedded["wp:featuredmedia"].empty &&
-          story._embedded["wp:featuredmedia"][0].data == undefined
-            ? story._embedded["wp:featuredmedia"][0].source_url
-            : "http://wp.dailybruin.com/images/2017/03/db-logo.png"
-        }
-        caption={
-          story._embedded["wp:featuredmedia"] != undefined &&
-          !story._embedded["wp:featuredmedia"].empty &&
-          story._embedded["wp:featuredmedia"][0].data == undefined &&
-          story._embedded["wp:featuredmedia"][0].caption != undefined
-            ? story._embedded["wp:featuredmedia"][0].caption.rendered
-            : ""
-        }
+        imageurl={featuredMedia?.source_url ?? "http://wp.dailybruin.com/images/2017/03/db-logo.png"}
+        caption={featuredMedia?.caption?.rendered ?? ""}
         acf={story.acf}
       />
     );
