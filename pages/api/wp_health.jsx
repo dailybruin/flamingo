@@ -1,8 +1,14 @@
 import { Config } from "../../config";
 
 export default async function handler(req, res) {
+  /* Number of ms before we timeout our check */
   const NUM_MS_TIMEOUT = 5000;
-  const CHECK_ENDPOINT = "/wp-json/wp/v2/posts?per_page=1"
+
+  /* 
+   * The endpoint to check if WP is healthy. Note that we append
+   * a unique cb query parameter to ensure this URL is not cached
+   */
+  const CHECK_ENDPOINT = `/wp-json/wp/v2/posts?per_page=1&cb=${Date.now()}`;
 
   // 1. Standard No-Cache Headers
   res.setHeader(
@@ -17,10 +23,12 @@ export default async function handler(req, res) {
   const timeoutId = setTimeout(() => controller.abort(), NUM_MS_TIMEOUT);
 
   try {
-    const wpRes = await fetch(
-      `${Config.apiUrl}${CHECK_ENDPOINT}`,
-      { signal: controller.signal }
-    );
+    const wpRes = await fetch(`${Config.apiUrl}${CHECK_ENDPOINT}`, {
+      signal: controller.signal,
+      headers: {
+        "Cache-Control": "no-cache"
+      }
+    });
 
     clearTimeout(timeoutId); // Request finished, clear the timer
 
