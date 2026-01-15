@@ -121,57 +121,20 @@ function Index({ posts, multimediaPosts, classifieds, sponsored }) {
 
 export async function getStaticProps() {
   try {
-    /* First, fetch shared data (for masthead + categories) */
     const sharedData = await fetchSharedData();
-
-    /* Second, fetch page-specific data */
-    const {
-      posts,
-      multimediaPosts,
-      classifieds,
-      sponsored
-    } = await fetchHomePageContent();
+    const homePageData = await fetchHomePageContent();
 
     return {
       props: {
         ...sharedData,
-        posts,
-        multimediaPosts,
-        classifieds,
-        sponsored
+        ...homePageData
       },
       revalidate: 30
     };
   } catch (error) {
     console.error("getStaticProps failed:", error);
-
-    return {
-      props: {
-        mappedCategories: null,
-        mappedBreaking: null,
-        mappedITN: null,
-        posts: {
-          aStory: [],
-          bStory: [],
-          c1Story: [],
-          c2Story: [],
-          d1Story: [],
-          d2Story: [],
-          gStory: [],
-          f1Story: [],
-          f2Story: [],
-          iStory: [],
-          jStory: [],
-          kStory: [],
-          lStory: [],
-          hStory: []
-        },
-        multimediaPosts: [],
-        classifieds: [],
-        sponsored: ""
-      },
-      revalidate: 30
-    };
+    // Throw error to serve last successful generation
+    throw error;
   }
 };
 
