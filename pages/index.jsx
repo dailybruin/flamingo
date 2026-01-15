@@ -6,7 +6,7 @@ import HomeLayout from "../layouts/Home";
 import Cookies from "js-cookie";
 import EmailPopUp from "../components/EmailSignUp";
 
-import { fetchSharedData } from "lib/fetchData";
+import { createStaticProps } from "lib/createStaticProps";
 import { fetchHomePageContent } from "lib/fetchHomepageContent";
 
 function Index({ posts, multimediaPosts, classifieds, sponsored }) {
@@ -119,23 +119,7 @@ function Index({ posts, multimediaPosts, classifieds, sponsored }) {
   );
 }
 
-export async function getStaticProps() {
-  try {
-    const sharedData = await fetchSharedData();
-    const homePageData = await fetchHomePageContent();
-
-    return {
-      props: {
-        ...sharedData,
-        ...homePageData
-      },
-      revalidate: 30
-    };
-  } catch (error) {
-    console.error("getStaticProps failed:", error);
-    // Throw error to serve last successful generation
-    throw error;
-  }
-};
+// Automatically fetches sharedData and sets revalidate
+export const getStaticProps = createStaticProps(fetchHomePageContent);
 
 export default NewPageWrapper(Index, { isFrontPage: true });
