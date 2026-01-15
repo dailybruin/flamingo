@@ -120,6 +120,6 @@ function Index({ posts, multimediaPosts, classifieds, sponsored }) {
 }
 
 // Automatically fetches sharedData and sets revalidate
-export const getStaticProps = createStaticProps(fetchHomePageContent);
+export const getStaticProps = createStaticProps(fetchHomePageContent, 15);
 
 export default NewPageWrapper(Index, { isFrontPage: true });
