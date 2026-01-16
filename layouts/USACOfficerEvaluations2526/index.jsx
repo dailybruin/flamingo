@@ -147,64 +147,52 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 padding: 20px;
                 border-left: 1px solid #000;
                 line-height: 1.5;
-                font-size: 14px;
+                font-size: 17px;
                 ${globals.phone} {
                   border: none;
                   padding: 10px;
                 }
               `}
             >
-              <p
-                css={css`
-                  font-style: italic;
-                `}
-              >
+              <p>
                 The Undergraduate Students Association Council is the student
                 representative body on campus, made up of elected public
                 officials meant to serve the interests of students and advocate
                 for their needs. As such, the Daily Bruin Editorial Board
                 recognizes the need to hold officers accountable. This year, the
-                board evaluated officers on five criteria: the quality of
-                officers’ platforms, their completion of those platforms, the
-                fulfillment of their responsibilities, their transparency with
-                the student body and their engagement with the community. The
+                board evaluated officers on three criteria: transparency,
+                fulfillment of responsibilities and platform completion. The
                 evaluation process consists of interviews with the officers,
                 deliberation between board members and a quorum-style vote to
                 assign each rating. The board assigned each criterion with a
-                score from one to five, with one being the lowest and five being
+                letter grade from A to D, with D being the lowest and A being
                 the highest.
               </p>
               <p>
-                <b data-stringify-type="bold">Platform:</b>&nbsp;We took into
-                consideration the potential benefits, thoughtfulness and
-                feasibility of each council member’s goals.
-              </p>
-              <p>
-                <b data-stringify-type="bold">Platform Completion:</b>&nbsp;
-                Based on interviews with the council members and Daily Bruin
-                reporting, we evaluated how well the officers completed or are
-                projected to complete their campaign promises at the time of
-                publishing.
+                <b data-stringify-type="bold"><i>Transparency:</i></b>&nbsp;As elected
+                officials, accountability is important. The Editorial Board has
+                evaluated each council member in this category based on their
+                accessibility and transparency to the Daily Bruin and the UCLA
+                student body.
               </p>
               <p>
                 <b data-stringify-type="bold">
-                  Fulfillment of Responsibilities:
+                  <i>Fulfillment of Responsibilities:</i>
                 </b>
-                &nbsp;We evaluated how council members fulfilled the
-                responsibilities and expectations of their offices according to
-                the USAC bylaws, beyond just their platforms.
+                &nbsp; Each elected official has their own specific set of
+                responsibilities. The Editorial Board has evaluated how each
+                council member fulfilled the responsibilities and expectations
+                of their respective offices, according to the USAC bylaws,
+                beyond just their platforms.
               </p>
               <p>
-                <b data-stringify-type="bold">Transparency:</b>&nbsp;As elected
-                officials, accountability is important. We evaluated each
-                council member in this category based on their accessibility and
-                transparency to both The Bruin and the student body.
-              </p>
-              <p>
-                <b data-stringify-type="bold">Engagement:</b> We evaluated how
-                committed council members were to bringing disengaged students
-                into the fold and making their offices, if not USAC, relevant to
-                those students.
+                <b data-stringify-type="bold"><i>Platform Completion:</i></b>
+                &nbsp;During their campaigns, elected officials ran on various
+                platforms. The Editorial Board took into consideration potential
+                benefit, thoughtfulness and feasibility of each council member’s
+                goals and subsequently evaluated how well the officers completed
+                or are projected to complete their campaign promises at the time
+                of publishing.
               </p>
             </div>
           </div>

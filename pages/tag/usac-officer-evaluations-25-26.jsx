@@ -22,25 +22,24 @@ class USACOfficerEvaluations2526 extends React.Component {
         `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
       );
       const classifieds = await classifiedsRes.json();
-      
+
       return { tag, posts, classifieds };
     }
     return { tag };
   }
   render() {
-    if (this.props.tag.length == 0) return (
-      <>
-        <p style={{textAlign: "center"}}>No USAC evaluations for this year!</p>
-      </>
-    );
+    if (this.props.tag.length == 0)
+      return (
+        <>
+          <p style={{ textAlign: "center" }}>
+            No USAC evaluations for this year!
+          </p>
+        </>
+      );
     return (
       <>
         <Head>
-          <title
-            dangerouslySetInnerHTML={{
-              __html: this.props.tag[0].name + " - Daily Bruin"
-            }}
-          />
+          <title>{this.props.tag[0].name} - Daily Bruin</title>
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
