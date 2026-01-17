@@ -36,10 +36,13 @@ class USACOfficerEvaluations2526 extends React.Component {
           </p>
         </>
       );
+
+    const rawTitle = this.props.tag[0].name;
+    const formattedTitle = rawTitle.replace(/-(?!\d{2}-\d{2})/g, " ");
     return (
       <>
         <Head>
-          <title>{this.props.tag[0].name} - Daily Bruin</title>
+          <title>{formattedTitle} - Daily Bruin</title>
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"

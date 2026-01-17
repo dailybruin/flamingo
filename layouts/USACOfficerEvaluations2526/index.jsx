@@ -10,8 +10,44 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
   }
 
   render() {
+    const POSITION_ORDER = [
+      "President",
+      "Internal Vice President",
+      "General Representative 2",
+      "Academic Affairs Commissioner",
+      "Campus Events Commissioner",
+      "Facilities Commissioner",
+      "International Student Representative",
+      "Transfer Student Representative",
+      "External Vice President",
+      "General Representative 1",
+      "General Representative 3",
+      "Cultural Affairs Commissioner",
+      "Campus Service Commissioner",
+      "Financial Supports Commissioner",
+      "Student Wellness Commissioner"
+    ];
+
     let renderedPosts = [];
-    for (let i in this.props.posts) {
+
+    const sortedPosts = [...this.props.posts].sort((a, b) => {
+      const posA = getPosition(a);
+      const posB = getPosition(b);
+
+      const indexA = POSITION_ORDER.indexOf(posA);
+      const indexB = POSITION_ORDER.indexOf(posB);
+
+      // If a position doesn't exist in POSITION_ORDER, push it to the end
+      if (indexA === -1 && indexB === -1) return 0;
+      if (indexA === -1) return 1;
+      if (indexB === -1) return -1;
+
+      return indexA - indexB;
+    });
+
+
+
+    for (let i in sortedPosts) {
       renderedPosts.push(
         <a
           key={i}
@@ -29,12 +65,12 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
               text-decoration: none;
             }
           `}
-          href={"/post/" + this.props.posts[i].slug}
+          href={"/post/" + sortedPosts[i].slug}
         >
           <div
             src={
-              this.props.posts[i]._embedded["wp:featuredmedia"] != undefined
-                ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
+              sortedPosts[i]._embedded["wp:featuredmedia"] != undefined
+                ? sortedPosts[i]._embedded["wp:featuredmedia"][0]
                     .source_url
                 : null
             }
@@ -42,10 +78,10 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
               width: 100px;
               height: 100px;
               display: table-cell;
-              background-image: url(${this.props.posts[i]._embedded[
+              background-image: url(${sortedPosts[i]._embedded[
                 "wp:featuredmedia"
               ] != undefined
-                ? this.props.posts[i]._embedded["wp:featuredmedia"][0]
+                ? sortedPosts[i]._embedded["wp:featuredmedia"][0]
                     .source_url
                 : ""});
               background-size: cover;
@@ -67,7 +103,7 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 font-size: 16px;
               `}
               dangerouslySetInnerHTML={{
-                __html: this.props.posts[i].title.rendered
+                __html: sortedPosts[i].title.rendered
                   .replace("USAC Officer Evaluation: ", "")
                   .replace(/,.*$/, "")
               }}
@@ -78,7 +114,7 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 font-size: 14px;
               `}
               dangerouslySetInnerHTML={{
-                __html: this.props.posts[i].title.rendered
+                __html: sortedPosts[i].title.rendered
                   .replace("USAC Officer Evaluation: ", "")
                   .replace(/([^,]+),/, "")
               }}
@@ -169,11 +205,13 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 the highest.
               </p>
               <p>
-                <b data-stringify-type="bold"><i>Transparency:</i></b>&nbsp;As elected
-                officials, accountability is important. The Editorial Board has
-                evaluated each council member in this category based on their
-                accessibility and transparency to the Daily Bruin and the UCLA
-                student body.
+                <b data-stringify-type="bold">
+                  <i>Transparency:</i>
+                </b>
+                &nbsp;As elected officials, accountability is important. The
+                Editorial Board has evaluated each council member in this
+                category based on their accessibility and transparency to the
+                Daily Bruin and the UCLA student body.
               </p>
               <p>
                 <b data-stringify-type="bold">
@@ -186,7 +224,9 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
                 beyond just their platforms.
               </p>
               <p>
-                <b data-stringify-type="bold"><i>Platform Completion:</i></b>
+                <b data-stringify-type="bold">
+                  <i>Platform Completion:</i>
+                </b>
                 &nbsp;During their campaigns, elected officials ran on various
                 platforms. The Editorial Board took into consideration potential
                 benefit, thoughtfulness and feasibility of each council member’s
@@ -215,4 +255,10 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
       </div>
     );
   }
+}
+
+function getPosition(post) {
+  const title = post.title.rendered || "";
+  const match = title.match(/, (.+)$/);
+  return match ? match[1].trim() : null;
 }
