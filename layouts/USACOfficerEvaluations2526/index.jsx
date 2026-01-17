@@ -1,128 +1,82 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import * as globals from "../../components/globals";
 import style from "../style.module.css";
 
-export default class ColumnsFromQuarantineLayout extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+function getPosition(post) {
+  const title = post.title.rendered || "";
+  const match = title.match(/, (.+)$/);
+  return match ? match[1].trim() : null;
+}
 
-  render() {
-    const POSITION_ORDER = [
-      "President",
-      "Internal Vice President",
-      "General Representative 2",
-      "Academic Affairs Commissioner",
-      "Campus Events Commissioner",
-      "Facilities Commissioner",
-      "International Student Representative",
-      "Transfer Student Representative",
-      "External Vice President",
-      "General Representative 1",
-      "General Representative 3",
-      "Cultural Affairs Commissioner",
-      "Campus Service Commissioner",
-      "Financial Supports Commissioner",
-      "Student Wellness Commissioner"
-    ];
+const ColumnsFromQuarantineLayout = ({ posts }) => {
+  const [isMobile, setIsMobile] = useState(false);
 
-    let renderedPosts = [];
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+      }
+    };
 
-    const sortedPosts = [...this.props.posts].sort((a, b) => {
-      const posA = getPosition(a);
-      const posB = getPosition(b);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-      const indexA = POSITION_ORDER.indexOf(posA);
-      const indexB = POSITION_ORDER.indexOf(posB);
+  const DESKTOP_ORDER = [
+    "President",
+    "Internal Vice President",
+    "General Representative 2",
+    "Academic Affairs Commissioner",
+    "Campus Events Commissioner",
+    "Facilities Commissioner",
+    "International Student Representative",
+    "Transfer Student Representative",
+    "External Vice President",
+    "General Representative 1",
+    "General Representative 3",
+    "Cultural Affairs Commissioner",
+    "Campus Service Commissioner",
+    "Financial Supports Commissioner",
+    "Student Wellness Commissioner"
+  ];
 
-      // If a position doesn't exist in POSITION_ORDER, push it to the end
-      if (indexA === -1 && indexB === -1) return 0;
-      if (indexA === -1) return 1;
-      if (indexB === -1) return -1;
+  const MOBILE_ORDER = [
+    "President",
+    "External Vice President",
+    "Internal Vice President",
+    "General Representative 1",
+    "General Representative 2",
+    "General Representative 3",
+    "Academic Affairs Commissioner",
+    "Cultural Affairs Commissioner",
+    "Campus Events Commissioner",
+    "Campus Service Commissioner",
+    "Facilities Commissioner",
+    "Financial Supports Commissioner",
+    "International Student Representative",
+    "Student Wellness Commissioner",
+    "Transfer Student Representative"
+  ];
 
-      return indexA - indexB;
-    });
+  const POSITION_ORDER = isMobile ? MOBILE_ORDER : DESKTOP_ORDER;
 
+  const sortedPosts = [...posts].sort((a, b) => {
+    const posA = getPosition(a);
+    const posB = getPosition(b);
 
+    const indexA = POSITION_ORDER.indexOf(posA);
+    const indexB = POSITION_ORDER.indexOf(posB);
 
-    for (let i in sortedPosts) {
-      renderedPosts.push(
-        <a
-          key={i}
-          css={css`
-            ${globals.cardStyles};
-            color: black;
-            display: table;
-            min-height: 100px;
-            position: relative;
-            margin: 10px 0;
-            display: inline-block;
-            padding: 0;
+    if (indexA === -1 && indexB === -1) return 0;
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
 
-            &:hover {
-              text-decoration: none;
-            }
-          `}
-          href={"/post/" + sortedPosts[i].slug}
-        >
-          <div
-            src={
-              sortedPosts[i]._embedded["wp:featuredmedia"] != undefined
-                ? sortedPosts[i]._embedded["wp:featuredmedia"][0]
-                    .source_url
-                : null
-            }
-            css={css`
-              width: 100px;
-              height: 100px;
-              display: table-cell;
-              background-image: url(${sortedPosts[i]._embedded[
-                "wp:featuredmedia"
-              ] != undefined
-                ? sortedPosts[i]._embedded["wp:featuredmedia"][0]
-                    .source_url
-                : ""});
-              background-size: cover;
-              background-position: center;
-            `}
-          />
-          <div
-            css={css`
-              display: table-cell;
-              vertical-align: middle;
-              text-align: left;
-              padding-left: 10px;
-              font-family: ${globals.bodyFont};
-            `}
-          >
-            <div
-              css={css`
-                font-weight: 700;
-                font-size: 16px;
-              `}
-              dangerouslySetInnerHTML={{
-                __html: sortedPosts[i].title.rendered
-                  .replace("USAC Officer Evaluation: ", "")
-                  .replace(/,.*$/, "")
-              }}
-            />
-            <div
-              css={css`
-                font-weight: 400;
-                font-size: 14px;
-              `}
-              dangerouslySetInnerHTML={{
-                __html: sortedPosts[i].title.rendered
-                  .replace("USAC Officer Evaluation: ", "")
-                  .replace(/([^,]+),/, "")
-              }}
-            />
-          </div>
-        </a>
-      );
-    }
+    return indexA - indexB;
+  });
+
     return (
       <div className={style.card}>
         <div
@@ -249,16 +203,76 @@ export default class ColumnsFromQuarantineLayout extends React.Component {
               }
             `}
           >
-            {renderedPosts}
-          </div>
+          {sortedPosts.map((post, i) => (
+            <a
+              key={i}
+              css={css`
+                ${globals.cardStyles};
+                color: black;
+                display: table;
+                min-height: 100px;
+                position: relative;
+                margin: 10px 0;
+                display: inline-block;
+                padding: 0;
+
+                &:hover {
+                  text-decoration: none;
+                }
+              `}
+              href={"/post/" + post.slug}
+            >
+              <div
+                css={css`
+                  width: 100px;
+                  height: 100px;
+                  display: table-cell;
+                  background-image: url(${post._embedded["wp:featuredmedia"] !=
+                  undefined
+                    ? post._embedded["wp:featuredmedia"][0].source_url
+                    : ""});
+                  background-size: cover;
+                  background-position: center;
+                `}
+              />
+              <div
+                css={css`
+                  display: table-cell;
+                  vertical-align: middle;
+                  text-align: left;
+                  padding-left: 10px;
+                  font-family: ${globals.bodyFont};
+                `}
+              >
+                <div
+                  css={css`
+                    font-weight: 700;
+                    font-size: 16px;
+                  `}
+                  dangerouslySetInnerHTML={{
+                    __html: post.title.rendered
+                      .replace("USAC Officer Evaluation: ", "")
+                      .replace(/,.*$/, "")
+                  }}
+                />
+                <div
+                  css={css`
+                    font-weight: 400;
+                    font-size: 14px;
+                  `}
+                  dangerouslySetInnerHTML={{
+                    __html: post.title.rendered
+                      .replace("USAC Officer Evaluation: ", "")
+                      .replace(/([^,]+),/, "")
+                  }}
+                />
+              </div>
+            </a>
+          ))}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-function getPosition(post) {
-  const title = post.title.rendered || "";
-  const match = title.match(/, (.+)$/);
-  return match ? match[1].trim() : null;
-}
+export default ColumnsFromQuarantineLayout;
