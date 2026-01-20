@@ -196,7 +196,7 @@ export default class Desktop extends React.Component {
                 src={logo}
                 alt="Daily Bruin Logo"
                 layout="fill"
-                style={{ objectFit: "contain" }}
+                objectFit="contain"
               />
             </a>
           </div>

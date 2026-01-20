@@ -20,7 +20,6 @@ export default function LoadingBear(props) {
         alt="Loading"
         width={200}
         height={200}
-        style={{ width: "200px", height: "auto" }}
       />
       <p
         css={css`

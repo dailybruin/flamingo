@@ -226,8 +226,8 @@ class Index extends Component {
 
       let filtered_embedded = {
         "wp:featuredmedia": trimmedFeatured
-      };
-
+        };
+      
       multimediaPosts[i] = {
         id: multimediaPosts[i].id,
         title: multimediaPosts[i].title,

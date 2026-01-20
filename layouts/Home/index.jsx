@@ -104,8 +104,7 @@ export default class HomeLayout extends React.Component {
                     </div>
                     <div id="a" className={css.card}>
                       {React.cloneElement(this.cards.aArticleCard, {
-                        displayType: "full",
-                        priority: true
+                        displayType: "full"
                       })}
                     </div>
                     <div id="b" className={css.card}>

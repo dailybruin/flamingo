@@ -16,11 +16,62 @@ class Author extends Component {
     const postsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${slug}&categories_exclude=27179,27127` // 27179 is the category id of breaking feed posts
     );
-    const posts = await postsRes.json();
+    const postsRaw = await postsRes.json();
+
+    // Trim posts to reduce page data size
+    const posts = postsRaw.map(post => {
+      const rawFeatured =
+        post._embedded && post._embedded["wp:featuredmedia"]
+          ? post._embedded["wp:featuredmedia"]
+          : [];
+
+      const trimmedFeatured = rawFeatured.map(media => ({
+        source_url: media.source_url,
+        caption: media.caption,
+        media_details:
+          media.media_details && media.media_details.width && media.media_details.height
+            ? { width: media.media_details.width, height: media.media_details.height }
+            : undefined
+      }));
+
+      const rawTerms = post._embedded && post._embedded["wp:term"] ? post._embedded["wp:term"] : [];
+      const trimmedTerms = rawTerms.map(termGroup =>
+        termGroup.map(term => ({
+          id: term.id,
+          link: term.link,
+          name: term.name,
+          slug: term.slug
+        }))
+      );
+
+      return {
+        id: post.id,
+        date: post.date,
+        link: post.link,
+        slug: post.slug,
+        title: post.title,
+        coauthors: post.coauthors,
+        excerpt: post.excerpt,
+        acf: post.acf,
+        _embedded: {
+          "wp:featuredmedia": trimmedFeatured,
+          "wp:term": trimmedTerms
+        }
+      };
+    });
+
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
     );
-    const classifieds = await classifiedsRes.json();
+    const classifiedsRaw = await classifiedsRes.json();
+    const classifieds = classifiedsRaw.map(c => ({
+      category: {
+        name: c._embedded["wp:term"][1][0].name,
+        url: c._embedded["wp:term"][1][0].link
+      },
+      content: { name: c.content.rendered, url: c.link }
+    }));
+
     return { author, posts, classifieds };
   }
   render() {
@@ -35,15 +86,7 @@ class Author extends Component {
         <AuthorLayout
           author={this.props.author[0]}
           posts={this.props.posts}
-          classifieds={this.props.classifieds.map(c => {
-            return {
-              category: {
-                name: c._embedded["wp:term"][1][0].name,
-                url: c._embedded["wp:term"][1][0].link
-              },
-              content: { name: c.content.rendered, url: c.link }
-            };
-          })}
+          classifieds={this.props.classifieds}
         />
       </>
     );
