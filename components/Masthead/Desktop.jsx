@@ -31,9 +31,7 @@ export default class Desktop extends React.Component {
     this.state = {
       menuExpanded: true
     };
-    this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
-    this.Logo = React.createRef();
 
     this.isScrolled = this.isScrolled.bind(this);
     this.expandMenu = this.expandMenu.bind(this);
@@ -62,21 +60,13 @@ export default class Desktop extends React.Component {
   }
 
   expandMenu() {
-    const block = this.MastheadCard.current;
-    const logo = this.Logo.current;
     if (!this.state.menuExpanded) {
-      block.style.height = expandedHeight;
-      logo.style.height = LOGO_EXPANDED_HEIGHT;
       this.setState({ menuExpanded: true });
     }
   }
 
   collapseMenu() {
-    const block = this.MastheadCard.current;
-    const logo = this.Logo.current;
     if (this.state.menuExpanded) {
-      block.style.height = collapsedHeight;
-      logo.style.height = LOGO_COLLAPSED_HEIGHT;
       this.setState({ menuExpanded: false });
     }
   }
@@ -90,7 +80,9 @@ export default class Desktop extends React.Component {
       <div
         id="masthead"
         ref={this.MastheadCard}
-        css={mastheadContainerStyles(expandedHeight)}
+        css={mastheadContainerStyles(
+          this.state.menuExpanded ? expandedHeight : collapsedHeight
+        )}
       >
         <div css={headerRowStyles}>
           <DateDisplay />
@@ -99,7 +91,11 @@ export default class Desktop extends React.Component {
             <a
               ref={this.Logo}
               href="/"
-              css={logoStyles(LOGO_EXPANDED_HEIGHT)}
+              css={logoStyles(
+                this.state.menuExpanded
+                  ? LOGO_EXPANDED_HEIGHT
+                  : LOGO_COLLAPSED_HEIGHT
+              )}
             >
               <img
                 src={logo}
