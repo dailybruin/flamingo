@@ -1,19 +1,17 @@
 import PageWrapper from "../layouts/PageWrapper";
-import React, { Component } from "react";
+import React from "react";
 import { Config } from "../config.js";
 
 import PageLayout from "../layouts/Page";
 
-class Page extends Component {
-  static async getInitialProps(context) {
-    const { slug } = context.query;
-    const pageRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/pages/131445`);
-    const page = await pageRes.json();
-    return { page };
-  }
-  render() {
-    return <PageLayout page={this.props.page} />;
-  }
+function Page({ page }) {
+  return <PageLayout page={page} />;
 }
+
+Page.getInitialProps = async () => {
+  const pageRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/pages/131445`);
+  const page = await pageRes.json();
+  return { page };
+};
 
 export default PageWrapper(Page);

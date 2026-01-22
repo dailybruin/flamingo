@@ -1,5 +1,5 @@
 import PageWrapper from "../../../layouts/PageWrapper";
-import React, { Component } from "react";
+import React from "react";
 import Error from "next/error";
 import { Config } from "../../../config.js";
 import Head from "next/head";
@@ -15,32 +15,31 @@ Category ID #27093 is the Category ID of breaking news
 https://wp.dailybruin.com/wp-json/wp/v2/posts?categories=27093&tags=[TAG ID]
 */
 
-class Tag extends Component {
-    static async getInitialProps(context) {
-        const postsRes = await fetch(
-            `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27093`
-        );
-        const posts = await postsRes.json();
-        return { posts };
-    }
-    render() {
-        return (
-            <>
-                <Head>
-                    <title>{"Breaking News - Daily Bruin"}</title>
-                </Head>
-                <div style={{ padding: "6px" }}>
-                    <SectionHeader
-                        category={'Breaking News'}
-                    />
-                </div>
-                <CategoryLayout
-                    posts={this.props.posts}
-                    categoryID={27093}
+function Tag({ posts }) {
+    return (
+        <>
+            <Head>
+                <title>{"Breaking News - Daily Bruin"}</title>
+            </Head>
+            <div style={{ padding: "6px" }}>
+                <SectionHeader
+                    category={'Breaking News'}
                 />
-            </>
-        );
-    }
+            </div>
+            <CategoryLayout
+                posts={posts}
+                categoryID={27093}
+            />
+        </>
+    );
 }
+
+Tag.getInitialProps = async () => {
+    const postsRes = await fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27093`
+    );
+    const posts = await postsRes.json();
+    return { posts };
+};
 
 export default PageWrapper(Tag);

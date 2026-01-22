@@ -9,6 +9,9 @@ jobs:
   # Run Cypress tests
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_ENV: test
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,14 +26,35 @@ jobs:
 
       - name: Build Next.js app
         run: yarn build
+        env:
+          NODE_ENV: production
+
+      - name: Debug - Test WordPress API Access
+        run: |
+          echo "Testing WordPress API from GitHub Actions..."
+          echo "--- Response Headers ---"
+          curl -I -s "https://wp.dailybruin.com/wp-json/wp/v2/posts?per_page=1" || true
+          echo ""
+          echo "--- Response Body (first 500 chars) ---"
+          curl -s "https://wp.dailybruin.com/wp-json/wp/v2/posts?per_page=1" | head -c 500 || true
+          echo ""
+          echo "--- With User-Agent header ---"
+          curl -s -H "User-Agent: Mozilla/5.0 (compatible; DailyBruin/1.0)" "https://wp.dailybruin.com/wp-json/wp/v2/posts?per_page=1" | head -c 500 || true
 
       - name: Start server and run Cypress
         uses: cypress-io/github-action@v6
         with:
           install: false
           start: yarn next start
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 15000
+          # Use health check endpoint instead of homepage to avoid WordPress API dependency
+          wait-on: 'http://localhost:3000/api/healthy'
+          wait-on-timeout: 120000
+          browser: chrome
+          config: pageLoadTimeout=120000,defaultCommandTimeout=20000
+        env:
+          # Increase timeouts for CI environment
+          CYPRESS_PAGE_LOAD_TIMEOUT: 120000
+          CYPRESS_DEFAULT_COMMAND_TIMEOUT: 20000
 
   # Build and deploy (only runs if tests pass)
   build-and-deploy:
@@ -41,18 +65,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Build project
-        run: yarn build
-
-      - name: Set up Docker
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to Docker Hub

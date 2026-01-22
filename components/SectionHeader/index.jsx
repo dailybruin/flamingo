@@ -238,7 +238,12 @@ export default class SectionHeader extends React.Component {
                 }
                 `}
               @media (max-width: 600px) {
-                display: none;
+                text-align: center;
+                a { 
+                  display: inline-block;
+                  margin: 4px 8px;
+                  white-space: normal;
+                } 
               }
             `}
           >

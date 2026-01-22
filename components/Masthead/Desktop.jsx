@@ -192,12 +192,12 @@ export default class Desktop extends React.Component {
                 }
               `}
             >
-              <Image
-                src={logo}
+                <Image
+                  src={logo}
                 alt="Daily Bruin Logo"
                 layout="fill"
                 objectFit="contain"
-              />
+                />
             </a>
           </div>
           <div
@@ -464,7 +464,7 @@ export default class Desktop extends React.Component {
                       `}
                     >
                       <Image
-                        src={(searchIcon && searchIcon.src) || searchIcon}
+                      src={(searchIcon && searchIcon.src) || searchIcon}
                         alt="Expand Search"
                         width={36}
                         height={36}

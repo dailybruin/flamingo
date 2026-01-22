@@ -65,7 +65,7 @@ export default class AuthorCard extends React.Component {
               alt={this.props.name || "Author"}
               width={120}
               height={120}
-              style={{ borderRadius: "50%", maxWidth: "120px", height: "auto" }}
+              style={{ borderRadius: "50%", objectFit: "cover" }}
               loading="lazy"
             />
             <div

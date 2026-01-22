@@ -24,6 +24,8 @@ export default function Header(props) {
             display: inline-block;
             margin-right: 10px;
             vertical-align: middle;
+            object-fit: cover;
+            object-position: center;
           `}
         />
       </a>
