@@ -29,8 +29,7 @@ export default class Desktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuExpanded: true,
-      searchExpanded: false
+      menuExpanded: true
     };
     this.MastheadCard = React.createRef();
     this.SearchBar = React.createRef();
