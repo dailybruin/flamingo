@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import css_selector from "../../layouts/style.module.css";
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 
-import axios_to_gallery from "./axios_to_gallery";
 import ShareButtons from "../ShareButtons";
 import AuthorCard from "../AuthorCard";
 import ContainerItem from "./ContainerItem";
 import Header from "./Header";
 
 import { dummyDataBig } from "./dummyData";
+import { safeJsonParse } from "lib/fetchHelpers";
+
+const BASE_URL = "https://gallery.dailybruin.com/django/get_gallery_data";
 
 var counter = -1;
 const getAltVal = type => {
@@ -34,33 +36,47 @@ function PGallery(props) {
   const [entries, setEntries] = useState([]);
 
   var testing = false;
-  if (testing) {
-    useEffect(() => {
-      async function fetchData() {
-        setLayout(dummyDataBig["layout"]);
-        setEntries(dummyDataBig["data"]);
-      }
-      fetchData();
-    }, []);
-  } else {
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          const res = await axios_to_gallery.get(`/${props?.galleryID ?? ""}`);
-          const data = res?.data ?? {};
 
+  useEffect(() => {
+    if (testing) {
+      setLayout(dummyDataBig.layout);
+      setEntries(dummyDataBig.data);
+      return;
+    }
+
+    let cancelled = false;
+
+    async function fetchGallery() {
+      try {
+        const galleryID = props?.galleryID ?? "";
+        const res = await fetch(`${BASE_URL}/${galleryID}`);
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+
+        const data = await safeJsonParse(res);
+
+        if (!cancelled) {
           setLayout(data?.layout ?? null);
           setEntries(Array.isArray(data?.data) ? data.data : []);
-        } catch (e) {
-          console.log(e);
+        }
+      } catch (err) {
+        console.error(err);
+        if (!cancelled) {
           setLayout(null);
           setEntries([]);
         }
       }
+    }
 
-      fetchData();
-    }, [props?.galleryID]);
-  }
+    fetchGallery();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [props?.galleryID]);
+
   if (!entries) {
     return <div>Loading photo galleries</div>;
   }
@@ -96,7 +112,7 @@ function PGallery(props) {
     photosContainerType = "big-centered-stream-container";
   }
   return (
-    <React.Fragment>
+    <>
       <Header
         headline={props.headline}
         photographers={props.authors}
@@ -129,7 +145,7 @@ function PGallery(props) {
       >
         {renderedAuthorCards}
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
