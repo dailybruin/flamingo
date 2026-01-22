@@ -5,4 +5,5 @@ module.exports = withImages({
   images: {
     disableStaticImages: true,
   },
+  output: 'standalone'
 });

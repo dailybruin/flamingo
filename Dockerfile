@@ -17,38 +17,30 @@ COPY . .
 # Run the Next.js build (creates the .next folder)
 RUN yarn build
 
-# --- STAGE 3: Production Dependencies ---
-FROM node:18-alpine AS runner-deps
-WORKDIR /app
-COPY package.json yarn.lock* ./
-# This step ONLY installs 'dependencies', ignoring 'devDependencies' like Cypress/TS
-RUN yarn install --production --frozen-lockfile
-
-# --- STAGE 4: Final Lean Production Image ---
+# --- STAGE 3: Final Production Image ---
 FROM node:18-alpine AS runner
 WORKDIR /app
 
 # Set environment to production
 ENV NODE_ENV=production
+# Hardcode the port here because we bypass package.json scripts
+ENV PORT=1919
 
-# Create a secure non-root user for the app to run under
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Only copy what is strictly necessary to run the app
+# 1. Copy public assets (images, robots.txt)
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/package.json ./package.json
-# Use the filtered node_modules from Stage 3
-COPY --from=runner-deps /app/node_modules ./node_modules
 
-# Ensure the app can write to its own cache/build folder
-RUN chown -R nextjs:nodejs /app/.next
+# 2. Copy the standalone server (The minimal app)
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 
-# Switch to the non-root user
+# 3. Copy static assets (CSS, JS chunks)
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
 USER nextjs
 
 EXPOSE 1919
 
-# Match your specific package.json deploy script
-CMD ["yarn", "deploy"]
+# Start the standalone server directly
+CMD ["node", "server.js"]
