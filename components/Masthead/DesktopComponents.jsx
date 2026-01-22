@@ -65,7 +65,7 @@ export const SocialMediaLinks = () => {
     <div
       id="social-media"
       css={css`
-        ${inlineBlockVerticalMiddle};
+        display: inline-block;
 
         & a {
           margin: 0 6px;
