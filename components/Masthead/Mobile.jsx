@@ -2,6 +2,7 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { Global, css, jsx } from "@emotion/core";
 import Head from "next/head";
+import Image from "next/image";
 
 import * as globals from "../globals";
 
@@ -133,15 +134,16 @@ export default class Mobile extends React.Component {
                 vertical-align: middle;
                 height: 32px;
                 padding: 4px 0;
+                position: relative;
+                width: 180px;
               `}
             >
-              <img
+              <Image
                 src={(logoSrc && logoSrc.src) || logoSrc}
-                css={css`
-                  display: inline-block;
-                  height: 100%;
-                `}
-              ></img>
+                alt="Daily Bruin"
+                layout="fill"
+                objectFit="contain"
+              />
               {date.date() == 1 && date.month() == 3 && (
                 <>
                   <Head>
