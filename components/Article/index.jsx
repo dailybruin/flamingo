@@ -154,20 +154,25 @@ export default class Article extends React.Component {
           }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
-        <Image
-          src={this.props.featureimg}
-          alt="Feature image"
-          width={this.props.featureimgWidth || 1200}
-          height={this.props.featureimgHeight || 675}
-          layout="responsive"
-          sizes="(max-width: 768px) 100vw, 1200px"
-          priority
+        <div
           style={{
             width: "calc(100% + 20px)",
-            margin: "10px -10px",
-            objectFit: "cover",
+            margin: "10px -10px"
           }}
-        />
+        >
+          <Image
+            src={this.props.featureimg}
+            alt="Feature image"
+            width={this.props.featureimgWidth || 1200}
+            height={this.props.featureimgHeight || 675}
+            layout="responsive"
+            sizes="(max-width: 768px) 100vw, 1200px"
+            priority
+            style={{
+              objectFit: "cover"
+            }}
+          />
+        </div>
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
           css={css`
