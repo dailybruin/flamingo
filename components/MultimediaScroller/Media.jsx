@@ -29,18 +29,19 @@ export default function Media(props) {
       >
         <div
           css={css`
-            position: relative; /* REQUIRED for layout='fill' */
-            height: 144px;      /* Keep your fixed height */
-            width: 100%;        /* Ensure it fills the card width */
-            overflow: hidden;   /* Keeps the image contained if it zooms/moves */
+            position: relative;
+            height: 144px;
+            width: 100%;
+            overflow: hidden;
           `}
         >
           <Image
             src={props.preview}
             alt="Multimedia Photo/Artwork"
+            layout="fill"
+            objectFit="cover"
             sizes="20vw"
-            width={props.preview_width}
-            height={props.preview_height}
+            objectPosition="center center"
           />
         </div>
 
