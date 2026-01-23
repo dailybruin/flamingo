@@ -30,6 +30,7 @@
 .banner-ad {
   max-width: 740px;
   min-height: 90px; /* Reserve space to prevent CLS */
+  max-height: 102px;
   margin: auto;
   padding: 6px;
   overflow: hidden;
@@ -37,21 +38,6 @@
 
 .banner-ad img {
   max-width: 100%;
-}
-
-/* Ad slot wrapper - reserves space to prevent CLS when ads load */
-.ad-slot {
-  min-height: 250px; /* Standard medium rectangle height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ad-slot-mobile {
-  min-height: 100px; /* Mobile banner height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .loader {

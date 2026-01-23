@@ -70,7 +70,7 @@ class MyApp extends App {
           `}
         </Script>
         <Script
-          src="https://static.chartbeat.com/js/chartbeat.js"
+          src="https://static.chartbeat.com/js/chartbeat_mab.js"
           strategy="lazyOnload"
         />
 
