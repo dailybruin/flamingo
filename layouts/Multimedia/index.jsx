@@ -33,8 +33,10 @@ export default class MultimediaLayout extends React.Component {
       .then(
         json => {
           if (json.data == undefined && json.length != 0) {
+            // Trim posts to reduce memory usage
+            const trimmedPosts = utilities.trimMultimediaPosts(json);
             this.setState({
-              cards: this.state.cards.concat(json)
+              cards: this.state.cards.concat(trimmedPosts)
             });
           } else {
             this.setState({

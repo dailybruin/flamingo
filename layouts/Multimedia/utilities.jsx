@@ -31,3 +31,23 @@ export function buildPhotoList(stories) {
   }
   return postArray;
 }
+
+/**
+ * Trims multimedia posts for client-side infinite scroll.
+ * Only keeps fields needed for PhotoCard rendering.
+ */
+export function trimMultimediaPosts(posts) {
+  if (!Array.isArray(posts)) return [];
+  
+  return posts.map(post => ({
+    title: post.title,
+    link: post.link,
+    coauthors: post.coauthors,
+    excerpt: post.excerpt,
+    _embedded: {
+      "wp:featuredmedia": post._embedded?.["wp:featuredmedia"]?.map(media => ({
+        source_url: media.source_url,
+      })) || [],
+    },
+  }));
+}

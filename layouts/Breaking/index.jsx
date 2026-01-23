@@ -58,10 +58,11 @@ export default class BreakingLayout extends React.Component {
             .then(
                 json => {
                     if (json.data == undefined && json.length != 0) {
-                        console.log(`${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27179&tags=${this.props.tagID}&page=${page}`);
+                        // Trim posts to reduce memory usage
+                        const trimmedPosts = utilities.trimClientPosts(json);
                         this.setState({
                             otherArticleCards: this.state.otherArticleCards.concat(
-                                utilities.buildArticleList(json, "breaking")
+                                utilities.buildArticleList(trimmedPosts, "breaking")
                             )
                         });
                     } else {

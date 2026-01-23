@@ -29,9 +29,11 @@ export default class Author extends React.Component {
       .then(
         json => {
           if (json.data == undefined && json.length != 0) {
+            // Trim posts to reduce memory usage
+            const trimmedPosts = utilities.trimClientPosts(json);
             this.setState({
               otherArticleCards: this.state.otherArticleCards.concat(
-                utilities.buildArticleList(json)
+                utilities.buildArticleList(trimmedPosts)
               )
             });
           } else {

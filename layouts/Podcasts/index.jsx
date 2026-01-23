@@ -28,9 +28,11 @@ export default class PodcastsLayout extends React.Component {
       .then(
         json => {
           if (json.data == undefined) {
+            // Trim posts to reduce memory usage
+            const trimmedPosts = utilities.trimClientPosts(json);
             this.setState({
               otherArticleCards: this.state.otherArticleCards.concat(
-                utilities.buildArticleList(json)
+                utilities.buildArticleList(trimmedPosts)
               )
             });
           } else {
