@@ -106,24 +106,14 @@ class MyDocument extends Document {
             sizes="114x114"
             href="/apple-touch-icon-114x114-precomposed.png"
           />
-          {/* Google Fonts */}
+          {/* Google Fonts - preconnect for faster loading */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,550;0,700;1,550;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Source+Sans+Pro:wght@400;700&display=swap&family=DM+Serif+Text:ital@0;1&display=swap"
             rel="stylesheet"
           />
-          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-28"
-            strategy="afterInteractive"
-          />
-
-          {/* Chartbeat */}
-          <Script
-            src="//static.chartbeat.com/js/chartbeat_mab.js"
-            strategy="afterInteractive"
-          />
-
-          {/* Broadstreet Ads */}
+          {/* Broadstreet Ads - beforeInteractive so ad zones are ready */}
           <Script
             src="https://cdn.broadstreetads.com/init-2.min.js"
             strategy="beforeInteractive"

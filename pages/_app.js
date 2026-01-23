@@ -81,11 +81,7 @@ class MyApp extends App {
           strategy="lazyOnload"
         />
 
-        {/* Broadstreet Ads - afterInteractive since ads are revenue-critical */}
-        <Script
-          src="https://cdn.broadstreetads.com/init-2.min.js"
-          strategy="afterInteractive"
-        />
+        {/* Broadstreet Ads init - script loaded in _document.js with beforeInteractive */}
         <Script id="broadstreet-init" strategy="afterInteractive">
           {`
             window.broadstreet = window.broadstreet || { watch: function() {} };
