@@ -15,8 +15,11 @@ function SocialCircle(props) {
           height: 36px;
           width: 36px;
           margin: 5px;
-          display: inline-block;
+          display: inline-flex; /* Keeps the container a flex box */
+          align-items: center;    /* Vertically centers the SVG */
+          justify-content: center; /* Horizontally centers the SVG */
           background-color: ${props.color};
+
           @media (max-width: 600px) {
             width: 24px;
             height: 24px;
@@ -27,9 +30,17 @@ function SocialCircle(props) {
         <Image
           src={props.image}
           alt="Social icon"
-          width={36}
-          height={36}
-          style={{ padding: 8 }}
+          width={16}
+          height={16}
+          css={css`
+            width: 16px;
+            height: 16px;
+
+            @media (max-width: 600px) {
+              width: 12px;
+              height: 12px;
+            }
+          `}
         />
       </div>
     </a>
@@ -60,14 +71,32 @@ export default class AuthorCard extends React.Component {
               margin: 5px 15px;
             `}
           >
-            <Image
-              src={this.props.image}
-              alt={this.props.name || "Author"}
-              width={120}
-              height={120}
-              style={{ borderRadius: "50%", objectFit: "cover" }}
-              loading="lazy"
-            />
+            <div
+              css={css`
+                width: 120px;
+                height: 120px;
+                flex-shrink: 0;
+
+                @media (max-width: 600px) {
+                  width: 60px;
+                  height: 60px;
+                }
+              `}
+            >
+              <Image
+                src={this.props.image}
+                alt={this.props.name || "Author"}
+                width={120}
+                height={120}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  objectFit: "cover"
+                }}
+                loading="lazy"
+              />
+            </div>
             <div
               css={css`
                 text-align: center;
