@@ -6,6 +6,10 @@ import Head from "next/head";
 
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
+import MultimediaLayout from "../../layouts/Multimedia";
+
+// Categories that use MultimediaLayout instead of CategoryLayout
+const MULTIMEDIA_CATEGORIES = ["graphics", "illo", "cartoons"];
 
 const COLUMN_SERIES_FEATURE_FLAG = false;
 
@@ -30,7 +34,7 @@ const categoryDescriptions = {
   "the-stack": {
     desktop:
       "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
-      engaging visualizations and \apply quantitative insights to topics relevant to our UCLA community.",
+      engaging visualizations and apply quantitative insights to topics relevant to our UCLA community.",
     mobile:
       "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
       engaging visualizations and apply quantitative insights to topics relevant to our UCLA community."
@@ -77,6 +81,8 @@ function Category({ category, subcategories, posts, classifieds }) {
   }
 
   let pageTitle = category[0].name + " - Daily Bruin"
+  const isMultimediaCategory = MULTIMEDIA_CATEGORIES.includes(category[0].slug);
+
   return (
     <>
       <Head>
@@ -103,19 +109,26 @@ function Category({ category, subcategories, posts, classifieds }) {
           subcategories={sectionLinks}
         />
       </div>
-      <CategoryLayout
-        posts={posts}
-        categoryID={category[0].id}
-        classifieds={classifieds.map(c => {
-          return {
-            category: {
-              name: c._embedded["wp:term"][1][0].name,
-              url: c._embedded["wp:term"][1][0].link
-            },
-            content: { name: c.content.rendered, url: c.link }
-          };
-        })}
-      />
+      {isMultimediaCategory ? (
+        <MultimediaLayout
+          posts={posts}
+          categoryID={category[0].id}
+        />
+      ) : (
+        <CategoryLayout
+          posts={posts}
+          categoryID={category[0].id}
+          classifieds={classifieds.map(c => {
+            return {
+              category: {
+                name: c._embedded["wp:term"][1][0].name,
+                url: c._embedded["wp:term"][1][0].link
+              },
+              content: { name: c.content.rendered, url: c.link }
+            };
+          })}
+        />
+      )}
     </>
   );
 }
@@ -132,6 +145,16 @@ Category.getInitialProps = async (context) => {
   );
   const category = await categoryRes.json();
   if (category.length > 0) {
+    // Multimedia categories have a simpler data fetch (no subcategories/classifieds)
+    if (MULTIMEDIA_CATEGORIES.includes(slug)) {
+      const subcategories = [];
+      const postsRes = await fetch(
+        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
+      );
+      const posts = await postsRes.json();
+      return { category, subcategories, posts, classifieds: [] }; //returns empty classified as well
+    }
+
     const subcategoriesRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}&per_page=100`
     );
