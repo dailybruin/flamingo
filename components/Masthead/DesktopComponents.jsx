@@ -3,6 +3,7 @@ import * as React from "react";
 import { css } from "@emotion/core";
 import dayjs from "dayjs";
 import * as globals from "../globals";
+import Image from "next/image";
 import {
   inlineBlockVerticalMiddle,
   whiteSpaceNowrap,
@@ -83,7 +84,13 @@ export const SocialMediaLinks = () => {
     >
       {socialLinks.map((link, index) => (
         <a key={index} href={link.href} target="_blank" rel="noopener">
-          <img src={link.icon} alt="" />
+          <Image
+            src={(link && link.icon) || link}
+            alt="Facebook"
+            width={14}
+            height={14}
+            layout="fixed"
+          />
         </a>
       ))}
     </div>
@@ -163,17 +170,17 @@ export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
               padding: 0 ${ACTION_WIDTH} 0 6px;
               color: ${globals.white};
             }
-            &:focus + input {
+            &:focus + button {
               display: block;
             }
-            &:focus + input + #Masthead__SearchIconBox {
-              background-color: ${globals.black};
+            &:focus + button + #Masthead__SearchIconBox {
+              background-color: #000;
             }
           `}
         />
-        <input
+
+        <button
           type="submit"
-          value=""
           css={css`
             ${absoluteTopRight(Z_INDEX_SEARCH_SUBMIT)};
             width: ${ACTION_WIDTH};
@@ -192,6 +199,7 @@ export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
             &:hover {
               display: block;
             }
+            /* This allows the input to stay open when hovering the button */
             &:hover ~ input {
               width: ${SEARCH_EXPANDED_WIDTH};
               padding: 0 ${ACTION_WIDTH} 0 6px;
@@ -201,7 +209,18 @@ export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
               display: block;
             }
           `}
-        />
+        >
+          {/* Placed the image INSIDE the button */}
+          <Image
+            src={(minisearchIcon && minisearchIcon.src) || minisearchIcon}
+            alt="Search"
+            width={24}
+            height={24}
+            layout="fixed"
+          />
+        </button>
+
+        {/* 3. SEARCH TRIGGER ICON (The magnifying glass) */}
         <div
           css={css`
             ${absoluteTopRight(Z_INDEX_SEARCH_ICON)};
@@ -213,7 +232,7 @@ export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
           `}
           onClick={onExpandSearch}
         >
-          <img
+          <div 
             id="Masthead__SearchIconBox"
             css={css`
               ${inlineBlockVerticalMiddle};
@@ -221,10 +240,20 @@ export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
               transition-delay: 100ms;
               width: ${ACTION_WIDTH};
               height: ${ACTION_HEIGHT};
+              /* Flexbox helps center the Next Image perfectly */
+              display: flex; 
+              align-items: center; 
+              justify-content: center;
             `}
-            src={searchIcon}
-            alt="Search"
-          />
+          >
+            <Image
+            src={(searchIcon && searchIcon.src) || searchIcon}
+              alt="Expand Search"
+              width={36}
+              height={36}
+              layout="fixed"
+            />
+          </div>
         </div>
       </form>
     </div>

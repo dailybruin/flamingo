@@ -77,8 +77,11 @@ export const logoContainerStyles = css`
 export const logoStyles = (height) => css`
   ${inlineBlockVerticalMiddle};
   height: ${height};
+  width: auto;
   padding: 8px 0;
   transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  aspect-ratio: 6 / 1;
+
   @media (max-width: 600px) {
     height: 24px;
   }
