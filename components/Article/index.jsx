@@ -30,23 +30,36 @@ export default class Article extends React.Component {
       }
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
-          <Image
-            src={
-              author.simple_local_avatar != null
-                ? author.simple_local_avatar.full
-                : author.avatar_urls[512]
-            }
-            alt={author.name || "Author"}
-            width={48}
-            height={48}
-            style={{
-              borderRadius: "50%",
-              display: "inline-block",
-              marginRight: "10px",
-              verticalAlign: "middle",
-            }}
-            loading="lazy"
-          />
+          <div
+            css={css`
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+              display: inline-block;
+              margin-right: 10px;
+              vertical-align: middle;
+              overflow: hidden;
+              flex-shrink: 0;
+            `}
+          >
+            <Image
+              src={
+                author.simple_local_avatar != null
+                  ? author.simple_local_avatar.full
+                  : author.avatar_urls[512]
+              }
+              alt={author.name || "Author"}
+              width={48}
+              height={48}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center"
+              }}
+              loading="lazy"
+            />
+          </div>
         </a>
       );
       renderedAuthorCards.push(
@@ -54,6 +67,7 @@ export default class Article extends React.Component {
           css={css`
             margin: 20px 0;
           `}
+          key={author.name}
         >
           <AuthorCard
             image={
