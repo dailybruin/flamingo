@@ -42,9 +42,6 @@ export default class Mobile extends React.Component {
 
   render() {
     let date = dayjs();
-    const prankdIcon = require("./prankd.svg");
-    const logoSrc =
-      date.date() == 1 && date.month() == 3 ? prankdIcon : logo;
     let renderedCategories = [];
     if (this.props.categories != null) {
       for (let i = 0; i < this.props.categories.length; i++) {
@@ -139,7 +136,7 @@ export default class Mobile extends React.Component {
               `}
             >
               <Image
-                src={(logoSrc && logoSrc.src) || logoSrc}
+                src={(logo && logo.src) || logo}
                 alt="Daily Bruin"
                 layout="fill"
                 objectFit="contain"
