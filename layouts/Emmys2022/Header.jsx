@@ -24,7 +24,7 @@ export default function Header() {
         `}
       >
         {/* Daily Bruin */}
-        <img src={DBLogo.src} alt="Daily Bruin"></img>
+        <img src={DBLogo} alt="Daily Bruin"></img>
       </div>
     </a>
   );

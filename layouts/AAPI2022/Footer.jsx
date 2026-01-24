@@ -35,13 +35,13 @@ export default function AAPIFooter() {
   return (
     <div
       css={css`
-        background-image: url(${footer.src});
+        background-image: url(${footer});
         background-size: cover;
         background-repeat: no-repeat;
         display: block;
         min-height: 30vh;
         @media all and (max-width: 800px) {
-          background-image: url(${footermobile.src});
+          background-image: url(${footermobile});
           background-size: cover;
           min-height: 15vh;
         }

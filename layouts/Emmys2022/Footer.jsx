@@ -46,7 +46,7 @@ export default function AAPIFooter() {
       `}
     >
       <img 
-        src={dblogo.src}
+        src={dblogo}
         css={css`
           padding-top: 5%;
           display: block;
