@@ -16,10 +16,10 @@ export default function LoadingBear(props) {
       `}
     >
       <Image
-        src={loadingbear}
+        src={(loadingbear && loadingbear.src) || loadingbear}
         alt="Loading"
-        width={200}
-        height={200}
+        width={300}
+        height={167}
       />
       <p
         css={css`
