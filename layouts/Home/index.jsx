@@ -26,7 +26,8 @@ export default class HomeLayout extends React.Component {
       gArticleCard: utilities.buildStoryList(
                 "",
         this.props.posts.gStory,
-        ""
+        "",
+        true
       ),
       hArticleCard: utilities.buildStoryList(
         "",
@@ -335,7 +336,8 @@ export default class HomeLayout extends React.Component {
                     >
                       <div id="a" className={css.card}>
                         {React.cloneElement(this.cards.aArticleCard, {
-                          displayType: "vert"
+                          displayType: "vert",
+                          priority: true
                         })}
                       </div>
                       <div id="b" className={css.card}>

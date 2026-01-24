@@ -66,7 +66,7 @@ export function buildArticleCard(story, type = "") {
   }
 }
 
-export function buildStoryList(type, list, link) {
+export function buildStoryList(type, list, link, isPriority=false) {
   const mappedList = list.map(index => {
     return {
       title: index.title.rendered,
@@ -129,6 +129,7 @@ export function buildStoryList(type, list, link) {
         as: `/category/${list[0]._embedded["wp:term"][0][0].slug}`
       }}
       date={list[0].date}
+      priority={isPriority}
     />
   );
 }

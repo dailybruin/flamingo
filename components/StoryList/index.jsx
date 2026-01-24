@@ -55,7 +55,7 @@ class StoryList extends React.Component {
                 * storyLists take up about 20% of the screen on desktop, and most of the screen on mobile.
                 */
                 sizes="(max-width: 768px) 85vw, 20vw"
-                loading="lazy"
+                priority={this.props.priority}
               />
             </a>
             <span>
