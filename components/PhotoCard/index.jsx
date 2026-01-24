@@ -23,9 +23,11 @@ export default function PhotoCard(props) {
             css={css`
               position: relative;
               margin: 0;
+              padding: 15px;
               width: 100%;
               overflow: hidden;
               box-shadow: ${globals.cardShadow};
+              background-color: white;
               &:hover #overlay {
                 opacity: 1;
               }
@@ -39,7 +41,7 @@ export default function PhotoCard(props) {
               layout="intrinsic"
               sizes="35vw"
               loading="lazy"
-              style={{ display: "block", width: "100%", border: "15px solid #ffffff" }}
+              style={{ display: "block", width: "100%"}}
             />
             <div
               id="overlay"
@@ -148,16 +150,26 @@ export default function PhotoCard(props) {
               box-shadow: ${globals.cardShadow};
             `}
           >
-            <Image
-              src={props.image}
-              alt={props.headline || "Photo"}
-              width={1200}
-              height={800}
-              layout="intrinsic"
-              sizes="100vw"
-              loading="lazy"
-              style={{ boxSizing: "border-box", display: "block", width: "100%", padding: "15px 15px 0" }}
-            />
+            <div
+              css={css`
+                width: 100%;
+                max-width: 600px; /* or any max width you want on mobile */
+                height: auto;
+                position: relative; /* needed for next/image responsive layout */
+              `}
+            >
+              <Image
+                src={props.image}
+                alt={props.headline || "Photo"}
+                width={props.imageWidth}
+                height={props.imageHeight}
+                layout="responsive"
+                sizes="100vw"
+                loading="lazy"
+                style={{ boxSizing: "border-box", display: "block", padding: "15px 15px 0" }}
+              />
+            </div>
+
             <div
               id="text"
               css={css`
