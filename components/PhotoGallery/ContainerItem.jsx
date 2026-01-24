@@ -2,7 +2,6 @@ import React from "react";
 import css from "../../layouts/style.module.css";
 import ReactMarkdown from "react-markdown";
 import Media from "react-media";
-import Image from "next/image";
 
 function ContainerItem(props) {
   const renderRelated = () => {
@@ -45,15 +44,11 @@ function ContainerItem(props) {
     content = (
       <div className={css["row"]}>
         <div className={css["center-img-col"]}>
-          <div className={css["center-photo-wrapper"]}>
-            <Image
-              src={props.img_url}
-              alt="gallery-image"
-              layout="fill"
-              sizes="(max-width: 768px) 100vw, 800px"
-              loading="lazy"
-            />
-          </div>
+          <img
+            className={css["center-photo"]}
+            src={props.img_url}
+            alt="gallery-image"
+          />
           <p className={css["credits"]}>{props.credits}</p>
         </div>
       </div>
@@ -103,15 +98,11 @@ function ContainerItem(props) {
             <ReactMarkdown children={props.description} />
           </div>
           <div className={css["img-col"]}>
-            <div className={css["image-wrapper"]}>
-              <Image
-                src={props.img_url}
-                alt="gallery-image"
-                layout="fill"
-                sizes="(max-width: 768px) 50vw, 400px"
-                loading="lazy"
-              />
-            </div>
+            <img
+              className={css["image"]}
+              src={props.img_url}
+              alt="gallery-image"
+            />
             <p className={css["credits"]} style={{ textAlign: "right" }}>
               {props.credits}
             </p>
@@ -122,15 +113,11 @@ function ContainerItem(props) {
       content = (
         <div className={css["row"]}>
           <div className={css["img-col"]}>
-            <div className={css["image-wrapper"]}>
-              <Image
-                src={props.img_url}
-                alt="gallery-image"
-                layout="fill"
-                sizes="(max-width: 768px) 50vw, 400px"
-                loading="lazy"
-              />
-            </div>
+            <img
+              className={css["image"]}
+              src={props.img_url}
+              alt="gallery-image"
+            />
             <p className={css["credits"]}>{props.credits}</p>
           </div>
           <div className={css["caption"]}>
@@ -142,16 +129,11 @@ function ContainerItem(props) {
   } else if (props.type == "big-center-photo") {
     content = (
       <div>
-        <div className={css["big-center-photo-wrapper"]}>
-          <Image
-            src={props.img_url}
-            alt="big-center-photo"
-            layout="fill"
-            sizes="(max-width: 768px) 100vw, 1000px"
-            loading="lazy"
-            priority={props.index === 0}
-          />
-        </div>
+        <img
+          className={css["big-center-photo"]}
+          src={props.img_url}
+          alt="big-center-photo"
+        />
         <p className={css["credits"]}>{props.credits}</p>
       </div>
     );

@@ -5,29 +5,28 @@ import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
-import Image from "next/image";
 
 export default function Header(props) {
   let authorPictures = [];
   for (let author of props.photographers) {
     authorPictures.push(
-      <a key={author.slug} href={`/author/${author.slug}`}>
-        <Image
+      <a href={`/author/${author.slug}`}>
+        <img
           src={
             author.simple_local_avatar != null
               ? author.simple_local_avatar.full
               : author.avatar_urls[512]
           }
-          alt={author.name || "Author"}
-          width={48}
-          height={48}
-          style={{
-            borderRadius: "50%",
-            objectFit: "cover",
-            marginRight: "10px",
-            verticalAlign: "middle",
-          }}
-          loading="lazy"
+          css={css`
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            object-fit: cover;
+            object-position: center;
+          `}
         />
       </a>
     );
@@ -66,7 +65,7 @@ export default function Header(props) {
           `}
         >
           <img
-            src={InFocusLogo.src}
+            src={InFocusLogo}
             css={css`
               display: inline-block;
               height: 100%;
