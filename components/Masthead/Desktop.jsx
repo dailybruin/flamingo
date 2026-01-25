@@ -101,7 +101,6 @@ export default class Desktop extends React.Component {
                 alt="Daily Bruin Logo"
                 width={586} // width and height match dailybruin.svg
                 height={70}
-                style={{ height: "100%", width: "auto" }}
               />
             </a>
           </div>
