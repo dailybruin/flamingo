@@ -12,15 +12,15 @@ class MyDocument extends Document {
       <Html>
         <Head>
           {/* Preconnect critical origins for faster LCP */}
-          <link rel="preconnect" href="https://wp.dailybruin.com" crossOrigin="" />
-          <link rel="preconnect" href="https://dailybruin.com" crossOrigin="" />
-          <link rel="preconnect" href="https://secure.gravatar.com" crossOrigin="" />
-          <link rel="preconnect" href="https://gravatar.com" crossOrigin="" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-          <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
-          <link rel="preconnect" href="https://static.chartbeat.com" crossOrigin="" />
-          <link rel="preconnect" href="https://cdn.broadstreetads.com" crossOrigin="" />
+          <link rel="preconnect" href="https://wp.dailybruin.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://dailybruin.com" />
+          <link rel="preconnect" href="https://secure.gravatar.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://gravatar.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://static.chartbeat.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://cdn.broadstreetads.com" crossOrigin="anonymous" />
           <link
             rel="apple-touch-icon"
             sizes="57x57"
