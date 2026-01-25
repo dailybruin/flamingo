@@ -38,10 +38,9 @@ export default function PhotoCard(props) {
               alt={props.headline || "Photo"}
               width={props.imageWidth}
               height={props.imageHeight}
-              layout="intrinsic"
+              layout="responsive"
               sizes="35vw"
               loading="lazy"
-              style={{ display: "block", width: "100%"}}
             />
             <div
               id="overlay"
@@ -166,7 +165,6 @@ export default function PhotoCard(props) {
                 layout="responsive"
                 sizes="100vw"
                 loading="lazy"
-                style={{ boxSizing: "border-box", display: "block", padding: "15px 15px 0" }}
               />
             </div>
 
