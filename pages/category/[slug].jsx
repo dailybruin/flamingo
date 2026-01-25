@@ -1,11 +1,15 @@
 import PageWrapper from "../../layouts/PageWrapper";
-import React, { Component } from "react";
+import React from "react";
 import Error from "next/error";
 import { Config } from "../../config.js";
 import Head from "next/head";
 
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
+import MultimediaLayout from "../../layouts/Multimedia";
+
+// Categories that use MultimediaLayout instead of CategoryLayout
+const MULTIMEDIA_CATEGORIES = ["graphics", "illo", "cartoons"];
 
 const COLUMN_SERIES_FEATURE_FLAG = false;
 
@@ -30,7 +34,7 @@ const categoryDescriptions = {
   "the-stack": {
     desktop:
       "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
-      engaging visualizations and \apply quantitative insights to topics relevant to our UCLA community.",
+      engaging visualizations and apply quantitative insights to topics relevant to our UCLA community.",
     mobile:
       "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
       engaging visualizations and apply quantitative insights to topics relevant to our UCLA community."
@@ -46,179 +50,153 @@ const categoryMetaDescriptions = {
       "Sponsored is an advertisement page managed by the Bruin Media Group. Increase visibility and traffic to your company's brand or products through the Daily Bruin website. Grow your business online with Sponsored to bring in new customers."
 };
 
-class Category extends Component {
-  static async getInitialProps(context) {
-    // slug is from url
-    const { slug } = context.query;
-    if (slug == 'breaking') {
-      const category = undefined
-      return { category }
+function Category({ category, subcategories, posts, classifieds }) {
+  if (
+    category == undefined ||
+    category.data != undefined ||
+    category.length == 0
+  ) {
+    return <Error statusCode={404} />;
+  }
+  const sectionLinks = subcategories.map(index => {
+    const subsubcategoriesSimple = index.subsubcategories.map(index => {
+      return { name: index.name, link: `/category/${index.slug}` };
+    });
+    return {
+      name: index.name,
+      link: `/category/${index.slug}`,
+      subsubcategories: subsubcategoriesSimple
+    };
+  });
+
+  // Fetch meta description from categoryMetaDescriptions
+  let metaDescription = null;
+  try {
+    const slug = category[0].slug;
+    if (categoryMetaDescriptions && categoryMetaDescriptions[slug]) {
+      metaDescription = categoryMetaDescriptions[slug];
     }
-    const categoryRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`
-    );
-    const category = await categoryRes.json();
-    if (category.length > 0) {
-      const subcategoriesRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}&per_page=100`
-      );
-      const subcategories = await subcategoriesRes.json();
-      for (let i = 0; i < subcategories.length; i++) {
-        // const subsubcategoriesRes = await fetch(
-        //   `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
-        // );
-        // subcategories[i].subsubcategories = await subsubcategoriesRes.json();
-        subcategories[i].subsubcategories = [];
-      }
+  } catch (e) {
+    metaDescription = null;
+  }
 
-      // Put Opinion Column Series after Opinion Columns
-      if (slug == "opinion") {
-        const columnsIndex = subcategories.findIndex(
-          sub => sub.slug == "opinion-columns"
-        );
-        const columnSeriesIndex = subcategories.findIndex(
-          sub => sub.slug == "opinion-column-series"
-        );
-        const temp = subcategories[columnsIndex];
-        subcategories[columnsIndex] = subcategories[columnSeriesIndex];
-        subcategories[columnSeriesIndex] = temp;
+  let pageTitle = category[0].name + " - Daily Bruin"
+  const isMultimediaCategory = MULTIMEDIA_CATEGORIES.includes(category[0].slug);
 
-        if (!COLUMN_SERIES_FEATURE_FLAG) {
-          subcategories.pop();
-        }
-      }
+  return (
+    <>
+      <Head>
+        <title>{pageTitle}</title>
 
+        <meta itemprop="name" content={pageTitle}></meta>
+        <meta property="og:type" content="website"></meta>
+        <meta property="og:title" content={pageTitle}></meta>
+        <meta name="twitter:title" content={pageTitle}></meta>
+
+        {metaDescription && (
+          <>
+            <meta name="description" content={metaDescription} />
+            <meta itemprop="description" content={metaDescription} />
+            <meta property="og:description" content={metaDescription} />
+            <meta name="twitter:description" content={metaDescription} />
+          </>
+        )}
+      </Head>
+      <div style={{ padding: "6px" }}>
+        <SectionHeader
+          category={category[0].name}
+          description={categoryDescriptions[category[0].slug]}
+          subcategories={sectionLinks}
+        />
+      </div>
+      {isMultimediaCategory ? (
+        <MultimediaLayout
+          posts={posts}
+          categoryID={category[0].id}
+        />
+      ) : (
+        <CategoryLayout
+          posts={posts}
+          categoryID={category[0].id}
+          classifieds={classifieds.map(c => {
+            return {
+              category: {
+                name: c._embedded["wp:term"][1][0].name,
+                url: c._embedded["wp:term"][1][0].link
+              },
+              content: { name: c.content.rendered, url: c.link }
+            };
+          })}
+        />
+      )}
+    </>
+  );
+}
+
+Category.getInitialProps = async (context) => {
+  // slug is from url
+  const { slug } = context.query;
+  if (slug == 'breaking') {
+    const category = undefined
+    return { category }
+  }
+  const categoryRes = await fetch(
+    `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`
+  );
+  const category = await categoryRes.json();
+  if (category.length > 0) {
+    // Multimedia categories have a simpler data fetch (no subcategories/classifieds)
+    if (MULTIMEDIA_CATEGORIES.includes(slug)) {
+      const subcategories = [];
       const postsRes = await fetch(
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
       );
-      const postsRaw = await postsRes.json();
-
-      // Trim posts to reduce page data size
-      const posts = postsRaw.map(post => {
-        const rawFeatured =
-          post._embedded && post._embedded["wp:featuredmedia"]
-            ? post._embedded["wp:featuredmedia"]
-            : [];
-
-        const trimmedFeatured = rawFeatured.map(media => ({
-          source_url: media.source_url,
-          caption: media.caption,
-          media_details:
-            media.media_details && media.media_details.width && media.media_details.height
-              ? { width: media.media_details.width, height: media.media_details.height }
-              : undefined
-        }));
-
-        const rawTerms = post._embedded && post._embedded["wp:term"] ? post._embedded["wp:term"] : [];
-        const trimmedTerms = rawTerms.map(termGroup =>
-          termGroup.map(term => ({
-            id: term.id,
-            link: term.link,
-            name: term.name,
-            slug: term.slug
-          }))
-        );
-
-        return {
-          id: post.id,
-          date: post.date,
-          link: post.link,
-          slug: post.slug,
-          title: post.title,
-          coauthors: post.coauthors,
-          excerpt: post.excerpt,
-          acf: post.acf,
-          _embedded: {
-            "wp:featuredmedia": trimmedFeatured,
-            "wp:term": trimmedTerms
-          }
-        };
-      });
-
-      const classifiedsRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
-      );
-      const classifiedsRaw = await classifiedsRes.json();
-      // Pre-map classifieds to reduce data
-      const classifieds = classifiedsRaw.map(c => ({
-        category: {
-          name: c._embedded["wp:term"][1][0].name,
-          url: c._embedded["wp:term"][1][0].link
-        },
-        content: { name: c.content.rendered, url: c.link }
-      }));
-
-      return { category, subcategories, posts, classifieds };
-    } else {
-      return { category };
-    }
-  }
-  render() {
-    if (
-      this.props.category == undefined ||
-      this.props.category.data != undefined ||
-      this.props.category.length == 0 ||
-      this.slug == 'breaking'
-    ) {
-      return <Error statusCode={404} />;
-    }
-    const sectionLinks = this.props.subcategories.map(index => {
-      const subsubcategoriesSimple = index.subsubcategories.map(index => {
-        return { name: index.name, link: `/category/${index.slug}` };
-      });
-      return {
-        name: index.name,
-        link: `/category/${index.slug}`,
-        subsubcategories: subsubcategoriesSimple
-      };
-    });
-
-    // Fetch meta description from categoryMetaDescriptions
-    let metaDescription = null;
-    try {
-      const slug = this.props.category[0].slug;
-      if (categoryMetaDescriptions && categoryMetaDescriptions[slug]) {
-        metaDescription = categoryMetaDescriptions[slug];
-      }
-    } catch (e) {
-      metaDescription = null;
+      const posts = await postsRes.json();
+      return { category, subcategories, posts, classifieds: [] }; //returns empty classified as well
     }
 
-    let pageTitle = this.props.category[0].name + " - Daily Bruin"
-    return (
-      <>
-        <Head>
-          <title>{pageTitle}</title>
-
-          <meta itemProp="name" content={pageTitle}></meta>
-          <meta property="og:type" content="website"></meta>
-          <meta property="og:title" content={pageTitle}></meta>
-          <meta name="twitter:title" content={pageTitle}></meta>
-
-          {metaDescription && (
-            <>
-              <meta name="description" content={metaDescription} />
-              <meta itemProp="description" content={metaDescription} />
-              <meta property="og:description" content={metaDescription} />
-              <meta name="twitter:description" content={metaDescription} />
-            </>
-          )}
-        </Head>
-        <div style={{ padding: "6px" }}>
-          <SectionHeader
-            category={this.props.category[0].name}
-            description={categoryDescriptions[this.props.category[0].slug]}
-            subcategories={sectionLinks}
-          />
-        </div>
-        <CategoryLayout
-          posts={this.props.posts}
-          categoryID={this.props.category[0].id}
-          classifieds={this.props.classifieds}
-        />
-      </>
+    const subcategoriesRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}&per_page=100`
     );
+    const subcategories = await subcategoriesRes.json();
+    for (let i = 0; i < subcategories.length; i++) {
+      // const subsubcategoriesRes = await fetch(
+      //   `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
+      // );
+      // subcategories[i].subsubcategories = await subsubcategoriesRes.json();
+      subcategories[i].subsubcategories = [];
+    }
+
+    // Put Opinion Column Series after Opinion Columns
+    if (slug == "opinion") {
+      const columnsIndex = subcategories.findIndex(
+        sub => sub.slug == "opinion-columns"
+      );
+      const columnSeriesIndex = subcategories.findIndex(
+        sub => sub.slug == "opinion-column-series"
+      );
+      const temp = subcategories[columnsIndex];
+      subcategories[columnsIndex] = subcategories[columnSeriesIndex];
+      subcategories[columnSeriesIndex] = temp;
+
+      if (!COLUMN_SERIES_FEATURE_FLAG) {
+        subcategories.pop();
+      }
+    }
+
+    const postsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
+    );
+    const posts = await postsRes.json();
+
+    const classifiedsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
+    );
+    const classifieds = await classifiedsRes.json();
+    return { category, subcategories, posts, classifieds };
+  } else {
+    return { category };
   }
-}
+};
 
 export default PageWrapper(Category);
