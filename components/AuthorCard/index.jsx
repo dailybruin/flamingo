@@ -75,7 +75,7 @@ export default class AuthorCard extends React.Component {
               css={css`
                 width: 120px;
                 height: 120px;
-                flex-shrink: 0;
+                position: relative;
 
                 @media (max-width: 600px) {
                   width: 60px;
@@ -86,15 +86,10 @@ export default class AuthorCard extends React.Component {
               <Image
                 src={this.props.image}
                 alt={this.props.name || "Author"}
-                width={120}
-                height={120}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "50%",
-                  objectFit: "cover"
-                }}
-                loading="lazy"
+                layout="fill"
+                objectFit="cover"
+                sizes="(max-width: 600px) 120px, 240px"
+                style={{ borderRadius: "50%" }}
               />
             </div>
             <div
