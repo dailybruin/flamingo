@@ -46,7 +46,7 @@ export default function AAPIFooter() {
       `}
     >
       <img 
-        src={dblogo}
+        src={dblogo.src}
         css={css`
           padding-top: 5%;
           display: block;
@@ -63,7 +63,7 @@ export default function AAPIFooter() {
         `}
       >
         {ls.map(e => (
-          <IconButton type={e} />
+          <IconButton type={e.src} />
         ))}
         </div>
       <div

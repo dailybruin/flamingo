@@ -27,7 +27,7 @@ export default class SpringSing2022Layout extends React.Component {
       renderedPosts.push(
         <div
           css={css`
-            background-image: url(${DesktopArticleCardBg});
+            background-image: url(${DesktopArticleCardBg.src});
             background-size: contain;
             background-repeat: no-repeat;
             padding-bottom: 10%;
@@ -35,7 +35,7 @@ export default class SpringSing2022Layout extends React.Component {
             height: 16vh;
             
             ${mediaQueries.mobile} {
-                background-image: url(${MobileArticleCardBg});
+                background-image: url(${MobileArticleCardBg.src});
                 background-size: cover;
                 min-height: 35vw;
 
@@ -134,7 +134,7 @@ export default class SpringSing2022Layout extends React.Component {
       >
         <a href="/">
             <img
-              src={DesktopLanding}
+              src={DesktopLanding.src}
               css={css`
                 margin: auto;
                 width: 100%;
@@ -145,7 +145,7 @@ export default class SpringSing2022Layout extends React.Component {
               `}
             />
             <img
-              src={DesktopImg}
+              src={DesktopImg.src}
               css={css`
                 margin: auto;
                 width: 100%;
@@ -156,7 +156,7 @@ export default class SpringSing2022Layout extends React.Component {
               `}
             />
             <img
-              src={MobileImg}
+              src={MobileImg.src}
               css={css`
                 margin: auto;
                 width: 100%;
@@ -170,14 +170,14 @@ export default class SpringSing2022Layout extends React.Component {
 
           <div
             css={css`
-                background-image: url(${column_art_bottom});
+                background-image: url(${column_art_bottom.src});
                 background-position: bottom;
                 background-size: contain;
                 background-repeat: no-repeat;
             `}
           >
             <img 
-              src={column_art_top}
+              src={column_art_top.src}
               css={css`
                 margin-bottom: -15%;
                 width: 100%;

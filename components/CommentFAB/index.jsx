@@ -2,7 +2,6 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
-import comment from "./comment.svg";
 
 export default class CommentFAB extends React.Component {
   timeout = null;
@@ -52,7 +51,7 @@ export default class CommentFAB extends React.Component {
         `}
       >
         <img
-          src={(comment && comment.src) || comment}
+          src={"/icons/comment.svg"}
           css={css`
             display: block;
             width: 24px;
