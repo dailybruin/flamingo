@@ -51,12 +51,6 @@ export default class Article extends React.Component {
               alt={author.name || "Author"}
               width={48}
               height={48}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center"
-              }}
               loading="lazy"
             />
           </div>
@@ -168,9 +162,6 @@ export default class Article extends React.Component {
             layout="responsive"
             sizes="(max-width: 768px) 100vw, 1200px"
             priority
-            style={{
-              objectFit: "cover"
-            }}
           />
         </div>
         <div
