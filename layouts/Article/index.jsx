@@ -27,13 +27,13 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
     featured.media_details &&
     featured.media_details.width
       ? featured.media_details.width
-      : 1200;
+      : null;
   const featureimgHeight =
     featured &&
     featured.media_details &&
     featured.media_details.height
       ? featured.media_details.height
-      : 675;
+      : null;
 
   let articleBuild = (
     <Article

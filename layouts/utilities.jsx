@@ -16,13 +16,13 @@ export function buildArticleCard(story, type = "") {
       featuredMedia.media_details &&
       featuredMedia.media_details.width
         ? featuredMedia.media_details.width
-        : 1200;
+        : null;
     const imageHeight =
       featuredMedia &&
       featuredMedia.media_details &&
       featuredMedia.media_details.height
         ? featuredMedia.media_details.height
-        : 675;
+        : null;
 
     return (
       <ArticleCard
@@ -81,13 +81,13 @@ export function buildStoryList(type, list, link, isPriority=false) {
     featured.media_details &&
     featured.media_details.width
       ? featured.media_details.width
-      : 1200;
+      : null;
   const imageHeight =
     featured &&
     featured.media_details &&
     featured.media_details.height
       ? featured.media_details.height
-      : 675;
+      : null;
 
   if (mappedList.length > 1) {
     mappedList[1].text = "";
