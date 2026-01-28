@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 export default function Breaking(props) {
     var CurrentTime = new Date();
@@ -127,20 +128,13 @@ export default function Breaking(props) {
               position: relative;
             `}
                 >
-                    <img
-                        css={css`
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                object-fit: cover;
-                padding: 20px;
-                padding-top: 0px;
-                padding-bottom: ${props.caption ? '0px' : '10px'};
-              `}
+                    <Image
                         src={props.imageurl}
+                        alt={props.title || "Article image"}
+                        layout="fill"
+                        objectFit="cover"
+                        loading="lazy"
+                        style={{ padding: 20, paddingTop: 0, paddingBottom: props.caption ? 0 : 10 }}
                     />
                 </div>
                 <div

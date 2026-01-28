@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Image from "next/image";
 import css from "../style.module.css";
 import * as utilities from "../utilities";
 import Media from "react-media";
@@ -26,7 +26,8 @@ export default class HomeLayout extends React.Component {
       gArticleCard: utilities.buildStoryList(
                 "",
         this.props.posts.gStory,
-        ""
+        "",
+        true
       ),
       hArticleCard: utilities.buildStoryList(
         "",
@@ -78,7 +79,8 @@ export default class HomeLayout extends React.Component {
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.cards.c1ArticleCard, {
-                        displayType: "full"
+                        displayType: "full",
+                        priority: true
                       })}
                     </div>
                     <div id="a" className={css.card}>
@@ -246,7 +248,8 @@ export default class HomeLayout extends React.Component {
                   >
                     <div id="c1" className={css.card}>
                       {React.cloneElement(this.cards.c1ArticleCard, {
-                        displayType: "full"
+                        displayType: "full",
+                        priority: true
                       })}
                     </div>
                     <div id="c2" className={css.card}>
@@ -304,9 +307,12 @@ export default class HomeLayout extends React.Component {
                         </div>
                         <div className={css.card}>
                           <a href="https://prime.dailybruin.com">
-                            <img
+                            <Image
                               src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
-                              style={{ width: "100%" }}
+                              alt="Prime Magazine"
+                              width={828}
+                              height={1375}
+                              sizes="20vw"
                             />
                           </a>
                         </div>
@@ -330,7 +336,8 @@ export default class HomeLayout extends React.Component {
                     >
                       <div id="a" className={css.card}>
                         {React.cloneElement(this.cards.aArticleCard, {
-                          displayType: "vert"
+                          displayType: "vert",
+                          priority: true
                         })}
                       </div>
                       <div id="b" className={css.card}>
@@ -368,7 +375,8 @@ export default class HomeLayout extends React.Component {
                     >
                       <div id="c1" className={css.card}>
                         {React.cloneElement(this.cards.c1ArticleCard, {
-                          displayType: "full"
+                          displayType: "full",
+                          priority: true
                         })}
                       </div>
                       <div id="c2" className={css.card}>
@@ -446,9 +454,12 @@ export default class HomeLayout extends React.Component {
                       </div>
                       <div className={css.card}>
                         <a href="https://prime.dailybruin.com">
-                          <img
+                          <Image
                             src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
-                            style={{ width: "100%", height: "auto" }}
+                            alt="Prime Magazine"
+                            width={828}
+                            height={1375}
+                            sizes="20vw"
                           />
                         </a>
                       </div>

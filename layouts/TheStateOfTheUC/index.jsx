@@ -107,7 +107,7 @@ export default class TheStateOfTheUCLayout extends React.Component {
       <>
         <a href="/">
           <img
-            src={DesktopImg}
+            src={DesktopImg.src}
             css={css`
               margin: auto;
               width: 100%;
@@ -118,7 +118,7 @@ export default class TheStateOfTheUCLayout extends React.Component {
             `}
           />
           <img
-            src={MobileImg}
+            src={MobileImg.src}
             css={css`
               margin: auto;
               width: 100%;
@@ -167,10 +167,10 @@ export default class TheStateOfTheUCLayout extends React.Component {
         </div>
         <div
           css={css`
-            background-image: url(${columnbg});
+            background-image: url(${columnbg.src});
             background-size: cover;
             @media all and (max-width: 800px) {
-              background-image: url(${columnbgmobile});
+              background-image: url(${columnbgmobile.src});
             }
           `}
         >

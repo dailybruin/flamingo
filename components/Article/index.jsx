@@ -11,6 +11,7 @@ import * as globals from "../globals";
 import ShareButtons from "../ShareButtons";
 import ReviewInfobox from "../ReviewInfobox";
 import AuthorCard from "../AuthorCard";
+import Image from "next/image";
 
 export default class Article extends React.Component {
   constructor(props) {
@@ -29,23 +30,30 @@ export default class Article extends React.Component {
       }
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
-          <img
-            src={
-              author.simple_local_avatar != null
-                ? author.simple_local_avatar.full
-                : author.avatar_urls[512]
-            }
+          <div
             css={css`
-              height: 48px;
               width: 48px;
+              height: 48px;
               border-radius: 50%;
               display: inline-block;
               margin-right: 10px;
               vertical-align: middle;
-              object-fit: cover;
-              object-position: center;
+              overflow: hidden;
+              flex-shrink: 0;
             `}
-          />
+          >
+            <Image
+              src={
+                author.simple_local_avatar != null
+                  ? author.simple_local_avatar.full
+                  : author.avatar_urls[512]
+              }
+              alt={author.name || "Author"}
+              width={48}
+              height={48}
+              loading="lazy"
+            />
+          </div>
         </a>
       );
       renderedAuthorCards.push(
@@ -53,6 +61,7 @@ export default class Article extends React.Component {
           css={css`
             margin: 20px 0;
           `}
+          key={author.name}
         >
           <AuthorCard
             image={
@@ -139,13 +148,22 @@ export default class Article extends React.Component {
           }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
-        <img
-          src={this.props.featureimg} // margin -10px to undo the padding 10px
-          css={css`
-            width: calc(100% + 20px);
-            margin: 10px -10px;
-          `}
-        />
+        <div
+          style={{
+            width: "calc(100% + 20px)",
+            margin: "10px -10px"
+          }}
+        >
+          <Image
+            src={this.props.featureimg}
+            alt="Feature image"
+            width={this.props.featureimgWidth || 1200}
+            height={this.props.featureimgHeight || 675}
+            layout="responsive"
+            sizes="(max-width: 768px) 100vw, 1200px"
+            priority
+          />
+        </div>
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
           css={css`

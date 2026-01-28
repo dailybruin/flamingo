@@ -65,7 +65,7 @@ export default function Header(props) {
           `}
         >
           <img
-            src={InFocusLogo}
+            src={(InFocusLogo && InFocusLogo.src) || InFocusLogo}
             css={css`
               display: inline-block;
               height: 100%;

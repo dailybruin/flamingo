@@ -8,10 +8,21 @@ import dayjs from "dayjs";
 export function buildArticleCard(story, type = "") {
   // Check if story exists and isn't an error object
   if (story && story.data === undefined) {
-    
     // Pre-calculate these to keep the JSX clean
     const featuredMedia = story._embedded?.["wp:featuredmedia"]?.[0];
     const category = story._embedded?.["wp:term"]?.[0]?.[0];
+    const imageWidth =
+      featuredMedia &&
+      featuredMedia.media_details &&
+      featuredMedia.media_details.width
+        ? featuredMedia.media_details.width
+        : 1200;
+    const imageHeight =
+      featuredMedia &&
+      featuredMedia.media_details &&
+      featuredMedia.media_details.height
+        ? featuredMedia.media_details.height
+        : 675;
 
     return (
       <ArticleCard
@@ -31,6 +42,8 @@ export function buildArticleCard(story, type = "") {
           as: `/category/${category?.slug ?? ""}`
         }}
         imageurl={featuredMedia?.source_url ?? "http://wp.dailybruin.com/images/2017/03/db-logo.png"}
+        imageWidth={imageWidth}
+        imageHeight={imageHeight}
         caption={featuredMedia?.caption?.rendered ?? ""}
         acf={story.acf}
       />
@@ -40,7 +53,7 @@ export function buildArticleCard(story, type = "") {
   }
 }
 
-export function buildStoryList(type, list, link) {
+export function buildStoryList(type, list, link, isPriority=false) {
   const mappedList = list.map(index => {
     return {
       title: index.title.rendered,
@@ -55,6 +68,27 @@ export function buildStoryList(type, list, link) {
     return;
   }
 
+  const first = list[0];
+  const featured =
+    first._embedded &&
+    first._embedded["wp:featuredmedia"] &&
+    !first._embedded["wp:featuredmedia"].empty
+      ? first._embedded["wp:featuredmedia"][0]
+      : null;
+
+  const imageWidth =
+    featured &&
+    featured.media_details &&
+    featured.media_details.width
+      ? featured.media_details.width
+      : 1200;
+  const imageHeight =
+    featured &&
+    featured.media_details &&
+    featured.media_details.height
+      ? featured.media_details.height
+      : 675;
+
   if (mappedList.length > 1) {
     mappedList[1].text = "";
   }
@@ -68,8 +102,13 @@ export function buildStoryList(type, list, link) {
       link={link}
       story={mappedList}
       image={{
-        src: list[0]._embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? "http://wp.dailybruin.com/images/2017/03/db-logo.png",
-        alt: "N/A"
+        src:
+          featured && featured.source_url
+            ? featured.source_url
+            : "http://wp.dailybruin.com/images/2017/03/db-logo.png",
+        alt: "N/A",
+        width: imageWidth,
+        height: imageHeight
       }}
       category={{
         name: list[0]._embedded["wp:term"][0][0].name,
@@ -77,22 +116,40 @@ export function buildStoryList(type, list, link) {
         as: `/category/${list[0]._embedded["wp:term"][0][0].slug}`
       }}
       date={list[0].date}
+      priority={isPriority}
     />
   );
 }
 
 export function buildMultimediaScroller(media) {
-  const mappedMedia = media.map(index => {
+  // Safe mapping that handles missing data gracefully
+  const mappedMedia = media.map((post) => {
+    // 1. Safely access the featured media object
+    const featuredMedia = post._embedded?.["wp:featuredmedia"]?.[0];
+
+    // 2. Safely access dimensions, defaulting to 0 if missing
+    // We check both the media object AND the details object
+    const width = featuredMedia?.media_details?.width ?? 0;
+    const height = featuredMedia?.media_details?.height ?? 0;
+
+    // 3. Safely access the URL
+    const sourceUrl = featuredMedia?.source_url ?? null;
+
     return {
-      title: index.title.rendered,
-      link: index.link,
-      preview:
-        index._embedded["wp:featuredmedia"] != undefined
-          ? index._embedded["wp:featuredmedia"][0].source_url
-          : null
+      title: post.title?.rendered ?? "Untitled Artwork", // Fallback for title
+      link: post.link ?? "#",
+      image: {
+        preview: sourceUrl,
+        width: width,
+        height: height,
+      },
     };
   });
-  return <MultimediaScroller media={mappedMedia} />;
+
+  // Filter out items that have no image so the scroller doesn't show broken cards
+  const validMedia = mappedMedia.filter(item => item.image.preview !== null);
+
+  return <MultimediaScroller media={validMedia} />;
 }
 
 export function buildArticleList(stories) {

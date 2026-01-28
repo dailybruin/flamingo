@@ -5,6 +5,7 @@ import * as globals from "../globals";
 import Story from "./Story";
 import TopBar from "./TopBar";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 
 class StoryList extends React.Component {
@@ -44,11 +45,17 @@ class StoryList extends React.Component {
               `}
               href={!!this.props.story[0].link ? this.props.story[0].link : "#"}
             >
-              <img
-                css={css`
-                  width: 100%;
-                `}
+              <Image
                 src={this.props.image.src}
+                alt={this.props.story[0]?.title || "Story image"}
+                width={this.props.image.width || 1200}
+                height={this.props.image.height || 675}
+                layout="responsive"
+                /* 
+                * storyLists take up about 20% of the screen on desktop, and most of the screen on mobile.
+                */
+                sizes="(max-width: 768px) 85vw, 20vw"
+                priority={this.props.priority}
               />
             </a>
             <span>

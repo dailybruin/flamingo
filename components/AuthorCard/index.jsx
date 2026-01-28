@@ -4,6 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import emailImage from "./mail.svg";
 import twitterImage from "./twitter.svg";
+import Image from "next/image";
 
 function SocialCircle(props) {
   return (
@@ -14,8 +15,11 @@ function SocialCircle(props) {
           height: 36px;
           width: 36px;
           margin: 5px;
-          display: inline-block;
+          display: inline-flex; /* Keeps the container a flex box */
+          align-items: center;    /* Vertically centers the SVG */
+          justify-content: center; /* Horizontally centers the SVG */
           background-color: ${props.color};
+
           @media (max-width: 600px) {
             width: 24px;
             height: 24px;
@@ -23,18 +27,20 @@ function SocialCircle(props) {
           }
         `}
       >
-        <img
+        <Image
+          src={props.image}
+          alt="Social icon"
+          width={16}
+          height={16}
           css={css`
-            width: 36px;
-            padding: 8px;
-            height: auto;
+            width: 16px;
+            height: 16px;
+
             @media (max-width: 600px) {
-              width: 24px;
-              height: 24px;
-              padding: 6px;
+              width: 12px;
+              height: 12px;
             }
           `}
-          src={props.image}
         />
       </div>
     </a>
@@ -65,21 +71,27 @@ export default class AuthorCard extends React.Component {
               margin: 5px 15px;
             `}
           >
-            <img
+            <div
               css={css`
-                border-radius: 50%;
                 width: 120px;
                 height: 120px;
-                object-fit: cover;
-                display: block;
+                position: relative;
+
                 @media (max-width: 600px) {
                   width: 60px;
                   height: 60px;
                 }
               `}
-              src={this.props.image}
-              alt={this.props.name || "author image"}
-            />
+            >
+              <Image
+                src={this.props.image}
+                alt={this.props.name || "Author"}
+                layout="fill"
+                objectFit="cover"
+                sizes="(max-width: 600px) 120px, 240px"
+                style={{ borderRadius: "50%" }}
+              />
+            </div>
             <div
               css={css`
                 text-align: center;

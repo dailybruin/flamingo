@@ -22,7 +22,6 @@
     "ioredis": "^5.6.1",
     "js-cookie": "^2.2.1",
     "next": "12",
-    "next-images": "^1.2.0",
     "next-plugin-transpile-modules": "^2.0.0",
     "react": "17",
     "react-dom": "17",
@@ -32,6 +31,7 @@
     "react-media": "^1.10.0",
     "react-native-chartbeat-cs": "^5.2.0",
     "react-swipeable-views": "^0.13.9",
+    "sharp": "^0.34.5",
     "swr": "^2.3.3"
   },
   "devDependencies": {
