@@ -35,10 +35,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# 3. THE FIX: Install Sharp using Yarn
-# We run this BEFORE switching users so we have permission to write to node_modules.
-# This downloads the correct binary for Alpine Linux, fixing the missing file error.
-RUN yarn add sharp
+# 3. Manually copy Sharp files
+# Next.js 12 copies the JS files but misses the binary folder (@img).
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@img ./node_modules/@img
 
 USER nextjs
 
