@@ -1,43 +1,46 @@
-# --- STAGE 1: Install ALL dependencies ---
-FROM node:18-alpine AS deps
+# --- STAGE 1: Install Dependencies ---
+FROM node:22-alpine AS deps
+# libc6-compat is required for Alpine
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json yarn.lock* ./
 RUN yarn install --frozen-lockfile
 
-# --- STAGE 2: Build the application ---
-FROM node:18-alpine AS builder
+# --- STAGE 2: Build ---
+FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN yarn build
 
-# --- STAGE 3: Final Production Image ---
-FROM node:18-alpine AS runner
+# --- STAGE 3: Production Runner ---
+FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=1919
 
-# Install libc6-compat in the RUNNER stage.
-# Sharp requires this to run on Alpine.
+# 1. Install system dependencies
 RUN apk add --no-cache libc6-compat
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# 2. Copy the standalone build
+# This puts package.json and node_modules directly into /app
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-#  Manually copy sharp and its binary dependencies.
-# Next.js 12 standalone tracing misses these new folders used by Sharp v0.33+.
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules/sharp ./node_modules/sharp
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@img ./node_modules/@img
+# 3. THE FIX: Install Sharp using Yarn
+# We run this BEFORE switching users so we have permission to write to node_modules.
+# This downloads the correct binary for Alpine Linux, fixing the missing file error.
+RUN yarn add sharp
 
 USER nextjs
 
 EXPOSE 1919
-
 CMD ["node", "server.js"]
