@@ -95,7 +95,7 @@ class MyApp extends App {
           strategy="lazyOnload"
         />
 
-        {/* Broadstreet Ads init - script loaded in _document.js with beforeInteractive */}
+        {/* Broadstreet Ads init - script loaded in _document.js with afterInteractive */}
         <Script id="broadstreet-init" strategy="afterInteractive">
           {`
             window.broadstreet = window.broadstreet || { watch: function() {} };

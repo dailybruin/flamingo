@@ -230,6 +230,7 @@ export function trimClientPosts(posts) {
             id: term.id,
             name: term.name,
             slug: term.slug,
+            link: term.link,
           }))
         : []
     );
@@ -239,9 +240,9 @@ export function trimClientPosts(posts) {
       date: post.date,
       link: post.link,
       slug: post.slug,
-      title: post.title,
+      title: { rendered: post.title?.rendered },
       coauthors: post.coauthors,
-      excerpt: post.excerpt,
+      excerpt: { rendered: post.excerpt?.rendered },
       acf: post.acf,
       _embedded: {
         "wp:featuredmedia": trimmedFeatured,

@@ -54,10 +54,10 @@ export function trimMultimediaPosts(posts) {
   if (!Array.isArray(posts)) return [];
   
   return posts.map(post => ({
-    title: post.title,
+    title: { rendered: post.title?.rendered },
     link: post.link,
     coauthors: post.coauthors,
-    excerpt: post.excerpt,
+    excerpt: { rendered: post.excerpt?.rendered },
     _embedded: {
       "wp:featuredmedia": post._embedded?.["wp:featuredmedia"]?.map(media => ({
         source_url: media.source_url,
