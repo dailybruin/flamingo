@@ -32,7 +32,7 @@ export default class Oscars2022Layout extends React.Component {
         if (filmmaker)
         {
           renderedPostsFilm.push(
-          <img src={filmmakerImg} css={css`
+          <img src={filmmakerImg.src} css={css`
           max-width: 100vw;
           height: auto;
           padding-left: 10%;
@@ -50,7 +50,7 @@ export default class Oscars2022Layout extends React.Component {
       if (tags[0] == 24494 || tags[1] == 24494 || ((tags.length > 2) && tags[2] == 24494)) {
         if (bruin) {
           renderedPostsBruin.push(
-          <img src={bruinImg} css={css`
+          <img src={bruinImg.src} css={css`
           max-width: 100vw;
           height: auto;
           padding-left: 10%;
@@ -67,7 +67,7 @@ export default class Oscars2022Layout extends React.Component {
       if (tags[0] == 24442 || tags[1] == 24442 || ((tags.length > 2) && tags[2] == 24442)) {
         if(related) {
           renderedPostsRelated.push(
-          <img src={relatedImg} css={css`
+          <img src={relatedImg.src} css={css`
           width: 100%;
           height: auto;
           padding-left: 10%;
@@ -177,7 +177,7 @@ export default class Oscars2022Layout extends React.Component {
             href="/"
           >
             <img
-              src={header}
+              src={header.src}
               css={css`
                 width: 100%;
                 
@@ -197,7 +197,7 @@ export default class Oscars2022Layout extends React.Component {
             
             `}
           >
-            <img src={description}
+            <img src={description.src}
               css={css`
               width: 100vw;
               

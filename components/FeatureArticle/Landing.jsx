@@ -4,6 +4,7 @@ import { css, jsx } from "@emotion/core";
 import logo from "./dailybruin.svg";
 import * as globals from "../globals";
 import { renderAuthors } from "./utilities";
+import Image from "next/image";
 
 export default function Landing(props) {
   return (
@@ -26,16 +27,23 @@ export default function Landing(props) {
             }
           `}
         >
-          <img
-            src={props.img}
+          <div
             css={css`
-              object-fit: cover;
+              position: relative;
               flex-grow: 1;
               max-height: 100%;
               max-width: 100%;
               min-height: 0;
             `}
-          />
+          >
+            <Image
+              src={props.img}
+              alt="Feature image"
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
+          </div>
           <div
             css={css`
               color: #fff;

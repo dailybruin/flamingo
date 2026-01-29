@@ -199,7 +199,7 @@ export default class AAPILayout extends React.Component {
           <Header></Header>
 
           <img
-            src={Landing}
+            src={Landing.src}
             css={css`
               margin: auto;
               width: 100%;
@@ -209,7 +209,7 @@ export default class AAPILayout extends React.Component {
             `}
           />
           <img
-            src={Landing}
+            src={Landing.src}
             css={css`
               width: 100vw;
               display: none;
@@ -220,7 +220,7 @@ export default class AAPILayout extends React.Component {
           />
 
           <img
-            src={description}
+            src={description.src}
             css={css`
               margin: auto;
               width: 100%;
@@ -230,7 +230,7 @@ export default class AAPILayout extends React.Component {
             `}
           />
           <img
-            src={descriptionmobile}
+            src={descriptionmobile.src}
             css={css`
               width: 100vw;
               display: none;
@@ -249,10 +249,10 @@ export default class AAPILayout extends React.Component {
           <div
             css={css`
               width = 100%;
-              background-image: url(${storiesbg});
+              background-image: url(${storiesbg.src});
               background-size: cover;
               @media all and (max-width: 800px) {
-                background-image: url(${storiesbgmobile});
+                background-image: url(${storiesbgmobile.src});
               }
             `}
           >
@@ -271,7 +271,7 @@ export default class AAPILayout extends React.Component {
               {renderedPosts}
             </div>
             <img
-              src={relatedheadermobile}
+              src={relatedheadermobile.src}
               css={css`
                 width: 100vw;
                 display: none;
@@ -287,7 +287,7 @@ export default class AAPILayout extends React.Component {
                 padding-bottom: 15%;
                 margin: auto;
                 height: 100%;
-                background-image: url(${relatedbg});
+                background-image: url(${relatedbg.src});
                 background-size: cover;
                 @media all and (max-width: 800px) {
                   background-image: none;

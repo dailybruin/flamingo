@@ -1,27 +1,41 @@
 import PhotoCard from "../../components/PhotoCard";
 
 export function buildPhotoCard(story) {
-  if (story != undefined) {
-    return (
-      <div className="grid-item">
-        <PhotoCard
-          headline={story.title != undefined ? story.title.rendered : ""}
-          href={`/post/[slug]`}
-          as={story.link}
-          link={story.link}
-          authors={story.coauthors}
-          image={
-            story._embedded["wp:featuredmedia"] != undefined
-              ? story._embedded["wp:featuredmedia"][0].source_url
-              : ""
-          }
-          excerpt={story.excerpt.rendered}
-        />
-      </div>
-    );
-  } else {
+  // 1. Immediate safety check: if 'story' is null/undefined, render nothing.
+  if (!story) {
     return null;
   }
+
+  // 2. Extract data safely with fallbacks
+  const headline = story.title?.rendered ?? "Untitled";
+  const link = story.link ?? "#";
+  const authors = story.coauthors ?? [];
+
+  // 3. Safely grab the image object, URL, and dimensions
+  const featuredMedia = story._embedded?.["wp:featuredmedia"]?.[0];
+  const imageUrl = featuredMedia?.source_url ?? "";
+  
+  // Extract dimensions (default to 0 if missing so Next/Image can handle it safely)
+  const imgWidth = featuredMedia?.media_details?.width ?? 0;
+  const imgHeight = featuredMedia?.media_details?.height ?? 0;
+
+  const excerpt = story.excerpt?.rendered ?? "";
+
+  return (
+    <div className="grid-item">
+      <PhotoCard
+        headline={headline}
+        href={`/post/[slug]`}
+        as={link}
+        link={link}
+        authors={authors}
+        image={imageUrl}
+        imageWidth={imgWidth}
+        imageHeight={imgHeight}
+        excerpt={excerpt}
+      />
+    </div>
+  );
 }
 
 export function buildPhotoList(stories) {

@@ -27,7 +27,7 @@ export default function Tag(props) {
             width: 100%;
             height: 100%;
           `}
-          src={logo}
+          src={(logo && logo.src) || logo}
         ></img>
       </a>
     </div>

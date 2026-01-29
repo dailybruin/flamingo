@@ -5,6 +5,7 @@ import * as globals from "../globals";
 import Story from "./Story";
 import TopBar from "./TopBar";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 
 class StoryList extends React.Component {
@@ -19,6 +20,10 @@ class StoryList extends React.Component {
         db_display_options={story.db_display_options}
       />
     ));
+
+    // Check if image object exists and has valid width/height
+    const hasDimensions =
+      this.props.image && this.props.image.width && this.props.image.height;
 
     return (
       <div
@@ -44,12 +49,28 @@ class StoryList extends React.Component {
               `}
               href={!!this.props.story[0].link ? this.props.story[0].link : "#"}
             >
-              <img
-                css={css`
-                  width: 100%;
-                `}
-                src={this.props.image.src}
-              />
+              {hasDimensions ? (
+                <Image
+                  src={this.props.image.src}
+                  alt={this.props.story[0]?.title || "Story image"}
+                  width={this.props.image.width}
+                  height={this.props.image.height}
+                  layout="responsive"
+                  /* 
+                    * storyLists take up about 20% of the screen on desktop, and most of the screen on mobile.
+                    */
+                  sizes="(max-width: 768px) 85vw, 20vw"
+                  priority={this.props.priority}
+                />
+              ) : (
+                <img
+                  css={css`
+                    width: 100%;
+                  `}
+                  src={this.props.image.src}
+                  alt={this.props.story[0]?.title || "Story image"}
+                />
+              )}
             </a>
             <span>
           <a

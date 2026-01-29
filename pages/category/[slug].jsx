@@ -88,7 +88,7 @@ function Category({ category, subcategories, posts, classifieds }) {
       <Head>
         <title>{pageTitle}</title>
 
-        <meta itemprop="name" content={pageTitle}></meta>
+        <meta itemProp="name" content={pageTitle}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:title" content={pageTitle}></meta>
         <meta name="twitter:title" content={pageTitle}></meta>
@@ -96,7 +96,7 @@ function Category({ category, subcategories, posts, classifieds }) {
         {metaDescription && (
           <>
             <meta name="description" content={metaDescription} />
-            <meta itemprop="description" content={metaDescription} />
+            <meta itemProp="description" content={metaDescription} />
             <meta property="og:description" content={metaDescription} />
             <meta name="twitter:description" content={metaDescription} />
           </>

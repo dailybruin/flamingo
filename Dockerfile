@@ -1,46 +1,45 @@
-# --- STAGE 1: Install ALL dependencies (for building) ---
-FROM node:18-alpine AS deps
-# Install libc6-compat because Next.js/React-scripts often need it on Alpine
+# --- STAGE 1: Install Dependencies ---
+FROM node:22-alpine AS deps
+# libc6-compat is required for Alpine
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json yarn.lock* ./
 RUN yarn install --frozen-lockfile
 
-# --- STAGE 2: Build the application ---
-FROM node:18-alpine AS builder
+# --- STAGE 2: Build ---
+FROM node:22-alpine AS builder
 WORKDIR /app
-# Bring in all node_modules from the deps stage
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Run the Next.js build (creates the .next folder)
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN yarn build
 
-# --- STAGE 3: Final Production Image ---
-FROM node:18-alpine AS runner
+# --- STAGE 3: Production Runner ---
+FROM node:22-alpine AS runner
 WORKDIR /app
 
-# Set environment to production
 ENV NODE_ENV=production
-# Hardcode the port here because we bypass package.json scripts
 ENV PORT=1919
+
+# 1. Install system dependencies
+RUN apk add --no-cache libc6-compat
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# 1. Copy public assets (images, robots.txt)
+# 2. Copy the standalone build
+# This puts package.json and node_modules directly into /app
 COPY --from=builder /app/public ./public
-
-# 2. Copy the standalone server (The minimal app)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-
-# 3. Copy static assets (CSS, JS chunks)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# 3. Manually copy Sharp files
+# Next.js 12 copies the JS files but misses the binary folder (@img).
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@img ./node_modules/@img
 
 USER nextjs
 
 EXPOSE 1919
-
-# Start the standalone server directly
 CMD ["node", "server.js"]

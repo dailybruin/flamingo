@@ -24,7 +24,7 @@ const layoutStyle = {
 };
 
 const PageWrapper = (Comp, wrapperProps = {}) =>
-  class extends Component {
+  class PageWrapperInternal extends Component {
     static async getInitialProps(ctx) {
       // Load the categories for the header
       // TODO: can we load this once each browser session?

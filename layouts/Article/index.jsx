@@ -15,6 +15,26 @@ import CommentsCard from "components/CommentsCard";
 
 function ArticleLayout({article, authors, relatedPosts, classifieds})
 {
+  const featured =
+    article._embedded &&
+    article._embedded["wp:featuredmedia"] &&
+    !article._embedded["wp:featuredmedia"].empty
+      ? article._embedded["wp:featuredmedia"][0]
+      : null;
+
+  const featureimgWidth =
+    featured &&
+    featured.media_details &&
+    featured.media_details.width
+      ? featured.media_details.width
+      : null;
+  const featureimgHeight =
+    featured &&
+    featured.media_details &&
+    featured.media_details.height
+      ? featured.media_details.height
+      : null;
+
   let articleBuild = (
     <Article
       headline={article.title.rendered}
@@ -22,19 +42,12 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
       date={dayjs.utc(article.date)}
       authors={authors}
       categories={article["_embedded"]["wp:term"][0]}
-      featureimg={
-        article._embedded["wp:featuredmedia"] != undefined &&
-        !article._embedded["wp:featuredmedia"].empty &&
-        article._embedded["wp:featuredmedia"][0].data == undefined
-          ? article._embedded["wp:featuredmedia"][0].source_url
-          : ""
-      }
+      featureimg={featured && featured.source_url ? featured.source_url : ""}
+      featureimgWidth={featureimgWidth}
+      featureimgHeight={featureimgHeight}
       caption={
-        article._embedded["wp:featuredmedia"] != undefined &&
-        !article._embedded["wp:featuredmedia"].empty &&
-        article._embedded["wp:featuredmedia"][0].data == undefined
-          ? article._embedded["wp:featuredmedia"][0].caption
-              .rendered
+        featured && featured.caption && featured.caption.rendered
+          ? featured.caption.rendered
           : ""
       }
       content={article.content.rendered}

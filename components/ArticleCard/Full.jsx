@@ -6,8 +6,12 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 export default function Full(props) {
+  // Check if we have valid dimensions
+  const hasDimensions = props.imageWidth && props.imageHeight;
+
   return (
     <div
       css={css`
@@ -74,14 +78,31 @@ export default function Full(props) {
                 : "normal"
           }}
           dangerouslySetInnerHTML={{ __html: props.headline }}
-        />
-        <img
-          css={css`
-            width: 100%;
-            margin: auto;
-          `}
-          src={props.imageurl}
-        />
+        /> 
+        
+        {hasDimensions ? (
+          <Image
+            src={props.imageurl}
+            alt={props.title || "Article image"}
+            width={props.imageWidth}
+            height={props.imageHeight}
+            layout="responsive"
+            /* 
+             * Full images take up about 50% of the screen on desktop, and most of the screen on mobile.
+             */
+            sizes="(max-width: 768px) 85vw, 50vw"
+            priority={props.priority}
+          />
+        ) : (
+          <img
+            css={css`
+              width: 100%;
+              margin: auto;
+            `}
+            src={props.imageurl}
+            alt={props.title || "Article image"}
+          />
+        )}
         <div
           css={css`
             font-family: ${globals.bodyFont};

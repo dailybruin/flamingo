@@ -1,9 +1,8 @@
-const withImages = require("next-images");
-
-module.exports = withImages({
-  swcMinify: true, // Enable SWC-based minification
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  swcMinify: true,
   images: {
-    disableStaticImages: true,
+    disableStaticImages: false,
     domains: [
       "wp.dailybruin.com",
       "dailybruin.com",
@@ -13,8 +12,8 @@ module.exports = withImages({
       "1.gravatar.com",
       "2.gravatar.com",
     ],
-    // Enable modern image formats for better compression
-    formats: ["image/avif", "image/webp"],
   },
-  output: 'standalone'
-});
+  output: "standalone",
+};
+
+module.exports = nextConfig;

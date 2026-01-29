@@ -1,6 +1,7 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
+import Image from "next/image"; // 1. Import the component
 
 import * as globals from "../globals";
 
@@ -28,13 +29,22 @@ export default function Media(props) {
       >
         <div
           css={css`
+            position: relative;
             height: 144px;
-            background: url(${props.preview});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            width: 100%;
+            overflow: hidden;
           `}
-        />
+        >
+          <Image
+            src={props.preview}
+            alt="Multimedia Photo/Artwork"
+            layout="fill"
+            objectFit="cover"
+            sizes="20vw"
+            objectPosition="center center"
+          />
+        </div>
+
         <h1
           css={css`
             margin: 10px 0;
