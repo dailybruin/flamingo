@@ -6,6 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 export default function Mini(props) {
   return (
@@ -34,17 +35,13 @@ export default function Mini(props) {
               position: relative;
             `}
           >
-            <img
-              css={css`
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                object-fit: cover;
-              `}
+            <Image
               src={props.imageurl}
+              alt={props.title || "Article image"}
+              layout="fill"
+              objectFit="cover"
+              loading="lazy"
+              sizes="30vw"
             />
           </div>
         </a>

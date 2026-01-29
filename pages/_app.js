@@ -10,6 +10,31 @@ dayjs.extend(utc);
 dayjs.extend(localizedFormat);
 dayjs.extend(updateLocale);
 
+// Custom Date Formats - set at module level to avoid componentWillMount deprecation
+dayjs.updateLocale("en", {
+  monthsShort: [
+    "Jan.",
+    "Feb.",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "Aug.",
+    "Sept.",
+    "Oct.",
+    "Nov.",
+    "Dec."
+  ],
+  meridiem: function(hour, minute, isLowerCase) {
+    if (hour < 12) {
+      return "a.m.";
+    } else {
+      return "p.m.";
+    }
+  }
+});
+
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -22,33 +47,6 @@ class MyApp extends App {
   //
   //   return { ...appProps }
   // }
-
-  componentWillMount() {
-    // Custom Date Formats
-    dayjs.updateLocale("en", {
-      monthsShort: [
-        "Jan.",
-        "Feb.",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "Aug.",
-        "Sept.",
-        "Oct.",
-        "Nov.",
-        "Dec."
-      ],
-      meridiem: function(hour, minute, isLowerCase) {
-        if (hour < 12) {
-          return "a.m.";
-        } else {
-          return "p.m.";
-        }
-      }
-    });
-  }
 
   componentDidMount() {
     // Google Analytics

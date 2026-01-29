@@ -17,14 +17,14 @@ export default class ReviewInfobox extends React.Component {
     if (this.props.rating != null) {
       let i = 0;
       for (; i < Math.floor(this.props.rating); i++) {
-        stars.push(<img key={`full-${i}`} src={fullStar} />);
+        stars.push(<img key={`full-${i}`} src={(fullStar && fullStar.src) || fullStar} />);
       }
       if (this.props.rating % 1 === 0.5) {
-        stars.push(<img key="half" src={halfStar} />);
+        stars.push(<img key="half" src={(halfStar && halfStar.src) || halfStar} />);
         i += 1.5;
       }
       for (; i < 5; i++) {
-        stars.push(<img key={`empty-${i}`} src={emptyStar} />);
+        stars.push(<img key={`empty-${i}`} src={(emptyStar && emptyStar.src) || emptyStar} />);
       }
     }
     return (

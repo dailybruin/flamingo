@@ -10,6 +10,7 @@ import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
 import Logo from "./dailybruin.svg";
+import Image from "next/image";
 
 export default class FeatureArticle extends React.Component {
   constructor(props) {
@@ -42,18 +43,18 @@ export default class FeatureArticle extends React.Component {
     for (let author of this.props.authors) {
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
-          <img
+          <Image
             src={author.avatar_urls[96]}
-            css={css`
-              height: 48px;
-              width: 48px;
-              border-radius: 50%;
-              display: inline-block;
-              margin-right: 10px;
-              vertical-align: middle;
-              object-fit: cover;
-              object-position: center;
-            `}
+            alt={author.name || "Author"}
+            width={48}
+            height={48}
+            style={{
+              borderRadius: "50%",
+              display: "inline-block",
+              marginRight: "10px",
+              verticalAlign: "middle",
+            }}
+            loading="lazy"
           />
         </a>
       );
@@ -67,16 +68,23 @@ export default class FeatureArticle extends React.Component {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         `}
       >
-        <img
+        <div
           css={css`
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
+            display: flex;
+            justify-content: center;
             padding: 15px;
-            height: 68px;
           `}
-          src={Logo}
-        />
+        >
+          {/* Image handles the content and dimensions */}
+          <Image
+            src={Logo}
+            alt="Daily Bruin"
+            width={586/2}  /* Half the svg's width */
+            height={70/2}  /* Half the svg's height */
+            layout="fixed"
+            priority 
+          />
+        </div>
         <div
           css={css`
             position: sticky;

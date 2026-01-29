@@ -4,6 +4,7 @@ import Link from "next/link";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as utilities from "./utilities";
+import Image from "next/image";
 
 export default function PhotoCard(props) {
   return (
@@ -22,22 +23,25 @@ export default function PhotoCard(props) {
             css={css`
               position: relative;
               margin: 0;
+              padding: 15px;
               width: 100%;
               overflow: hidden;
               box-shadow: ${globals.cardShadow};
+              background-color: white;
               &:hover #overlay {
                 opacity: 1;
               }
             `}
           >
-            <img
+            <Image
               src={props.image}
-              css={css`
-                display: block;
-                width: 100%;
-                border: 15px solid #ffffff;
-              `}
-            ></img>
+              alt={props.headline || "Photo"}
+              width={props.imageWidth}
+              height={props.imageHeight}
+              layout="responsive"
+              sizes="35vw"
+              loading="lazy"
+            />
             <div
               id="overlay"
               css={css`
@@ -145,15 +149,25 @@ export default function PhotoCard(props) {
               box-shadow: ${globals.cardShadow};
             `}
           >
-            <img
-              src={props.image}
+            <div
               css={css`
-                box-sizing: border-box;
-                display: block;
                 width: 100%;
-                padding: 15px 15px 0;
+                max-width: 600px; /* or any max width you want on mobile */
+                height: auto;
+                position: relative; /* needed for next/image responsive layout */
               `}
-            ></img>
+            >
+              <Image
+                src={props.image}
+                alt={props.headline || "Photo"}
+                width={props.imageWidth}
+                height={props.imageHeight}
+                layout="responsive"
+                sizes="100vw"
+                loading="lazy"
+              />
+            </div>
+
             <div
               id="text"
               css={css`

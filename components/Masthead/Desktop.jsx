@@ -1,6 +1,7 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/core";
+import Image from "next/image";
 
 import logo from "./dailybruin.svg";
 import {
@@ -92,18 +93,14 @@ export default class Desktop extends React.Component {
               ref={this.Logo}
               href="/"
               css={logoStyles(
-                this.state.menuExpanded
-                  ? LOGO_EXPANDED_HEIGHT
-                  : LOGO_COLLAPSED_HEIGHT
+                this.state.menuExpanded ? LOGO_EXPANDED_HEIGHT : LOGO_COLLAPSED_HEIGHT
               )}
             >
-              <img
+              <Image
                 src={logo}
-                css={css`
-                  display: inline-block;
-                  height: 100%;
-                `}
-                alt="Daily Bruin"
+                alt="Daily Bruin Logo"
+                width={586} // width and height match dailybruin.svg
+                height={70}
               />
             </a>
           </div>

@@ -9,6 +9,7 @@ import * as globals from "../globals";
 import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
+import Image from "next/image";
 
 import MiniArticleCard from "../ArticleCard/Mini";
 
@@ -126,18 +127,18 @@ export default class FeatureArticle extends React.Component {
     for (let author of this.props.authors) {
       authorPictures.push(
         <a href={`/author/${author.slug}`}>
-          <img
+          <Image
             src={author.avatar_urls[96]}
-            css={css`
-              height: 48px;
-              width: 48px;
-              border-radius: 50%;
-              display: inline-block;
-              margin-right: 10px;
-              vertical-align: middle;
-              object-fit: cover;
-              object-position: center;
-            `}
+            alt={author.name || "Author"}
+            width={48}
+            height={48}
+            style={{
+              borderRadius: "50%",
+              objectFit: "cover",
+              marginRight: "10px",
+              verticalAlign: "middle",
+            }}
+            loading="lazy"
           />
         </a>
       );

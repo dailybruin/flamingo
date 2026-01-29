@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 import Westwordle from "./WestWordLogoCropped.png"
 import WhackABruinLogo from "./WhackABruinLogo.png";
@@ -35,13 +36,13 @@ export default function GamesCard(props) {
           padding: 10px 10px 0;
         `}
             >
-                <img
+                <Image
                     src={selectedLogo}
-                    css={css`
-                    max-width: 100%;
-                    height: auto;
-              `}
-                ></img>
+                    alt="Daily Bruin Game"
+                    width={848}
+                    height={1144}
+                    layout="intrinsic"
+                />
             </div>
         </>
     );

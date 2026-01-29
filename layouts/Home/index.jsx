@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import Image from "next/image";
 
 import css from "../style.module.css";
 import * as utilities from "../utilities";
@@ -9,11 +10,11 @@ import SponsoredLinks from "../../components/SponsoredLinks";
 import GamesCard from "components/GamesCard/GamesCard";
 
 // Helper component for article cards with display type
-const ArticleCardWrapper = ({ id, card, displayType }) => {
+const ArticleCardWrapper = ({ id, card, displayType, priority }) => {
   if (!card) return null;
   return (
     <div id={id} className={css.card}>
-      {React.cloneElement(card, { displayType })}
+      {React.cloneElement(card, { displayType, priority })}
     </div>
   );
 };
@@ -42,13 +43,15 @@ const BreakingPlaceholder = ({ show }) => {
 };
 
 // Helper component for Prime image
-const PrimeImage = ({ fullWidth = false }) => (
+const PrimeImage = () => (
   <div className={css.card}>
     <a href="https://prime.dailybruin.com">
-      <img
+      <Image
         src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
-        style={{ width: "100%", height: fullWidth ? "auto" : undefined }}
-        alt="Prime"
+        alt="Prime Magazine"
+        width={828}
+        height={1375}
+        sizes="20vw"
       />
     </a>
   </div>
@@ -85,7 +88,7 @@ export default function HomeLayout({
 
       m1MultimediaScroller: utilities.buildMultimediaScroller(media),
 
-      gArticleCard: utilities.buildStoryList("", posts.gStory, ""),
+      gArticleCard: utilities.buildStoryList("", posts.gStory, "", true),
       hArticleCard: utilities.buildStoryList("", posts.hStory, ""),
       iArticleCard: utilities.buildStoryList("", posts.iStory, ""),
       jArticleCard: utilities.buildStoryList("", posts.jStory, ""),
@@ -115,6 +118,7 @@ export default function HomeLayout({
                     id="c1"
                     card={cards.c1ArticleCard}
                     displayType="full"
+                    priority={true}
                   />
                   <ArticleCardWrapper
                     id="a"
@@ -223,6 +227,7 @@ export default function HomeLayout({
                     id="c1"
                     card={cards.c1ArticleCard}
                     displayType="full"
+                    priority={true}
                   />
                   <ArticleCardWrapper
                     id="c2"
@@ -289,6 +294,7 @@ export default function HomeLayout({
                       id="a"
                       card={cards.aArticleCard}
                       displayType="vert"
+                      priority={true}
                     />
                     <ArticleCardWrapper
                       id="b"
@@ -318,6 +324,7 @@ export default function HomeLayout({
                       id="c1"
                       card={cards.c1ArticleCard}
                       displayType="full"
+                      priority={true}
                     />
                     <ArticleCardWrapper
                       id="c2"
@@ -360,7 +367,7 @@ export default function HomeLayout({
                     />
                     <GamesCardWrapper />
                     <StoryListWrapper id="h" card={cards.hArticleCard} />
-                    <PrimeImage fullWidth />
+                    <PrimeImage />
                   </div>
                 </div>
                 <div>

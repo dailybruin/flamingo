@@ -2,6 +2,7 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { Global, css, jsx } from "@emotion/core";
 import Head from "next/head";
+import Image from "next/image";
 
 import * as globals from "../globals";
 
@@ -108,7 +109,7 @@ export default class Mobile extends React.Component {
             onClick={this.toggleMenu}
           >
             <img
-              src={menuIcon}
+            src={(menuIcon && menuIcon.src) || menuIcon}
               css={css`
                 height: 100%;
                 background-color: white;
@@ -130,19 +131,16 @@ export default class Mobile extends React.Component {
                 vertical-align: middle;
                 height: 32px;
                 padding: 4px 0;
+                position: relative;
+                width: 180px;
               `}
             >
-              <img
-                src={
-                  date.date() == 1 && date.month() == 3
-                    ? require("./prankd.svg")
-                    : logo
-                }
-                css={css`
-                  display: inline-block;
-                  height: 100%;
-                `}
-              ></img>
+              <Image
+                src={(logo && logo.src) || logo}
+                alt="Daily Bruin"
+                layout="fill"
+                objectFit="contain"
+              />
               {date.date() == 1 && date.month() == 3 && (
                 <>
                   <Head>
@@ -235,7 +233,7 @@ export default class Mobile extends React.Component {
                     outline: none;
                     display: none;
                     background-color: #000;
-                    background-image: url(${minisearchIcon});
+                  background-image: url(${(minisearchIcon && minisearchIcon.src) || minisearchIcon});
                     background-repeat: no-repeat;
                     background-size: 24px;
                     background-position: 6px;
@@ -281,7 +279,7 @@ export default class Mobile extends React.Component {
                       transition-delay: 100ms;
                       height: 100%;
                     `}
-                    src={searchIcon}
+                    src={(searchIcon && searchIcon.src) || searchIcon}
                   ></img>
                 </div>
               </form>

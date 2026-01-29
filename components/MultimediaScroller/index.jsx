@@ -16,7 +16,9 @@ export default class MultimediaScroller extends React.Component {
         <Media
           key={media.link}
           title={media.title}
-          preview={media.preview}
+          preview={media.image.preview}
+          preview_width={media.image.width}
+          preview_height={media.image.height}
           link={media.link}
         />
       );
