@@ -50,56 +50,7 @@ class MyApp extends App {
   //   return { ...appProps }
   // }
 
-  componentDidMount() {
-    // Google Analytics
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "UA-28181852-28");
-
-    
-    // Chartbeat
-    function ctag() {
-      var _sf_async_config = (window._sf_async_config =
-        window._sf_async_config || {});
-      _sf_async_config.uid = 61220;
-      _sf_async_config.domain = "dailybruin.com";
-      _sf_async_config.flickerControl = false;
-      _sf_async_config.useCanonical = true;
-      _sf_async_config.useCanonicalDomain = true;
-      _sf_async_config.sections = [];
-      _sf_async_config.authors = "";
-
-      function loadChartbeat() {
-        var e = document.createElement("script");
-        var n = document.getElementsByTagName("script")[0];
-        e.type = "text/javascript";
-        e.async = true;
-        e.src = "//static.chartbeat.com/js/chartbeat.js";
-        n.parentNode.insertBefore(e, n);
-      }
-      loadChartbeat();
-
-      function flyteDeskSetup (s, p)  { 
-        var f = document.getElementsByTagName(s)[0]; 
-        var j = document.createElement(s);
-        j.id = 'flytedigital';
-        j.async = true;
-        j.src = 'https://digital.flytedesk.com/js/head.js#' + p;
-        f.parentNode.insertBefore(j, f) 
-      };
-      flyteDeskSetup('script', '8b8311d2-981d-458c-8590-a1f98bff09cf');
-    }
-    ctag();
-    
-
-    // Broadstreet Ads
-    window.broadstreet = window.broadstreet || { watch: function() {} };
-    broadstreet.watch({ networkId: 5876 });
-
-  }
+  // Scripts are now loaded via next/script in render() for better optimization
 
   render() {
     const { Component, pageProps } = this.props;

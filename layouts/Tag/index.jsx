@@ -85,7 +85,7 @@ export default class TagLayout extends React.Component {
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <LoadingBear text={"searching for more articles..."} />
+                      <LoadingBear key="loader" text={"searching for more articles..."} />
                     }
                   >
                     {utilities.renderPostArray(
@@ -119,7 +119,7 @@ export default class TagLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more articles..."} />
+                        <LoadingBear key="loader" text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(
@@ -175,7 +175,7 @@ export default class TagLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more articles..."} />
+                        <LoadingBear key="loader" text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(

@@ -86,7 +86,7 @@ export default class PodcastsLayout extends React.Component {
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <LoadingBear text={"searching for more podcasts..."} />
+                      <LoadingBear key="loader" text={"searching for more podcasts..."} />
                     }
                   >
                     {utilities.renderPodcastArray(
@@ -126,7 +126,7 @@ export default class PodcastsLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more podcasts..."} />
+                        <LoadingBear key="loader" text={"searching for more podcasts..."} />
                       }
                     >
                       <div
@@ -187,7 +187,7 @@ export default class PodcastsLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more podcasts..."} />
+                        <LoadingBear key="loader" text={"searching for more podcasts..."} />
                       }
                     >
                       <div

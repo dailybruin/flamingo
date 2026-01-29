@@ -217,6 +217,10 @@ export function trimClientPosts(posts) {
     const trimmedFeatured = rawFeatured.map(media => ({
       source_url: media.source_url,
       caption: media.caption,
+      media_details: media.media_details ? {
+        width: media.media_details.width,
+        height: media.media_details.height,
+      } : null,
     }));
 
     const rawTerms = post._embedded?.["wp:term"] || [];

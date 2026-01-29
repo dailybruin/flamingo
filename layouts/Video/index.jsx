@@ -92,7 +92,7 @@ export default class VideoLayout extends React.Component {
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <LoadingBear text={"searching for more videos..."} />
+                      <LoadingBear key="loader" text={"searching for more videos..."} />
                     }
                   >
                     {utilities.renderVideoArray(
@@ -137,7 +137,7 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear key="loader" text={"searching for more videos..."} />
                       }
                     >
                       <div
@@ -211,7 +211,7 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear key="loader" text={"searching for more videos..."} />
                       }
                     >
                       <div

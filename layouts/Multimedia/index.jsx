@@ -66,7 +66,7 @@ export default class MultimediaLayout extends React.Component {
           loadMore={this.getPosts}
           hasMore={this.state.more}
           threshold={3000}
-          loader={<LoadingBear text={"searching for more content..."} />}
+          loader={<LoadingBear key="loader" text={"searching for more content..."} />}
         >
           <Masonry
             ref={function(c) {

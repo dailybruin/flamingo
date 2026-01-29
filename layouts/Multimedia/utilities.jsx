@@ -61,6 +61,10 @@ export function trimMultimediaPosts(posts) {
     _embedded: {
       "wp:featuredmedia": post._embedded?.["wp:featuredmedia"]?.map(media => ({
         source_url: media.source_url,
+        media_details: media.media_details ? {
+          width: media.media_details.width,
+          height: media.media_details.height,
+        } : null,
       })) || [],
     },
   }));
