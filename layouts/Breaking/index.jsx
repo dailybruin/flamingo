@@ -58,10 +58,11 @@ export default class BreakingLayout extends React.Component {
             .then(
                 json => {
                     if (json.data == undefined && json.length != 0) {
-                        console.log(`${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=27179&tags=${this.props.tagID}&page=${page}`);
+                        // Trim posts to reduce memory usage
+                        const trimmedPosts = utilities.trimClientPosts(json);
                         this.setState({
                             otherArticleCards: this.state.otherArticleCards.concat(
-                                utilities.buildArticleList(json, "breaking")
+                                utilities.buildArticleList(trimmedPosts, "breaking")
                             )
                         });
                     } else {
@@ -119,7 +120,7 @@ export default class BreakingLayout extends React.Component {
                                         hasMore={this.state.more}
                                         threshold={3000}
                                         loader={
-                                            <LoadingBear text={"searching for more articles..."} />
+                                            <LoadingBear key="loader" text={"searching for more articles..."} />
                                         }
                                     >
                                         {utilities.renderPostArray(
@@ -162,7 +163,7 @@ export default class BreakingLayout extends React.Component {
                                             hasMore={this.state.more}
                                             threshold={3000}
                                             loader={
-                                                <LoadingBear text={"searching for more articles..."} />
+                                                <LoadingBear key="loader" text={"searching for more articles..."} />
                                             }
                                         >
                                             {utilities.renderPostArray(
@@ -232,7 +233,7 @@ export default class BreakingLayout extends React.Component {
                                                 hasMore={this.state.more}
                                                 threshold={3000}
                                                 loader={
-                                                    <LoadingBear text={"searching for more posts..."} />
+                                                    <LoadingBear key="loader" text={"searching for more posts..."} />
                                                 }
                                             >
                                                 {utilities.renderPostArray(

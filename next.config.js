@@ -12,6 +12,7 @@ const nextConfig = {
       "1.gravatar.com",
       "2.gravatar.com",
     ],
+    formats: ["image/webp"],
   },
   output: "standalone",
 };

@@ -45,3 +45,27 @@ export function buildPhotoList(stories) {
   }
   return postArray;
 }
+
+/**
+ * Trims multimedia posts for client-side infinite scroll.
+ * Only keeps fields needed for PhotoCard rendering.
+ */
+export function trimMultimediaPosts(posts) {
+  if (!Array.isArray(posts)) return [];
+  
+  return posts.map(post => ({
+    title: { rendered: post.title?.rendered },
+    link: post.link,
+    coauthors: post.coauthors,
+    excerpt: { rendered: post.excerpt?.rendered },
+    _embedded: {
+      "wp:featuredmedia": post._embedded?.["wp:featuredmedia"]?.map(media => ({
+        source_url: media.source_url,
+        media_details: media.media_details ? {
+          width: media.media_details.width,
+          height: media.media_details.height,
+        } : null,
+      })) || [],
+    },
+  }));
+}

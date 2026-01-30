@@ -1,11 +1,13 @@
 import React from "react";
 import App from "next/app";
+import Script from "next/script";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import updateLocale from "dayjs/plugin/updateLocale";
 
 import style from "style.css";
+
 dayjs.extend(utc);
 dayjs.extend(localizedFormat);
 dayjs.extend(updateLocale);
@@ -48,60 +50,62 @@ class MyApp extends App {
   //   return { ...appProps }
   // }
 
-  componentDidMount() {
-    // Google Analytics
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "UA-28181852-28");
-
-    
-    // Chartbeat
-    function ctag() {
-      var _sf_async_config = (window._sf_async_config =
-        window._sf_async_config || {});
-      _sf_async_config.uid = 61220;
-      _sf_async_config.domain = "dailybruin.com";
-      _sf_async_config.flickerControl = false;
-      _sf_async_config.useCanonical = true;
-      _sf_async_config.useCanonicalDomain = true;
-      _sf_async_config.sections = [];
-      _sf_async_config.authors = "";
-
-      function loadChartbeat() {
-        var e = document.createElement("script");
-        var n = document.getElementsByTagName("script")[0];
-        e.type = "text/javascript";
-        e.async = true;
-        e.src = "//static.chartbeat.com/js/chartbeat.js";
-        n.parentNode.insertBefore(e, n);
-      }
-      loadChartbeat();
-
-      function flyteDeskSetup (s, p)  { 
-        var f = document.getElementsByTagName(s)[0]; 
-        var j = document.createElement(s);
-        j.id = 'flytedigital';
-        j.async = true;
-        j.src = 'https://digital.flytedesk.com/js/head.js#' + p;
-        f.parentNode.insertBefore(j, f) 
-      };
-      flyteDeskSetup('script', '8b8311d2-981d-458c-8590-a1f98bff09cf');
-    }
-    ctag();
-    
-
-    // Broadstreet Ads
-    window.broadstreet = window.broadstreet || { watch: function() {} };
-    broadstreet.watch({ networkId: 5876 });
-
-  }
+  // Scripts are now loaded via next/script in render() for better optimization
 
   render() {
     const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    return (
+      <>
+        {/* Google Analytics - afterInteractive for analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=UA-28181852-28"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-28181852-28');
+          `}
+        </Script>
+
+        {/* Chartbeat - lazyOnload for non-critical analytics */}
+        <Script id="chartbeat-config" strategy="lazyOnload">
+          {`
+            var _sf_async_config = window._sf_async_config = window._sf_async_config || {};
+            _sf_async_config.uid = 61220;
+            _sf_async_config.domain = 'dailybruin.com';
+            _sf_async_config.flickerControl = false;
+            _sf_async_config.useCanonical = true;
+            _sf_async_config.useCanonicalDomain = true;
+            _sf_async_config.sections = [];
+            _sf_async_config.authors = '';
+          `}
+        </Script>
+        <Script
+          src="https://static.chartbeat.com/js/chartbeat_mab.js"
+          strategy="lazyOnload"
+        />
+
+        {/* Flytedesk - lazyOnload for ads */}
+        <Script
+          id="flytedigital"
+          src="https://digital.flytedesk.com/js/head.js#8b8311d2-981d-458c-8590-a1f98bff09cf"
+          strategy="lazyOnload"
+        />
+
+        {/* Broadstreet Ads init - script loaded in _document.js with afterInteractive */}
+        <Script id="broadstreet-init" strategy="afterInteractive">
+          {`
+            window.broadstreet = window.broadstreet || { watch: function() {} };
+            broadstreet.watch({ networkId: 5876 });
+          `}
+        </Script>
+
+        <Component {...pageProps} />
+      </>
+    );
   }
 }
 

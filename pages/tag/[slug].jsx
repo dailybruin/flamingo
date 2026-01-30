@@ -6,6 +6,7 @@ import Head from "next/head";
 
 import TagHeader from "../../components/TagHeader";
 import TagLayout from "../../layouts/Tag";
+import { trimClientPosts } from "../../layouts/utilities";
 
 function Tag({ tag, posts, classifieds }) {
   if (tag.data != undefined || tag.length == 0)
@@ -55,11 +56,13 @@ Tag.getInitialProps = async (context) => {
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tag[0].id}`
     );
     const posts = await postsRes.json();
+    // Trim posts to reduce page data size
+    const trimmedPosts = trimClientPosts(posts);
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
     );
     const classifieds = await classifiedsRes.json();
-    return { tag, posts, classifieds };
+    return { tag, posts: trimmedPosts, classifieds };
   }
   return { tag };
 };

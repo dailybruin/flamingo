@@ -31,9 +31,11 @@ export default class CategoryLayout extends React.Component {
       .then(
         json => {
           if (json.data == undefined && json.length != 0) {
+            // Trim posts to reduce memory usage
+            const trimmedPosts = utilities.trimClientPosts(json);
             this.setState({
               otherArticleCards: this.state.otherArticleCards.concat(
-                utilities.buildArticleList(json)
+                utilities.buildArticleList(trimmedPosts)
               )
             });
           } else {
@@ -143,7 +145,7 @@ export default class CategoryLayout extends React.Component {
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <LoadingBear text={"searching for more articles..."} />
+                      <LoadingBear key="loader" text={"searching for more articles..."} />
                     }
                   >
                     {utilities.renderPostArray(
@@ -188,7 +190,7 @@ export default class CategoryLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more articles..."} />
+                        <LoadingBear key="loader" text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(
@@ -286,7 +288,7 @@ export default class CategoryLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more articles..."} />
+                        <LoadingBear key="loader" text={"searching for more articles..."} />
                       }
                     >
                       {utilities.renderPostArray(

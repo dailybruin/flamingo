@@ -33,8 +33,10 @@ export default class MultimediaLayout extends React.Component {
       .then(
         json => {
           if (json.data == undefined && json.length != 0) {
+            // Trim posts to reduce memory usage
+            const trimmedPosts = utilities.trimMultimediaPosts(json);
             this.setState({
-              cards: this.state.cards.concat(json)
+              cards: this.state.cards.concat(trimmedPosts)
             });
           } else {
             this.setState({
@@ -64,7 +66,7 @@ export default class MultimediaLayout extends React.Component {
           loadMore={this.getPosts}
           hasMore={this.state.more}
           threshold={3000}
-          loader={<LoadingBear text={"searching for more content..."} />}
+          loader={<LoadingBear key="loader" text={"searching for more content..."} />}
         >
           <Masonry
             ref={function(c) {
