@@ -15,6 +15,7 @@ export default function Tag(props) {
         width: 100px;
         height: 100px;
         padding: 2px;
+        z-index: 10;
         @media (max-width: 600px) {
           width: 50px;
           height: 50px;

@@ -15,9 +15,9 @@ export function buildPhotoCard(story) {
   const featuredMedia = story._embedded?.["wp:featuredmedia"]?.[0];
   const imageUrl = featuredMedia?.source_url ?? "";
   
-  // Extract dimensions (default to 0 if missing so Next/Image can handle it safely)
-  const imgWidth = featuredMedia?.media_details?.width ?? 0;
-  const imgHeight = featuredMedia?.media_details?.height ?? 0;
+  // Extract dimensions (default to null if missing)
+  const imgWidth = featuredMedia?.media_details?.width ?? null;
+  const imgHeight = featuredMedia?.media_details?.height ?? null;
 
   const excerpt = story.excerpt?.rendered ?? "";
 

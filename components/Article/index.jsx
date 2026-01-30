@@ -152,14 +152,20 @@ export default class Article extends React.Component {
           }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
-        {hasDimensions ? (
-          /* OPTION A: Optimized Next.js Image (When dimensions exist) */
-          <div
-            style={{
-              width: "calc(100% + 20px)",
-              margin: "10px -10px"
-            }}
-          >
+
+        <a
+          href={this.props.featureimg} // Link to original source
+          target="_blank"
+          rel="noopener noreferrer"
+          css={css`
+            display: block;
+            width: calc(100% + 20px);
+            margin: 10px -10px;
+            cursor: zoom-in;
+          `}
+        >
+          {hasDimensions ? (
+            /* OPTION A: Optimized Next.js Image */
             <Image
               src={this.props.featureimg}
               alt="Feature image"
@@ -169,18 +175,18 @@ export default class Article extends React.Component {
               sizes="(max-width: 768px) 100vw, 1200px"
               priority
             />
-          </div>
-        ) : (
-          /* OPTION B: Standard HTML Image (Fallback when dimensions are null) */
-          <img
-            src={this.props.featureimg}
-            alt="Feature image"
-            css={css`
-              width: calc(100% + 20px);
-              margin: 10px -10px;
-            `}
-          />
-        )}
+          ) : (
+            /* OPTION B: Standard HTML Image Fallback */
+            <img
+              src={this.props.featureimg}
+              alt="Feature image"
+              css={css`
+                width: 100%;
+                display: block;
+              `}
+            />
+          )}
+        </a>
         <div
           dangerouslySetInnerHTML={{ __html: this.props.caption }}
           css={css`

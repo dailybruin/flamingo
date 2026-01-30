@@ -36,13 +36,27 @@ export default function Landing(props) {
               min-height: 0;
             `}
           >
-            <Image
-              src={props.img}
-              alt="Feature image"
-              layout="fill"
-              objectFit="cover"
-              priority
-            />
+            <a
+              href={props.img}
+              target="_blank"
+              rel="noopener noreferrer"
+              css={css`
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: relative;
+                cursor: zoom-in;
+              `}
+            >
+              <Image
+                src={props.img}
+                alt="Feature image"
+                layout="fill"
+                objectFit="cover"
+                sizes="100vw"
+                priority
+              />
+            </a>
           </div>
           <div
             css={css`
@@ -97,9 +111,7 @@ export default function Landing(props) {
             height: 100vh;
             width: 100%;
             min-width: 100px;
-            background-image: url(${props.img});
-            background-size: cover;
-            background-position: center;
+            position: relative; /* Needed for layout="fill" children */
             display: flex;
             align-items: flex-end;
             @media (min-width: 701px) {
@@ -107,17 +119,44 @@ export default function Landing(props) {
             }
           `}
         >
+          <a
+            href={props.img}
+            target="_blank"
+            rel="noopener noreferrer"
+            css={css`
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 0;
+              cursor: zoom-in;
+            `}
+          >
+            <Image
+              src={props.img}
+              alt="Feature image"
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
+          </a>
+
+          {/* Text Overlay Layer */}
           <div
             css={css`
               padding: 20px;
               width: 100%;
               color: #fff;
+              position: relative; /* Ensure text sits ON TOP of the image */
+              z-index: 1;         /* Higher z-index allows clicking author links */
               background: rgb(0, 0, 0);
               background: linear-gradient(
                 0deg,
                 rgba(0, 0, 0, 0.8) 20%,
                 rgba(0, 0, 0, 0) 100%
               );
+              pointer-events: none; /* Allows clicks to pass through empty space */
             `}
           >
             <div
@@ -127,6 +166,7 @@ export default function Landing(props) {
                 font-weight: 700;
                 font-size: 40px;
                 line-height: 1.25;
+                pointer-events: auto; /* Re-enable clicks for text selection */
                 @media (max-width: 600px) {
                   font-size: 30px;
                 }
@@ -140,6 +180,7 @@ export default function Landing(props) {
                 font-weight: 300;
                 font-size: 20px;
                 margin-left: 5px;
+                pointer-events: auto; /* Re-enable clicks for author links */
                 @media (max-width: 600px) {
                   font-size: 16px;
                 }

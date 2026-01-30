@@ -7,6 +7,9 @@ import * as utilities from "./utilities";
 import Image from "next/image";
 
 export default function PhotoCard(props) {
+  // Check if we have dimensions to decide if we can use NextJS <Image>
+  const hasDimensions = props.imageWidth && props.imageHeight;
+
   return (
     <div>
       <div
@@ -33,15 +36,30 @@ export default function PhotoCard(props) {
               }
             `}
           >
-            <Image
-              src={props.image}
-              alt={props.headline || "Photo"}
-              width={props.imageWidth}
-              height={props.imageHeight}
-              layout="responsive"
-              sizes="35vw"
-              loading="lazy"
-            />
+            {hasDimensions ? (
+              /* OPTION A: Optimized Next.js Image */
+              <Image
+                src={props.image}
+                alt={props.headline || "Photo"}
+                width={props.imageWidth}
+                height={props.imageHeight}
+                layout="responsive"
+                sizes="35vw"
+                loading="lazy"
+              />
+            ) : (
+              /* OPTION B: Fallback Standard Image */
+              <img
+                src={(props.image && props.image.src) || props.image}
+                alt={props.headline || "Photo"}
+                css={css`
+                  display: block;
+                  width: 100%;
+                  height: auto;
+                `}
+              />
+            )}
+
             <div
               id="overlay"
               css={css`
@@ -152,20 +170,34 @@ export default function PhotoCard(props) {
             <div
               css={css`
                 width: 100%;
-                max-width: 600px; /* or any max width you want on mobile */
+                max-width: 600px;
                 height: auto;
-                position: relative; /* needed for next/image responsive layout */
+                position: relative;
               `}
             >
-              <Image
-                src={props.image}
-                alt={props.headline || "Photo"}
-                width={props.imageWidth}
-                height={props.imageHeight}
-                layout="responsive"
-                sizes="100vw"
-                loading="lazy"
-              />
+              {hasDimensions ? (
+                /* OPTION A: Optimized Next.js Image */
+                <Image
+                  src={props.image}
+                  alt={props.headline || "Photo"}
+                  width={props.imageWidth}
+                  height={props.imageHeight}
+                  layout="responsive"
+                  sizes="100vw"
+                  loading="lazy"
+                />
+              ) : (
+                /* OPTION B: Fallback Standard Image */
+                <img
+                  src={props.image}
+                  alt={props.headline || "Photo"}
+                  css={css`
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                  `}
+                />
+              )}
             </div>
 
             <div
