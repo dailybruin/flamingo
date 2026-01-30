@@ -52,7 +52,8 @@ export default class Photo extends React.Component {
                   css={css`
                     background: #fff;
                     position: absolute;
-                    overflow: hidden;
+                    overflow-y: auto;
+                    overflow-x: hidden;
                     bottom: 0;
                     left: 0;
                     right: 0;

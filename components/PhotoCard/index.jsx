@@ -69,7 +69,8 @@ export default function PhotoCard(props) {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                overflow: hidden;
+                overflow-y: auto;
+                overflow-x: hidden;
                 top: 0;
                 left: 0;
                 right: 0;
