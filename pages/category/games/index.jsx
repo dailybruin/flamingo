@@ -6,6 +6,7 @@ import SectionHeader from "../../../components/SectionHeader";
 import WestwordleLogo from "../../../components/GamesCard/WestWordLogoCropped.png"; 
 import WhackaBruinLogo from "../../../components/GamesCard/WhackABruinLogo.png"; 
 import CrosswordLogo from "../../../components/GamesCard/CrosswordLogo.png"
+import MiniCrosswordLogo from "../../../components/GamesCard/MiniCrosswordLogo.png"
 import PhotoCard from "../../../components/PhotoCard"; 
 
 const GamesIndex = () => {
@@ -27,6 +28,18 @@ const GamesIndex = () => {
         maxWidth: "1200px",
         margin: "50px auto 0"
       }}>
+        <PhotoCard
+          headline="Mini Crossword"
+          href="/category/games/mini-crossword"
+          as="/category/games/mini-crossword"
+          link="/category/games/mini-crossword"
+          image={MiniCrosswordLogo} 
+          excerpt="Solve today's mini crossword!"
+          authors={[
+            { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
+          ]}
+        />
+        
         <PhotoCard
           headline="Crossword"
           href="/category/games/crossword"
