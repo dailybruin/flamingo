@@ -68,6 +68,7 @@ const Stonewall = () => {
           src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
           strategy="beforeInteractive"
         />
+        <title>Stonewall - Daily Bruin</title>
       </Head>
       <div
         css={css`
