@@ -8,34 +8,62 @@ import Script from "next/script.js";
 
 import * as globals from "../components/globals";
 
+/*
+ * Note for future devs: This component fetches from a Google spreadsheet with two tabs on it
+ * One of the tabs is for the stonewall cards, and the other is for the counts
+ */
 const Stonewall = () => {
   const [stones, setStones] = useState([]);
   /* openStone stores the index of the open stone, null if none is open */
   const [openStone, setOpenStone] = useState(null);
+  const [counts, setCounts] = useState([]);
 
   const toggleStone = i => {
     setOpenStone(openStone === i ? null : i);
   };
 
+  /* Fetch data from spreadsheet */
   useEffect(() => {
-    fetch(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_pSjFbLe53S0TbEI_7BL_X9TqdTTB2AHRib0pu1FzP20QG6J6D6jOevX7A0-uld9V62hdPEUU2E6J/pub?output=tsv"
-    )
-      .then(x => x.text())
-      .then(x => {
-        var array = x.split("\r\n");
-        let result = [];
-        let headers = array[0].split("\t");
-        for (let i = 1; i < array.length; i++) {
+    const cardsUrl =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-l0-cWZUa-FSwFddk-gn0mDEa1J07K3AOwmRXeSjP-fxVDgLJV1iAPwXtC4DHyPomaBGRHMP6MRaU/pub?gid=0&single=true&output=tsv";
+    const countsUrl =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-l0-cWZUa-FSwFddk-gn0mDEa1J07K3AOwmRXeSjP-fxVDgLJV1iAPwXtC4DHyPomaBGRHMP6MRaU/pub?gid=1601951465&single=true&output=tsv";
+
+    Promise.all([
+      fetch(cardsUrl).then(res => res.text()),
+      fetch(countsUrl).then(res => res.text())
+    ])
+      .then(([cardsText, countsText]) => {
+        // Parse card data
+        const cardsArray = cardsText.split("\r\n");
+        const headers = cardsArray[0].split("\t");
+        const stonesResult = cardsArray.slice(1).map(line => {
+          const str = line.split("\t");
           let obj = {};
-          let str = array[i].split("\t");
-          for (let j in headers) {
-            obj[headers[j]] = str[j].trim();
-          }
-          result.push(obj);
-        }
-        setStones(result);
-      });
+          headers.forEach((header, i) => {
+            obj[header] = str[i]?.trim();
+          });
+          return obj;
+        });
+
+        setStones(stonesResult);
+
+        // Parse counts
+        const countsArray = countsText.split("\r\n");
+        const countHeaders = countsArray[0].split("\t");
+        const countsResult = countsArray.slice(1).map(line => {
+          const str = line.split("\t");
+          let obj = {};
+          countHeaders.forEach((header, i) => {
+            obj[header] = str[i]?.trim();
+          });
+          return obj;
+        });
+
+        setCounts(countsResult);
+        console.log(countsResult);
+      })
+      .catch(err => console.error("Error fetching sheets:", err));
   }, []);
 
   return (
@@ -45,6 +73,7 @@ const Stonewall = () => {
           src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
           strategy="beforeInteractive"
         />
+        <title>Stonewall - Daily Bruin</title>
       </Head>
       <div
         css={css`
@@ -88,6 +117,8 @@ const Stonewall = () => {
             color: #222;
             display: inline-block;
             letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
           }
           #title h3 {
             margin-top: 0.5rem;
@@ -209,6 +240,37 @@ const Stonewall = () => {
             display: none !important;
           }
 
+          .counts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+          }
+
+          .count-card {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+          }
+
+          .count-number {
+            font-family: ${globals.headlineFont};
+            font-size: 6rem;
+            font-weight: 700;
+            color: #111;
+            line-height: 1;
+          }
+
+          .count-label {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #555;
+            font-family: ${globals.bodyFont};
+          }
+
           @media (max-width: 1200px) {
             #title h2 {
               font-size: 13vw;
@@ -246,6 +308,14 @@ const Stonewall = () => {
             #stonewall-wrap ul {
               grid-template-columns: 1fr;
               grid-gap: 0.75rem;
+            }
+
+            .counts-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .count-number {
+              font-size: 4.5rem;
             }
           }
           @keyframes fadeInDown {
@@ -291,10 +361,19 @@ const Stonewall = () => {
             </p>
           </div>
 
+          {counts.length > 0 && (
+            <div className="counts-grid">
+              {Object.entries(counts[0]).map(([label, value], i) => (
+                <div className="count-card" key={i}>
+                  <div className="count-number">{value}</div>
+                  <div className="count-label">{label}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
           <div id="note">
-            <p>
-              Click on a stone below to expand and read the full details.
-            </p>
+            <p>Click on a stone below to expand and read the full details.</p>
           </div>
 
           <ul id="stonewall" className="accordion" data-accordion>
@@ -316,7 +395,9 @@ const Stonewall = () => {
                     </div>
 
                     <div id={`panel${i}a`} className="content stone-desc">
-                      {data.Description != "" ? data.Description : "No description."}
+                      {data.Description != ""
+                        ? data.Description
+                        : "No description."}
                     </div>
                   </li>
                 );
