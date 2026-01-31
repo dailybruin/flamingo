@@ -190,7 +190,7 @@ export default function PhotoCard(props) {
               ) : (
                 /* OPTION B: Fallback Standard Image */
                 <img
-                  src={props.image}
+                  src={(props.image && props.image.src) || props.image}
                   alt={props.headline || "Photo"}
                   css={css`
                     display: block;
