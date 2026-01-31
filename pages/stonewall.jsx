@@ -8,6 +8,10 @@ import Script from "next/script.js";
 
 import * as globals from "../components/globals";
 
+/*
+ * Note for future devs: This component fetches from a Google spreadsheet with two tabs on it
+ * One of the tabs is for the stonewall cards, and the other is for the counts
+ */
 const Stonewall = () => {
   const [stones, setStones] = useState([]);
   /* openStone stores the index of the open stone, null if none is open */
@@ -18,6 +22,7 @@ const Stonewall = () => {
     setOpenStone(openStone === i ? null : i);
   };
 
+  /* Fetch data from spreadsheet */
   useEffect(() => {
     const cardsUrl =
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-l0-cWZUa-FSwFddk-gn0mDEa1J07K3AOwmRXeSjP-fxVDgLJV1iAPwXtC4DHyPomaBGRHMP6MRaU/pub?gid=0&single=true&output=tsv";
