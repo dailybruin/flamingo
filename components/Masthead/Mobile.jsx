@@ -1,24 +1,28 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
-import { Global, css, jsx } from "@emotion/core";
-import Head from "next/head";
-import Image from "next/image";
+import { css } from "@emotion/core";
 
-import * as globals from "../globals";
-
-import dayjs from "dayjs";
-
-import logo from "./dailybruin.svg";
-import menuIcon from "./menu.svg";
-import searchIcon from "./search.svg";
-import minisearchIcon from "./minisearch.svg";
+import {
+  MobileMenuButton,
+  MobileLogo,
+  MobileSearchBar,
+  MobileCategoryLinks,
+  MobileSocialLinks
+} from "./MobileComponents";
+import {
+  mastheadContainerStyles,
+  headerRowStyles,
+  logoCellStyles,
+  searchCellStyles,
+  menuDropdownStyles,
+  categoriesColumnStyles
+} from "./MobileStyles";
 
 export default class Mobile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuExpanded: false,
-      searchExpanded: false
+      menuExpanded: false
     };
     this.Menu = React.createRef();
     this.SearchBar = React.createRef();
@@ -29,10 +33,7 @@ export default class Mobile extends React.Component {
 
   toggleMenu() {
     const menu = this.Menu.current;
-    menu.scrollIntoView();
-    this.state.menuExpanded
-      ? (menu.style.height = "0")
-      : (menu.style.height = "calc(100vh - 48px)");
+    if (menu) menu.scrollIntoView();
     this.setState({ menuExpanded: !this.state.menuExpanded });
   }
 
@@ -41,369 +42,36 @@ export default class Mobile extends React.Component {
   }
 
   render() {
-    let date = dayjs();
-    let renderedCategories = [];
-    if (this.props.categories != null) {
-      for (let i = 0; i < this.props.categories.length; i++) {
-        renderedCategories.push(
-          <a
-            href={this.props.categories[i].as}
-            css={css`
-              display: block;
-              text-align: left;
-              padding: 8px 4px;
-              font-family: ${globals.menuFont};
-              font-size: 18px;
-              font-weight: bold;
-              text-decoration: none;
-              text-transform: uppercase;
-              color: #000;
-              &:hover {
-                text-decoration: underline;
-              }
-            `}
-          >
-            {this.props.categories[i].name}
-          </a>
-        );
-      }
-    }
+    const menuHeight = this.state.menuExpanded ? "calc(100vh - 48px)" : "0";
+
     return (
-      <div
-        css={css`
-          background: #ffffff;
-          box-shadow: ${globals.cardShadow};
-          transition: height 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
-          position: sticky;
-          top: 0;
-          z-index: 10;
-          margin: 6px -6px;
-        `}
-      >
-        <div
-          css={css`
-            display: table;
-            width: 100%;
-            text-align: center;
-            padding: 6px 12px;
-          `}
-        >
-          <button
-            css={css`
-              display: table-cell;
-              vertical-align: middle;
-              border: none;
-              padding: 4px;
-              cursor: pointer;
-              background-color: transparent;
-              outline: none;
-              height: 36px;
-              width: 36px;
-              transition: transform 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
-            `}
-            style={{
-              transform: this.state.menuExpanded
-                ? "rotate(90deg)"
-                : "rotate(0deg)"
-            }}
+      <div css={mastheadContainerStyles}>
+        <div css={headerRowStyles}>
+          <MobileMenuButton
             onClick={this.toggleMenu}
-          >
-            <img
-            src={(menuIcon && menuIcon.src) || menuIcon}
-              css={css`
-                height: 100%;
-                background-color: white;
-              `}
-            ></img>
-          </button>
-          <div
-            css={css`
-              display: table-cell;
-              text-align: center;
-              width: 100%;
-              white-space: nowrap;
-            `}
-          >
-            <a
-              href="/"
-              css={css`
-                display: inline-block;
-                vertical-align: middle;
-                height: 32px;
-                padding: 4px 0;
-                position: relative;
-                width: 180px;
-              `}
-            >
-              <Image
-                src={(logo && logo.src) || logo}
-                alt="Daily Bruin"
-                layout="fill"
-                objectFit="contain"
-              />
-              {date.date() == 1 && date.month() == 3 && (
-                <>
-                  <Head>
-                    <link
-                      href="https://wp.dailybruin.com/wp-content/themes/caeruleum/css/dbcomic.ttf"
-                      rel="stylesheet"
-                    />
-                  </Head>
-                  <Global
-                    styles={css`
-                      * {
-                        font-family: "Comic Sans MS", sans-serif !important;
-                      }
-                    `}
-                  ></Global>
-                </>
-              )}
-            </a>
+            isExpanded={this.state.menuExpanded}
+          />
+
+          <div css={logoCellStyles}>
+            <MobileLogo />
           </div>
-          <div
-            css={css`
-              display: table-cell;
-              vertical-align: middle;
-            `}
-          >
-            <div
-              ref={this.SearchBarBlock}
-              css={css`
-                display: inline-block;
-                position: relative;
-                transition: all 500ms;
-                height: 36px;
-                width: 36px;
-                vertical-align: middle;
-              `}
-            >
-              <form method="get" action="/search">
-                <input
-                  ref={this.SearchBar}
-                  id="SearchBar"
-                  type="text"
-                  name="q"
-                  placeholder="search"
-                  pattern="\S+.*"
-                  css={css`
-                    position: absolute;
-                    right: 0;
-                    z-index: 10;
-                    height: 36px;
-                    background-color: #000;
-                    color: #000;
-                    resize: none;
-                    transition: width 500ms cubic-bezier(0.25, 0.8, 0.25, 1),
-                      color 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
-                    width: 0;
-                    padding: 0;
-                    border: none;
-                    outline: none;
-                    line-height: 36px;
-                    font-size: 18px;
-                    font-family: ${globals.menuFont};
-                    font-weight: bold;
-                    &:focus {
-                      width: calc(100vw - 64px);
-                      padding: 0 36px 0 6px;
-                      color: #fff;
-                    }
-                    &:focus + input {
-                      display: block;
-                    }
-                    &:focus + input + #Masthead__SearchIconBox {
-                      background-color: #000;
-                    }
-                  `}
-                ></input>
-                <input
-                  type="submit"
-                  value=""
-                  css={css`
-                    position: absolute;
-                    z-index: 12;
-                    width: 36px;
-                    height: 36px;
-                    right: 0;
-                    top: 0;
-                    border: none;
-                    padding: 6px;
-                    cursor: pointer;
-                    color: #fff;
-                    outline: none;
-                    display: none;
-                    background-color: #000;
-                  background-image: url(${(minisearchIcon && minisearchIcon.src) || minisearchIcon});
-                    background-repeat: no-repeat;
-                    background-size: 24px;
-                    background-position: 6px;
-                    &:hover {
-                      display: block;
-                    }
-                    &:hover ~ input {
-                      width: 250px;
-                      padding: 0 36px 0 6px;
-                      color: #fff;
-                    }
-                    &:focus {
-                      outline: none;
-                      display: block;
-                    }
-                  `}
-                />
-                <div
-                  css={css`
-                    position: absolute;
-                    z-index: 11;
-                    right: 0;
-                    top: 0;
-                    border: none;
-                    padding: 4px;
-                    height: 36px;
-                    width: 36px;
-                    cursor: pointer;
-                    background-color: transparent;
-                    outline: none;
-                    &:focus {
-                      outline: none;
-                    }
-                  `}
-                  onClick={this.expandSearch}
-                >
-                  <img
-                    id="Masthead__SearchIconBox"
-                    css={css`
-                      display: inline-block;
-                      vertical-align: middle;
-                      transition: all 200ms;
-                      transition-delay: 100ms;
-                      height: 100%;
-                    `}
-                    src={(searchIcon && searchIcon.src) || searchIcon}
-                  ></img>
-                </div>
-              </form>
-            </div>
+
+          <div css={searchCellStyles}>
+            <MobileSearchBar
+              searchBarRef={this.SearchBar}
+              onExpandSearch={this.expandSearch}
+            />
           </div>
         </div>
+
         <div
           ref={this.Menu}
-          css={css`
-            position: absolute;
-            margin: 0px;
-            background-color: #fff;
-            padding: 0 6px;
-            height: 0;
-            overflow-y: scroll;
-            width: 100%;
-
-            transition: height 500ms;
-          `}
+          css={menuDropdownStyles(menuHeight)}
         >
-          <div
-            css={css`
-              vertical-align: top;
-              display: inline-block;
-              width: 60%;
-              padding: 6px;
-            `}
-          >
-            {renderedCategories}
+          <div css={categoriesColumnStyles}>
+            <MobileCategoryLinks categories={this.props.categories} />
           </div>
-          <div
-            css={css`
-              vertical-align: top;
-              display: inline-block;
-              width: 40%;
-              padding: 6px;
-              text-align: center;
-              font-family: ${globals.menuFont};
-              font-size: 14px;
-              font-weight: bold;
-              text-decoration: none;
-              text-transform: uppercase;
-              color: #000;
-              a:hover {
-                text-decoration: underline;
-              }
-            `}
-          >
-            <a
-              href="https://www.facebook.com/dailybruin"
-              target="_blank"
-              rel="noopener"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Facebook
-            </a>
-            <a
-              href="https://twitter.com/dailybruin"
-              target="_blank"
-              rel="noopener"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Twitter
-            </a>
-            <a
-              href="https://www.instagram.com/dailybruin"
-              target="_blank"
-              rel="noopener"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Instagram
-            </a>
-            <a
-              href="http://eepurl.com/cFEiZX"
-              target="_blank"
-              rel="noopener"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Newsletter
-            </a>
-            <a
-              href="/advertise"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Advertise
-            </a>
-            <a
-              href="https://uclastudentmedia.com/donate/"
-              target="_blank"
-              rel="noopener"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Donate
-            </a>
-            <a
-              href="/submit"
-              target="_blank"
-              rel="noopener"
-              css={css`
-                display: block;
-                padding: 8px 4px;
-              `}
-            >
-              Submit
-            </a>
-          </div>
+          <MobileSocialLinks />
         </div>
       </div>
     );
