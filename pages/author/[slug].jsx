@@ -5,6 +5,7 @@ import { Config } from "../../config.js";
 import Head from "next/head";
 
 import AuthorLayout from "../../layouts/Author";
+import { userMadeGames } from "pages/category/games/gamesData";
 
 class Author extends Component {
   static async getInitialProps(context) {
@@ -71,6 +72,9 @@ class Author extends Component {
       },
       content: { name: c.content.rendered, url: c.link }
     }));
+
+    /* Fetch any posts author created */
+    console.log(userMadeGames(slug));
 
     return { author, posts, classifieds };
   }
