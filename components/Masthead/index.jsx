@@ -6,8 +6,8 @@ import Link from "next/link";
 import Media from "react-media";
 import * as globals from "../globals";
 
-import Desktop from "./Desktop";
-import Mobile from "./Mobile";
+import Desktop from "./Desktop/index";
+import Mobile from "./Mobile/index";
 
 export default class Masthead extends React.Component {
   constructor(props) {

@@ -8,7 +8,7 @@ import {
   MobileSearchBar,
   MobileCategoryLinks,
   MobileSocialLinks
-} from "./MobileComponents";
+} from "./Components";
 import {
   mastheadContainerStyles,
   headerRowStyles,
@@ -16,7 +16,7 @@ import {
   searchCellStyles,
   menuDropdownStyles,
   categoriesColumnStyles
-} from "./MobileStyles";
+} from "./Styles";
 
 export default class Mobile extends React.Component {
   constructor(props) {

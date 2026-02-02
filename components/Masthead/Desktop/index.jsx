@@ -3,13 +3,13 @@ import * as React from "react";
 import { css } from "@emotion/core";
 import Image from "next/image";
 
-import logo from "./dailybruin.svg";
+import logo from "../assets/dailybruin.svg";
 import {
   DateDisplay,
   TopNavLinks,
   SearchBar,
   CategoryLinks
-} from "./DesktopComponents";
+} from "./Components";
 import {
   expandedHeight,
   collapsedHeight,
@@ -24,7 +24,7 @@ import {
   dividerStyles,
   dividerLineStyles,
   categoriesContainerStyles
-} from "./DesktopStyles";
+} from "./Styles";
 
 export default class Desktop extends React.Component {
   constructor(props) {

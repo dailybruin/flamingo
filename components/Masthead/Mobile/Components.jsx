@@ -3,13 +3,13 @@ import * as React from "react";
 import { Global, css } from "@emotion/core";
 import Head from "next/head";
 import Image from "next/image";
-import * as globals from "../globals";
+import * as globals from "../../globals";
 import dayjs from "dayjs";
 
-import logo from "./dailybruin.svg";
-import menuIcon from "./menu.svg";
-import searchIcon from "./search.svg";
-import minisearchIcon from "./minisearch.svg";
+import logo from "../assets/dailybruin.svg";
+import menuIcon from "../assets/menu.svg";
+import searchIcon from "../assets/search.svg";
+import minisearchIcon from "../assets/minisearch.svg";
 
 import {
   searchInputStyles,
@@ -19,7 +19,7 @@ import {
   categoryLinkStyles,
   socialColumnStyles,
   socialLinkStyles
-} from "./MobileStyles";
+} from "./Styles";
 
 // MobileMenuButton Component
 export const MobileMenuButton = ({ onClick, isExpanded }) => (

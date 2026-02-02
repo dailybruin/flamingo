@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/core";
-import * as globals from "../globals";
+import * as globals from "../../globals";
 import {
   ACTION_HEIGHT,
   ACTION_WIDTH,
@@ -12,7 +12,7 @@ import {
   Z_INDEX_SEARCH_INPUT,
   Z_INDEX_SEARCH_ICON,
   Z_INDEX_SEARCH_SUBMIT
-} from "./DesktopStyles";
+} from "../shared/styles";
 
 // Mobile-specific constants
 export const MOBILE_SEARCH_EXPANDED_WIDTH = "calc(100vw - 64px)";

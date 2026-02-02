@@ -2,7 +2,7 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/core";
 import dayjs from "dayjs";
-import * as globals from "../globals";
+import * as globals from "../../globals";
 import Image from "next/image";
 import {
   inlineBlockVerticalMiddle,
@@ -16,7 +16,7 @@ import {
   Z_INDEX_SEARCH_INPUT,
   Z_INDEX_SEARCH_ICON,
   Z_INDEX_SEARCH_SUBMIT
-} from "./DesktopStyles";
+} from "./Styles";
 
 // DateDisplay Component
 export const DateDisplay = () => {
@@ -55,11 +55,11 @@ export const DateDisplay = () => {
 // SocialMediaLinks Component
 export const SocialMediaLinks = () => {
   const socialLinks = [
-    { href: "https://www.facebook.com/dailybruin", icon: require("./facebook.svg") },
-    { href: "https://www.twitter.com/dailybruin", icon: require("./twitter.svg") },
-    { href: "https://www.instagram.com/dailybruin", icon: require("./instagram.svg") },
-    { href: "http://eepurl.com/cFEiZX", icon: require("./mail.svg") },
-    { href: "https://www.youtube.com/user/ucladailybruin", icon: require("./youtube.png") }
+    { href: "https://www.facebook.com/dailybruin", icon: require("../assets/facebook.svg") },
+    { href: "https://www.twitter.com/dailybruin", icon: require("../assets/twitter.svg") },
+    { href: "https://www.instagram.com/dailybruin", icon: require("../assets/instagram.svg") },
+    { href: "http://eepurl.com/cFEiZX", icon: require("../assets/mail.svg") },
+    { href: "https://www.youtube.com/user/ucladailybruin", icon: require("../assets/youtube.png") }
   ];
 
   return (
@@ -128,8 +128,8 @@ export const TopNavLinks = () => (
 
 // SearchBar Component
 export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
-  const minisearchIcon = require("./minisearch.svg");
-  const searchIcon = require("./search.svg");
+  const minisearchIcon = require("../assets/minisearch.svg");
+  const searchIcon = require("../assets/search.svg");
 
   return (
     <div
@@ -232,7 +232,7 @@ export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
           `}
           onClick={onExpandSearch}
         >
-          <div 
+          <div
             id="Masthead__SearchIconBox"
             css={css`
               ${inlineBlockVerticalMiddle};
@@ -241,13 +241,13 @@ export const SearchBar = ({ searchBarRef, onExpandSearch }) => {
               width: ${ACTION_WIDTH};
               height: ${ACTION_HEIGHT};
               /* Flexbox helps center the Next Image perfectly */
-              display: flex; 
-              align-items: center; 
+              display: flex;
+              align-items: center;
               justify-content: center;
             `}
           >
             <Image
-            src={(searchIcon && searchIcon.src) || searchIcon}
+              src={(searchIcon && searchIcon.src) || searchIcon}
               alt="Expand Search"
               width={36}
               height={36}
