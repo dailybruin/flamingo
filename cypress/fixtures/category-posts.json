@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "date": "2024-01-15T12:00:00",
+    "slug": "test-news-article",
+    "link": "https://wp.dailybruin.com/2024/01/15/test-news-article/",
+    "title": { "rendered": "Test News Article" },
+    "excerpt": { "rendered": "<p>Test excerpt</p>" },
+    "_embedded": {
+      "wp:term": [[{ "id": 1424, "name": "News", "slug": "news" }]],
+      "wp:featuredmedia": [{
+        "source_url": "https://wp.dailybruin.com/images/2017/03/db-logo.png",
+        "media_details": { "width": 586, "height": 70 }
+      }]
+    }
+  }
+]

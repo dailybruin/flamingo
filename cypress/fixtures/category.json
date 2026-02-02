@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1424,
+    "name": "News",
+    "slug": "news",
+    "description": "News category",
+    "parent": 0,
+    "count": 100
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "content": { "rendered": "<a href=\"/classifieds\">Test Classified</a>" },
+    "link": "https://wp.dailybruin.com/classifieds/test/",
+    "_embedded": {
+      "wp:term": [
+        [],
+        [{ "name": "Housing", "link": "https://wp.dailybruin.com/category/housing/" }]
+      ]
+    }
+  }
+]
