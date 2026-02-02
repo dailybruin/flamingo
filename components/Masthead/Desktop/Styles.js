@@ -1,52 +1,34 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/core";
-import * as globals from "../globals";
+import * as globals from "../../globals";
+import {
+  ACTION_HEIGHT,
+  ACTION_WIDTH,
+  inlineBlockVerticalMiddle,
+  whiteSpaceNowrap,
+  menuLinkStyles
+} from "../shared/styles";
 
-// Constants
+// Desktop-specific constants
 export const expandedHeight = "106px";
 export const collapsedHeight = "60px";
-export const ACTION_HEIGHT = "36px";
-export const ACTION_WIDTH = "36px";
 export const SEARCH_EXPANDED_WIDTH = "250px";
 export const LOGO_EXPANDED_HEIGHT = "60px";
 export const LOGO_COLLAPSED_HEIGHT = "48px";
-export const Z_INDEX_SEARCH_INPUT = 10;
-export const Z_INDEX_SEARCH_ICON = 11;
-export const Z_INDEX_SEARCH_SUBMIT = 12;
 
-// Common utility styles
-export const inlineBlockVerticalMiddle = css`
-  display: inline-block;
-  vertical-align: middle;
-`;
-
-export const whiteSpaceNowrap = css`
-  white-space: nowrap;
-`;
-
-export const outlineNone = css`
-  outline: none;
-  &:focus {
-    outline: none;
-  }
-`;
-
-export const menuLinkStyles = css`
-  font-family: ${globals.menuFont};
-  font-weight: bold;
-  text-transform: uppercase;
-  color: ${globals.black};
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const absoluteTopRight = (zIndex = 0) => css`
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: ${zIndex};
-`;
+// Re-export shared for DesktopComponents
+export {
+  ACTION_HEIGHT,
+  ACTION_WIDTH,
+  inlineBlockVerticalMiddle,
+  whiteSpaceNowrap,
+  outlineNone,
+  menuLinkStyles,
+  absoluteTopRight,
+  Z_INDEX_SEARCH_INPUT,
+  Z_INDEX_SEARCH_ICON,
+  Z_INDEX_SEARCH_SUBMIT
+} from "../shared/styles";
 
 export const mastheadContainerStyles = (height) => css`
   background: ${globals.white};
