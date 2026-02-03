@@ -201,3 +201,53 @@ export function renderPodcastArray(otherArticleCards, type) {
   }
   return renderedPostArray;
 }
+
+/**
+ * Trims posts fetched client-side (InfiniteScroll) to reduce memory usage.
+ * Only keeps the fields needed for rendering article cards.
+ * 
+ * @param {Array} posts - Raw posts from WP API
+ * @returns {Array} - Trimmed posts with only necessary fields
+ */
+export function trimClientPosts(posts) {
+  if (!Array.isArray(posts)) return [];
+  
+  return posts.map(post => {
+    const rawFeatured = post._embedded?.["wp:featuredmedia"] || [];
+    const trimmedFeatured = rawFeatured.map(media => ({
+      source_url: media.source_url,
+      caption: media.caption,
+      media_details: media.media_details ? {
+        width: media.media_details.width,
+        height: media.media_details.height,
+      } : null,
+    }));
+
+    const rawTerms = post._embedded?.["wp:term"] || [];
+    const trimmedTerms = rawTerms.map(termArray =>
+      Array.isArray(termArray)
+        ? termArray.map(term => ({
+            id: term.id,
+            name: term.name,
+            slug: term.slug,
+            link: term.link,
+          }))
+        : []
+    );
+
+    return {
+      id: post.id,
+      date: post.date,
+      link: post.link,
+      slug: post.slug,
+      title: { rendered: post.title?.rendered },
+      coauthors: post.coauthors,
+      excerpt: { rendered: post.excerpt?.rendered },
+      acf: post.acf,
+      _embedded: {
+        "wp:featuredmedia": trimmedFeatured,
+        "wp:term": trimmedTerms,
+      },
+    };
+  });
+}

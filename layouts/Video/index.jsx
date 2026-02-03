@@ -29,9 +29,11 @@ export default class VideoLayout extends React.Component {
       .then(
         json => {
           if (json.data == undefined) {
+            // Trim posts to reduce memory usage
+            const trimmedPosts = utilities.trimClientPosts(json);
             this.setState({
               otherArticleCards: this.state.otherArticleCards.concat(
-                utilities.buildArticleList(json)
+                utilities.buildArticleList(trimmedPosts)
               )
             });
           } else {
@@ -90,7 +92,7 @@ export default class VideoLayout extends React.Component {
                     hasMore={this.state.more}
                     threshold={3000}
                     loader={
-                      <LoadingBear text={"searching for more videos..."} />
+                      <LoadingBear key="loader" text={"searching for more videos..."} />
                     }
                   >
                     {utilities.renderVideoArray(
@@ -135,7 +137,7 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear key="loader" text={"searching for more videos..."} />
                       }
                     >
                       <div
@@ -209,7 +211,7 @@ export default class VideoLayout extends React.Component {
                       hasMore={this.state.more}
                       threshold={3000}
                       loader={
-                        <LoadingBear text={"searching for more videos..."} />
+                        <LoadingBear key="loader" text={"searching for more videos..."} />
                       }
                     >
                       <div

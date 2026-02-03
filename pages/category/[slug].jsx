@@ -7,6 +7,7 @@ import Head from "next/head";
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
 import MultimediaLayout from "../../layouts/Multimedia";
+import { trimClientPosts } from "../../layouts/utilities";
 
 // Categories that use MultimediaLayout instead of CategoryLayout
 const MULTIMEDIA_CATEGORIES = ["graphics", "illo", "cartoons"];
@@ -152,7 +153,9 @@ Category.getInitialProps = async (context) => {
         `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
       );
       const posts = await postsRes.json();
-      return { category, subcategories, posts, classifieds: [] }; //returns empty classified as well
+      // Trim posts to reduce page data size
+      const trimmedPosts = trimClientPosts(posts);
+      return { category, subcategories, posts: trimmedPosts, classifieds: [] };
     }
 
     const subcategoriesRes = await fetch(
@@ -188,12 +191,14 @@ Category.getInitialProps = async (context) => {
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
     );
     const posts = await postsRes.json();
+    // Trim posts to reduce page data size
+    const trimmedPosts = trimClientPosts(posts);
 
     const classifiedsRes = await fetch(
       `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
     );
     const classifieds = await classifiedsRes.json();
-    return { category, subcategories, posts, classifieds };
+    return { category, subcategories, posts: trimmedPosts, classifieds };
   } else {
     return { category };
   }

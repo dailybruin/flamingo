@@ -29,6 +29,7 @@
 
 .banner-ad {
   max-width: 740px;
+  min-height: 90px; /* Reserve space to prevent CLS */
   max-height: 102px;
   margin: auto;
   padding: 6px;
