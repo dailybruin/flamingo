@@ -136,7 +136,7 @@ class MyDocument extends Document {
           {/* Broadstreet Ads - defer to avoid blocking LCP */}
           <Script
             src="https://cdn.broadstreetads.com/init-2.min.js"
-            strategy="afterInteractive"
+            strategy="beforeInteractive"
           />
         </Head>
         <body>
