@@ -133,7 +133,13 @@ class MyDocument extends Document {
             strategy="afterInteractive"
           />
 
-          {/* Broadstreet Ads - defer to avoid blocking LCP */}
+          {
+          /* 
+           * Broadstreet Ads
+           * Note that this MUST be beforeInteractive.
+           * Otherwise the ads may not load
+           */
+          }
           <Script
             src="https://cdn.broadstreetads.com/init-2.min.js"
             strategy="beforeInteractive"
