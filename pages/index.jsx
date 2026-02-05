@@ -9,7 +9,7 @@ import EmailPopUp from "../components/EmailSignUp";
 import { createStaticProps } from "lib/createStaticProps";
 import { fetchHomePageContent } from "lib/fetchHomepageContent";
 
-function Index({ posts, multimediaPosts, classifieds, sponsored }) {
+function Index({ posts, multimediaPosts, classifieds }) {
   const [showNewsletterPopUp, setShowNewsletterPopUp] = useState(false);
 
   /* Handle newsletter popping-up logic */
@@ -105,9 +105,6 @@ function Index({ posts, multimediaPosts, classifieds, sponsored }) {
             }
           })
           .filter(Boolean)}
-        sponsoredLinks={
-          typeof sponsored === "string" ? sponsored.replace("null", "") : ""
-        }
       />
       {showNewsletterPopUp ? (
         <EmailPopUp

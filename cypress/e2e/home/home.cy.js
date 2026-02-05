@@ -2,8 +2,7 @@
 
 /*
  * Test the Daily Bruin's homepage.
- * This checks the masthead, the ArticleGrid,
- * and sponsored links.
+ * This checks the masthead and the ArticleGrid
  */
 describe('Daily Bruin Homepage', () => {
   const homepagePath = '/';
@@ -73,7 +72,7 @@ describe('Daily Bruin Homepage', () => {
       });
   });
 
-  /* check that all articles show up, & sponsored links */
+  /* check that all articles show up */
   it('should have the ArticleGrid show up correctly', () => {
     cy.visit(homepagePath, { timeout: 60000 });
 
@@ -198,9 +197,6 @@ describe('Daily Bruin Homepage', () => {
               .children().first()
               .should('have.class', 'storyList');
           });
-
-        /* check that sponsored links show */
-        cy.contains('SPONSORED LINKS').should('exist');
       });
   });
 

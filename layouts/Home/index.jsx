@@ -6,7 +6,6 @@ import * as utilities from "../utilities";
 import Media from "react-media";
 
 import ClassifiedsCard from "../../components/ClassifiedsCard";
-import SponsoredLinks from "../../components/SponsoredLinks";
 import GamesCard from "components/GamesCard/GamesCard";
 
 // Helper component for article cards with display type
@@ -72,8 +71,7 @@ export default function HomeLayout({
   posts,
   media,
   classifieds,
-  mappedBreaking = null,
-  sponsoredLinks,
+  mappedBreaking = null
 }) {
   const cards = useMemo(() => {
     return {
@@ -276,9 +274,6 @@ export default function HomeLayout({
                     </div>
                   </div>
                 </div>
-                <div className={css.card}>
-                  <SponsoredLinks links={sponsoredLinks} />
-                </div>
               </div>
             )}
 
@@ -368,13 +363,6 @@ export default function HomeLayout({
                     <GamesCardWrapper />
                     <StoryListWrapper id="h" card={cards.hArticleCard} />
                     <PrimeImage />
-                  </div>
-                </div>
-                <div>
-                  <div className={css.column} style={{ width: "100%" }}>
-                    <div className={css.card}>
-                      <SponsoredLinks links={sponsoredLinks} />
-                    </div>
                   </div>
                 </div>
               </div>
