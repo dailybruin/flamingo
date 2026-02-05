@@ -1,0 +1,30 @@
+[
+  {
+    "id": 12345,
+    "date": "2024-01-15T12:00:00",
+    "slug": "test-article-cypress",
+    "link": "https://wp.dailybruin.com/2024/01/15/test-article-cypress/",
+    "title": { "rendered": "Test Article for Cypress E2E Testing" },
+    "content": { "rendered": "<p>This is test content for the Cypress article tests. It verifies that article pages render correctly.</p>" },
+    "excerpt": { "rendered": "<p>Test excerpt for Cypress</p>" },
+    "yoast_meta": [],
+    "categories": [1424],
+    "coauthors": [{ "id": 1 }],
+    "acf": {
+      "db_feature": false,
+      "db_gallery_id": null,
+      "gallery": null
+    },
+    "related_posts": [],
+    "_embedded": {
+      "wp:term": [[
+        { "id": 1424, "name": "News", "slug": "news", "link": "https://wp.dailybruin.com/category/news/" }
+      ]],
+      "wp:featuredmedia": [{
+        "source_url": "https://wp.dailybruin.com/images/2017/03/db-logo.png",
+        "media_details": { "width": 586, "height": 70 },
+        "caption": { "rendered": "" }
+      }]
+    }
+  }
+]

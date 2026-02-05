@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "name": "Test Author",
+  "slug": "test-author",
+  "user_nicename": "test-author",
+  "display_name": "Test Author",
+  "description": "Test author for Cypress E2E tests",
+  "avatar_urls": {
+    "24": "https://secure.gravatar.com/avatar/test?s=24",
+    "48": "https://secure.gravatar.com/avatar/test?s=48",
+    "96": "https://secure.gravatar.com/avatar/test?s=96",
+    "512": "https://secure.gravatar.com/avatar/test?s=512"
+  },
+  "link": "https://wp.dailybruin.com/author/test-author/",
+  "acf": { "position": "Staff Writer", "twitter": "" },
+  "media_email": "test@dailybruin.com"
+}
