@@ -231,7 +231,6 @@ export function trimClientPosts(posts) {
             name: term.name,
             slug: term.slug,
             link: term.link,
-            link: term.link,
           }))
         : []
     );
