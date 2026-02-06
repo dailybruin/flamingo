@@ -22,7 +22,7 @@ export default function ShareButtons(props) {
           padding: 4px 8px;
           font-size: 12px;
           margin: 5px;
-          border-radius: 3px;
+          border-radius: 5px;
           color: #fff;
           min-width: 80px;
           text-align: left;
