@@ -1,22 +1,28 @@
 import PageWrapper from "../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Error from "next/error";
-import { Config } from "../../config.js";
 import Head from "next/head";
+
+import {
+  fetchAuthorWithSlug,
+  fetchPostsFromAuthorSlug,
+  fetchClassifieds
+} from "../../lib/fetchWordPress";
 
 import AuthorLayout from "../../layouts/Author";
 
 class Author extends Component {
   static async getInitialProps(context) {
     const { slug } = context.query;
-    const authorRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/users?slug=${slug}`
-    );
-    const author = await authorRes.json();
-    const postsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&filter[author_name]=${slug}&categories_exclude=27179,27127` // 27179 is the category id of breaking feed posts
-    );
-    const postsRaw = await postsRes.json();
+    const [author, postsRaw, classifiedsRaw] = await Promise.all([
+      fetchAuthorWithSlug(slug),
+      fetchPostsFromAuthorSlug(slug),
+      fetchClassifieds()
+    ]);
+
+    if (author.length === 0) {
+      return { author: [] };
+    }
 
     // Trim posts to reduce page data size
     const posts = postsRaw.map(post => {
@@ -60,10 +66,6 @@ class Author extends Component {
       };
     });
 
-    const classifiedsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
-    );
-    const classifiedsRaw = await classifiedsRes.json();
     const classifieds = classifiedsRaw.map(c => ({
       category: {
         name: c._embedded["wp:term"][1][0].name,

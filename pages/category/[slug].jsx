@@ -1,8 +1,14 @@
 import PageWrapper from "../../layouts/PageWrapper";
 import React from "react";
 import Error from "next/error";
-import { Config } from "../../config.js";
 import Head from "next/head";
+
+import {
+  fetchCategoryWithSlug,
+  fetchPostsFromCategoryId,
+  fetchSubcategoriesForCategoryId,
+  fetchClassifieds
+} from "../../lib/fetchWordPress";
 
 import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
@@ -134,69 +140,49 @@ function Category({ category, subcategories, posts, classifieds }) {
 }
 
 Category.getInitialProps = async (context) => {
-  // slug is from url
   const { slug } = context.query;
-  if (slug == 'breaking') {
-    const category = undefined
-    return { category }
+  if (slug == "breaking") {
+    return { category: undefined };
   }
-  const categoryRes = await fetch(
-    `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`
-  );
-  const category = await categoryRes.json();
-  if (category.length > 0) {
-    // Multimedia categories have a simpler data fetch (no subcategories/classifieds)
-    if (MULTIMEDIA_CATEGORIES.includes(slug)) {
-      const subcategories = [];
-      const postsRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
-      );
-      const posts = await postsRes.json();
-      return { category, subcategories, posts, classifieds: [] }; //returns empty classified as well
-    }
 
-    const subcategoriesRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${category[0].id}&per_page=100`
+  const category = await fetchCategoryWithSlug(slug);
+  if (category.length === 0) {
+    return { category };
+  }
+
+  if (MULTIMEDIA_CATEGORIES.includes(slug)) {
+    const posts = await fetchPostsFromCategoryId(category[0].id);
+    return { category, subcategories: [], posts, classifieds: [] };
+  }
+
+  const [subcategories, posts, classifieds] = await Promise.all([
+    fetchSubcategoriesForCategoryId(category[0].id),
+    fetchPostsFromCategoryId(category[0].id),
+    fetchClassifieds()
+  ]);
+
+  for (let i = 0; i < subcategories.length; i++) {
+    subcategories[i].subsubcategories = [];
+  }
+
+  if (slug === "opinion") {
+    const columnsIndex = subcategories.findIndex(
+      sub => sub.slug === "opinion-columns"
     );
-    const subcategories = await subcategoriesRes.json();
-    for (let i = 0; i < subcategories.length; i++) {
-      // const subsubcategoriesRes = await fetch(
-      //   `${Config.apiUrl}/wp-json/wp/v2/categories?parent=${subcategories[i].id}`
-      // );
-      // subcategories[i].subsubcategories = await subsubcategoriesRes.json();
-      subcategories[i].subsubcategories = [];
-    }
-
-    // Put Opinion Column Series after Opinion Columns
-    if (slug == "opinion") {
-      const columnsIndex = subcategories.findIndex(
-        sub => sub.slug == "opinion-columns"
-      );
-      const columnSeriesIndex = subcategories.findIndex(
-        sub => sub.slug == "opinion-column-series"
-      );
+    const columnSeriesIndex = subcategories.findIndex(
+      sub => sub.slug === "opinion-column-series"
+    );
+    if (columnsIndex >= 0 && columnSeriesIndex >= 0) {
       const temp = subcategories[columnsIndex];
       subcategories[columnsIndex] = subcategories[columnSeriesIndex];
       subcategories[columnSeriesIndex] = temp;
-
-      if (!COLUMN_SERIES_FEATURE_FLAG) {
-        subcategories.pop();
-      }
     }
-
-    const postsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
-    );
-    const posts = await postsRes.json();
-
-    const classifiedsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
-    );
-    const classifieds = await classifiedsRes.json();
-    return { category, subcategories, posts, classifieds };
-  } else {
-    return { category };
+    if (!COLUMN_SERIES_FEATURE_FLAG) {
+      subcategories.pop();
+    }
   }
+
+  return { category, subcategories, posts, classifieds };
 };
 
 export default PageWrapper(Category);
