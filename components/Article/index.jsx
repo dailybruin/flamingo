@@ -40,6 +40,7 @@ export default class Article extends React.Component {
               vertical-align: middle;
               overflow: hidden;
               flex-shrink: 0;
+              position: relative;
             `}
           >
             <Image
@@ -49,9 +50,11 @@ export default class Article extends React.Component {
                   : author.avatar_urls[512]
               }
               alt={author.name || "Author"}
-              width={48}
-              height={48}
+              layout="fill"
+              objectFit="cover"
+              sizes="48px"
               loading="lazy"
+              unoptimized
             />
           </div>
         </a>
