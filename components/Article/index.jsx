@@ -52,9 +52,9 @@ export default class Article extends React.Component {
               alt={author.name || "Author"}
               layout="fill"
               objectFit="cover"
-              sizes="48px"
+              sizes="96px"
+              quality={100}
               loading="lazy"
-              unoptimized
             />
           </div>
         </a>
