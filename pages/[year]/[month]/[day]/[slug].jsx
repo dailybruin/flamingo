@@ -1,5 +1,5 @@
 import PageWrapper from "layouts/PageWrapper";
-import React, { useEffect } from "react";
+import React, { useEffect, createElement } from "react";
 import Error from "next/error";
 import { Config } from "config.js";
 import Head from "next/head";
@@ -13,24 +13,22 @@ import FeatureLayout from "layouts/Feature";
 /* TODO: note to future devs: old gallery layout seeks acf field "gallery" that has an int. new gallery layout seeks acf field "db_gallery_id" that has an int. */
 
 function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds }) {
-  if (
-    post == undefined ||
-    post == null ||
-    post.data != undefined ||
-    post.length == 0
-  ) {
-    return <Error statusCode={404} />;
-  }
-  let renderedMeta = [];
-  for (let meta of post[0].yoast_meta) {
-    renderedMeta.push(React.createElement("meta", meta));
-  }
-
+  // Moved useEffect to top level due to react hook violation
   useEffect(() => {
-    if (post[0].categories.includes(23087)) {
+    if (post && post[0] && post[0].categories && post[0].categories.includes(23087)) {
       window.location.replace(`/sponsored/${post[0].slug}`);
     }
-  }, [])
+  }, [post]);
+
+  const isInvalidPost = !post || post.data !== undefined || post.length === 0;
+  if (isInvalidPost) {
+    return <Error statusCode={404} />;
+  }
+  
+  let renderedMeta = [];
+  for (let meta of post[0].yoast_meta) {
+    renderedMeta.push(createElement("meta", meta));
+  }
 
   return (
     <>
@@ -40,7 +38,7 @@ function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGa
         </title>
         {renderedMeta}
       </Head>
-      {feature == true && (
+      {feature && (
         <FeatureLayout
           article={post[0]}
           authors={authors}
@@ -48,14 +46,14 @@ function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGa
           relatedPosts={relatedPosts}
         />
       )}
-      {oldGallery == true && (
+      {oldGallery && (
         <PhotoGalleryLayout
           post={post[0]}
           photos={photos}
           photographers={authors}
         />
       )}
-      {gallery == true && (
+      {gallery && (
         <PGalleryLayout
           post={post[0]}
           authors={authors}
@@ -63,9 +61,9 @@ function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGa
           relatedPosts={relatedPosts}
         />
       )}
-      {photos == undefined &&
-        feature != true &&
-        gallery != true && (
+      {!feature &&
+        !oldGallery &&
+        !gallery && (
           <ArticleLayout
             article={post[0]}
             authors={authors}
@@ -87,77 +85,149 @@ function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGa
 
 Post.getInitialProps = async (context) => {
   const { slug } = context.query;
-  const postRes = await fetch(
-    `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`
-  );
-  const post = await postRes.json();
+  try {
+    // Fetch the main post
+    const post = await fetchPost(slug);
 
-  if (post.data != undefined || post.length == 0) {
-    return { post };
-  }
-  let authors = [];
-  if (post[0].coauthors != undefined) {
-    for (let author of post[0].coauthors) {
-      const authorsRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/users/${author.id}`
-      );
-      authors.push(await authorsRes.json());
+    // Return early if post is invalid
+    if (!post || post.data !== undefined || post.length === 0) {
+      return { post: post ?? [] };
     }
-  }
-  let relatedPosts = [];
-  if (post[0].related_posts != undefined) {
-    for (let related of post[0].related_posts) {
-      const relatedRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts/${related.id}?_embed`
-      );
-      relatedPosts.push(await relatedRes.json());
+
+    const postData = post[0];
+    const acf = postData.acf || {};
+
+    // Fetch authors and related posts in parallel
+    const [authors, relatedPosts] = await Promise.all([
+      fetchAuthors(postData.coauthors),
+      fetchRelatedPosts(postData.related_posts)
+    ]);
+
+    // Handle Feature articles
+    if (acf.db_feature === true) {
+      const tagged = await fetchTaggedPosts(acf.db_feature_tag);
+      return { feature: true, post, authors, tagged, relatedPosts };
     }
-  }
-  if (post[0].acf["db_feature"] == true) {
-    let feature = true;
-    let tagged = [];
-    if (post[0].acf["db_feature_tag"] != "") {
-      const taggedRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${
-          post[0].acf["db_feature_tag"]
-        }`
-      );
-      tagged = await taggedRes.json();
+
+    // Handle Old Gallery layout
+    if (acf.db_gallery_id === null && acf.gallery !== undefined) {
+      const photos = await fetchGalleryPhotos(acf.gallery);
+      return { oldGallery: true, post, photos, authors, relatedPosts };
     }
-    return { feature, post, authors, tagged, relatedPosts };
+
+    // Handle New Gallery layout (2021+)
+    if (acf.db_gallery_id !== null && acf.db_gallery_id !== "") {
+      const photos = await fetchGalleryPhotos(acf.db_gallery_id);
+      return { 
+        gallery: true, 
+        post, 
+        id: acf.db_gallery_id, 
+        photos, 
+        authors, 
+        relatedPosts 
+      };
+    }
+
+    // Handle Regular articles - fetch classifieds
+    const classifieds = await fetchClassifieds();
+    return { post, classifieds, authors, relatedPosts };
+
+  } catch (error) {
+    console.error("Error fetching post data:", error);
+    // Return empty/invalid post to trigger 404 page
+    return { post: [] };
   }
-  // it's a page with old gallery layout
-  if (
-    post[0].acf["db_gallery_id"] == null &&
-    post[0].acf.gallery != undefined
-  ) {
-    // console.log("Detected as old gallery layout.")
-    const photosRes = await fetch(
-      `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf.gallery}`
-    );
-    const photos = await photosRes.json();
-    const oldGallery = true;
-    return { oldGallery, post, photos, authors, relatedPosts };
+}
+
+// Helper function to safely fetch JSON
+async function safeFetch(url, fallback = null) {
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      console.error(`HTTP error fetching ${url}: ${response.status}`);
+      return fallback;
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching ${url}:`, error.message);
+    return fallback;
   }
-  // it's a page with new gallery layout
-  if (
-    post[0].acf["db_gallery_id"] != null &&
-    post[0].acf["db_gallery_id"] != ""
-  ) {
-    // console.log("Detected as new gallery layout.")
-    const photosRes = await fetch(
-      `${Config.apiUrl}/wp-json/db/v1/gallery/${post[0].acf["db_gallery_id"]}`
-    );
-    const photos = await photosRes.json();
-    const gallery = true;
-    const id = post[0].acf["db_gallery_id"];
-    return { gallery, post, id, photos, authors, relatedPosts };
-  }
-  const classifiedsRes = await fetch(
-    `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
+}
+
+// Helper function to fetch the main post
+async function fetchPost(slug) {
+  return safeFetch(
+    `${Config.apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`,
+    []
   );
-  const classifieds = await classifiedsRes.json();
-  return { post, classifieds, authors, relatedPosts };
+}
+
+// Helper function to fetch authors in parallel
+async function fetchAuthors(coauthors) {
+  if (!coauthors || coauthors.length === 0) {
+    return [];
+  }
+
+  const authorPromises = coauthors.map(author =>
+    safeFetch(
+      `${Config.apiUrl}/wp-json/wp/v2/users/${author.id}`,
+      null
+    )
+  );
+
+  const results = await Promise.all(authorPromises);
+  return results.filter(author => author !== null);
+}
+
+// Helper function to fetch related posts
+async function fetchRelatedPosts(relatedPostsData) {
+  if (!relatedPostsData || relatedPostsData.length === 0) {
+    return [];
+  }
+
+  const relatedPromises = relatedPostsData.map(related =>
+    safeFetch(
+      `${Config.apiUrl}/wp-json/wp/v2/posts/${related.id}?_embed`,
+      null
+    )
+  );
+
+  const results = await Promise.all(relatedPromises);
+  return results.filter(post => post !== null);
+}
+
+// Helper function to fetch tagged posts for features
+async function fetchTaggedPosts(featureTag) {
+  if (!featureTag || featureTag === "") {
+    return [];
+  }
+
+  return safeFetch(
+    `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${featureTag}`,
+    []
+  );
+}
+
+// Helper function to fetch gallery photos
+async function fetchGalleryPhotos(galleryId) {
+  if (!galleryId) {
+    return [];
+  }
+
+  return safeFetch(
+    `${Config.apiUrl}/wp-json/db/v1/gallery/${galleryId}`,
+    []
+  );
+}
+
+// Helper function to fetch classifieds
+async function fetchClassifieds() {
+  return safeFetch(
+    `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`,
+    []
+  );
 }
 
 export default PageWrapper(Post);
