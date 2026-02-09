@@ -41,9 +41,9 @@ const categoryDescriptions = {
   }
 };
 
-/* 
+/*
  * These descriptions don't show up on the page;
- * Only for the descriptions that show up on Google searches. 
+ * Only for the descriptions that show up on Google searches.
  */
 const categoryMetaDescriptions = {
   "sponsored":
@@ -83,6 +83,14 @@ function Category({ category, subcategories, posts, classifieds }) {
   let pageTitle = category[0].name + " - Daily Bruin"
   const isMultimediaCategory = MULTIMEDIA_CATEGORIES.includes(category[0].slug);
 
+  /* Fetch sidebar details, if there are any */
+  const sidebarGraphic = category?.[0]?.acf?.enable_sidebar_graphic
+    ? {
+        imageUrl: category[0].acf.sidebar_graphic_link,
+        link: category[0].acf.click_through_link
+      }
+    : null;
+
   return (
     <>
       <Head>
@@ -118,6 +126,7 @@ function Category({ category, subcategories, posts, classifieds }) {
         <CategoryLayout
           posts={posts}
           categoryID={category[0].id}
+          sidebarGraphic={sidebarGraphic}
           classifieds={classifieds.map(c => {
             return {
               category: {

@@ -55,18 +55,19 @@ export default class CategoryLayout extends React.Component {
       );
   }
 
-  // TODO: DO NOT HARDOCODE THIS. MAKE SIDEBAR CUSTOMIZABLE.
+  /* Get the sidebar graphic for this category, if it exists */
   renderGraphic() {
-    /* 
-     * Only render graphic on Men's and 
-     * Women's basketball pages
-     */
-    const id = Number(this.props.categoryID);
-    if (id !== 1437 && id !== 1447) return null;
+    const { sidebarGraphic } = this.props;
+
+    // 1. Ensure sidebarGraphic object exists (it might be null from the parent)
+    // 2. Ensure an image URL is actually present
+    if (!sidebarGraphic || !sidebarGraphic.imageUrl) {
+      return null;
+    }
 
     return (
       <a
-        href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT5wKo3pYx1tOLT3bCv5ayFTunUjV4uLo3y1j2917FubRVxdR3W-iIS5pidFG5zn10yswHRTcUgkszy/pubchart?oid=886287258&format=interactive"
+        href={sidebarGraphic.link || sidebarGraphic.imageUrl} // Fallback to imageUrl if link is missing
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -78,9 +79,8 @@ export default class CategoryLayout extends React.Component {
         }}
       >
         <img
-          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT5wKo3pYx1tOLT3bCv5ayFTunUjV4uLo3y1j2917FubRVxdR3W-iIS5pidFG5zn10yswHRTcUgkszy/pubchart?oid=886287258&format=image"
-          alt="Click to view full chart"
-          title="Click to view full chart"
+          src={sidebarGraphic.imageUrl}
+          alt="Section Sidebar Graphic"
           style={{
             width: "100%",
             height: "auto",
@@ -113,7 +113,6 @@ export default class CategoryLayout extends React.Component {
                   width: "100%"
                 }}
               >
-                {/* TODO: Make this more customizable, not hard coded. */}
                 {this.renderGraphic()}
                 <div
                   id="c"
@@ -228,8 +227,9 @@ export default class CategoryLayout extends React.Component {
                       displayType: "mini"
                     })}
                   </div>
-                  {/* TODO: Make this more customizable, not hard coded. */}
+
                   {this.renderGraphic()}
+
                   <div id="classifieds" className={css.card}>
                     <ClassifiedsCard
                       header="Featured Classifieds"
@@ -318,8 +318,9 @@ export default class CategoryLayout extends React.Component {
                   <div id="above-ad" className={css.card}>
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
-                  {/* TODO: Make this more customizable, not hard coded. */}
+
                   {this.renderGraphic()}
+
                   <div id="classifieds" className={css.card}>
                     <ClassifiedsCard
                       header="Featured Classifieds"
