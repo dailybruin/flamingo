@@ -61,8 +61,8 @@ function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGa
           relatedPosts={relatedPosts}
         />
       )}
-      {!photos &&
-        !feature &&
+      {!feature &&
+        !oldGallery &&
         !gallery && (
           <ArticleLayout
             article={post[0]}
