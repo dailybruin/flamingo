@@ -73,6 +73,9 @@ export default class CategoryLayout extends React.Component {
         style={{
           display: "block",
           textDecoration: "none",
+          paddingLeft: "5px",
+          paddingRight: "5px",
+          marginBottom: "5px"
         }}
       >
         <img
