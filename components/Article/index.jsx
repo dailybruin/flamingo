@@ -53,7 +53,6 @@ export default class Article extends React.Component {
               layout="fill"
               objectFit="cover"
               sizes="96px"
-              quality={100}
               loading="lazy"
             />
           </div>
