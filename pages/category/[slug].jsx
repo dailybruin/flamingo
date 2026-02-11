@@ -155,11 +155,27 @@ Category.getInitialProps = async (context) => {
     return { category, subcategories: [], posts, classifieds: [] };
   }
 
-  const [subcategories, posts, classifieds] = await Promise.all([
+  const [subcategoriesResult, postsResult, classifiedsResult] = await Promise.allSettled([
     fetchSubcategoriesForCategoryId(category[0].id),
     fetchPostsFromCategoryId(category[0].id),
     fetchClassifieds()
   ]);
+
+  if (subcategoriesResult.status === "rejected") {
+    console.error("Critical fetch failed: subcategories", subcategoriesResult.reason);
+    throw subcategoriesResult.reason;
+  }
+  if (postsResult.status === "rejected") {
+    console.error("Critical fetch failed: category posts", postsResult.reason);
+    throw postsResult.reason;
+  }
+  if (classifiedsResult.status === "rejected") {
+    console.error("Non-critical fetch failed: classifieds", classifiedsResult.reason);
+  }
+
+  const subcategories = subcategoriesResult.value;
+  const posts = postsResult.value;
+  const classifieds = classifiedsResult.status === "fulfilled" ? classifiedsResult.value : [];
 
   for (let i = 0; i < subcategories.length; i++) {
     subcategories[i].subsubcategories = [];

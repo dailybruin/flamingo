@@ -14,11 +14,27 @@ import AuthorLayout from "../../layouts/Author";
 class Author extends Component {
   static async getInitialProps(context) {
     const { slug } = context.query;
-    const [author, postsRaw, classifiedsRaw] = await Promise.all([
+    const [authorResult, postsResult, classifiedsResult] = await Promise.allSettled([
       fetchAuthorWithSlug(slug),
       fetchPostsFromAuthorSlug(slug),
       fetchClassifieds()
     ]);
+
+    if (authorResult.status === "rejected") {
+      console.error("Critical fetch failed: author", authorResult.reason);
+      throw authorResult.reason;
+    }
+    if (postsResult.status === "rejected") {
+      console.error("Critical fetch failed: author posts", postsResult.reason);
+      throw postsResult.reason;
+    }
+    if (classifiedsResult.status === "rejected") {
+      console.error("Non-critical fetch failed: classifieds", classifiedsResult.reason);
+    }
+
+    const author = authorResult.value;
+    const postsRaw = postsResult.value;
+    const classifiedsRaw = classifiedsResult.status === "fulfilled" ? classifiedsResult.value : [];
 
     if (author.length === 0) {
       return { author: [] };

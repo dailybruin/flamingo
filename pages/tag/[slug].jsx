@@ -53,10 +53,21 @@ Tag.getInitialProps = async (context) => {
   const { slug } = context.query;
   const tag = await fetchTagWithSlug(slug);
   if (tag.length > 0) {
-    const [posts, classifieds] = await Promise.all([
+    const [postsResult, classifiedsResult] = await Promise.allSettled([
       fetchPostsFromTagId(tag[0].id),
       fetchClassifieds()
     ]);
+
+    if (postsResult.status === "rejected") {
+      console.error("Critical fetch failed: tag posts", postsResult.reason);
+      throw postsResult.reason;
+    }
+    if (classifiedsResult.status === "rejected") {
+      console.error("Non-critical fetch failed: classifieds", classifiedsResult.reason);
+    }
+
+    const posts = postsResult.value;
+    const classifieds = classifiedsResult.status === "fulfilled" ? classifiedsResult.value : [];
     return { tag, posts, classifieds };
   }
   return { tag };
