@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Error from "next/error";
-import { Config } from "../../config.js";
 import css from "../style.module.css";
+
+import { fetchPostsFromCategoryIdPaginated } from "../../lib/fetchWordPress";
 import * as utilities from "../utilities";
 import InfiniteScroll from "react-infinite-scroller";
 import Media from "react-media";
@@ -24,35 +25,19 @@ export default class CategoryLayout extends React.Component {
   }
 
   getPosts(page) {
-    fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
-    )
-      .then(response => response.json())
-      .then(
-        json => {
-          if (json.data == undefined && json.length != 0) {
-            this.setState({
-              otherArticleCards: this.state.otherArticleCards.concat(
-                utilities.buildArticleList(json)
-              )
-            });
-          } else {
-            this.setState({
-              more: false
-            });
-          }
-        },
-        error => {
+    fetchPostsFromCategoryIdPaginated(this.props.categoryID, page)
+      .then(posts => {
+        if (posts && posts.length > 0) {
           this.setState({
-            more: false
+            otherArticleCards: this.state.otherArticleCards.concat(
+              utilities.buildArticleList(posts)
+            )
           });
+        } else {
+          this.setState({ more: false });
         }
-      )
-      .catch(err =>
-        this.setState({
-          more: false
-        })
-      );
+      })
+      .catch(() => this.setState({ more: false }));
   }
 
   /* Get the sidebar graphic for this category, if it exists */

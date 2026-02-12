@@ -1,8 +1,13 @@
 import PageWrapper from "../../layouts/PageWrapper";
 import React from "react";
 import Error from "next/error";
-import { Config } from "../../config.js";
 import Head from "next/head";
+
+import {
+  fetchTagWithSlug,
+  fetchPostsFromTagId,
+  fetchClassifieds
+} from "../../lib/fetchWordPress";
 
 import TagHeader from "../../components/TagHeader";
 import TagLayout from "../../layouts/Tag";
@@ -46,19 +51,23 @@ function Tag({ tag, posts, classifieds }) {
 
 Tag.getInitialProps = async (context) => {
   const { slug } = context.query;
-  const tagRes = await fetch(
-    `${Config.apiUrl}/wp-json/wp/v2/tags?slug=${slug}`
-  );
-  const tag = await tagRes.json();
+  const tag = await fetchTagWithSlug(slug);
   if (tag.length > 0) {
-    const postsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&tags=${tag[0].id}`
-    );
-    const posts = await postsRes.json();
-    const classifiedsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/classifieds?_embed&Featured=3`
-    );
-    const classifieds = await classifiedsRes.json();
+    const [postsResult, classifiedsResult] = await Promise.allSettled([
+      fetchPostsFromTagId(tag[0].id),
+      fetchClassifieds()
+    ]);
+
+    if (postsResult.status === "rejected") {
+      console.error("Critical fetch failed: tag posts", postsResult.reason);
+      throw postsResult.reason;
+    }
+    if (classifiedsResult.status === "rejected") {
+      console.error("Non-critical fetch failed: classifieds", classifiedsResult.reason);
+    }
+
+    const posts = postsResult.value;
+    const classifieds = classifiedsResult.status === "fulfilled" ? classifiedsResult.value : [];
     return { tag, posts, classifieds };
   }
   return { tag };
