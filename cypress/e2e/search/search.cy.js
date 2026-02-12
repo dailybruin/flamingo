@@ -26,7 +26,7 @@ describe("Search Page", () => {
 
   it("should display search query in page", () => {
     cy.visit("/search?q=ucla+news", { timeout: 60000 });
-    cy.contains("search:", { timeout: 10000 }).should("be.visible");
+    cy.contains("Search:", { timeout: 10000 }).should("be.visible");
     cy.contains("ucla news", { timeout: 10000 }).should("be.visible");
   });
 
@@ -43,7 +43,7 @@ describe("Search Page", () => {
 
   it("should handle empty search query", () => {
     cy.visit("/search?q=", { timeout: 60000 });
-    cy.contains("search:", { timeout: 10000 }).should("be.visible");
+    cy.contains("Search:", { timeout: 10000 }).should("be.visible");
   });
 
   it("should handle special characters in query", () => {
