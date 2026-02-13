@@ -1,4 +1,5 @@
 import * as React from "react";
+// Removed useState as it is no longer needed
 import Link from "next/link";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
@@ -6,102 +7,80 @@ import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";
 import SponsoredTitle from "./sponsoredTitle.svg";
 
-export default class SectionHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false, // Track whether subcategories are shown
-    };
-    this.toggleSubcategories = this.toggleSubcategories.bind(this);
+const SectionHeader = (props) => {
+  // 1. LOGIC: Get current path to determine if we are on a subcategory page
+  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+
+  let isSubcategoryPage = true;
+  // If subcategories exist, check if the current URL matches one of them
+  if (props.subcategories != undefined) {
+    isSubcategoryPage = props.subcategories.some((sub) =>
+      currentPath.includes(sub.link)
+    );
   }
 
-  toggleSubcategories() {
-    this.setState((prevState) => ({
-      isOpen: !prevState.isOpen, // Toggle dropdown
-    }));
-  }
-
-  render() {
-    // Get the current page path
-    const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
-
-    // Check if the current page is a subcategory by comparing with subcategory links
-
-    // this line sets the default of isSubcategory to true if this prop doesn't exist
-    // this is relevant for the games page (where no subcategories are passed)
-    let isSubcategoryPage = true;
-    if (this.props.subcategories != undefined) {
-      isSubcategoryPage = this.props.subcategories.some(sub => currentPath.includes(sub.link));
+  // 2. HELPER: Render the correct title or logo
+  const renderTitle = () => {
+    if (props.category === "Daily Bruin: In Focus") {
+      return (
+        <img
+          src={(InFocusLogo && InFocusLogo.src) || InFocusLogo}
+          css={css`
+            display: inline-block;
+            height: 100%;
+            max-height: 64px;
+            margin: 0px;
+            padding: 0px;
+          `}
+          alt="In Focus Logo"
+        />
+      );
+    } else if (props.category === "Sponsored") {
+      return (
+        <img
+          src={(SponsoredTitle && SponsoredTitle.src) || SponsoredTitle}
+          css={css`
+            display: inline-block;
+            height: 100%;
+            max-height: 64px;
+            margin: 0px;
+            padding: 0px;
+          `}
+          alt="Sponsored Logo"
+        />
+      );
+    } else {
+      return (
+        <div dangerouslySetInnerHTML={{ __html: props.category }}></div>
+      );
     }
+  };
 
-    // Check if this is a category that should show the hamburger toggle
-    const isNewsOrSports = this.props.category === "News" || this.props.category === "Sports";
+  // 3. PREPARE SUBCATEGORIES LIST
+  const renderedSubcategories = props.subcategories?.map((subcategory) => (
+    <a
+      key={subcategory.link}
+      href={subcategory.link}
+      dangerouslySetInnerHTML={{
+        __html: subcategory.name,
+      }}
+      css={css`
+        font-family: ${globals.menuFont};
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 12px;
+        padding: 1px 5px;
+        color: black;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      `}
+    />
+  ));
 
-    let renderedSubcategories = [];
-    const renderTitle = () => {
-      if (this.props.category === "Daily Bruin: In Focus") {
-        return (
-          <img
-            src={(InFocusLogo && InFocusLogo.src) || InFocusLogo}
-            css={css`
-              display: inline-block;
-              height: 100%;
-              max-height: 64px;
-              margin: 0px;
-              padding: 0px;
-            `}
-          ></img>
-        );
-      } 
-      else if (this.props.category === "Sponsored") {
-        return (
-          <img
-            src={(SponsoredTitle && SponsoredTitle.src) || SponsoredTitle}
-            css={css`
-              display: inline-block;
-              height: 100%;
-              max-height: 64px;
-              margin: 0px;
-              padding: 0px;
-            `}
-          />
-        )
-      }
-      else {
-        return (
-          <div dangerouslySetInnerHTML={{ __html: this.props.category }}></div>
-        );
-      }
-    };
-
-    if (this.props.subcategories != undefined) {
-      for (let i = 0; i < this.props.subcategories.length; i++) {
-        renderedSubcategories.push(
-          <a
-            key={this.props.subcategories[i].link}
-            href={this.props.subcategories[i].link}
-            dangerouslySetInnerHTML={{
-              __html: this.props.subcategories[i].name,
-            }}
-            css={css`
-              font-family: ${globals.menuFont};
-              text-transform: uppercase;
-              font-weight: bold;
-              font-size: 12px;
-              padding: 1px 5px;
-              color: black;
-              text-decoration: none;
-              &:hover {
-                text-decoration: underline;
-              }
-            `}
-          />
-        );
-      }
-    }
-
-    return (
-      <>
+  return (
+    <>
       <div
         css={css`
           box-shadow: ${globals.cardShadow};
@@ -110,7 +89,7 @@ export default class SectionHeader extends React.Component {
           padding: 0 10px 10px;
         `}
       >
-        {/* Header with Title & Hamburger Icon (Hamburger aligned to the right) */}
+        {/* Header with Title (Hamburger removed) */}
         <div
           css={css`
             display: flex;
@@ -127,48 +106,11 @@ export default class SectionHeader extends React.Component {
             padding-top: 8px;
           `}
         >
-          {/* Show Hamburger Toggle ONLY for News and Sports */}
-          {!isSubcategoryPage && this.props.subcategories.length > 0 && isNewsOrSports && (
-            <div
-              css={css`
-                position: absolute;
-                right: 0;
-                cursor: pointer;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                width: 25px;
-                height: 18px;
-              `}
-              onClick={this.toggleSubcategories}
-            >
-              <div
-                css={css`
-                  width: 100%;
-                  height: 3px;
-                  background-color: black;
-                `}
-              />
-              <div
-                css={css`
-                  width: 100%;
-                  height: 3px;
-                  background-color: black;
-                `}
-              />
-              <div
-                css={css`
-                  width: 100%;
-                  height: 3px;
-                  background-color: black;
-                `}
-              />
-            </div>
-          )}
           {renderTitle()}
         </div>
 
-        {this.props.description != undefined && (
+        {/* Description Text */}
+        {props.description != undefined && (
           <>
             <div // desktop description
               css={css`
@@ -184,9 +126,8 @@ export default class SectionHeader extends React.Component {
                   display: none;
                 }
               `}
-              dangerouslySetInnerHTML={{ __html: this.props.description.desktop }}
-            >
-            </div>
+              dangerouslySetInnerHTML={{ __html: props.description.desktop }}
+            ></div>
             <div // mobile description
               css={css`
                 text-align: center;
@@ -201,9 +142,8 @@ export default class SectionHeader extends React.Component {
                   display: none;
                 }
               `}
-              dangerouslySetInnerHTML={{ __html: this.props.description.mobile }}
-            >
-            </div>
+              dangerouslySetInnerHTML={{ __html: props.description.mobile }}
+            ></div>
           </>
         )}
 
@@ -217,8 +157,9 @@ export default class SectionHeader extends React.Component {
           `}
         ></div>
 
-        {/* Show Subcategories based on category type */}
-        {(!isSubcategoryPage && !isNewsOrSports) || (isNewsOrSports && this.state.isOpen) ? (
+        {/* Show Subcategories (Simplified Condition) */}
+        {/* Only show if we are NOT on a subcategory page and the list exists */}
+        {!isSubcategoryPage && renderedSubcategories && renderedSubcategories.length > 0 ? (
           <div
             css={css`
               ${renderedSubcategories.length > 8
@@ -239,11 +180,11 @@ export default class SectionHeader extends React.Component {
                 `}
               @media (max-width: 600px) {
                 text-align: center;
-                a { 
+                a {
                   display: inline-block;
                   margin: 4px 8px;
                   white-space: normal;
-                } 
+                }
               }
             `}
           >
@@ -251,8 +192,9 @@ export default class SectionHeader extends React.Component {
           </div>
         ) : null}
       </div>
-      {/* Add a disclaimer at the end if category is sponsored */}
-      {this.props.category === "Sponsored" && 
+
+      {/* Sponsored Disclaimer */}
+      {props.category === "Sponsored" && (
         <div
           css={css`
             box-shadow: ${globals.cardShadow};
@@ -262,22 +204,26 @@ export default class SectionHeader extends React.Component {
           `}
         >
           <div
-                css={css`
-                  text-align: center;
-                  list-style: none;
-                  color: black;
-                  font-family: ${globals.menuFont};
-                  font-size: 16px;
-                  padding-bottom: 8px;
-                  margin-left: 32px;
-                  margin-right: 32px;
-                `}
-            >
-            <i>This is sponsored content independent of the Daily Bruin editorial staff.</i>
+            css={css`
+              text-align: center;
+              list-style: none;
+              color: black;
+              font-family: ${globals.menuFont};
+              font-size: 16px;
+              padding-bottom: 8px;
+              margin-left: 32px;
+              margin-right: 32px;
+            `}
+          >
+            <i>
+              This is sponsored content independent of the Daily Bruin editorial
+              staff.
+            </i>
           </div>
         </div>
-      }
+      )}
     </>
-    );
-  }
-}
+  );
+};
+
+export default SectionHeader;
