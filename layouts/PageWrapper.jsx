@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from "react";
-import { Config } from "../config.js";
 import Head from "next/head";
+
+import { fetchSharedData } from "../lib/fetchData";
 import Media from "react-media";
 
 import MainSiteFooter from "components/MainSiteFooter";
@@ -26,56 +27,13 @@ const layoutStyle = {
 const PageWrapper = (Comp, wrapperProps = {}) =>
   class PageWrapperInternal extends Component {
     static async getInitialProps(ctx) {
-      // Load the categories for the header
-      // TODO: can we load this once each browser session?
-      // only call getInitialProps if the child has that function
-      const [childProps, categoriesRes] = await Promise.all([
+      const [childProps, sharedData] = await Promise.all([
         Comp.getInitialProps ? Comp.getInitialProps(ctx) : null,
-        fetch(`${Config.apiUrl}/wp-json/wp/v2/categories`)
+        fetchSharedData()
       ]);
-
-      // Masthead Headers
-      const mastheadCategoriesRes = await fetch(
-        `${Config.apiUrl}/wp-json/menus/v1/menus/masthead`
-      );
-      const categories = await mastheadCategoriesRes.json();
-      let mappedCategories = null;
-      if (categories.items.length != 0) {
-        mappedCategories = categories.items.map(index => {
-          return { name: index.title, href: index.url, as: index.url };
-        });
-      }
-      mappedCategories.splice(15, 0, {name: "Games", href: "/category/games", as: "/category/games"})
-
-      // BreakingCard
-      const breakingRes = await fetch(
-        `${Config.apiUrl}/wp-json/menus/v1/menus/breaking`
-      );
-      const breaking = await breakingRes.json();
-      let mappedBreaking = null;
-      if (breaking.items.length != 0) {
-        mappedBreaking = {
-          name: breaking.items[0].title,
-          href: breaking.items[0].url
-        };
-      }
-
-      // InTheNews
-      const itnRes = await fetch(
-        `${Config.apiUrl}/wp-json/menus/v1/menus/in-the-news`
-      );
-      const itn = await itnRes.json();
-      let mappedITN = null;
-      if (itn.items.length != 0) {
-        mappedITN = itn.items.map(index => {
-          return { name: index.title, href: index.url, as: index.url };
-        });
-      }
       return {
         ...(Comp.getInitialProps ? childProps : null),
-        mappedCategories,
-        mappedBreaking,
-        mappedITN
+        ...sharedData
       };
     }
 
