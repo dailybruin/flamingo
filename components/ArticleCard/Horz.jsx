@@ -1,24 +1,23 @@
+/**
+ * Horz: horizontal ArticleCard layout with a 50/50 split:
+ * image on the left, category/headline/excerpt/byline on the right.
+ */
 import * as React from "react";
-import Link from "next/link";
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import * as globals from "../globals";
 import * as locals from "./locals";
-import * as utilities from "./utilities";
+import * as styles from "./styles";
+import { renderAuthors, getHeadlineStyle } from "./utilities";
 import dayjs from "dayjs";
 import Image from "next/image";
 
 export default function Horz(props) {
+  const headlineFontStyle = getHeadlineStyle(props.acf);
+
   return (
-    <div
-      css={css`
-        display: flex;
-        box-shadow: ${globals.cardShadow};
-        padding: 0px;
-        background-color: #ffffff;
-      `}
-      className="horz"
-    >
+    <div css={css`${styles.flexCard}`} className="horz">
+      {/* Left column — image */}
       <div
         css={css`
           padding: ${globals.cardPadding};
@@ -26,15 +25,7 @@ export default function Horz(props) {
         `}
       >
         <a href={props.as} style={{ textDecoration: "none" }}>
-          <div
-            css={css`
-              height: 100%;
-              width: 100%;
-              padding-top: 66.66%;
-              overflow: hidden;
-              position: relative;
-            `}
-          >
+          <div css={css`${styles.fillImageContainer}`}>
             <Image
               src={props.imageurl}
               alt={props.title || "Article image"}
@@ -49,19 +40,14 @@ export default function Horz(props) {
           css={css`
             display: block;
             margin: 2px 0 0;
-
-            font-family: Arimo;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 8px;
-            text-align: right;
-
-            color: #000000;
+            ${styles.photographerCredit}
           `}
         >
           {props.photographer}
         </h4>
       </div>
+
+      {/* Right column (text content) */}
       <div
         css={css`
           padding: ${globals.cardPadding};
@@ -69,61 +55,27 @@ export default function Horz(props) {
           width: 50%;
         `}
       >
+        {/* Category and date */}
         <span>
-          <a
-            href={props.category.as}
-            css={css`
-              text-decoration: none;
-              color: ${globals.DBblue};
-              vertical-align: middle;
-
-              &:hover {
-                text-decoration: underline;
-              }
-            `}
-          >
+          <a href={props.category?.as} css={css`${styles.categoryLink}`}>
             <h2
-              css={css`
-                margin: 0 4px 0 0;
-                font-family: Source Sans Pro;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 14px;
-                text-transform: uppercase;
-                display: inline;
-              `}
-              dangerouslySetInnerHTML={{ __html: props.category.name }}
+              css={css`${styles.categoryHeading}`}
+              dangerouslySetInnerHTML={{ __html: props.category?.name }}
             />
           </a>
-          <span
-            css={css`
-              border-left: 1px solid #000;
-              margin: 0;
-              padding-left: 4px;
-              font-family: ${globals.bodyFont};
-              font-style: normal;
-              font-weight: 300;
-              font-size: 11px;
-              line-height: 14px;
-            `}
-          >
+          <span css={css`${styles.dateText}`}>
             {dayjs(props.date).format("MMM D, YYYY h:mm a")}
           </span>
         </span>
+
+        {/* Headline and excerpt */}
         <a href={props.as} style={{ textDecoration: "none" }}>
           <div
             css={css`
               margin: 2px 0 4px;
               ${locals.headline};
             `}
-            style={{
-              fontStyle:
-                props.acf.db_article_format === "column" ||
-                (props.acf.db_display_options &&
-                  props.acf.db_display_options[0] === "italic_headline")
-                  ? "italic"
-                  : "normal"
-            }}
+            style={{ fontStyle: headlineFontStyle }}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />
           <div
@@ -134,19 +86,10 @@ export default function Horz(props) {
             dangerouslySetInnerHTML={{ __html: props.excerpt }}
           />
         </a>
-        <h3
-          css={css`
-            margin: 0;
 
-            font-family: ${globals.bodyFont};
-            font-style: normal;
-            font-weight: bold;
-            font-size: 11px;
-
-            color: #000000;
-          `}
-        >
-          By {utilities.renderAuthors(props.authors)}
+        {/* Author byline */}
+        <h3 css={css`${styles.authorByline}`}>
+          By {renderAuthors(props.authors)}
         </h3>
       </div>
     </div>
