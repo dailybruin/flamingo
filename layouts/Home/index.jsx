@@ -185,7 +185,6 @@ export default function HomeLayout({
                   <AdZone />
                   <StoryListWrapper id="k" card={cards.kArticleCard} />
                   <StoryListWrapper id="l" card={cards.lArticleCard} />
-                  <LatestPodcastWrapper podcast={latestPodcast} />
                 </div>
               </div>
             )}
@@ -215,6 +214,7 @@ export default function HomeLayout({
                       classifieds={classifieds}
                     />
                   </div>
+                  <LatestPodcastWrapper podcast={latestPodcast} />
                   <ArticleCardWrapper
                     id="f1"
                     card={cards.f1ArticleCard}
@@ -228,7 +228,6 @@ export default function HomeLayout({
                     displayType="mini"
                   />
                   <BreakingPlaceholder show={!hasBreaking} />
-                  <LatestPodcastWrapper podcast={latestPodcast} />
                 </div>
                 <div
                   id="c1-c2"
@@ -319,6 +318,7 @@ export default function HomeLayout({
                     <div style={{ textAlign: "center" }} className={css.card}>
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
+                    <LatestPodcastWrapper podcast={latestPodcast} />
                     <StoryListWrapper id="i" card={cards.iArticleCard} />
                     <StoryListWrapper id="j" card={cards.jArticleCard} />
                     {/* Put twitter feed here */}
@@ -377,7 +377,6 @@ export default function HomeLayout({
                     <GamesCardWrapper />
                     <StoryListWrapper id="h" card={cards.hArticleCard} />
                     <PrimeImage />
-                    <LatestPodcastWrapper podcast={latestPodcast} />
                   </div>
                 </div>
               </div>
