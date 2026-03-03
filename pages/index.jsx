@@ -9,7 +9,7 @@ import EmailPopUp from "../components/EmailSignUp";
 import { createStaticProps } from "lib/createStaticProps";
 import { fetchHomePageContent } from "lib/fetchHomepageContent";
 
-function Index({ posts, multimediaPosts, classifieds }) {
+function Index({ posts, multimediaPosts, classifieds, latestPodcast }) {
   const [showNewsletterPopUp, setShowNewsletterPopUp] = useState(false);
 
   /* Handle newsletter popping-up logic */
@@ -89,6 +89,7 @@ function Index({ posts, multimediaPosts, classifieds }) {
       <HomeLayout
         posts={posts}
         media={multimediaPosts}
+        latestPodcast={latestPodcast}
         classifieds={(classifieds || [])
           .map(c => {
             try {

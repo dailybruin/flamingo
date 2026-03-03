@@ -7,6 +7,7 @@ import Media from "react-media";
 
 import ClassifiedsCard from "../../components/ClassifiedsCard";
 import GamesCard from "components/GamesCard/GamesCard";
+import LatestPodcast from "../../components/LatestPodcast";
 
 // Helper component for article cards with display type
 const ArticleCardWrapper = ({ id, card, displayType, priority }) => {
@@ -67,10 +68,21 @@ const GamesCardWrapper = () => (
   </div>
 );
 
+// Helper component for latest podcast
+const LatestPodcastWrapper = ({ podcast }) => {
+  if (!podcast) return null;
+  return (
+    <div className={css.card}>
+      <LatestPodcast podcast={podcast} />
+    </div>
+  );
+};
+
 export default function HomeLayout({
   posts,
   media,
   classifieds,
+  latestPodcast = null,
   mappedBreaking = null
 }) {
   const cards = useMemo(() => {
@@ -202,6 +214,7 @@ export default function HomeLayout({
                       classifieds={classifieds}
                     />
                   </div>
+                  <LatestPodcastWrapper podcast={latestPodcast} />
                   <ArticleCardWrapper
                     id="f1"
                     card={cards.f1ArticleCard}
@@ -305,6 +318,7 @@ export default function HomeLayout({
                     <div style={{ textAlign: "center" }} className={css.card}>
                       <broadstreet-zone zone-id="69405"></broadstreet-zone>
                     </div>
+                    <LatestPodcastWrapper podcast={latestPodcast} />
                     <StoryListWrapper id="i" card={cards.iArticleCard} />
                     <StoryListWrapper id="j" card={cards.jArticleCard} />
                     {/* Put twitter feed here */}
