@@ -10,7 +10,24 @@ export function buildArticleCard(story, type = "") {
   if (story && story.data === undefined) {
     // Pre-calculate these to keep the JSX clean
     const featuredMedia = story._embedded?.["wp:featuredmedia"]?.[0];
-    const category = story._embedded?.["wp:term"]?.[0]?.[0];
+    
+    const categories = story._embedded?.["wp:term"]?.[0] ?? [];
+    const primaryId = story.yoast_primary_category;
+
+    let category = null;
+
+    if (primaryId) {
+      category = categories.find(cat => cat.id === primaryId);
+    }
+
+    if (!category && categories.length > 0) {
+      category = categories.reduce((deepest, cat) => {
+        const depthA = (deepest.link || "").split("/").filter(Boolean).length;
+        const depthB = (cat.link || "").split("/").filter(Boolean).length;
+        return depthB > depthA ? cat : deepest;
+      });
+    }
+
     const imageWidth =
       featuredMedia &&
       featuredMedia.media_details &&
@@ -54,6 +71,24 @@ export function buildArticleCard(story, type = "") {
 }
 
 export function buildStoryList(type, list, link, isPriority=false) {
+  
+  const categories = list[0]._embedded?.["wp:term"]?.[0] ?? [];
+  const primaryId = list[0].yoast_primary_category;
+
+  let storyCategory = null;
+
+  if (primaryId) {
+    storyCategory = categories.find(cat => cat.id === primaryId);
+  }
+
+  if (!storyCategory && categories.length > 0) {
+    storyCategory = categories.reduce((deepest, cat) => {
+      const depthA = (deepest.link || "").split("/").filter(Boolean).length;
+      const depthB = (cat.link || "").split("/").filter(Boolean).length;
+      return depthB > depthA ? cat : deepest;
+    });
+  }
+
   const mappedList = list.map(index => {
     return {
       title: index.title.rendered,
@@ -111,9 +146,9 @@ export function buildStoryList(type, list, link, isPriority=false) {
         height: imageHeight
       }}
       category={{
-        name: list[0]._embedded["wp:term"][0][0].name,
+        name: storyCategory?.name ?? "Uncategorized",
         href: `/category/[slug]`,
-        as: `/category/${list[0]._embedded["wp:term"][0][0].slug}`
+        as: `/category/${storyCategory?.slug ?? ""}`
       }}
       date={list[0].date}
       priority={isPriority}
