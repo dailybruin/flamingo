@@ -6,7 +6,7 @@ import * as globals from "../globals";
 import * as locals from "./locals";
 import * as utilities from "./utilities";
 import dayjs from "dayjs";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function Horz(props) {
   return (

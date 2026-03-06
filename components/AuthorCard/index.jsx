@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import emailImage from "./mail.svg";
 import twitterImage from "./twitter.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function SocialCircle(props) {
   return (

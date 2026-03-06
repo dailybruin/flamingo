@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import css from "../style.module.css";
 import * as utilities from "../utilities";

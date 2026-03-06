@@ -271,8 +271,8 @@ const ColumnsFromQuarantineLayout = ({ posts }) => {
           ))}
         </div>
       </div>
-    </div>
-  );
+      </div>
+    );
 };
 
 export default ColumnsFromQuarantineLayout;

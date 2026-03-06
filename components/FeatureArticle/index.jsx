@@ -9,7 +9,7 @@ import * as globals from "../globals";
 import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import MiniArticleCard from "../ArticleCard/Mini";
 

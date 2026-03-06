@@ -1,7 +1,7 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/core";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import logo from "../assets/dailybruin.svg";
 import {

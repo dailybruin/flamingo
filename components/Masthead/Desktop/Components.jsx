@@ -3,7 +3,7 @@ import * as React from "react";
 import { css } from "@emotion/core";
 import dayjs from "dayjs";
 import * as globals from "../../globals";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import {
   inlineBlockVerticalMiddle,
   whiteSpaceNowrap,
