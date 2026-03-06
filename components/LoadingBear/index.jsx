@@ -2,7 +2,7 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import loadingbear from "./loadingbear.png";
 

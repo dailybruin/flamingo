@@ -11,7 +11,7 @@ import * as globals from "../globals";
 import ShareButtons from "../ShareButtons";
 import ReviewInfobox from "../ReviewInfobox";
 import AuthorCard from "../AuthorCard";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default class Article extends React.Component {
   constructor(props) {
@@ -154,7 +154,6 @@ export default class Article extends React.Component {
           }}
           dangerouslySetInnerHTML={{ __html: this.props.headline }}
         />
-
         <a
           href={this.props.featureimg} // Link to original source
           target="_blank"
@@ -168,7 +167,7 @@ export default class Article extends React.Component {
         >
           {hasDimensions ? (
             /* OPTION A: Optimized Next.js Image */
-            <Image
+            (<Image
               src={this.props.featureimg}
               alt="Feature image"
               width={this.props.featureimgWidth}
@@ -176,17 +175,17 @@ export default class Article extends React.Component {
               layout="responsive"
               sizes="(max-width: 768px) 100vw, 1200px"
               priority
-            />
+            />)
           ) : (
             /* OPTION B: Standard HTML Image Fallback */
-            <img
+            (<img
               src={this.props.featureimg}
               alt="Feature image"
               css={css`
                 width: 100%;
                 display: block;
               `}
-            />
+            />)
           )}
         </a>
         <div

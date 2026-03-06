@@ -4,7 +4,7 @@ import Link from "next/link";
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import * as utilities from "./utilities";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function PhotoCard(props) {
   // Check if we have dimensions to decide if we can use NextJS <Image>
@@ -38,7 +38,7 @@ export default function PhotoCard(props) {
           >
             {hasDimensions ? (
               /* OPTION A: Optimized Next.js Image */
-              <Image
+              (<Image
                 src={props.image}
                 alt={props.headline || "Photo"}
                 width={props.imageWidth}
@@ -46,10 +46,10 @@ export default function PhotoCard(props) {
                 layout="responsive"
                 sizes="35vw"
                 loading="lazy"
-              />
+              />)
             ) : (
               /* OPTION B: Fallback Standard Image */
-              <img
+              (<img
                 src={(props.image && props.image.src) || props.image}
                 alt={props.headline || "Photo"}
                 css={css`
@@ -57,7 +57,7 @@ export default function PhotoCard(props) {
                   width: 100%;
                   height: auto;
                 `}
-              />
+              />)
             )}
 
             <div
@@ -178,7 +178,7 @@ export default function PhotoCard(props) {
             >
               {hasDimensions ? (
                 /* OPTION A: Optimized Next.js Image */
-                <Image
+                (<Image
                   src={props.image}
                   alt={props.headline || "Photo"}
                   width={props.imageWidth}
@@ -186,10 +186,10 @@ export default function PhotoCard(props) {
                   layout="responsive"
                   sizes="100vw"
                   loading="lazy"
-                />
+                />)
               ) : (
                 /* OPTION B: Fallback Standard Image */
-                <img
+                (<img
                   src={(props.image && props.image.src) || props.image}
                   alt={props.headline || "Photo"}
                   css={css`
@@ -197,7 +197,7 @@ export default function PhotoCard(props) {
                     width: 100%;
                     height: auto;
                   `}
-                />
+                />)
               )}
             </div>
 
