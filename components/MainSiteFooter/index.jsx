@@ -44,7 +44,7 @@ export default function MainSiteFooter(props) {
         }
 
         ${MainSiteStyles.tablet} {
-          flex-direction: column;
+          flex-direction: row;
         }
       `}
       id="footer"
@@ -68,9 +68,8 @@ export default function MainSiteFooter(props) {
           }
 
           ${MainSiteStyles.tablet} {
-            display: block;
-            column-count: 3;
-            column-fill: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             padding-left: 20px;
             padding-bottom: 4px;
             border-bottom: 1px solid #000;
