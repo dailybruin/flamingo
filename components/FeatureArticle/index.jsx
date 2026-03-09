@@ -276,6 +276,18 @@ export default class FeatureArticle extends React.Component {
                 </h4>
               </div>
             </div>
+            {this.props.acf.corrections == "" || (
+              <div
+                css={css`
+                  font-size: 12px;
+                  font-family: ${globals.bodyFont};
+                  color: ${globals.darkGray};
+                  max-width: 640px;
+                  margin: 20px auto 0;
+                `}
+                dangerouslySetInnerHTML={{ __html: this.props.acf.corrections }}
+              ></div>
+            )}
             <div
               css={css`
                 font-family: ${globals.bodyFont};
