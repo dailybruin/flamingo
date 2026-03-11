@@ -1,111 +1,69 @@
+/**
+ * Long: horizontal ArticleCard layout with the image on the left (via CSS order)
+ * and category/headline/excerpt/byline text on the right. Uses flex layout.
+ */
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/core";
-import * as globals from "../globals";
+import { css } from "@emotion/core";
 import * as locals from "./locals";
-import * as utilities from "./utilities";
+import * as styles from "./styles";
+import { renderAuthors, getHeadlineStyle } from "./utilities";
 import dayjs from "dayjs";
 import Image from "next/image";
 
 export default function Long(props) {
+  const headlineFontStyle = getHeadlineStyle(props.acf);
+
   return (
     <div
       css={css`
-        display: flex;
-        box-shadow: ${globals.cardShadow};
+        ${styles.flexCard}
         height: 100%;
-        padding: 0px;
-        background-color: #ffffff;
       `}
       className="long"
     >
-      <div
-        css={css`
-          padding: 10px;
-          flex: 3;
-        `}
-      >
+      {/* Text content column */}
+      <div css={css`padding: 10px; flex: 3;`}>
+        {/* Category and date */}
         <span>
-          <a
-            href={props.category.as}
-            css={css`
-              text-decoration: none;
-              color: ${globals.DBblue};
-              vertical-align: middle;
-
-              &:hover {
-                text-decoration: underline;
-              }
-            `}
-          >
+          <a href={props.category?.as} css={css`${styles.categoryLink}`}>
             <h2
-              css={css`
-                margin: 0 4px 0 0;
-                font-family: Source Sans Pro;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 14px;
-                text-transform: uppercase;
-                display: inline;
-              `}
-              dangerouslySetInnerHTML={{ __html: props.category.name }}
+              css={css`${styles.categoryHeading}`}
+              dangerouslySetInnerHTML={{ __html: props.category?.name }}
             />
           </a>
-          <span
-            css={css`
-              border-left: 1px solid #000;
-              margin: 0;
-              padding-left: 4px;
-              font-family: ${globals.bodyFont};
-              font-style: normal;
-              font-weight: 300;
-              font-size: 11px;
-              line-height: 14px;
-            `}
-          >
+          <span css={css`${styles.dateText}`}>
             {dayjs(props.date).format("MMM D, YYYY h:mm a")}
           </span>
         </span>
+
+        {/* Headline */}
         <a href={props.as} style={{ textDecoration: "none" }}>
           <h1
             css={css`
               margin: 2px 0;
               ${locals.headline};
             `}
-            style={{
-              fontStyle:
-                props.acf.db_article_format === "column" ||
-                (props.acf.db_display_options &&
-                  props.acf.db_display_options[0] === "italic_headline")
-                  ? "italic"
-                  : "normal"
-            }}
+            style={{ fontStyle: headlineFontStyle }}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />
         </a>
+
+        {/* Excerpt */}
         <a href={props.as} style={{ textDecoration: "none" }}>
           <div
-            css={css`
-              ${locals.excerpt}
-            `}
+            css={css`${locals.excerpt}`}
             dangerouslySetInnerHTML={{ __html: props.excerpt }}
           />
         </a>
-        <h3
-          css={css`
-            margin: 4px 0 0;
 
-            font-family: ${globals.bodyFont};
-            font-style: normal;
-            font-weight: bold;
-            font-size: 11px;
-
-            color: #000000;
-          `}
-        >
-          By {utilities.renderAuthors(props.authors)}
+        {/* Author byline */}
+        <h3 css={css`${styles.authorBylineSpaced}`}>
+          By {renderAuthors(props.authors)}
         </h3>
       </div>
+
+      {/* Image column */}
       <div
         css={css`
           flex-basis: 350px;
@@ -116,11 +74,7 @@ export default function Long(props) {
         <a href={props.as} style={{ textDecoration: "none" }}>
           <div
             css={css`
-              height: 100%;
-              width: 100%;
-              padding-top: 66.66%;
-              overflow: hidden;
-              position: relative;
+              ${styles.fillImageContainer}
               min-height: 200px;
             `}
           >
@@ -132,16 +86,6 @@ export default function Long(props) {
               loading="lazy"
             />
           </div>
-          {/* <div
-            css={css`
-              height: 100%;
-              min-width: 200px;
-              background: url(${props.imageurl});
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-            `}
-          /> */}
         </a>
       </div>
     </div>

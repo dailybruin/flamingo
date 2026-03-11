@@ -1,85 +1,48 @@
+/**
+ * Full: full-width ArticleCard layout with category, headline, image,
+ * caption, excerpt, and byline stacked vertically.
+ * This is the default card variant when no `displayType` is specified.
+ */
 import * as React from "react";
-import Link from "next/link";
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/core";
-import * as globals from "../globals";
+import { css } from "@emotion/core";
 import * as locals from "./locals";
-import * as utilities from "./utilities";
+import * as styles from "./styles";
+import { renderAuthors, getHeadlineStyle } from "./utilities";
 import dayjs from "dayjs";
 import Image from "next/image";
 
 export default function Full(props) {
-  // Check if we have valid dimensions
   const hasDimensions = props.imageWidth && props.imageHeight;
+  const headlineFontStyle = getHeadlineStyle(props.acf);
 
   return (
-    <div
-      css={css`
-        display: block;
-        padding: 10px;
-        box-shadow: ${globals.cardShadow};
-        background-color: #ffffff;
-      `}
-      className="full"
-    >
+    <div css={css`${styles.blockCard}`} className="full">
+      {/* Category and date */}
       <span>
-        <a
-          href={props.category.as}
-          css={css`
-            text-decoration: none;
-            color: ${globals.DBblue};
-            vertical-align: middle;
-
-            &:hover {
-              text-decoration: underline;
-            }
-          `}
-        >
+        <a href={props.category?.as} css={css`${styles.categoryLink}`}>
           <h2
-            css={css`
-              margin: 0 4px 0 0;
-              font-family: Source Sans Pro;
-              font-style: normal;
-              font-weight: bold;
-              font-size: 14px;
-              text-transform: uppercase;
-              display: inline;
-            `}
-            dangerouslySetInnerHTML={{ __html: props.category.name }}
+            css={css`${styles.categoryHeading}`}
+            dangerouslySetInnerHTML={{ __html: props.category?.name }}
           />
         </a>
-        <span
-          css={css`
-            border-left: 1px solid #000;
-            margin: 0;
-            padding-left: 4px;
-            font-family: ${globals.bodyFont};
-            font-style: normal;
-            font-weight: 300;
-            font-size: 11px;
-            line-height: 14px;
-          `}
-        >
+        <span css={css`${styles.dateText}`}>
           {dayjs(props.date).format("MMM D, YYYY h:mm a")}
         </span>
       </span>
+
       <a href={props.as} style={{ textDecoration: "none" }}>
+        {/* Headline */}
         <div
           css={css`
             margin: 2px 0 6px;
             ${locals.headline};
           `}
-          style={{
-            fontStyle:
-              props.acf.db_article_format === "column" ||
-              (props.acf.db_display_options &&
-                props.acf.db_display_options[0] === "italic_headline")
-                ? "italic"
-                : "normal"
-          }}
+          style={{ fontStyle: headlineFontStyle }}
           dangerouslySetInnerHTML={{ __html: props.headline }}
-        /> 
-        
+        />
+
+        {/* Article image — ~50% desktop, ~85% mobile */}
         {hasDimensions ? (
           <Image
             src={props.imageurl}
@@ -87,38 +50,24 @@ export default function Full(props) {
             width={props.imageWidth}
             height={props.imageHeight}
             layout="responsive"
-            /* 
-             * Full images take up about 50% of the screen on desktop, and most of the screen on mobile.
-             */
             sizes="(max-width: 768px) 85vw, 50vw"
             priority={props.priority}
           />
         ) : (
           <img
-            css={css`
-              width: 100%;
-              margin: auto;
-            `}
+            css={css`${styles.responsiveImage}`}
             src={props.imageurl}
             alt={props.title || "Article image"}
           />
         )}
+
+        {/* Caption */}
         <div
-          css={css`
-            font-family: ${globals.bodyFont};
-            font-style: normal;
-            font-weight: normal;
-            font-size: 9px;
-            text-align: justify;
-
-            p {
-              margin: 4px 0;
-            }
-
-            color: #000000;
-          `}
+          css={css`${styles.captionText}`}
           dangerouslySetInnerHTML={{ __html: props.caption }}
         />
+
+        {/* Excerpt */}
         <div
           css={css`
             margin: 0 0 5px;
@@ -127,19 +76,10 @@ export default function Full(props) {
           dangerouslySetInnerHTML={{ __html: props.excerpt }}
         />
       </a>
-      <h3
-        css={css`
-          margin: 0;
 
-          font-family: ${globals.bodyFont};
-          font-style: normal;
-          font-weight: bold;
-          font-size: 11px;
-
-          color: #000000;
-        `}
-      >
-        By {utilities.renderAuthors(props.authors)}
+      {/* Author byline */}
+      <h3 css={css`${styles.authorByline}`}>
+        By {renderAuthors(props.authors)}
       </h3>
     </div>
   );
