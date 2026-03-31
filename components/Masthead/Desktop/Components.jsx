@@ -1,6 +1,7 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/core";
+import { Global, css } from "@emotion/core";
+import Head from "next/head";
 import dayjs from "dayjs";
 import * as globals from "../../globals";
 import Image from "next/image";
@@ -22,6 +23,7 @@ import {
 export const DateDisplay = () => {
   const date = dayjs();
   const today = date.format("dddd, MMM D, YYYY");
+  const isAprilFools = date.date() === 1 && date.month() === 3;
 
   return (
     <div
@@ -35,6 +37,23 @@ export const DateDisplay = () => {
         }
       `}
     >
+      {isAprilFools && (
+        <>
+          <Head>
+            <link
+              href="https://wp.dailybruin.com/wp-content/themes/caeruleum/css/dbcomic.ttf"
+              rel="stylesheet"
+            />
+          </Head>
+          <Global
+            styles={css`
+              * {
+                font-family: "Comic Sans MS", sans-serif !important;
+              }
+            `}
+          />
+        </>
+      )}
       <h2
         css={css`
           ${whiteSpaceNowrap};
