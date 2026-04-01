@@ -23,7 +23,16 @@ import {
 export const DateDisplay = () => {
   const date = dayjs();
   const today = date.format("dddd, MMM D, YYYY");
-  const isAprilFools = date.date() === 1 && date.month() === 3;
+  const [isAprilFools, setIsAprilFools] = React.useState(false);
+
+  React.useEffect(() => {
+    const now = new Date();
+
+    setIsAprilFools(
+      now.getMonth() === 3 && // April
+      now.getDate() === 1
+    );
+  }, []);
 
   return (
     <div

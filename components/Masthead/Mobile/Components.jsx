@@ -55,7 +55,16 @@ export const MobileMenuButton = ({ onClick, isExpanded }) => (
 
 // MobileLogo Component
 export const MobileLogo = () => {
-  const date = dayjs();
+  const [isAprilFools, setIsAprilFools] = React.useState(false);
+
+  React.useEffect(() => {
+    const now = new Date();
+
+    setIsAprilFools(
+      now.getMonth() === 3 && // April
+      now.getDate() === 1
+    );
+  }, []);
 
   return (
     <a
@@ -75,7 +84,8 @@ export const MobileLogo = () => {
         layout="fill"
         objectFit="contain"
       />
-      {date.date() === 1 && date.month() === 3 && (
+
+      {isAprilFools && (
         <>
           <Head>
             <link
