@@ -7,6 +7,7 @@ import * as globals from "../../globals";
 import dayjs from "dayjs";
 
 import logo from "../assets/dailybruin.svg";
+import prankdLogo from "../assets/prankd.svg";
 import menuIcon from "../assets/menu.svg";
 import searchIcon from "../assets/search.svg";
 import minisearchIcon from "../assets/minisearch.svg";
@@ -79,7 +80,7 @@ export const MobileLogo = () => {
       `}
     >
       <Image
-        src={(logo && logo.src) || logo}
+        src={isAprilFools ? (prankdLogo && prankdLogo.src) || prankdLogo : (logo && logo.src) || logo}
         alt="Daily Bruin"
         layout="fill"
         objectFit="contain"

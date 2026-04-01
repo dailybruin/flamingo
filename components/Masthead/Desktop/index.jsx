@@ -4,6 +4,7 @@ import { css } from "@emotion/core";
 import Image from "next/image";
 
 import logo from "../assets/dailybruin.svg";
+import prankdLogo from "../assets/prankd.svg";
 import {
   DateDisplay,
   TopNavLinks,
@@ -30,7 +31,8 @@ export default class Desktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuExpanded: true
+      menuExpanded: true,
+      isAprilFools: false
     };
     this.SearchBar = React.createRef();
 
@@ -41,6 +43,10 @@ export default class Desktop extends React.Component {
   }
 
   componentDidMount() {
+    const now = new Date();
+    const isAprilFools = now.getMonth() === 3 && now.getDate() === 1;
+    this.setState({ isAprilFools });
+
     window.addEventListener("scroll", this.isScrolled);
   }
 
@@ -97,7 +103,7 @@ export default class Desktop extends React.Component {
               )}
             >
               <Image
-                src={logo}
+                src={this.state.isAprilFools ? prankdLogo : logo}
                 alt="Daily Bruin Logo"
                 width={586} // width and height match dailybruin.svg
                 height={70}
