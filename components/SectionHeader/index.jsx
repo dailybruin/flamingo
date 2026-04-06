@@ -102,7 +102,7 @@ const SectionHeader = ({ category, subcategories, description }) => {
           `}
         >
           {/* Show Hamburger Toggle ONLY for News and Sports */}
-          {!isSubcategoryPage && subcategories.length > 0 && isNewsOrSports && (
+          {!isSubcategoryPage && subcategories?.length > 0 && isNewsOrSports && (
             <div
               css={css`
                 position: absolute;
@@ -184,7 +184,7 @@ const SectionHeader = ({ category, subcategories, description }) => {
         {showSubcategories && (
           <div
             css={css`
-              ${renderedSubcategories.length > 8
+              ${(renderedSubcategories?.length || 0) > 8
                 ? `
                 margin: auto;
                 text-align: left;
