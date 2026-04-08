@@ -23,9 +23,9 @@ export default class SectionHeader extends React.Component {
               href="/category/[slug]"
               as={this.props.subcategories[i].subsubcategories[j].link}
             >
-              <a href={this.props.subcategories[i].subsubcategories[j].link}>
-                {this.props.subcategories[i].subsubcategories[j].name}
-              </a>
+
+              {this.props.subcategories[i].subsubcategories[j].name}
+
             </Link>
             /*<a
           href={this.props.subcategories[i].subsubcategories[j].link}>

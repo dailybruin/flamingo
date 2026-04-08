@@ -10,7 +10,7 @@ import AuthorCard from "../AuthorCard";
 import Tag from "./Tag";
 import Landing from "./Landing";
 import Logo from "./dailybruin.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default class FeatureArticle extends React.Component {
   constructor(props) {

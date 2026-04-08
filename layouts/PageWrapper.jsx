@@ -25,7 +25,7 @@ const layoutStyle = {
 };
 
 const PageWrapper = (Comp, wrapperProps = {}) =>
-  class PageWrapperInternal extends Component {
+  (class PageWrapperInternal extends Component {
     static async getInitialProps(ctx) {
       const [childProps, sharedData] = await Promise.all([
         Comp.getInitialProps ? Comp.getInitialProps(ctx) : null,
@@ -104,6 +104,6 @@ const PageWrapper = (Comp, wrapperProps = {}) =>
         </div>
       );
     }
-  };
+  });
 
 export default PageWrapper;

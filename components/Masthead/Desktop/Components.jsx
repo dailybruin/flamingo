@@ -4,7 +4,7 @@ import { Global, css } from "@emotion/core";
 import Head from "next/head";
 import dayjs from "dayjs";
 import * as globals from "../../globals";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import {
   inlineBlockVerticalMiddle,
   whiteSpaceNowrap,

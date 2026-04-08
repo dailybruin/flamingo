@@ -2,7 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import Westwordle from "./WestWordLogoCropped.png"
 import WhackABruinLogo from "./WhackABruinLogo.png";

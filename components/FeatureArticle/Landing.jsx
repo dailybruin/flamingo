@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/core";
 import logo from "./dailybruin.svg";
 import * as globals from "../globals";
 import { renderAuthors } from "./utilities";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function Landing(props) {
   return (

@@ -1,7 +1,7 @@
 import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
-import Image from "next/image"; // 1. Import the component
+import Image from "next/legacy/image"; // 1. Import the component
 
 import * as globals from "../globals";
 
