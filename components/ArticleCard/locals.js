@@ -1,5 +1,15 @@
+/**
+ * ArticleCard/locals.js
+ *
+ * Card-specific style fragments that are shared across multiple ArticleCard
+ * variants but are NOT generic enough to belong in the top-level `globals.js`.
+ *
+ * These are used inside Emotion `css` template literals, typically composed
+ * with variant-specific margin/padding overrides in each card file.
+ */
 import * as globals from "../globals";
 
+/** Headline text style */
 export const headline = `
   font-family: ${globals.headlineFont};
   font-style: normal;
@@ -11,6 +21,7 @@ export const headline = `
     color: ${globals.DBblue};
   }`;
 
+/** Excerpt / preview text style */
 export const excerpt = `
   font-family: ${globals.bodyFont};
   font-weight: 300;

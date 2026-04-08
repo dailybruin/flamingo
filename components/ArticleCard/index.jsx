@@ -1,5 +1,11 @@
+/**
+ * ArticleCard: dispatcher component that renders the appropriate card variant
+ * based on the `displayType` prop.
+ *
+ * Supported display types:
+ *   vert, horz, long, full (default), mini, video, podcast, breaking, breakingOverview
+ */
 import * as React from "react";
-import { render } from "react-dom";
 
 import Vert from "./Vert";
 import Horz from "./Horz";
@@ -9,46 +15,22 @@ import Mini from "./Mini";
 import Video from "./Video";
 import Podcast from "./Podcast";
 import Breaking from "./Breaking";
-import BreakingOverview from "./BreakingOverview"
+import BreakingOverview from "./BreakingOverview";
 
-export default class ArticleCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+/** Maps each displayType string to its corresponding card component */
+const CARD_VARIANTS = {
+  vert: Vert,
+  horz: Horz,
+  long: Long,
+  full: Full,
+  mini: Mini,
+  video: Video,
+  podcast: Podcast,
+  breaking: Breaking,
+  breakingOverview: BreakingOverview
+};
 
-  render() {
-    let card;
-    switch (this.props.displayType) {
-      case "vert":
-        card = <Vert {...this.props} />;
-        break;
-      case "horz":
-        card = <Horz {...this.props} />;
-        break;
-      case "long":
-        card = <Long {...this.props} />;
-        break;
-      case "full":
-        card = <Full {...this.props} />;
-        break;
-      case "mini":
-        card = <Mini {...this.props} />;
-        break;
-      case "video":
-        card = <Video {...this.props} />;
-        break;
-      case "podcast":
-        card = <Podcast {...this.props} />;
-        break;
-      case "breaking":
-        card = <Breaking {...this.props} />;
-        break;
-      case "breakingOverview":
-        card = <BreakingOverview {...this.props} />;
-        break;
-      default:
-        card = <Full {...this.props} />;
-    }
-    return card;
-  }
+export default function ArticleCard({ displayType, ...rest }) {
+  const CardComponent = CARD_VARIANTS[displayType] || Full;
+  return <CardComponent {...rest} />;
 }

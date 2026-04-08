@@ -1,30 +1,22 @@
+/**
+ * Mini — compact ArticleCard with a small thumbnail on the left and
+ * category + headline on the right. Used for related posts, sidebar lists, etc.
+ */
 import * as React from "react";
-import Link from "next/link";
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/core";
-import * as globals from "../globals";
+import { css } from "@emotion/core";
 import * as locals from "./locals";
-import * as utilities from "./utilities";
-import dayjs from "dayjs";
+import * as styles from "./styles";
+import { getHeadlineStyle } from "./utilities";
 import Image from "next/image";
 
 export default function Mini(props) {
+  const headlineFontStyle = getHeadlineStyle(props.acf);
+
   return (
-    <div
-      css={css`
-        display: flex;
-        box-shadow: ${globals.cardShadow};
-        padding: 0px;
-        background-color: #ffffff;
-      `}
-      className="mini"
-    >
-      <div
-        css={css`
-          width: 100px;
-          min-width: 100px;
-        `}
-      >
+    <div css={css`${styles.flexCard}`} className="mini">
+      {/* Thumbnail column */}
+      <div css={css`width: 100px; min-width: 100px;`}>
         <a href={props.as} style={{ textDecoration: "none" }}>
           <div
             css={css`
@@ -46,38 +38,23 @@ export default function Mini(props) {
           </div>
         </a>
       </div>
-      <div
-        css={css`
-          padding: 10px;
-        `}
-      >
-        <span>
-          <a
-            href={props.category.as}
-            css={css`
-              text-decoration: none;
-              color: ${globals.DBblue};
-              vertical-align: middle;
 
-              &:hover {
-                text-decoration: underline;
-              }
-            `}
-          >
+      {/* Text content column */}
+      <div css={css`padding: 10px;`}>
+        {/* Category */}
+        <span>
+          <a href={props.category?.as} css={css`${styles.categoryLink}`}>
             <h2
               css={css`
+                ${styles.categoryHeading}
                 margin: 0;
-                font-family: Source Sans Pro;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 14px;
-                text-transform: uppercase;
-                display: inline;
               `}
-              dangerouslySetInnerHTML={{ __html: props.category.name }}
+              dangerouslySetInnerHTML={{ __html: props.category?.name }}
             />
           </a>
         </span>
+
+        {/* Headline (smaller for mini variant) */}
         <a href={props.as} style={{ textDecoration: "none" }}>
           <h1
             css={css`
@@ -86,14 +63,7 @@ export default function Mini(props) {
               font-size: 0.85rem;
               font-weight: 550;
             `}
-            style={{
-              fontStyle:
-                props.acf.db_article_format === "column" ||
-                (props.acf.db_display_options &&
-                  props.acf.db_display_options[0] === "italic_headline")
-                  ? "italic"
-                  : "normal"
-            }}
+            style={{ fontStyle: headlineFontStyle }}
             dangerouslySetInnerHTML={{ __html: props.headline }}
           />
         </a>

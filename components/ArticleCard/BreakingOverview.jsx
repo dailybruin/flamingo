@@ -1,97 +1,65 @@
+/**
+ * BreakingOverview: summary card shown at the top of a breaking-news feed.
+ * Displays a "What we're covering here" header, an excerpt, and an optional image.
+ * Has a red border to visually distinguish it from regular Breaking cards.
+ */
 import * as React from "react";
-import Link from "next/link";
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/core";
-import * as globals from "../globals";
-import * as locals from "./locals";
-import * as utilities from "./utilities";
-import dayjs from "dayjs";
+import { css } from "@emotion/core";
+import * as styles from "./styles";
+import { isDefaultImage } from "./utilities";
 import Image from "next/image";
 
 export default function BreakingOverview(props) {
-    return (
-        <div
-            css={css`
-        display: flex;
-        flex-wrap: wrap;
-        box-shadow: ${globals.cardShadow};
-        padding: 0px;
-        background-color: #ffffff;
+  const showImage = !isDefaultImage(props.imageurl);
+
+  return (
+    <div
+      css={css`
+        ${styles.breakingCard}
         border: 2px solid #d12008;
-        border-radius: 20px;
-        width: 100%;
         position: sticky;
       `}
-            className="breakingOverview"
-        >
-            <div
-                css={css`
-          padding: 20px;
-          padding-bottom: 5px;
-          padding-top: 5px;
-          width: 100%;
-        `}
+      className="breakingOverview"
+    >
+      {/* Header and excerpt */}
+      <div css={css`${styles.breakingContentPadding}`}>
+        <span>
+          <span>
+            <h3
+              css={css`
+                ${styles.breakingHeadline}
+                margin: 0;
+                font-size: 1.3rem;
+                display: inline;
+              `}
             >
-                <span>
-                    <span>
-                        <h3
-                            css={css`
-                            margin: 0;
-                            font-family: 'DM Serif Text', serif;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 1.5rem;\n  line-height: 1.25;\n  color: #000000;\n
-                            font-size: 1.3rem;
-                            display: inline;
-                            `}
-                        >
-                            {"What we're covering here"}
-                        </h3>
-                    </span>
-                </span>
-                <div
-                    css={css`
-              margin: 10px 0 5px;
-              font-family: 'Roboto', serif;\n font-style: normal;\n font-weight: normal;\n  font-size: 18px;\n  color: #000000;\n\n
-            `}
-                    dangerouslySetInnerHTML={{ __html: props.excerpt }}
-                />
-            </div>
-            {props.imageurl != "http://wp.dailybruin.com/images/2017/03/db-logo.png" &&
-
-                <div
-                    css={css`
-              height: 100%;
-              width: 100%;
-              padding-top: 66.66%;
-              overflow: hidden;
-              position: relative;
-            `}
-                >
-                    <Image
-                        src={props.imageurl}
-                        alt={props.title || "Article image"}
-                        layout="fill"
-                        objectFit="cover"
-                        loading="lazy"
-                        style={{ padding: 20, paddingTop: 0, paddingBottom: 10 }}
-                    />
-                </div>
-                /* <h4
-                    css={css`
-            display: block;
-            margin: 2px 0 0;
-
-            font-family: Arimo;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 8px;
-            text-align: right;
-
-            color: #000000;
+              {"What we're covering here"}
+            </h3>
+          </span>
+        </span>
+        <div
+          css={css`
+            margin: 10px 0 5px;
+            ${styles.breakingBodyText}
           `}
-                >
-                    {props.photographer}
-                </h4> */
-            }
+          dangerouslySetInnerHTML={{ __html: props.excerpt }}
+        />
+      </div>
 
+      {/* Optional image (hidden when using default placeholder) */}
+      {showImage && (
+        <div css={css`${styles.fillImageContainer}`}>
+          <Image
+            src={props.imageurl}
+            alt={props.title || "Article image"}
+            layout="fill"
+            objectFit="cover"
+            loading="lazy"
+            style={{ padding: 20, paddingTop: 0, paddingBottom: 10 }}
+          />
         </div>
-    );
+      )}
+    </div>
+  );
 }
