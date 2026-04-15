@@ -24,7 +24,7 @@ function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGa
   if (isInvalidPost) {
     return <Error statusCode={404} />;
   }
-  
+
   let renderedMeta = [];
   for (let meta of post[0].yoast_meta) {
     renderedMeta.push(createElement("meta", meta));
@@ -110,21 +110,21 @@ Post.getInitialProps = async (context) => {
     }
 
     // Handle Old Gallery layout
-    if (acf.db_gallery_id === null && acf.gallery !== undefined) {
+    if (acf.db_gallery_id == null && acf.gallery != null) {
       const photos = await fetchGalleryPhotos(acf.gallery);
       return { oldGallery: true, post, photos, authors, relatedPosts };
     }
 
     // Handle New Gallery layout (2021+)
-    if (acf.db_gallery_id !== null && acf.db_gallery_id !== "") {
+    if (acf.db_gallery_id != null && acf.db_gallery_id !== "") {
       const photos = await fetchGalleryPhotos(acf.db_gallery_id);
-      return { 
-        gallery: true, 
-        post, 
-        id: acf.db_gallery_id, 
-        photos, 
-        authors, 
-        relatedPosts 
+      return {
+        gallery: true,
+        post,
+        id: acf.db_gallery_id,
+        photos,
+        authors,
+        relatedPosts
       };
     }
 
@@ -143,12 +143,12 @@ Post.getInitialProps = async (context) => {
 async function safeFetch(url, fallback = null) {
   try {
     const response = await fetch(url);
-    
+
     if (!response.ok) {
       console.error(`HTTP error fetching ${url}: ${response.status}`);
       return fallback;
     }
-    
+
     return await response.json();
   } catch (error) {
     console.error(`Error fetching ${url}:`, error.message);
