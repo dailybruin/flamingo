@@ -57,7 +57,7 @@ class MyApp extends App {
     gtag("js", new Date());
     gtag("config", "UA-28181852-28");
 
-    
+
     // Chartbeat
     function ctag() {
       var _sf_async_config = (window._sf_async_config =
@@ -80,18 +80,18 @@ class MyApp extends App {
       }
       loadChartbeat();
 
-      function flyteDeskSetup (s, p)  { 
-        var f = document.getElementsByTagName(s)[0]; 
+      function flyteDeskSetup (s, p)  {
+        var f = document.getElementsByTagName(s)[0];
         var j = document.createElement(s);
         j.id = 'flytedigital';
         j.async = true;
         j.src = 'https://digital.flytedesk.com/js/head.js#' + p;
-        f.parentNode.insertBefore(j, f) 
+        f.parentNode.insertBefore(j, f)
       };
-      flyteDeskSetup('script', '8b8311d2-981d-458c-8590-a1f98bff09cf');
+      flyteDeskSetup('script', 'prop_9pyGkZtIM9u4phHeOMov');
     }
     ctag();
-    
+
 
     // Broadstreet Ads
     window.broadstreet = window.broadstreet || { watch: function() {} };
