@@ -7,7 +7,6 @@ import dayjs from "dayjs";
 import * as globals from "components/globals";
 
 import PGallery from "components/PhotoGallery/PGallery";
-import CommentsCard from "components/CommentsCard";
 
 export default class PGalleryLayout extends React.Component {
     constructor(props) {
@@ -38,12 +37,6 @@ export default class PGalleryLayout extends React.Component {
                 >
                     <div>
                         {this.pgallery}
-                        <div className={css.card}>
-                            <CommentsCard
-                                id={this.props.post.id}
-                                link={this.props.post.link}
-                            ></CommentsCard>
-                        </div>
                     </div>
                 </Media>
             </div>);

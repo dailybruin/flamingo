@@ -45,11 +45,6 @@
   width: 100%;
 }
 
-.comments-card {
-  background-color: #fff;
-  padding: 10px;
-}
-
 @media only screen and (max-width: 900px) {
   .podcast-card {
     width: 50%;
@@ -118,8 +113,8 @@
   line-height: 1.75;
 }
 
-/* 
- * Same as .article-text, except smaller font size to 
+/*
+ * Same as .article-text, except smaller font size to
  * better emphasize the photos rather than the text
  */
 .article-text-gallery-mobile {
@@ -159,7 +154,7 @@
   margin: 1vw;
   padding-top: 1.5vw;
   padding-bottom: 1.5vw;
-  
+
   font-family: 'Roboto', serif;
   font-style: normal;
   font-size: 1.1rem;
@@ -216,13 +211,9 @@
     margin: 1vw;
     padding-top: 1.5vw;
     padding-bottom: 1.5vw;
-    
+
     font-family: 'Roboto', serif;
     font-style: normal;
     font-size: 1.1rem;
     line-height: 1.75;
 }
-
-
-
-

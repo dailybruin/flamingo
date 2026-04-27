@@ -11,7 +11,6 @@ import * as globals from "components/globals";
 
 import Article from "components/Article";
 import ClassifiedsCard from "components/ClassifiedsCard";
-import CommentsCard from "components/CommentsCard";
 
 function ArticleLayout({article, authors, relatedPosts, classifieds})
 {
@@ -108,12 +107,6 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                       {renderedRelatedPosts}
                     </div>
                     <div className={css.card}>
-                      <CommentsCard
-                        id={article.id}
-                        link={article.link}
-                      ></CommentsCard>
-                    </div>
-                    <div className={css.card}>
                       <ClassifiedsCard
                         header="Featured Classifieds"
                         classifieds={classifieds}
@@ -132,12 +125,6 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                     }}
                   >
                     <div className={css.card}>{articleBuild}</div>
-                    <div className={css.card}>
-                      <CommentsCard
-                        id={article.id}
-                        link={article.link}
-                      ></CommentsCard>
-                    </div>
                   </div>
                   <div
                     className={css.column}
@@ -203,12 +190,6 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                     }}
                   >
                     <div className={css.card}>{articleBuild}</div>
-                    <div className={css.card}>
-                      <CommentsCard
-                        id={article.id}
-                        link={article.link}
-                      ></CommentsCard>
-                    </div>
                   </div>
                   <div
                     id="extras"
