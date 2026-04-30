@@ -5,6 +5,21 @@ import MultimediaScroller from "../components/MultimediaScroller";
 import css from "./style.module.css";
 import dayjs from "dayjs";
 
+export function getCategory(categories, primaryId) {
+  if (!categories || categories.length === 0) {
+    return null;
+  }
+
+  if (primaryId !== undefined && primaryId !== null && primaryId !== "") {
+    const category = categories.find(cat => cat.id === Number(primaryId));
+    if (category) {
+      return category;
+    }
+  }
+  
+  return categories[0];
+}
+
 export function buildArticleCard(story, type = "") {
   // Check if story exists and isn't an error object
   if (story && story.data === undefined) {
@@ -14,19 +29,7 @@ export function buildArticleCard(story, type = "") {
     const categories = story._embedded?.["wp:term"]?.[0] ?? [];
     const primaryId = story.yoast_primary_category;
 
-    let category = null;
-
-    if (primaryId) {
-      category = categories.find(cat => cat.id === primaryId);
-    }
-
-    if (!category && categories.length > 0) {
-      category = categories.reduce((deepest, cat) => {
-        const depthA = (deepest.link || "").split("/").filter(Boolean).length;
-        const depthB = (cat.link || "").split("/").filter(Boolean).length;
-        return depthB > depthA ? cat : deepest;
-      });
-    }
+    const category = getCategory(categories, primaryId);
 
     const imageWidth =
       featuredMedia &&
@@ -75,19 +78,7 @@ export function buildStoryList(type, list, link, isPriority=false) {
   const categories = list[0]._embedded?.["wp:term"]?.[0] ?? [];
   const primaryId = list[0].yoast_primary_category;
 
-  let storyCategory = null;
-
-  if (primaryId) {
-    storyCategory = categories.find(cat => cat.id === primaryId);
-  }
-
-  if (!storyCategory && categories.length > 0) {
-    storyCategory = categories.reduce((deepest, cat) => {
-      const depthA = (deepest.link || "").split("/").filter(Boolean).length;
-      const depthB = (cat.link || "").split("/").filter(Boolean).length;
-      return depthB > depthA ? cat : deepest;
-    });
-  }
+  const storyCategory = getCategory(categories, primaryId);
 
   const mappedList = list.map(index => {
     return {
