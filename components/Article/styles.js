@@ -274,6 +274,14 @@ export const contentBody = `
     position: relative;
     top: 0;
   }
+
+  & .flytead-script-tag img {
+    max-width: initial;
+    width: 1px;
+    height: 1px;
+    display: block;
+    visibility: hidden;
+  }
 `;
 
 /** Author card wrapper with vertical spacing */
