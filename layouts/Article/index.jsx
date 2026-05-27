@@ -11,6 +11,7 @@ import * as globals from "components/globals";
 
 import Article from "components/Article";
 import ClassifiedsCard from "components/ClassifiedsCard";
+import EmpowerLocalAd from "components/EmpowerLocalAd";
 
 function ArticleLayout({article, authors, relatedPosts, classifieds})
 {
@@ -84,6 +85,10 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                     }}
                   >
                     <div className={css.card}>{articleBuild}</div>
+                    {/* EmpowerLocal ad — shown directly below the article */}
+                    <div className={css.card}>
+                      <EmpowerLocalAd />
+                    </div>
                     <div>
                       <div className={css.card}>
                         <div
@@ -125,6 +130,10 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                     }}
                   >
                     <div className={css.card}>{articleBuild}</div>
+                    {/* EmpowerLocal ad — shown directly below the article */}
+                    <div className={css.card}>
+                      <EmpowerLocalAd />
+                    </div>
                   </div>
                   <div
                     className={css.column}
@@ -190,6 +199,10 @@ function ArticleLayout({article, authors, relatedPosts, classifieds})
                     }}
                   >
                     <div className={css.card}>{articleBuild}</div>
+                    {/* EmpowerLocal ad — shown directly below the article */}
+                    <div className={css.card}>
+                      <EmpowerLocalAd />
+                    </div>
                   </div>
                   <div
                     id="extras"

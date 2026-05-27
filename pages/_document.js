@@ -21,6 +21,8 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://static.chartbeat.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://cdn.broadstreetads.com" crossOrigin="anonymous" />
+          {/* Preconnect EmpowerLocal CDN */}
+          <link rel="preconnect" href="https://cdn.empowerlocal.co" crossOrigin="anonymous" />
           <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -134,7 +136,7 @@ class MyDocument extends Document {
           />
 
           {
-          /* 
+          /*
            * Broadstreet Ads
            * Note that this MUST be beforeInteractive.
            * Otherwise the ads may not load
@@ -142,6 +144,18 @@ class MyDocument extends Document {
           }
           <Script
             src="https://cdn.broadstreetads.com/init-2.min.js"
+            strategy="beforeInteractive"
+          />
+
+          {
+          /*
+           * EmpowerLocal Ads
+           * Must be beforeInteractive so the bundle is ready before
+           * the placement <div> is encountered in the page body.
+           */
+          }
+          <Script
+            src="https://cdn.empowerlocal.co/dist/bundle.js?publicationKey=dailybruin-com"
             strategy="beforeInteractive"
           />
         </Head>
