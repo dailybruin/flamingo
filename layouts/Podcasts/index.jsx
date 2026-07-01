@@ -14,13 +14,33 @@ export default class PodcastsLayout extends React.Component {
     super(props);
     this.state = {
       otherArticleCards: utilities.buildArticleList(this.props.posts),
-
       more: true
     };
+    this.requestedPages = new Set([1]);
+    this.pageBuffer = {};
+    this.nextPage = 2;
     this.getPosts = this.getPosts.bind(this);
+    this.flushBuffer = this.flushBuffer.bind(this);
+  }
+
+  flushBuffer() {
+    const newCards = [];
+    while (this.pageBuffer[this.nextPage]) {
+      newCards.push(...this.pageBuffer[this.nextPage]);
+      delete this.pageBuffer[this.nextPage];
+      this.nextPage++;
+    }
+    if (newCards.length > 0) {
+      this.setState(prev => ({
+        otherArticleCards: prev.otherArticleCards.concat(newCards)
+      }));
+    }
   }
 
   getPosts(page) {
+    if (this.requestedPages.has(page)) return;
+    this.requestedPages.add(page);
+
     fetch(
       `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}&orderby=date&order=desc`
     )
@@ -28,11 +48,8 @@ export default class PodcastsLayout extends React.Component {
       .then(
         json => {
           if (json.data == undefined) {
-            this.setState({
-              otherArticleCards: this.state.otherArticleCards.concat(
-                utilities.buildArticleList(json)
-              )
-            });
+            this.pageBuffer[page] = utilities.buildArticleList(json);
+            this.flushBuffer();
           } else {
             this.setState({
               more: false
