@@ -22,7 +22,7 @@ export default class PodcastsLayout extends React.Component {
 
   getPosts(page) {
     fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${this.props.categoryID}&page=${page}&orderby=date&order=desc`
     )
       .then(response => response.json())
       .then(

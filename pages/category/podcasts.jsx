@@ -56,7 +56,7 @@ Category.getInitialProps = async () => {
   if (category.length > 0) {
     const subcategories = [];
     const postsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}`
+      `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${category[0].id}&orderby=date&order=desc`
     );
     const posts = await postsRes.json();
 
