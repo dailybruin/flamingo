@@ -18,6 +18,12 @@ const SectionHeader = ({ category, subcategories, description }) => {
 
   const isNewsOrSports = category === "News" || category === "Sports";
 
+  /* Matched loosely on purpose: the name comes from WordPress, where an editor
+   * can retype it as "Prime" or leave a stray space, and a strict compare would
+   * silently drop us back to the default title with no clue why. */
+  const isPrime =
+    typeof category === "string" && category.trim().toUpperCase() === "PRIME";
+
   const renderTitle = () => {
     if (category === "Daily Bruin: In Focus") {
       return (
@@ -31,6 +37,39 @@ const SectionHeader = ({ category, subcategories, description }) => {
             padding: 0px;
           `}
         />
+      );
+    } else if (isPrime) {
+      /*
+       * PRIME is set in Bungee Outline at the editors' request. The face is an
+       * outline with hairline strokes, so it needs to run much larger than the
+       * 40px the other section titles use -- at 40px it closes up into a smudge.
+       * That does mean PRIME's header is taller than every other section's.
+       *
+       * The fallback is the normal header font, so if Google Fonts fails to load
+       * the title degrades to the way it looks today rather than to something
+       * broken.
+       */
+      return (
+        <div
+          css={css`
+            font-family: "Bungee Outline", ${globals.menuFont};
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            padding: 18px 0 10px;
+            font-size: 104px;
+            @media (max-width: 900px) {
+              font-size: 74px;
+              padding: 14px 0 8px;
+            }
+            @media (max-width: 600px) {
+              font-size: 46px;
+              padding: 10px 0 6px;
+            }
+          `}
+        >
+          PRIME
+        </div>
       );
     } else if (category === "Sponsored") {
       return (
