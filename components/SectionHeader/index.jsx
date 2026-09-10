@@ -24,6 +24,32 @@ const SectionHeader = ({ category, subcategories, description }) => {
   const isPrime =
     typeof category === "string" && category.trim().toUpperCase() === "PRIME";
 
+  /*
+   * PRIME's blurb is a condensed version of the magazine's own mission
+   * statement, so it runs longer than the one-line descriptions the other
+   * sections carry. Set as prose rather than as a caption: leading opened up and
+   * the measure capped, otherwise it stretches the full width of the page on
+   * desktop and is unreadable. Stays centered like every other section header.
+   *
+   * Empty for every other category, so nothing else moves.
+   */
+  const primeDescriptionCSS = isPrime
+    ? `
+      line-height: 1.6;
+      padding-bottom: 14px;
+
+      /* Only centre on a wide screen. Below 68ch the max-width stops binding and
+         the auto margins collapse to zero, which would run the text into the
+         edge of a phone. The inherited 32px margins do the job there. */
+      @media (min-width: 601px) {
+        font-size: 17px;
+        max-width: 68ch;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    `
+    : "";
+
   const renderTitle = () => {
     if (category === "Daily Bruin: In Focus") {
       return (
@@ -184,6 +210,7 @@ const SectionHeader = ({ category, subcategories, description }) => {
                 padding-bottom: 8px;
                 margin-left: 32px;
                 margin-right: 32px;
+                ${primeDescriptionCSS}
                 @media (max-width: 600px) {
                   display: none;
                 }
@@ -200,6 +227,7 @@ const SectionHeader = ({ category, subcategories, description }) => {
                 padding-bottom: 8px;
                 margin-left: 32px;
                 margin-right: 32px;
+                ${primeDescriptionCSS}
                 @media (min-width: 601px) {
                   display: none;
                 }

@@ -42,12 +42,21 @@ const categoryDescriptions = {
       "The Daily Bruin announces news relevant to the organization as press releases. \
       For more information about The Bruin, contact <a href='mailto:dboutreach@dailybruin.com'>dboutreach@dailybruin.com</a>"
   },
-  /* PLACEHOLDER -- PRIME editors still owe us the real copy for this. */
+  /*
+   * Condensed from PRIME's own mission statement on the magazine's about page.
+   * Everything time-bound is left out on purpose -- the original is a letter
+   * signed by one year's editors and announces the end of the print run, which
+   * would be stale on an evergreen category page within a quarter.
+   * PRIME editors should confirm this cut, or write their own.
+   */
   prime: {
     desktop:
-      "PRIME is the Daily Bruin's quarterly magazine, publishing long-form reporting, \
-      photo essays and design from the people who make it.",
-    mobile: "The Daily Bruin's quarterly magazine."
+      "PRIME is a rebellious take on what journalism can be &mdash; embracing humanity \
+      through reporting on individual experiences, not just numbers. Above all, PRIME is \
+      about truthful and immersive storytelling. It&rsquo;s narrative journalism.",
+    mobile:
+      "A rebellious take on what journalism can be. Truthful, immersive storytelling \
+      &mdash; it&rsquo;s narrative journalism."
   },
   "the-stack": {
     desktop:
