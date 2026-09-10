@@ -9,6 +9,8 @@ import Media from "react-media";
 
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
+import PrimeLatest from "../../components/PrimeLatest";
+import PrimeArchiveCard from "../../components/PrimeArchiveCard";
 
 export default class CategoryLayout extends React.Component {
   constructor(props) {
@@ -79,6 +81,37 @@ export default class CategoryLayout extends React.Component {
     );
   }
 
+  /* "The Latest" -- only on PRIME, and only once the archive is actually serving.
+   * The stories are picked weekly in getInitialProps so the server and the
+   * browser agree; this just draws what it was handed. */
+  renderPrimeLatest(showExcerpt = true) {
+    const { primeLatest } = this.props;
+
+    if (!primeLatest || primeLatest.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className={css.card}>
+        <PrimeLatest articles={primeLatest} showExcerpt={showExcerpt} />
+      </div>
+    );
+  }
+
+  /* The way into the frozen archive. Same gate as the sidebar -- both link into
+   * /prime/*, which 404s until the Worker routes are bound. */
+  renderPrimeArchiveCard(compact = false) {
+    if (!this.props.showPrimeArchiveCard) {
+      return null;
+    }
+
+    return (
+      <div className={css.card}>
+        <PrimeArchiveCard compact={compact} />
+      </div>
+    );
+  }
+
   render() {
     return (
       <Media
@@ -121,6 +154,14 @@ export default class CategoryLayout extends React.Component {
                       displayType: "full"
                     })}
                   </div>
+
+                  {/* No right rail and no classifieds box exist on phone, so
+                      "above the classifieds" has nowhere to land. These drop
+                      into the stack instead of disappearing -- most of our
+                      readers are on a phone. */}
+                  {this.renderPrimeLatest()}
+                  {this.renderPrimeArchiveCard(true)}
+
                   <InfiniteScroll
                     pageStart={1}
                     loadMore={this.getPosts}
@@ -165,6 +206,7 @@ export default class CategoryLayout extends React.Component {
                       displayType: "full"
                     })}
                   </div>
+                  {this.renderPrimeArchiveCard()}
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -212,6 +254,11 @@ export default class CategoryLayout extends React.Component {
                       displayType: "mini"
                     })}
                   </div>
+
+                  {/* Excerpts are dropped here -- the tablet rail is a third of
+                      768px and three lines of dek per story pushes classifieds
+                      off the screen. */}
+                  {this.renderPrimeLatest(false)}
 
                   {this.renderGraphic()}
 
@@ -264,6 +311,7 @@ export default class CategoryLayout extends React.Component {
                     </div>
                   </div>
                   {/*c1-c2*/}
+                  {this.renderPrimeArchiveCard()}
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -300,6 +348,10 @@ export default class CategoryLayout extends React.Component {
                   className={css.column}
                   style={{ width: "25%" }}
                 >
+                  {/* Editors asked for this above the classifieds box; it goes
+                      at the top of the rail so it clears the fold. */}
+                  {this.renderPrimeLatest()}
+
                   <div id="above-ad" className={css.card}>
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>

@@ -14,6 +14,11 @@ import SectionHeader from "../../components/SectionHeader";
 import CategoryLayout from "../../layouts/Category";
 import MultimediaLayout from "../../layouts/Multimedia";
 
+import {
+  PRIME_CATEGORY_SLUG,
+  PRIME_ARCHIVE_LIVE
+} from "../../lib/primeArchive";
+
 // Categories that use MultimediaLayout instead of CategoryLayout
 const MULTIMEDIA_CATEGORIES = ["graphics", "illo", "cartoons"];
 
@@ -37,6 +42,13 @@ const categoryDescriptions = {
       "The Daily Bruin announces news relevant to the organization as press releases. \
       For more information about The Bruin, contact <a href='mailto:dboutreach@dailybruin.com'>dboutreach@dailybruin.com</a>"
   },
+  /* PLACEHOLDER -- PRIME editors still owe us the real copy for this. */
+  prime: {
+    desktop:
+      "PRIME is the Daily Bruin's quarterly magazine, publishing long-form reporting, \
+      photo essays and design from the people who make it.",
+    mobile: "The Daily Bruin's quarterly magazine."
+  },
   "the-stack": {
     desktop:
       "The Stack is the Daily Bruin's data journalism section. We investigate public data, create \
@@ -56,7 +68,13 @@ const categoryMetaDescriptions = {
       "Sponsored is an advertisement page managed by the Bruin Media Group. Increase visibility and traffic to your company's brand or products through the Daily Bruin website. Grow your business online with Sponsored to bring in new customers."
 };
 
-function Category({ category, subcategories, posts, classifieds }) {
+function Category({
+  category,
+  subcategories,
+  posts,
+  classifieds,
+  primeLatest
+}) {
   if (
     category == undefined ||
     category.data != undefined ||
@@ -88,6 +106,11 @@ function Category({ category, subcategories, posts, classifieds }) {
 
   let pageTitle = category[0].name + " - Daily Bruin"
   const isMultimediaCategory = MULTIMEDIA_CATEGORIES.includes(category[0].slug);
+
+  /* The archive card and "The Latest" both link into /prime/*, so they stay
+   * hidden until that route actually serves. See PRIME_ARCHIVE_LIVE. */
+  const isPrimeCategory =
+    PRIME_ARCHIVE_LIVE && category[0].slug === PRIME_CATEGORY_SLUG;
 
   /* Fetch sidebar details, if there are any */
   const sidebarGraphic = category?.[0]?.acf?.enable_sidebar_graphic
@@ -133,6 +156,8 @@ function Category({ category, subcategories, posts, classifieds }) {
           posts={posts}
           categoryID={category[0].id}
           sidebarGraphic={sidebarGraphic}
+          primeLatest={primeLatest}
+          showPrimeArchiveCard={isPrimeCategory}
           classifieds={classifieds.map(c => {
             return {
               category: {
@@ -207,7 +232,24 @@ Category.getInitialProps = async (context) => {
     }
   }
 
-  return { category, subcategories, posts, classifieds };
+  /*
+   * Picked here rather than during render: getInitialProps runs on the server for
+   * the first hit, so the browser hydrates against the same pair. Picking in the
+   * component would read the clock on both sides, and a pod on UTC is in a
+   * different ISO week than a reader in Los Angeles for a few hours each Sunday
+   * night.
+   *
+   * Imported lazily so the ~130 KB of archive data is code-split into its own
+   * chunk. A static import would put it in the shared category bundle and make
+   * every News and Sports reader download PRIME's archive.
+   */
+  let primeLatest = [];
+  if (PRIME_ARCHIVE_LIVE && slug === PRIME_CATEGORY_SLUG) {
+    const { getWeeklyPicks } = await import("../../lib/primeArchivePool");
+    primeLatest = getWeeklyPicks(2);
+  }
+
+  return { category, subcategories, posts, classifieds, primeLatest };
 };
 
 export default PageWrapper(Category);
