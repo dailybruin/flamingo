@@ -8,16 +8,16 @@ export default function MainSiteFooter(props) {
   const mainSiteFooterLinks = [
     { text: "About", url: "/about" },
     { text: "Contact", url: "/contact" },
-    { text: "Submit", url: "/submit" },
+    { text: "Submit", url: "/page/submit" },
     { text: "Advertise", url: "/advertise" },
     { text: "Sponsored", url: "/category/sponsored" },
-    { text: "Staff", url: "/staff" },
+    { text: "Staff", url: "/page/staff" },
     { text: "Stonewall", url: "/stonewall" },
-    { text: "Editorial Board", url: "/editorial-board" },
-    { text: "Privacy", url: "/privacy" },
+    { text: "Editorial Board", url: "/page/editorial-board" },
+    { text: "Privacy", url: "/page/privacy" },
     { text: "Comment Policy", url: "/comment" },
-    { text: "Community Guide", url: "/the-daily-bruin-community-guide" },
-    { text: "Join", url: "/join-the-daily-bruin" }
+    { text: "Community Guide", url: "/page/the-daily-bruin-community-guide" },
+    { text: "Join", url: "/page/join-the-daily-bruin" }
   ];
 
   const renderedLinks = mainSiteFooterLinks.map(link => (
