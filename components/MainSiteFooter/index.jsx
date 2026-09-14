@@ -55,8 +55,9 @@ export default function MainSiteFooter(props) {
           flex-direction: row;
 
           ${MainSiteStyles.phone} {
-            display: block;
-            column-count: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
             column-fill: auto;
             padding-left: 20px;
             padding-bottom: 4px;
@@ -68,9 +69,8 @@ export default function MainSiteFooter(props) {
           }
 
           ${MainSiteStyles.tablet} {
-            display: block;
-            column-count: 3;
-            column-fill: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             padding-left: 20px;
             padding-bottom: 4px;
             border-bottom: 1px solid #000;
