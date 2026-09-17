@@ -6,6 +6,7 @@ import MainSiteFooter from "components/MainSiteFooter";
 import BreakingCard from "components/BreakingBanner";
 import InTheNews from "components/InTheNewsBanner";
 import Masthead from "components/Masthead";
+import ApplyBanner from "components/ApplyBanner";
 import CommentFAB from "components/CommentFAB";
 
 import css from "./style.module.css";
@@ -74,6 +75,10 @@ const NewPageWrapper = (Comp, wrapperProps = {}) => {
           <CommentFAB />
           <div className={css["banner-ad"]}>
             <broadstreet-zone zone-id="69404" />
+          </div>
+
+          <div style={{ padding: "6px" }}>
+            <ApplyBanner />
           </div>
 
           <Masthead categories={mappedCategories} />
