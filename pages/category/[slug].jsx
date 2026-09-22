@@ -43,20 +43,15 @@ const categoryDescriptions = {
       For more information about The Bruin, contact <a href='mailto:dboutreach@dailybruin.com'>dboutreach@dailybruin.com</a>"
   },
   /*
-   * Condensed from PRIME's own mission statement on the magazine's about page.
-   * Everything time-bound is left out on purpose -- the original is a letter
-   * signed by one year's editors and announces the end of the print run, which
-   * would be stale on an evergreen category page within a quarter.
-   * PRIME editors should confirm this cut, or write their own.
+   * Davis Hoffman's wording, verbatim (Slack, 2026-09-10): he asked for
+   * "something simple" under the logo in place of the condensed mission
+   * statement that was here before. Short enough that desktop and mobile take
+   * the same string -- SectionHeader still renders two copies and hides one per
+   * breakpoint, so both keys have to be set.
    */
   prime: {
-    desktop:
-      "PRIME is a rebellious take on what journalism can be &mdash; embracing humanity \
-      through reporting on individual experiences, not just numbers. Above all, PRIME is \
-      about truthful and immersive storytelling. It&rsquo;s narrative journalism.",
-    mobile:
-      "A rebellious take on what journalism can be. Truthful, immersive storytelling \
-      &mdash; it&rsquo;s narrative journalism."
+    desktop: "Narrative journalism from the Daily Bruin",
+    mobile: "Narrative journalism from the Daily Bruin"
   },
   "the-stack": {
     desktop:

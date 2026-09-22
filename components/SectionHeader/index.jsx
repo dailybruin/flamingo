@@ -6,6 +6,43 @@ import * as globals from "../globals";
 import InFocusLogo from "./infocus.png";
 import SponsoredTitle from "./sponsoredTitle.svg";
 
+/*
+ * PRIME's wordmark: Bungee Outline in DB blue, with no fill. DB blue so the
+ * section reads as part of the Daily Bruin at a glance.
+ *
+ * A single layer, so there is no stacking to keep in register and no
+ * white-on-white failure if Google Fonts is blocked -- the fallback is simply
+ * DB blue sans-serif.
+ *
+ * Runs larger than a solid wordmark would. Bungee Outline is drawn in hairline
+ * strokes, and below roughly 100px it thins out and starts to close up; the
+ * size is what keeps the outline legible, not a claim that PRIME outranks the
+ * other sections.
+ */
+const PrimeWordmark = () => (
+  <div
+    css={css`
+      font-family: "Bungee Outline", ${globals.menuFont};
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: ${globals.DBblue};
+      padding: 18px 0 10px;
+      font-size: 104px;
+      @media (max-width: 900px) {
+        font-size: 74px;
+        padding: 14px 0 8px;
+      }
+      @media (max-width: 600px) {
+        font-size: 46px;
+        padding: 10px 0 6px;
+      }
+    `}
+  >
+    PRIME
+  </div>
+);
+
 const SectionHeader = ({ category, subcategories, description }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,30 +62,15 @@ const SectionHeader = ({ category, subcategories, description }) => {
     typeof category === "string" && category.trim().toUpperCase() === "PRIME";
 
   /*
-   * PRIME's blurb is a condensed version of the magazine's own mission
-   * statement, so it runs longer than the one-line descriptions the other
-   * sections carry. Set as prose rather than as a caption: leading opened up and
-   * the measure capped, otherwise it stretches the full width of the page on
-   * desktop and is unreadable. Stays centered like every other section header.
+   * PRIME's blurb is now a single short line, so it needs none of the prose
+   * treatment the old mission-statement paragraph did -- the default
+   * description styling below handles it exactly like every other section's.
+   * The one adjustment is a little more air under the wordmark, which runs much
+   * taller than a normal section title.
    *
    * Empty for every other category, so nothing else moves.
    */
-  const primeDescriptionCSS = isPrime
-    ? `
-      line-height: 1.6;
-      padding-bottom: 14px;
-
-      /* Only centre on a wide screen. Below 68ch the max-width stops binding and
-         the auto margins collapse to zero, which would run the text into the
-         edge of a phone. The inherited 32px margins do the job there. */
-      @media (min-width: 601px) {
-        font-size: 17px;
-        max-width: 68ch;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    `
-    : "";
+  const primeDescriptionCSS = isPrime ? `padding-top: 4px;` : "";
 
   const renderTitle = () => {
     if (category === "Daily Bruin: In Focus") {
@@ -65,38 +87,8 @@ const SectionHeader = ({ category, subcategories, description }) => {
         />
       );
     } else if (isPrime) {
-      /*
-       * PRIME is set in Bungee Outline at the editors' request. The face is an
-       * outline with hairline strokes, so it needs to run much larger than the
-       * 40px the other section titles use -- at 40px it closes up into a smudge.
-       * That does mean PRIME's header is taller than every other section's.
-       *
-       * The fallback is the normal header font, so if Google Fonts fails to load
-       * the title degrades to the way it looks today rather than to something
-       * broken.
-       */
-      return (
-        <div
-          css={css`
-            font-family: "Bungee Outline", ${globals.menuFont};
-            font-weight: 400;
-            line-height: 1;
-            letter-spacing: 0.02em;
-            padding: 18px 0 10px;
-            font-size: 104px;
-            @media (max-width: 900px) {
-              font-size: 74px;
-              padding: 14px 0 8px;
-            }
-            @media (max-width: 600px) {
-              font-size: 46px;
-              padding: 10px 0 6px;
-            }
-          `}
-        >
-          PRIME
-        </div>
-      );
+      /* Bungee Outline in DB blue. See PrimeWordmark above. */
+      return <PrimeWordmark />;
     } else if (category === "Sponsored") {
       return (
         <img
