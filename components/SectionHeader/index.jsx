@@ -18,7 +18,26 @@ import SponsoredTitle from "./sponsoredTitle.svg";
  * strokes, and below roughly 100px it thins out and starts to close up; the
  * size is what keeps the outline legible, not a claim that PRIME outranks the
  * other sections.
+ *
+ * Framed in four corner marks, after the trim marks a printer puts at the
+ * corners of a page -- PRIME ran in print for years, and the archive this
+ * section leads to is that print run. Solid rules against hairline letterforms,
+ * so the contrast is weight rather than a second colour.
+ *
+ * Everything is sized in em, so the marks track the wordmark at every
+ * breakpoint from the one font-size. They are drawn in CSS rather than in the
+ * font, so they still appear if Google Fonts is blocked.
  */
+const CORNER_MARK = `
+  content: "";
+  position: absolute;
+  width: 0.24em;
+  height: 0.24em;
+  border: 0 solid ${globals.DBblue};
+  pointer-events: none;
+`;
+const MARK_WEIGHT = "0.04em";
+
 const PrimeWordmark = () => (
   <div
     css={css`
@@ -39,7 +58,53 @@ const PrimeWordmark = () => (
       }
     `}
   >
-    PRIME
+    {/* Two elements because a single one only has two pseudo-elements and the
+        frame needs four corners. The inner span is static, so its marks
+        position against this one. Vertical padding stays small: Bungee's caps
+        already sit 0.14em inside the line box, so the space is mostly there. */}
+    <span
+      css={css`
+        position: relative;
+        display: inline-block;
+        padding: 0.04em 0.2em;
+
+        &::before {
+          ${CORNER_MARK}
+          top: 0;
+          left: 0;
+          border-top-width: ${MARK_WEIGHT};
+          border-left-width: ${MARK_WEIGHT};
+        }
+        &::after {
+          ${CORNER_MARK}
+          bottom: 0;
+          right: 0;
+          border-bottom-width: ${MARK_WEIGHT};
+          border-right-width: ${MARK_WEIGHT};
+        }
+      `}
+    >
+      <span
+        css={css`
+          &::before {
+            ${CORNER_MARK}
+            top: 0;
+            right: 0;
+            border-top-width: ${MARK_WEIGHT};
+            border-right-width: ${MARK_WEIGHT};
+          }
+          &::after {
+            ${CORNER_MARK}
+            bottom: 0;
+            left: 0;
+            border-bottom-width: ${MARK_WEIGHT};
+            border-left-width: ${MARK_WEIGHT};
+          }
+        `}
+      >
+        PRIME
+      </span>
+    </span>
   </div>
 );
 
