@@ -49,7 +49,7 @@ export default function PrimeArchiveCard({ compact = false }) {
           margin: 0;
         `}
       >
-        Eight years of PRIME, in one place
+        Eight years of PRIME in one place
       </h3>
 
       <p
