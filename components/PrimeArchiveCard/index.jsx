@@ -2,10 +2,7 @@ import * as React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/core";
 import * as globals from "../globals";
-import {
-  PRIME_ARCHIVE_ROOT,
-  PRIME_ARCHIVE_COUNT
-} from "../../lib/primeArchive";
+import { PRIME_ARCHIVE_ROOT } from "../../lib/primeArchive";
 
 /*
  * The way into the frozen PRIME archive.
@@ -65,8 +62,8 @@ export default function PrimeArchiveCard({ compact = false }) {
           margin: 0;
         `}
       >
-        Every issue through Spring 2026 — {PRIME_ARCHIVE_COUNT} stories — now
-        lives on dailybruin.com. Browse the full archive by issue.
+        PRIME stories published before the 2026-27 academic year are
+        accessible in our archive.
       </p>
 
       <span
