@@ -9,6 +9,7 @@ import Media from "react-media";
 
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
+import PrimeArchiveCard from "../../components/PrimeArchiveCard";
 
 export default class CategoryLayout extends React.Component {
   constructor(props) {
@@ -79,6 +80,21 @@ export default class CategoryLayout extends React.Component {
     );
   }
 
+  /* The way into the frozen archive. Lives in the right rail between the ad and
+   * the classifieds box. Gated because it links into /prime/*, which 404s until
+   * the Worker routes are bound. */
+  renderPrimeArchiveCard(compact = false) {
+    if (!this.props.showPrimeArchiveCard) {
+      return null;
+    }
+
+    return (
+      <div className={css.card}>
+        <PrimeArchiveCard compact={compact} />
+      </div>
+    );
+  }
+
   render() {
     return (
       <Media
@@ -121,6 +137,12 @@ export default class CategoryLayout extends React.Component {
                       displayType: "full"
                     })}
                   </div>
+
+                  {/* No right rail exists on phone, so the archive drops into
+                      the stack rather than disappearing -- most of our readers
+                      are on a phone. */}
+                  {this.renderPrimeArchiveCard(true)}
+
                   <InfiniteScroll
                     pageStart={1}
                     loadMore={this.getPosts}
@@ -213,6 +235,10 @@ export default class CategoryLayout extends React.Component {
                     })}
                   </div>
 
+                  {/* No ad in the tablet rail, so the archive sits at the top of
+                      it. Compact: this rail is a third of 768px. */}
+                  {this.renderPrimeArchiveCard(true)}
+
                   {this.renderGraphic()}
 
                   <div id="classifieds" className={css.card}>
@@ -303,6 +329,11 @@ export default class CategoryLayout extends React.Component {
                   <div id="above-ad" className={css.card}>
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
+
+                  {/* Ad, then archive, then classifieds -- the order the editors
+                      asked for. Compact because the rail is a quarter-width
+                      column, not the main grid. */}
+                  {this.renderPrimeArchiveCard(true)}
 
                   {this.renderGraphic()}
 
