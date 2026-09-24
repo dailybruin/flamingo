@@ -9,7 +9,6 @@ import Media from "react-media";
 
 import LoadingBear from "../../components/LoadingBear";
 import ClassifiedsCard from "../../components/ClassifiedsCard";
-import PrimeLatest from "../../components/PrimeLatest";
 import PrimeArchiveCard from "../../components/PrimeArchiveCard";
 
 export default class CategoryLayout extends React.Component {
@@ -81,25 +80,9 @@ export default class CategoryLayout extends React.Component {
     );
   }
 
-  /* "The Latest" -- only on PRIME, and only once the archive is actually serving.
-   * The stories are picked weekly in getInitialProps so the server and the
-   * browser agree; this just draws what it was handed. */
-  renderPrimeLatest(showExcerpt = true) {
-    const { primeLatest } = this.props;
-
-    if (!primeLatest || primeLatest.length === 0) {
-      return null;
-    }
-
-    return (
-      <div className={css.card}>
-        <PrimeLatest articles={primeLatest} showExcerpt={showExcerpt} />
-      </div>
-    );
-  }
-
-  /* The way into the frozen archive. Same gate as the sidebar -- both link into
-   * /prime/*, which 404s until the Worker routes are bound. */
+  /* The way into the frozen archive. Lives in the right rail between the ad and
+   * the classifieds box. Gated because it links into /prime/*, which 404s until
+   * the Worker routes are bound. */
   renderPrimeArchiveCard(compact = false) {
     if (!this.props.showPrimeArchiveCard) {
       return null;
@@ -155,11 +138,9 @@ export default class CategoryLayout extends React.Component {
                     })}
                   </div>
 
-                  {/* No right rail and no classifieds box exist on phone, so
-                      "above the classifieds" has nowhere to land. These drop
-                      into the stack instead of disappearing -- most of our
-                      readers are on a phone. */}
-                  {this.renderPrimeLatest()}
+                  {/* No right rail exists on phone, so the archive drops into
+                      the stack rather than disappearing -- most of our readers
+                      are on a phone. */}
                   {this.renderPrimeArchiveCard(true)}
 
                   <InfiniteScroll
@@ -206,7 +187,6 @@ export default class CategoryLayout extends React.Component {
                       displayType: "full"
                     })}
                   </div>
-                  {this.renderPrimeArchiveCard()}
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -255,10 +235,9 @@ export default class CategoryLayout extends React.Component {
                     })}
                   </div>
 
-                  {/* Excerpts are dropped here -- the tablet rail is a third of
-                      768px and three lines of dek per story pushes classifieds
-                      off the screen. */}
-                  {this.renderPrimeLatest(false)}
+                  {/* No ad in the tablet rail, so the archive sits at the top of
+                      it. Compact: this rail is a third of 768px. */}
+                  {this.renderPrimeArchiveCard(true)}
 
                   {this.renderGraphic()}
 
@@ -311,7 +290,6 @@ export default class CategoryLayout extends React.Component {
                     </div>
                   </div>
                   {/*c1-c2*/}
-                  {this.renderPrimeArchiveCard()}
                   <div>
                     <InfiniteScroll
                       pageStart={1}
@@ -348,13 +326,14 @@ export default class CategoryLayout extends React.Component {
                   className={css.column}
                   style={{ width: "25%" }}
                 >
-                  {/* Editors asked for this above the classifieds box; it goes
-                      at the top of the rail so it clears the fold. */}
-                  {this.renderPrimeLatest()}
-
                   <div id="above-ad" className={css.card}>
                     <broadstreet-zone zone-id="69405"></broadstreet-zone>
                   </div>
+
+                  {/* Ad, then archive, then classifieds -- the order the editors
+                      asked for. Compact because the rail is a quarter-width
+                      column, not the main grid. */}
+                  {this.renderPrimeArchiveCard(true)}
 
                   {this.renderGraphic()}
 

@@ -76,8 +76,7 @@ function Category({
   category,
   subcategories,
   posts,
-  classifieds,
-  primeLatest
+  classifieds
 }) {
   if (
     category == undefined ||
@@ -160,7 +159,6 @@ function Category({
           posts={posts}
           categoryID={category[0].id}
           sidebarGraphic={sidebarGraphic}
-          primeLatest={primeLatest}
           showPrimeArchiveCard={isPrimeCategory}
           classifieds={classifieds.map(c => {
             return {
@@ -236,24 +234,7 @@ Category.getInitialProps = async (context) => {
     }
   }
 
-  /*
-   * Picked here rather than during render: getInitialProps runs on the server for
-   * the first hit, so the browser hydrates against the same pair. Picking in the
-   * component would read the clock on both sides, and a pod on UTC is in a
-   * different ISO week than a reader in Los Angeles for a few hours each Sunday
-   * night.
-   *
-   * Imported lazily so the ~130 KB of archive data is code-split into its own
-   * chunk. A static import would put it in the shared category bundle and make
-   * every News and Sports reader download PRIME's archive.
-   */
-  let primeLatest = [];
-  if (PRIME_ARCHIVE_LIVE && slug === PRIME_CATEGORY_SLUG) {
-    const { getWeeklyPicks } = await import("../../lib/primeArchivePool");
-    primeLatest = getWeeklyPicks(2);
-  }
-
-  return { category, subcategories, posts, classifieds, primeLatest };
+  return { category, subcategories, posts, classifieds };
 };
 
 export default PageWrapper(Category);
