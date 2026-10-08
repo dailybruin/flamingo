@@ -45,7 +45,7 @@ const BreakingPlaceholder = ({ show }) => {
 // Helper component for Prime image
 const PrimeImage = () => (
   <div className={css.card}>
-    <a href="https://prime.dailybruin.com">
+    <a href="/category/prime">
       <Image
         src="https://wp.dailybruin.com/images/2020/09/prime_mainsite.jpg"
         alt="Prime Magazine"
