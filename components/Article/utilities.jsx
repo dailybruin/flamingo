@@ -114,3 +114,44 @@ export function getHeadlineStyle(acf) {
   }
   return "normal";
 }
+
+// Whitespace WordPress may leave around a marker that sits on its own line
+const MARKER_PADDING = "(?:\\s|&nbsp;|<br\\s*\\/?>)*";
+// Bounded and tag-free so a marker missing its "]" can't swallow article text
+const CAROUSEL_MARKER = "\\[carousel\\b[^\\]\\d<]{0,20}(\\d+)[^\\]<]{0,20}\\]";
+const CAROUSEL_REGEX = new RegExp(
+  `<p[^>]*>${MARKER_PADDING}${CAROUSEL_MARKER}${MARKER_PADDING}<\\/p>|${CAROUSEL_MARKER}`,
+  "gi"
+);
+
+/**
+ * Splits article HTML at `[carousel <gallery id>]` markers so a photo
+ * carousel can be rendered between the pieces of text.
+ *
+ * Editors type the marker on its own line in the article body; the number is
+ * the Gallery Maker ID.
+ *
+ * @param {string} content - The article's rendered HTML.
+ * @returns {Array<{type: "html", html: string} | {type: "carousel", id: string}>}
+ *
+ * @example
+ *   splitContentOnCarousels("<p>a</p><p>[carousel 12]</p><p>b</p>")
+ *   // → [{type: "html", html: "<p>a</p>"}, {type: "carousel", id: "12"},
+ *   //    {type: "html", html: "<p>b</p>"}]
+ */
+export function splitContentOnCarousels(content) {
+  if (typeof content !== "string" || !content) return [];
+
+  const parts = [];
+  let lastIndex = 0;
+  for (const match of content.matchAll(CAROUSEL_REGEX)) {
+    const html = content.slice(lastIndex, match.index);
+    if (html.trim()) parts.push({ type: "html", html });
+    parts.push({ type: "carousel", id: match[1] ?? match[2] });
+    lastIndex = match.index + match[0].length;
+  }
+
+  const rest = content.slice(lastIndex);
+  if (rest.trim()) parts.push({ type: "html", html: rest });
+  return parts;
+}
