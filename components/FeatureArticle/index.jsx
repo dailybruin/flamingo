@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import { renderCategories, renderAuthors } from "./utilities";
 import * as globals from "../globals";
 import AuthorCard from "../AuthorCard";
+import PhotoCarousel from "../PhotoCarousel";
+import { splitContentOnCarousels } from "../Article/utilities";
 import Tag from "./Tag";
 import Landing from "./Landing";
 import Image from "next/image";
@@ -288,112 +290,120 @@ export default class FeatureArticle extends React.Component {
                 dangerouslySetInnerHTML={{ __html: this.props.acf.corrections }}
               ></div>
             )}
-            <div
-              css={css`
-                font-family: ${globals.bodyFont};
-                font-style: normal;
-                font-weight: 400;
-                font-size: 1rem;
-                text-align: left;
-                line-height: 1.75;
+            {/* Article body, with photo carousels where editors placed them */}
+            {splitContentOnCarousels(this.props.content).map((part, i) =>
+              part.type === "carousel" ? (
+                <PhotoCarousel key={i} galleryID={part.id} />
+              ) : (
+                <div
+                  key={i}
+                  css={css`
+                    font-family: ${globals.bodyFont};
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 1rem;
+                    text-align: left;
+                    line-height: 1.75;
 
-                color: #000000;
-                display: block;
-                max-width: 640px;
-                margin: auto;
-
-                aside {
-                  background-image: url(../../img/quotationmark4.svg);
-                  background-repeat: no-repeat;
-                  background-position: 5px 0;
-                  background-size: 50px;
-                  float: right;
-                  width: 60%;
-                  padding: 9px 0.5rem 0.5rem 27px;
-                  min-width: 150px;
-                  font-family: "Playfair Display", serif;
-                  font-size: 1.1rem;
-                  color: #000;
-                }
-                @media (max-width: 40em) {
-                  aside {
-                    width: 100%;
-                  }
-                  figure {
-                    width: 100% !important;
+                    color: #000000;
+                    display: block;
+                    max-width: 640px;
                     margin: auto;
-                  }
-                }
-                @media (min-width: 40.5em) {
-                  aside {
-                    margin-right: -60px;
-                  }
-                }
-                aside p {
-                  font-size: 0.95rem;
-                  text-align: right;
-                  margin-top: 0.5rem;
-                }
-                aside:first-letter {
-                  float: left;
-                  font-size: 4.1rem;
-                  line-height: 80%;
-                  color: #000;
-                  margin-right: 2px;
-                }
 
-                /* Custom styling for asides with class="asideStyle2":
-                   - keep a border
-                   - use a dull yellow background
-                   - don't emphasize / capitalize the first letter
-                */
-                aside.asideStyle2 p {
-                  color: black !important;
-                  font-size: 1.2rem !important;
-                  text-align: center;
+                    aside {
+                      background-image: url(../../img/quotationmark4.svg);
+                      background-repeat: no-repeat;
+                      background-position: 5px 0;
+                      background-size: 50px;
+                      float: right;
+                      width: 60%;
+                      padding: 9px 0.5rem 0.5rem 27px;
+                      min-width: 150px;
+                      font-family: "Playfair Display", serif;
+                      font-size: 1.1rem;
+                      color: #000;
+                    }
+                    @media (max-width: 40em) {
+                      aside {
+                        width: 100%;
+                      }
+                      figure {
+                        width: 100% !important;
+                        margin: auto;
+                      }
+                    }
+                    @media (min-width: 40.5em) {
+                      aside {
+                        margin-right: -60px;
+                      }
+                    }
+                    aside p {
+                      font-size: 0.95rem;
+                      text-align: right;
+                      margin-top: 0.5rem;
+                    }
+                    aside:first-letter {
+                      float: left;
+                      font-size: 4.1rem;
+                      line-height: 80%;
+                      color: #000;
+                      margin-right: 2px;
+                    }
 
-                  padding: 5px;
-                  border: 2px solid black;
-                  border-radius: 4px;
+                    /* Custom styling for asides with class="asideStyle2":
+                       - keep a border
+                       - use a dull yellow background
+                       - don't emphasize / capitalize the first letter
+                    */
+                    aside.asideStyle2 p {
+                      color: black !important;
+                      font-size: 1.2rem !important;
+                      text-align: center;
 
-                  background-color: #f7f3c0;
-                }
-                /* Don't capitalize first letter */
-                aside.asideStyle2:first-letter {
-                  all: unset;
-                }
+                      padding: 5px;
+                      border: 2px solid black;
+                      border-radius: 4px;
 
-                figure.alignright {
-                  float: right;
-                  margin-right: 0;
-                }
-                figure.aligncenter {
-                  max-width: 100% !important;
-                  margin: auto;
-                  padding: 20px;
-                  width: 100% !important;
-                }
+                      background-color: #f7f3c0;
+                    }
+                    /* Don't capitalize first letter */
+                    aside.asideStyle2:first-letter {
+                      all: unset;
+                    }
 
-                figure figcaption {
-                  color: gray;
-                  font-size: 0.85rem;
-                }
+                    figure.alignright {
+                      float: right;
+                      margin-right: 0;
+                    }
+                    figure.aligncenter {
+                      max-width: 100% !important;
+                      margin: auto;
+                      padding: 20px;
+                      width: 100% !important;
+                    }
 
-                iframe {
-                  width: 100%;
-                }
+                    figure figcaption {
+                      color: gray;
+                      font-size: 0.85rem;
+                    }
 
-                figure img,
-                figure a img,
-                p img,
-                b img,
-                h2 img {
-                  width: 100%;
-                  height: auto;
-                }
-              `}
-              dangerouslySetInnerHTML={{ __html: this.props.content }}
-            />
+                    iframe {
+                      width: 100%;
+                    }
+
+                    figure img,
+                    figure a img,
+                    p img,
+                    b img,
+                    h2 img {
+                      width: 100%;
+                      height: auto;
+                    }
+                  `}
+                  dangerouslySetInnerHTML={{ __html: part.html }}
+                />
+              )
+            )}
             {/* {renderedAuthorCards} */}
             {/* <ShareCard></ShareCard> */}
             {this.props.tagged.length == 0 && (

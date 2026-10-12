@@ -18,12 +18,14 @@ import {
   renderCategories,
   renderAuthors,
   getAuthorImage,
-  getHeadlineStyle
+  getHeadlineStyle,
+  splitContentOnCarousels
 } from "./utilities";
 import * as styles from "./styles";
 import ShareButtons from "../ShareButtons";
 import ReviewInfobox from "../ReviewInfobox";
 import AuthorCard from "../AuthorCard";
+import PhotoCarousel from "../PhotoCarousel";
 import Image from "next/image";
 
 export default function Article(props) {
@@ -163,11 +165,18 @@ export default function Article(props) {
           />
         )}
 
-        {/* Main article content */}
-        <div
-          css={css`${styles.contentBody}`}
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        {/* Main article content, with photo carousels where editors placed them */}
+        {splitContentOnCarousels(content).map((part, i) =>
+          part.type === "carousel" ? (
+            <PhotoCarousel key={i} galleryID={part.id} />
+          ) : (
+            <div
+              key={i}
+              css={css`${styles.contentBody}`}
+              dangerouslySetInnerHTML={{ __html: part.html }}
+            />
+          )
+        )}
 
         {/* Share buttons */}
         <div>
