@@ -4,6 +4,8 @@ import * as globals from "../globals";
 export const wrapper = `
   max-width: 640px;
   margin: 24px auto;
+  /* Sit below any floated pull quote or photo from the text above */
+  clear: both;
   font-family: ${globals.bodyFont};
 `;
 

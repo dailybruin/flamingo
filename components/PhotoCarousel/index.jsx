@@ -81,6 +81,7 @@ function Carousel({ galleryID }) {
     frameRef.current = null;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      track.style.scrollSnapType = "";
       track.scrollLeft = to;
       return;
     }
