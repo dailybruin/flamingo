@@ -17,8 +17,12 @@ function SponsoredPost({ post, authors }) {
   ) {
     return <Error statusCode={404} />;
   }
+  // Sponsored posts are also reachable at their date URL, so declare this
+  // address as the canonical one and keep og:url in agreement with it.
+  const canonicalUrl = `https://dailybruin.com/sponsored/${post[0].slug}`;
   let renderedMeta = [];
   for (let meta of post[0].yoast_meta) {
+    if (meta.property === "og:url") continue;
     renderedMeta.push(React.createElement("meta", meta));
   }
   return (
@@ -28,6 +32,8 @@ function SponsoredPost({ post, authors }) {
           {he.decode(post[0].title.rendered) + " - Daily Bruin" ||
             ""}
         </title>
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:url" content={canonicalUrl} />
         {renderedMeta}
       </Head>
       <SponsoredLayout
