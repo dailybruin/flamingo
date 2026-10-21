@@ -9,14 +9,9 @@ import ArticleLayout from "layouts/Article";
 import PhotoGalleryLayout from "layouts/PhotoGallery/index_old"; //old photo gallery layout
 import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout"; //new 2021 gallery layout
 import FeatureLayout from "layouts/Feature";
+import { isSponsored } from "lib/sponsored";
 
 /* TODO: note to future devs: old gallery layout seeks acf field "gallery" that has an int. new gallery layout seeks acf field "db_gallery_id" that has an int. */
-
-const SPONSORED_CATEGORY_ID = 23087;
-
-function isSponsored(post) {
-  return Boolean(post && post.categories && post.categories.includes(SPONSORED_CATEGORY_ID));
-}
 
 function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds, redirecting }) {
   // Moved useEffect to top level due to react hook violation
