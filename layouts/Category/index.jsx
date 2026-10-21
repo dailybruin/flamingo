@@ -3,6 +3,7 @@ import Error from "next/error";
 import css from "../style.module.css";
 
 import { fetchPostsFromCategoryIdPaginated } from "../../lib/fetchWordPress";
+import { SPONSORED_CATEGORY_ID, withSponsoredLink } from "../../lib/sponsored";
 import * as utilities from "../utilities";
 import InfiniteScroll from "react-infinite-scroller";
 import Media from "react-media";
@@ -14,15 +15,25 @@ import PrimeArchiveCard from "../../components/PrimeArchiveCard";
 export default class CategoryLayout extends React.Component {
   constructor(props) {
     super(props);
+    const posts = this.withSectionLinks(this.props.posts);
     this.state = {
-      aArticleCard: utilities.buildArticleCard(this.props.posts[0]),
-      bArticleCard: utilities.buildArticleCard(this.props.posts[1]),
-      cArticleCard: utilities.buildArticleCard(this.props.posts[2]),
-      otherArticleCards: utilities.buildArticleList(this.props.posts.slice(3)),
+      aArticleCard: utilities.buildArticleCard(posts[0]),
+      bArticleCard: utilities.buildArticleCard(posts[1]),
+      cArticleCard: utilities.buildArticleCard(posts[2]),
+      otherArticleCards: utilities.buildArticleList(posts.slice(3)),
 
       more: true
     };
     this.getPosts = this.getPosts.bind(this);
+  }
+
+  /* On the Sponsored section page only, link sponsored posts to
+   * /sponsored/<slug> instead of their date URL. */
+  withSectionLinks(posts) {
+    if (this.props.categoryID !== SPONSORED_CATEGORY_ID) {
+      return posts;
+    }
+    return posts.map(withSponsoredLink);
   }
 
   getPosts(page) {
@@ -31,7 +42,7 @@ export default class CategoryLayout extends React.Component {
         if (posts && posts.length > 0) {
           this.setState({
             otherArticleCards: this.state.otherArticleCards.concat(
-              utilities.buildArticleList(posts)
+              utilities.buildArticleList(this.withSectionLinks(posts))
             )
           });
         } else {
