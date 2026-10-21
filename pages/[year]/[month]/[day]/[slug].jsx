@@ -12,13 +12,25 @@ import FeatureLayout from "layouts/Feature";
 
 /* TODO: note to future devs: old gallery layout seeks acf field "gallery" that has an int. new gallery layout seeks acf field "db_gallery_id" that has an int. */
 
-function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds }) {
+const SPONSORED_CATEGORY_ID = 23087;
+
+function isSponsored(post) {
+  return Boolean(post && post.categories && post.categories.includes(SPONSORED_CATEGORY_ID));
+}
+
+function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds, redirecting }) {
   // Moved useEffect to top level due to react hook violation
+  // Fallback for sponsored posts that reach the page without the redirect in
+  // getInitialProps.
   useEffect(() => {
-    if (post && post[0] && post[0].categories && post[0].categories.includes(23087)) {
+    if (post && isSponsored(post[0])) {
       window.location.replace(`/sponsored/${post[0].slug}`);
     }
   }, [post]);
+
+  if (redirecting) {
+    return null;
+  }
 
   const isInvalidPost = !post || post.data !== undefined || post.length === 0;
   if (isInvalidPost) {
@@ -92,6 +104,26 @@ Post.getInitialProps = async (context) => {
     // Return early if post is invalid
     if (!post || post.data !== undefined || post.length === 0) {
       return { post: post ?? [] };
+    }
+
+    // Sponsored posts live at /sponsored/<slug>. Redirect with a real 301 on
+    // the server so search engines index that address instead of this one.
+    if (isSponsored(post[0])) {
+      // Keep any query string (e.g. utm tags) on the redirect.
+      const queryIndex = context.asPath ? context.asPath.indexOf("?") : -1;
+      const queryString = queryIndex === -1 ? "" : context.asPath.slice(queryIndex);
+      const destination = `/sponsored/${post[0].slug}${queryString}`;
+      if (context.res) {
+        context.res.writeHead(301, {
+          Location: destination,
+          "Cache-Control": "max-age=3600"
+        });
+        context.res.end();
+        return {};
+      }
+      // Client-side navigation has no response to redirect, so leave the page.
+      window.location.replace(destination);
+      return { redirecting: true };
     }
 
     const postData = post[0];
