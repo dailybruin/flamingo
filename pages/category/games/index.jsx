@@ -7,6 +7,7 @@ import WestwordleLogo from "../../../components/GamesCard/WestWordLogoCropped.pn
 import WhackaBruinLogo from "../../../components/GamesCard/WhackABruinLogo.png"; 
 import CrosswordLogo from "../../../components/GamesCard/CrosswordLogo.png"
 import MiniCrosswordLogo from "../../../components/GamesCard/MiniCrosswordLogo.png"
+import NewsQuizLogo from "../../../components/GamesCard/NewsQuizLogo.png";
 import PhotoCard from "../../../components/PhotoCard"; 
 import styles from "./index.module.css";
 
@@ -67,6 +68,18 @@ const GamesIndex = () => {
           image={WestwordleLogo} 
           excerpt="Guess the Daily Bruin-themed word in 6 tries."
           authors={[{ "display_name": "Daily Bruin Games Team" }]}
+        />
+
+        <PhotoCard
+          headline="News Quiz"
+          href="/category/games/quiz"
+          as="/category/games/quiz"
+          link="/category/games/quiz"
+          image={NewsQuizLogo}
+          excerpt="How closely were you following the news this week?"
+          authors={[
+            { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
+          ]}
         />
       </div>
     </>

@@ -1,6 +1,7 @@
 import PageWrapper from "layouts/PageWrapper";
 import React, { useEffect, createElement } from "react";
 import Error from "next/error";
+import Router from "next/router";
 import { Config } from "config.js";
 import Head from "next/head";
 import he from "he";
@@ -10,10 +11,11 @@ import PhotoGalleryLayout from "layouts/PhotoGallery/index_old"; //old photo gal
 import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout"; //new 2021 gallery layout
 import FeatureLayout from "layouts/Feature";
 import { isSponsored } from "lib/sponsored";
+import { isNewsQuiz, redirectToNewsQuiz } from "lib/newsQuiz";
 
 /* TODO: note to future devs: old gallery layout seeks acf field "gallery" that has an int. new gallery layout seeks acf field "db_gallery_id" that has an int. */
 
-function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds, redirecting }) {
+function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGallery, photos, classifieds, redirecting, newsQuizRedirect }) {
   // Moved useEffect to top level due to react hook violation
   // Fallback for sponsored posts that reach the page without the redirect in
   // getInitialProps.
@@ -23,7 +25,13 @@ function Post({ post, id, feature, authors, tagged, relatedPosts, gallery, oldGa
     }
   }, [post]);
 
-  if (redirecting) {
+  // Set when this post is a News Quiz. On the server the 302 has already
+  // been sent; this is the client-side navigation case.
+  useEffect(() => {
+    if (newsQuizRedirect) Router.replace(newsQuizRedirect);
+  }, [newsQuizRedirect]);
+
+  if (redirecting || newsQuizRedirect) {
     return null;
   }
 
@@ -122,6 +130,11 @@ Post.getInitialProps = async (context) => {
     }
 
     const postData = post[0];
+
+    if (isNewsQuiz(postData)) {
+      return redirectToNewsQuiz(context, postData);
+    }
+
     const acf = postData.acf || {};
 
     // Fetch authors and related posts in parallel

@@ -1,6 +1,7 @@
 import PageWrapper from "layouts/PageWrapper";
-import React from "react";
+import React, { useEffect } from "react";
 import Error from "next/error";
+import Router from "next/router";
 import { Config } from "config.js";
 import Head from "next/head";
 import he from "he";
@@ -9,10 +10,19 @@ import ArticleLayout from "layouts/Article";
 import PhotoGalleryLayout from "layouts/PhotoGallery/index_old"; //old photo gallery layout
 import PGalleryLayout from "layouts/PhotoGallery/PGalleryLayout"; //new 2021 gallery layout
 import FeatureLayout from "layouts/Feature";
+import { isNewsQuiz, redirectToNewsQuiz } from "lib/newsQuiz";
 
 /* TODO: note to future devs: old gallery layout seeks acf field "gallery" that has an int. new gallery layout seeks acf field "db_gallery_id" that seeks an int. */
 
-function Post({ post, feature, authors, tagged, relatedPosts, oldGallery, photos, gallery, id, classifieds }) {
+function Post({ post, feature, authors, tagged, relatedPosts, oldGallery, photos, gallery, id, classifieds, newsQuizRedirect }) {
+  // Set when this post is a News Quiz. On the server the 302 has already
+  // been sent; this is the client-side navigation case.
+  useEffect(() => {
+    if (newsQuizRedirect) Router.replace(newsQuizRedirect);
+  }, [newsQuizRedirect]);
+
+  if (newsQuizRedirect) return null;
+
   if (
     post == undefined ||
     post == null ||
@@ -86,6 +96,9 @@ Post.getInitialProps = async (context) => {
   const post = await postRes.json();
   if (post.data != undefined || post.length == 0) {
     return { post };
+  }
+  if (isNewsQuiz(post[0])) {
+    return redirectToNewsQuiz(context, post[0]);
   }
   let authors = [];
   if (post[0].coauthors != undefined) {
