@@ -33,7 +33,7 @@ const GamesIndex = () => {
             { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
           ]}
         />
-        
+
         <PhotoCard
           headline="Crossword"
           href="/category/games/crossword"
@@ -47,16 +47,14 @@ const GamesIndex = () => {
         />
 
         <PhotoCard
-          headline="Whack-a-Mole"
-          href="/category/games/whack-a-bruin"
-          as="/category/games/whack-a-bruin"
-          link="/category/games/whack-a-bruin"
-          image={WhackaBruinLogo} 
-          excerpt="Whack the Bruins and beat your high score!"
+          headline="News Quiz"
+          href="/category/games/quiz"
+          as="/category/games/quiz"
+          link="/category/games/quiz"
+          image={NewsQuizLogo}
+          excerpt="How closely were you following the news this week?"
           authors={[
-            { "display_name": "Johnny Zheng", "user_nicename": "JohnnyZheng" },
-            { "display_name": "Hillary Nguyen", "user_nicename": "HNguyen" },
-            { "display_name": "Aileen Chen", "user_nicename": "AChen" }
+            { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
           ]}
         />
 
@@ -71,14 +69,16 @@ const GamesIndex = () => {
         />
 
         <PhotoCard
-          headline="News Quiz"
-          href="/category/games/quiz"
-          as="/category/games/quiz"
-          link="/category/games/quiz"
-          image={NewsQuizLogo}
-          excerpt="How closely were you following the news this week?"
+          headline="Whack-a-Mole"
+          href="/category/games/whack-a-bruin"
+          as="/category/games/whack-a-bruin"
+          link="/category/games/whack-a-bruin"
+          image={WhackaBruinLogo} 
+          excerpt="Whack the Bruins and beat your high score!"
           authors={[
-            { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
+            { "display_name": "Johnny Zheng", "user_nicename": "JohnnyZheng" },
+            { "display_name": "Hillary Nguyen", "user_nicename": "HNguyen" },
+            { "display_name": "Aileen Chen", "user_nicename": "AChen" }
           ]}
         />
       </div>
