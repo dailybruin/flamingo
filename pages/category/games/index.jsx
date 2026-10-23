@@ -7,6 +7,7 @@ import WestwordleLogo from "../../../components/GamesCard/WestWordLogoCropped.pn
 import WhackaBruinLogo from "../../../components/GamesCard/WhackABruinLogo.png"; 
 import CrosswordLogo from "../../../components/GamesCard/CrosswordLogo.png"
 import MiniCrosswordLogo from "../../../components/GamesCard/MiniCrosswordLogo.png"
+import NewsQuizLogo from "../../../components/GamesCard/NewsQuizLogo.png";
 import PhotoCard from "../../../components/PhotoCard"; 
 import styles from "./index.module.css";
 
@@ -32,7 +33,7 @@ const GamesIndex = () => {
             { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
           ]}
         />
-        
+
         <PhotoCard
           headline="Crossword"
           href="/category/games/crossword"
@@ -43,6 +44,28 @@ const GamesIndex = () => {
           authors={[
             { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
           ]}
+        />
+
+        <PhotoCard
+          headline="News Quiz"
+          href="/category/games/quiz"
+          as="/category/games/quiz"
+          link="/category/games/quiz"
+          image={NewsQuizLogo}
+          excerpt="How closely were you following the news this week?"
+          authors={[
+            { "display_name": "Narek Germirlian", "user_nicename": "NarekGermirlian" }
+          ]}
+        />
+
+        <PhotoCard
+          headline="Westwordle"
+          href="/category/games/westwordle"
+          as="/category/games/westwordle"
+          link="/category/games/westwordle"
+          image={WestwordleLogo} 
+          excerpt="Guess the Daily Bruin-themed word in 6 tries."
+          authors={[{ "display_name": "Daily Bruin Games Team" }]}
         />
 
         <PhotoCard
@@ -57,16 +80,6 @@ const GamesIndex = () => {
             { "display_name": "Hillary Nguyen", "user_nicename": "HNguyen" },
             { "display_name": "Aileen Chen", "user_nicename": "AChen" }
           ]}
-        />
-
-        <PhotoCard
-          headline="Westwordle"
-          href="/category/games/westwordle"
-          as="/category/games/westwordle"
-          link="/category/games/westwordle"
-          image={WestwordleLogo} 
-          excerpt="Guess the Daily Bruin-themed word in 6 tries."
-          authors={[{ "display_name": "Daily Bruin Games Team" }]}
         />
       </div>
     </>

@@ -8,13 +8,14 @@ import Westwordle from "./WestWordLogoCropped.png"
 import WhackABruinLogo from "./WhackABruinLogo.png";
 import CrosswordLogo from "./CrosswordLogo.png"
 import MiniCrosswordLogo from "./MiniCrosswordLogo.png"
+import NewsQuizLogo from "./NewsQuizLogo.png";
 
 export default function GamesCard(props) {
     const [selectedLogo, setSelectedLogo] = useState(null);
 
     useEffect(() => {
         // Array of all game logos
-        const logos = [Westwordle, WhackABruinLogo, CrosswordLogo, MiniCrosswordLogo];
+        const logos = [Westwordle, WhackABruinLogo, CrosswordLogo, MiniCrosswordLogo, NewsQuizLogo];
         
         // Get the day of the year (1-366)
         const today = new Date();
