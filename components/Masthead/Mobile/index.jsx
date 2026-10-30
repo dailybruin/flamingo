@@ -22,7 +22,8 @@ export default class Mobile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuExpanded: false
+      menuExpanded: false,
+      menuTop: 48
     };
     this.Menu = React.createRef();
     this.SearchBar = React.createRef();
@@ -32,18 +33,37 @@ export default class Mobile extends React.Component {
   }
 
   toggleMenu() {
+    if (this.state.menuExpanded) {
+      this.setState({ menuExpanded: false });
+      return;
+    }
     const menu = this.Menu.current;
     if (menu) menu.scrollIntoView();
-    this.setState({ menuExpanded: !this.state.menuExpanded });
+    // The masthead can't reach the top of a short page, so measure where the
+    // menu ended up rather than assuming it sits right below the top of the screen.
+    this.setState({
+      menuExpanded: true,
+      menuTop: menu ? menu.getBoundingClientRect().top : this.state.menuTop
+    });
   }
 
   expandSearch() {
     this.SearchBar.current.focus();
   }
 
-  render() {
-    const menuHeight = this.state.menuExpanded ? "calc(100vh - 48px)" : "0";
+  // Hold the page still behind the open menu. If it scrolls, the masthead moves
+  // back down below the banner ad and pushes the bottom of the menu off screen.
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.menuExpanded !== this.state.menuExpanded) {
+      document.body.style.overflow = this.state.menuExpanded ? "hidden" : "";
+    }
+  }
 
+  componentWillUnmount() {
+    document.body.style.overflow = "";
+  }
+
+  render() {
     return (
       <div css={mastheadContainerStyles}>
         <div css={headerRowStyles}>
@@ -66,7 +86,7 @@ export default class Mobile extends React.Component {
 
         <div
           ref={this.Menu}
-          css={menuDropdownStyles(menuHeight)}
+          css={menuDropdownStyles(this.state.menuExpanded, this.state.menuTop)}
         >
           <div css={categoriesColumnStyles}>
             <MobileCategoryLinks categories={this.props.categories} />
