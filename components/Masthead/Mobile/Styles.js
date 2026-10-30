@@ -160,28 +160,33 @@ export const searchIconBoxStyles = css`
   ${outlineNone};
 `;
 
-export const menuDropdownStyles = (height) => css`
+// 100vh includes the area behind a phone browser's toolbar; dvh does not. 100vh
+// stays as the fallback for browsers without dvh.
+export const menuDropdownStyles = (isExpanded, top) => css`
   position: absolute;
   margin: 0px;
   background-color: ${globals.white};
   padding: 0 6px;
-  height: ${height};
+  height: ${isExpanded ? `calc(100vh - ${top}px)` : "0"};
+  height: ${isExpanded ? `calc(100dvh - ${top}px)` : "0"};
   overflow-y: scroll;
+  overscroll-behavior: contain;
   width: 100%;
   transition: height 500ms;
 `;
 
+// The bottom padding lets the last links scroll clear of the comment button.
 export const categoriesColumnStyles = css`
   vertical-align: top;
   display: inline-block;
   width: 60%;
-  padding: 6px;
+  padding: 6px 6px 88px;
 `;
 
 export const categoryLinkStyles = css`
   display: block;
   text-align: left;
-  padding: 8px 4px;
+  padding: 4px;
   font-family: ${globals.menuFont};
   font-size: 18px;
   font-weight: bold;
