@@ -186,7 +186,7 @@ export const categoriesColumnStyles = css`
 export const categoryLinkStyles = css`
   display: block;
   text-align: left;
-  padding: 8px 4px;
+  padding: 4px;
   font-family: ${globals.menuFont};
   font-size: 18px;
   font-weight: bold;
