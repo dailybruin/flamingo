@@ -1,15 +1,19 @@
 import PageWrapper from "../../../layouts/PageWrapper";
 import React, { Component } from "react";
-import Head from "next/head";
+import GameMeta from "../../../components/GameMeta";
+import MiniCrosswordLogo from "../../../components/GamesCard/MiniCrosswordLogo.png";
 import SectionHeader from "../../../components/SectionHeader";
 
 class Games extends Component {
   render() {
     return (
       <>
-        <Head>
-          <title>{"Games - Daily Bruin"}</title>
-        </Head>
+        <GameMeta
+          title="Mini Crossword"
+          description="Solve today's mini crossword!"
+          logo={MiniCrosswordLogo}
+          path="/category/games/mini-crossword"
+        />
 
         <div style={{ padding: "6px" }}>
           <SectionHeader category={"Games"} />

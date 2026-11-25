@@ -1,7 +1,7 @@
 import PageWrapper from "../../../layouts/PageWrapper";
 import React from "react";
 import Link from "next/link"; 
-import Head from "next/head";
+import GameMeta from "../../../components/GameMeta";
 import SectionHeader from "../../../components/SectionHeader";
 import WestwordleLogo from "../../../components/GamesCard/WestWordLogoCropped.png"; 
 import WhackaBruinLogo from "../../../components/GamesCard/WhackABruinLogo.png"; 
@@ -14,9 +14,12 @@ import styles from "./index.module.css";
 const GamesIndex = () => {
   return (
     <>
-      <Head>
-        <title>{"Games - Daily Bruin"}</title>
-      </Head>
+      <GameMeta
+        title="Games"
+        description="Crosswords, the weekly News Quiz, Westwordle and more from the Daily Bruin."
+        logo={CrosswordLogo}
+        path="/category/games"
+      />
       <div style={{ padding: "6px" }}>
         <SectionHeader category={"Games"} />
       </div>

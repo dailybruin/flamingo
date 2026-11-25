@@ -2,7 +2,8 @@ import PageWrapper from "../../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Error from "next/error";
 import { Config } from "../../../config.js";
-import Head from "next/head";
+import GameMeta from "../../../components/GameMeta";
+import WhackABruinLogo from "../../../components/GamesCard/WhackABruinLogo.png";
 import SectionHeader from "../../../components/SectionHeader";
 
 
@@ -36,9 +37,12 @@ class Games extends Component {
     render() {
         return (
             <>
-                <Head>
-                    <title>{"Games - Daily Bruin"}</title>
-                </Head>
+                <GameMeta
+                  title="Whack-a-Bruin"
+                  description="Whack the Bruins and beat your high score!"
+                  logo={WhackABruinLogo}
+                  path="/category/games/whack-a-bruin"
+                />
                 <div style={{ padding: "6px" }}>
                     <SectionHeader
                         category={"Games"}

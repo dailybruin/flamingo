@@ -2,7 +2,8 @@ import PageWrapper from "../../../layouts/PageWrapper";
 import React, { Component } from "react";
 import Error from "next/error";
 import { Config } from "../../../config.js";
-import Head from "next/head";
+import GameMeta from "../../../components/GameMeta";
+import WestwordleLogo from "../../../components/GamesCard/WestWordLogoCropped.png";
 import SectionHeader from "../../../components/SectionHeader";
 
 // function resizeIFrameToFitContent(iFrame) {
@@ -35,9 +36,12 @@ class Games extends Component {
     render() {
         return (
             <>
-                <Head>
-                    <title>{"Games - Daily Bruin"}</title>
-                </Head>
+                <GameMeta
+                  title="Westwordle"
+                  description="Guess the Daily Bruin-themed word in 6 tries."
+                  logo={WestwordleLogo}
+                  path="/category/games/westwordle"
+                />
                 <div style={{ padding: "6px" }}>
                     <SectionHeader
                         category={"Games"}

@@ -1,6 +1,7 @@
 import PageWrapper from "../../../layouts/PageWrapper";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import Head from "next/head";
+import GameMeta from "../../../components/GameMeta";
+import NewsQuizLogo from "../../../components/GamesCard/NewsQuizLogo.png";
 import Router from "next/router";
 import SectionHeader from "../../../components/SectionHeader";
 import { NEWS_QUIZ } from "../../../config";
@@ -110,9 +111,11 @@ function NewsQuiz({ slug, archive }) {
 
   return (
     <>
-      <Head>
-        <title>{"News Quiz - Daily Bruin"}</title>
-      </Head>
+      <GameMeta
+        title="News Quiz"
+        description="How closely were you following the news this week?"
+        logo={NewsQuizLogo}
+      />
 
       <div style={{ padding: "6px" }}>
         <SectionHeader category={"Games"} />
