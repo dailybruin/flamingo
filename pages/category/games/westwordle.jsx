@@ -38,7 +38,7 @@ class Games extends Component {
             <>
                 <GameMeta
                   title="Westwordle"
-                  description="Guess the Daily Bruin-themed word in 6 tries."
+                  description="Guess the UCLA-themed word in 6 tries."
                   logo={WestwordleLogo}
                   path="/category/games/westwordle"
                 />

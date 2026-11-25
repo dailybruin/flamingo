@@ -67,7 +67,7 @@ const GamesIndex = () => {
           as="/category/games/westwordle"
           link="/category/games/westwordle"
           image={WestwordleLogo} 
-          excerpt="Guess the Daily Bruin-themed word in 6 tries."
+          excerpt="Guess the UCLA-themed word in 6 tries."
           authors={[{ "display_name": "Daily Bruin Games Team" }]}
         />
 
