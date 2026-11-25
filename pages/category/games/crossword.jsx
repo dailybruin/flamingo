@@ -1,15 +1,19 @@
 import PageWrapper from "../../../layouts/PageWrapper";
 import React, { Component } from "react";
-import Head from "next/head";
+import GameMeta from "../../../components/GameMeta";
+import CrosswordLogo from "../../../components/GamesCard/CrosswordLogo.png";
 import SectionHeader from "../../../components/SectionHeader";
 
 class Games extends Component {
   render() {
     return (
       <>
-        <Head>
-          <title>{"Games - Daily Bruin"}</title>
-        </Head>
+        <GameMeta
+          title="Crossword"
+          description="Solve today's crossword puzzle!"
+          logo={CrosswordLogo}
+          path="/category/games/crossword"
+        />
 
         <div style={{ padding: "6px" }}>
           <SectionHeader category={"Games"} />
